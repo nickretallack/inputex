@@ -1,0 +1,452 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex-multiselectcustom  inputEx.MultiSelectCustomField   (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex-multiselectcustom&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a>
+                 &gt; inputEx.MultiSelectCustomField 
+                
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <h2>
+                        
+
+                        
+                        
+                            Class <b property="yui:name">inputEx.MultiSelectCustomField</b>
+                        <span class="extends">
+                           - extends <a href="inputEx.MultiSelectField.html" title="inputEx.MultiSelectField">inputEx.MultiSelectField</a>
+                        </span>
+
+                    </h2>
+                    <!-- class tree goes here -->
+                    
+                
+  
+
+                    <div class="summary description" property="yui:description">
+                        Create a multi Select field customized
+                    </div>
+
+                        <div class="section constructor details" rel="yui:constructor" resource="#constructor">
+                        <h3 id="constructor">Constructor</h3>
+                        <div class="content">
+                            <div class="detail">
+                                <strong property="yui:name">inputEx.MultiSelectCustomField</strong>
+                                <code>
+                                    (
+  
+                                        
+                                                
+                                                options
+                                    )
+                                </code>
+                                <div class="description">
+                                        <dl rel="yui:parameters">
+                                            <dt>Parameters:</dt>
+                                                <dd rel="yui:parameter">
+                                                    <code><span property="yui:name">options</span>
+                                                    &lt;<span property="yui:type">Object</span>&gt;
+                                                    </code>
+                                                    <span property="yui:description"> Added options:
+<ul>
+<li>maxItems: the number of Items</li>
+<li>maxItemsAlert: a function executed when the maxItems is reach</li>
+<li>listSelectOptions : the options for a select field inside of the custom list</li>
+</ul></span>
+                                                </dd>
+                                        </dl>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div rel="yui:properties" resource="#properties">
+
+                        <div rel="yui:inheritance">
+                        <div class="section field inheritance" rel="yui:superclass"  resource="inputEx.Field.html">
+                            <h4>Properties inherited from <a href="inputEx.Field.html" property="yui:name" title="inputEx.Field">inputEx.Field</a>:</h4>
+                            <div class="content" rel="yui:properties">
+                                <code>
+                                    
+                                        <span rel="yui:property" resource="inputEx.Field.html#property_options">
+                                        <a class="" href="inputEx.Field.html#property_options" property="yui:name" title="options">options</a>
+                                        </span>
+                                    
+                                </code>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div rel="yui:methods" resource="#methods">
+                        <div class="section method details">
+                            <h3 id="methods">Methods</h3>
+                            <div class="content">
+                                    <div class="" rel="yui:method" resource="#method_renderComponent">
+                                    <h4>
+                                        <a name="method_renderComponent">renderComponent</a></h4>
+                                    <div class="detail" >
+                                        <code>
+                                        
+                                        
+                                        
+                                        void
+                                            <strong property="yui:name">renderComponent</strong>
+                                           (
+                                            )
+                                        </code>
+                                        
+                                        <div class="description" property="yui:description">
+                                            renderComponent : override the MultiSelectField renderComponent function
+<ul>
+<li>Use the custom ddlist </li>
+<li>put options for select fields in the ddList Custom</li>
+</ul>
+                                        </div>
+
+                                        <div class="description">
+
+
+
+
+             
+
+                                        </div>
+
+                                    </div>
+                                    <hr />
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div rel="yui:inheritance">                    
+                            <div class="section field inheritance" rel="yui:superclass"  resource="inputEx.Field.html">
+                                <h4>Methods inherited from <a href="inputEx.Field.html" property="yui:name" title="inputEx.Field">inputEx.Field</a>:</h4>
+                                <div class="content" rel="yui:methods">
+                                    <code>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_clear">                                        
+                                            <a class="" href="inputEx.Field.html#method_clear" property="yui:name" title="clear">clear</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_close">                                        
+                                            <a class="" href="inputEx.Field.html#method_close" property="yui:name" title="close">close</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_destroy">                                        
+                                            <a class="" href="inputEx.Field.html#method_destroy" property="yui:name" title="destroy">destroy</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_disable">                                        
+                                            <a class="" href="inputEx.Field.html#method_disable" property="yui:name" title="disable">disable</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_displayMessage">                                        
+                                            <a class="" href="inputEx.Field.html#method_displayMessage" property="yui:name" title="displayMessage">displayMessage</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_enable">                                        
+                                            <a class="" href="inputEx.Field.html#method_enable" property="yui:name" title="enable">enable</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_fireUpdatedEvt">                                        
+                                            <a class="" href="inputEx.Field.html#method_fireUpdatedEvt" property="yui:name" title="fireUpdatedEvt">fireUpdatedEvt</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_focus">                                        
+                                            <a class="" href="inputEx.Field.html#method_focus" property="yui:name" title="focus">focus</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_getEl">                                        
+                                            <a class="" href="inputEx.Field.html#method_getEl" property="yui:name" title="getEl">getEl</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_getParentField">                                        
+                                            <a class="" href="inputEx.Field.html#method_getParentField" property="yui:name" title="getParentField">getParentField</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_getState">                                        
+                                            <a class="" href="inputEx.Field.html#method_getState" property="yui:name" title="getState">getState</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_getStateString">                                        
+                                            <a class="" href="inputEx.Field.html#method_getStateString" property="yui:name" title="getStateString">getStateString</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_getValue">                                        
+                                            <a class="" href="inputEx.Field.html#method_getValue" property="yui:name" title="getValue">getValue</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_hide">                                        
+                                            <a class="" href="inputEx.Field.html#method_hide" property="yui:name" title="hide">hide</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_initEvents">                                        
+                                            <a class="" href="inputEx.Field.html#method_initEvents" property="yui:name" title="initEvents">initEvents</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_isDisabled">                                        
+                                            <a class="" href="inputEx.Field.html#method_isDisabled" property="yui:name" title="isDisabled">isDisabled</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_isEmpty">                                        
+                                            <a class="" href="inputEx.Field.html#method_isEmpty" property="yui:name" title="isEmpty">isEmpty</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_onBlur">                                        
+                                            <a class="" href="inputEx.Field.html#method_onBlur" property="yui:name" title="onBlur">onBlur</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_onChange">                                        
+                                            <a class="" href="inputEx.Field.html#method_onChange" property="yui:name" title="onChange">onChange</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_onFocus">                                        
+                                            <a class="" href="inputEx.Field.html#method_onFocus" property="yui:name" title="onFocus">onFocus</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_render">                                        
+                                            <a class="" href="inputEx.Field.html#method_render" property="yui:name" title="render">render</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_renderComponent">                                        
+                                            <a class="" href="inputEx.Field.html#method_renderComponent" property="yui:name" title="renderComponent">renderComponent</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_setClassFromState">                                        
+                                            <a class="" href="inputEx.Field.html#method_setClassFromState" property="yui:name" title="setClassFromState">setClassFromState</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_setFieldName">                                        
+                                            <a class="" href="inputEx.Field.html#method_setFieldName" property="yui:name" title="setFieldName">setFieldName</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_setOptions">                                        
+                                            <a class="" href="inputEx.Field.html#method_setOptions" property="yui:name" title="setOptions">setOptions</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_setParentField">                                        
+                                            <a class="" href="inputEx.Field.html#method_setParentField" property="yui:name" title="setParentField">setParentField</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_setValue">                                        
+                                            <a class="" href="inputEx.Field.html#method_setValue" property="yui:name" title="setValue">setValue</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_show">                                        
+                                            <a class="" href="inputEx.Field.html#method_show" property="yui:name" title="show">show</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.Field.html#method_validate">                                        
+                                            <a class="" href="inputEx.Field.html#method_validate" property="yui:name" title="validate">validate</a>
+                                            </span>
+                                    </code>
+                                </div>
+                            </div>
+                            <div class="section field inheritance" rel="yui:superclass"  resource="inputEx.MultiSelectField.html">
+                                <h4>Methods inherited from <a href="inputEx.MultiSelectField.html" property="yui:name" title="inputEx.MultiSelectField">inputEx.MultiSelectField</a>:</h4>
+                                <div class="content" rel="yui:methods">
+                                    <code>
+                                            <span rel="yui:method" resource="inputEx.MultiSelectField.html#method_getValue">                                        
+                                            <a class="" href="inputEx.MultiSelectField.html#method_getValue" property="yui:name" title="getValue">getValue</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.MultiSelectField.html#method_initEvents">                                        
+                                            <a class="" href="inputEx.MultiSelectField.html#method_initEvents" property="yui:name" title="initEvents">initEvents</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.MultiSelectField.html#method_onAddNewItem">                                        
+                                            <a class="" href="inputEx.MultiSelectField.html#method_onAddNewItem" property="yui:name" title="onAddNewItem">onAddNewItem</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.MultiSelectField.html#method_onItemRemoved">                                        
+                                            <a class="" href="inputEx.MultiSelectField.html#method_onItemRemoved" property="yui:name" title="onItemRemoved">onItemRemoved</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.MultiSelectField.html#method_renderComponent">                                        
+                                            <a class="" href="inputEx.MultiSelectField.html#method_renderComponent" property="yui:name" title="renderComponent">renderComponent</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.MultiSelectField.html#method_setValue">                                        
+                                            <a class="" href="inputEx.MultiSelectField.html#method_setValue" property="yui:name" title="setValue">setValue</a>
+                                            </span>
+                                    </code>
+                                </div>
+                            </div>
+                            <div class="section field inheritance" rel="yui:superclass"  resource="inputEx.SelectField.html">
+                                <h4>Methods inherited from <a href="inputEx.SelectField.html" property="yui:name" title="inputEx.SelectField">inputEx.SelectField</a>:</h4>
+                                <div class="content" rel="yui:methods">
+                                    <code>
+                                            <span rel="yui:method" resource="inputEx.SelectField.html#method_appendChoiceNode">                                        
+                                            <a class="" href="inputEx.SelectField.html#method_appendChoiceNode" property="yui:name" title="appendChoiceNode">appendChoiceNode</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.SelectField.html#method_disable">                                        
+                                            <a class="" href="inputEx.SelectField.html#method_disable" property="yui:name" title="disable">disable</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.SelectField.html#method_enable">                                        
+                                            <a class="" href="inputEx.SelectField.html#method_enable" property="yui:name" title="enable">enable</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.SelectField.html#method_getValue">                                        
+                                            <a class="" href="inputEx.SelectField.html#method_getValue" property="yui:name" title="getValue">getValue</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.SelectField.html#method_initEvents">                                        
+                                            <a class="" href="inputEx.SelectField.html#method_initEvents" property="yui:name" title="initEvents">initEvents</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.SelectField.html#method_renderComponent">                                        
+                                            <a class="" href="inputEx.SelectField.html#method_renderComponent" property="yui:name" title="renderComponent">renderComponent</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.SelectField.html#method_setOptions">                                        
+                                            <a class="" href="inputEx.SelectField.html#method_setOptions" property="yui:name" title="setOptions">setOptions</a><span class="">,</span>
+                                            </span>
+                                            <span rel="yui:method" resource="inputEx.SelectField.html#method_setValue">                                        
+                                            <a class="" href="inputEx.SelectField.html#method_setValue" property="yui:name" title="setValue">setValue</a>
+                                            </span>
+                                    </code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div rel="yui:events" resource="#events">
+
+
+                        <div rel="yui:inheritance">                    
+                        <div class="section field inheritance" rel="yui:superclass"  resource="inputEx.Field.html">
+                            <h4>Events inherited from <a href="inputEx.Field.html" property="yui:name" title="inputEx.Field">inputEx.Field</a>:</h4>
+                            <div class="content" rel="yui:events">
+                                <code>
+                                        <span rel="yui:event" resource="inputEx.Field.html#event_updated">
+                                        <a class="" href="inputEx.Field.html#event_updated" property="yui:name" title="updated">updated</a><span class="">,</span>
+                                        </span>
+                                    
+                                </code>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div rel="yui:attributes" resource="#configattributes">
+
+                    </div>
+
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class=""><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class=""><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class=""><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class=""><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class=""><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class="selected"><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class=""><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class=""><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class=""><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class=""><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="inputEx.MultiSelectCustomField.html" title="inputEx.MultiSelectCustomField">inputEx.MultiSelectCustomField</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="inputex-number.js.html" title="inputex-number.js">inputex-number.js</a></li>
+                        </ul>
+                    </div>
+
+
+                    <div id="methodsList" class="module">
+                        <h4>Methods</h4>
+                        <ul class="content">        
+                                <li class=""><a href="#method_renderComponent" title="renderComponent">renderComponent</a></li>
+                        </ul>
+                    </div>
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.MultiSelectCustomField.html#method_renderComponent", "access": "", "host": "inputEx.MultiSelectCustomField", "type": "method", "name": "renderComponent"}];
+</script>
+</body>
+</html>

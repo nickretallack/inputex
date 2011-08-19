@@ -1,0 +1,469 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex   loader.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex.html" title="inputex">inputex</a>
+                
+                 &gt; loader.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="nx">YUI</span><span class="p">().</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+   
+	<span class="kd">var</span> <span class="nx">CONFIG</span> <span class="o">=</span> <span class="p">{</span>
+		<span class="nx">groups</span><span class="o">:</span> <span class="p">{</span>
+			<span class="s1">&#39;inputex&#39;</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">base</span><span class="o">:</span> <span class="s1">&#39;inputex/src/&#39;</span><span class="p">,</span>
+				<span class="nx">combine</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+				<span class="nx">modules</span><span class="o">:</span> <span class="p">{</span>
+				   <span class="s1">&#39;inputex&#39;</span><span class="o">:</span> <span class="p">{</span>
+				      <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;node&#39;</span><span class="p">,</span><span class="s1">&#39;intl&#39;</span><span class="p">],</span>
+				      <span class="nx">skinnable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+				      <span class="nx">lang</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;en&#39;</span><span class="p">,</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span><span class="s1">&#39;de&#39;</span><span class="p">,</span><span class="s1">&#39;es&#39;</span><span class="p">,</span><span class="s1">&#39;fr&#39;</span><span class="p">,</span><span class="s1">&#39;it&#39;</span><span class="p">,</span><span class="s1">&#39;nl&#39;</span><span class="p">]</span>
+				   <span class="p">},</span>
+					<span class="c1">// inputEx base</span>
+					<span class="s1">&#39;inputex-field&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex&#39;</span><span class="p">]</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-visus&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex&#39;</span><span class="p">,</span><span class="s1">&#39;dump&#39;</span><span class="p">]</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-jsonschema&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex&#39;</span><span class="p">]</span>
+					<span class="p">},</span>
+					<span class="c1">// RPC</span>
+					<span class="s1">&#39;inputex-rpc&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="s1">&#39;inputex&#39;</span><span class="p">,</span><span class="s1">&#39;io&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-jsonschema&#39;</span><span class="p">,</span><span class="s1">&#39;jsonp&#39;</span><span class="p">]</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-smdtester&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-rpc&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-jsontreeinspector&#39;</span><span class="p">]</span>
+					<span class="p">},</span>
+					<span class="c1">// Mixins</span>
+					<span class="s1">&#39;inputex-choice&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex&#39;</span><span class="p">]</span>
+					<span class="p">},</span>
+					<span class="c1">// Widgets</span>
+					<span class="s1">&#39;inputex-base&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex&#39;</span><span class="p">,</span> <span class="s1">&#39;widget&#39;</span><span class="p">,</span> <span class="s1">&#39;widget-stdmod&#39;</span><span class="p">]</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-panel&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex&#39;</span><span class="p">,</span> <span class="s1">&#39;panel&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-base&#39;</span><span class="p">]</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-datatable&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-group&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-panel&#39;</span><span class="p">,</span><span class="s1">&#39;datatable&#39;</span><span class="p">]</span>
+					<span class="p">},</span>
+					<span class="cm">/*&#39;inputex-dtinplaceedit&#39;: {</span>
+<span class="cm">						requires: [&#39;inputex-datatable&#39;]</span>
+<span class="cm">					},*/</span>
+					<span class="s1">&#39;inputex-jsontreeinspector&#39;</span><span class="o">:</span> <span class="p">{</span>
+					  	<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex&#39;</span><span class="p">],</span>
+					  	<span class="nx">skinnable</span><span class="o">:</span> <span class="kc">true</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-button&#39;</span><span class="o">:</span> <span class="p">{</span>
+					   <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex&#39;</span><span class="p">]</span>
+					<span class="p">},</span>
+					<span class="c1">// MetaFields</span>
+					<span class="s1">&#39;inputex-group&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;group&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-form&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;io-base&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-group&#39;</span><span class="p">,</span><span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-button&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;form&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-list&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span><span class="s1">&#39;anim&#39;</span><span class="p">],</span>
+						<span class="nx">skinnable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-tree&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-list&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-inplaceedit&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;tree&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-combine&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-group&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;combine&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-inplaceedit&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-button&#39;</span><span class="p">,</span> <span class="s1">&#39;anim&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-visus&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;inplaceedit&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-lens&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-group&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-inplaceedit&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;lens&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-serialize&#39;</span><span class="o">:</span> <span class="p">{</span>
+					   <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">,</span><span class="s1">&#39;json&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;serialize&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-object&#39;</span><span class="o">:</span> <span class="p">{</span>
+   					<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-list&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-combine&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;object&#39;</span>
+					<span class="p">},</span>
+					<span class="c1">// Fields</span>
+					<span class="s1">&#39;inputex-string&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span><span class="s1">&#39;event-key&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;string&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-uppercase&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;uppercase&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-autocomplete&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">,</span><span class="s1">&#39;autocomplete&#39;</span><span class="p">,</span> <span class="s1">&#39;autocomplete-filters&#39;</span><span class="p">,</span> <span class="s1">&#39;autocomplete-highlighters&#39;</span><span class="p">,</span><span class="s1">&#39;datasource&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;autocomplete&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-checkbox&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;boolean&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-color&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span><span class="s1">&#39;node-event-delegate&#39;</span><span class="p">,</span><span class="s1">&#39;overlay&#39;</span><span class="p">],</span>
+						<span class="nx">skinnable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;color&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-colorpicker&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span><span class="s1">&#39;yui2-colorpicker&#39;</span><span class="p">,</span><span class="s1">&#39;yui2-container&#39;</span><span class="p">,</span><span class="s1">&#39;yui2-menu&#39;</span><span class="p">,</span><span class="s1">&#39;yui2-button&#39;</span><span class="p">],</span>
+						<span class="nx">skinnable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;colorpicker&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-date&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;date&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-datepicker&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-date&#39;</span><span class="p">,</span><span class="s1">&#39;node-event-delegate&#39;</span><span class="p">,</span><span class="s1">&#39;overlay&#39;</span><span class="p">,</span><span class="s1">&#39;calendar&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;datepicker&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-dateselectmonth&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-combine&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;dateselectmonth&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-integer&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;integer&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-datesplit&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-combine&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-integer&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;datesplit&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-select&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-choice&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;select&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-time&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-combine&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-select&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;time&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-datetime&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-datepicker&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-combine&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-time&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;datetime&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-timeinterval&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-combine&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-select&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;timeinterval&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-dsselect&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-select&#39;</span><span class="p">,</span> <span class="s1">&#39;datasource&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;dsselect&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-email&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;email&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-hidden&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;hidden&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-keyvalue&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-combine&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;keyvalue&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-keyopvalue&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-keyvalue&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;keyopvalue&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-multiautocomplete&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-autocomplete&#39;</span><span class="p">,</span><span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="s1">&#39;sortable&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;multiautocomplete&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-multiselect&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-select&#39;</span><span class="p">,</span> <span class="s1">&#39;sortable&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;multiselect&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-number&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;number&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-password&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;password&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-radio&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;selector&#39;</span><span class="p">,</span><span class="s1">&#39;event-delegate&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-choice&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;radio&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-rte&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span> <span class="s1">&#39;yui2-editor&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;html&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-slider&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span> <span class="s1">&#39;slider&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;slider&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-textarea&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;text&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-type&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-group&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-select&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-list&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-checkbox&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-integer&#39;</span><span class="p">],</span>
+						<span class="nx">skinnable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;type&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-uneditable&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-visus&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;uneditable&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-url&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;url&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-dateselectmonth&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-combine&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-string&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-select&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;dateselectmonth&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-ipv4&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;ipv4&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-vector&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-combine&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;vector&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-map&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;map&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-ratingstars&#39;</span><span class="o">:</span> <span class="p">{</span>
+						<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">],</span>
+						<span class="nx">skinnable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;ratingstars&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-ratingstarsform&#39;</span><span class="o">:</span> <span class="p">{</span>
+                  <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-ratingstars&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-form&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;ratingstarsform&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-menu&#39;</span><span class="o">:</span> <span class="p">{</span>
+					   <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span><span class="s1">&#39;yui2-menu&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;menu&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-file&#39;</span><span class="o">:</span> <span class="p">{</span>
+					   <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;file&#39;</span>
+					<span class="p">},</span>
+					<span class="s1">&#39;inputex-tinymce&#39;</span><span class="o">:</span> <span class="p">{</span>
+					   <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">],</span>
+						<span class="nx">ix_provides</span><span class="o">:</span> <span class="s1">&#39;tinymce&#39;</span>
+					<span class="p">}</span>
+					<span class="cm">/*,</span>
+<span class="cm">					// Piercus widgets</span>
+<span class="cm">					&#39;inputex-pie-listcustom&#39;: {</span>
+<span class="cm">						requires: [&#39;sortable&#39;,&#39;yui2-json&#39;]</span>
+<span class="cm">					},</span>
+<span class="cm">					&#39;inputex-pie-multiselect&#39;:{</span>
+<span class="cm">						requires: [&#39;inputex-multiselect&#39;, &#39;inputex-pie-listcustom&#39;]</span>
+<span class="cm">					},</span>
+<span class="cm">					&#39;inputex-pie-multiautocomplete&#39;:{</span>
+<span class="cm">						requires: [&#39;inputex-multiautocomplete&#39;, &#39;inputex-pie-listcustom&#39;]</span>
+<span class="cm">					}*/</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">};</span>
+
+	<span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">YUI_config</span> <span class="o">===</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span> <span class="nx">YUI_config</span> <span class="o">=</span> <span class="p">{</span><span class="nx">groups</span><span class="o">:</span> <span class="p">{}};</span> <span class="p">}</span>
+	<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">YUI_config</span><span class="p">.</span><span class="nx">groups</span><span class="p">,</span> <span class="nx">CONFIG</span><span class="p">.</span><span class="nx">groups</span><span class="p">);</span>
+
+   <span class="c1">// Loop through all modules</span>
+   <span class="kd">var</span> <span class="nx">modules</span> <span class="o">=</span> <span class="nx">YUI_config</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">inputex</span><span class="p">.</span><span class="nx">modules</span><span class="p">,</span>
+       <span class="nx">allModules</span> <span class="o">=</span> <span class="p">[],</span>
+       <span class="nx">modulesByType</span> <span class="o">=</span> <span class="p">{};</span>
+   <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">moduleName</span> <span class="k">in</span> <span class="nx">modules</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">if</span> <span class="p">(</span><span class="nx">modules</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">moduleName</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+       
+       <span class="c1">// Build a list of all inputEx modules</span>
+       <span class="nx">allModules</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">moduleName</span><span class="p">);</span>
+       
+       <span class="c1">// Build a reverse index on which module provides what type</span>
+       <span class="k">if</span><span class="p">(</span><span class="nx">modules</span><span class="p">[</span><span class="nx">moduleName</span><span class="p">].</span><span class="nx">ix_provides</span><span class="p">)</span> <span class="p">{</span>
+          <span class="nx">modulesByType</span><span class="p">[</span><span class="nx">modules</span><span class="p">[</span><span class="nx">moduleName</span><span class="p">].</span><span class="nx">ix_provides</span><span class="p">]</span> <span class="o">=</span> <span class="nx">moduleName</span><span class="p">;</span>
+       <span class="p">}</span>
+       
+     <span class="p">}</span>
+   <span class="p">}</span>
+   <span class="nx">YUI_config</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">inputex</span><span class="p">.</span><span class="nx">allModules</span> <span class="o">=</span> <span class="nx">allModules</span><span class="p">;</span>
+   <span class="nx">YUI_config</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">inputex</span><span class="p">.</span><span class="nx">modulesByType</span> <span class="o">=</span> <span class="nx">modulesByType</span><span class="p">;</span>
+
+<span class="p">});</span>
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class=""><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class=""><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class=""><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class=""><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class=""><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class=""><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class=""><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class=""><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class=""><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="inputEx.html" title="inputEx">inputEx</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="inputex-autocomplete.js.html" title="inputex-autocomplete.js">inputex-autocomplete.js</a></li>
+                                <li class=""><a href="inputex.js.html" title="inputex.js">inputex.js</a></li>
+                                <li class=""><a href="inputex_ca.js.html" title="inputex_ca.js">inputex_ca.js</a></li>
+                                <li class=""><a href="inputex_de.js.html" title="inputex_de.js">inputex_de.js</a></li>
+                                <li class=""><a href="inputex_en.js.html" title="inputex_en.js">inputex_en.js</a></li>
+                                <li class=""><a href="inputex_es.js.html" title="inputex_es.js">inputex_es.js</a></li>
+                                <li class=""><a href="inputex_fr.js.html" title="inputex_fr.js">inputex_fr.js</a></li>
+                                <li class=""><a href="inputex_it.js.html" title="inputex_it.js">inputex_it.js</a></li>
+                                <li class=""><a href="inputex_nl.js.html" title="inputex_nl.js">inputex_nl.js</a></li>
+                                <li class="selected"><a href="loader.js.html" title="loader.js">loader.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.html#property_browserAutocomplete", "access": "", "host": "inputEx", "type": "property", "name": "browserAutocomplete"}, {"url": "inputEx.html#method_cn", "access": "", "host": "inputEx", "type": "method", "name": "cn"}, {"url": "inputEx.html#method_compactArray", "access": "", "host": "inputEx", "type": "method", "name": "compactArray"}, {"url": "inputEx.html#method_getFieldClass", "access": "", "host": "inputEx", "type": "method", "name": "getFieldClass"}, {"url": "inputEx.html#method_getModulesFromDefinition", "access": "", "host": "inputEx", "type": "method", "name": "getModulesFromDefinition"}, {"url": "inputEx.html#method_getRawModulesFromDefinition", "access": "", "host": "inputEx", "type": "method", "name": "getRawModulesFromDefinition"}, {"url": "inputEx.html#method_getType", "access": "", "host": "inputEx", "type": "method", "name": "getType"}, {"url": "inputEx.html#method_htmlEntities", "access": "", "host": "inputEx", "type": "method", "name": "htmlEntities"}, {"url": "inputEx.html#method_indexOf", "access": "", "host": "inputEx", "type": "method", "name": "indexOf"}, {"url": "inputEx.html#property_messages", "access": "", "host": "inputEx", "type": "property", "name": "messages"}, {"url": "inputEx.html#property_mixin", "access": "", "host": "inputEx", "type": "property", "name": "mixin"}, {"url": "inputEx.html#property_regexps", "access": "", "host": "inputEx", "type": "property", "name": "regexps"}, {"url": "inputEx.html#method_registerType", "access": "", "host": "inputEx", "type": "method", "name": "registerType"}, {"url": "inputEx.html#method_removeAccents", "access": "", "host": "inputEx", "type": "method", "name": "removeAccents"}, {"url": "inputEx.html#method_sn", "access": "", "host": "inputEx", "type": "method", "name": "sn"}, {"url": "inputEx.html#property_spacerUrl", "access": "", "host": "inputEx", "type": "property", "name": "spacerUrl"}, {"url": "inputEx.html#property_stateEmpty", "access": "", "host": "inputEx", "type": "property", "name": "stateEmpty"}, {"url": "inputEx.html#property_stateInvalid", "access": "", "host": "inputEx", "type": "property", "name": "stateInvalid"}, {"url": "inputEx.html#property_stateRequired", "access": "", "host": "inputEx", "type": "property", "name": "stateRequired"}, {"url": "inputEx.html#property_stateValid", "access": "", "host": "inputEx", "type": "property", "name": "stateValid"}, {"url": "inputEx.html#property_typeClasses", "access": "", "host": "inputEx", "type": "property", "name": "typeClasses"}, {"url": "inputEx.html#method_use", "access": "", "host": "inputEx", "type": "method", "name": "use"}, {"url": "inputEx.html#property_widget", "access": "", "host": "inputEx", "type": "property", "name": "widget"}];
+</script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex-jsonschema   inputex-jsontreeinspector.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex-jsonschema&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a>
+                
+                 &gt; inputex-jsontreeinspector.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @module inputex-jsontreeinspector</span>
+<span class="cm"> */</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;inputex-jsontreeinspector&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){</span>
+
+   <span class="kd">var</span> <span class="nx">lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+       <span class="nx">inputEx</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Create a treeview to inspect a javascript object</span>
+<span class="cm"> * @class inputEx.widget.JsonTreeInspector</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @param {String|HTMLElement} parentEl where to append the tree</span>
+<span class="cm"> * @param {Object} object the object to inspect</span>
+<span class="cm"> * @param {String} jsonPath JSON Path string (optional) (http://code.google.com/p/jsonpath/wiki/Javascript)</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">JsonTreeInspector</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">parentEl</span><span class="p">,</span> <span class="nx">object</span><span class="p">,</span> <span class="nx">cfg</span><span class="p">)</span> <span class="p">{</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * Hash to contain the values indexed by li ids</span>
+<span class="cm">    */</span>
+   <span class="k">this</span><span class="p">.</span><span class="nx">hash</span> <span class="o">=</span> <span class="p">{};</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Main div element</span>
+<span class="cm">    */</span>
+   <span class="k">this</span><span class="p">.</span><span class="nx">el</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+   
+   <span class="k">this</span><span class="p">.</span><span class="nx">cfg</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">({},</span><span class="nx">cfg</span><span class="p">);</span>
+   <span class="k">this</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">showEmptyObjects</span> <span class="o">=</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">showEmptyObjects</span><span class="p">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">showEmptyObjects</span><span class="p">;</span>
+
+   <span class="kd">var</span> <span class="nx">branch</span> <span class="o">=</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">jsonPath</span><span class="p">)</span> <span class="o">?</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">JsonTreeInspector</span><span class="p">.</span><span class="nx">jsonPath</span><span class="p">(</span><span class="nx">object</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">jsonPath</span><span class="p">)</span> <span class="o">:</span> <span class="nx">object</span><span class="p">;</span>
+   
+   <span class="k">this</span><span class="p">.</span><span class="nx">buildBranch</span><span class="p">(</span> <span class="nx">branch</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">);</span>
+   
+   <span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">parentEl</span><span class="p">)</span> <span class="o">?</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="nx">parentEl</span><span class="p">)</span> <span class="o">:</span> <span class="nx">parentEl</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">JsonTreeInspector</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Destroy the widget</span>
+<span class="cm">    */</span>
+   <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      
+      <span class="c1">// Remove from DOM</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">Dom</span><span class="p">.</span><span class="nx">inDocument</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">))</span> <span class="p">{</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">);</span>
+      <span class="p">}</span>
+      
+      <span class="c1">// recursively purge element</span>
+      <span class="nx">Event</span><span class="p">.</span><span class="nx">purgeElement</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Build the sub-branch for obj</span>
+<span class="cm">    */</span>
+   <span class="nx">buildBranch</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span><span class="nx">parentEl</span><span class="p">)</span> <span class="p">{</span>
+      
+      <span class="kd">var</span> <span class="nx">ul</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;ul&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;inputEx-JsonTreeInspector&#39;</span><span class="p">});</span>
+      
+      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">if</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+            
+            <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">generateId</span><span class="p">();</span>
+            <span class="kd">var</span> <span class="nx">li</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">id</span><span class="p">},</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">key</span><span class="o">+</span><span class="s1">&#39;:&#39;</span><span class="p">);</span>
+            <span class="nx">li</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">id</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">hash</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">expanded</span><span class="o">:</span> <span class="kc">false</span><span class="p">};</span>
+            
+            <span class="kd">var</span> <span class="nx">add</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+            
+            <span class="k">if</span><span class="p">(</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                  
+               <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">li</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;collapsed&#39;</span><span class="p">);</span>
+               <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">li</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onItemClick</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+               
+               
+               <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">cfg</span><span class="p">.</span><span class="nx">showEmptyObjects</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Object</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">add</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+               <span class="p">}</span>
+               
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+               <span class="nx">li</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="s2">&quot;[ &quot;</span><span class="o">+</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="o">+</span><span class="s2">&quot; element&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="o">?</span> <span class="s1">&#39;s&#39;</span><span class="o">:</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;]&quot;</span> <span class="p">)</span> <span class="p">);</span>
+               <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">li</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;collapsed&#39;</span><span class="p">);</span>
+               <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">li</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onItemClick</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="p">{</span>
+               <span class="kd">var</span> <span class="nx">spanContent</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+               <span class="k">if</span><span class="p">(</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">spanContent</span> <span class="o">=</span> <span class="s1">&#39;&quot;&#39;</span><span class="o">+</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">htmlEntities</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="o">+</span><span class="s1">&#39;&quot;&#39;</span><span class="p">;</span>
+               <span class="p">}</span>
+               <span class="k">else</span> <span class="p">{</span>
+                  <span class="k">if</span><span class="p">(</span><span class="nx">value</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                     <span class="nx">spanContent</span> <span class="o">=</span> <span class="s2">&quot;null&quot;</span><span class="p">;</span>
+                  <span class="p">}</span>
+                  <span class="k">else</span> <span class="p">{</span>
+                     <span class="nx">spanContent</span> <span class="o">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">toString</span><span class="p">();</span>
+                  <span class="p">}</span>
+               <span class="p">}</span>
+               <span class="nx">li</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;type-&#39;</span><span class="o">+</span><span class="p">(</span><span class="nx">value</span> <span class="o">===</span> <span class="kc">null</span> <span class="o">?</span> <span class="s2">&quot;null&quot;</span> <span class="o">:</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">value</span><span class="p">))},</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">spanContent</span> <span class="p">)</span> <span class="p">);</span>
+            <span class="p">}</span>
+            
+            <span class="k">if</span><span class="p">(</span><span class="nx">add</span><span class="p">)</span>
+               <span class="nx">ul</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">li</span><span class="p">);</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+      
+      <span class="nx">parentEl</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">ul</span><span class="p">);</span>
+      
+      <span class="k">return</span> <span class="nx">ul</span><span class="p">;</span>
+   <span class="p">},</span>
+   
+   
+   <span class="cm">/**</span>
+<span class="cm">    * When the user click on a node</span>
+<span class="cm">    */</span>
+   <span class="nx">onItemClick</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+      
+      <span class="nx">e</span><span class="p">.</span><span class="nx">halt</span><span class="p">();</span>
+      
+      <span class="k">if</span><span class="p">(</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;expanded&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;collapsed&#39;</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">expandElement</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">_node</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+   
+   
+   <span class="cm">/**</span>
+<span class="cm">    * expand the node given the li element</span>
+<span class="cm">    */</span>
+   <span class="nx">expandElement</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">li</span><span class="p">)</span> <span class="p">{</span>
+      
+      <span class="kd">var</span> <span class="nx">isExpanded</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">li</span><span class="p">).</span><span class="nx">hasClass</span><span class="p">(</span><span class="s1">&#39;expanded&#39;</span><span class="p">);</span>
+      <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">li</span><span class="p">).</span><span class="nx">replaceClass</span><span class="p">(</span><span class="nx">isExpanded</span> <span class="o">?</span> <span class="s1">&#39;expanded&#39;</span> <span class="o">:</span> <span class="s1">&#39;collapsed&#39;</span> <span class="p">,</span> <span class="nx">isExpanded</span> <span class="o">?</span> <span class="s1">&#39;collapsed&#39;</span><span class="o">:</span><span class="s1">&#39;expanded&#39;</span><span class="p">);</span>
+
+      <span class="kd">var</span> <span class="nx">h</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">hash</span><span class="p">[</span><span class="nx">li</span><span class="p">.</span><span class="nx">id</span><span class="p">];</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="nx">isExpanded</span><span class="p">)</span> <span class="p">{</span>
+         <span class="c1">// hide the sub-branch</span>
+         <span class="nx">h</span><span class="p">.</span><span class="nx">expanded</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+         <span class="k">if</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">expanded</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// generate the sub-branch</span>
+            <span class="nx">h</span><span class="p">.</span><span class="nx">expanded</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">buildBranch</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="nx">li</span><span class="p">);</span>
+         <span class="p">}</span>
+         <span class="c1">// show the sub-branch</span>
+         <span class="nx">h</span><span class="p">.</span><span class="nx">expanded</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Expand a branch given a li element</span>
+<span class="cm">    * @param {HTMLElement} li </span>
+<span class="cm">    * @param {Integer} maxLevel</span>
+<span class="cm">    */</span>
+   <span class="nx">expandBranch</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">li</span><span class="p">,</span><span class="nx">maxLevel</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">expandElement</span><span class="p">(</span><span class="nx">li</span><span class="p">);</span>
+      
+      <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+      <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">li</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;children&#39;</span><span class="p">).</span><span class="nx">item</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;children&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">subLi</span><span class="p">)</span> <span class="p">{</span>
+         
+         <span class="k">if</span><span class="p">(</span><span class="nx">subLi</span><span class="p">.</span><span class="nx">hasClass</span><span class="p">(</span><span class="s2">&quot;collapsed&quot;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">maxLevel</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">that</span><span class="p">.</span><span class="nx">expandBranch</span><span class="p">(</span><span class="nx">subLi</span><span class="p">.</span><span class="nx">_node</span><span class="p">,</span><span class="nx">maxLevel</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+         <span class="p">}</span>
+         
+      <span class="p">});</span>
+      
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Expand the root node</span>
+<span class="cm">    * @param {Integer} maxLevel</span>
+<span class="cm">    */</span>
+   <span class="nx">expandAll</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">maxLevel</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">ul</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+      <span class="kd">var</span> <span class="nx">liEls</span> <span class="o">=</span> <span class="nx">ul</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">;</span>
+      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">liEls</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">li</span> <span class="o">=</span> <span class="nx">liEls</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">expandBranch</span><span class="p">(</span><span class="nx">li</span><span class="p">,</span><span class="nx">maxLevel</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+   
+<span class="p">};</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * JSONPath 0.8.0 - XPath for JSON</span>
+<span class="cm"> * http://code.google.com/p/jsonpath/</span>
+<span class="cm"> * http://code.google.com/p/jsonpath/wiki/Javascript</span>
+<span class="cm"> *</span>
+<span class="cm"> * Copyright (c) 2007 Stefan Goessner (goessner.net)</span>
+<span class="cm"> * Licensed under the MIT (MIT-LICENSE.txt) licence.</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">JsonTreeInspector</span><span class="p">.</span><span class="nx">jsonPath</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">expr</span><span class="p">,</span> <span class="nx">arg</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kd">var</span> <span class="nx">P</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">resultType</span><span class="o">:</span> <span class="nx">arg</span> <span class="o">&amp;&amp;</span> <span class="nx">arg</span><span class="p">.</span><span class="nx">resultType</span> <span class="o">||</span> <span class="s2">&quot;VALUE&quot;</span><span class="p">,</span>
+      <span class="nx">result</span><span class="o">:</span> <span class="p">[],</span>
+      <span class="nx">normalize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">expr</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">subx</span> <span class="o">=</span> <span class="p">[];</span>
+         <span class="k">return</span> <span class="nx">expr</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[\[&#39;](\??\(.*?\))[\]&#39;]/g</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$0</span><span class="p">,</span><span class="nx">$1</span><span class="p">){</span><span class="k">return</span> <span class="s2">&quot;[#&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">subx</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">$1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;]&quot;</span><span class="p">;})</span>
+                    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&#39;?\.&#39;?|\[&#39;?/g</span><span class="p">,</span> <span class="s2">&quot;;&quot;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/;;;|;;/g</span><span class="p">,</span> <span class="s2">&quot;;..;&quot;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/;$|&#39;?\]|&#39;$/g</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/#([0-9]+)/g</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$0</span><span class="p">,</span><span class="nx">$1</span><span class="p">){</span><span class="k">return</span> <span class="nx">subx</span><span class="p">[</span><span class="nx">$1</span><span class="p">];});</span>
+      <span class="p">},</span>
+      <span class="nx">asPath</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">path</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">),</span> <span class="nx">p</span> <span class="o">=</span> <span class="s2">&quot;$&quot;</span><span class="p">;</span>
+         <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="nx">n</span><span class="o">=</span><span class="nx">x</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="nx">p</span> <span class="o">+=</span> <span class="sr">/^[0-9*]+$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">x</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="o">?</span> <span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="o">+</span><span class="nx">x</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;]&quot;</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="s2">&quot;[&#39;&quot;</span><span class="o">+</span><span class="nx">x</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;&#39;]&quot;</span><span class="p">);</span>
+         <span class="k">return</span> <span class="nx">p</span><span class="p">;</span>
+      <span class="p">},</span>
+      <span class="nx">store</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="nx">P</span><span class="p">.</span><span class="nx">result</span><span class="p">[</span><span class="nx">P</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span><span class="p">]</span> <span class="o">=</span> <span class="nx">P</span><span class="p">.</span><span class="nx">resultType</span> <span class="o">==</span> <span class="s2">&quot;PATH&quot;</span> <span class="o">?</span> <span class="nx">P</span><span class="p">.</span><span class="nx">asPath</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span> <span class="o">:</span> <span class="nx">v</span><span class="p">;</span>
+         <span class="k">return</span> <span class="o">!!</span><span class="nx">p</span><span class="p">;</span>
+      <span class="p">},</span>
+      <span class="nx">trace</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">expr</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nx">expr</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">expr</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">),</span> <span class="nx">loc</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">shift</span><span class="p">();</span>
+            <span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="o">&amp;&amp;</span> <span class="nx">val</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">loc</span><span class="p">))</span>
+               <span class="nx">P</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">val</span><span class="p">[</span><span class="nx">loc</span><span class="p">],</span> <span class="nx">path</span> <span class="o">+</span> <span class="s2">&quot;;&quot;</span> <span class="o">+</span> <span class="nx">loc</span><span class="p">);</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">loc</span> <span class="o">===</span> <span class="s2">&quot;*&quot;</span><span class="p">)</span>
+               <span class="nx">P</span><span class="p">.</span><span class="nx">walk</span><span class="p">(</span><span class="nx">loc</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">l</span><span class="p">,</span><span class="nx">x</span><span class="p">,</span><span class="nx">v</span><span class="p">,</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span> <span class="nx">P</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">m</span><span class="o">+</span><span class="s2">&quot;;&quot;</span><span class="o">+</span><span class="nx">x</span><span class="p">,</span><span class="nx">v</span><span class="p">,</span><span class="nx">p</span><span class="p">);</span> <span class="p">});</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">loc</span> <span class="o">===</span> <span class="s2">&quot;..&quot;</span><span class="p">)</span> <span class="p">{</span>
+               <span class="nx">P</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">);</span>
+               <span class="nx">P</span><span class="p">.</span><span class="nx">walk</span><span class="p">(</span><span class="nx">loc</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">l</span><span class="p">,</span><span class="nx">x</span><span class="p">,</span><span class="nx">v</span><span class="p">,</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span> <span class="k">typeof</span> <span class="nx">v</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span> <span class="o">===</span> <span class="s2">&quot;object&quot;</span> <span class="o">&amp;&amp;</span> <span class="nx">P</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="s2">&quot;..;&quot;</span><span class="o">+</span><span class="nx">x</span><span class="p">,</span><span class="nx">v</span><span class="p">[</span><span class="nx">m</span><span class="p">],</span><span class="nx">p</span><span class="o">+</span><span class="s2">&quot;;&quot;</span><span class="o">+</span><span class="nx">m</span><span class="p">);</span> <span class="p">});</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="sr">/,/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">loc</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// [name1,name2,...]</span>
+               <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">s</span><span class="o">=</span><span class="nx">loc</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="sr">/&#39;?,&#39;?/</span><span class="p">),</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">n</span><span class="o">=</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+                  <span class="nx">P</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot;;&quot;</span><span class="o">+</span><span class="nx">x</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="sr">/^\(.*?\)$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">loc</span><span class="p">))</span> <span class="c1">// [(expr)]</span>
+               <span class="nx">P</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">P</span><span class="p">.</span><span class="nb">eval</span><span class="p">(</span><span class="nx">loc</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">.</span><span class="nx">substr</span><span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">lastIndexOf</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;;&quot;</span><span class="o">+</span><span class="nx">x</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">);</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="sr">/^\?\(.*?\)$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">loc</span><span class="p">))</span> <span class="c1">// [?(expr)]</span>
+               <span class="nx">P</span><span class="p">.</span><span class="nx">walk</span><span class="p">(</span><span class="nx">loc</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">l</span><span class="p">,</span><span class="nx">x</span><span class="p">,</span><span class="nx">v</span><span class="p">,</span><span class="nx">p</span><span class="p">)</span> <span class="p">{</span> <span class="k">if</span> <span class="p">(</span><span class="nx">P</span><span class="p">.</span><span class="nb">eval</span><span class="p">(</span><span class="nx">l</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\?\((.*?)\)$/</span><span class="p">,</span><span class="s2">&quot;$1&quot;</span><span class="p">),</span><span class="nx">v</span><span class="p">[</span><span class="nx">m</span><span class="p">],</span><span class="nx">m</span><span class="p">))</span> <span class="nx">P</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">m</span><span class="o">+</span><span class="s2">&quot;;&quot;</span><span class="o">+</span><span class="nx">x</span><span class="p">,</span><span class="nx">v</span><span class="p">,</span><span class="nx">p</span><span class="p">);</span> <span class="p">});</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="sr">/^(-?[0-9]*):(-?[0-9]*):?([0-9]*)$/</span><span class="p">.</span><span class="nx">test</span><span class="p">(</span><span class="nx">loc</span><span class="p">))</span> <span class="c1">// [start:end:step]  phyton slice syntax</span>
+               <span class="nx">P</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="nx">loc</span><span class="p">,</span> <span class="nx">x</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">);</span>
+         <span class="p">}</span>
+         <span class="k">else</span>
+            <span class="nx">P</span><span class="p">.</span><span class="nx">store</span><span class="p">(</span><span class="nx">path</span><span class="p">,</span> <span class="nx">val</span><span class="p">);</span>
+      <span class="p">},</span>
+      <span class="nx">walk</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">loc</span><span class="p">,</span> <span class="nx">expr</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">,</span> <span class="nx">f</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">n</span><span class="o">=</span><span class="nx">val</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+               <span class="k">if</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">val</span><span class="p">)</span>
+                  <span class="nx">f</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="nx">loc</span><span class="p">,</span><span class="nx">expr</span><span class="p">,</span><span class="nx">val</span><span class="p">,</span><span class="nx">path</span><span class="p">);</span>
+         <span class="p">}</span>
+         <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">val</span> <span class="o">===</span> <span class="s2">&quot;object&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">m</span> <span class="k">in</span> <span class="nx">val</span><span class="p">)</span>
+               <span class="k">if</span> <span class="p">(</span><span class="nx">val</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">m</span><span class="p">))</span>
+                  <span class="nx">f</span><span class="p">(</span><span class="nx">m</span><span class="p">,</span><span class="nx">loc</span><span class="p">,</span><span class="nx">expr</span><span class="p">,</span><span class="nx">val</span><span class="p">,</span><span class="nx">path</span><span class="p">);</span>
+         <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="nx">slice</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">loc</span><span class="p">,</span> <span class="nx">expr</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nx">val</span> <span class="k">instanceof</span> <span class="nb">Array</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">len</span><span class="o">=</span><span class="nx">val</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nx">end</span><span class="o">=</span><span class="nx">len</span><span class="p">,</span> <span class="nx">step</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+            <span class="nx">loc</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^(-?[0-9]*):(-?[0-9]*):?(-?[0-9]*)$/g</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$0</span><span class="p">,</span><span class="nx">$1</span><span class="p">,</span><span class="nx">$2</span><span class="p">,</span><span class="nx">$3</span><span class="p">){</span><span class="nx">start</span><span class="o">=</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">$1</span><span class="o">||</span><span class="nx">start</span><span class="p">);</span><span class="nx">end</span><span class="o">=</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">$2</span><span class="o">||</span><span class="nx">end</span><span class="p">);</span><span class="nx">step</span><span class="o">=</span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">$3</span><span class="o">||</span><span class="nx">step</span><span class="p">);});</span>
+            <span class="nx">start</span> <span class="o">=</span> <span class="p">(</span><span class="nx">start</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nx">start</span><span class="o">+</span><span class="nx">len</span><span class="p">)</span> <span class="o">:</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">len</span><span class="p">,</span><span class="nx">start</span><span class="p">);</span>
+            <span class="nx">end</span>   <span class="o">=</span> <span class="p">(</span><span class="nx">end</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>   <span class="o">?</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nx">end</span><span class="o">+</span><span class="nx">len</span><span class="p">)</span>   <span class="o">:</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">len</span><span class="p">,</span><span class="nx">end</span><span class="p">);</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="nx">start</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">end</span><span class="p">;</span> <span class="nx">i</span><span class="o">+=</span><span class="nx">step</span><span class="p">)</span>
+               <span class="nx">P</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="s2">&quot;;&quot;</span><span class="o">+</span><span class="nx">expr</span><span class="p">,</span> <span class="nx">val</span><span class="p">,</span> <span class="nx">path</span><span class="p">);</span>
+         <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="nb">eval</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span> <span class="nx">_v</span><span class="p">,</span> <span class="nx">_vname</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">try</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">$</span> <span class="o">&amp;&amp;</span> <span class="nx">_v</span> <span class="o">&amp;&amp;</span> <span class="nb">eval</span><span class="p">(</span><span class="nx">x</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/@/g</span><span class="p">,</span> <span class="s2">&quot;_v&quot;</span><span class="p">));</span> <span class="p">}</span>
+         <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">throw</span> <span class="k">new</span> <span class="nx">SyntaxError</span><span class="p">(</span><span class="s2">&quot;jsonPath: &quot;</span> <span class="o">+</span> <span class="nx">e</span><span class="p">.</span><span class="nx">message</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nx">x</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/@/g</span><span class="p">,</span> <span class="s2">&quot;_v&quot;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\^/g</span><span class="p">,</span> <span class="s2">&quot;_a&quot;</span><span class="p">));</span> <span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">};</span>
+
+   <span class="kd">var</span> <span class="nx">$</span> <span class="o">=</span> <span class="nx">obj</span><span class="p">;</span>
+   <span class="k">if</span> <span class="p">(</span><span class="nx">expr</span> <span class="o">&amp;&amp;</span> <span class="nx">obj</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">P</span><span class="p">.</span><span class="nx">resultType</span> <span class="o">==</span> <span class="s2">&quot;VALUE&quot;</span> <span class="o">||</span> <span class="nx">P</span><span class="p">.</span><span class="nx">resultType</span> <span class="o">==</span> <span class="s2">&quot;PATH&quot;</span><span class="p">))</span> <span class="p">{</span>
+      <span class="nx">P</span><span class="p">.</span><span class="nx">trace</span><span class="p">(</span><span class="nx">P</span><span class="p">.</span><span class="nx">normalize</span><span class="p">(</span><span class="nx">expr</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^\$;/</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">),</span> <span class="nx">obj</span><span class="p">,</span> <span class="s2">&quot;$&quot;</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">P</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">length</span> <span class="o">?</span> <span class="nx">P</span><span class="p">.</span><span class="nx">result</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
+   <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="p">},</span><span class="s1">&#39;3.0.0a&#39;</span><span class="p">,{</span>
+  <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex&#39;</span><span class="p">]</span>
+<span class="p">});</span>
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class=""><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class=""><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class=""><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class=""><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class="selected"><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class=""><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class=""><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class=""><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class=""><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class=""><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="inputEx.JsonSchema.html" title="inputEx.JsonSchema">inputEx.JsonSchema</a></li>
+                                <li class=""><a href="inputEx.JsonSchema.Builder.html" title="inputEx.JsonSchema.Builder">inputEx.JsonSchema.Builder</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="inputex-jsontreeinspector.js.html" title="inputex-jsontreeinspector.js">inputex-jsontreeinspector.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.JsonSchema.Builder.html#property_defaultOptions", "access": "", "host": "inputEx.JsonSchema.Builder", "type": "property", "name": "defaultOptions"}, {"url": "inputEx.JsonSchema.Builder.html#method_defaultReferenceResolver", "access": "", "host": "inputEx.JsonSchema.Builder", "type": "method", "name": "defaultReferenceResolver"}, {"url": "inputEx.JsonSchema.Builder.html#method_formFromInstance", "access": "", "host": "inputEx.JsonSchema.Builder", "type": "method", "name": "formFromInstance"}, {"url": "inputEx.JsonSchema.html#method_inputExToSchema", "access": "", "host": "inputEx.JsonSchema", "type": "method", "name": "inputExToSchema"}, {"url": "inputEx.JsonSchema.Builder.html#property_referenceResolver", "access": "", "host": "inputEx.JsonSchema.Builder", "type": "property", "name": "referenceResolver"}, {"url": "inputEx.JsonSchema.Builder.html#property_schemaIdentifierMap", "access": "", "host": "inputEx.JsonSchema.Builder", "type": "property", "name": "schemaIdentifierMap"}, {"url": "inputEx.JsonSchema.Builder.html#method_schemaToInputEx", "access": "", "host": "inputEx.JsonSchema.Builder", "type": "method", "name": "schemaToInputEx"}, {"url": "inputEx.JsonSchema.Builder.html#property_schemaToParamMap", "access": "", "host": "inputEx.JsonSchema.Builder", "type": "property", "name": "schemaToParamMap"}];
+</script>
+</body>
+</html>

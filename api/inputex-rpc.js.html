@@ -1,0 +1,680 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex-ratingstarsform   inputex-rpc.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex-ratingstarsform&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a>
+                
+                 &gt; inputex-rpc.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @module inputex-rpc</span>
+<span class="cm"> */</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;inputex-rpc&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){</span>
+
+  <span class="kd">var</span> <span class="nx">lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+      <span class="nx">inputEx</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * inputEx RPC utility functions</span>
+<span class="cm"> * Implements SMD and create forms directly from services</span>
+<span class="cm"> * @class inputEx.RPC</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RPC</span> <span class="o">=</span> <span class="p">{</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Build a form to run a service !</span>
+<span class="cm">    * @param {function} method A method created through inputEx.RPC.Service</span>
+<span class="cm">    * @param {Object} formOpts</span>
+<span class="cm">    */</span>
+   <span class="nx">generateServiceForm</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">,</span> <span class="nx">formOpts</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+   
+      <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">formOpts</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">formOpts</span><span class="p">.</span><span class="nx">fields</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+         <span class="nx">options</span> <span class="o">=</span> <span class="nx">formOpts</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="c1">// create the form directly from the method params</span>
+      <span class="k">else</span> <span class="p">{</span>
+         <span class="nx">options</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">RPC</span><span class="p">.</span><span class="nx">formForMethod</span><span class="p">(</span><span class="nx">method</span><span class="p">);</span>
+      	<span class="c1">// Add user options from formOpts</span>
+         <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="nx">formOpts</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="p">}</span>
+   
+      <span class="c1">// Add buttons to launch the service</span>
+      <span class="kd">var</span> <span class="nx">methodName</span> <span class="o">=</span> <span class="nx">method</span><span class="p">.</span><span class="nx">_methodName</span> <span class="o">||</span> <span class="nx">method</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+      <span class="nx">options</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;form&quot;</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">options</span><span class="p">.</span><span class="nx">buttons</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nx">options</span><span class="p">.</span><span class="nx">buttons</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;submit&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">methodName</span><span class="p">,</span> <span class="nx">onClick</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+               
+               <span class="nx">form</span><span class="p">.</span><span class="nx">showMask</span><span class="p">();</span>
+               <span class="nx">method</span><span class="p">(</span><span class="nx">form</span><span class="p">.</span><span class="nx">getValue</span><span class="p">(),</span> <span class="p">{</span>
+                  <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+                     <span class="nx">form</span><span class="p">.</span><span class="nx">hideMask</span><span class="p">();</span>
+                     <span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">callback</span><span class="p">.</span><span class="nx">success</span><span class="p">))</span> <span class="p">{</span>
+               		   <span class="nx">callback</span><span class="p">.</span><span class="nx">success</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">callback</span><span class="p">.</span><span class="nx">scope</span> <span class="o">||</span> <span class="k">this</span><span class="p">,</span> <span class="nx">results</span><span class="p">);</span>
+               		<span class="p">}</span>
+                  <span class="p">},</span>
+                  <span class="nx">failure</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+                     <span class="nx">form</span><span class="p">.</span><span class="nx">hideMask</span><span class="p">();</span>
+                  <span class="p">}</span>
+               <span class="p">});</span>
+					<span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// do NOT send the browser submit event</span>
+            <span class="p">}}</span>
+         <span class="p">];</span>
+      <span class="p">}</span>
+   
+      <span class="kd">var</span> <span class="nx">form</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+   
+      <span class="k">return</span> <span class="nx">form</span><span class="p">;</span>
+   <span class="p">},</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * Return the inputEx form options from a method</span>
+<span class="cm">    * @param {function} method A method created through inputEx.RPC.Service</span>
+<span class="cm">    */</span>
+   <span class="nx">formForMethod</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+   
+      <span class="c1">// convert the method parameters into a json-schema :</span>
+      <span class="kd">var</span> <span class="nx">schemaIdentifierMap</span> <span class="o">=</span> <span class="p">{};</span>
+      <span class="kd">var</span> <span class="nx">methodName</span> <span class="o">=</span> <span class="nx">method</span><span class="p">.</span><span class="nx">_methodName</span> <span class="o">||</span> <span class="nx">method</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+      <span class="nx">schemaIdentifierMap</span><span class="p">[</span><span class="nx">methodName</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="nx">id</span><span class="o">:</span> <span class="nx">methodName</span><span class="p">,</span>
+          <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;object&#39;</span><span class="p">,</span>
+          <span class="nx">properties</span><span class="o">:</span><span class="p">{}</span>
+      <span class="p">};</span>
+      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">method</span><span class="p">.</span><span class="nx">_parameters</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">method</span><span class="p">.</span><span class="nx">_parameters</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+         <span class="nx">schemaIdentifierMap</span><span class="p">[</span><span class="nx">methodName</span><span class="p">].</span><span class="nx">properties</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">p</span><span class="p">;</span>
+      <span class="p">}</span>
+   
+      <span class="c1">// Use the builder to build an inputEx form from the json-schema</span>
+      <span class="kd">var</span> <span class="nx">builder</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">JsonSchema</span><span class="p">.</span><span class="nx">Builder</span><span class="p">({</span>
+   	  <span class="s1">&#39;schemaIdentifierMap&#39;</span><span class="o">:</span> <span class="nx">schemaIdentifierMap</span><span class="p">,</span>
+   	  <span class="s1">&#39;defaultOptions&#39;</span><span class="o">:</span><span class="p">{</span>
+   	     <span class="s1">&#39;showMsg&#39;</span><span class="o">:</span><span class="kc">true</span>
+   	  <span class="p">}</span>
+      <span class="p">});</span>
+   	<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="nx">builder</span><span class="p">.</span><span class="nx">schemaToInputEx</span><span class="p">(</span><span class="nx">schemaIdentifierMap</span><span class="p">[</span><span class="nx">methodName</span><span class="p">]);</span>
+	
+   	<span class="k">return</span> <span class="nx">options</span><span class="p">;</span>
+   <span class="p">}</span>
+   
+<span class="p">};</span>
+
+   <span class="kd">var</span> <span class="nx">rpc</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">RPC</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * Provide SMD support </span>
+<span class="cm"> * http://groups.google.com/group/json-schema/web/service-mapping-description-proposal</span>
+<span class="cm"> * Not implemented: REST envelope, TCP/IP transport</span>
+<span class="cm"> * Take a string as a url to retrieve an smd or an object that is an smd or partial smd to use </span>
+<span class="cm"> * as a definition for the service</span>
+<span class="cm"> * @class inputEx.RPC.Service</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RPC</span><span class="p">.</span><span class="nx">Service</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">smd</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+
+   <span class="k">if</span><span class="p">(</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">smd</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">smdUrl</span> <span class="o">=</span> <span class="nx">smd</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span><span class="nx">smd</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+   <span class="p">}</span>
+   <span class="k">else</span> <span class="k">if</span><span class="p">(</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">smd</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_smd</span> <span class="o">=</span> <span class="nx">smd</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">process</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
+   <span class="p">}</span>
+   <span class="k">else</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;smd should be an object or an url&quot;</span><span class="p">);</span>
+   <span class="p">}</span>
+   
+<span class="p">};</span>
+
+
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RPC</span><span class="p">.</span><span class="nx">Service</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Generate the function from a service definition</span>
+<span class="cm">    * @method _generateService</span>
+<span class="cm">    * @param {String} serviceName</span>
+<span class="cm">    * @param {Method definition} method</span>
+<span class="cm">    */</span>
+   <span class="nx">_generateService</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">serviceName</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span> <span class="p">{</span>
+      
+      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">method</span><span class="p">]){</span>
+			<span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;WARNING: &quot;</span><span class="o">+</span> <span class="nx">serviceName</span><span class="o">+</span> <span class="s2">&quot; already exists for service. Unable to generate function&quot;</span><span class="p">);</span>
+		<span class="p">}</span>
+		<span class="nx">method</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">serviceName</span><span class="p">;</span>
+		<span class="nx">method</span><span class="p">.</span><span class="nx">_methodName</span> <span class="o">=</span> <span class="nx">serviceName</span><span class="p">;</span>
+	
+		<span class="kd">var</span> <span class="nx">self</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+		<span class="kd">var</span> <span class="nx">func</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+		   <span class="kd">var</span> <span class="nx">envelope</span> <span class="o">=</span> <span class="nx">rpc</span><span class="p">.</span><span class="nx">Envelope</span><span class="p">[</span><span class="nx">method</span><span class="p">.</span><span class="nx">envelope</span> <span class="o">||</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_smd</span><span class="p">.</span><span class="nx">envelope</span><span class="p">];</span>
+		   <span class="kd">var</span> <span class="nx">callback</span> <span class="o">=</span> <span class="p">{</span>
+   	      <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+               <span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="nx">envelope</span><span class="p">.</span><span class="nx">deserialize</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
+      	      <span class="nx">opts</span><span class="p">.</span><span class="nx">success</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">opts</span><span class="p">.</span><span class="nx">scope</span> <span class="o">||</span> <span class="nx">self</span><span class="p">,</span> <span class="nx">results</span><span class="p">);</span>
+   	      <span class="p">},</span>
+   	      <span class="nx">failure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+   	         <span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">opts</span><span class="p">.</span><span class="nx">failure</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+						<span class="kd">var</span> <span class="nx">results</span> <span class="o">=</span> <span class="nx">envelope</span><span class="p">.</span><span class="nx">deserialize</span><span class="p">(</span><span class="nx">o</span><span class="p">);</span>
+   	            <span class="nx">opts</span><span class="p">.</span><span class="nx">failure</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">opts</span><span class="p">.</span><span class="nx">scope</span> <span class="o">||</span> <span class="nx">self</span><span class="p">,</span> <span class="nx">results</span><span class="p">);</span>
+   	         <span class="p">}</span>
+   	      <span class="p">},</span>
+   	      <span class="nx">scope</span><span class="o">:</span> <span class="nx">self</span>
+   	   <span class="p">};</span>
+   	   
+   	   
+   	   <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{};</span>
+   	   <span class="k">if</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_smd</span><span class="p">.</span><span class="nx">additionalParameters</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_smd</span><span class="p">.</span><span class="nx">parameters</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+   	      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_smd</span><span class="p">.</span><span class="nx">parameters</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+   	         <span class="kd">var</span> <span class="nx">p</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_smd</span><span class="p">.</span><span class="nx">parameters</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+   	         <span class="nx">params</span><span class="p">[</span><span class="nx">p</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">];</span>
+   	      <span class="p">}</span>
+   	   <span class="p">}</span>
+   	   <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+   	   
+   	   <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nx">method</span><span class="p">.</span><span class="nx">target</span> <span class="o">||</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_smd</span><span class="p">.</span><span class="nx">target</span><span class="p">;</span>
+   	   <span class="kd">var</span> <span class="nx">urlRegexp</span> <span class="o">=</span> <span class="sr">/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/i</span><span class="p">;</span>
+   	   <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">urlRegexp</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">url</span> <span class="o">!=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_smd</span><span class="p">.</span><span class="nx">target</span><span class="p">)</span> <span class="p">{</span>
+   	      <span class="nx">url</span> <span class="o">=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_smd</span><span class="p">.</span><span class="nx">target</span><span class="o">+</span><span class="nx">url</span><span class="p">;</span>
+   	   <span class="p">}</span>
+   	   
+	      <span class="k">if</span><span class="p">(</span> <span class="o">!!</span><span class="k">this</span><span class="p">.</span><span class="nx">smdUrl</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="nx">urlRegexp</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+   	      <span class="c1">// URL is still relative !</span>
+   	      <span class="kd">var</span> <span class="nx">a</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="nx">smdUrl</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">);</span>
+   	      <span class="nx">a</span><span class="p">[</span><span class="nx">a</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">;</span>
+   	      <span class="nx">url</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)</span><span class="o">+</span><span class="nx">url</span><span class="p">;</span>
+   	   <span class="p">}</span>
+   	   
+   	   
+         <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">target</span><span class="o">:</span> <span class="nx">url</span><span class="p">,</span>
+            <span class="nx">callback</span><span class="o">:</span> <span class="nx">callback</span><span class="p">,</span>
+            <span class="nx">data</span><span class="o">:</span> <span class="nx">params</span><span class="p">,</span>
+            <span class="nx">origData</span><span class="o">:</span> <span class="nx">data</span><span class="p">,</span>
+            <span class="nx">opts</span><span class="o">:</span> <span class="nx">opts</span><span class="p">,</span>
+            <span class="nx">callbackParamName</span><span class="o">:</span> <span class="nx">method</span><span class="p">.</span><span class="nx">callbackParamName</span> <span class="o">||</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_smd</span><span class="p">.</span><span class="nx">callbackParamName</span><span class="p">,</span>
+            <span class="nx">transport</span><span class="o">:</span> <span class="nx">method</span><span class="p">.</span><span class="nx">transport</span> <span class="o">||</span> <span class="nx">self</span><span class="p">.</span><span class="nx">_smd</span><span class="p">.</span><span class="nx">transport</span>
+         <span class="p">};</span>
+   	   <span class="kd">var</span> <span class="nx">serialized</span> <span class="o">=</span> <span class="nx">envelope</span><span class="p">.</span><span class="nx">serialize</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">_smd</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">params</span><span class="p">);</span>
+         <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">serialized</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+         
+   	   <span class="nx">rpc</span><span class="p">.</span><span class="nx">Transport</span><span class="p">[</span><span class="nx">r</span><span class="p">.</span><span class="nx">transport</span><span class="p">].</span><span class="nx">call</span><span class="p">(</span><span class="nx">self</span><span class="p">,</span> <span class="nx">r</span> <span class="p">);</span> 
+		<span class="p">};</span>
+		
+		<span class="nx">func</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">serviceName</span><span class="p">;</span>
+		<span class="nx">func</span><span class="p">.</span><span class="nx">_methodName</span> <span class="o">=</span> <span class="nx">serviceName</span><span class="p">;</span>
+		<span class="nx">func</span><span class="p">.</span><span class="nx">description</span> <span class="o">=</span> <span class="nx">method</span><span class="p">.</span><span class="nx">description</span><span class="p">;</span>
+		<span class="nx">func</span><span class="p">.</span><span class="nx">_parameters</span> <span class="o">=</span> <span class="nx">method</span><span class="p">.</span><span class="nx">parameters</span><span class="p">;</span>
+		
+		<span class="k">return</span> <span class="nx">func</span><span class="p">;</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Process the SMD definition</span>
+<span class="cm">    * @method process</span>
+<span class="cm">    */</span>
+   <span class="nx">process</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+      
+      <span class="kd">var</span> <span class="nx">serviceDefs</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">_smd</span><span class="p">.</span><span class="nx">services</span><span class="p">;</span>
+      
+      <span class="c1">// Generate the methods to this object</span>
+		<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">serviceName</span> <span class="k">in</span> <span class="nx">serviceDefs</span><span class="p">){</span>
+		   <span class="k">if</span><span class="p">(</span> <span class="nx">serviceDefs</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">serviceName</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+		      
+		      <span class="c1">// Get the object that will contain the method.</span>
+		      <span class="c1">// handles &quot;namespaced&quot; services by breaking apart by &#39;.&#39;</span>
+			   <span class="kd">var</span> <span class="nx">current</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			   <span class="kd">var</span> <span class="nx">pieces</span> <span class="o">=</span> <span class="nx">serviceName</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">);</span> 
+			   <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span> <span class="nx">pieces</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+				   <span class="nx">current</span> <span class="o">=</span> <span class="nx">current</span><span class="p">[</span><span class="nx">pieces</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span> <span class="o">||</span> <span class="p">(</span><span class="nx">current</span><span class="p">[</span><span class="nx">pieces</span><span class="p">[</span><span class="nx">i</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{});</span>
+			   <span class="p">}</span>
+			   
+			   <span class="nx">current</span><span class="p">[</span><span class="nx">pieces</span><span class="p">[</span><span class="nx">pieces</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span>	<span class="k">this</span><span class="p">.</span><span class="nx">_generateService</span><span class="p">(</span><span class="nx">serviceName</span><span class="p">,</span> <span class="nx">serviceDefs</span><span class="p">[</span><span class="nx">serviceName</span><span class="p">]);</span>
+		   <span class="p">}</span>
+		<span class="p">}</span>
+		
+		<span class="c1">// call the success handler</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">callback</span><span class="p">.</span><span class="nx">success</span><span class="p">))</span> <span class="p">{</span>
+		   <span class="nx">callback</span><span class="p">.</span><span class="nx">success</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">callback</span><span class="p">.</span><span class="nx">scope</span> <span class="o">||</span> <span class="k">this</span><span class="p">);</span>
+		<span class="p">}</span>
+		
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Download the SMD at the given url</span>
+<span class="cm">    * @method fetch</span>
+<span class="cm">    * @param {String} Absolute or relative url</span>
+<span class="cm">    */</span>
+   <span class="nx">fetch</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+      
+      <span class="c1">// TODO: if url is not in the same domain, we should use jsonp, or swf</span>
+      
+      <span class="kd">var</span> <span class="nx">cfg</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+         <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">success</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+               <span class="k">try</span> <span class="p">{</span>
+                  <span class="k">this</span><span class="p">.</span><span class="nx">_smd</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+                  <span class="k">this</span><span class="p">.</span><span class="nx">process</span><span class="p">(</span><span class="nx">callback</span><span class="p">);</span>
+               <span class="p">}</span>
+               <span class="k">catch</span><span class="p">(</span><span class="nx">ex</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">console</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">))</span>
+                     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ex</span><span class="p">);</span>
+                  <span class="k">if</span><span class="p">(</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">callback</span><span class="p">.</span><span class="nx">failure</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                     <span class="nx">callback</span><span class="p">.</span><span class="nx">failure</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">callback</span><span class="p">.</span><span class="nx">scope</span> <span class="o">||</span> <span class="k">this</span><span class="p">,</span> <span class="p">{</span><span class="nx">error</span><span class="o">:</span> <span class="nx">ex</span><span class="p">});</span>
+                  <span class="p">}</span>
+               <span class="p">}</span>
+            <span class="p">},</span> 
+            <span class="nx">failure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+               <span class="k">if</span><span class="p">(</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">callback</span><span class="p">.</span><span class="nx">failure</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">callback</span><span class="p">.</span><span class="nx">failure</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">callback</span><span class="p">.</span><span class="nx">scope</span> <span class="o">||</span> <span class="k">this</span><span class="p">,</span> <span class="p">{</span><span class="nx">error</span><span class="o">:</span> <span class="s2">&quot;unable to fetch url &quot;</span><span class="o">+</span><span class="nx">url</span><span class="p">});</span>
+               <span class="p">}</span>
+            <span class="p">}</span>
+         <span class="p">},</span>
+         <span class="nx">context</span><span class="o">:</span> <span class="k">this</span>
+      <span class="p">};</span>
+      
+      <span class="nx">Y</span><span class="p">.</span><span class="nx">io</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="nx">cfg</span><span class="p">);</span>
+      
+   <span class="p">}</span>
+   
+    
+<span class="p">};</span>
+
+
+
+
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RPC</span><span class="p">.</span><span class="nx">Service</span><span class="p">.</span><span class="nx">_requestId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+
+<span class="cm">/**</span>
+<span class="cm"> * inputEx.RPC.Transport</span>
+<span class="cm"> * @class inputEx.RPC.Transport</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RPC</span><span class="p">.</span><span class="nx">Transport</span> <span class="o">=</span> <span class="p">{</span>
+   
+	<span class="cm">/**</span>
+<span class="cm">	 * Build a ajax request using &#39;POST&#39; method</span>
+<span class="cm">	 * @method POST</span>
+<span class="cm">	 * @param {Object} r Object specifying target, callback and data attributes</span>
+<span class="cm">	 */</span>
+   <span class="s2">&quot;POST&quot;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">io</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span> <span class="p">{</span>
+         <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span> 
+         <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">succes</span><span class="o">:</span> <span class="nx">r</span><span class="p">.</span><span class="nx">callback</span>
+         <span class="p">},</span>
+         <span class="nx">data</span><span class="o">:</span> <span class="nx">r</span><span class="p">.</span><span class="nx">data</span> 
+      <span class="p">});</span>
+   <span class="p">},</span>
+   
+	<span class="cm">/**</span>
+<span class="cm">	 * Build a ajax request using &#39;GET&#39; method</span>
+<span class="cm">	 * @method GET</span>
+<span class="cm">	 * @param {Object} r Object specifying target, callback and data attributes</span>
+<span class="cm">	 */</span>
+   <span class="s2">&quot;GET&quot;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">io</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">target</span> <span class="o">+</span> <span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">data</span> <span class="o">?</span> <span class="s1">&#39;?&#39;</span><span class="o">+</span>  <span class="nx">r</span><span class="p">.</span><span class="nx">data</span> <span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="p">{</span>
+         <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+         <span class="nx">on</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">success</span><span class="o">:</span> <span class="nx">r</span><span class="p">.</span><span class="nx">callback</span>
+         <span class="p">}</span>
+      <span class="p">});</span>
+   <span class="p">},</span>
+   
+	<span class="cm">/**</span>
+<span class="cm">	 * Build an ajax request using the right HTTP method</span>
+<span class="cm">	 * @method REST</span>
+<span class="cm">	 * @param {Object} r Object specifying target, callback and data attributes</span>
+<span class="cm">	 */</span>
+   <span class="s2">&quot;REST&quot;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// TODO</span>
+   <span class="p">},</span>
+   
+	<span class="cm">/**</span>
+<span class="cm">	 * Receive data through JSONP (insert a script tag within the page)</span>
+<span class="cm">	 * @method JSONP</span>
+<span class="cm">	 * @param {Object} r Object specifying target, callback and data attributes</span>
+<span class="cm">	 */</span>
+   <span class="s2">&quot;JSONP&quot;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+      
+      <span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span>  <span class="nx">r</span><span class="p">.</span><span class="nx">target</span> <span class="o">+</span> <span class="p">((</span><span class="nx">r</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;?&#39;</span> <span class="o">:</span> <span class="s1">&#39;&amp;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="nx">r</span><span class="p">.</span><span class="nx">data</span> <span class="o">+</span> <span class="s2">&quot;&amp;&quot;</span><span class="o">+</span><span class="nx">r</span><span class="p">.</span><span class="nx">callbackParamName</span><span class="o">+</span><span class="s2">&quot;={callback}&quot;</span><span class="p">;</span>
+
+      <span class="nx">Y</span><span class="p">.</span><span class="nx">jsonp</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+          
+          <span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">callback</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">callback</span><span class="p">.</span><span class="nx">success</span><span class="p">))</span> <span class="p">{</span>
+       	   <span class="nx">r</span><span class="p">.</span><span class="nx">callback</span><span class="p">.</span><span class="nx">success</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">r</span><span class="p">.</span><span class="nx">callback</span><span class="p">.</span><span class="nx">scope</span> <span class="o">||</span> <span class="k">this</span><span class="p">,</span> <span class="nx">response</span><span class="p">);</span>
+       	<span class="p">}</span>
+       	
+      <span class="p">});</span>
+   <span class="p">},</span>
+   
+	<span class="cm">/**</span>
+<span class="cm">	 * NOT implemented</span>
+<span class="cm">	 * @method TCP/IP</span>
+<span class="cm">	 */</span>
+   <span class="s2">&quot;TCP/IP&quot;</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;TCP/IP transport not implemented !&quot;</span><span class="p">);</span>
+   <span class="p">}</span>
+   
+<span class="p">};</span>
+
+
+<span class="cm">/**</span>
+<span class="cm"> * inputEx.RPC.Envelope</span>
+<span class="cm"> * @class inputEx.RPC.Envelope</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RPC</span><span class="p">.</span><span class="nx">Envelope</span> <span class="o">=</span> <span class="p">{</span>
+   
+	<span class="cm">/**</span>
+<span class="cm">	 * URL envelope</span>
+<span class="cm">	 * @class inputEx.RPC.Envelope.URL</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
+   <span class="s2">&quot;URL&quot;</span><span class="o">:</span>  <span class="p">{</span>
+	
+			<span class="cm">/**</span>
+<span class="cm">			 * Serialize data into URI encoded parameters</span>
+<span class="cm">			 */</span>
+         <span class="nx">serialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">smd</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">eURI</span> <span class="o">=</span> <span class="nb">encodeURIComponent</span><span class="p">;</span>
+            <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">[];</span>
+            <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">name</span> <span class="k">in</span> <span class="nx">data</span><span class="p">){</span>
+         	   <span class="k">if</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">name</span><span class="p">)){</span>
+            	   <span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">data</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+            		<span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">value</span><span class="p">)){</span>
+            			<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">value</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+            				<span class="nx">params</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">eURI</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;=&quot;</span><span class="o">+</span><span class="nx">eURI</span><span class="p">(</span><span class="nx">value</span><span class="p">[</span><span class="nx">i</span><span class="p">]));</span>
+            			<span class="p">}</span>
+            		<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            			<span class="nx">params</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">eURI</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;=&quot;</span><span class="o">+</span><span class="nx">eURI</span><span class="p">(</span><span class="nx">value</span><span class="p">));</span>
+            		<span class="p">}</span>
+            	<span class="p">}</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="p">{</span>
+   				<span class="nx">data</span><span class="o">:</span> <span class="nx">params</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;&amp;&quot;</span><span class="p">)</span>
+            <span class="p">};</span>   
+         <span class="p">},</span>
+			<span class="cm">/**</span>
+<span class="cm">			 * Deserialize</span>
+<span class="cm">			 */</span>
+         <span class="nx">deserialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">results</span><span class="p">;</span>
+         <span class="p">}</span>
+   <span class="p">},</span>
+
+   <span class="cm">/**</span>
+<span class="cm">	 * PATH envelope</span>
+<span class="cm">	 * @class inputEx.RPC.Envelope.PATH</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
+   <span class="s2">&quot;PATH&quot;</span><span class="o">:</span> <span class="p">{</span>
+		  <span class="cm">/**</span>
+<span class="cm">		 	* serialize</span>
+<span class="cm">		   */</span>
+        <span class="nx">serialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">smd</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+     			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">method</span><span class="p">.</span><span class="nx">target</span> <span class="o">||</span> <span class="nx">smd</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span> <span class="nx">i</span><span class="p">;</span>
+     			<span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">data</span><span class="p">)){</span>
+     				<span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+     					<span class="nx">target</span> <span class="o">+=</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+     				<span class="p">}</span>
+     			<span class="p">}</span><span class="k">else</span><span class="p">{</span>
+     				<span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">data</span><span class="p">){</span>
+     				   <span class="k">if</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> <span class="p">{</span>
+     					   <span class="nx">target</span> <span class="o">+=</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">i</span> <span class="o">+</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+  					   <span class="p">}</span>
+     				<span class="p">}</span>
+     			<span class="p">}</span>
+           <span class="k">return</span> <span class="p">{</span>
+              <span class="nx">data</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+              <span class="nx">target</span><span class="o">:</span> <span class="nx">target</span>
+           <span class="p">};</span>   
+        <span class="p">},</span>
+		  <span class="cm">/**</span>
+<span class="cm">		 	* deserialize</span>
+<span class="cm">		   */</span>
+        <span class="nx">deserialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+           <span class="k">return</span> <span class="nx">results</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    
+	<span class="cm">/**</span>
+<span class="cm">	 * JSON envelope</span>
+<span class="cm">	 * @class inputEx.RPC.Envelope.JSON</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
+   <span class="s2">&quot;JSON&quot;</span><span class="o">:</span> <span class="p">{</span>
+		 <span class="cm">/**</span>
+<span class="cm">		  * serialize</span>
+<span class="cm">		  */</span>
+       <span class="nx">serialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">smd</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="p">{</span>
+             <span class="nx">data</span><span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+          <span class="p">};</span>   
+       <span class="p">},</span>
+ 		 <span class="cm">/**</span>
+<span class="cm">		  * deserialize</span>
+<span class="cm">		  */</span>
+       <span class="nx">deserialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">results</span><span class="p">;</span>
+       <span class="p">}</span>
+    <span class="p">},</span>
+   
+	<span class="cm">/**</span>
+<span class="cm">	 * JSON-RPC-1.0 envelope</span>
+<span class="cm">	 * @class inputEx.RPC.Envelope.JSON-RPC-1.0</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
+   <span class="s2">&quot;JSON-RPC-1.0&quot;</span><span class="o">:</span>  <span class="p">{</span>
+		 <span class="cm">/**</span>
+<span class="cm">		  * serialize</span>
+<span class="cm">		  */</span>
+       <span class="nx">serialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">smd</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    	  <span class="kd">var</span> <span class="nx">methodName</span> <span class="o">=</span> <span class="nx">method</span><span class="p">.</span><span class="nx">name</span> <span class="o">||</span> <span class="nx">method</span><span class="p">.</span><span class="nx">_methodName</span><span class="p">;</span>
+          <span class="k">return</span> <span class="p">{</span>
+             <span class="nx">data</span><span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+       	      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="nx">rpc</span><span class="p">.</span><span class="nx">Service</span><span class="p">.</span><span class="nx">_requestId</span><span class="o">++</span><span class="p">,</span>
+       	      <span class="s2">&quot;method&quot;</span><span class="o">:</span> <span class="nx">methodName</span><span class="p">,</span>
+       	      <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="nx">data</span>
+       	   <span class="p">})</span>
+          <span class="p">};</span>   
+       <span class="p">},</span>
+	 	 <span class="cm">/**</span>
+<span class="cm">		  * deserialize</span>
+<span class="cm">		  */</span>
+       <span class="nx">deserialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+       <span class="p">}</span>
+    <span class="p">},</span>
+
+   <span class="cm">/**</span>
+<span class="cm">	 * JSON-RPC-2.0 envelope</span>
+<span class="cm">	 * @class inputEx.RPC.Envelope.JSON-RPC-2.0</span>
+<span class="cm">	 * @static</span>
+<span class="cm">	 */</span>
+   <span class="s2">&quot;JSON-RPC-2.0&quot;</span><span class="o">:</span> <span class="p">{</span>
+		<span class="cm">/**</span>
+<span class="cm">  	  	 * serialize</span>
+<span class="cm">		 */</span>
+      <span class="nx">serialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">smd</span><span class="p">,</span> <span class="nx">method</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+    	 <span class="kd">var</span> <span class="nx">methodName</span> <span class="o">=</span> <span class="nx">method</span><span class="p">.</span><span class="nx">name</span> <span class="o">||</span> <span class="nx">method</span><span class="p">.</span><span class="nx">_methodName</span><span class="p">;</span>
+         <span class="k">return</span> <span class="p">{</span>
+            <span class="nx">data</span><span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+      	      <span class="s2">&quot;id&quot;</span><span class="o">:</span> <span class="nx">rpc</span><span class="p">.</span><span class="nx">Service</span><span class="p">.</span><span class="nx">_requestId</span><span class="o">++</span><span class="p">,</span>
+      	      <span class="s2">&quot;method&quot;</span><span class="o">:</span> <span class="nx">methodName</span><span class="p">,</span>
+      	      <span class="s2">&quot;version&quot;</span><span class="o">:</span> <span class="s2">&quot;json-rpc-2.0&quot;</span><span class="p">,</span>
+      	      <span class="s2">&quot;params&quot;</span><span class="o">:</span> <span class="nx">data</span>
+      	   <span class="p">})</span>
+         <span class="p">};</span>   
+      <span class="p">},</span>
+		<span class="cm">/**</span>
+<span class="cm"> 	 	 * serialize</span>
+<span class="cm">		 */</span>
+      <span class="nx">deserialize</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">results</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">results</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+   
+<span class="p">};</span>
+
+<span class="p">},</span> <span class="s1">&#39;3.0.0a&#39;</span><span class="p">,{</span>
+  <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">,</span><span class="s1">&#39;inputex&#39;</span><span class="p">,</span><span class="s1">&#39;io&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-jsonschema&#39;</span><span class="p">,</span><span class="s1">&#39;jsonp&#39;</span><span class="p">]</span>
+<span class="p">});</span>
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class=""><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class=""><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class=""><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class=""><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class=""><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class=""><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class=""><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class="selected"><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class=""><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class=""><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="inputEx.RatingStarsForm.html" title="inputEx.RatingStarsForm">inputEx.RatingStarsForm</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="inputex-rpc.js.html" title="inputex-rpc.js">inputex-rpc.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.RatingStarsForm.html#method_renderStatusEl", "access": "", "host": "inputEx.RatingStarsForm", "type": "method", "name": "renderStatusEl"}, {"url": "inputEx.RatingStarsForm.html#method_setFields", "access": "", "host": "inputEx.RatingStarsForm", "type": "method", "name": "setFields"}, {"url": "inputEx.RatingStarsForm.html#method_setOptions", "access": "", "host": "inputEx.RatingStarsForm", "type": "method", "name": "setOptions"}];
+</script>
+</body>
+</html>

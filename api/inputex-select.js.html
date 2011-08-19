@@ -1,0 +1,425 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex-rte   inputex-select.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex-rte&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex-rte.html" title="inputex-rte">inputex-rte</a>
+                
+                 &gt; inputex-select.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @module inputex-select</span>
+<span class="cm"> */</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;inputex-select&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){</span>
+
+	<span class="kd">var</span> <span class="nx">lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+	    <span class="nx">inputEx</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">;</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Create a select field</span>
+<span class="cm">	 * @class inputEx.SelectField</span>
+<span class="cm">	 * @extends inputEx.Field</span>
+<span class="cm">	 * @constructor</span>
+<span class="cm">	 * @param {Object} options Added options:</span>
+<span class="cm">	 * &lt;ul&gt;</span>
+<span class="cm">	 *    &lt;li&gt;choices: contains the list of choices configs ([{value:&#39;usa&#39;}, {value:&#39;fr&#39;, label:&#39;France&#39;}])&lt;/li&gt;</span>
+<span class="cm">	 * &lt;/ul&gt;</span>
+<span class="cm">	 */</span>
+	<span class="nx">inputEx</span><span class="p">.</span><span class="nx">SelectField</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">inputEx</span><span class="p">.</span><span class="nx">SelectField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+	<span class="p">};</span>
+
+	<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">SelectField</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">Field</span><span class="p">,</span> <span class="p">{</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Set the default values of the options</span>
+<span class="cm">		 * @param {Object} options Options object as passed to the constructor</span>
+<span class="cm">		 */</span>
+		<span class="nx">setOptions</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+		
+			<span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span><span class="p">;</span>
+		
+			<span class="nx">inputEx</span><span class="p">.</span><span class="nx">SelectField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+		
+			<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">choices</span> <span class="o">=</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">choices</span><span class="p">)</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">choices</span> <span class="o">:</span> <span class="p">[];</span>
+		
+			<span class="c1">// Retro-compatibility with old pattern (changed since 2010-06-30)</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">selectValues</span><span class="p">))</span> <span class="p">{</span>
+			
+				<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">selectValues</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+				
+					<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">choices</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span>
+						<span class="nx">value</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">selectValues</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span>
+						<span class="nx">label</span><span class="o">:</span> <span class="s2">&quot;&quot;</span> <span class="o">+</span> <span class="p">((</span><span class="nx">options</span><span class="p">.</span><span class="nx">selectOptions</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">selectOptions</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">selectOptions</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">selectValues</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
+					<span class="p">});</span>
+				
+				<span class="p">}</span>
+			<span class="p">}</span>
+		
+		<span class="p">},</span>
+	
+		<span class="cm">/**</span>
+<span class="cm">		 * Build a select tag with options</span>
+<span class="cm">		 */</span>
+		<span class="nx">renderComponent</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+		
+			<span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span><span class="p">;</span>
+		
+			<span class="c1">// create DOM &lt;select&gt; node</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">el</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;select&#39;</span><span class="p">,</span> <span class="p">{</span>
+			
+				<span class="nx">id</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">divEl</span><span class="p">.</span><span class="nx">id</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">divEl</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">&#39;-field&#39;</span> <span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">guid</span><span class="p">(),</span>
+				<span class="nx">name</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">name</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span>
+			
+			<span class="p">});</span>
+		
+			<span class="c1">// list of choices (e.g. [{ label: &quot;France&quot;, value:&quot;fr&quot;, node:&lt;DOM-node&gt;, visible:true }, {...}, ...])</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span> <span class="o">=</span> <span class="p">[];</span>
+		
+			<span class="c1">// add choices</span>
+			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">choices</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">addChoice</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">choices</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+			<span class="p">}</span>
+		
+			<span class="c1">// append &lt;select&gt; to DOM tree</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">);</span>
+		<span class="p">},</span>
+	
+		<span class="cm">/**</span>
+<span class="cm">		 * Register the &quot;change&quot; event</span>
+<span class="cm">		 */</span>
+		<span class="nx">initEvents</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onChange</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;focus&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onFocus</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">,</span><span class="k">this</span><span class="p">);</span>
+			<span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;blur&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onBlur</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">,</span><span class="k">this</span><span class="p">);</span>
+		<span class="p">},</span>
+	
+		<span class="cm">/**</span>
+<span class="cm">		 * Set the value</span>
+<span class="cm">		 * @param {String} value The value to set</span>
+<span class="cm">		 * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the &#39;updated&#39; event or not (default is true, pass false to NOT send the event)</span>
+<span class="cm">		 */</span>
+		<span class="nx">setValue</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">sendUpdatedEvt</span><span class="p">)</span> <span class="p">{</span>
+		
+			<span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">choice</span><span class="p">,</span> <span class="nx">firstIndexAvailable</span><span class="p">,</span> <span class="nx">choiceFound</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+		
+			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+			
+				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">visible</span><span class="p">)</span> <span class="p">{</span>
+				
+					<span class="nx">choice</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+				
+					<span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">===</span> <span class="nx">choice</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+					
+						<span class="nx">choice</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">selected</span> <span class="o">=</span> <span class="s2">&quot;selected&quot;</span><span class="p">;</span>
+						<span class="nx">choiceFound</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+						<span class="k">break</span><span class="p">;</span> <span class="c1">// choice node already found</span>
+					
+					<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">firstIndexAvailable</span><span class="p">))</span> <span class="p">{</span>
+					
+						<span class="nx">firstIndexAvailable</span> <span class="o">=</span> <span class="nx">i</span><span class="p">;</span>
+					<span class="p">}</span>
+				
+				<span class="p">}</span>
+			
+			<span class="p">}</span>
+			
+			<span class="c1">// select value from first choice available when</span>
+			<span class="c1">// value not matching any visible choice</span>
+			<span class="c1">//</span>
+			<span class="c1">// if no choice available (-&gt; firstIndexAvailable is undefined), skip value setting</span>
+			<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">choiceFound</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">firstIndexAvailable</span><span class="p">))</span> <span class="p">{</span>
+				
+				<span class="nx">choice</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">firstIndexAvailable</span><span class="p">];</span>
+				<span class="nx">choice</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">selected</span> <span class="o">=</span> <span class="s2">&quot;selected&quot;</span><span class="p">;</span>
+				<span class="nx">value</span> <span class="o">=</span> <span class="nx">choice</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+				
+			<span class="p">}</span>
+			
+			<span class="c1">// Call Field.setValue to set class and fire updated event</span>
+			<span class="nx">inputEx</span><span class="p">.</span><span class="nx">SelectField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">setValue</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">sendUpdatedEvt</span><span class="p">);</span>
+		<span class="p">},</span>
+	
+		<span class="cm">/**</span>
+<span class="cm">		 * Return the value</span>
+<span class="cm">		 * @return {Any} the selected value</span>
+<span class="cm">		 */</span>
+		<span class="nx">getValue</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+		
+			<span class="kd">var</span> <span class="nx">choiceIndex</span><span class="p">;</span>
+			
+			<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">selectedIndex</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="nx">choiceIndex</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">selectedIndex</span><span class="p">],</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">choice</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">return</span> <span class="nx">node</span> <span class="o">===</span> <span class="nx">choice</span><span class="p">.</span><span class="nx">node</span><span class="p">;</span>
+				<span class="p">});</span>
+			
+				<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">choiceIndex</span><span class="p">].</span><span class="nx">value</span><span class="p">;</span>
+				
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				
+				<span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+				
+			<span class="p">}</span>
+		<span class="p">},</span>
+	
+		<span class="cm">/**</span>
+<span class="cm">		 * Disable the field</span>
+<span class="cm">		 */</span>
+		<span class="nx">disable</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+		<span class="p">},</span>
+
+		<span class="cm">/**</span>
+<span class="cm">		 * Enable the field</span>
+<span class="cm">		 */</span>
+		<span class="nx">enable</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+		<span class="p">},</span>
+		
+		<span class="nx">createChoiceNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">choice</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="k">return</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;option&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span> <span class="nx">choice</span><span class="p">.</span><span class="nx">value</span><span class="p">},</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">choice</span><span class="p">.</span><span class="nx">label</span><span class="p">);</span>
+			
+		<span class="p">},</span>
+		
+		<span class="nx">removeChoiceNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="c1">// remove from selector</span>
+			<span class="c1">// </span>
+			<span class="c1">//   -&gt; style.display = &#39;none&#39; would work only on FF (when node is an &lt;option&gt;)</span>
+			<span class="c1">//   -&gt; other browsers (IE, Chrome...) require to remove &lt;option&gt; node from DOM</span>
+			<span class="c1">//</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+			
+		<span class="p">},</span>
+		
+		<span class="nx">disableChoiceNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="nx">node</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="s2">&quot;disabled&quot;</span><span class="p">;</span>
+			
+		<span class="p">},</span>
+		
+		<span class="nx">enableChoiceNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="nx">node</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s2">&quot;disabled&quot;</span><span class="p">);</span>
+			
+		<span class="p">},</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Attach an &lt;option&gt; node to the &lt;select&gt; at the specified position</span>
+<span class="cm">		 * @param {HTMLElement} node The &lt;option&gt; node to attach to the &lt;select&gt;</span>
+<span class="cm">		 * @param {Int} position The position of the choice in choicesList (may not be the &quot;real&quot; position in DOM)</span>
+<span class="cm">		 */</span>
+		<span class="nx">appendChoiceNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">position</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">domPosition</span><span class="p">,</span> <span class="nx">i</span><span class="p">;</span>
+			
+			<span class="c1">// Compute real DOM position (since previous choices in choicesList may be hidden)</span>
+			<span class="nx">domPosition</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			
+			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">position</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">visible</span><span class="p">)</span> <span class="p">{</span>
+					
+					<span class="nx">domPosition</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+					
+				<span class="p">}</span>
+				
+			<span class="p">}</span>
+			
+			<span class="c1">// Insert in DOM</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">domPosition</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">).</span><span class="nx">insert</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span><span class="nx">domPosition</span><span class="p">)</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				
+				<span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+				
+			<span class="p">}</span>
+		<span class="p">},</span>	
+		<span class="c1">// Add stringField setFieldName for classic form in group in listField</span>
+		<span class="nx">setFieldName</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">},</span>
+		
+	<span class="p">});</span>
+	
+	<span class="c1">// Augment prototype with choice mixin (functions : addChoice, removeChoice, etc.)</span>
+	<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">SelectField</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">mixin</span><span class="p">.</span><span class="nx">choice</span><span class="p">);</span>
+	
+	
+	<span class="c1">// Register this class as &quot;select&quot; type</span>
+	<span class="nx">inputEx</span><span class="p">.</span><span class="nx">registerType</span><span class="p">(</span><span class="s2">&quot;select&quot;</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">SelectField</span><span class="p">,</span> <span class="p">[</span>
+		<span class="p">{</span>
+			<span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>
+			<span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;choices&#39;</span><span class="p">,</span>
+			<span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Choices&#39;</span><span class="p">,</span>
+			<span class="nx">elementType</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span>
+				<span class="nx">fields</span><span class="o">:</span> <span class="p">[</span>
+					<span class="p">{</span> <span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span> <span class="p">},</span> <span class="c1">// not required to allow &#39;&#39; value (which is default)</span>
+					<span class="p">{</span> <span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Label&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;label&#39;</span> <span class="p">}</span> <span class="c1">// optional : if left empty, label is same as value</span>
+				<span class="p">]</span>
+			<span class="p">},</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="p">[],</span>
+			<span class="nx">required</span><span class="o">:</span> <span class="kc">true</span>
+		<span class="p">}</span>
+	<span class="p">]);</span>
+
+<span class="p">},</span> <span class="s1">&#39;3.0.0a&#39;</span><span class="p">,{</span>
+  <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-choice&#39;</span><span class="p">]</span>
+<span class="p">});</span>
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class=""><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class=""><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class=""><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class=""><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class=""><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class=""><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class=""><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class=""><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class="selected"><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class=""><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="inputEx.RTEField.html" title="inputEx.RTEField">inputEx.RTEField</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="inputex-select.js.html" title="inputex-select.js">inputex-select.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.RTEField.html#method_filter_msword", "access": "", "host": "inputEx.RTEField", "type": "method", "name": "filter_msword"}, {"url": "inputEx.RTEField.html#method_getValue", "access": "", "host": "inputEx.RTEField", "type": "method", "name": "getValue"}, {"url": "inputEx.RTEField.html#method_renderComponent", "access": "", "host": "inputEx.RTEField", "type": "method", "name": "renderComponent"}, {"url": "inputEx.RTEField.html#method_setOptions", "access": "", "host": "inputEx.RTEField", "type": "method", "name": "setOptions"}, {"url": "inputEx.RTEField.html#method_setValue", "access": "", "host": "inputEx.RTEField", "type": "method", "name": "setValue"}];
+</script>
+</body>
+</html>

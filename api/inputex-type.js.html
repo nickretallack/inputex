@@ -1,0 +1,428 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex-tree   inputex-type.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex-tree&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex-tree.html" title="inputex-tree">inputex-tree</a>
+                
+                 &gt; inputex-type.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @module inputex-type</span>
+<span class="cm"> */</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;inputex-type&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){</span>
+
+   <span class="kd">var</span> <span class="nx">lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+       <span class="nx">inputEx</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * TypeField is a field to create fields. The user can create any value he wants by switching fields.</span>
+<span class="cm"> * @class inputEx.TypeField</span>
+<span class="cm"> * @extends inputEx.Field</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @param {Object} options  Standard inputEx options definition</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">TypeField</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">inputEx</span><span class="p">.</span><span class="nx">TypeField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">TypeField</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">Field</span><span class="p">,</span> <span class="p">{</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Render the TypeField: create a button with a property panel that contains the field options</span>
+<span class="cm">    */</span>
+   <span class="nx">renderComponent</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// DIV element to wrap the Field &quot;default value&quot;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">fieldValueWrapper</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">className</span><span class="o">:</span> <span class="s2">&quot;inputEx-TypeField-FieldValueWrapper&quot;</span><span class="p">});</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">fieldValueWrapper</span> <span class="p">);</span>
+      
+      <span class="c1">// Render the popup that will contain the property form</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">propertyPanel</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">className</span><span class="o">:</span> <span class="s2">&quot;inputEx-TypeField-PropertiesPanel&quot;</span><span class="p">},</span> <span class="p">{</span><span class="nx">display</span><span class="o">:</span> <span class="s1">&#39;none&#39;</span><span class="p">});</span>
+      
+      <span class="c1">// The list of all inputEx declared types to be used in the &quot;type&quot; selector</span>
+      <span class="kd">var</span> <span class="nx">selectOptions</span> <span class="o">=</span> <span class="p">[];</span>
+      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">typeClasses</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">if</span><span class="p">(</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">typeClasses</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
+            <span class="nx">selectOptions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span> <span class="p">{</span> <span class="nx">value</span> <span class="o">:</span> <span class="nx">key</span> <span class="p">}</span> <span class="p">);</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">typeSelect</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">SelectField</span><span class="p">({</span><span class="nx">label</span><span class="o">:</span> <span class="s2">&quot;Type&quot;</span><span class="p">,</span> <span class="nx">choices</span><span class="o">:</span> <span class="nx">selectOptions</span><span class="p">,</span> <span class="nx">parentEl</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">propertyPanel</span><span class="p">});</span>
+
+      <span class="c1">// DIV element to wrap the options group</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">groupOptionsWrapper</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">propertyPanel</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">groupOptionsWrapper</span> <span class="p">);</span>
+      
+      <span class="c1">// Button to switch the panel</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">button</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">className</span><span class="o">:</span> <span class="s2">&quot;inputEx-TypeField-EditButton&quot;</span><span class="p">});</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">button</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">propertyPanel</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">button</span><span class="p">);</span>
+      
+      <span class="c1">// Build the groupOptions</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">rebuildGroupOptions</span><span class="p">();</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Adds 2 event listeners: </span>
+<span class="cm">    *  - on the button to toggel the propertiesPanel</span>
+<span class="cm">    */</span>
+   <span class="nx">initEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">inputEx</span><span class="p">.</span><span class="nx">TypeField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">initEvents</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span> 
+      
+      <span class="c1">// &quot;Toggle the properties panel&quot; button :</span>
+      <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">button</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onTogglePropertiesPanel</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+      
+      <span class="c1">// Prevent the button to receive a &quot;click&quot; event if the propertyPanel doesn&#39;t catch it</span>
+      <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">propertyPanel</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="nx">e</span><span class="p">.</span><span class="nx">stopPropagation</span><span class="p">();},</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+      
+      <span class="c1">// Listen the &quot;type&quot; selector to update the groupOptions</span>
+      <span class="c1">// Hack the type selector to rebuild the group option</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">typeSelect</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;updated&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">rebuildGroupOptions</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Regenerate the property form</span>
+<span class="cm">    */</span>
+   <span class="nx">rebuildGroupOptions</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">try</span> <span class="p">{</span>
+         
+         <span class="c1">// Save the previous value:</span>
+         <span class="kd">var</span> <span class="nx">previousVal</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+         
+         <span class="c1">// Close a previously created group</span>
+         <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">group</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">previousVal</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">getValue</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">groupOptionsWrapper</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+         <span class="p">}</span>
+      
+         <span class="c1">// Get value is directly the class !!</span>
+         <span class="kd">var</span> <span class="nx">classO</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">getFieldClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">typeSelect</span><span class="p">.</span><span class="nx">getValue</span><span class="p">());</span>
+         
+         <span class="c1">// Instanciate the group</span>
+         <span class="kd">var</span> <span class="nx">groupParams</span> <span class="o">=</span> <span class="p">{</span><span class="nx">fields</span><span class="o">:</span> <span class="nx">classO</span><span class="p">.</span><span class="nx">groupOptions</span><span class="p">,</span> <span class="nx">parentEl</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">groupOptionsWrapper</span><span class="p">};</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">group</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">Group</span><span class="p">(</span><span class="nx">groupParams</span><span class="p">);</span>
+         
+         <span class="c1">// Set the previous name/label</span>
+         <span class="k">if</span><span class="p">(</span><span class="nx">previousVal</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">setValue</span><span class="p">({</span>
+               <span class="nx">name</span><span class="o">:</span> <span class="nx">previousVal</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+               <span class="nx">label</span><span class="o">:</span> <span class="nx">previousVal</span><span class="p">.</span><span class="nx">label</span>
+            <span class="p">});</span>
+         <span class="p">}</span>
+         
+         <span class="c1">// Register the updated event</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;updated&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onChangeGroupOptions</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+            
+         <span class="c1">// Create the value field</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">updateFieldValue</span><span class="p">();</span>
+         
+      <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">ex</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">if</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nb">window</span><span class="p">[</span><span class="s2">&quot;console&quot;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nb">window</span><span class="p">[</span><span class="s2">&quot;console&quot;</span><span class="p">][</span><span class="s2">&quot;log&quot;</span><span class="p">])</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;inputEx.TypeField.rebuildGroupOptions: &quot;</span><span class="p">,</span> <span class="nx">ex</span><span class="p">);</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+         
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Toggle the property panel</span>
+<span class="cm">    */</span>
+   <span class="nx">onTogglePropertiesPanel</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">propertyPanel</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">==</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">propertyPanel</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+         <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">button</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">button</span><span class="p">,</span> <span class="s2">&quot;opened&quot;</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">propertyPanel</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+         <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">button</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s2">&quot;opened&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Update the fieldValue with the changed properties</span>
+<span class="cm">    */</span>
+   <span class="nx">onChangeGroupOptions</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      
+      <span class="c1">// Update the field value </span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">updateFieldValue</span><span class="p">();</span>
+      
+      <span class="c1">// Fire &quot;updated&quot; event</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">fireUpdatedEvt</span><span class="p">();</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Update the fieldValue</span>
+<span class="cm">    */</span>
+   <span class="nx">updateFieldValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">try</span> <span class="p">{</span>
+         <span class="c1">// Close previous field</span>
+         <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fieldValue</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">fieldValue</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">fieldValue</span><span class="p">.</span><span class="nx">destroy</span><span class="p">();</span>
+            <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">fieldValue</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">fieldValueWrapper</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+         <span class="p">}</span>
+      
+         <span class="c1">// Re-build the fieldValue</span>
+         <span class="kd">var</span> <span class="nx">fieldOptions</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">getValue</span><span class="p">();</span>
+         
+         <span class="nx">fieldOptions</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getValue</span><span class="p">().</span><span class="nx">type</span><span class="p">;</span>
+         <span class="nx">fieldOptions</span><span class="p">.</span><span class="nx">parentEl</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">fieldValueWrapper</span><span class="p">;</span>
+         
+         <span class="k">this</span><span class="p">.</span><span class="nx">fieldValue</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">(</span><span class="nx">fieldOptions</span><span class="p">,</span><span class="k">this</span><span class="p">);</span>
+      
+         <span class="c1">// Refire the event when the fieldValue is updated</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">fieldValue</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;updated&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">fireUpdatedEvt</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">catch</span><span class="p">(</span><span class="nx">ex</span><span class="p">)</span> <span class="p">{</span>	
+         <span class="k">if</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nb">window</span><span class="p">[</span><span class="s2">&quot;console&quot;</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nb">window</span><span class="p">[</span><span class="s2">&quot;console&quot;</span><span class="p">][</span><span class="s2">&quot;log&quot;</span><span class="p">])</span> <span class="p">)</span> <span class="p">{</span>
+         	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Error while updateFieldValue&quot;</span><span class="p">,</span> <span class="nx">ex</span><span class="p">.</span><span class="nx">message</span><span class="p">);</span>
+			<span class="p">}</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+   
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Set the value of the label, typeProperties and group</span>
+<span class="cm">    * @param {Object} value Type object configuration</span>
+<span class="cm">    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the &#39;updated&#39; event or not (default is true, pass false to NOT send the event)</span>
+<span class="cm">    */</span>
+   <span class="nx">setValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">sendUpdatedEvt</span><span class="p">)</span> <span class="p">{</span>
+
+      <span class="c1">// Set type in property panel</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">typeSelect</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">type</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+      
+      <span class="c1">// Rebuild the panel propertues</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">rebuildGroupOptions</span><span class="p">();</span>
+      
+      <span class="c1">// Set the parameters value</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+      
+      <span class="c1">// Rebuild the fieldValue</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">updateFieldValue</span><span class="p">();</span>
+      
+      <span class="c1">// Set field value :</span>
+		<span class="c1">// fix it for default value (because updateFieldValue is called after first setValue)</span>
+ 		<span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>      
+
+      <span class="c1">// New prefered way to describe a field</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+			<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+				<span class="nx">that</span><span class="p">.</span><span class="nx">fieldValue</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+			<span class="p">},</span> <span class="mi">50</span><span class="p">);</span>
+      <span class="p">}</span>
+      
+	   <span class="k">if</span><span class="p">(</span><span class="nx">sendUpdatedEvt</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+	      <span class="c1">// fire update event</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">fireUpdatedEvt</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Return the config for a entry in an Group</span>
+<span class="cm">    * @return {Object} Type object configuration</span>
+<span class="cm">    */</span>
+   <span class="nx">getValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      
+      <span class="kd">var</span> <span class="nx">getDefaultValueForField</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">classObj</span><span class="p">,</span> <span class="nx">paramName</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">classObj</span><span class="p">.</span><span class="nx">groupOptions</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">f</span><span class="p">;</span>
+         
+         <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">f</span> <span class="o">=</span> <span class="nx">classObj</span><span class="p">.</span><span class="nx">groupOptions</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            
+            <span class="c1">// New prefered way to use field options</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nx">f</span><span class="p">.</span><span class="nx">name</span> <span class="o">==</span> <span class="nx">paramName</span><span class="p">)</span> <span class="p">{</span>
+               <span class="k">return</span> <span class="nx">f</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+         <span class="k">return</span> <span class="kc">undefined</span><span class="p">;</span>
+      <span class="p">};</span>
+      
+      
+      <span class="c1">// The field parameters</span>
+      <span class="kd">var</span> <span class="nx">fieldParams</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">getValue</span><span class="p">();</span>
+      <span class="kd">var</span> <span class="nx">classObj</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">getFieldClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">typeSelect</span><span class="p">.</span><span class="nx">getValue</span><span class="p">());</span>
+      
+      <span class="c1">// + default values</span>
+      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">fieldParams</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">if</span><span class="p">(</span> <span class="nx">fieldParams</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">value1</span> <span class="o">=</span> <span class="nx">getDefaultValueForField</span><span class="p">(</span><span class="nx">classObj</span><span class="p">,</span> <span class="nx">key</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">value2</span> <span class="o">=</span> <span class="nx">fieldParams</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">value1</span> <span class="o">==</span> <span class="nx">value2</span><span class="p">)</span> <span class="p">{</span>
+               <span class="nx">fieldParams</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="kc">undefined</span><span class="p">;</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+      <span class="p">}</span>
+      
+      <span class="c1">// The field type</span>
+      <span class="nx">fieldParams</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">typeSelect</span><span class="p">.</span><span class="nx">getValue</span><span class="p">();</span>
+      
+      <span class="c1">// The value defined by the fieldValue</span>
+      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fieldValue</span><span class="p">)</span> <span class="nx">fieldParams</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">fieldValue</span><span class="p">.</span><span class="nx">getValue</span><span class="p">();</span>
+      
+      <span class="k">return</span> <span class="nx">fieldParams</span><span class="p">;</span>
+   <span class="p">}</span>
+   
+<span class="p">});</span>
+
+
+<span class="c1">// Register this class as &quot;type&quot; type</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">registerType</span><span class="p">(</span><span class="s2">&quot;type&quot;</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">TypeField</span><span class="p">,</span> <span class="p">[]);</span>
+
+<span class="p">},</span> <span class="s1">&#39;3.0.0a&#39;</span><span class="p">,{</span>
+<span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-group&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-select&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-list&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-checkbox&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-integer&#39;</span><span class="p">]</span>
+<span class="p">});</span>
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class=""><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class=""><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class=""><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class=""><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class=""><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class=""><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class=""><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class=""><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class=""><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class="selected"><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="inputEx.TreeField.html" title="inputEx.TreeField">inputEx.TreeField</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="inputex-type.js.html" title="inputex-type.js">inputex-type.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.TreeField.html#method_getValue", "access": "", "host": "inputEx.TreeField", "type": "method", "name": "getValue"}, {"url": "inputEx.TreeField.html#method_renderComponent", "access": "", "host": "inputEx.TreeField", "type": "method", "name": "renderComponent"}, {"url": "inputEx.TreeField.html#method_renderSubField", "access": "", "host": "inputEx.TreeField", "type": "method", "name": "renderSubField"}, {"url": "inputEx.TreeField.html#method_setValue", "access": "", "host": "inputEx.TreeField", "type": "method", "name": "setValue"}];
+</script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex   inputex-autocomplete.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex.html" title="inputex">inputex</a>
+                
+                 &gt; inputex-autocomplete.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @module inputex-autocomplete</span>
+<span class="cm"> */</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;inputex-autocomplete&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="kd">var</span> <span class="nx">lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+      <span class="nx">inputEx</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">;</span>
+
+<span class="cm">/**</span>
+<span class="cm"> * An autocomplete field that wraps the YUI autocompleter</span>
+<span class="cm"> * @class inputEx.AutoComplete</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @extends inputEx.StringField</span>
+<span class="cm"> * @param {Object} options Added options for Autocompleter</span>
+<span class="cm"> * &lt;ul&gt;</span>
+<span class="cm"> *  &lt;li&gt;source: the datasource&lt;/li&gt;</span>
+<span class="cm"> *  &lt;li&gt;autoComp: autocompleter options&lt;/li&gt;</span>
+<span class="cm"> *   &lt;li&gt;returnValue: function to format the returned value (optional)&lt;/li&gt;</span>
+<span class="cm"> * &lt;/ul&gt;</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">AutoComplete</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">inputEx</span><span class="p">.</span><span class="nx">AutoComplete</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">AutoComplete</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">StringField</span><span class="p">,</span> <span class="p">{</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * Adds autocomplete options</span>
+<span class="cm">    * @param {Object} options Options object as passed to the constructor</span>
+<span class="cm">    */</span>
+   <span class="nx">setOptions</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">inputEx</span><span class="p">.</span><span class="nx">AutoComplete</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+  
+      <span class="c1">// Overwrite options</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">className</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;inputEx-Field inputEx-AutoComplete&#39;</span><span class="p">;</span>
+      
+      <span class="c1">// Added options</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">autoComp</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">autoComp</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">returnValue</span><span class="p">;</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Custom event init</span>
+<span class="cm">    * &lt;ul&gt;</span>
+<span class="cm">    *   &lt;li&gt;listen to autocompleter textboxBlurEvent instead of this.el &quot;blur&quot; event&lt;/li&gt;</span>
+<span class="cm">    *   &lt;li&gt;listener to autocompleter textboxBlurEvent added in buildAutocomplete method&lt;/li&gt;</span>
+<span class="cm">    * &lt;/ul&gt;</span>
+<span class="cm">    */</span>
+   <span class="nx">initEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">inputEx</span><span class="p">.</span><span class="nx">AutoComplete</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">initEvents</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+      <span class="c1">// remove standard blur listener</span>
+      <span class="c1">// TODO: ?</span>
+   <span class="p">},</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * Render the hidden list element</span>
+<span class="cm">    */</span>
+   <span class="nx">renderComponent</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   
+      <span class="c1">// This element wraps the input node in a float: none div</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">wrapEl</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;inputEx-StringField-wrapper&#39;</span><span class="p">});</span>
+      
+      <span class="c1">// Attributes of the input field</span>
+      <span class="kd">var</span> <span class="nx">attributes</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
+         <span class="nx">id</span><span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">guid</span><span class="p">()</span>
+      <span class="p">};</span>
+      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">size</span><span class="p">)</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">size</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">size</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">readonly</span><span class="p">)</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">readonly</span> <span class="o">=</span> <span class="s1">&#39;readonly&#39;</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">)</span> <span class="nx">attributes</span><span class="p">.</span><span class="nx">maxLength</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">;</span>
+
+      <span class="c1">// Create the node</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">el</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="nx">attributes</span><span class="p">);</span>
+      
+      <span class="c1">// Create the hidden input</span>
+      <span class="kd">var</span> <span class="nx">hiddenAttrs</span> <span class="o">=</span> <span class="p">{</span>
+         <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;hidden&#39;</span><span class="p">,</span>
+         <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+      <span class="p">};</span>
+      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span> <span class="nx">hiddenAttrs</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">hiddenEl</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="nx">hiddenAttrs</span><span class="p">);</span>
+      
+      <span class="c1">// Append it to the main element</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">wrapEl</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">wrapEl</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">hiddenEl</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">wrapEl</span><span class="p">);</span>
+   
+      <span class="c1">// Render the list :</span>
+      <span class="kd">var</span> <span class="nx">listId</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">guid</span><span class="p">()</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">listEl</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">id</span><span class="o">:</span> <span class="nx">listId</span> <span class="p">});</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">listEl</span><span class="p">);</span>
+      
+      <span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;available&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">buildAutocomplete</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="o">+</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="nx">Y</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;available&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">buildAutocomplete</span><span class="p">,</span> <span class="s2">&quot;#&quot;</span><span class="o">+</span><span class="nx">listId</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="c1">//Y.on(&quot;domready&quot;, function(e){alert(e+&quot;domready&quot;);});</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Build the YUI autocompleter</span>
+<span class="cm">    */</span>
+   <span class="nx">buildAutocomplete</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// Call this function only when this.el AND this.listEl are available</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">_nElementsReady</span><span class="p">)</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">_nElementsReady</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_nElementsReady</span><span class="o">++</span><span class="p">;</span>
+      <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_nElementsReady</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    
+      <span class="k">this</span><span class="p">.</span><span class="nx">yEl</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">)</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">yEl</span><span class="p">.</span><span class="nx">plug</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">AutoComplete</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">autoComp</span><span class="p">);</span>
+
+      <span class="c1">// Instantiate AutoComplete</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">yEl</span><span class="p">.</span><span class="nx">ac</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;select&quot;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">itemSelectHandler</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">yEl</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;blur&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onBlur</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * itemSelect handler</span>
+<span class="cm">    * @param {} sType</span>
+<span class="cm">    * @param {} aArgs</span>
+<span class="cm">    */</span>
+   <span class="nx">itemSelectHandler</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">aData</span> <span class="o">=</span> <span class="nx">o</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">raw</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">returnValue</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">returnValue</span><span class="p">(</span><span class="nx">aData</span><span class="p">)</span> <span class="o">:</span> <span class="nx">aData</span><span class="p">.</span><span class="nx">label</span> <span class="p">);</span>
+   <span class="p">},</span>
+
+   <span class="nx">onBlur</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+     <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">value</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">typeInvite</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">divEl</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">&quot;inputEx-typeInvite&quot;</span><span class="p">)</span>
+       <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">value</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">typeInvite</span><span class="p">;</span>
+     <span class="p">}</span>
+  <span class="p">},</span>
+
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Set the value</span>
+<span class="cm">    * @param {Any} value Value to set</span>
+<span class="cm">    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the updated event or not (default is true, pass false to NOT send the event)</span>
+<span class="cm">    */</span>
+   <span class="nx">setValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">sendUpdatedEvt</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">hiddenEl</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">el</span><span class="p">.</span><span class="nx">value</span>  <span class="o">=</span>  <span class="nx">value</span> <span class="o">||</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+      <span class="c1">// &quot;inherited&quot; from inputex.Field :</span>
+      <span class="c1">//    (can&#39;t inherit of inputex.StringField because would set this.el.value...)</span>
+      <span class="c1">//</span>
+      <span class="c1">// set corresponding style</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">setClassFromState</span><span class="p">();</span>
+
+      <span class="k">if</span><span class="p">(</span><span class="nx">sendUpdatedEvt</span> <span class="o">!==</span> <span class="kc">false</span><span class="p">)</span> <span class="p">{</span>
+         <span class="c1">// fire update event</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">fireUpdatedEvt</span><span class="p">();</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Return the hidden value (stored in a hidden input)</span>
+<span class="cm">    */</span>
+   <span class="nx">getValue</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">hiddenEl</span><span class="p">.</span><span class="nx">value</span><span class="p">;</span>
+   <span class="p">}</span>
+
+<span class="p">});</span>
+
+
+<span class="c1">// Register this class as &quot;autocomplete&quot; type</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">registerType</span><span class="p">(</span><span class="s2">&quot;autocomplete&quot;</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">AutoComplete</span><span class="p">);</span>
+
+<span class="p">},</span> <span class="s1">&#39;3.0.0a&#39;</span><span class="p">,{</span>
+  <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">,</span><span class="s1">&#39;autocomplete&#39;</span><span class="p">,</span> <span class="s1">&#39;autocomplete-filters&#39;</span><span class="p">,</span> <span class="s1">&#39;autocomplete-highlighters&#39;</span><span class="p">,</span><span class="s1">&#39;datasource&#39;</span><span class="p">]</span>
+<span class="p">})</span>
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class=""><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class=""><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class=""><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class=""><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class=""><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class=""><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class=""><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class=""><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class=""><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="inputEx.html" title="inputEx">inputEx</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="inputex-autocomplete.js.html" title="inputex-autocomplete.js">inputex-autocomplete.js</a></li>
+                                <li class=""><a href="inputex.js.html" title="inputex.js">inputex.js</a></li>
+                                <li class=""><a href="inputex_ca.js.html" title="inputex_ca.js">inputex_ca.js</a></li>
+                                <li class=""><a href="inputex_de.js.html" title="inputex_de.js">inputex_de.js</a></li>
+                                <li class=""><a href="inputex_en.js.html" title="inputex_en.js">inputex_en.js</a></li>
+                                <li class=""><a href="inputex_es.js.html" title="inputex_es.js">inputex_es.js</a></li>
+                                <li class=""><a href="inputex_fr.js.html" title="inputex_fr.js">inputex_fr.js</a></li>
+                                <li class=""><a href="inputex_it.js.html" title="inputex_it.js">inputex_it.js</a></li>
+                                <li class=""><a href="inputex_nl.js.html" title="inputex_nl.js">inputex_nl.js</a></li>
+                                <li class=""><a href="loader.js.html" title="loader.js">loader.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.html#property_browserAutocomplete", "access": "", "host": "inputEx", "type": "property", "name": "browserAutocomplete"}, {"url": "inputEx.html#method_cn", "access": "", "host": "inputEx", "type": "method", "name": "cn"}, {"url": "inputEx.html#method_compactArray", "access": "", "host": "inputEx", "type": "method", "name": "compactArray"}, {"url": "inputEx.html#method_getFieldClass", "access": "", "host": "inputEx", "type": "method", "name": "getFieldClass"}, {"url": "inputEx.html#method_getModulesFromDefinition", "access": "", "host": "inputEx", "type": "method", "name": "getModulesFromDefinition"}, {"url": "inputEx.html#method_getRawModulesFromDefinition", "access": "", "host": "inputEx", "type": "method", "name": "getRawModulesFromDefinition"}, {"url": "inputEx.html#method_getType", "access": "", "host": "inputEx", "type": "method", "name": "getType"}, {"url": "inputEx.html#method_htmlEntities", "access": "", "host": "inputEx", "type": "method", "name": "htmlEntities"}, {"url": "inputEx.html#method_indexOf", "access": "", "host": "inputEx", "type": "method", "name": "indexOf"}, {"url": "inputEx.html#property_messages", "access": "", "host": "inputEx", "type": "property", "name": "messages"}, {"url": "inputEx.html#property_mixin", "access": "", "host": "inputEx", "type": "property", "name": "mixin"}, {"url": "inputEx.html#property_regexps", "access": "", "host": "inputEx", "type": "property", "name": "regexps"}, {"url": "inputEx.html#method_registerType", "access": "", "host": "inputEx", "type": "method", "name": "registerType"}, {"url": "inputEx.html#method_removeAccents", "access": "", "host": "inputEx", "type": "method", "name": "removeAccents"}, {"url": "inputEx.html#method_sn", "access": "", "host": "inputEx", "type": "method", "name": "sn"}, {"url": "inputEx.html#property_spacerUrl", "access": "", "host": "inputEx", "type": "property", "name": "spacerUrl"}, {"url": "inputEx.html#property_stateEmpty", "access": "", "host": "inputEx", "type": "property", "name": "stateEmpty"}, {"url": "inputEx.html#property_stateInvalid", "access": "", "host": "inputEx", "type": "property", "name": "stateInvalid"}, {"url": "inputEx.html#property_stateRequired", "access": "", "host": "inputEx", "type": "property", "name": "stateRequired"}, {"url": "inputEx.html#property_stateValid", "access": "", "host": "inputEx", "type": "property", "name": "stateValid"}, {"url": "inputEx.html#property_typeClasses", "access": "", "host": "inputEx", "type": "property", "name": "typeClasses"}, {"url": "inputEx.html#method_use", "access": "", "host": "inputEx", "type": "method", "name": "use"}, {"url": "inputEx.html#property_widget", "access": "", "host": "inputEx", "type": "property", "name": "widget"}];
+</script>
+</body>
+</html>

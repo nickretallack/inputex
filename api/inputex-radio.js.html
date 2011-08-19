@@ -1,0 +1,674 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex-password   inputex-radio.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex-password&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex-password.html" title="inputex-password">inputex-password</a>
+                
+                 &gt; inputex-radio.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @module inputex-radio</span>
+<span class="cm"> */</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;inputex-radio&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){</span>
+
+   <span class="kd">var</span> <span class="nx">lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+       <span class="nx">inputEx</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">;</span>
+	
+	<span class="cm">/**</span>
+<span class="cm">	 * Create a radio button. Here are the added options :</span>
+<span class="cm">	 * &lt;ul&gt;</span>
+<span class="cm">	 *	 &lt;li&gt;choices: list of choices (array of string)&lt;/li&gt;</span>
+<span class="cm">	 *	 &lt;li&gt;values: list of returned values (array )&lt;/li&gt;</span>
+<span class="cm">	 *	 &lt;li&gt;allowAny: add an option with a string field&lt;/li&gt;</span>
+<span class="cm">	 * &lt;/ul&gt;</span>
+<span class="cm">	 * @class inputEx.RadioField</span>
+<span class="cm">	 * @extends inputEx.Field</span>
+<span class="cm">	 * @constructor</span>
+<span class="cm">	 * @param {Object} options inputEx.Field options object</span>
+<span class="cm">	 */</span>
+	<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+		
+		<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="nx">options</span><span class="p">);</span>
+		
+		<span class="c1">// IE BUG: doesn&#39;t want to set the value if the node is not in the DOM</span>
+		<span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">value</span><span class="p">))</span> <span class="p">{</span>
+			<span class="c1">// Set the initial value, use setTimeout to escape the stack (for nested usage in Group or Form)</span>
+			<span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			<span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+				<span class="nx">that</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="nx">that</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+			<span class="p">},</span><span class="mi">0</span><span class="p">);</span>
+		<span class="p">}</span>
+		
+	<span class="p">};</span>
+		
+	<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">Field</span><span class="p">,</span> <span class="p">{</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Adds the Radio button specific options</span>
+<span class="cm">		 * @param {Object} options Options object as passed to the constructor</span>
+<span class="cm">		 */</span>
+		<span class="nx">setOptions</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span><span class="p">;</span>
+			
+			<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+			
+			<span class="c1">// Display mode</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">display</span> <span class="o">===</span> <span class="s2">&quot;vertically&quot;</span> <span class="o">?</span> <span class="s2">&quot;vertically&quot;</span> <span class="o">:</span> <span class="s2">&quot;inline&quot;</span><span class="p">;</span> <span class="c1">// default &quot;inline&quot;</span>
+			
+			<span class="c1">// Classname</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">className</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">className</span> <span class="o">:</span> <span class="s1">&#39;inputEx-Field inputEx-RadioField&#39;</span><span class="p">;</span>
+			<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">display</span> <span class="o">===</span> <span class="s2">&quot;vertically&quot;</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">className</span> <span class="o">+=</span>  <span class="s1">&#39; inputEx-RadioField-Vertically&#39;</span><span class="p">;</span>
+			<span class="p">}</span>
+			
+			<span class="c1">// Choices creation</span>
+			
+			<span class="c1">// Retro-compatibility with old pattern (DEPRECATED since 2010-06-30)</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">values</span><span class="p">))</span> <span class="p">{</span>
+				
+				<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">choices</span> <span class="o">=</span> <span class="p">[];</span>
+				
+				<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">values</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">choices</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">values</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="nx">label</span><span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">choices</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">});</span>
+				<span class="p">}</span>
+			
+			<span class="c1">// New pattern to define choices</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				
+				<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">choices</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">choices</span><span class="p">;</span> <span class="c1">// [&#39;val1&#39;,&#39;val2&#39;] or [{ value: &#39;val1&#39;, label: &#39;1st Choice&#39; }, etc.]</span>
+				
+			<span class="p">}</span>
+			
+			<span class="k">if</span> <span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">)</span> <span class="o">||</span> <span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span> <span class="o">===</span> <span class="kc">false</span> <span class="p">)</span> <span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span> <span class="o">=</span> <span class="p">{};</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">separators</span><span class="p">))</span> <span class="p">{</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">separators</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">separators</span><span class="p">;}</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">validator</span> <span class="o">=</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">validator</span><span class="p">)</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">validator</span> <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">val</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="kc">true</span><span class="p">;};</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span> <span class="o">?</span> <span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">value</span> <span class="o">:</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">field</span> <span class="o">=</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">field</span><span class="p">)</span> <span class="o">?</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">value</span> <span class="p">}</span> <span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">field</span><span class="p">;</span>
+			<span class="p">}</span>
+			
+		<span class="p">},</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Render the checkbox and the hidden field</span>
+<span class="cm">		 */</span>
+		<span class="nx">renderComponent</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">choices</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">sep</span><span class="p">;</span>
+			
+			<span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span> <span class="o">=</span> <span class="p">[];</span>
+			
+			<span class="nx">choices</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">choices</span><span class="p">;</span>
+			
+			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="nx">choices</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+				
+				<span class="k">this</span><span class="p">.</span><span class="nx">addChoice</span><span class="p">(</span><span class="nx">choices</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+				
+			<span class="p">}</span>
+			
+			<span class="c1">// Build a &quot;any&quot; radio combined with a StringField</span>
+			<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="k">this</span><span class="p">.</span><span class="nx">allowAnyChoice</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">addChoice</span><span class="p">({</span> <span class="nx">value</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="nx">label</span><span class="o">:</span><span class="s1">&#39;&#39;</span> <span class="p">});</span>
+				
+				<span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">allowAnyChoice</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">;</span>
+				
+				<span class="k">this</span><span class="p">.</span><span class="nx">anyField</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">inputEx</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">field</span><span class="p">);</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">disable</span><span class="p">();</span>
+				
+				<span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">,</span><span class="s2">&quot;left&quot;</span><span class="p">);</span>
+				<span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">getEl</span><span class="p">()).</span><span class="nx">setStyle</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">,</span><span class="s2">&quot;left&quot;</span><span class="p">);</span>
+				
+				<span class="c1">// Hack for firefox 3.5+</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">gecko</span> <span class="o">&gt;=</span> <span class="mf">1.91</span><span class="p">)</span> <span class="p">{</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span> <span class="s2">&quot;marginTop&quot;</span><span class="p">,</span><span class="s2">&quot;0.2em&quot;</span><span class="p">);</span> <span class="p">}</span>
+				
+				
+				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">separators</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">sep</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span><span class="kc">null</span><span class="p">,{</span><span class="nx">marginRight</span><span class="o">:</span><span class="s2">&quot;3px&quot;</span><span class="p">},</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">separators</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+					<span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">sep</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span><span class="s2">&quot;left&quot;</span><span class="p">);</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">allowAnyChoice</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">sep</span><span class="p">);</span>
+				<span class="p">}</span>
+				
+				<span class="k">this</span><span class="p">.</span><span class="nx">allowAnyChoice</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">getEl</span><span class="p">());</span>
+				
+				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">separators</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">sep</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">,</span><span class="kc">null</span><span class="p">,{</span><span class="nx">marginLeft</span><span class="o">:</span><span class="s2">&quot;3px&quot;</span><span class="p">},</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">separators</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">||</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+					<span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="nx">sep</span><span class="p">).</span><span class="nx">setStyle</span><span class="p">(</span> <span class="s2">&quot;float&quot;</span><span class="p">,</span><span class="s2">&quot;left&quot;</span><span class="p">);</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">allowAnyChoice</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">sep</span><span class="p">);</span>
+				<span class="p">}</span>
+				
+			<span class="p">}</span>
+			
+		<span class="p">},</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Listen for change events on all radios</span>
+<span class="cm">		 */</span>
+		<span class="nx">initEvents</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			
+			<span class="c1">// Delegate event listening because list of choices is dynamic</span>
+			<span class="c1">// so we can&#39;t listen on each &lt;input type=&quot;radio&quot; class=&#39;inputEx-RadioField-radio&#39; /&gt;</span>
+			
+			<span class="kd">var</span> <span class="nx">fieldContainer</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fieldContainer</span><span class="p">),</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+			
+			<span class="c1">// Change event (IE does not fire &quot;change&quot; event, so listen to click instead)</span>
+			<span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">?</span> <span class="s2">&quot;click&quot;</span> <span class="o">:</span> <span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">matchedEl</span><span class="p">,</span> <span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">that</span><span class="p">.</span><span class="nx">onChange</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+			<span class="p">},</span> <span class="s2">&quot;.inputEx-RadioField-radio&quot;</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">);</span>
+			
+			<span class="c1">// Focus / Blur events</span>
+			<span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s2">&quot;focusin&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">matchedEl</span><span class="p">,</span> <span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">that</span><span class="p">.</span><span class="nx">onFocus</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+			<span class="p">},</span> <span class="s2">&quot;.inputEx-RadioField-radio&quot;</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">);</span>
+			
+			<span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s2">&quot;focusout&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">matchedEl</span><span class="p">,</span> <span class="nx">container</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">that</span><span class="p">.</span><span class="nx">onBlur</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+			<span class="p">},</span> <span class="s2">&quot;.inputEx-RadioField-radio&quot;</span><span class="p">,</span> <span class="s2">&quot;input&quot;</span><span class="p">);</span>
+			
+			<span class="c1">// AnyField events</span>
+			<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">allowAnyChoice</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;updated&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+					
+					<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">params</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+					
+					<span class="k">this</span><span class="p">.</span><span class="nx">setClassFromState</span><span class="p">();</span>
+					
+					<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">onChange</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="nx">e</span><span class="p">);</span>
+					
+				<span class="p">},</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+				
+				<span class="c1">// Update radio field style after editing anyField content !</span>
+            <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span>
+               <span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">el</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;blur&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onBlur</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+            <span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">},</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Add an additional class to the currently selected inputEx-RadioField-choice</span>
+<span class="cm">		 */</span>
+		<span class="nx">setSelectedClass</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span><span class="p">;</span>
+			
+			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">.</span><span class="nx">checked</span><span class="p">)</span> <span class="p">{</span>
+					<span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">node</span><span class="p">).</span><span class="nx">addClass</span><span class="p">(</span><span class="s2">&quot;inputEx-selected&quot;</span><span class="p">);</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">node</span><span class="p">).</span><span class="nx">removeClass</span><span class="p">(</span><span class="s2">&quot;inputEx-selected&quot;</span><span class="p">);</span>
+				<span class="p">}</span>
+				
+			<span class="p">}</span>
+		<span class="p">},</span>
+		
+		<span class="nx">setClassFromState</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			
+			<span class="c1">// call superclass method (will fire updated event)</span>
+			<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">setClassFromState</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+			
+			<span class="k">this</span><span class="p">.</span><span class="nx">setSelectedClass</span><span class="p">();</span>
+			
+		<span class="p">},</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Function called when the checkbox is toggled</span>
+<span class="cm">		 * @param {Event} e The original &#39;change&#39; event</span>
+<span class="cm">		 */</span>
+		<span class="nx">onChange</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">_node</span><span class="p">;</span>
+			
+			<span class="c1">// Enable/disable the &quot;any&quot; field</span>
+			<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">allowAnyChoice</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="kd">var</span> <span class="nx">clickedOnAllowAnyChoice</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">target</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span><span class="nx">arrEl</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">el</span> <span class="o">===</span> <span class="nx">arrEl</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">;</span> <span class="p">})</span> <span class="o">!==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span> <span class="o">===</span> <span class="nx">target</span><span class="p">;</span>
+				
+				<span class="c1">// if clicked another choice than allowAnyChoice</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">clickedOnAllowAnyChoice</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">disable</span><span class="p">();</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">enable</span><span class="p">();</span>
+					<span class="nx">lang</span><span class="p">.</span><span class="nx">later</span><span class="p">(</span> <span class="mi">50</span> <span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">anyField</span> <span class="p">,</span> <span class="s2">&quot;focus&quot;</span><span class="p">);</span>
+				<span class="p">}</span>
+				
+			<span class="p">}</span>
+			
+			<span class="k">this</span><span class="p">.</span><span class="nx">setSelectedClass</span><span class="p">();</span>
+			
+			<span class="c1">// call superclass method (will fire updated event)</span>
+			<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">onChange</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="nx">e</span><span class="p">);</span>
+		<span class="p">},</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Get the field value</span>
+<span class="cm">		 * @return {Any} </span>
+<span class="cm">		 */</span>
+		<span class="nx">getValue</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span><span class="p">;</span>
+			
+			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">.</span><span class="nx">checked</span><span class="p">)</span> <span class="p">{</span>
+					
+					<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span> <span class="o">==</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">)</span> <span class="p">{</span>
+						<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">getValue</span><span class="p">();</span>
+					<span class="p">}</span>
+					
+					<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">value</span><span class="p">;</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			
+			<span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="p">;</span>
+		<span class="p">},</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Set the value of the Radio</span>
+<span class="cm">		 * @param {Any} value The value schould be one of this.options.values (which defaults to this.options.choices if missing) if allowAny option not true.</span>
+<span class="cm">		 * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the updated event or not (default is true, pass false to NOT send the event)</span>
+<span class="cm">		 */</span>
+		<span class="nx">setValue</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="nx">sendUpdatedEvt</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">checkAny</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">valueFound</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span><span class="p">;</span>
+			
+			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="c1">// valueFound is a useful when &quot;real&quot; choice has a value equal to allowAny choice default value</span>
+				<span class="c1">// so we check only the first value-matching radio button</span>
+				<span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">===</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">value</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">valueFound</span><span class="p">)</span> <span class="p">{</span>
+					
+					<span class="c1">// check the radio</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+					
+					<span class="c1">// radioAny should not be checked (unless current choice is radioAny !)</span>
+					<span class="nx">checkAny</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">i</span> <span class="o">===</span> <span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="kc">false</span><span class="p">;</span>
+					
+					<span class="c1">// raise valueFound flag, all other radios should be unchecked now</span>
+					<span class="nx">valueFound</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+					
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+				<span class="p">}</span>
+				
+			<span class="p">}</span>
+			
+			<span class="c1">// Option allowAny</span>
+			<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="k">if</span> <span class="p">(</span><span class="nx">checkAny</span><span class="p">)</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span><span class="p">.</span><span class="nx">checked</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">value</span><span class="p">;</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">enable</span><span class="p">();</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+				<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">disable</span><span class="p">();</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			
+			<span class="c1">// call parent class method to set style and fire updated event</span>
+			<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">setValue</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">sendUpdatedEvt</span><span class="p">);</span>
+		<span class="p">},</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Clear the field by setting the field value to this.options.value</span>
+<span class="cm">		 * @param {boolean} [sendUpdatedEvt] (optional) Wether this clear should fire the updated event or not (default is true, pass false to NOT send the event)</span>
+<span class="cm">		 */</span>
+		<span class="nx">clear</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">sendUpdatedEvt</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span><span class="p">){</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+			<span class="p">}</span>
+		
+			<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">clear</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">sendUpdatedEvt</span><span class="p">);</span>
+		<span class="p">},</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Should return true if empty</span>
+<span class="cm">		 */</span>
+		<span class="nx">isEmpty</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">radioInput</span><span class="p">;</span>
+			
+			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="nx">radioInput</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">;</span>
+				
+				<span class="k">if</span> <span class="p">(</span><span class="nx">radioInput</span><span class="p">.</span><span class="nx">checked</span><span class="p">)</span> <span class="p">{</span>
+					
+					<span class="c1">// if &quot;any&quot; option checked</span>
+					<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span> <span class="o">==</span> <span class="nx">radioInput</span><span class="p">)</span> <span class="p">{</span>
+						
+						<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">getValue</span><span class="p">()</span> <span class="o">===</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+						
+					<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+						
+						<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+						
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			
+			<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+			
+		<span class="p">},</span>
+		
+		<span class="nx">validate</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span><span class="p">,</span> <span class="nx">radioInput</span><span class="p">,</span> <span class="nx">anyVal</span><span class="p">;</span>
+			
+			<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+					
+					<span class="nx">radioInput</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">;</span>
+					
+					<span class="k">if</span> <span class="p">(</span><span class="nx">radioInput</span><span class="p">.</span><span class="nx">checked</span><span class="p">)</span> <span class="p">{</span>
+						
+						<span class="c1">// if &quot;any&quot; option checked</span>
+						<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">radioAny</span> <span class="o">==</span> <span class="nx">radioInput</span><span class="p">)</span> <span class="p">{</span>
+							<span class="nx">anyVal</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">getValue</span><span class="p">();</span>
+							<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">anyField</span><span class="p">.</span><span class="nx">validate</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowAny</span><span class="p">.</span><span class="nx">validator</span><span class="p">(</span><span class="nx">anyVal</span><span class="p">);</span>
+						<span class="p">}</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			
+			<span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+		<span class="p">},</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Disable the field</span>
+<span class="cm">		 */</span>
+		<span class="nx">disable</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span><span class="p">;</span>
+			
+			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">disableChoice</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="kc">false</span><span class="p">);</span>
+			<span class="p">}</span>
+			
+		<span class="p">},</span>
+	
+		<span class="cm">/**</span>
+<span class="cm">		 * Enable the field</span>
+<span class="cm">		 */</span>
+		<span class="nx">enable</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">length</span><span class="p">;</span>
+			
+			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">length</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">enableChoice</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+			<span class="p">}</span>
+			
+		<span class="p">},</span>
+		
+		<span class="nx">createChoiceNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">choice</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">div</span><span class="p">,</span> <span class="nx">radioId</span><span class="p">,</span> <span class="nx">radioNode</span><span class="p">,</span> <span class="nx">labelNode</span><span class="p">;</span>
+			
+			<span class="nx">div</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;inputEx-RadioField-choice&#39;</span><span class="p">});</span>
+			
+			<span class="c1">// radioId MUST be different for each option, to allow click on label (with for:id trick)</span>
+			<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">_idCounter</span><span class="p">)</span> <span class="p">{</span>
+			   <span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">_idCounter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			<span class="p">}</span>
+			<span class="nx">radioId</span> <span class="o">=</span> <span class="s2">&quot;_inputex_radioId&quot;</span><span class="o">+</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">_idCounter</span><span class="p">;</span>
+			<span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">_idCounter</span><span class="o">++</span><span class="p">;</span>
+			
+			<span class="nx">radioNode</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">id</span><span class="o">:</span> <span class="nx">radioId</span><span class="p">,</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;radio&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">choice</span><span class="p">.</span><span class="nx">value</span><span class="p">,</span> <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;inputEx-RadioField-radio&#39;</span> <span class="p">});</span>
+			<span class="nx">div</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">radioNode</span><span class="p">);</span>
+			
+			<span class="k">if</span> <span class="p">(</span><span class="nx">choice</span><span class="p">.</span><span class="nx">label</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">labelNode</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;for&quot;</span><span class="o">:</span> <span class="nx">radioId</span><span class="p">,</span> <span class="nx">className</span><span class="o">:</span> <span class="s1">&#39;inputEx-RadioField-rightLabel&#39;</span><span class="p">},</span> <span class="kc">null</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="o">+</span><span class="nx">choice</span><span class="p">.</span><span class="nx">label</span><span class="p">);</span>
+				<span class="nx">div</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">labelNode</span><span class="p">);</span>
+			<span class="p">}</span>
+			
+			<span class="k">return</span> <span class="nx">div</span><span class="p">;</span>
+			
+		<span class="p">},</span>
+		
+		<span class="nx">removeChoiceNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="c1">// remove from selector</span>
+			<span class="c1">// </span>
+			<span class="c1">//   -&gt; style.display = &#39;none&#39; would work only on FF (when node is an &lt;option&gt;)</span>
+			<span class="c1">//   -&gt; other browsers (IE, Chrome...) require to remove &lt;option&gt; node from DOM</span>
+			<span class="c1">//</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+			
+		<span class="p">},</span>
+		
+		<span class="nx">disableChoiceNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="c1">//node.firstChild.disabled = &quot;disabled&quot;;</span>
+			<span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+		<span class="p">},</span>
+		
+		<span class="nx">enableChoiceNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="c1">//node.firstChild.removeAttribute(&quot;disabled&quot;);</span>
+			<span class="nx">node</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+			
+		<span class="p">},</span>
+		
+		<span class="cm">/**</span>
+<span class="cm">		 * Attach an &lt;option&gt; node to the &lt;select&gt; at the specified position</span>
+<span class="cm">		 * @param {HTMLElement} node The &lt;option&gt; node to attach to the &lt;select&gt;</span>
+<span class="cm">		 * @param {Int} position The position of the choice in choicesList (may not be the &quot;real&quot; position in DOM)</span>
+<span class="cm">		 */</span>
+		<span class="nx">appendChoiceNode</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="nx">position</span><span class="p">)</span> <span class="p">{</span>
+			
+			<span class="kd">var</span> <span class="nx">domPosition</span><span class="p">,</span> <span class="nx">i</span><span class="p">;</span>
+			
+			<span class="c1">// Compute real DOM position (since previous choices in choicesList may be hidden)</span>
+			<span class="nx">domPosition</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+			
+			<span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">position</span><span class="p">;</span> <span class="nx">i</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+				
+				<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">choicesList</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">visible</span><span class="p">)</span> <span class="p">{</span>
+					
+					<span class="nx">domPosition</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+					
+				<span class="p">}</span>
+				
+			<span class="p">}</span>
+			
+			<span class="c1">// Insert in DOM</span>
+			<span class="k">if</span> <span class="p">(</span><span class="nx">domPosition</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+				<span class="nx">Y</span><span class="p">.</span><span class="nx">one</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fieldContainer</span><span class="p">).</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="nx">domPosition</span><span class="p">]);</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				
+				<span class="k">this</span><span class="p">.</span><span class="nx">fieldContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">node</span><span class="p">);</span>
+				
+			<span class="p">}</span>
+		<span class="p">}</span>
+		
+	<span class="p">});</span>
+	
+	<span class="c1">// Augment prototype with choice mixin (functions : addChoice, removeChoice, etc.)</span>
+	<span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">.</span><span class="nx">prototype</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">mixin</span><span class="p">.</span><span class="nx">choice</span><span class="p">);</span>
+	
+	
+	<span class="c1">// Register this class as &quot;radio&quot; type</span>
+	<span class="nx">inputEx</span><span class="p">.</span><span class="nx">registerType</span><span class="p">(</span><span class="s2">&quot;radio&quot;</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">RadioField</span><span class="p">,</span> <span class="p">[</span>
+		<span class="p">{</span>
+			<span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>
+			<span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;choices&#39;</span><span class="p">,</span>
+			<span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Choices&#39;</span><span class="p">,</span>
+			<span class="nx">elementType</span><span class="o">:</span> <span class="p">{</span>
+				<span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;group&#39;</span><span class="p">,</span>
+				<span class="nx">fields</span><span class="o">:</span> <span class="p">[</span>
+					<span class="p">{</span> <span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Value&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;value&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;&#39;</span> <span class="p">},</span> <span class="c1">// not required to allow &#39;&#39; value (which is default)</span>
+					<span class="p">{</span> <span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Label&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;label&#39;</span> <span class="p">}</span> <span class="c1">// optional : if left empty, label is not created</span>
+				<span class="p">]</span>
+			<span class="p">},</span>
+			<span class="nx">value</span><span class="o">:</span> <span class="p">[],</span>
+			<span class="nx">required</span><span class="o">:</span> <span class="kc">true</span>
+		<span class="p">},</span>
+		<span class="p">{</span><span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;boolean&#39;</span><span class="p">,</span> <span class="nx">label</span><span class="o">:</span> <span class="s1">&#39;Allow custom value&#39;</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;allowAny&#39;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="kc">false</span>  <span class="p">}</span>
+	<span class="p">]);</span>
+	
+<span class="p">},</span> <span class="s1">&#39;3.0.0a&#39;</span><span class="p">,{</span>
+  <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;selector&#39;</span><span class="p">,</span><span class="s1">&#39;event-delegate&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-field&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-choice&#39;</span><span class="p">,</span><span class="s1">&#39;inputex-string&#39;</span><span class="p">]</span>
+<span class="p">});</span>
+	
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class=""><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class=""><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class=""><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class=""><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class=""><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class=""><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class="selected"><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class=""><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class=""><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class=""><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="inputEx.PasswordField.html" title="inputEx.PasswordField">inputEx.PasswordField</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="inputex-radio.js.html" title="inputex-radio.js">inputex-radio.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.PasswordField.html#property_byId", "access": "", "host": "inputEx.PasswordField", "type": "property", "name": "byId"}, {"url": "inputEx.PasswordField.html#method_getPasswordStrength", "access": "", "host": "inputEx.PasswordField", "type": "method", "name": "getPasswordStrength"}, {"url": "inputEx.PasswordField.html#method_getStateString", "access": "", "host": "inputEx.PasswordField", "type": "method", "name": "getStateString"}, {"url": "inputEx.PasswordField.html#method_onInput", "access": "", "host": "inputEx.PasswordField", "type": "method", "name": "onInput"}, {"url": "inputEx.PasswordField.html#method_onKeyPress", "access": "", "host": "inputEx.PasswordField", "type": "method", "name": "onKeyPress"}, {"url": "inputEx.PasswordField.html#method_onKeyUp", "access": "", "host": "inputEx.PasswordField", "type": "method", "name": "onKeyUp"}, {"url": "inputEx.PasswordField.html#method_renderComponent", "access": "", "host": "inputEx.PasswordField", "type": "method", "name": "renderComponent"}, {"url": "inputEx.PasswordField.html#method_setCapsLockWarning", "access": "", "host": "inputEx.PasswordField", "type": "method", "name": "setCapsLockWarning"}, {"url": "inputEx.PasswordField.html#method_setConfirmationField", "access": "", "host": "inputEx.PasswordField", "type": "method", "name": "setConfirmationField"}, {"url": "inputEx.PasswordField.html#method_setOptions", "access": "", "host": "inputEx.PasswordField", "type": "method", "name": "setOptions"}, {"url": "inputEx.PasswordField.html#method_updateStrengthIndicator", "access": "", "host": "inputEx.PasswordField", "type": "method", "name": "updateStrengthIndicator"}, {"url": "inputEx.PasswordField.html#method_validate", "access": "", "host": "inputEx.PasswordField", "type": "method", "name": "validate"}];
+</script>
+</body>
+</html>

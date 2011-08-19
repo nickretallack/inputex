@@ -1,0 +1,601 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex-dsselect   inputex-dtinplaceedit.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex-dsselect&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a>
+                
+                 &gt; inputex-dtinplaceedit.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @module inputex-dtinplaceedit</span>
+<span class="cm"> */</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;inputex-dtinplaceedit&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){</span>
+
+   <span class="kd">var</span> <span class="nx">inputEx</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">,</span>
+       <span class="nx">YAHOO</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">YUI2</span><span class="p">,</span>
+       <span class="nx">lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+       <span class="nx">Dom</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">Dom</span><span class="p">,</span>
+       <span class="nx">Event</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">Event</span><span class="p">;</span>
+
+   <span class="kd">var</span> <span class="nx">util</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">util</span><span class="p">,</span> <span class="nx">msgs</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">;</span>
+
+
+<span class="cm">/**</span>
+<span class="cm"> * InPlaceEditable datatable using inputEx fields</span>
+<span class="cm"> * @class inputEx.widget.dtInPlaceEdit</span>
+<span class="cm"> * @extends inputEx.widget.DataTable</span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @param {Object} options Options</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">dtInPlaceEdit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">dtInPlaceEdit</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">dtInPlaceEdit</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">DataTable</span> <span class="p">,</span> <span class="p">{</span>
+	
+	<span class="nx">renderDatatable</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">dtInPlaceEdit</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">renderDatatable</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+
+		 <span class="c1">// Force save on blur event</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">onEditorBlurEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">oArgs</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">if</span><span class="p">(</span><span class="nx">oArgs</span><span class="p">.</span><span class="nx">editor</span><span class="p">.</span><span class="nx">save</span><span class="p">)</span> <span class="p">{</span>
+			    <span class="nx">oArgs</span><span class="p">.</span><span class="nx">editor</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+			<span class="p">}</span> 
+		<span class="p">};</span>
+		
+		<span class="c1">// When the cellEditor fires the &quot;editorSaveEvent&quot;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">subscribe</span><span class="p">(</span><span class="s2">&quot;editorSaveEvent&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">oArgs</span><span class="p">){</span>
+			<span class="kd">var</span> <span class="nx">record</span> <span class="o">=</span> <span class="nx">oArgs</span><span class="p">.</span><span class="nx">editor</span><span class="p">.</span><span class="nx">getRecord</span><span class="p">();</span>		
+			<span class="c1">// If the record got an id (meaning it isn&#39;t a new Row that the user didn&#39;t add yet)</span>
+			<span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span> <span class="p">){</span>
+				<span class="c1">// If the data in the cellEditor changed</span>
+				<span class="k">if</span><span class="p">(</span><span class="nx">oArgs</span><span class="p">.</span><span class="nx">newData</span> <span class="o">!==</span> <span class="nx">oArgs</span><span class="p">.</span><span class="nx">oldData</span><span class="p">){</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">onModifyItem</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span> <span class="nx">oArgs</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+				
+		<span class="p">},</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+		
+	<span class="p">},</span>
+
+
+   <span class="cm">/**</span>
+<span class="cm">    * Additional options</span>
+<span class="cm">    */</span>
+   <span class="nx">setOptions</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+     <span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">dtInPlaceEdit</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">setOptions</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+     
+     <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">allowModify</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">insertWithDialog</span> <span class="o">=</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">insertWithDialog</span><span class="p">)</span> <span class="o">?</span> <span class="kc">false</span> <span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">insertWithDialog</span><span class="p">;</span> 
+   <span class="p">},</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Init the events</span>
+<span class="cm">    */</span>
+   <span class="nx">initEvents</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	  <span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">dtInPlaceEdit</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">initEvents</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+	
+     <span class="k">this</span><span class="p">.</span><span class="nx">requiredFieldsEvt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">util</span><span class="p">.</span><span class="nx">CustomEvent</span><span class="p">(</span><span class="s1">&#39;requiredFields&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">);</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Modify the column definitions to add the inputEx CellEditor</span>
+<span class="cm">	 */</span>
+   <span class="nx">setColumnDefs</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">columndefs</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">dtInPlaceEdit</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">setColumnDefs</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+		
+		<span class="c1">// index fields declaration by keys</span>
+		<span class="kd">var</span> <span class="nx">fieldsByKey</span> <span class="o">=</span> <span class="p">{};</span>
+		<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">k</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+		   <span class="nx">fieldsByKey</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">k</span><span class="p">].</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">k</span><span class="p">];</span>
+		<span class="p">}</span>
+		<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">columndefs</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+			<span class="kd">var</span> <span class="nx">columnDef</span> <span class="o">=</span> <span class="nx">columndefs</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+			<span class="k">if</span><span class="p">(</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">columnDef</span><span class="p">.</span><span class="nx">editor</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!!</span><span class="nx">fieldsByKey</span><span class="p">[</span><span class="nx">columnDef</span><span class="p">.</span><span class="nx">key</span><span class="p">]</span> <span class="p">)</span> <span class="p">{</span>
+	          <span class="nx">columnDef</span><span class="p">.</span><span class="nx">editor</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">CellEditor</span><span class="p">(</span><span class="nx">fieldsByKey</span><span class="p">[</span><span class="nx">columnDef</span><span class="p">.</span><span class="nx">key</span><span class="p">]);</span>
+	      <span class="p">}</span>
+		<span class="p">}</span>
+		
+		<span class="k">return</span> <span class="nx">columndefs</span><span class="p">;</span>
+	<span class="p">},</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * Handling cell click events</span>
+<span class="cm">    */</span>
+   <span class="nx">_onCellClick</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ev</span><span class="p">,</span><span class="nx">args</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">Event</span><span class="p">.</span><span class="nx">getTarget</span><span class="p">(</span><span class="nx">ev</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">column</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">getColumn</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>      
+      <span class="kd">var</span> <span class="nx">rowIndex</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">getTrIndex</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
+      <span class="kd">var</span> <span class="nx">record</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">getRecord</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">column</span><span class="p">.</span><span class="nx">key</span> <span class="o">==</span> <span class="s1">&#39;delete&#39;</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">onRemoveItem</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span><span class="nx">target</span><span class="p">);</span>	
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>				
+      	<span class="k">this</span><span class="p">.</span><span class="nx">onCellClick</span><span class="p">(</span><span class="nx">ev</span><span class="p">,</span><span class="nx">rowIndex</span><span class="p">);</span>
+      <span class="p">}</span>
+   <span class="p">},</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * Public handler - When clicking on one of the datatable&#39;s cells</span>
+<span class="cm">    */</span>
+   <span class="nx">onCellClick</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">ev</span><span class="p">,</span> <span class="nx">rowIndex</span><span class="p">)</span> <span class="p">{</span>
+		
+		<span class="c1">// Get a particular CellEditor</span>
+		<span class="kd">var</span> <span class="nx">elCell</span> <span class="o">=</span> <span class="nx">ev</span><span class="p">.</span><span class="nx">target</span><span class="p">,</span> <span class="nx">oColumn</span><span class="p">;</span>
+		<span class="nx">elCell</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">getTdEl</span><span class="p">(</span><span class="nx">elCell</span><span class="p">);</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">elCell</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">oColumn</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">getColumn</span><span class="p">(</span><span class="nx">elCell</span><span class="p">);</span>
+			<span class="k">if</span><span class="p">(</span><span class="nx">oColumn</span> <span class="o">&amp;&amp;</span> <span class="nx">oColumn</span><span class="p">.</span><span class="nx">editor</span><span class="p">)</span> <span class="p">{</span>
+				<span class="kd">var</span> <span class="nx">oCellEditor</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">_oCellEditor</span><span class="p">;</span>
+				<span class="c1">// Clean up active CellEditor</span>
+				<span class="k">if</span><span class="p">(</span><span class="nx">oCellEditor</span><span class="p">)</span> <span class="p">{</span>
+					<span class="c1">// Return if field isn&#39;t validated</span>
+					<span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">oCellEditor</span><span class="p">.</span><span class="nx">_inputExField</span><span class="p">.</span><span class="nx">validate</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span>
+						<span class="k">return</span><span class="p">;</span>
+					<span class="p">}</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+
+		<span class="c1">// Only if the cell is inputEx valid</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">onEventShowCellEditor</span><span class="p">(</span><span class="nx">ev</span><span class="p">);</span>
+		
+   <span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * When trying to delete a row</span>
+<span class="cm">	 */</span>
+	<span class="nx">onRemoveItem</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span><span class="nx">target</span><span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">targetNode</span> <span class="o">=</span> <span class="nx">target</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+		
+		<span class="c1">// Only if the row has an id &amp;&amp; isn&#39;t already being removed</span>
+		<span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">deleteLinkNode</span> <span class="o">!=</span> <span class="nx">targetNode</span> <span class="p">){</span>
+
+         <span class="k">if</span> <span class="p">(</span><span class="nx">confirm</span><span class="p">(</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">confirmDeletion</span><span class="p">))</span> <span class="p">{</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">deleteLinkNode</span> <span class="o">=</span> <span class="nx">targetNode</span><span class="p">;</span>		
+				<span class="k">this</span><span class="p">.</span><span class="nx">deleteLinkNode</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+				<span class="nx">Dom</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">deleteLinkNode</span><span class="p">,</span><span class="s1">&#39;inputEx-dtInPlaceEdit-deleteLinkSpinner&#39;</span><span class="p">);</span>
+				<span class="k">this</span><span class="p">.</span><span class="nx">itemRemovedEvt</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span> <span class="nx">record</span> <span class="p">);</span>            
+         <span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">},</span>
+	
+	<span class="cm">/**</span>
+<span class="cm">	 * When successfully deleted a row</span>
+<span class="cm">	 */</span>
+	<span class="nx">onRemoveSuccess</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">record</span><span class="p">){</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">deleteRow</span><span class="p">(</span><span class="nx">record</span><span class="p">);</span>
+	<span class="p">},</span>
+	
+	<span class="cm">/**</span>
+<span class="cm">	 * When failed to delete a row</span>
+<span class="cm">	 */</span>
+	<span class="nx">onRemoveFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">deleteLinkNode</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">deleteText</span><span class="p">;</span>
+		<span class="nx">Dom</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">deleteLinkNode</span><span class="p">,</span><span class="s1">&#39;inputEx-dtInPlaceEdit-deleteLinkSpinner&#39;</span><span class="p">);</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">deleteLinkNode</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+	<span class="p">},</span>
+	
+	<span class="cm">/**</span>
+<span class="cm">    * When clicking on the &quot;insert&quot; button to add a new row</span>
+<span class="cm">    */</span>
+	<span class="nx">onInsertButton</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+		
+		<span class="c1">// If insertWithDialog</span>
+		<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">insertWithDialog</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">dtInPlaceEdit</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">onInsertButton</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+			<span class="k">return</span><span class="p">;</span>
+		<span class="p">}</span>
+		
+		<span class="kd">var</span> <span class="nx">tbl</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">;</span>
+		
+		<span class="c1">// Insert a new row</span>
+      <span class="nx">tbl</span><span class="p">.</span><span class="nx">addRow</span><span class="p">({});</span>
+
+		<span class="c1">// Select the new row</span>
+      <span class="kd">var</span> <span class="nx">lastRow</span> <span class="o">=</span> <span class="nx">tbl</span><span class="p">.</span><span class="nx">getLastTrEl</span><span class="p">();</span>
+		<span class="nx">tbl</span><span class="p">.</span><span class="nx">selectRow</span><span class="p">(</span><span class="nx">lastRow</span><span class="p">);</span>
+				
+		<span class="c1">// Get the last cell&#39;s inner div node</span>
+		<span class="kd">var</span> <span class="nx">lastIndex</span> <span class="o">=</span> <span class="nx">lastRow</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="nx">lastCell</span> <span class="o">=</span> <span class="nx">lastRow</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">[</span><span class="nx">lastIndex</span><span class="p">].</span><span class="nx">childNodes</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+		
+		<span class="c1">// Empty the cell (removing &quot;delete&quot;)</span>
+		<span class="nx">lastCell</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+		
+		<span class="c1">// Create an &quot;Add&quot; Button</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">addButton</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;button&#39;</span><span class="p">,</span><span class="nx">value</span><span class="o">:</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">addButtonText</span><span class="p">},</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+      <span class="nx">Event</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">addButton</span><span class="p">,</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onAddButton</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="nx">lastCell</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">addButton</span><span class="p">);</span>
+		
+		<span class="c1">// Create a &quot;Cancel&quot; Button</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">deleteButton</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">cn</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">type</span><span class="o">:</span><span class="s1">&#39;button&#39;</span><span class="p">,</span><span class="nx">value</span><span class="o">:</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">cancelText</span><span class="p">},</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+		<span class="nx">Event</span><span class="p">.</span><span class="nx">addListener</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">deleteButton</span><span class="p">,</span> <span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">onCancelButton</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+      <span class="nx">lastCell</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">deleteButton</span><span class="p">);</span>
+
+		<span class="c1">// Disable the &quot;Insert Button&quot;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">insertButton</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">true</span> <span class="p">;</span>
+	<span class="p">},</span>
+	
+	<span class="cm">/**</span>
+<span class="cm">    * When saving the Dialog (option insertWithDialog)</span>
+<span class="cm">    */</span>
+   <span class="nx">onDialogSave</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">record</span><span class="p">,</span> <span class="nx">newvalues</span><span class="p">;</span>
+		
+		<span class="c1">// Validate the Form</span>
+	  	<span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">dialog</span><span class="p">.</span><span class="nx">getForm</span><span class="p">().</span><span class="nx">validate</span><span class="p">()</span> <span class="p">)</span> <span class="p">{</span> 
+	  	   <span class="k">return</span><span class="p">;</span>
+  	   <span class="p">}</span>
+	
+		<span class="c1">// Insert a new row</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">addRow</span><span class="p">({});</span>
+
+		<span class="c1">// Set the Selected Record</span>
+		<span class="kd">var</span> <span class="nx">rowIndex</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">getRecordSet</span><span class="p">().</span><span class="nx">getLength</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">selectedRecord</span> <span class="o">=</span> <span class="nx">rowIndex</span><span class="p">;</span>
+		
+		<span class="c1">// Update the row</span>
+		<span class="nx">newvalues</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">dialog</span><span class="p">.</span><span class="nx">getValue</span><span class="p">();</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">updateRow</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">selectedRecord</span> <span class="p">,</span> <span class="nx">newvalues</span> <span class="p">);</span>
+		
+		<span class="c1">// Get the new record</span>
+		<span class="nx">record</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">getRecord</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">selectedRecord</span><span class="p">);</span>
+					
+		<span class="c1">// Fire the add event</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">itemAddedEvt</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">record</span><span class="p">);</span>
+		
+		<span class="c1">// Hide the dialog </span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">dialog</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+   <span class="p">},</span>
+   
+	<span class="cm">/**</span>
+<span class="cm">	 * When clicking &quot;Add&quot; button to save a new row</span>
+<span class="cm">	 */</span>
+	<span class="nx">onAddButton</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">Event</span><span class="p">.</span><span class="nx">stopEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>	
+		<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">Event</span><span class="p">.</span><span class="nx">getTarget</span><span class="p">(</span><span class="nx">e</span><span class="p">),</span>
+      <span class="nx">record</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">getRecord</span><span class="p">(</span><span class="nx">target</span><span class="p">),</span>
+		<span class="nx">field</span><span class="p">,</span> <span class="nx">requiredFields</span> <span class="o">=</span> <span class="p">[];</span>
+
+		<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nx">fieldsLength</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">fieldsLength</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="nx">field</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+			
+         <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">required</span><span class="p">)</span> <span class="p">){</span>
+				<span class="k">if</span><span class="p">(</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">record</span><span class="p">.</span><span class="nx">getData</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">name</span><span class="p">))</span> <span class="p">){</span>
+					<span class="nx">requiredFields</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">label</span><span class="p">);</span>
+				<span class="p">}</span>
+			<span class="p">}</span>
+			
+		<span class="p">}</span>
+		
+		<span class="c1">//If not all the required fields are set</span>
+		<span class="k">if</span><span class="p">(</span><span class="nx">requiredFields</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">requiredFieldsEvt</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">requiredFields</span><span class="p">);</span>			
+			<span class="k">return</span><span class="p">;</span>
+		<span class="p">}</span>
+		
+		<span class="k">this</span><span class="p">.</span><span class="nx">addButton</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">loadingText</span><span class="p">;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">addButton</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">itemAddedEvt</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">record</span><span class="p">);</span>
+	<span class="p">},</span>
+	
+	<span class="cm">/**</span>
+<span class="cm">	 * When clicking &quot;Cancel&quot; button to cancel a new row</span>
+<span class="cm">	 */</span>
+	<span class="nx">onCancelButton</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+		<span class="nx">Event</span><span class="p">.</span><span class="nx">stopEvent</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>
+		<span class="kd">var</span> <span class="nx">target</span> <span class="o">=</span> <span class="nx">Event</span><span class="p">.</span><span class="nx">getTarget</span><span class="p">(</span><span class="nx">e</span><span class="p">);</span>	
+		<span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">deleteRow</span><span class="p">(</span><span class="nx">target</span><span class="p">);</span>
+    	<span class="k">this</span><span class="p">.</span><span class="nx">insertButton</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">false</span> <span class="p">;</span>
+	<span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * Validate the new record&#39;s row : </span>
+<span class="cm">	 * You need to call this function when you really added the item with an id</span>
+<span class="cm">	 * Ie if you trigger an Ajax request to insert your record into database,</span>
+<span class="cm">	 * you trigger this function only if your request didn&#39;t failed</span>
+<span class="cm">	 */</span>
+	<span class="nx">onAddSuccess</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span> <span class="nx">oData</span><span class="p">){</span>
+
+		<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">insertWithDialog</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">updateRow</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span> <span class="nx">oData</span><span class="p">);</span>
+			<span class="k">return</span><span class="p">;</span>
+		<span class="p">}</span>
+		
+		<span class="kd">var</span> <span class="nx">recordNode</span> <span class="o">=</span> <span class="nx">Dom</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">getLastSelectedRecord</span><span class="p">()),</span>
+		<span class="nx">childNodes</span> <span class="o">=</span> <span class="nx">recordNode</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">,</span>
+		<span class="nx">childNodeIndex</span> <span class="o">=</span> <span class="nx">childNodes</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+		<span class="nx">innerDivNode</span> <span class="o">=</span> <span class="nx">childNodes</span><span class="p">[</span><span class="nx">childNodeIndex</span><span class="p">].</span><span class="nx">childNodes</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+		
+		<span class="c1">// Update Row with new record</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">updateRow</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span> <span class="nx">oData</span><span class="p">);</span>
+		<span class="c1">// Update the ADD / CANCEL buttons to &quot;delete&quot; text</span>
+		<span class="nx">innerDivNode</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">deleteText</span><span class="p">;</span>
+		<span class="c1">// Unselect Row and enable &quot;Insert&quot; button again</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">unselectRow</span><span class="p">(</span><span class="nx">recordNode</span><span class="p">);</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">insertButton</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">false</span> <span class="p">;</span>
+	<span class="p">},</span>
+   
+	<span class="cm">/**</span>
+<span class="cm">	 * When Failed to Add Row</span>
+<span class="cm">	 */</span>
+	<span class="nx">onAddFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+	
+		<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">insertWithDialog</span><span class="p">)</span> <span class="p">{</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">deleteRow</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">selectedRecord</span><span class="p">);</span>
+			<span class="k">return</span><span class="p">;</span>
+		<span class="p">}</span>
+		
+		<span class="k">this</span><span class="p">.</span><span class="nx">addButton</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">addButtonText</span><span class="p">;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">addButton</span><span class="p">.</span><span class="nx">disabled</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+	<span class="p">},</span>
+	
+	<span class="cm">/**</span>
+<span class="cm">	 * When modifying a row</span>
+<span class="cm">	 */</span>
+	<span class="nx">onModifyItem</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span> <span class="nx">oArgs</span><span class="p">){</span>
+		<span class="kd">var</span> <span class="nx">itemContainer</span> <span class="o">=</span> <span class="nx">oArgs</span><span class="p">.</span><span class="nx">editor</span><span class="p">.</span><span class="nx">getTdEl</span><span class="p">().</span><span class="nx">childNodes</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+		<span class="c1">// Add CSS</span>
+		<span class="nx">Dom</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">itemContainer</span><span class="p">,</span> <span class="s2">&quot;inputEx-dtInPlaceEdit-onModifyItem&quot;</span><span class="p">);</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">itemModifiedEvt</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">record</span><span class="p">);</span>
+	<span class="p">},</span>
+	
+	<span class="cm">/**</span>
+<span class="cm">	 * When successfully modified a row</span>
+<span class="cm">	 */</span>
+	<span class="nx">onModifySuccess</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span> <span class="nx">oData</span><span class="p">)</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s2">&quot;inputEx-dtInPlaceEdit-onModifyItem&quot;</span><span class="p">);</span>
+		
+		<span class="c1">// Remove CSS</span>
+		<span class="k">for</span><span class="p">(</span><span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nx">nodesLength</span> <span class="o">=</span> <span class="nx">nodes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">nodesLength</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+			<span class="nx">Dom</span><span class="p">.</span><span class="nx">removeClass</span><span class="p">(</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span> <span class="s2">&quot;inputEx-dtInPlaceEdit-onModifyItem&quot;</span><span class="p">);</span>
+		<span class="p">}</span>
+		
+		<span class="c1">// If we want to update additional columns</span>
+		<span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">oData</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+			<span class="c1">// Update Row with new record</span>
+			<span class="k">this</span><span class="p">.</span><span class="nx">datatable</span><span class="p">.</span><span class="nx">updateRow</span><span class="p">(</span><span class="nx">record</span><span class="p">,</span> <span class="nx">oData</span><span class="p">);</span>
+		<span class="p">}</span>
+		
+	<span class="p">}</span>
+
+<span class="p">});</span>
+
+
+
+
+<span class="cm">/**</span>
+<span class="cm"> * The CellEditor class provides functionality for inline editing in datatables</span>
+<span class="cm"> * using the inputEx field definition.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class inputEx.widget.CellEditor</span>
+<span class="cm"> * @extends YAHOO.widget.BaseCellEditor </span>
+<span class="cm"> * @constructor</span>
+<span class="cm"> * @param {Object} inputExFieldDef InputEx field definition object</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">CellEditor</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">inputExFieldDef</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_inputExFieldDef</span> <span class="o">=</span> <span class="nx">inputExFieldDef</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_sId</span> <span class="o">=</span> <span class="s2">&quot;yui-textboxceditor&quot;</span> <span class="o">+</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">BaseCellEditor</span><span class="p">.</span><span class="nx">_nCount</span><span class="p">;</span>
+	 <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">BaseCellEditor</span><span class="p">.</span><span class="nx">_nCount</span><span class="o">++</span><span class="p">;</span>
+    <span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">CellEditor</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="s2">&quot;inputEx&quot;</span><span class="p">,</span> <span class="p">{</span><span class="nx">disableBtns</span><span class="o">:</span><span class="kc">false</span><span class="p">});</span>
+<span class="p">};</span>
+
+<span class="c1">// CellEditor extends BaseCellEditor</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">CellEditor</span><span class="p">,</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">BaseCellEditor</span><span class="p">,{</span>
+	
+	
+   <span class="cm">/**</span>
+<span class="cm">    * Render the inputEx field editor</span>
+<span class="cm">    */</span>
+   <span class="nx">renderForm</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="c1">// Build the inputEx field</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_inputExField</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_inputExFieldDef</span><span class="p">);</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">getContainerEl</span><span class="p">().</span><span class="nx">appendChild</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_inputExField</span><span class="p">.</span><span class="nx">getEl</span><span class="p">());</span>
+		
+		<span class="c1">// Locals for Save/Cancel Buttons</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">LABEL_SAVE</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">saveText</span><span class="p">;</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">LABEL_CANCEL</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">cancelText</span><span class="p">;</span>
+   <span class="p">},</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * Resets CellEditor UI to initial state.</span>
+<span class="cm">    */</span>
+   <span class="nx">resetForm</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+   	<span class="k">this</span><span class="p">.</span><span class="nx">_inputExField</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+		<span class="k">this</span><span class="p">.</span><span class="nx">_inputExField</span><span class="p">.</span><span class="nx">setValue</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">);</span>
+   <span class="p">},</span>
+	
+   <span class="cm">/**</span>
+<span class="cm">    * Sets focus in CellEditor.</span>
+<span class="cm">    */</span>
+   <span class="nx">focus</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">_inputExField</span><span class="p">.</span><span class="nx">focus</span><span class="p">();</span>
+   <span class="p">},</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * Returns new value for CellEditor.</span>
+<span class="cm">    */</span>
+   <span class="nx">getInputValue</span> <span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>	
+      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_inputExField</span><span class="p">.</span><span class="nx">getValue</span><span class="p">();</span>
+   <span class="p">},</span>
+
+	<span class="cm">/**</span>
+<span class="cm">	 * When clicking the save button but also when clicking out of the cell</span>
+<span class="cm">	 */</span>
+	<span class="nx">save</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="c1">// Save only if cell is validated</span>
+		<span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_inputExField</span><span class="p">.</span><span class="nx">validate</span><span class="p">()</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">_inputExField</span><span class="p">.</span><span class="nx">getState</span><span class="p">()</span> <span class="o">!==</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">stateRequired</span><span class="p">)</span> <span class="p">{</span>
+			<span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">CellEditor</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">save</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>	    
+		<span class="p">}</span>
+	<span class="p">},</span>
+	
+	<span class="nx">cancel</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+		<span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">CellEditor</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">cancel</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+	<span class="p">}</span>
+	
+
+<span class="p">});</span>
+
+<span class="c1">// Copy static members to CellEditor class</span>
+<span class="nx">Y</span><span class="p">.</span><span class="nx">augment</span><span class="p">(</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">CellEditor</span><span class="p">,</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">BaseCellEditor</span><span class="p">);</span>
+
+<span class="p">},</span> <span class="s1">&#39;3.0.0a&#39;</span><span class="p">,{</span>
+  <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-datatable&#39;</span><span class="p">]</span>
+<span class="p">});</span>
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class=""><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class=""><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class="selected"><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class=""><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class=""><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class=""><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class=""><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class=""><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class=""><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class=""><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="inputEx.DSSelectField.html" title="inputEx.DSSelectField">inputEx.DSSelectField</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="inputex-dtinplaceedit.js.html" title="inputex-dtinplaceedit.js">inputex-dtinplaceedit.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.DSSelectField.html#method_onDatasourceFailure", "access": "", "host": "inputEx.DSSelectField", "type": "method", "name": "onDatasourceFailure"}, {"url": "inputEx.DSSelectField.html#method_onDatasourceSuccess", "access": "", "host": "inputEx.DSSelectField", "type": "method", "name": "onDatasourceSuccess"}, {"url": "inputEx.DSSelectField.html#method_populateSelect", "access": "", "host": "inputEx.DSSelectField", "type": "method", "name": "populateSelect"}, {"url": "inputEx.DSSelectField.html#method_renderComponent", "access": "", "host": "inputEx.DSSelectField", "type": "method", "name": "renderComponent"}, {"url": "inputEx.DSSelectField.html#method_sendDataRequest", "access": "", "host": "inputEx.DSSelectField", "type": "method", "name": "sendDataRequest"}, {"url": "inputEx.DSSelectField.html#method_setOptions", "access": "", "host": "inputEx.DSSelectField", "type": "method", "name": "setOptions"}];
+</script>
+</body>
+</html>

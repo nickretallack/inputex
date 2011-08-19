@@ -1,0 +1,552 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex   inputex.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex.html" title="inputex">inputex</a>
+                
+                 &gt; inputex.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * The inputEx Library</span>
+<span class="cm"> * @module inputex</span>
+<span class="cm"> */</span>
+<span class="cm">/*global inputEx: false, YAHOO: false */</span>
+
+
+
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;inputex&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){</span>
+  <span class="kd">var</span> <span class="nx">lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">;</span>
+  <span class="cm">/**</span>
+<span class="cm">   * The inputEx method lets you create a field from the JSON definition:</span>
+<span class="cm">   * &lt;pre&gt;</span>
+<span class="cm">   *    inputEx({type: &#39;string&#39;, name: &#39;company&#39;, label: &#39;Your company&#39; })</span>
+<span class="cm">   * &lt;/pre&gt;</span>
+<span class="cm">   * Build a field from an object like: { type: &#39;color&#39; or fieldClass: inputEx.ColorField, ... }&lt;br /&gt;</span>
+<span class="cm">   * If the neither type or fieldClass are found, it uses inputEx.StringField</span>
+<span class="cm">   *</span>
+<span class="cm">   * @class inputEx</span>
+<span class="cm">   * @static</span>
+<span class="cm">   * @param {Object} fieldOptions</span>
+<span class="cm">   * @param {inputEx.Group|inputEx.Form|inputEx.ListField|inputEx.CombineField} (optional) parentField The parent field instance</span>
+<span class="cm">   * @return {inputEx.Field} Created field instance</span>
+<span class="cm">   */</span>
+  <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fieldOptions</span><span class="p">,</span> <span class="nx">parentField</span><span class="p">)</span> <span class="p">{</span>
+     <span class="kd">var</span> <span class="nx">fieldClass</span> <span class="o">=</span> <span class="kc">null</span><span class="p">,</span>
+         <span class="nx">inputInstance</span><span class="p">;</span>
+         
+    <span class="k">if</span><span class="p">(</span><span class="nx">fieldOptions</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nx">fieldClass</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">getFieldClass</span><span class="p">(</span><span class="nx">fieldOptions</span><span class="p">.</span><span class="nx">type</span><span class="p">);</span>
+       
+        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">fieldClass</span><span class="p">)</span> <span class="p">){</span>
+           <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;Missing inputEx module for type: &#39;&quot;</span><span class="o">+</span><span class="nx">fieldOptions</span><span class="p">.</span><span class="nx">type</span><span class="o">+</span><span class="s2">&quot;&#39; ?&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+       <span class="nx">fieldClass</span> <span class="o">=</span> <span class="nx">fieldOptions</span><span class="p">.</span><span class="nx">fieldClass</span> <span class="o">?</span> <span class="nx">fieldOptions</span><span class="p">.</span><span class="nx">fieldClass</span> <span class="o">:</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">StringField</span><span class="p">;</span>
+    <span class="p">}</span>
+
+     <span class="c1">// Instanciate the field</span>
+     <span class="nx">inputInstance</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">fieldClass</span><span class="p">(</span><span class="nx">fieldOptions</span><span class="p">);</span>
+
+	  <span class="c1">// If the parentField argument is provided</span>
+	  <span class="k">if</span><span class="p">(</span><span class="nx">parentField</span><span class="p">)</span> <span class="p">{</span>
+		  <span class="nx">inputInstance</span><span class="p">.</span><span class="nx">setParentField</span><span class="p">(</span><span class="nx">parentField</span><span class="p">);</span>
+	  <span class="p">}</span>
+
+     <span class="c1">// Add the flatten attribute if present in the params</span>
+     <span class="cm">/*if(fieldOptions.flatten) {</span>
+<span class="cm">        inputInstance._flatten = true;</span>
+<span class="cm">     }*/</span>
+	    
+     <span class="k">return</span> <span class="nx">inputInstance</span><span class="p">;</span>
+  <span class="p">};</span>
+  
+  <span class="kd">var</span> <span class="nx">inputEx</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">;</span>
+  
+  <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">,</span> <span class="p">{</span>
+     
+     <span class="nx">VERSION</span><span class="o">:</span> <span class="s2">&quot;3.0.0a&quot;</span><span class="p">,</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Url to the spacer image. This url schould be changed according to your project directories</span>
+<span class="cm">      * @type String</span>
+<span class="cm">      */</span>
+     <span class="nx">spacerUrl</span><span class="o">:</span> <span class="nx">YUI_config</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">inputex</span><span class="p">.</span><span class="nx">base</span><span class="o">+</span><span class="s2">&quot;inputex/assets/skins/sam/images/space.gif&quot;</span><span class="p">,</span> <span class="c1">// 1x1 px</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Field empty state constant</span>
+<span class="cm">      * @type String</span>
+<span class="cm">      */</span>
+     <span class="nx">stateEmpty</span><span class="o">:</span> <span class="s1">&#39;empty&#39;</span><span class="p">,</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Field required state constant</span>
+<span class="cm">      * @type String</span>
+<span class="cm">      */</span>
+     <span class="nx">stateRequired</span><span class="o">:</span> <span class="s1">&#39;required&#39;</span><span class="p">,</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Field valid state constant</span>
+<span class="cm">      * @type String</span>
+<span class="cm">      */</span>
+     <span class="nx">stateValid</span><span class="o">:</span> <span class="s1">&#39;valid&#39;</span><span class="p">,</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Field invalid state constant</span>
+<span class="cm">      * @type String</span>
+<span class="cm">      */</span>
+     <span class="nx">stateInvalid</span><span class="o">:</span> <span class="s1">&#39;invalid&#39;</span><span class="p">,</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Associative array containing field messages =&gt; using intl module from YUI</span>
+<span class="cm">      */</span>
+	  <span class="nx">messages</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * inputEx widget namespace</span>
+<span class="cm">      * @static </span>
+<span class="cm">      */</span>
+     <span class="nx">widget</span><span class="o">:</span> <span class="p">{},</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * inputEx mixin namespace</span>
+<span class="cm">      * @static </span>
+<span class="cm">      */</span>
+     <span class="nx">mixin</span><span class="o">:</span> <span class="p">{},</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Associative array containing common regular expressions</span>
+<span class="cm">      */</span>
+     <span class="nx">regexps</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">email</span><span class="o">:</span> <span class="sr">/^[a-z0-9!\#\$%&amp;&#39;\*\-\/=\?\+\-\^_`\{\|\}~]+(?:\.[a-z0-9!\#\$%&amp;&#39;\*\-\/=\?\+\-\^_`\{\|\}~]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,6}$/i</span><span class="p">,</span>
+        <span class="nx">url</span><span class="o">:</span> <span class="sr">/^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(\:[0-9]{1,5})?(([0-9]{1,5})?\/.*)?$/i</span><span class="p">,</span>
+        <span class="nx">password</span><span class="o">:</span> <span class="sr">/^[0-9a-zA-Z\x20-\x7E]*$/</span>
+     <span class="p">},</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Hash between inputEx types and classes (ex: &lt;code&gt;inputEx.typeClasses.color = inputEx.ColorField&lt;/code&gt;)&lt;br /&gt;</span>
+<span class="cm">      * Please register the types with the &lt;code&gt;registerType&lt;/code&gt; method</span>
+<span class="cm">      */</span>
+     <span class="nx">typeClasses</span><span class="o">:</span> <span class="p">{},</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Property to globally turn on/off the browser autocompletion</span>
+<span class="cm">      * (used as default autocomplete option value by StringField, Form and their subclasses)</span>
+<span class="cm">      */</span>
+     <span class="nx">browserAutocomplete</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * When you create a new inputEx Field Class, you can register it to give it a simple type.</span>
+<span class="cm">      * ex:   inputEx.registerType(&quot;color&quot;, inputEx.ColorField);</span>
+<span class="cm">      * @static</span>
+<span class="cm">      * @param {String} type String used as the inputEx field type</span>
+<span class="cm">      * @param {Class} fieldClass Field Class to register as this type</span>
+<span class="cm">	   * @param {Array} groupOptions List of inputEx field description for each option</span>
+<span class="cm">	   * @param {Boolean} dontInherit Won&#39;t inherhit the parent field properties if set to true</span>
+<span class="cm">      */</span>
+     <span class="nx">registerType</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">,</span> <span class="nx">fieldClass</span><span class="p">,</span> <span class="nx">groupOptions</span><span class="p">,</span> <span class="nx">dontInherit</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">type</span><span class="p">))</span> <span class="p">{</span>
+           <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;inputEx.registerType: first argument must be a string&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">fieldClass</span><span class="p">))</span> <span class="p">{</span>
+           <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;inputEx.registerType: second argument must be a function&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">typeClasses</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">=</span> <span class="nx">fieldClass</span><span class="p">;</span>
+        
+        <span class="c1">// Setup the groupOptions property on the class</span>
+        <span class="kd">var</span> <span class="nx">opts</span> <span class="o">=</span> <span class="p">[];</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">groupOptions</span><span class="p">))</span> <span class="p">{</span> <span class="nx">opts</span> <span class="o">=</span> <span class="nx">groupOptions</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">fieldClass</span><span class="p">.</span><span class="nx">superclass</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">dontInherit</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">fieldClass</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">groupOptions</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+           <span class="nx">opts</span> <span class="o">=</span> <span class="nx">fieldClass</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">groupOptions</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">opts</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="nx">fieldClass</span><span class="p">.</span><span class="nx">groupOptions</span> <span class="o">=</span> <span class="nx">opts</span><span class="p">;</span>
+     <span class="p">},</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Returns the class for the given type</span>
+<span class="cm">      * ex: inputEx.getFieldClass(&quot;color&quot;) returns inputEx.ColorField</span>
+<span class="cm">      * @static</span>
+<span class="cm">      * @param {String} type String type of the field</span>
+<span class="cm">      */</span>
+     <span class="nx">getFieldClass</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">typeClasses</span><span class="p">[</span><span class="nx">type</span><span class="p">])</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">typeClasses</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">:</span> <span class="kc">null</span><span class="p">;</span>
+     <span class="p">},</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Get the inputex type for the given class (ex: &lt;code&gt;inputEx.getType(inputEx.ColorField)&lt;/code&gt; returns &quot;color&quot;)</span>
+<span class="cm">      * @static</span>
+<span class="cm">      * @param {inputEx.Field} FieldClass An inputEx.Field or derivated class</span>
+<span class="cm">      * @return {String} returns the inputEx type string or &lt;code&gt;null&lt;/code&gt;</span>
+<span class="cm">      */</span>
+     <span class="nx">getType</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">FieldClass</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">type</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">typeClasses</span><span class="p">)</span> <span class="p">{</span>
+           <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">typeClasses</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+              <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">typeClasses</span><span class="p">[</span><span class="nx">type</span><span class="p">]</span> <span class="o">==</span> <span class="nx">FieldClass</span><span class="p">)</span> <span class="p">{</span>
+                 <span class="k">return</span> <span class="nx">type</span><span class="p">;</span>
+              <span class="p">}</span>
+           <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+     <span class="p">},</span>
+     
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Return recursively the inputex modules from their &#39;type&#39; property using (modulesByType from loader.js)</span>
+<span class="cm">      */</span>
+     <span class="nx">getRawModulesFromDefinition</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">inputexDef</span><span class="p">)</span> <span class="p">{</span>
+        
+        <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">inputexDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">||</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span>
+            <span class="nx">module</span> <span class="o">=</span> <span class="nx">YUI_config</span><span class="p">.</span><span class="nx">groups</span><span class="p">.</span><span class="nx">inputex</span><span class="p">.</span><span class="nx">modulesByType</span><span class="p">[</span><span class="nx">type</span><span class="p">],</span>
+            <span class="nx">modules</span> <span class="o">=</span> <span class="p">[</span><span class="nx">module</span><span class="p">];</span>
+        
+        <span class="c1">// recursive for group,forms,list,combine, etc...</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">inputexDef</span><span class="p">.</span><span class="nx">fields</span><span class="p">)</span> <span class="p">{</span>
+           <span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="nx">inputexDef</span><span class="p">.</span><span class="nx">fields</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">modules</span> <span class="o">=</span> <span class="nx">modules</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">getModulesFromDefinition</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">);</span>
+           <span class="p">},</span> <span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span>
+        
+        <span class="c1">// TODO: list elementType</span>
+        <span class="c1">// TODO: inplaceedit  editorField</span>
+        
+        <span class="k">return</span> <span class="nx">modules</span><span class="p">;</span>
+     <span class="p">},</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Return unique modules definitions</span>
+<span class="cm">      */</span>
+     <span class="nx">getModulesFromDefinition</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">inputexDef</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">modules</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getRawModulesFromDefinition</span><span class="p">(</span><span class="nx">inputexDef</span><span class="p">);</span>
+        <span class="k">return</span> <span class="nx">Y</span><span class="p">.</span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nb">Array</span><span class="p">.</span><span class="nx">hash</span><span class="p">(</span><span class="nx">modules</span><span class="p">));</span>
+     <span class="p">},</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Load the modules from an inputEx definition</span>
+<span class="cm">      */</span>
+     <span class="nx">use</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">inputexDef</span><span class="p">,</span> <span class="nx">cb</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">modules</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getModulesFromDefinition</span><span class="p">(</span><span class="nx">inputexDef</span><span class="p">);</span>
+        <span class="nx">modules</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">cb</span><span class="p">);</span>
+		  <span class="nx">Y</span><span class="p">.</span><span class="nx">use</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span> <span class="nx">Y</span><span class="p">,</span> <span class="nx">modules</span><span class="p">);</span>
+     <span class="p">},</span>
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Helper function to set DOM node attributes and style attributes.</span>
+<span class="cm">      * @static</span>
+<span class="cm">      * @param {HTMLElement} el The element to set attributes to</span>
+<span class="cm">      * @param {Object} domAttributes An object containing key/value pairs to set as node attributes (ex: {id: &#39;myElement&#39;, className: &#39;myCssClass&#39;, ...})</span>
+<span class="cm">      * @param {Object} styleAttributes Same thing for style attributes. Please use camelCase for style attributes (ex: backgroundColor for &#39;background-color&#39;)</span>
+<span class="cm">      */</span>
+     <span class="nx">sn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span><span class="nx">domAttributes</span><span class="p">,</span><span class="nx">styleAttributes</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">el</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+		  <span class="kd">var</span> <span class="nx">i</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">domAttributes</span><span class="p">){</span>
+           <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">domAttributes</span><span class="p">){</span>
+              <span class="kd">var</span> <span class="nx">domAttribute</span> <span class="o">=</span> <span class="nx">domAttributes</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+              <span class="k">if</span><span class="p">(</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">domAttribute</span><span class="p">)</span> <span class="p">){</span>
+                 <span class="k">continue</span><span class="p">;</span>
+              <span class="p">}</span>
+              <span class="k">if</span><span class="p">(</span><span class="nx">i</span><span class="o">==</span><span class="s2">&quot;className&quot;</span><span class="p">){</span>
+                 <span class="nx">i</span><span class="o">=</span><span class="s2">&quot;class&quot;</span><span class="p">;</span>
+                 <span class="nx">el</span><span class="p">.</span><span class="nx">className</span><span class="o">=</span><span class="nx">domAttribute</span><span class="p">;</span>
+              <span class="p">}</span>
+              <span class="k">if</span><span class="p">(</span><span class="nx">domAttribute</span><span class="o">!==</span><span class="nx">el</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="nx">i</span><span class="p">)){</span>
+                 <span class="k">try</span><span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="nx">domAttribute</span><span class="o">===</span><span class="kc">false</span><span class="p">){</span>
+                       <span class="nx">el</span><span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="nx">i</span><span class="p">);</span>
+                    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+                       <span class="nx">el</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span><span class="nx">domAttribute</span><span class="p">);</span>
+                    <span class="p">}</span>
+                 <span class="p">}</span>
+                 <span class="k">catch</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+                    <span class="c1">//console.log(&quot;WARNING: WireIt.sn failed for &quot;+el.tagName+&quot;, attr &quot;+i+&quot;, val &quot;+domAttribute);</span>
+                 <span class="p">}</span>
+              <span class="p">}</span>
+           <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="nx">styleAttributes</span><span class="p">){</span>
+           <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">styleAttributes</span><span class="p">){</span>
+              <span class="k">if</span><span class="p">(</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">styleAttributes</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="p">){</span>
+                 <span class="k">continue</span><span class="p">;</span>
+              <span class="p">}</span>
+              <span class="k">if</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">!=</span><span class="nx">styleAttributes</span><span class="p">[</span><span class="nx">i</span><span class="p">]){</span>
+                 <span class="nx">el</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">=</span><span class="nx">styleAttributes</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+              <span class="p">}</span>
+           <span class="p">}</span>
+        <span class="p">}</span>
+     <span class="p">},</span>
+
+
+     <span class="cm">/**</span>
+<span class="cm">      * Helper function to create a DOM node. (wrapps the document.createElement tag and the inputEx.sn functions)</span>
+<span class="cm">      * @static</span>
+<span class="cm">      * @param {String} tag The tagName to create (ex: &#39;div&#39;, &#39;a&#39;, ...)</span>
+<span class="cm">      * @param {Object} [domAttributes] see inputEx.sn</span>
+<span class="cm">      * @param {Object} [styleAttributes] see inputEx.sn</span>
+<span class="cm">      * @param {String} [innerHTML] The html string to append into the created element</span>
+<span class="cm">      * @return {HTMLElement} The created node</span>
+<span class="cm">      */</span>
+     <span class="nx">cn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">tag</span><span class="p">,</span> <span class="nx">domAttributes</span><span class="p">,</span> <span class="nx">styleAttributes</span><span class="p">,</span> <span class="nx">innerHTML</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">if</span> <span class="p">(</span><span class="nx">tag</span> <span class="o">==</span> <span class="s1">&#39;input&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">&amp;&amp;</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">UA</span><span class="p">.</span><span class="nx">ie</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//only limit to input tag that has no tag body</span>
+              <span class="kd">var</span> <span class="nx">strDom</span> <span class="o">=</span> <span class="s1">&#39;&lt;&#39;</span> <span class="o">+</span> <span class="nx">tag</span><span class="p">;</span>
+              <span class="k">if</span> <span class="p">(</span><span class="nx">domAttributes</span><span class="o">!==</span><span class="s1">&#39;undefined&#39;</span><span class="p">){</span>
+                  <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">k</span> <span class="k">in</span> <span class="nx">domAttributes</span><span class="p">){</span>
+                      <span class="nx">strDom</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">k</span> <span class="o">===</span> <span class="s2">&quot;className&quot;</span> <span class="o">?</span> <span class="s2">&quot;class&quot;</span> <span class="o">:</span> <span class="nx">k</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;=&quot;&#39;</span> <span class="o">+</span> <span class="nx">domAttributes</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span> <span class="o">+</span> <span class="s1">&#39;&quot;&#39;</span><span class="p">;</span>
+                  <span class="p">}</span>
+              <span class="p">}</span>
+              <span class="nx">strDom</span> <span class="o">+=</span> <span class="s1">&#39;/&#39;</span> <span class="o">+</span> <span class="s1">&#39;&gt;&#39;</span><span class="p">;</span>
+              <span class="k">return</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">strDom</span><span class="p">);</span>
+
+          <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+              <span class="kd">var</span> <span class="nx">el</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">tag</span><span class="p">);</span>
+              <span class="k">this</span><span class="p">.</span><span class="nx">sn</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">domAttributes</span><span class="p">,</span> <span class="nx">styleAttributes</span><span class="p">);</span>
+              <span class="k">if</span> <span class="p">(</span><span class="nx">innerHTML</span><span class="p">)</span> <span class="p">{</span>
+                  <span class="nx">el</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">innerHTML</span><span class="p">;</span>
+              <span class="p">}</span>
+              <span class="k">return</span> <span class="nx">el</span><span class="p">;</span>
+          <span class="p">}</span>
+      <span class="p">},</span>
+     
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Find the position of the given element. (This method is not available in IE 6)</span>
+<span class="cm">      * @static</span>
+<span class="cm">      * @param {Object} el Value to search</span>
+<span class="cm">      * @param {Array} arr The array to search</span>
+<span class="cm">      * @param {Function} (optional) fn A function to define another way to test inclusion of el than === (returns a boolean)</span>
+<span class="cm">      * @return {number} Element position, -1 if not found</span>
+<span class="cm">      */</span>
+	  <span class="nx">indexOf</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span><span class="nx">arr</span><span class="p">,</span><span class="nx">fn</span><span class="p">)</span> <span class="p">{</span>
+	
+		  <span class="kd">var</span> <span class="nx">l</span><span class="o">=</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span><span class="nx">i</span><span class="p">;</span>
+		
+		  <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isFunction</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span> <span class="nx">fn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">elt</span><span class="p">,</span><span class="nx">arrElt</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">elt</span> <span class="o">===</span> <span class="nx">arrElt</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
+		
+		  <span class="k">for</span> <span class="p">(</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span><span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+			  <span class="k">if</span> <span class="p">(</span> <span class="nx">fn</span><span class="p">.</span><span class="nx">call</span><span class="p">({},</span> <span class="nx">el</span><span class="p">,</span> <span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">i</span><span class="p">;</span> <span class="p">}</span>
+		  <span class="p">}</span>
+		
+		  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+	  <span class="p">},</span>
+
+     
+     <span class="cm">/**</span>
+<span class="cm">      * Create a new array without the null or undefined values</span>
+<span class="cm">      * @static</span>
+<span class="cm">      * @param {Array} arr The array to compact</span>
+<span class="cm">      * @return {Array} The new array</span>
+<span class="cm">      */</span>
+     <span class="nx">compactArray</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="p">[],</span> <span class="nx">l</span><span class="o">=</span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span><span class="nx">i</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">l</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+           <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isNull</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span> <span class="p">)</span> <span class="p">{</span>
+              <span class="nx">n</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+           <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">n</span><span class="p">;</span>
+     <span class="p">},</span>
+
+	  <span class="cm">/**</span>
+<span class="cm">	   * Return a string without accent (only on lowercase)</span>
+<span class="cm">	   * @static</span>
+<span class="cm">	   * @param {String} str The string</span>
+<span class="cm">	   * @return {String} String without accent</span>
+<span class="cm">	   */</span>
+	  <span class="nx">removeAccents</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+	     <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[àáâãäå]/g</span><span class="p">,</span><span class="s2">&quot;a&quot;</span><span class="p">).</span>
+					    <span class="nx">replace</span><span class="p">(</span><span class="sr">/[èéêë]/g</span><span class="p">,</span><span class="s2">&quot;e&quot;</span><span class="p">).</span>
+					    <span class="nx">replace</span><span class="p">(</span><span class="sr">/[ìíîï]/g</span><span class="p">,</span><span class="s2">&quot;i&quot;</span><span class="p">).</span>
+					    <span class="nx">replace</span><span class="p">(</span><span class="sr">/[òóôõö]/g</span><span class="p">,</span><span class="s2">&quot;o&quot;</span><span class="p">).</span>
+					    <span class="nx">replace</span><span class="p">(</span><span class="sr">/[ùúûü]/g</span><span class="p">,</span><span class="s2">&quot;u&quot;</span><span class="p">).</span>
+					    <span class="nx">replace</span><span class="p">(</span><span class="sr">/[ýÿ]/g</span><span class="p">,</span><span class="s2">&quot;y&quot;</span><span class="p">).</span>
+					    <span class="nx">replace</span><span class="p">(</span><span class="sr">/[ñ]/g</span><span class="p">,</span><span class="s2">&quot;n&quot;</span><span class="p">).</span>
+					    <span class="nx">replace</span><span class="p">(</span><span class="sr">/[ç]/g</span><span class="p">,</span><span class="s2">&quot;c&quot;</span><span class="p">).</span>
+					    <span class="nx">replace</span><span class="p">(</span><span class="sr">/[œ]/g</span><span class="p">,</span><span class="s2">&quot;oe&quot;</span><span class="p">).</span>
+					    <span class="nx">replace</span><span class="p">(</span><span class="sr">/[æ]/g</span><span class="p">,</span><span class="s2">&quot;ae&quot;</span><span class="p">);</span>
+	  <span class="p">},</span>
+	
+	  <span class="cm">/**</span>
+<span class="cm">	   * String replaced by some html entities</span>
+<span class="cm">	   * @static</span>
+<span class="cm">	   * @param {String} str The string</span>
+<span class="cm">	   * @return {String} String replaced by some html entities</span>
+<span class="cm">	   */</span>
+	  <span class="nx">htmlEntities</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">str</span><span class="p">)</span> <span class="p">{</span>
+	     <span class="k">return</span> <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&amp;/g</span><span class="p">,</span><span class="s1">&#39;&amp;amp;&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;/g</span><span class="p">,</span><span class="s1">&#39;&amp;lt;&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&gt;/g</span><span class="p">,</span><span class="s1">&#39;&amp;gt;&#39;</span><span class="p">);</span>
+	  <span class="p">},</span>
+	  
+	  <span class="nx">_id_counter</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span>
+	  <span class="nx">generateId</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+	     <span class="k">this</span><span class="p">.</span><span class="nx">_id_counter</span><span class="o">++</span><span class="p">;</span>
+	     <span class="k">return</span> <span class="s2">&quot;_inputex_&quot;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">_id_counter</span><span class="p">;</span>
+	  <span class="p">}</span>
+	  
+     
+  <span class="p">});</span>
+<span class="p">},</span> <span class="s1">&#39;3.0.0a&#39;</span><span class="p">,{</span>
+  <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;node&#39;</span><span class="p">,</span><span class="s1">&#39;intl&#39;</span><span class="p">]</span>
+<span class="p">});</span>
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class="selected"><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class=""><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class=""><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class=""><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class=""><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class=""><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class=""><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class=""><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class=""><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class=""><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="inputEx.html" title="inputEx">inputEx</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class=""><a href="inputex-autocomplete.js.html" title="inputex-autocomplete.js">inputex-autocomplete.js</a></li>
+                                <li class="selected"><a href="inputex.js.html" title="inputex.js">inputex.js</a></li>
+                                <li class=""><a href="inputex_ca.js.html" title="inputex_ca.js">inputex_ca.js</a></li>
+                                <li class=""><a href="inputex_de.js.html" title="inputex_de.js">inputex_de.js</a></li>
+                                <li class=""><a href="inputex_en.js.html" title="inputex_en.js">inputex_en.js</a></li>
+                                <li class=""><a href="inputex_es.js.html" title="inputex_es.js">inputex_es.js</a></li>
+                                <li class=""><a href="inputex_fr.js.html" title="inputex_fr.js">inputex_fr.js</a></li>
+                                <li class=""><a href="inputex_it.js.html" title="inputex_it.js">inputex_it.js</a></li>
+                                <li class=""><a href="inputex_nl.js.html" title="inputex_nl.js">inputex_nl.js</a></li>
+                                <li class=""><a href="loader.js.html" title="loader.js">loader.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.html#property_browserAutocomplete", "access": "", "host": "inputEx", "type": "property", "name": "browserAutocomplete"}, {"url": "inputEx.html#method_cn", "access": "", "host": "inputEx", "type": "method", "name": "cn"}, {"url": "inputEx.html#method_compactArray", "access": "", "host": "inputEx", "type": "method", "name": "compactArray"}, {"url": "inputEx.html#method_getFieldClass", "access": "", "host": "inputEx", "type": "method", "name": "getFieldClass"}, {"url": "inputEx.html#method_getModulesFromDefinition", "access": "", "host": "inputEx", "type": "method", "name": "getModulesFromDefinition"}, {"url": "inputEx.html#method_getRawModulesFromDefinition", "access": "", "host": "inputEx", "type": "method", "name": "getRawModulesFromDefinition"}, {"url": "inputEx.html#method_getType", "access": "", "host": "inputEx", "type": "method", "name": "getType"}, {"url": "inputEx.html#method_htmlEntities", "access": "", "host": "inputEx", "type": "method", "name": "htmlEntities"}, {"url": "inputEx.html#method_indexOf", "access": "", "host": "inputEx", "type": "method", "name": "indexOf"}, {"url": "inputEx.html#property_messages", "access": "", "host": "inputEx", "type": "property", "name": "messages"}, {"url": "inputEx.html#property_mixin", "access": "", "host": "inputEx", "type": "property", "name": "mixin"}, {"url": "inputEx.html#property_regexps", "access": "", "host": "inputEx", "type": "property", "name": "regexps"}, {"url": "inputEx.html#method_registerType", "access": "", "host": "inputEx", "type": "method", "name": "registerType"}, {"url": "inputEx.html#method_removeAccents", "access": "", "host": "inputEx", "type": "method", "name": "removeAccents"}, {"url": "inputEx.html#method_sn", "access": "", "host": "inputEx", "type": "method", "name": "sn"}, {"url": "inputEx.html#property_spacerUrl", "access": "", "host": "inputEx", "type": "property", "name": "spacerUrl"}, {"url": "inputEx.html#property_stateEmpty", "access": "", "host": "inputEx", "type": "property", "name": "stateEmpty"}, {"url": "inputEx.html#property_stateInvalid", "access": "", "host": "inputEx", "type": "property", "name": "stateInvalid"}, {"url": "inputEx.html#property_stateRequired", "access": "", "host": "inputEx", "type": "property", "name": "stateRequired"}, {"url": "inputEx.html#property_stateValid", "access": "", "host": "inputEx", "type": "property", "name": "stateValid"}, {"url": "inputEx.html#property_typeClasses", "access": "", "host": "inputEx", "type": "property", "name": "typeClasses"}, {"url": "inputEx.html#method_use", "access": "", "host": "inputEx", "type": "method", "name": "use"}, {"url": "inputEx.html#property_widget", "access": "", "host": "inputEx", "type": "property", "name": "widget"}];
+</script>
+</body>
+</html>

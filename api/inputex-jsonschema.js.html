@@ -1,0 +1,601 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex-ipv4   inputex-jsonschema.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex-ipv4&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a>
+                
+                 &gt; inputex-jsonschema.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @module inputex-jsonschema</span>
+<span class="cm"> */</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;inputex-jsonschema&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">){</span>
+
+  <span class="kd">var</span> <span class="nx">lang</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">,</span>
+      <span class="nx">inputEx</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">;</span>
+ 
+<span class="cm">/**</span>
+<span class="cm"> * Namespace containing utility functions for conversion between inputEx JSON format and JSON Schema</span>
+<span class="cm"> *</span>
+<span class="cm"> * based on &quot;Json Schema Proposal Working Draft&quot;:</span>
+<span class="cm"> * http://groups.google.com/group/json-schema/web/json-schema-proposal-working-draft</span>
+<span class="cm"> * The proposal is still under discussion and the implementation is very minimalist.</span>
+<span class="cm"> *</span>
+<span class="cm"> *</span>
+<span class="cm"> * TODO:</span>
+<span class="cm"> *    - we should provide a lot of json schema examples and instances that should/should not validate</span>
+<span class="cm"> *    - use the $ref (async calls =&gt; provide callbacks to methods)</span>
+<span class="cm"> *    - Inheritance</span>
+<span class="cm"> *</span>
+<span class="cm"> * Limitations:</span>
+<span class="cm"> *    - ??? Please do not trust inputEx: the getValue may return a value which do NOT validate the schema (provide an example ?)</span>
+<span class="cm"> *    - no tuple typing for arrays</span>
+<span class="cm"> *    - no &quot;Union type definition&quot;</span>
+<span class="cm"> *</span>
+<span class="cm"> * @class inputEx.JsonSchema</span>
+<span class="cm"> * @static</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">JsonSchema</span> <span class="o">=</span> <span class="p">{</span>
+   
+   <span class="cm">/**</span>
+<span class="cm">    * Convert the inputEx JSON fields to a JSON schema</span>
+<span class="cm">    */</span>
+   <span class="nx">inputExToSchema</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">inputExJson</span><span class="p">)</span> <span class="p">{</span>
+      
+      <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">inputExJson</span><span class="p">.</span><span class="nx">type</span> <span class="o">||</span> <span class="s2">&quot;string&quot;</span><span class="p">,</span>
+          <span class="nx">ip</span> <span class="o">=</span> <span class="nx">inputExJson</span> <span class="o">||</span> <span class="p">{};</span>
+      
+      <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;group&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">ret</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="nx">type</span><span class="o">:</span><span class="s1">&#39;object&#39;</span><span class="p">,</span>
+            <span class="nx">title</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">legend</span><span class="p">,</span>
+            <span class="nx">properties</span><span class="o">:</span><span class="p">{</span>
+            <span class="p">}</span>
+         <span class="p">};</span>
+         
+         <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">field</span> <span class="o">=</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+            
+            <span class="kd">var</span> <span class="nx">fieldName</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+            <span class="nx">ret</span><span class="p">.</span><span class="nx">properties</span><span class="p">[</span><span class="nx">fieldName</span><span class="p">]</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">JsonSchema</span><span class="p">.</span><span class="nx">inputExToSchema</span><span class="p">(</span><span class="nx">field</span><span class="p">);</span>
+         <span class="p">}</span>
+         
+         <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;number&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="p">{</span>
+    			<span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;number&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="p">{</span>
+    			<span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;text&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="p">{</span>
+ 			   <span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+			   <span class="s1">&#39;format&#39;</span><span class="o">:</span><span class="s1">&#39;text&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+				<span class="s1">&#39;_inputex&#39;</span><span class="o">:</span><span class="p">{</span>
+					<span class="s1">&#39;rows&#39;</span><span class="o">:</span><span class="mi">5</span><span class="p">,</span>
+					<span class="s1">&#39;cols&#39;</span><span class="o">:</span><span class="mi">50</span>
+				<span class="p">}</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;html&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="p">{</span>
+ 			   <span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+			   <span class="s1">&#39;format&#39;</span><span class="o">:</span><span class="s1">&#39;html&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+				<span class="s1">&#39;_inputex&#39;</span><span class="o">:</span><span class="p">{</span>
+					
+				<span class="p">}</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;list&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="p">{</span>
+ 			   <span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;array&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+    			<span class="s1">&#39;items&#39;</span><span class="o">:</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">JsonSchema</span><span class="p">.</span><span class="nx">inputExToSchema</span><span class="p">(</span><span class="nx">ip</span><span class="p">.</span><span class="nx">elementType</span><span class="p">),</span>
+				<span class="s1">&#39;_inputex&#39;</span><span class="o">:</span><span class="p">{</span>
+				<span class="p">}</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;email&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="p">{</span>
+    			<span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+    			<span class="s1">&#39;format&#39;</span><span class="o">:</span><span class="s1">&#39;email&#39;</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;url&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="p">{</span>
+    			<span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+    			<span class="s1">&#39;format&#39;</span><span class="o">:</span><span class="s1">&#39;url&#39;</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;time&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="p">{</span>
+    			<span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+    			<span class="s1">&#39;format&#39;</span><span class="o">:</span><span class="s1">&#39;time&#39;</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;IPv4&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="p">{</span>
+    			<span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+    			<span class="s1">&#39;format&#39;</span><span class="o">:</span><span class="s1">&#39;ip-address&#39;</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;color&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="p">{</span>
+    			<span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+    			<span class="s1">&#39;format&#39;</span><span class="o">:</span><span class="s1">&#39;color&#39;</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;date&quot;</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">return</span> <span class="p">{</span>
+    			<span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;string&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+    			<span class="s1">&#39;format&#39;</span><span class="o">:</span><span class="s1">&#39;date&#39;</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;multiselect&quot;</span> <span class="o">||</span> <span class="nx">t</span> <span class="o">==</span> <span class="s2">&quot;multiautocomplete&quot;</span><span class="p">){</span>
+        <span class="k">return</span> <span class="p">{</span>
+    			<span class="s1">&#39;type&#39;</span><span class="o">:</span><span class="s1">&#39;array&#39;</span><span class="p">,</span>
+    			<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+    			<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+    			<span class="s1">&#39;items&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">jsonSchemaRef</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="o">:</span><span class="s2">&quot;string&quot;</span><span class="p">}</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">jsonSchemaRef</span><span class="p">,</span><span class="c1">// it&#39;s a little bit weird to mix a inputEx description field and jsonSchema in a specific attribute, we should had a $ref system to go through this properly</span>
+    			<span class="s1">&#39;_inputex&#39;</span><span class="o">:</span> <span class="nx">ip</span>
+    		<span class="p">};</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="p">{</span>
+			<span class="k">return</span> <span class="p">{</span>
+				<span class="s1">&#39;type&#39;</span><span class="o">:</span> <span class="s1">&#39;string&#39;</span><span class="p">,</span>
+				<span class="s1">&#39;title&#39;</span><span class="o">:</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span>
+				<span class="s1">&#39;optional&#39;</span><span class="o">:</span> <span class="k">typeof</span> <span class="nx">ip</span><span class="p">.</span><span class="nx">required</span> <span class="o">==</span> <span class="s2">&quot;undefined&quot;</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="o">!</span><span class="nx">ip</span><span class="p">.</span><span class="nx">required</span><span class="p">,</span>
+				<span class="s1">&#39;_inputex&#39;</span><span class="o">:</span> <span class="nx">ip</span>
+			<span class="p">};</span>
+      <span class="p">}</span>
+      
+   <span class="p">}</span>
+
+<span class="p">};</span>
+
+
+<span class="cm">/**</span>
+<span class="cm"> * @class inputEx.JsonSchema.Builder</span>
+<span class="cm"> */</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">JsonSchema</span><span class="p">.</span><span class="nx">Builder</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">opts</span><span class="p">)</span> <span class="p">{</span>
+	
+	<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="nx">opts</span> <span class="o">||</span> <span class="p">{};</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">options</span>  <span class="o">=</span> <span class="nx">options</span><span class="p">;</span> 
+	
+	<span class="cm">/**</span>
+<span class="cm">	 * specify how other schema properties are mapped to inputParam properties</span>
+<span class="cm">	 */</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">schemaToParamMap</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">schemaToParamMap</span> <span class="o">||</span> <span class="p">{</span>
+		<span class="s1">&#39;title&#39;</span><span class="o">:</span><span class="s1">&#39;label&#39;</span><span class="p">,</span>
+		<span class="s1">&#39;description&#39;</span><span class="o">:</span><span class="s1">&#39;description&#39;</span><span class="p">,</span>
+		<span class="s1">&#39;_inputex&#39;</span><span class="o">:</span><span class="kc">null</span>	<span class="c1">// null value means copy child key/value pairs into field options directly</span>
+	<span class="p">};</span>
+	
+	<span class="cm">/**</span>
+<span class="cm">	 * @property referenceResolver</span>
+<span class="cm">	 */</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">referenceResolver</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">referenceResolver</span> <span class="o">||</span> <span class="kc">null</span><span class="p">;</span>
+	
+	<span class="cm">/**</span>
+<span class="cm">	 * options to be applied unless already specified</span>
+<span class="cm">	 * @property defaultOptions</span>
+<span class="cm">	 */</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">defaultOptions</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">defaultOptions</span> <span class="o">||</span> <span class="p">{};</span>	
+	
+	<span class="cm">/**</span>
+<span class="cm">	 * key is reference, value is schema</span>
+<span class="cm">	 * @property schemaIdentifierMap</span>
+<span class="cm">	 */</span>
+	<span class="k">this</span><span class="p">.</span><span class="nx">schemaIdentifierMap</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">schemaIdentifierMap</span> <span class="o">||</span> <span class="p">{};</span>
+<span class="p">};</span>
+
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">JsonSchema</span><span class="p">.</span><span class="nx">Builder</span><span class="p">.</span><span class="nx">prototype</span> <span class="o">=</span> <span class="p">{</span>
+   
+   <span class="cm">/** </span>
+<span class="cm"> 	 * return a schema based on the reference value default is to look up in map</span>
+<span class="cm">    */</span>
+	<span class="nx">defaultReferenceResolver</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">reference</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">schemaIdentifierMap</span><span class="p">[</span><span class="nx">reference</span><span class="p">]</span> <span class="o">||</span> <span class="kc">null</span><span class="p">;</span>
+	<span class="p">},</span>
+	
+	<span class="cm">/**</span>
+<span class="cm">	 * Convert a JSON schema to inputEx JSON</span>
+<span class="cm">	 * @param {JSONSchema} p</span>
+<span class="cm">	 */</span>
+	<span class="nx">schemaToInputEx</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="nx">p</span><span class="p">,</span> <span class="nx">propertyName</span><span class="p">)</span> <span class="p">{</span>
+	
+	   <span class="kd">var</span> <span class="nx">fieldDef</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">label</span><span class="o">:</span> <span class="nx">propertyName</span><span class="p">,</span> <span class="nx">name</span><span class="o">:</span> <span class="nx">propertyName</span> <span class="p">};</span>
+	   <span class="kd">var</span> <span class="nx">schemaMap</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">schemaToParamMap</span><span class="p">;</span>
+    	<span class="kd">var</span> <span class="nx">referencedSchema</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="s2">&quot;$ref&quot;</span><span class="p">];</span>
+		<span class="kd">var</span> <span class="nx">key</span><span class="p">;</span>
+	    
+	   <span class="k">if</span><span class="p">(</span><span class="nx">referencedSchema</span><span class="p">){</span>
+	    	<span class="kd">var</span> <span class="nx">new_schema</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+	    	<span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">referenceResolver</span><span class="p">)</span> <span class="p">{</span>
+		       <span class="nx">new_schema</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">referenceResolver</span><span class="p">(</span><span class="nx">referencedSchema</span><span class="p">);</span>
+		    <span class="p">}</span>
+	    	<span class="k">if</span><span class="p">(</span><span class="nx">new_schema</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+	    		<span class="nx">new_schema</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">defaultReferenceResolver</span><span class="p">(</span><span class="nx">referencedSchema</span><span class="p">);</span>
+	    	<span class="p">}</span>
+	    	<span class="k">if</span><span class="p">(</span><span class="nx">new_schema</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+	    		<span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;Schema for property : &quot;&#39;</span><span class="o">+</span><span class="nx">propertyName</span><span class="o">+</span><span class="s1">&#39;&quot; $references &quot;&#39;</span><span class="o">+</span><span class="nx">referencedSchema</span><span class="o">+</span><span class="s1">&#39;&quot;, not found&#39;</span><span class="p">);</span>
+	    	<span class="p">}</span>
+	    	<span class="c1">// copy options into new schema, for example we can overide presentation</span>
+	    	<span class="c1">// of a defined schema depending on where it is used</span>
+	    	<span class="nx">new_schema</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">({},</span><span class="nx">new_schema</span><span class="p">);</span>	<span class="c1">// copy new_schema</span>
+	    	
+	    	<span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">pk</span> <span class="k">in</span> <span class="nx">p</span><span class="p">)</span> <span class="p">{</span>
+	    		<span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">pk</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">new_schema</span><span class="p">[</span><span class="nx">pk</span><span class="p">])</span> <span class="o">&amp;&amp;</span> <span class="nx">pk</span> <span class="o">!=</span> <span class="s1">&#39;$ref&#39;</span><span class="p">)</span> <span class="p">{</span>
+	    			<span class="nx">new_schema</span><span class="p">[</span><span class="nx">pk</span><span class="p">]</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="nx">pk</span><span class="p">];</span>
+	    		<span class="p">}</span>
+	    	<span class="p">}</span>
+	    	<span class="nx">p</span> <span class="o">=</span> <span class="nx">new_schema</span><span class="p">;</span>
+	   <span class="p">}</span>
+
+	   <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">p</span><span class="p">.</span><span class="nx">optional</span><span class="p">)</span> <span class="p">{</span>
+	      <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">required</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+	   <span class="p">}</span>
+
+	    <span class="k">for</span><span class="p">(</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">schemaMap</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="k">if</span><span class="p">(</span><span class="nx">schemaMap</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
+	      	  <span class="kd">var</span> <span class="nx">paramName</span> <span class="o">=</span> <span class="nx">schemaMap</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span> 
+	      	  <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="nx">key</span><span class="p">];</span>
+	      	  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
+	      		  <span class="k">if</span><span class="p">(</span><span class="nx">paramName</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+	      			  <span class="c1">// copy / merge values from v directly into options</span>
+	      			  <span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">v</span><span class="p">))</span> <span class="p">{</span>
+	      				  <span class="c1">// v must be an object, copy key/value pairs into options</span>
+	      				  <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">vkey</span> <span class="k">in</span> <span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+	      					  <span class="k">if</span><span class="p">(</span><span class="nx">v</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">vkey</span><span class="p">))</span> <span class="p">{</span>
+	      						  <span class="nx">fieldDef</span><span class="p">[</span><span class="nx">vkey</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">[</span><span class="nx">vkey</span><span class="p">];</span>
+	      					  <span class="p">}</span>
+	      				  <span class="p">}</span>
+	      			  <span class="p">}</span>
+	      		  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+	      			  <span class="nx">fieldDef</span><span class="p">[</span><span class="nx">paramName</span><span class="p">]</span> <span class="o">=</span> <span class="nx">v</span><span class="p">;</span>
+	      		  <span class="p">}</span>
+	      	  <span class="p">}</span>
+	        <span class="p">}</span>
+	    <span class="p">}</span>
+	    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">p</span><span class="p">.</span><span class="nx">type</span><span class="p">)</span> <span class="nx">p</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;object&#39;</span><span class="p">;</span>
+	    <span class="kd">var</span> <span class="nx">type</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">type</span><span class="p">;</span>
+	       
+	       <span class="c1">// If type is a &quot;Union type definition&quot;, we&#39;ll use the first type for the field</span>
+	       <span class="c1">// &quot;array&quot; &lt;=&gt;  [] &lt;=&gt; [&quot;any&quot;]</span>
+	       <span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">type</span><span class="p">))</span> <span class="p">{</span>
+	          <span class="k">if</span><span class="p">(</span><span class="nx">type</span><span class="p">.</span><span class="nx">length</span> <span class="o">===</span> <span class="mi">0</span> <span class="o">||</span> <span class="p">(</span><span class="nx">type</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="nx">type</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;any&quot;</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+	             <span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;array&quot;</span><span class="p">;</span>
+	          <span class="p">}</span>
+	          <span class="k">else</span> <span class="p">{</span>
+	             <span class="nx">type</span> <span class="o">=</span> <span class="nx">type</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+	          <span class="p">}</span>
+	       <span class="p">}</span>
+	       <span class="c1">//else if(lang.isObject(type) ) {</span>
+	          <span class="c1">// What do we do ??</span>
+	          <span class="c1">//console.log(&quot;type is an object !!&quot;);</span>
+	       <span class="c1">//}</span>
+	       
+	       <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="nx">type</span><span class="p">;</span>
+	       
+	       <span class="c1">// default value</span>
+	       <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">p</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">])</span> <span class="p">)</span> <span class="p">{</span>
+	          <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">];</span>
+	       <span class="p">}</span>
+	    
+	       <span class="k">if</span><span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;array&quot;</span> <span class="p">)</span> <span class="p">{</span>
+	          <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;list&quot;</span><span class="p">;</span>
+	          <span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">items</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">items</span><span class="p">))</span> <span class="p">{</span>
+	        	  <span class="c1">// when items is an object, it&#39;s a schema that describes each item in the list</span>
+	        	  <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">elementType</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">schemaToInputEx</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">items</span><span class="p">,</span> <span class="nx">propertyName</span><span class="p">);</span>
+	          <span class="p">}</span>
+	
+		       <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">minItems</span><span class="p">)</span> <span class="p">{</span> <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">minItems</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">minItems</span><span class="p">;</span> <span class="p">}</span>
+				 <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">maxItems</span><span class="p">)</span> <span class="p">{</span> <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">maxItems</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">maxItems</span><span class="p">;</span> <span class="p">}</span>
+	
+	       <span class="p">}</span>
+	       <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;object&quot;</span> <span class="p">)</span> <span class="p">{</span>
+	          <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;group&quot;</span><span class="p">;</span>
+	          <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">title</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">fieldDef</span><span class="p">.</span><span class="nx">legend</span><span class="p">))</span> <span class="p">{</span>
+	        	  <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">legend</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">title</span><span class="p">;</span> 
+	          <span class="p">}</span>
+	          <span class="c1">//fieldDef = this.schemaToInputEx(p, propertyName);</span>
+	          <span class="c1">//fieldDef = this._parseSchemaProperty(p, propertyName);</span>
+	          <span class="kd">var</span> <span class="nx">fields</span> <span class="o">=</span> <span class="p">[];</span>
+	          <span class="k">if</span><span class="p">(</span><span class="nx">propertyName</span><span class="p">)</span> <span class="p">{</span>
+	        	  <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">propertyName</span><span class="p">;</span>
+	          <span class="p">}</span>
+	
+	          <span class="k">for</span><span class="p">(</span><span class="nx">key</span> <span class="k">in</span> <span class="nx">p</span><span class="p">.</span><span class="nx">properties</span><span class="p">)</span> <span class="p">{</span>
+	             <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">key</span><span class="p">))</span> <span class="p">{</span>
+	                <span class="nx">fields</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span> <span class="k">this</span><span class="p">.</span><span class="nx">schemaToInputEx</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">properties</span><span class="p">[</span><span class="nx">key</span><span class="p">],</span> <span class="nx">key</span><span class="p">)</span> <span class="p">);</span>
+	             <span class="p">}</span>
+	          <span class="p">}</span>
+	
+	          <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">fields</span> <span class="o">=</span> <span class="nx">fields</span><span class="p">;</span>
+	          
+	       <span class="p">}</span>
+	       <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;string&quot;</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="nx">p</span><span class="p">[</span><span class="s2">&quot;enum&quot;</span><span class="p">]</span> <span class="o">||</span> <span class="nx">p</span><span class="p">[</span><span class="s2">&quot;choices&quot;</span><span class="p">])</span> <span class="p">)</span> <span class="p">{</span>
+	          <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;select&quot;</span><span class="p">;</span>
+	          
+	          <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">choices</span><span class="p">)</span> <span class="p">{</span>
+	             <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">choices</span> <span class="o">=</span> <span class="p">[];</span>
+	             <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">p</span><span class="p">.</span><span class="nx">choices</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	                <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">choices</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+	                <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">choices</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">label</span><span class="o">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">value</span> <span class="p">};</span>
+	             <span class="p">}</span>
+             <span class="p">}</span>
+             <span class="k">else</span> <span class="p">{</span> <span class="c1">// p.choices</span>
+	             <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">choices</span> <span class="o">=</span> <span class="p">[];</span>
+	             <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">p</span><span class="p">[</span><span class="s2">&quot;enum&quot;</span><span class="p">].</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+	                <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="s2">&quot;enum&quot;</span><span class="p">][</span><span class="nx">i</span><span class="p">];</span>
+						 <span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isObject</span><span class="p">(</span><span class="nx">o</span><span class="p">))</span> <span class="p">{</span>
+	                	<span class="nx">fieldDef</span><span class="p">.</span><span class="nx">choices</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">label</span><span class="o">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">label</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">value</span> <span class="p">};</span>
+						 <span class="p">}</span>
+						 <span class="k">else</span> <span class="p">{</span>
+							<span class="nx">fieldDef</span><span class="p">.</span><span class="nx">choices</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">o</span> <span class="p">};</span>
+						 <span class="p">}</span>
+	             <span class="p">}</span>
+             <span class="p">}</span>		
+	       <span class="p">}</span>
+	       <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;string&quot;</span><span class="p">)</span> <span class="p">{</span>
+	    	  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">pattern</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">fieldDef</span><span class="p">.</span><span class="nx">regexp</span><span class="p">))</span> <span class="p">{</span>
+	    		  <span class="k">if</span><span class="p">(</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isString</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">pattern</span><span class="p">))</span> <span class="p">{</span>
+	    			  <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">regexp</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">pattern</span><span class="p">);</span>
+	    		  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+	    			  <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">regexp</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">pattern</span><span class="p">;</span>
+	    		  <span class="p">}</span>
+	    	  <span class="p">}</span>
+	    	  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">fieldDef</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">))</span> <span class="p">{</span>
+	    		  <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">maxLength</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">maxLength</span><span class="p">;</span> 
+	    	  <span class="p">}</span>
+
+	    	  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">minLength</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">fieldDef</span><span class="p">.</span><span class="nx">minLength</span><span class="p">))</span> <span class="p">{</span>
+	    		  <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">minLength</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">minLength</span><span class="p">;</span> 
+	    	  <span class="p">}</span>
+
+	    	  <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">readonly</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">fieldDef</span><span class="p">.</span><span class="nx">readonly</span><span class="p">))</span> <span class="p">{</span>
+	    		  <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">readonly</span> <span class="o">=</span> <span class="nx">p</span><span class="p">.</span><span class="nx">readonly</span><span class="p">;</span> 
+	    	  <span class="p">}</span>
+
+           <span class="c1">// According to http://groups.google.com/group/json-schema/web/json-schema-possible-formats</span>
+	          <span class="k">if</span><span class="p">(</span> <span class="nx">p</span><span class="p">.</span><span class="nx">format</span> <span class="p">)</span> <span class="p">{</span>
+	             <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">format</span> <span class="o">==</span> <span class="s2">&quot;html&quot;</span><span class="p">)</span> <span class="p">{</span>
+	                <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;html&quot;</span><span class="p">;</span>
+	             <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">format</span> <span class="o">==</span> <span class="s2">&quot;date&quot;</span><span class="p">)</span> <span class="p">{</span>
+	                <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s2">&quot;date&quot;</span><span class="p">;</span>
+	                <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">tooltipIcon</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+	             <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">format</span> <span class="o">==</span> <span class="s1">&#39;url&#39;</span><span class="p">)</span> <span class="p">{</span>
+	            	 <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;url&#39;</span><span class="p">;</span>
+	             <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">format</span> <span class="o">==</span> <span class="s1">&#39;email&#39;</span><span class="p">)</span> <span class="p">{</span>
+	            	 <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;email&#39;</span><span class="p">;</span>
+	             <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">format</span> <span class="o">==</span> <span class="s1">&#39;text&#39;</span><span class="p">)</span> <span class="p">{</span>
+	            	 <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span><span class="p">;</span>
+	             <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">format</span> <span class="o">==</span> <span class="s1">&#39;time&#39;</span><span class="p">)</span> <span class="p">{</span>
+	                <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span><span class="p">;</span>
+	             <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">format</span> <span class="o">==</span> <span class="s1">&#39;ip-address&#39;</span><span class="p">)</span> <span class="p">{</span>
+    	             <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;IPv4&#39;</span><span class="p">;</span>
+    	          <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">p</span><span class="p">.</span><span class="nx">format</span> <span class="o">==</span> <span class="s1">&#39;color&#39;</span><span class="p">)</span> <span class="p">{</span>
+    	             <span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="s1">&#39;color&#39;</span><span class="p">;</span>
+    	          <span class="p">}</span>
+	          <span class="p">}</span>
+	       <span class="p">}</span>
+	
+			 <span class="c1">// Override inputEx&#39;s type with the &quot;_type&quot; attribute</span>
+			 <span class="k">if</span><span class="p">(</span> <span class="o">!!</span><span class="nx">p</span><span class="p">[</span><span class="s2">&quot;_inputex&quot;</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="o">!!</span><span class="nx">p</span><span class="p">[</span><span class="s2">&quot;_inputex&quot;</span><span class="p">][</span><span class="s2">&quot;_type&quot;</span><span class="p">])</span> <span class="p">{</span>
+				<span class="nx">fieldDef</span><span class="p">.</span><span class="nx">type</span> <span class="o">=</span> <span class="nx">p</span><span class="p">[</span><span class="s2">&quot;_inputex&quot;</span><span class="p">][</span><span class="s2">&quot;_type&quot;</span><span class="p">];</span>
+			 <span class="p">}</span>
+	
+	    <span class="c1">// Add the defaultOptions</span>
+	    <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">kk</span> <span class="k">in</span> <span class="k">this</span><span class="p">.</span><span class="nx">defaultOptions</span><span class="p">)</span> <span class="p">{</span>
+	        <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">defaultOptions</span><span class="p">.</span><span class="nx">hasOwnProperty</span><span class="p">(</span><span class="nx">kk</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">fieldDef</span><span class="p">[</span><span class="nx">kk</span><span class="p">]))</span> <span class="p">{</span>
+	        	<span class="nx">fieldDef</span><span class="p">[</span><span class="nx">kk</span><span class="p">]</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">defaultOptions</span><span class="p">[</span><span class="nx">kk</span><span class="p">];</span> 
+	        <span class="p">}</span>	    	
+	    <span class="p">}</span>
+	    <span class="k">return</span> <span class="nx">fieldDef</span><span class="p">;</span>
+	<span class="p">},</span>
+
+   <span class="cm">/**</span>
+<span class="cm">    * Create an inputEx Json form definition from a json schema instance object</span>
+<span class="cm">    * Respect the &quot;Self-Defined Schema Convention&quot;</span>
+<span class="cm">    */</span>
+   <span class="nx">formFromInstance</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">instanceObject</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">instanceObject</span> <span class="o">||</span> <span class="o">!</span><span class="nx">instanceObject</span><span class="p">[</span><span class="s2">&quot;$schema&quot;</span><span class="p">])</span> <span class="p">{</span>
+         <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s2">&quot;Invalid json schema instance object. Object must have a &#39;$schema&#39; property.&quot;</span><span class="p">);</span>
+      <span class="p">}</span>
+      
+      <span class="kd">var</span> <span class="nx">formDef</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">schemaToInputEx</span><span class="p">(</span><span class="nx">instanceObject</span><span class="p">[</span><span class="s2">&quot;$schema&quot;</span><span class="p">]);</span>
+      
+      <span class="c1">// Set the default value of each property to the instance value</span>
+      <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">formDef</span><span class="p">.</span><span class="nx">fields</span><span class="p">.</span><span class="nx">length</span> <span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">fieldName</span> <span class="o">=</span> <span class="nx">formDef</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">name</span><span class="p">;</span>
+         <span class="nx">formDef</span><span class="p">.</span><span class="nx">fields</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">instanceObject</span><span class="p">[</span><span class="nx">fieldName</span><span class="p">];</span>
+      <span class="p">}</span>
+      
+      <span class="k">return</span> <span class="nx">formDef</span><span class="p">;</span>
+   <span class="p">}</span>
+   
+<span class="p">};</span>
+
+<span class="p">},</span> <span class="s1">&#39;3.0.0a&#39;</span><span class="p">,{</span>
+  <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;inputex&quot;</span><span class="p">]</span>
+<span class="p">});</span>
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class=""><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class=""><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class=""><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class="selected"><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class=""><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class=""><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class=""><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class=""><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class=""><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class=""><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="inputEx.IPv4Field.html" title="inputEx.IPv4Field">inputEx.IPv4Field</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="inputex-jsonschema.js.html" title="inputex-jsonschema.js">inputex-jsonschema.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.IPv4Field.html#method_setOptions", "access": "", "host": "inputEx.IPv4Field", "type": "method", "name": "setOptions"}];
+</script>
+</body>
+</html>

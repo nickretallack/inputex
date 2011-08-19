@@ -1,0 +1,600 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns:yui="http://yuilibrary.com/rdf/1.0/yui.rdf#">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<title>API: inputex-combine   inputex-datatable.js  (YUI Library)</title>
+
+	<link rel="stylesheet" type="text/css" href="assets/reset-fonts-grids-min.css" />
+	<link rel="stylesheet" type="text/css" href="assets/api.css" />
+
+    <script type="text/javascript" src="assets/api-js"></script>
+    <script type="text/javascript" src="assets/ac-js"></script>
+</head>
+
+<body id="yahoo-com">
+
+<div id="doc3" class="yui-t2">
+	<div id="hd">
+        <h1><a href="http://neyric.github.com/inputex" title="inputEx-library">inputEx-library</a></h1>
+        <h3>inputex-combine&nbsp; <span class="subtitle">3.0.0a</span></h3>
+        <a href="./index.html" title="inputEx-library">inputEx-library</a> 
+            &gt; <a href="./module_inputex-combine.html" title="inputex-combine">inputex-combine</a>
+                
+                 &gt; inputex-datatable.js (source view) 
+        <form onsubmit="return false">
+            <div id="propertysearch">
+                Search: <input autocomplete="off" id="searchinput" />
+                <div id="searchresults">
+                    &nbsp;
+                </div>
+            </div>
+        </form>
+	</div>
+
+	<div id="bd">
+		<div id="yui-main">
+			<div class="yui-b">
+            <form action="#" name="yui-classopts-form" method="get" id="yui-classopts-form">
+                <fieldset>
+                    <legend>Filters</legend>
+                <span class="classopts"><input type="checkbox" name="show_private" id="show_private" /> <label for="show_private">Show Private</label></span>
+                <span class="classopts"><input type="checkbox" name="show_protected" id="show_protected" /> <label for="show_protected">Show Protected</label></span>
+                <span class="classopts"><input type="checkbox" name="show_deprecated" id="show_deprecated" /> <label for="show_deprecated">Show Deprecated</label></span>
+                </fieldset>
+            </form>
+
+                    <div id="srcout">
+                        <style>
+                            #doc3 .classopts { display:none; }
+                        </style>
+                        <div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm"> * @module inputex-datatable</span>
+<span class="cm"> */</span>
+<span class="nx">YUI</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;inputex-datatable&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Y</span><span class="p">)</span> <span class="p">{</span>
+
+ <span class="kd">var</span> <span class="nx">MSGS</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">;</span>
+
+ <span class="kd">function</span> <span class="nx">DatatableInputex</span><span class="p">()</span> <span class="p">{</span>
+     <span class="nx">DatatableInputex</span><span class="p">.</span><span class="nx">superclass</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
+ <span class="p">}</span>
+
+ <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+ <span class="c1">//</span>
+ <span class="c1">// STATIC PROPERTIES</span>
+ <span class="c1">//</span>
+ <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+ <span class="nx">Y</span><span class="p">.</span><span class="nx">mix</span><span class="p">(</span><span class="nx">DatatableInputex</span><span class="p">,</span> <span class="p">{</span>
+
+     <span class="cm">/**</span>
+<span class="cm">  * The namespace for the plugin. This will be the property on the host which</span>
+<span class="cm">  * references the plugin instance.</span>
+<span class="cm">  *</span>
+<span class="cm">  * @property NS</span>
+<span class="cm">  * @type String</span>
+<span class="cm">  * @static</span>
+<span class="cm">  * @final</span>
+<span class="cm">  * @value &quot;inputex&quot;</span>
+<span class="cm">  */</span>
+     <span class="nx">NS</span><span class="o">:</span> <span class="s2">&quot;inputex&quot;</span><span class="p">,</span>
+
+     <span class="cm">/**</span>
+<span class="cm">  * Class name.</span>
+<span class="cm">  *</span>
+<span class="cm">  * @property NAME</span>
+<span class="cm">  * @type String</span>
+<span class="cm">  * @static</span>
+<span class="cm">  * @final</span>
+<span class="cm">  * @value &quot;datatableInputex&quot;</span>
+<span class="cm">  */</span>
+     <span class="nx">NAME</span><span class="o">:</span> <span class="s2">&quot;datatableInputex&quot;</span><span class="p">,</span>
+
+     <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+     <span class="c1">//</span>
+     <span class="c1">// ATTRIBUTES</span>
+     <span class="c1">//</span>
+     <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+     <span class="nx">ATTRS</span><span class="o">:</span> <span class="p">{</span>
+        
+        <span class="c1">// The Y.inputEx.Panel instance to add/modify</span>
+         <span class="nx">panel</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">valueFn</span><span class="o">:</span> <span class="s1">&#39;_initPanel&#39;</span><span class="p">,</span>
+            <span class="nx">lazyAdd</span><span class="o">:</span> <span class="kc">true</span>
+         <span class="p">},</span>
+         
+         <span class="nx">inputEx</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+         <span class="p">},</span>
+
+         <span class="nx">mode</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+         <span class="p">},</span>
+
+         <span class="nx">modifyColumnLabel</span><span class="o">:</span> <span class="p">{</span>
+             <span class="nx">value</span><span class="o">:</span> <span class="nx">MSGS</span><span class="p">.</span><span class="nx">modifyText</span>
+         <span class="p">},</span>
+         
+         <span class="nx">deleteColumnLabel</span><span class="o">:</span> <span class="p">{</span>
+             <span class="nx">value</span><span class="o">:</span> <span class="nx">MSGS</span><span class="p">.</span><span class="nx">deleteText</span>
+         <span class="p">},</span>
+
+         <span class="nx">deleteColumn</span><span class="o">:</span> <span class="p">{</span>
+             <span class="nx">value</span><span class="o">:</span> <span class="kc">null</span>
+         <span class="p">},</span>
+
+         <span class="nx">confirmDelete</span><span class="o">:</span> <span class="p">{</span>
+             <span class="nx">value</span><span class="o">:</span> <span class="kc">true</span>
+         <span class="p">},</span>
+         
+         <span class="c1">// a pointer to the record being modified</span>
+         <span class="nx">modifyRecord</span><span class="o">:</span> <span class="p">{</span>
+            
+         <span class="p">},</span>
+         
+         <span class="nx">deleteTemplate</span><span class="o">:</span> <span class="p">{</span>
+            <span class="c1">// TODO</span>
+         <span class="p">}</span>
+     <span class="p">},</span>
+
+
+     <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+     <span class="c1">//</span>
+     <span class="c1">// STATIC METHODS</span>
+     <span class="c1">//</span>
+     <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+
+     <span class="cm">/**</span>
+<span class="cm">  * Convert an inputEx fields definition to a DataTable columns definition</span>
+<span class="cm">  */</span>
+     <span class="nx">fieldsToColumndefs</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">fields</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">columndefs</span> <span class="o">=</span> <span class="p">[];</span>
+         <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">fields</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+             <span class="nx">columndefs</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">fieldToColumndef</span><span class="p">(</span><span class="nx">fields</span><span class="p">[</span><span class="nx">i</span><span class="p">]));</span>
+         <span class="p">}</span>
+         <span class="k">return</span> <span class="nx">columndefs</span><span class="p">;</span>
+     <span class="p">},</span>
+
+     <span class="cm">/**</span>
+<span class="cm">  * Convert a single inputEx field definition to a DataTable column definition</span>
+<span class="cm">  */</span>
+     <span class="nx">fieldToColumndef</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">field</span><span class="p">)</span> <span class="p">{</span>
+
+         <span class="kd">var</span> <span class="nx">key</span><span class="p">,</span>
+         <span class="nx">label</span><span class="p">,</span>
+         <span class="nx">colmunDef</span><span class="p">;</span>
+
+         <span class="nx">key</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+         <span class="nx">label</span> <span class="o">=</span> <span class="nx">field</span><span class="p">.</span><span class="nx">label</span><span class="p">;</span>
+
+         <span class="nx">columnDef</span> <span class="o">=</span> <span class="p">{</span>
+             <span class="nx">key</span><span class="o">:</span> <span class="nx">key</span><span class="p">,</span>
+             <span class="nx">label</span><span class="o">:</span> <span class="nx">label</span><span class="p">,</span>
+             <span class="nx">sortable</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+             <span class="nx">resizeable</span><span class="o">:</span> <span class="kc">true</span>
+         <span class="p">};</span>
+
+         <span class="c1">// Field formatter</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;date&quot;</span><span class="p">)</span> <span class="p">{</span>
+             <span class="nx">columnDef</span><span class="p">.</span><span class="nx">formatter</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">DataTable</span><span class="p">.</span><span class="nx">formatDate</span><span class="p">;</span>
+         <span class="p">}</span>
+         <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">field</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;integer&quot;</span> <span class="o">||</span> <span class="nx">field</span><span class="p">.</span><span class="nx">type</span> <span class="o">==</span> <span class="s2">&quot;number&quot;</span><span class="p">)</span> <span class="p">{</span>
+             <span class="nx">columnDef</span><span class="p">.</span><span class="nx">formatter</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">widget</span><span class="p">.</span><span class="nx">DataTable</span><span class="p">.</span><span class="nx">formatNumber</span><span class="p">;</span>
+             <span class="cm">/*columnDef.sortOptions = {</span>
+<span class="cm">				defaultDir: &quot;asc&quot;,</span>
+<span class="cm">				sortFunction: // TODO: sort numbers !!!</span>
+<span class="cm">			}*/</span>
+         <span class="p">}</span>
+         <span class="c1">// TODO: other formatters</span>
+         <span class="k">return</span> <span class="nx">columnDef</span><span class="p">;</span>
+     <span class="p">}</span>
+
+ <span class="p">});</span>
+
+
+
+
+ <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+ <span class="c1">//</span>
+ <span class="c1">// PROTOTYPE</span>
+ <span class="c1">//</span>
+ <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+ <span class="nx">Y</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="nx">DatatableInputex</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Plugin</span><span class="p">.</span><span class="nx">Base</span><span class="p">,</span> <span class="p">{</span>
+
+     <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+     <span class="c1">//</span>
+     <span class="c1">// METHODS</span>
+     <span class="c1">//</span>
+     <span class="c1">/////////////////////////////////////////////////////////////////////////////</span>
+     <span class="cm">/**</span>
+<span class="cm"> * Initializer.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @method initializer</span>
+<span class="cm"> * @param config {Object} Config object.</span>
+<span class="cm"> * @private</span>
+<span class="cm"> */</span>
+     <span class="nx">initializer</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;host&quot;</span><span class="p">);</span>
+
+         <span class="k">this</span><span class="p">.</span><span class="nx">doAfter</span><span class="p">(</span><span class="s2">&quot;renderUI&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterRenderUI</span><span class="p">);</span>
+
+
+         <span class="k">this</span><span class="p">.</span><span class="nx">doAfter</span><span class="p">(</span><span class="s2">&quot;_addTheadTrNode&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterAddTheadTrNode</span><span class="p">);</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">doAfter</span><span class="p">(</span><span class="s2">&quot;_createTbodyTrNode&quot;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">_afterCreateTbodyTrNode</span><span class="p">);</span>
+
+         <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s2">&quot;addRow&quot;</span><span class="p">);</span>
+
+         <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s2">&quot;modifyRow&quot;</span><span class="p">);</span>
+
+         <span class="k">this</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="s2">&quot;deleteRow&quot;</span><span class="p">);</span>
+
+         <span class="c1">// Attach trigger handlers</span>
+         <span class="nx">dt</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onRemoveLabelClick</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="s2">&quot;td.delete_column&quot;</span><span class="p">);</span>
+         <span class="nx">dt</span><span class="p">.</span><span class="nx">delegate</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onModifyLabelClick</span><span class="p">,</span> <span class="k">this</span><span class="p">),</span> <span class="s2">&quot;td.modify_column&quot;</span><span class="p">);</span>
+         
+     <span class="p">},</span>
+
+     <span class="nx">_afterRenderUI</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">_renderAddButton</span><span class="p">();</span>
+     <span class="p">},</span>
+
+     <span class="nx">_renderAddButton</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">button</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="s2">&quot;&lt;button&gt;&quot;</span><span class="o">+</span><span class="nx">MSGS</span><span class="p">.</span><span class="nx">addButtonText</span><span class="o">+</span><span class="s2">&quot;&lt;/button&quot;</span><span class="p">);</span>
+
+         <span class="nx">button</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">_onAddButtonClick</span><span class="p">,</span> <span class="k">this</span><span class="p">));</span>
+
+         <span class="nx">button</span><span class="p">.</span><span class="nx">appendTo</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;contentBox&quot;</span><span class="p">));</span>
+     <span class="p">},</span>
+
+     <span class="nx">_onAddButtonClick</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+         
+         <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">,</span><span class="s1">&#39;add&#39;</span><span class="p">);</span>
+         
+         <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;panel&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">).</span><span class="nx">clear</span><span class="p">();</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">showPanel</span><span class="p">();</span>
+     <span class="p">},</span>
+
+     <span class="nx">_initPanel</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        
+        <span class="kd">var</span> <span class="nx">that</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+        
+         <span class="kd">var</span> <span class="nx">panel</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">inputEx</span><span class="p">.</span><span class="nx">Panel</span><span class="p">({</span>
+             <span class="nx">centered</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+             <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span>
+             <span class="nx">modal</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+             <span class="nx">zIndex</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+             <span class="nx">visible</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span>
+             <span class="nx">inputEx</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;inputEx&#39;</span><span class="p">),</span>
+             <span class="nx">headerContent</span><span class="o">:</span> <span class="s2">&quot;AddItem&quot;</span><span class="p">,</span>
+
+             <span class="nx">buttons</span><span class="o">:</span> <span class="p">[</span>
+             <span class="p">{</span>
+                 <span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;Save&quot;</span><span class="p">,</span>
+                 <span class="nx">action</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                     <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+                     <span class="nx">panel</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+
+                     <span class="kd">var</span> <span class="nx">evt</span> <span class="o">=</span> <span class="p">(</span><span class="nx">that</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;modify&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="s1">&#39;modifyRow&#39;</span> <span class="o">:</span> <span class="s1">&#39;addRow&#39;</span><span class="p">;</span>
+                     
+                     <span class="nx">that</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="nx">evt</span><span class="p">,</span> <span class="p">{</span>
+                        <span class="nx">data</span><span class="o">:</span> <span class="nx">panel</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">).</span><span class="nx">getValue</span><span class="p">()</span>
+                     <span class="p">});</span>
+                 <span class="p">},</span>
+                 <span class="nx">section</span><span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetStdMod</span><span class="p">.</span><span class="nx">FOOTER</span>
+             <span class="p">},</span>
+             <span class="p">{</span>
+                 <span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;Cancel&quot;</span><span class="p">,</span>
+                 <span class="nx">action</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                     <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+                     <span class="nx">panel</span><span class="p">.</span><span class="nx">hide</span><span class="p">();</span>
+                 <span class="p">},</span>
+                 <span class="nx">section</span><span class="o">:</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">WidgetStdMod</span><span class="p">.</span><span class="nx">FOOTER</span>
+             <span class="p">}</span>
+             <span class="p">]</span>
+         <span class="p">});</span>
+         <span class="nx">panel</span><span class="p">.</span><span class="nx">render</span><span class="p">();</span>
+         
+         <span class="c1">//this.set(&#39;panel&#39;, panel);</span>
+         <span class="k">return</span> <span class="nx">panel</span><span class="p">;</span>
+     <span class="p">},</span>
+
+     <span class="nx">showPanel</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+         <span class="cm">/*if (!this.get(&#39;panel&#39;)) {</span>
+<span class="cm">             this._renderPanel();</span>
+<span class="cm">         }*/</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;panel&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>
+     <span class="p">},</span>
+
+
+     <span class="cm">/**</span>
+<span class="cm">   * Add a &quot;delete&quot; column to the datatable</span>
+<span class="cm">   */</span>
+     <span class="nx">_afterAddTheadTrNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">o</span><span class="p">,</span> <span class="nx">isFirst</span><span class="p">,</span> <span class="nx">isLast</span><span class="p">)</span> <span class="p">{</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nx">isFirst</span><span class="p">)</span> <span class="p">{</span>
+
+             <span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;host&quot;</span><span class="p">);</span>
+
+
+             <span class="c1">// Modify column</span>
+
+             <span class="kd">var</span> <span class="nx">modifyColumn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Column</span><span class="p">({</span>
+                 <span class="nx">label</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;modifyColumnLabel&#39;</span><span class="p">),</span>
+                 <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;modify_column&quot;</span>
+                 <span class="c1">// formatter ?</span>
+             <span class="p">});</span>
+
+             <span class="nx">dt</span><span class="p">.</span><span class="nx">_addTheadThNode</span><span class="p">({</span>
+                 <span class="nx">value</span><span class="o">:</span> <span class="nx">modifyColumn</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">),</span>
+                 <span class="nx">column</span><span class="o">:</span> <span class="nx">modifyColumn</span><span class="p">,</span>
+                 <span class="nx">tr</span><span class="o">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">tr</span>
+             <span class="p">});</span>
+             
+             <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;modifyColumn&#39;</span><span class="p">,</span> <span class="nx">modifyColumn</span><span class="p">);</span>
+
+             <span class="c1">// Delete column</span>
+
+             <span class="kd">var</span> <span class="nx">deleteColumn</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Column</span><span class="p">({</span>
+                 <span class="nx">label</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;deleteColumnLabel&#39;</span><span class="p">),</span>
+                 <span class="nx">key</span><span class="o">:</span> <span class="s2">&quot;delete_column&quot;</span>
+                 <span class="c1">// formatter ?</span>
+             <span class="p">});</span>
+
+             <span class="nx">dt</span><span class="p">.</span><span class="nx">_addTheadThNode</span><span class="p">({</span>
+                 <span class="nx">value</span><span class="o">:</span> <span class="nx">deleteColumn</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;label&quot;</span><span class="p">),</span>
+                 <span class="nx">column</span><span class="o">:</span> <span class="nx">deleteColumn</span><span class="p">,</span>
+                 <span class="nx">tr</span><span class="o">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">tr</span>
+             <span class="p">});</span>
+
+             <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;deleteColumn&#39;</span><span class="p">,</span> <span class="nx">deleteColumn</span><span class="p">);</span>
+         <span class="p">}</span>
+     <span class="p">},</span>
+
+
+     <span class="cm">/**</span>
+<span class="cm">   * Add the remove column to the table</span>
+<span class="cm">   * Create the TD node to delete</span>
+<span class="cm">   */</span>
+     <span class="nx">_afterCreateTbodyTrNode</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;host&quot;</span><span class="p">);</span>
+
+         <span class="k">this</span><span class="p">.</span><span class="nx">_createModifyColumn</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+         <span class="k">this</span><span class="p">.</span><span class="nx">_createDeleteColumn</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+      <span class="p">},</span>
+
+      <span class="nx">_createDeleteColumn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+         <span class="c1">// Delete column</span>
+
+         <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{};</span>
+         <span class="nx">o</span><span class="p">.</span><span class="nx">headers</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">column</span><span class="p">.</span><span class="nx">headers</span><span class="p">;</span>
+         <span class="nx">o</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">&quot;delete&quot;</span><span class="p">;</span> <span class="c1">// TODO: use template</span>
+         <span class="nx">o</span><span class="p">.</span><span class="nx">classnames</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">classnames</span> <span class="o">+</span> <span class="s2">&quot; delete_column&quot;</span><span class="p">;</span>
+
+         <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">sub</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">DataTable</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">tdTemplate</span><span class="p">,</span> <span class="nx">o</span><span class="p">);</span>
+
+         <span class="nx">o</span><span class="p">.</span><span class="nx">td</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+
+         <span class="c1">// save a reference to the record</span>
+         <span class="nx">o</span><span class="p">.</span><span class="nx">td</span><span class="p">.</span><span class="nx">record</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">record</span><span class="p">;</span>
+
+         <span class="nx">o</span><span class="p">.</span><span class="nx">td</span><span class="p">.</span><span class="nx">tr</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">tr</span><span class="p">;</span>
+
+         <span class="nx">a</span><span class="p">.</span><span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">td</span><span class="p">);</span>
+     <span class="p">},</span>
+     
+     <span class="nx">_createModifyColumn</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span> <span class="p">{</span>
+        
+              <span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;host&quot;</span><span class="p">);</span>
+        <span class="c1">// Modify column</span>
+
+        <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="p">{};</span>
+        <span class="nx">o</span><span class="p">.</span><span class="nx">headers</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">column</span><span class="p">.</span><span class="nx">headers</span><span class="p">;</span>
+        <span class="nx">o</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="s2">&quot;modify&quot;</span><span class="p">;</span> <span class="c1">// TODO: use template</span>
+        <span class="nx">o</span><span class="p">.</span><span class="nx">classnames</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">classnames</span> <span class="o">+</span> <span class="s2">&quot; modify_column&quot;</span><span class="p">;</span>
+
+        <span class="kd">var</span> <span class="nx">t</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Lang</span><span class="p">.</span><span class="nx">sub</span><span class="p">(</span><span class="nx">Y</span><span class="p">.</span><span class="nx">DataTable</span><span class="p">.</span><span class="nx">Base</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">tdTemplate</span><span class="p">,</span> <span class="nx">o</span><span class="p">);</span>
+
+        <span class="nx">o</span><span class="p">.</span><span class="nx">td</span> <span class="o">=</span> <span class="nx">Y</span><span class="p">.</span><span class="nx">Node</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">t</span><span class="p">);</span>
+
+        <span class="c1">// save a reference to the record</span>
+        <span class="nx">o</span><span class="p">.</span><span class="nx">td</span><span class="p">.</span><span class="nx">record</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">record</span><span class="p">;</span>
+
+        <span class="nx">o</span><span class="p">.</span><span class="nx">td</span><span class="p">.</span><span class="nx">tr</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">tr</span><span class="p">;</span>
+
+        <span class="nx">a</span><span class="p">.</span><span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">td</span><span class="p">);</span>
+     <span class="p">},</span>
+
+
+     <span class="nx">_onModifyLabelClick</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        
+        <span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">,</span>
+        <span class="nx">tr</span> <span class="o">=</span> <span class="nx">td</span><span class="p">.</span><span class="nx">tr</span><span class="p">,</span>
+        <span class="nx">record</span> <span class="o">=</span> <span class="nx">td</span><span class="p">.</span><span class="nx">record</span><span class="p">,</span>
+        <span class="nx">dt</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">),</span>
+        <span class="nx">rs</span> <span class="o">=</span> <span class="nx">dt</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;recordset&#39;</span><span class="p">);</span>
+        
+        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;mode&#39;</span><span class="p">,</span><span class="s1">&#39;modify&#39;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;modifyRecord&#39;</span><span class="p">,</span> <span class="nx">record</span><span class="p">);</span>
+        
+        <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">record</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">);</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;panel&#39;</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;field&#39;</span><span class="p">).</span><span class="nx">setValue</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        
+        <span class="k">this</span><span class="p">.</span><span class="nx">showPanel</span><span class="p">();</span>
+     <span class="p">},</span>
+
+     <span class="cm">/**</span>
+<span class="cm">   * Send the remove event</span>
+<span class="cm">   */</span>
+     <span class="nx">_onRemoveLabelClick</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;confirmDelete&#39;</span><span class="p">)</span> <span class="o">||</span> <span class="nx">confirm</span><span class="p">(</span><span class="nx">MSGS</span><span class="p">.</span><span class="nx">confirmDeletion</span><span class="p">))</span> <span class="p">{</span>
+             <span class="k">this</span><span class="p">.</span><span class="nx">fire</span><span class="p">(</span><span class="s2">&quot;deleteRow&quot;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+         <span class="p">}</span>
+
+     <span class="p">},</span>
+
+     <span class="cm">/**</span>
+<span class="cm">   * Remove the Record from the record set</span>
+<span class="cm">   */</span>
+     <span class="nx">confirmDelete</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+
+         <span class="kd">var</span> <span class="nx">td</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">,</span>
+         <span class="nx">tr</span> <span class="o">=</span> <span class="nx">td</span><span class="p">.</span><span class="nx">tr</span><span class="p">,</span>
+         <span class="nx">record</span> <span class="o">=</span> <span class="nx">td</span><span class="p">.</span><span class="nx">record</span><span class="p">,</span>
+         <span class="nx">dt</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">),</span>
+         <span class="nx">rs</span> <span class="o">=</span> <span class="nx">dt</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;recordset&#39;</span><span class="p">);</span>
+
+         <span class="c1">// Remove the record from the recordset</span>
+         <span class="nx">rs</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">rs</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">record</span><span class="p">));</span>
+
+         <span class="c1">// Remove the row from the table</span>
+         <span class="nx">tr</span><span class="p">.</span><span class="nx">remove</span><span class="p">();</span>
+     <span class="p">},</span>
+     
+     
+     <span class="nx">addRow</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        
+        <span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">),</span>
+            <span class="nx">rs</span> <span class="o">=</span> <span class="nx">dt</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;recordset&#39;</span><span class="p">);</span>
+        
+        <span class="nx">rs</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+        
+        <span class="c1">// Only add tr ?</span>
+        <span class="nx">dt</span><span class="p">.</span><span class="nx">_uiSetRecordset</span><span class="p">(</span> <span class="nx">rs</span> <span class="p">);</span>
+     <span class="p">},</span>
+     
+     <span class="nx">modifyRow</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">details</span><span class="p">)</span> <span class="p">{</span>
+       
+          <span class="kd">var</span> <span class="nx">dt</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;host&#39;</span><span class="p">),</span>
+              <span class="nx">rs</span> <span class="o">=</span> <span class="nx">dt</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;recordset&#39;</span><span class="p">);</span>
+
+         <span class="kd">var</span> <span class="nx">record</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;modifyRecord&#39;</span><span class="p">);</span>
+
+         <span class="nx">record</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+         
+         <span class="c1">// TODO: update tr only ?</span>
+         <span class="nx">dt</span><span class="p">.</span><span class="nx">_uiSetRecordset</span><span class="p">(</span> <span class="nx">rs</span> <span class="p">);</span>
+     <span class="p">}</span>
+
+
+ <span class="p">});</span>
+
+ <span class="nx">Y</span><span class="p">.</span><span class="nx">namespace</span><span class="p">(</span><span class="s2">&quot;Plugin&quot;</span><span class="p">).</span><span class="nx">DatatableInputex</span> <span class="o">=</span> <span class="nx">DatatableInputex</span><span class="p">;</span>
+
+
+
+<span class="p">},</span>
+<span class="s1">&#39;3.0.0a&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">requires</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;inputex-group&#39;</span><span class="p">,</span> <span class="s1">&#39;inputex-panel&#39;</span><span class="p">,</span> <span class="s1">&#39;datatable&#39;</span><span class="p">]</span>
+<span class="p">});</span>
+</pre></div>
+
+                    </div>
+			</div>
+		</div>
+		<div class="yui-b">
+            <div class="nav">
+
+                    <div id="moduleList" class="module">
+                        <h4>Modules</h4>
+                        <ul class="content">
+                                <li class=""><a href="module_inputex.html" title="inputex">inputex</a></li>
+                                <li class=""><a href="module_inputex-autocomplete.html" title="inputex-autocomplete">inputex-autocomplete</a></li>
+                                <li class=""><a href="module_inputex-base.html" title="inputex-base">inputex-base</a></li>
+                                <li class=""><a href="module_inputex-button.html" title="inputex-button">inputex-button</a></li>
+                                <li class=""><a href="module_inputex-checkbox.html" title="inputex-checkbox">inputex-checkbox</a></li>
+                                <li class=""><a href="module_inputex-choice.html" title="inputex-choice">inputex-choice</a></li>
+                                <li class=""><a href="module_inputex-color.html" title="inputex-color">inputex-color</a></li>
+                                <li class=""><a href="module_inputex-colorpickerfield.html" title="inputex-colorpickerfield">inputex-colorpickerfield</a></li>
+                                <li class="selected"><a href="module_inputex-combine.html" title="inputex-combine">inputex-combine</a></li>
+                                <li class=""><a href="module_inputex-datatable.html" title="inputex-datatable">inputex-datatable</a></li>
+                                <li class=""><a href="module_inputex-date.html" title="inputex-date">inputex-date</a></li>
+                                <li class=""><a href="module_inputex-datepicker.html" title="inputex-datepicker">inputex-datepicker</a></li>
+                                <li class=""><a href="module_inputex-dateselectmonth.html" title="inputex-dateselectmonth">inputex-dateselectmonth</a></li>
+                                <li class=""><a href="module_inputex-datesplit.html" title="inputex-datesplit">inputex-datesplit</a></li>
+                                <li class=""><a href="module_inputex-datetime.html" title="inputex-datetime">inputex-datetime</a></li>
+                                <li class=""><a href="module_inputex-dsselect.html" title="inputex-dsselect">inputex-dsselect</a></li>
+                                <li class=""><a href="module_inputex-dtinplaceedit.html" title="inputex-dtinplaceedit">inputex-dtinplaceedit</a></li>
+                                <li class=""><a href="module_inputex-email.html" title="inputex-email">inputex-email</a></li>
+                                <li class=""><a href="module_inputex-field.html" title="inputex-field">inputex-field</a></li>
+                                <li class=""><a href="module_inputex-file.html" title="inputex-file">inputex-file</a></li>
+                                <li class=""><a href="module_inputex-form.html" title="inputex-form">inputex-form</a></li>
+                                <li class=""><a href="module_inputex-group.html" title="inputex-group">inputex-group</a></li>
+                                <li class=""><a href="module_inputex-hidden.html" title="inputex-hidden">inputex-hidden</a></li>
+                                <li class=""><a href="module_inputex-inplaceedit.html" title="inputex-inplaceedit">inputex-inplaceedit</a></li>
+                                <li class=""><a href="module_inputex-integer.html" title="inputex-integer">inputex-integer</a></li>
+                                <li class=""><a href="module_inputex-ipv4.html" title="inputex-ipv4">inputex-ipv4</a></li>
+                                <li class=""><a href="module_inputex-jsonschema.html" title="inputex-jsonschema">inputex-jsonschema</a></li>
+                                <li class=""><a href="module_inputex-jsontreeinspector.html" title="inputex-jsontreeinspector">inputex-jsontreeinspector</a></li>
+                                <li class=""><a href="module_inputex-keyopvalue.html" title="inputex-keyopvalue">inputex-keyopvalue</a></li>
+                                <li class=""><a href="module_inputex-keyvalue.html" title="inputex-keyvalue">inputex-keyvalue</a></li>
+                                <li class=""><a href="module_inputex-lens.html" title="inputex-lens">inputex-lens</a></li>
+                                <li class=""><a href="module_inputex-list.html" title="inputex-list">inputex-list</a></li>
+                                <li class=""><a href="module_inputex-map.html" title="inputex-map">inputex-map</a></li>
+                                <li class=""><a href="module_inputex-menu.html" title="inputex-menu">inputex-menu</a></li>
+                                <li class=""><a href="module_inputex-multiautocomplete.html" title="inputex-multiautocomplete">inputex-multiautocomplete</a></li>
+                                <li class=""><a href="module_inputex-multiautocompletecustom.html" title="inputex-multiautocompletecustom">inputex-multiautocompletecustom</a></li>
+                                <li class=""><a href="module_inputex-multiselect.html" title="inputex-multiselect">inputex-multiselect</a></li>
+                                <li class=""><a href="module_inputex-multiselectcustom.html" title="inputex-multiselectcustom">inputex-multiselectcustom</a></li>
+                                <li class=""><a href="module_inputex-number.html" title="inputex-number">inputex-number</a></li>
+                                <li class=""><a href="module_inputex-object.html" title="inputex-object">inputex-object</a></li>
+                                <li class=""><a href="module_inputex-password.html" title="inputex-password">inputex-password</a></li>
+                                <li class=""><a href="module_inputex-pie-listcustom.html" title="inputex-pie-listcustom">inputex-pie-listcustom</a></li>
+                                <li class=""><a href="module_inputex-radio.html" title="inputex-radio">inputex-radio</a></li>
+                                <li class=""><a href="module_inputex-ratingstars.html" title="inputex-ratingstars">inputex-ratingstars</a></li>
+                                <li class=""><a href="module_inputex-ratingstarsform.html" title="inputex-ratingstarsform">inputex-ratingstarsform</a></li>
+                                <li class=""><a href="module_inputex-rpc.html" title="inputex-rpc">inputex-rpc</a></li>
+                                <li class=""><a href="module_inputex-rte.html" title="inputex-rte">inputex-rte</a></li>
+                                <li class=""><a href="module_inputex-select.html" title="inputex-select">inputex-select</a></li>
+                                <li class=""><a href="module_inputex-selecttwice.html" title="inputex-selecttwice">inputex-selecttwice</a></li>
+                                <li class=""><a href="module_inputex-serialize.html" title="inputex-serialize">inputex-serialize</a></li>
+                                <li class=""><a href="module_inputex-slider.html" title="inputex-slider">inputex-slider</a></li>
+                                <li class=""><a href="module_inputex-smdtester.html" title="inputex-smdtester">inputex-smdtester</a></li>
+                                <li class=""><a href="module_inputex-string.html" title="inputex-string">inputex-string</a></li>
+                                <li class=""><a href="module_inputex-stringavailability.html" title="inputex-stringavailability">inputex-stringavailability</a></li>
+                                <li class=""><a href="module_inputex-textarea.html" title="inputex-textarea">inputex-textarea</a></li>
+                                <li class=""><a href="module_inputex-textautotag.html" title="inputex-textautotag">inputex-textautotag</a></li>
+                                <li class=""><a href="module_inputex-time.html" title="inputex-time">inputex-time</a></li>
+                                <li class=""><a href="module_inputex-timeinterval.html" title="inputex-timeinterval">inputex-timeinterval</a></li>
+                                <li class=""><a href="module_inputex-timerange.html" title="inputex-timerange">inputex-timerange</a></li>
+                                <li class=""><a href="module_inputex-tinymce.html" title="inputex-tinymce">inputex-tinymce</a></li>
+                                <li class=""><a href="module_inputex-tree.html" title="inputex-tree">inputex-tree</a></li>
+                                <li class=""><a href="module_inputex-type.html" title="inputex-type">inputex-type</a></li>
+                                <li class=""><a href="module_inputex-uneditable.html" title="inputex-uneditable">inputex-uneditable</a></li>
+                                <li class=""><a href="module_inputex-uppercase.html" title="inputex-uppercase">inputex-uppercase</a></li>
+                                <li class=""><a href="module_inputex-url.html" title="inputex-url">inputex-url</a></li>
+                                <li class=""><a href="module_inputex-vector.html" title="inputex-vector">inputex-vector</a></li>
+                                <li class=""><a href="module_inputex-visus.html" title="inputex-visus">inputex-visus</a></li>
+                                <li class=""><a href="module_panel.html" title="panel">panel</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="classList" class="module">
+                        <h4>Classes</h4>
+                        <ul class="content">
+                                <li class=""><a href="inputEx.CombineField.html" title="inputEx.CombineField">inputEx.CombineField</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="fileList" class="module">
+                        <h4>Files</h4>
+                        <ul class="content">        
+                                <li class="selected"><a href="inputex-datatable.js.html" title="inputex-datatable.js">inputex-datatable.js</a></li>
+                        </ul>
+                    </div>
+
+
+
+
+
+            </div>
+		</div>
+	</div>
+	<div id="ft">
+        <hr />
+        Copyright &copy; 2011 Eric Abouaf All rights reserved.
+	</div>
+</div>
+<script type="text/javascript">
+
+    var ALL_YUI_PROPS = [{"url": "inputEx.CombineField.html#method__afterAddTheadTrNode", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "_afterAddTheadTrNode"}, {"url": "inputEx.CombineField.html#method__afterCreateTbodyTrNode", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "_afterCreateTbodyTrNode"}, {"url": "inputEx.CombineField.html#method_appendSeparator", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "appendSeparator"}, {"url": "inputEx.CombineField.html#method_confirmDelete", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "confirmDelete"}, {"url": "inputEx.CombineField.html#method_fieldsToColumndefs", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "fieldsToColumndefs"}, {"url": "inputEx.CombineField.html#method_fieldToColumndef", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "fieldToColumndef"}, {"url": "inputEx.CombineField.html#method_getValue", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "getValue"}, {"url": "inputEx.CombineField.html#property_NAME", "access": "", "host": "inputEx.CombineField", "type": "property", "name": "NAME"}, {"url": "inputEx.CombineField.html#property_NS", "access": "", "host": "inputEx.CombineField", "type": "property", "name": "NS"}, {"url": "inputEx.CombineField.html#method__onRemoveLabelClick", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "_onRemoveLabelClick"}, {"url": "inputEx.CombineField.html#method_renderField", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "renderField"}, {"url": "inputEx.CombineField.html#method_renderFields", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "renderFields"}, {"url": "inputEx.CombineField.html#method_setOptions", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "setOptions"}, {"url": "inputEx.CombineField.html#method_setValue", "access": "", "host": "inputEx.CombineField", "type": "method", "name": "setValue"}];
+</script>
+</body>
+</html>
