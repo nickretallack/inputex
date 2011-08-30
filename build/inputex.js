@@ -1278,7 +1278,7 @@ inputEx.Field.prototype = {
    	this.divEl.appendChild(this.fieldContainer);
       
 	   // Insert a float breaker
-	   this.divEl.appendChild( inputEx.cn('div',null, {clear: 'both'}," ") );
+	   this.divEl.appendChild( inputEx.cn('div', {className: "inputEx-clear-div"}, null, " ") );
 	
 	},
 	
@@ -2350,7 +2350,7 @@ lang.extend(inputEx.Form, inputEx.Group, {
       }
       
       // useful for link buttons re-styling (float required on <a>'s ... )
-      this.buttonDiv.appendChild(inputEx.cn('div',null,{clear:'both'}));
+      this.buttonDiv.appendChild( inputEx.cn('div', {className: "inputEx-clear-div"}, null, " ") );
       
       this.form.appendChild(this.buttonDiv);
    },
