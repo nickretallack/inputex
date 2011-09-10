@@ -9,7 +9,15 @@
 Release Notes:
 ==============
 
-next version, 3.0.0a :
-----------------------
+3.0.1:  not released yet
+------
+
+  * bug fixes:
+    * color field in a form
+    * form ajax callbacks params
+
+
+3.0.0a : August, 19th 2011
+--------
 
   * initial YUI 3.x port

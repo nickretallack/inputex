@@ -247,16 +247,16 @@ Y.extend(inputEx.Form, inputEx.Group, {
           postData = "value="+window.encodeURIComponent(Y.JSON.stringify(this.getValue()));
         }
       }
-      var onSuccess = function(o) {
+      var onSuccess = function() {
             if(this.options.ajax.showMask) { this.hideMask(); }
             if( lang.isFunction(this.options.ajax.callback.success) ) {
-               this.options.ajax.callback.success.call(this.options.ajax.callback.scope,o);
+               this.options.ajax.callback.success.apply(this.options.ajax.callback.scope,arguments);
             }
       };
-      var onFailure = function(o) {
+      var onFailure = function() {
             if(this.options.ajax.showMask) { this.hideMask(); }
             if( lang.isFunction(this.options.ajax.callback.failure) ) {
-               this.options.ajax.callback.failure.call(this.options.ajax.callback.scope,o);
+               this.options.ajax.callback.failure.apply(this.options.ajax.callback.scope,arguments);
             }
       };
       Y.io(uri,{

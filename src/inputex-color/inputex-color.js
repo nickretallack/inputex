@@ -67,6 +67,9 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
 	   // DON'T stop the event since it will be used to close other overlays...
 	   //e.stopPropagation();
 	   
+	   // PreventDefault to prevent submit in a form
+	   e.preventDefault();
+	   
       // palette may not have been rendered yet
       this.renderPalette();
       
