@@ -15,6 +15,7 @@ Release Notes:
   * bug fixes:
     * color field in a form
     * form ajax callbacks params
+    * form ajax headers
 
 
 3.0.0a : August, 19th 2011
