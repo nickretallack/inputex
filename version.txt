@@ -16,6 +16,7 @@ Release Notes:
     * color field in a form
     * form ajax callbacks params
     * form ajax headers
+    * inputEx.use : using "type" as default module name
 
 
 3.0.0a : August, 19th 2011

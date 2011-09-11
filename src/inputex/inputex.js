@@ -189,7 +189,7 @@ YUI.add("inputex", function(Y){
         
         var type = inputexDef.type || 'string',
             module = YUI_config.groups.inputex.modulesByType[type],
-            modules = [module];
+            modules = [module || type];
         
         // recursive for group,forms,list,combine, etc...
         if(inputexDef.fields) {
