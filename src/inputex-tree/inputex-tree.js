@@ -34,7 +34,7 @@ Y.extend(inputEx.TreeField, inputEx.ListField, {
 	      
 	   var el = new inputEx.TreeField({parentNode: this, elementType: this.options.elementType, value: value });
 	   var subFieldEl = el.getEl();
-	   Y.one(subFieldEl).setStyle('margin-left', '4px');
+	   Y.one(subFieldEl).setStyle('marginLeft', '4px');
 	   Y.one(subFieldEl).setStyle('float', 'left');
 	   newDiv.appendChild( subFieldEl );
 	      
@@ -65,7 +65,7 @@ Y.extend(inputEx.TreeField, inputEx.ListField, {
 	   this.subField = inputEx(this.options.elementType,this);
 	   
 	   var subFieldEl = this.subField.getEl();
-	   Y.one(subFieldEl).setStyle('margin-left', '4px');
+	   Y.one(subFieldEl).setStyle('marginLeft', '4px');
 	   Y.one(subFieldEl).setStyle('float', 'left');
 	   this.fieldContainer.appendChild( subFieldEl );
 	      
