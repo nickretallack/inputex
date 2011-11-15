@@ -4451,7 +4451,7 @@ YAHOO.lang.extend(inputEx.EmailField, inputEx.StringField, {
 					});
 					
 					// Display the message with the link
-					this.options.messages.invalid = inputEx.messages.didYouMeant+"<a href='' id='"+linkId+"' style='color:blue;'>@"+groupDomain[0]+" ?</a>";
+					this.options.messages.invalid = inputEx.messages.didYouMean+"<a href='' id='"+linkId+"' style='color:blue;'>@"+groupDomain[0]+" ?</a>";
 					
 					// field isnt valid
 					return false;
@@ -4493,7 +4493,7 @@ YAHOO.lang.extend(inputEx.EmailField, inputEx.StringField, {
 // Specific message for the email field
 inputEx.messages.invalidEmail = "Invalid email, ex: sample@test.com";
 
-inputEx.messages.didYouMeant = "Did you mean : ";
+inputEx.messages.didYouMean = "Did you mean : ";
 
 // Register this class as "email" type
 inputEx.registerType("email", inputEx.EmailField, []);

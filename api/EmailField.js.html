@@ -148,7 +148,7 @@
 					<span class="p">});</span>
 					
 					<span class="c1">// Display the message with the link</span>
-					<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">invalid</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">didYouMeant</span><span class="o">+</span><span class="s2">&quot;&lt;a href=&#39;&#39; id=&#39;&quot;</span><span class="o">+</span><span class="nx">linkId</span><span class="o">+</span><span class="s2">&quot;&#39; style=&#39;color:blue;&#39;&gt;@&quot;</span><span class="o">+</span><span class="nx">groupDomain</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot; ?&lt;/a&gt;&quot;</span><span class="p">;</span>
+					<span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">invalid</span> <span class="o">=</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">didYouMean</span><span class="o">+</span><span class="s2">&quot;&lt;a href=&#39;&#39; id=&#39;&quot;</span><span class="o">+</span><span class="nx">linkId</span><span class="o">+</span><span class="s2">&quot;&#39; style=&#39;color:blue;&#39;&gt;@&quot;</span><span class="o">+</span><span class="nx">groupDomain</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s2">&quot; ?&lt;/a&gt;&quot;</span><span class="p">;</span>
 					
 					<span class="c1">// field isnt valid</span>
 					<span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
@@ -190,7 +190,7 @@
 <span class="c1">// Specific message for the email field</span>
 <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">invalidEmail</span> <span class="o">=</span> <span class="s2">&quot;Invalid email, ex: sample@test.com&quot;</span><span class="p">;</span>
 
-<span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">didYouMeant</span> <span class="o">=</span> <span class="s2">&quot;Did you mean : &quot;</span><span class="p">;</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">didYouMean</span> <span class="o">=</span> <span class="s2">&quot;Did you mean : &quot;</span><span class="p">;</span>
 
 <span class="c1">// Register this class as &quot;email&quot; type</span>
 <span class="nx">inputEx</span><span class="p">.</span><span class="nx">registerType</span><span class="p">(</span><span class="s2">&quot;email&quot;</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">EmailField</span><span class="p">,</span> <span class="p">[]);</span>
