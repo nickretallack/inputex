@@ -8,6 +8,7 @@
    msgs.valid = "Eingabe korrekt";
    
    msgs.invalidEmail = "Email nicht korrekt; ej: ihr.name@beispiel.de";
+   msgs.didYouMean = 'Meinten Sie: ';
    msgs.selectColor = "Farbe wählen:";
    msgs.invalidPassword = ["Das Passwort muss aus mindestens "," Zeichen bestehen"];
    msgs.invalidPasswordConfirmation = "Das Passwort stimmt nicht überein!";
@@ -41,7 +42,6 @@
    msgs.stringTooLong = ["Dieses Feld ist begrenzt auf "," Zeichen (Buchstaben oder Zahlen)"];
    msgs.ajaxWait = "lade...";
 	msgs.menuTypeInvite = 'Auswählen';
-	msgs.didYouMean = 'Meinten Sie: ';
 	msgs.emptyInPlaceEdit = '(Bearbeiten)';
    
    // List

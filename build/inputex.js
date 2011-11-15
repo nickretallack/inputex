@@ -4374,9 +4374,12 @@ YAHOO.lang.extend(inputEx.EmailField, inputEx.StringField, {
       // Overwrite options
       this.options.messages.invalid = inputEx.messages.invalidEmail;
       this.options.regexp = inputEx.regexps.email;
-		
-		// Validate the domain name ( false by default )
-		this.options.fixdomain = (YAHOO.lang.isUndefined(options.fixdomain) ? false : !!options.fixdomain);
+      
+      // Validate the domain name ( false by default )
+      this.options.fixdomain = (YAHOO.lang.isUndefined(options.fixdomain) ? false : !!options.fixdomain);
+      
+      // Validate email is not disposable
+      this.options.disallowDisposable = (YAHOO.lang.isUndefined(options.disallowDisposable) ? false : !!options.disallowDisposable);
    },
    
 	validateDomain : function() {
@@ -4431,9 +4434,9 @@ YAHOO.lang.extend(inputEx.EmailField, inputEx.StringField, {
 			for(j=0, groupDomainLength = groupDomain.length; j<groupDomainLength; j++ ) {
 
 				// First domain of array
-				if( groupDomain.indexOf(domain) === 0) {
+				if (inputEx.indexOf(domain, groupDomain) === 0) {
 					
-					// If domain matches the first value of the array it means its valid
+					// If domain matches the first value of the array it means it's valid
 					if ( domain === groupDomain[j] ) {
 						return true;
 					}
@@ -4462,17 +4465,42 @@ YAHOO.lang.extend(inputEx.EmailField, inputEx.StringField, {
 		// field is valid
 		return true;
 	},
-	
+   
+   validateNotDisposable: function () {
+      
+      var email = this.getValue(),
+          result,
+          disposableRegex = /@yopmail|@jetable\.org|@mail-temporaire\.fr|@ephemail\.com|@trashmail\.net|@kasmail\.com|@spamgourmet\.com|@tempomail\.com|@guerrillamail\.com|@mytempemail\.com|@saynotospams\.com|@tempemail\.co\.za|@mailinator\.com|@mytrashmail\.com|@mailexpire\.com|@maileater\.com|@spambox\.us|@guerrillamail\.com|@10minutemail\.com|@dontreg\.com|@filzmail\.com|@spamfree24\.org|@brefmail\.com|@0-mail\.com|@link2mail\.com|@DodgeIt\.com|@dontreg\.com|@e4ward\.com|@gishpuppy|@guerrillamail\.com|@haltospam\.com|@kasmail\.com|@mailexpire\.com|@mailEater\.com|@mailinator\.com|@mailNull\.com|@mytrashMail|@nobulk\.com|@nospamfor\.us|@PookMail\.com|@shortmail\.net|@sneakemail\.com|@spam\.la|@spambob\.com|@spambox\.us|@spamDay\.com|@spamh0le\.com|@spaml\.com|@tempInbox\.com|@temporaryinbox\.com|@willhackforfood\.biz|@willSelfdestruct\.com|@wuzupmail\.net|@cool\.fr\.nf|@jetable\.fr\.nf|@nospam\.ze\.tc|@nomail\.xl\.cx|@mega\.zik\.dj|@speed\.1s\.fr|@courriel\.fr\.nf|@moncourrier\.fr\.nf|@monemail\.fr\.nf|@monmail\.fr\.nf|@Get2mail\.fr|@fakemail\.fr/i;
+      
+      result = !email.match(disposableRegex);
+      
+      // change invalid message
+      if (!result) {
+         this.options.messages.invalid = inputEx.messages.disposableEmail + email.match(disposableRegex)[0];
+      }
+      
+      return result;
+   },
+   
    validate: function() {
-	   var result = inputEx.EmailField.superclass.validate.call(this);
-		
-		// If we want the domain validation
-		if ( !!this.options.fixdomain ) {
-	   	this.options.messages.invalid = inputEx.messages.invalidEmail;
-			return result && this.validateDomain();
-		} else {
-			return result;
-		}
+      
+      var result = inputEx.EmailField.superclass.validate.call(this);
+      
+      // reset message (useful if changed in previous validation process)
+      this.options.messages.invalid = inputEx.messages.invalidEmail;
+      
+      // if we want the domain validation
+      if (result && !!this.options.fixdomain) {
+         result = this.validateDomain();
+      }
+      
+      // if we want to disallow disposable e-mail addresses
+      if (result && !!this.options.disallowDisposable) {
+         result = this.validateNotDisposable();
+      }
+      
+      return result;
+      
    },
 
    /**
@@ -4493,7 +4521,9 @@ YAHOO.lang.extend(inputEx.EmailField, inputEx.StringField, {
 // Specific message for the email field
 inputEx.messages.invalidEmail = "Invalid email, ex: sample@test.com";
 
-inputEx.messages.didYouMean = "Did you mean : ";
+inputEx.messages.didYouMean = "Did you mean: ";
+
+inputEx.messages.disposableEmail = "Disposable email address not allowed with domain: ";
 
 // Register this class as "email" type
 inputEx.registerType("email", inputEx.EmailField, []);

@@ -12,7 +12,11 @@ Release Notes:
 next version :
 --------------
 
+- Field enhancements:
+    * EmailField: add disallowDisposable option to exclude emails with disposable domains (@trashmail.net, a.s.o)
+    
  - Fixes :
+    * EmailField: fix fixdomain option on IE
     * RadioField: fix remaining bug when radio default value option is equal to
                   allowAny field default value
     * DateSplitField: day and month are displayed on two chars (with "0" prefix if necessary)
