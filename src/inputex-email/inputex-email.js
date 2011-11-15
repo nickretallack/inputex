@@ -100,11 +100,11 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
 					
 					// Add a listener to the link to allow the user to replace his bad email by clicking the link
 					Y.on("click",  function(e){
-						e.handle();
+						e.halt();
 						var reg = new RegExp(domain, "i");
 						var fixedVal = val.replace(reg, groupDomain[0]);
 						that.setValue( fixedVal );
-					},this);
+					}, '#' + linkId, this);
 					
 					// Display the message with the link
 					this.options.messages.invalid = inputEx.messages.didYouMean+"<a href='' id='"+linkId+"' style='color:blue;'>@"+groupDomain[0]+" ?</a>";
