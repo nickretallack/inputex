@@ -35,7 +35,7 @@ YUI.add("lang/inputex_en", function(Y) {
 
         // email
         invalidEmail: "Invalid email, ex: sample@test.com",
-        didYouMeant: "Did you mean : ",
+        didYouMean: "Did you mean : ",
 
         // inplaceedit
         emptyInPlaceEdit: "(click to edit)",

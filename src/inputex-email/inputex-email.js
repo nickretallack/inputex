@@ -103,7 +103,7 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
 					},this);
 					
 					// Display the message with the link
-					this.options.messages.invalid = inputEx.messages.didYouMeant+"<a href='' id='"+linkId+"' style='color:blue;'>@"+groupDomain[0]+" ?</a>";
+					this.options.messages.invalid = inputEx.messages.didYouMean+"<a href='' id='"+linkId+"' style='color:blue;'>@"+groupDomain[0]+" ?</a>";
 					
 					// field isnt valid
 					return false;

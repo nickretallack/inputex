@@ -44,7 +44,7 @@ YUI.add("lang/inputex_de", function(Y) {
    stringTooLong: ["Dieses Feld ist begrenzt auf "," Zeichen (Buchstaben oder Zahlen)"],
    ajaxWait: "lade...",
 	menuTypeInvite: 'Auswählen',
-	didYouMeant: 'Meinten Sie: ',
+	didYouMean: 'Meinten Sie: ',
 	emptyInPlaceEdit: '(Bearbeiten)',
    
    // List
