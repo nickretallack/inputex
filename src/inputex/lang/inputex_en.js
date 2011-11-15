@@ -35,8 +35,9 @@ YUI.add("lang/inputex_en", function(Y) {
 
         // email
         invalidEmail: "Invalid email, ex: sample@test.com",
-        didYouMean: "Did you mean : ",
-
+        didYouMean: "Did you mean: ",
+        disposableEmail: "Disposable email address not allowed with domain: ",
+        
         // inplaceedit
         emptyInPlaceEdit: "(click to edit)",
         cancelEditor: "cancel",

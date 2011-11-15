@@ -44,26 +44,53 @@
 <!-- Example 2 -->
 <div class='exampleDiv'>
 
-	<h2>Basic EmailField creation (with MX correction)</h2>
-	
-	<p>Use the following code to create a basic inputEx EmailField (with MX correction)</p>
+   <h2>EmailField with MX correction</h2>
+   
+   <p>Use the following code to help people fix typos in MX:</p>
 
-	<div class='demoContainer' id='container2'></div>
+   <div class='demoContainer' id='container2'></div>
 
-	<div class='codeContainer'>
-		<pre class="brush:js">
-					var field = new Y.inputEx.EmailField({parentEl: 'container2', showMsg:true, fixdomain:true, description:"Try abc@gmail.co, abc@yaoo.fr..." });
+   <div class='codeContainer'>
+      <pre class="brush:js">
+               var field = new Y.inputEx.EmailField({parentEl: 'container2', showMsg:true, fixdomain:true, description:"Try abc@gmail.co, abc@yaoo.fr..." });
 
-					var logDiv = inputEx.cn('div', null, null, "Log :");
-					Y.one('#container2').appendChild(logDiv);
-					field.on('updated', function(val) {
-						logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
-						logDiv.appendChild(inputEx.cn('br'));
-					});
-		</pre>
-	</div>
+               var logDiv = inputEx.cn('div', null, null, "Log :");
+               Y.one('#container2').appendChild(logDiv);
+               field.on('updated', function(val) {
+                  logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+                  logDiv.appendChild(inputEx.cn('br'));
+               });
+      </pre>
+   </div>
 
 </div>
+
+<!-- Example 3 -->
+<div class='exampleDiv'>
+
+   <h2>EmailField rejecting disposable email addresses</h2>
+   
+   <p>Use the following code to reject disposable domains in your registration forms:</p>
+
+   <div class='demoContainer' id='container3'></div>
+
+   <div class='codeContainer'>
+      <pre class="brush:js">
+               var field = new Y.inputEx.EmailField({parentEl: 'container3', showMsg:true, disallowDisposable:true, description:"Try abc@trashmail.net, abc@tempomail.com..." });
+
+               var logDiv = inputEx.cn('div', null, null, "Log :");
+               Y.one('#container3').appendChild(logDiv);
+               field.on('updated', function(val) {
+                  logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+                  logDiv.appendChild(inputEx.cn('br'));
+               });
+      </pre>
+   </div>
+
+</div>
+
+
+
 
 <script src="../src/loader.js"  type='text/javascript'></script>
 <script src="../res/inputex-examples.js"  type='text/javascript'></script>
