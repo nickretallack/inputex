@@ -79,9 +79,9 @@ YAHOO.lang.extend(inputEx.EmailField, inputEx.StringField, {
 			for(j=0, groupDomainLength = groupDomain.length; j<groupDomainLength; j++ ) {
 
 				// First domain of array
-				if( groupDomain.indexOf(domain) === 0) {
+				if (inputEx.indexOf(domain, groupDomain) === 0) {
 					
-					// If domain matches the first value of the array it means its valid
+					// If domain matches the first value of the array it means it's valid
 					if ( domain === groupDomain[j] ) {
 						return true;
 					}
