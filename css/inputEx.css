@@ -132,7 +132,8 @@ div.inputEx-Group fieldset.inputEx-Collapsed legend:hover div.inputEx-Group-coll
    background-position: -8px -397px;
 }
 
-div.inputEx-Group fieldset.inputEx-Collapsed div.inputEx-fieldWrapper {
+div.inputEx-Group fieldset.inputEx-Collapsed div.inputEx-fieldWrapper,
+div.inputEx-Group fieldset.inputEx-Collapsed div.inputEx-CombineField {
    display: none;
 }
 
