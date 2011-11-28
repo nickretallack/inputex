@@ -6,7 +6,10 @@ YUI.add("inputex-menu",function(Y){
    var inputEx     = Y.inputEx,
        lang        = Y.Lang;
        substitute  = Y.substitute,
-       create      = Y.Node.create;
+       create      = Y.Node.create,
+
+       VERTICAL    = 'vertical',
+       HORIZONTAL  = 'horizontal';
 
 /**
  * Create a menu field
@@ -15,12 +18,11 @@ YUI.add("inputex-menu",function(Y){
  * @constructor
  * @param {Object} options Added options:
  * <ul>
- *    <li>typeInvite    : text to display when no selection made</li>
- *    <li>menuItems     : contains descriptions of menu items</li>
- *    <li>menuTrigger   : (optional) event to trigger menu show, 
- *                        ex: mouseover, (default: click)</li>
- *    <li>menuPosition  : (optional) array of corners positions (syntax : ['menu popup corner','invite div corner'])</li> TODO
- *    <li>menuConfig    : (optional) object used as a config for the MenuNav node plugin
+ *    <li>typeInvite      : text to display when no selection made</li>
+ *    <li>menuItems       : contains descriptions of menu items</li>
+ *    <li>menuTrigger     : (optional, default: 'click') event to trigger menu show, ex: mouseover</li>
+ *    <li>menuOrientation : (optional, default: 'vertical') menu orientation, ex: 'horizontal'</li>
+ *    <li>menuConfig      : (optional) object used as a config for the MenuNav node plugin</li>
  * </ul>
  */
 inputEx.MenuField = function(options) {
@@ -38,9 +40,7 @@ inputEx.MenuField.MENU_TEMPLATE =
 
 inputEx.MenuField.MENU_ITEM_TEMPLATE = 
    '<li class="{item_class}">' +
-      '<a href="{href}" class="{label_class}">' +
-         '{label}' +
-      '</a>' +
+      '<a href="{href}" class="{label_class}">{label}</a>' +
       '{submenu}' +
    '</li>';
 
@@ -58,7 +58,7 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       // New options
       this.options.typeInvite = options.typeInvite || inputEx.messages.menuTypeInvite;
       this.options.menuTrigger = options.menuTrigger || "click";
-      this.options.menuPosition = options.menuPosition || ["tl","tr"];
+      this.options.menuOrientation = options.menuOrientation || VERTICAL
       this.options.menuItems = options.menuItems;
 
       // Configuration options for the generated YUI MenuNav node plugin
@@ -84,7 +84,6 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       // Keep corresponding text for each value selectable in the menu
       //   -> will be used to display selection after click
       this._textFromValue = {};
-
 
       var renderMenuRecurs = function (id, conf, level) {
          if (level>5) throw new Error("MenuField : too much recursion, menuItems property should be 5 level deep at most.");
@@ -136,13 +135,19 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
          submenu: {itemdata: this.options.menuItems}
       }], 0));
 
-      this._menu.plug(Y.Plugin.NodeMenuNav, this.options.menuConfig);
-      this._menu.appendTo(container);
+      if (this.options.menuOrientation === HORIZONTAL) {
+         this._menu.addClass('yui3-menu-horizontal  yui3-menubuttonnav');
+      }
 
       // Retrieve the first label for later use
-      if (! this._rootItemLabel) {
-         this._rootItemLabel = this._menu.one('.yui3-menu-label');
+      this._rootItemLabel = this._menu.one('.yui3-menu-label');
+      if (this.options.menuOrientation === HORIZONTAL) {
+         this._rootItemLabel.setContent('<em>'+this.options.typeInvite+'</em>');
+         this._rootItemLabel = this._rootItemLabel.one('em');
       }
+
+      this._menu.plug(Y.Plugin.NodeMenuNav, this.options.menuConfig);
+      this._menu.appendTo(container);
    },
 
    initEvents: function() {
