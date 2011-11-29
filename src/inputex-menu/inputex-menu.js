@@ -117,6 +117,7 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
                templateData.label_class = 'yui3-menu-label';
                templateData.submenu     = renderMenuRecurs(item.value, item.submenu.itemdata, level+1);
             } else {
+               templateData.item_class = 'yui3-menuitem';
                that._textFromValue[item.value] = item.text;
             }
 
