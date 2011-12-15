@@ -52,43 +52,36 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
          visible:false,
          zIndex: this.options.zIndex
       });
-      this.oOverlay.render();
+      this.oOverlay.render(this.fieldContainer);
       
-      Y.one( Y.DOM._getWin().document ).on('click', function(e) {
-         var n = e.target._node
-         if(n != this.button._node && n != this.colorEl) {
-            this.oOverlay.hide();
+      this.oOverlay.on('visibleChange', function (e) {
+
+         if (e.newVal) { // show
+            // align
+            this.oOverlay.set("align", {node:this.button,  points:[Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL]});
+
+            // Activate outside event handler
+            this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {
+               this.oOverlay.hide();
+            }, this);
          }
-      },this );
+         else { // hide
+            this.outsideHandler.detach();
+         }
 
+      }, this);
    },
-   
-   
-	_toggleOverlay: function(e) {
-	   
-	   // DON'T stop the event since it will be used to close other overlays...
-	   //e.stopPropagation();
-	   
-	   // PreventDefault to prevent submit in a form
-	   e.preventDefault();
-	   
-      // palette may not have been rendered yet
-      this.renderPalette();
-      
-      if(this.oOverlay.get('visible')) {
-         this.oOverlay.hide();
-      }
-      else {
-         
-         // Show menu
-         this.oOverlay.show();
 
-         // align
-         this.oOverlay.set("align", {node:this.button,  points:[Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL]});
-      }
-      
-	},
-   
+   _toggleOverlay: function(e) {
+       // PreventDefault to prevent submit in a form
+       e.preventDefault();
+
+       // palette may not have been rendered yet
+       this.renderPalette();
+
+       this.oOverlay[this.oOverlay.get('visible') ? 'hide' : 'show']();
+   },
+
 	/**
 	 * Render the color button and the colorpicker popup
 	 */
@@ -357,5 +350,5 @@ inputEx.ColorField.ensureHexa = function (color) {
 inputEx.registerType("color", inputEx.ColorField, []);
 	
 },'3.0.0a',{
-  requires: ['inputex-field','node-event-delegate','overlay']
+  requires: ['inputex-field','node-event-delegate','event-outside','overlay']
 });

@@ -108,7 +108,7 @@ YUI().use(function(Y) {
 						ix_provides: 'boolean'
 					},
 					'inputex-color': {
-						requires: ['inputex-field','node-event-delegate','overlay'],
+						requires: ['inputex-field','node-event-delegate','event-outside','overlay'],
 						skinnable: true,
 						ix_provides: 'color'
 					},

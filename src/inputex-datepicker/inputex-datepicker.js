@@ -48,7 +48,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
          zIndex: this.options.zIndex
       });
 
-      this.oOverlay.render();
+      this.oOverlay.render(this.fieldContainer);
 
       this.oOverlay.on('visibleChange', function (e) {
 
@@ -60,12 +60,9 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
             this.oOverlay.set("align", {node:this.button,  points:[Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL]});
 
             // Activate outside event handler
-            Y.later(0, this, function () {
-               this.outsideHandler = this.oOverlay.get('boundingBox').on('clickoutside', function (e) {
-                  e.halt(true);
-                  this.oOverlay.hide();
-               }, this);
-            });
+            this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {
+               this.oOverlay.hide();
+            }, this);
          }
          else { // hide
             this.calendar.hide();
@@ -162,6 +159,15 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
             this.calendar._clearSelection(true);
             this.calendar._renderSelectedDate(date);
          }
+      }
+   },
+
+   /**
+    * Call overlay when field is removed
+    */
+   close: function() {
+      if (this.oOverlay) {
+         this.oOverlay.hide();
       }
    },
 
