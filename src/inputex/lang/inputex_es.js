@@ -27,7 +27,7 @@ YUI.add("lang/inputex_es", function(Y) {
         yearTypeInvite: "Año",
         cancelEditor: "Cancelar",
         okEditor: "Aceptar",
-        defautCalendarOpts: {
+        defaultCalendarOpts: {
             navigator: {
                 strings: {
                     month: "Seleccione un mes",
