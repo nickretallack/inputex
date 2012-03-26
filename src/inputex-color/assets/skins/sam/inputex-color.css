@@ -55,7 +55,9 @@ div.inputEx-ColorField-button {
    padding:5px; 
    
    background-color: white;
-      border: 1px solid #AAAAAA;
-        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
+   border: 1px solid #AAAAAA;
+   -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
+   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
+   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 

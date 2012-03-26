@@ -30,9 +30,9 @@ ol#qunit-tests li{
 	list-style-position:inside;
 }
 ol#qunit-tests li ol{
-	box-shadow: inset 0px 2px 13px #999;
 	-moz-box-shadow: inset 0px 2px 13px #999;
 	-webkit-box-shadow: inset 0px 2px 13px #999;
+	box-shadow: inset 0px 2px 13px #999;
 	margin-top:0.5em;
 	margin-left:0;
 	padding:0.5em;

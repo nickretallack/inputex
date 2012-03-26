@@ -20,6 +20,7 @@ Release Notes:
     * form ajax callbacks params
     * form ajax headers
     * inputEx.use : using "type" as default module name
+    * css fixes to use unprefixed "border-radius" and "box-shadow" rules (firefox 13)
 
 
 3.0.0a : August, 19th 2011
