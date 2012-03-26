@@ -20,6 +20,7 @@ p.advanced {
 	background-position: 10px 10px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
+	border-radius: 10px;
 }
 
 
@@ -29,8 +30,9 @@ p.advanced {
 	background-color: #D5E9F6; 
 	margin: 5px; 
 	padding: 5px 10px; 
-	-webkit-border-radius: 10px; 
 	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px; 
+	border-radius: 10px;
 }
 #index a { text-decoration: none; }
 #index ul,ol { padding-left: 20px; }

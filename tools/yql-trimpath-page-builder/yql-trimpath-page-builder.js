@@ -763,7 +763,7 @@
             css += "#hd { padding: 5px; background-color: #CCCCCC; color: white; }\n"+
                    "#hd h1 { font-size: 32pt; }\n"+
                    "#bd { border:1px solid #CCCCCC; }\n"+
-                   "#ft { padding: 10px 10px 0; background-color: #CCCCCC; color: black; -moz-border-radius-bottomleft: 10px; -moz-border-radius-bottomright:10px;}\n";
+                   "#ft { padding: 10px 10px 0; background-color: #CCCCCC; color: black; -moz-border-radius: 0 0 10px 10px; -webkit-border-radius: 0 0 10px 10px; border-radius: 0 0 10px 10px; }\n";
 
             var code = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"' + "\n" + ' "http://www.w3.org/TR/html4/strict.dtd">' + "\n";
             code += '<html>' + "\n";
