@@ -30,7 +30,7 @@ lang.extend(inputEx.DatePickerField, inputEx.DateField, {
       this.options.readonly = YAHOO.lang.isUndefined(options.readonly) ? true : options.readonly;
       
       // Added options
-      this.options.calendar = options.calendar || inputEx.messages.defautCalendarOpts;
+      this.options.calendar = options.calendar || inputEx.messages.defaultCalendarOpts;
    },
    
    /**
@@ -218,7 +218,7 @@ lang.extend(inputEx.DatePickerField, inputEx.DateField, {
    
 });
 
-inputEx.messages.defautCalendarOpts = { navigator: true };
+inputEx.messages.defaultCalendarOpts = { navigator: true };
 
 // Register this class as "datepicker" type
 inputEx.registerType("datepicker", inputEx.DatePickerField);

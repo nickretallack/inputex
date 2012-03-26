@@ -79,7 +79,7 @@
       <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">readonly</span> <span class="o">=</span> <span class="nx">YAHOO</span><span class="p">.</span><span class="nx">lang</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">readonly</span><span class="p">)</span> <span class="o">?</span> <span class="kc">true</span> <span class="o">:</span> <span class="nx">options</span><span class="p">.</span><span class="nx">readonly</span><span class="p">;</span>
       
       <span class="c1">// Added options</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">calendar</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">calendar</span> <span class="o">||</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">defautCalendarOpts</span><span class="p">;</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">.</span><span class="nx">calendar</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">calendar</span> <span class="o">||</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">defaultCalendarOpts</span><span class="p">;</span>
    <span class="p">},</span>
    
    <span class="cm">/**</span>
@@ -263,7 +263,7 @@
    
 <span class="p">});</span>
 
-<span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">defautCalendarOpts</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">navigator</span><span class="o">:</span> <span class="kc">true</span> <span class="p">};</span>
+<span class="nx">inputEx</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">defaultCalendarOpts</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">navigator</span><span class="o">:</span> <span class="kc">true</span> <span class="p">};</span>
 
 <span class="c1">// Register this class as &quot;datepicker&quot; type</span>
 <span class="nx">inputEx</span><span class="p">.</span><span class="nx">registerType</span><span class="p">(</span><span class="s2">&quot;datepicker&quot;</span><span class="p">,</span> <span class="nx">inputEx</span><span class="p">.</span><span class="nx">DatePickerField</span><span class="p">);</span>

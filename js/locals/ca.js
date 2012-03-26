@@ -25,7 +25,7 @@
   msgs.yearTypeInvite = "Any";
   msgs.cancelEditor = "Cancel·la";
   msgs.okEditor = "D'acord";
-  msgs.defautCalendarOpts = {
+  msgs.defaultCalendarOpts = {
      navigator: {
        strings : {
            month: "Seleccioni un mes",
