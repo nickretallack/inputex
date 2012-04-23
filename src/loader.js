@@ -278,8 +278,13 @@ YUI().use(function(Y) {
 		}
 	};
 
-	if(typeof YUI_config === 'undefined') { YUI_config = {groups: {}}; }
-	Y.mix(YUI_config.groups, CONFIG.groups);
+   if (typeof YUI_config === 'undefined') {
+      YUI_config = {groups: {}};
+   }
+   if (typeof YUI_config.groups === 'undefined') {
+      YUI_config.groups = {};
+   }
+   Y.mix(YUI_config.groups, CONFIG.groups);
 
    // Loop through all modules
    var modules = YUI_config.groups.inputex.modules,
