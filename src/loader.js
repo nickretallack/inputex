@@ -132,6 +132,10 @@ YUI().use(function(Y) {
 						requires: ['inputex-combine'],
 						ix_provides: 'dateselectmonth'
 					},
+					'inputex-imagecropper': {
+						requires: ['inputex-field'],
+						ix_provides: 'imagecropper'
+					},
 					'inputex-integer': {
 						requires: ['inputex-string'],
 						ix_provides: 'integer'

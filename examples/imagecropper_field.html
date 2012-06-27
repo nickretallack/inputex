@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>inputEx - ImageCropperField Usage</title>
+   <link rel="stylesheet" href="http://yui.yahooapis.com/combo?3.5.1/build/cssreset/reset-min.css&3.5.1/build/cssfonts/fonts-min.css">
+   <link rel="stylesheet" href="../res/demo.css">
+   <link rel="stylesheet" href="../res/syntaxhighlighter/styles/shCore.css">
+   <link rel="stylesheet" href="../res/syntaxhighlighter/styles/shThemeDefault.css">
+   <script src="http://yui.yahooapis.com/3.5.1/build/yui/yui.js"></script>
+   <script src="../res/syntaxhighlighter/scripts/shCore.js"  type='text/javascript'></script>
+   <script src="../res/syntaxhighlighter/scripts/shBrushJScript.js"  type='text/javascript'></script>
+   <script src="../src/loader.js"  type='text/javascript'></script>
+   <script src="../res/inputex3-examples.js" type='text/javascript'></script>
+</head>
+
+<body>
+
+   <h1>inputEx - ImageCropperField example</h1>
+
+   <div id="demo1" class="exampleDiv">
+      <h2>Basic example</h2>
+      <div class="demoContainer"></div>
+      <pre class="codeContainer"></pre>
+   </div>
+
+   <script id="demo1-source">
+      YUI(YUI_config).use('inputex-imagecropper', 'json-stringify', function (Y) {
+
+        var container = Y.one('#demo1 .demoContainer');
+
+        var cropper = new Y.inputEx.ImageCropperField({
+          url: 'http://farm6.staticflickr.com/5222/5878223444_b03cb4e1ac_z.jpg',
+          ratio: [3,2],
+          value: {origin: [175,49], size: [441,294]},
+          minSize: [30,20],
+          padding: 30,
+          parentEl: container
+        });
+ 
+        cropper.on('updated', function (value) {
+          container.append(Y.Node.create('<pre>Updated : '+Y.JSON.stringify(value)+'</pre>'));
+        });
+
+      });
+   </script>
+
+ </body>
+</html>
+
