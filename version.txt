@@ -13,6 +13,8 @@ Release Notes:
 ------
   * features:
     * email field: add option to exclude emails with disposable domains (@trashmail.net, a.s.o)
+    * new image cropper field
+    * new sortable lists with drag and drop
     
   * bug fixes:
     * email field: fix several bugs with fixdomain option
