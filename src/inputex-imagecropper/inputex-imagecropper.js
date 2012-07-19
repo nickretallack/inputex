@@ -74,15 +74,7 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
          return;
       }
 
-      var cleanValue = Y.clone(value),
-          minSize    = this.options.minSize;
-
-      cleanValue.size = [Math.min(this.imageSize[0], Math.max(minSize[0], cleanValue.size[0])),
-                         Math.min(this.imageSize[1], Math.max(minSize[1], cleanValue.size[1]))];
-
-      if (this.options.ratio) {
-         cleanValue = this._constrain(cleanValue);
-      }
+      var cleanValue = this._constrain(Y.clone(value));
 
       var padding = this.options.padding,
           n = padding + cleanValue.origin[1],
@@ -118,11 +110,16 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
       e.halt(true);
       this.dragging    = (e.target === this.mask.border);
       this.imageOrigin = this.el.getXY();
-      this.firstOrigin = [Math.max(0, e.pageX - this.imageOrigin[0]),
-                          Math.max(0, e.pageY - this.imageOrigin[1])];
+
+      var clicOrigin = [e.pageX - this.imageOrigin[0],
+                        e.pageY - this.imageOrigin[1]];
 
       if (!this.dragging) {
-         this.setValue({origin: this.firstOrigin, size: [1,1]}, false);
+         this.firstOrigin = null;
+         this.setValue({origin: clicOrigin, size: [1,1]}, false);
+      }
+      else {
+         this.firstOrigin = clicOrigin;
       }
 
       Y.one(document).on('mousemove', this._onMouseMove, this);
@@ -135,6 +132,7 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
    },
 
    _onMouseMove: function (e) {
+      e.halt(true); // prevent text selection
       var imageOrigin = this.imageOrigin,
           oldOrigin = this.firstOrigin,
           relX = Math.min(this.imageSize[0], Math.max(0, e.pageX - imageOrigin[0])),
@@ -146,12 +144,12 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
 
       if (this.dragging) {
          newSize = this.value.size;
-         newOrigin[0] = Math.max(0, Math.min(this.imageSize[0] - newSize[0], this.value.origin[0] + dX));
-         newOrigin[1] = Math.max(0, Math.min(this.imageSize[1] - newSize[1], this.value.origin[1] + dY));
+         newOrigin[0] = this.value.origin[0] + dX;
+         newOrigin[1] = this.value.origin[1] + dY;
          this.firstOrigin = [relX, relY];
       }
       else {
-         newSize = [Math.abs(dX), Math.abs(dY)]
+         newSize = [Math.abs(dX), Math.abs(dY)];
          newOrigin[0] = (dX < 0 ? relX : oldOrigin[0]);
          newOrigin[1] = (dY < 0 ? relY : oldOrigin[1]);
       }
@@ -161,26 +159,47 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
 
    _constrain: function (value) {
       var r = this.options.ratio,
+          i = this.imageSize,
+          m = this.options.minSize,
           o = value.origin,
           s = value.size;
 
-      // Adjust size to match the ratio
-      if ((s[0] / s[1]) < r) {
-         s[1] = Math.round(s[0] / r);
+      // Match minSize if needed
+      if (m) {
+         s = [Math.min(i[0], Math.max(m[0], s[0])),
+              Math.min(i[1], Math.max(m[1], s[1]))];
       }
-      else {
-         s[0] = Math.round(s[1] * r);
+
+      // Adjust size to match the ratio
+      if (r) {
+        if ((s[0] / s[1]) < r) {
+           s[1] = Math.round(s[0] / r);
+        }
+        else {
+           s[0] = Math.round(s[1] * r);
+        }
       }
 
       // Adjust origin in case the size changed
-      if (!this.dragging && this.firstOrigin) {
-         if (o[0] < this.firstOrigin[0]) {
-            o[0] = this.firstOrigin[0] - s[0];
+      if (!this.dragging) {
+         if (!this.firstOrigin) {
+            // firstOrigin refers to the original clic position
+            this.firstOrigin = [Math.max(0, Math.min(i[0], o[0])),
+                                Math.max(0, Math.min(i[1], o[1]))];
          }
-         if (o[1] < this.firstOrigin[1]) {
-            o[1] = this.firstOrigin[1] - s[1];
+         else {
+            if (o[0] < this.firstOrigin[0]) {
+               o[0] = this.firstOrigin[0] - s[0];
+            }
+            if (o[1] < this.firstOrigin[1]) {
+               o[1] = this.firstOrigin[1] - s[1];
+            }
          }
       }
+
+      // The real crop area origin isn't always equal to firstOrigin
+      o[0] = Math.max(0, Math.min(i[0] - s[0], o[0]));
+      o[1] = Math.max(0, Math.min(i[1] - s[1], o[1]));
 
       return {origin: o, size: s};
    }
