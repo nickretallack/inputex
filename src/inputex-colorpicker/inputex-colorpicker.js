@@ -61,12 +61,12 @@ Y.extend(inputEx.ColorPickerField, inputEx.Field, {
 	   this.wrapEl.appendChild(this.el);
 
 		// Create a Menu instance to house the ColorPicker instance
-		this.menuElId = Dom.generateId();
+		this.menuElId = Y.guid();
 		var oColorPickerMenu = new YAHOO.widget.Menu(this.menuElId);
 		this.oColorPickerMenu = oColorPickerMenu;
 
 		// Create a Button instance of type "menu"
-		this.labelElId = Dom.generateId();
+		this.labelElId = Y.guid();
 		var oButton = new YAHOO.widget.Button({ 
 			type: "menu", 
 			className: "inputEx-ColorPicker-Button",
@@ -78,7 +78,7 @@ Y.extend(inputEx.ColorPickerField, inputEx.Field, {
 		var that = this;
 		oButton.on("appendTo", function () {
 			oColorPickerMenu.setBody(" ");
-			oColorPickerMenu.body.id = Dom.generateId();
+			oColorPickerMenu.body.id = Y.guid();
 			Dom.addClass(oColorPickerMenu.body, that.options.colorPickerOptions.showcontrols ? "inputEx-ColorPicker-Container" : "inputEx-ColorPicker-Container-nocontrols");
 			oColorPickerMenu.render(this.get('container'));
 		});
