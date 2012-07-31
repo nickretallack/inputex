@@ -260,6 +260,9 @@ YUI().use(function(Y) {
 					'inputex-stringavailability' : {
 							requires : ["inputex-string","event-key","io","json-parse"],
 							skinnable: true
+					},
+					'inputex-linkedcombo' : {
+							requires: ["inputex-select","inputex-choice"]
 					}
 					/*,
 					// Piercus widgets
