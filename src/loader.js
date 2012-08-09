@@ -40,7 +40,8 @@ YUI().use(function(Y) {
 						requires: ['inputex', 'panel','inputex-base']
 					},
 					'inputex-datatable': {
-						requires: ['inputex-group', 'inputex-panel','datatable']
+						requires: ['inputex-group', 'inputex-panel','datatable'],
+						skinnable: true
 					},
 					'inputex-ddlist': {
 						requires: ['inputex-field', 'array-extras', 'sortable', 'substitute']
@@ -263,7 +264,9 @@ YUI().use(function(Y) {
 					},
 					'inputex-linkedcombo' : {
 							requires: ["inputex-select","inputex-choice"]
-					}
+					},
+					
+
 					/*,
 					// Piercus widgets
 					'inputex-pie-listcustom': {
