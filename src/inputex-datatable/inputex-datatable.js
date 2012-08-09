@@ -16,7 +16,7 @@ YUI.add("inputex-datatable", function (Y) {
   /**
    * Provide add/modify/delete functionalities on a dataTable as a plugin
    * @class inputEx.Plugin.InputExDataTable
-   * @extends Y.Plugin.Base
+   * @extends Plugin.Base
    * @constructor
    * @param {Object} configuration object
    */
