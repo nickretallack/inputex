@@ -2,8 +2,8 @@ YUI.add("inputex-datatable", function (Y) {
 /**
  * The inputex-datatable module provides the inputEx.Plugin.InputExDataTable class which is a plugin.
  * @namespace inputEx.Plugin.InputExDataTable
- * @module inputex-datatable2
- * @since 3.0.0
+ * @module inputex-datatable
+ * @since 3.1.0
  */
 
     var inputEx = Y.inputEx,

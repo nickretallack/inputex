@@ -9,8 +9,9 @@
 Release Notes:
 ==============
 
-3.0.1 :  not released yet
+3.1.0 :  not released yet
 -------
+
   * features:
     * email field: add option to exclude emails with disposable domains (@trashmail.net, a.s.o)
     * new image cropper field
@@ -33,7 +34,9 @@ Release Notes:
 
   * deleted item(s)
     * inputex-colorpicker
+    * inputex-ddlist
 
+  * yuidoc update
 
 
 3.0.0a : August, 19th 2011

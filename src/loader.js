@@ -43,12 +43,6 @@ YUI().use(function(Y) {
 						requires: ['inputex-group', 'inputex-panel','datatable'],
 						skinnable: true
 					},
-					'inputex-ddlist': {
-						requires: ['inputex-field', 'array-extras', 'sortable', 'substitute']
-					},
-					/*'inputex-dtinplaceedit': {
-						requires: ['inputex-datatable']
-					},*/
 					'inputex-jsontreeinspector': {
 						requires: ['inputex'],
 						skinnable: true
@@ -264,20 +258,7 @@ YUI().use(function(Y) {
 					},
 					'inputex-linkedcombo' : {
 							requires: ["inputex-select","inputex-choice"]
-					},
-					
-
-					/*,
-					// Piercus widgets
-					'inputex-pie-listcustom': {
-						requires: ['sortable','yui2-json']
-					},
-					'inputex-pie-multiselect':{
-						requires: ['inputex-multiselect', 'inputex-pie-listcustom']
-					},
-					'inputex-pie-multiautocomplete':{
-						requires: ['inputex-multiautocomplete', 'inputex-pie-listcustom']
-					}*/
+					}
 				}
 			}
 		}

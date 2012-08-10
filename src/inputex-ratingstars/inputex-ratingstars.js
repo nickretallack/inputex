@@ -21,7 +21,7 @@ YUI.add("inputex-ratingstars",function(Y){
  *  <li><b>nStars</b>: <i>integer</i> number of stars (default : 5) </li>
  *  <li><b>disabled</b>: disable voting  </li>
  *  <li><b>message</b>: <i>string</i> C-like with % convention string for display Message (default 'Rating: % (% votes cast)') </li>
- *  *  <li><b>disableMessage</b>: <i>string</i> String to show when mouse pass hover the stars and stars are disabled</li>
+ *  <li><b>disableMessage</b>: <i>string</i> String to show when mouse pass hover the stars and stars are disabled</li>
  * </ul>
  */
 inputEx.RatingStars = function(options) {
