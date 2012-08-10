@@ -2,10 +2,6 @@
  * The inputEx Library
  * @module inputex
  */
-/*global inputEx: false, YAHOO: false */
-
-
-
 YUI.add("inputex", function(Y){
   var lang = Y.Lang;
   /**
@@ -40,16 +36,16 @@ YUI.add("inputex", function(Y){
      // Instanciate the field
      inputInstance = new fieldClass(fieldOptions);
 
-	  // If the parentField argument is provided
-	  if(parentField) {
-		  inputInstance.setParentField(parentField);
-	  }
+     // If the parentField argument is provided
+     if(parentField) {
+        inputInstance.setParentField(parentField);
+     }
 
      // Add the flatten attribute if present in the params
      /*if(fieldOptions.flatten) {
         inputInstance._flatten = true;
      }*/
-	    
+     
      return inputInstance;
   };
   
@@ -92,7 +88,7 @@ YUI.add("inputex", function(Y){
      /**
       * Associative array containing field messages => using intl module from YUI
       */
-	  messages: null,
+     messages: null,
      
      /**
       * inputEx widget namespace
@@ -133,8 +129,8 @@ YUI.add("inputex", function(Y){
       * @static
       * @param {String} type String used as the inputEx field type
       * @param {Class} fieldClass Field Class to register as this type
-	   * @param {Array} groupOptions List of inputEx field description for each option
-	   * @param {Boolean} dontInherit Won't inherhit the parent field properties if set to true
+      * @param {Array} groupOptions List of inputEx field description for each option
+      * @param {Boolean} dontInherit Won't inherhit the parent field properties if set to true
       */
      registerType: function(type, fieldClass, groupOptions, dontInherit) {
         if(!lang.isString(type)) {
@@ -228,7 +224,7 @@ YUI.add("inputex", function(Y){
             modules = modules.concat( this.getModulesFromDefinition(def));
         },this);
         modules.push(cb);
-		  Y.use.apply( Y, modules);
+        Y.use.apply( Y, modules);
      },
      
      /**
@@ -240,7 +236,7 @@ YUI.add("inputex", function(Y){
       */
      sn: function(el,domAttributes,styleAttributes){
         if(!el) { return; }
-		  var i;
+        var i;
         if(domAttributes){
            for(i in domAttributes){
               var domAttribute = domAttributes[i];
@@ -318,19 +314,18 @@ YUI.add("inputex", function(Y){
       * @param {Function} (optional) fn A function to define another way to test inclusion of el than === (returns a boolean)
       * @return {number} Element position, -1 if not found
       */
-	  indexOf: function(el,arr,fn) {
-	
-		  var l=arr.length,i;
-		
-		  if ( !lang.isFunction(fn) ) { fn = function(elt,arrElt) { return elt === arrElt; }; }
-		
-		  for ( i = 0 ;i < l ; i++ ) {
-			  if ( fn.call({}, el, arr[i]) ) { return i; }
-		  }
-		
-		  return -1;
-	  },
-
+     indexOf: function(el,arr,fn) {
+   
+        var l=arr.length,i;
+      
+        if ( !lang.isFunction(fn) ) { fn = function(elt,arrElt) { return elt === arrElt; }; }
+      
+        for ( i = 0 ;i < l ; i++ ) {
+           if ( fn.call({}, el, arr[i]) ) { return i; }
+        }
+      
+        return -1;
+     },
      
      /**
       * Create a new array without the null or undefined values
@@ -347,36 +342,37 @@ YUI.add("inputex", function(Y){
         }
         return n;
      },
-
-	  /**
-	   * Return a string without accent (only on lowercase)
-	   * @static
-	   * @param {String} str The string
-	   * @return {String} String without accent
-	   */
-	  removeAccents: function (str) {
-	     return str.replace(/[àáâãäå]/g,"a").
-					    replace(/[èéêë]/g,"e").
-					    replace(/[ìíîï]/g,"i").
-					    replace(/[òóôõö]/g,"o").
-					    replace(/[ùúûü]/g,"u").
-					    replace(/[ýÿ]/g,"y").
-					    replace(/[ñ]/g,"n").
-					    replace(/[ç]/g,"c").
-					    replace(/[œ]/g,"oe").
-					    replace(/[æ]/g,"ae");
-	  },
-	
-	  /**
-	   * String replaced by some html entities
-	   * @static
-	   * @param {String} str The string
-	   * @return {String} String replaced by some html entities
-	   */
-	  htmlEntities: function (str) {
-	     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-	  }, 
+     
+     /**
+      * Return a string without accent (only on lowercase)
+      * @static
+      * @param {String} str The string
+      * @return {String} String without accent
+      */
+     removeAccents: function (str) {
+        return str.replace(/[àáâãäå]/g,"a").
+                   replace(/[èéêë]/g,"e").
+                   replace(/[ìíîï]/g,"i").
+                   replace(/[òóôõö]/g,"o").
+                   replace(/[ùúûü]/g,"u").
+                   replace(/[ýÿ]/g,"y").
+                   replace(/[ñ]/g,"n").
+                   replace(/[ç]/g,"c").
+                   replace(/[œ]/g,"oe").
+                   replace(/[æ]/g,"ae");
+     },
+     
+     /**
+      * String replaced by some html entities
+      * @static
+      * @param {String} str The string
+      * @return {String} String replaced by some html entities
+      */
+     htmlEntities: function (str) {
+        return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+     }
   });
+  
 }, '3.0.0a',{
   requires: ['pluginhost-base', 'pluginhost-config', 'base-pluginhost', 'node-pluginhost', 'plugin', 'node','intl']
 });

@@ -3,8 +3,9 @@
  */
 YUI.add("inputex-group", function(Y){
    
-   var lang = Y.Lang;//, Dom = YAHOO.util.Dom, Event = YAHOO.util.Event;
-   var inputEx = Y.inputEx;
+   var lang = Y.Lang,
+       inputEx = Y.inputEx;
+       
 /**
  * Handle a group of fields
  * @class inputEx.Group
