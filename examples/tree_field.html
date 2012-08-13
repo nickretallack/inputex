@@ -25,14 +25,27 @@
 	<div class='demoContainer' id='container1'></div>
 	<div class='codeContainer'>
 		<pre class="brush:js">
-			new Y.inputEx.TreeField({parentEl: 'container1', 
-				elementType: {
-						type: 'inplaceedit', 
-						formatValue: function(val) { return "<img src='"+val+"favicon.ico'>"+val; }, 
-						editorField: {type: 'string' },
-						value: 'Edit me'
-				}
-			});
+
+// Enter an email like : www.yahoo.com
+// -----------------------------------
+
+new Y.inputEx.TreeField({
+    parentEl: 'container1',
+    elementType: {
+        type: 'inplaceedit',
+        visu: {
+            visuType: "func",	
+            func: function (val) {
+                var url = "http://" + val + "/favicon.ico";
+                return '<img src="' + url + '">' + val;
+            }
+        },
+        editorField: {
+            type: 'string'
+        },
+        value: 'Edit me'
+    }
+});
 		</pre>
 	</div>
 </div>
