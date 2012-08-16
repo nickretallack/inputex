@@ -80,14 +80,10 @@ YUI.add("inputex-tinymce", function (Y) {
 
             this.editor = new tinymce.Editor(this.id, this.options.opts);
 
-            // Adds an observer to the onInit event using the render method
-            this.editorReady = false;
-            var that = this;
-            this.editor.onInit.add(function (ed) {
-                that.editorReady = true;
+            // this place the render phase of the component after
+            Y.later(0,this,function(){
+                this.editor.render();
             });
-
-            this.editor.render();
         },
 
         /**
@@ -97,8 +93,10 @@ YUI.add("inputex-tinymce", function (Y) {
          */
         setValue: function (value, sendUpdatedEvt) {
 
-            if (this.editorReady) {
-                this.editor.setContent(value, {
+            var editor = tinymce.get(this.id);
+
+             if (editor && editor.initialized) {
+                editor.setContent(value, {
                     format: 'raw'
                 });
             } else {
@@ -120,8 +118,21 @@ YUI.add("inputex-tinymce", function (Y) {
          * @return {String} the html string
          */
         getValue: function () {
-            if (this.editorReady) {
-                return this.editor.getContent();
+
+            var editor = tinymce.get(this.id);
+
+            if (editor && editor.initialized) {
+                return editor.getContent();
+            } else {
+                return null;
+            }
+        },
+        getText: function () {
+
+            var editor = tinymce.get(this.id);
+
+            if (editor && editor.initialized) {
+                return editor.getContent({format : "raw"});
             } else {
                 return null;
             }

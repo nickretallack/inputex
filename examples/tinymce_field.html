@@ -21,11 +21,8 @@
 <div class='exampleDiv'>
 	<h2>Important Notice :</h2>
 	<p>TinyMCE is not included in the inputEx distribution ! <br />
-		Download it on <a href="http://tinymce.moxiecode.com/">http://tinymce.moxiecode.com/</a> (tested with version 3.3.7) and install it in lib/tiny_mce</p>
+		Download it on <a href="http://tinymce.moxiecode.com/">http://tinymce.moxiecode.com/</a> (tested with version 3.5.6) and install it in lib/tiny_mce</p>
 </div>
-
-
-
 
 <!-- Example 1 -->
 <div class='exampleDiv'>
@@ -60,6 +57,11 @@
 			Y.one(button2).on('click' ,function() { 
 				alert(htmlField.getValue());
 			});
+			var button3 = inputEx.cn('button', null, null, "GetText");
+			div.appendChild(button3);
+			Y.one(button3).on('click' ,function() { 
+				alert(htmlField.getText());
+			});
 		</pre>
 	</div>
 </div>
@@ -90,13 +92,11 @@
 			var field4 = new Y.inputEx.TinyMCEField({
 			  parentEl: 'container4', 
 			  name: 'rteField4',
-			  
 			  opts: {
-      		mode : "textareas",
-      		//language : "fr",
-      		height: "400",
-      		width: "400"
-      	}
+      			mode : "textareas",
+      			height: "400",
+      			width: "400"
+  				}
 			});
 			field4.setValue("Value set just after init...");
 		</pre>
