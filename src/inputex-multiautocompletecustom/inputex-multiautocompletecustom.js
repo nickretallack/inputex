@@ -32,18 +32,19 @@ YUI.add("inputex-multiautocompletecustom",function(Y){
 
   };
   Y.extend(inputEx.MultiAutoCompleteCustom, inputEx.MultiAutoComplete,{
+     
      /**
       * renderComponent : override the MultiAutocomplete renderComponent function
       * <ul>
       *   <li>Use the custom ddlist </li>
       *   <li>render a Button "Add" to add non-autocomplete elements to the list</li>
       * </ul>
+      * @method renderComponent
       */
-
     renderComponent: function() {
       inputEx.MultiAutoComplete.superclass.renderComponent.call(this);
       this.buttonAdd = inputEx.cn('div',{className: "addButton"},{},this.labelAddButton);
-      Y.on('click',this.onAdd, this.buttonAdd,this)
+      Y.on('click',this.onAdd, this.buttonAdd,this);
       this.el.parentNode.appendChild(this.buttonAdd);
 
       this.ddlist = new inputEx.widget.ListCustom({
@@ -58,15 +59,17 @@ YUI.add("inputex-multiautocompletecustom",function(Y){
          this.fireUpdatedEvt();
       }, this);
       this.ddlist.on("listReordered",this.fireUpdatedEvt, this);
-    },    
+    },
+    
     /**
-    * onAdd : fired when someone click on the field button
-    * <ul>
-    *   <li>Add an element to the list from the value of the field </li>
-    * </ul>
-    */
+     * onAdd : fired when someone click on the field button
+     * <ul>
+     *   <li>Add an element to the list from the value of the field </li>
+     * </ul>
+     * @method onAdd
+     */
     onAdd:function(e,a){
-      if (this.el.value == "") return;
+      if (this.el.value === "") return;
       if (this.el.value.split(",").length != 1){
         var values =  this.el.value.split(",");
         for( var i = 0 ; i< values.length; i++){
@@ -80,31 +83,39 @@ YUI.add("inputex-multiautocompletecustom",function(Y){
       this.hiddenEl.value = this.stringifyValue();
       this.fireUpdatedEvt();
     },
+    
+    /**
+     * @method clear
+     */
     clear: function(){
       this.lastElemValue = "";
       this.el.value = "";
       this.setValue([]);
     },
-      /**
-    * onChange : Override the onChange of MultiAutoocmplete to fix a bug with the blurEvent in InputEx 0.5.0
-    * <ul>
-    *   <li>Add an element to the list from the value of the field </li>
-    * </ul>
-    */
+    
+    /**
+     * Override the onChange of MultiAutoocmplete to fix a bug with the blurEvent in InputEx 0.5.0
+     * <ul>
+     *   <li>Add an element to the list from the value of the field </li>
+     * </ul>
+     * @method onChange
+     */
     onChange: function(e) {
       this.setClassFromState();
       // Clear the field when no value 
       if (this.lastElemValue != this.el.value) this.lastElemValue = this.el.value;
       this.hiddenEl.value = this.stringifyValue();
     },
-      /**
-    * onBlur : Override the onBlur of MultiAutocomplete to fix a bug with the blurEvent in InputEx 0.5.0
-    */   
+    
+    /**
+     * Override the onBlur of MultiAutocomplete to fix a bug with the blurEvent in InputEx 0.5.0
+     * @method onBlur
+     */   
     onBlur: function(e){
      //the onBlur from an old version of inputex took in the AutoComplete.js file
      if (this.lastElemValue != this.el.value && this.el.value != this.options.typeInvite) this.el.value = this.lastElemValue;
      
-     if(this.el.value == '' && this.options.typeInvite) {
+     if(this.el.value === '' && this.options.typeInvite) {
         Y.one(this.divEl).addClass( "inputEx-typeInvite");
         this.el.value = this.options.typeInvite;
      }  else if (e.target.ac){ 
@@ -113,7 +124,10 @@ YUI.add("inputex-multiautocompletecustom",function(Y){
        this.onAdd();
      }
     },
-     
+    
+    /**
+     * @method onKeyPress
+     */
     onKeyPress: function(e){
       if(e.keyCode == 13){
         e.halt();

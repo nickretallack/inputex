@@ -44,6 +44,7 @@ inputEx.DateTimeField = function(options) {
 Y.extend(inputEx.DateTimeField, inputEx.CombineField, {   
    /**
     * Concat the values to return a date
+    * @method getValue
     * @return {Date} The javascript Date object
     */
    getValue: function() {
@@ -60,6 +61,7 @@ Y.extend(inputEx.DateTimeField, inputEx.CombineField, {
 
    /**
     * Set the value of both subfields
+    * @method setValue
     * @param {Date} val Date to set
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
     */

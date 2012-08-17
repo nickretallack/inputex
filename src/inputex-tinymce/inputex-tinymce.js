@@ -47,6 +47,7 @@ YUI.add("inputex-tinymce", function (Y) {
 
         /**
          * Set the default values of the options
+         * @method setOptions
          * @param {Object} options Options object as passed to the constructor
          */
         setOptions: function (options) {
@@ -57,6 +58,7 @@ YUI.add("inputex-tinymce", function (Y) {
 
         /**
          * Render the field using the YUI Editor widget
+         * @method renderComponent
          */
         renderComponent: function () {
             if (!inputEx.TinyMCEfieldsNumber) {
@@ -88,6 +90,7 @@ YUI.add("inputex-tinymce", function (Y) {
 
         /**
          * Set the html content
+         * @method setValue
          * @param {String} value The html string
          * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
          */
@@ -115,6 +118,7 @@ YUI.add("inputex-tinymce", function (Y) {
 
         /**
          * Get the html string
+         * @method getValue
          * @return {String} the html string
          */
         getValue: function () {
@@ -127,6 +131,10 @@ YUI.add("inputex-tinymce", function (Y) {
                 return null;
             }
         },
+        
+        /**
+         * @method getText
+         */
         getText: function () {
 
             var editor = tinymce.get(this.id);

@@ -19,6 +19,7 @@ inputEx.SliderField = function(options) {
 Y.extend(inputEx.SliderField, inputEx.Field, {
    /**
     * Set the classname to 'inputEx-SliderField'
+    * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
    setOptions: function(options) {
@@ -34,6 +35,7 @@ Y.extend(inputEx.SliderField, inputEx.Field, {
       
    /**
     * render a slider widget
+    * @method renderComponent
     */
    renderComponent: function() {
             
@@ -57,6 +59,9 @@ Y.extend(inputEx.SliderField, inputEx.Field, {
          
    },
    
+   /**
+    * @method initEvents
+    */
    initEvents: function() {
       
       // Fire the updated event when we released the slider
@@ -73,6 +78,7 @@ Y.extend(inputEx.SliderField, inputEx.Field, {
    
    /**
     * Function to set the value
+    * @method setValue
     * @param {Any} value The new value
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
     */  
@@ -95,6 +101,7 @@ Y.extend(inputEx.SliderField, inputEx.Field, {
 
    /**
     * Get the value from the slider
+    * @method getValue
     * @return {int} The integer value
     */
    getValue: function() {

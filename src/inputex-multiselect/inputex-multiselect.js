@@ -24,6 +24,7 @@ YUI.add("inputex-multiselect", function (Y) {
 
         /**
          * Build the DDList
+         * @method renderComponent
          */
         renderComponent: function () {
 
@@ -37,6 +38,7 @@ YUI.add("inputex-multiselect", function (Y) {
 
         /**
          * Register the "change" event
+         * @method initEvents
          */
         initEvents: function () {
             Y.on("change", this.onAddNewItem, this.el, this);
@@ -46,6 +48,7 @@ YUI.add("inputex-multiselect", function (Y) {
 
         /**
          * Re-enable the option element when an item is removed by the user
+         * @method onItemRemoved
          */
         onItemRemoved: function (params) {
 
@@ -60,6 +63,7 @@ YUI.add("inputex-multiselect", function (Y) {
 
         /**
          * Add an item to the list when the select changed
+         * @method onAddNewItem
          */
         onAddNewItem: function () {
 
@@ -93,6 +97,7 @@ YUI.add("inputex-multiselect", function (Y) {
 
         /**
          * Set the value of the list
+         * @method setValue
          * @param {String} value The value to set
          * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
          */
@@ -143,6 +148,7 @@ YUI.add("inputex-multiselect", function (Y) {
 
         /**
          * Return the value
+         * @method getValue
          * @return {Any} an array of selected values
          */
         getValue: function () {

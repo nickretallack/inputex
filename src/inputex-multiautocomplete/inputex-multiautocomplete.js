@@ -23,6 +23,7 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
    
    /**
     * Build the DDList
+    * @method renderComponent
     */
    renderComponent: function() {
       inputEx.MultiAutoComplete.superclass.renderComponent.call(this);
@@ -37,6 +38,7 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
    
    /**
     * Additional options
+    * @method setOptions
     */
    setOptions: function(options) {
       inputEx.MultiAutoComplete.superclass.setOptions.call(this, options);
@@ -47,6 +49,7 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
 
    /**
     * Handle item selection in the autocompleter to add it to the list
+    * @method itemSelectHandler
     */
    itemSelectHandler: function(v) {
       v.halt();
@@ -64,6 +67,7 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
    
    /**
     * Set the value
+    * @method setValue
     * @param {String} value The value to set
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
     */
@@ -81,6 +85,7 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
    
    /**
     * Return the value
+    * @method getValue
     * @return {Any} an array of selected values
     */
    getValue: function() {
@@ -89,6 +94,7 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
    
    /**
     * Return (stateEmpty|stateRequired) if the value equals the typeInvite attribute
+    * @method getState
     */
    getState: function() { 
       var val = this.getValue();
@@ -103,6 +109,7 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
    
    /**
     * TODO : how to validate ?
+    * @method validate
     */
    validate: function() { 
       return true;
@@ -110,6 +117,7 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
    
    /**
     * onChange event handler
+    * @method onChange
     * @param {Event} e The original 'change' event
     */
     onChange: function(e) {
@@ -119,6 +127,9 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
        // erase inherited version, so don't trash previous value if input is empty
     },
     
+    /**
+     * @method onBlur
+     */
     onBlur : function(){
        this.el.value = '';
        if(this.el.value === '' && this.options.typeInvite) {
@@ -127,6 +138,9 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
        }
     },
     
+    /**
+     * @method stringifyValue
+     */
     stringifyValue: function(){
        return Y.JSON.stringify(this.getValue());
     }

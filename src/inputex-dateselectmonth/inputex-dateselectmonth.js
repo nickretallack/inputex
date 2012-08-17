@@ -55,6 +55,9 @@ YUI.add("inputex-dateselectmonth", function(Y) {
 	
 	Y.extend(inputEx.DateSelectMonthField, inputEx.CombineField, {
 		
+		/**
+		 * @method setValue
+		 */
 		setValue: function (value, sendUpdatedEvt) {
 			
 			var values, i;
@@ -74,6 +77,9 @@ YUI.add("inputex-dateselectmonth", function(Y) {
 			inputEx.DateSelectMonthField.superclass.setValue.call(this, values, sendUpdatedEvt);
 		},
 		
+		/**
+		 * @method getValue
+		 */
 		getValue: function () {
 			
 			var values;
@@ -92,6 +98,9 @@ YUI.add("inputex-dateselectmonth", function(Y) {
 			return new Date(parseInt(values[this.yearIndex], 10), values[this.monthIndex], parseInt(values[this.dayIndex], 10));
 		},
 		
+		/**
+		 * @method validate
+		 */
 		validate: function () {
 			
 			var val = this.getValue();
@@ -112,6 +121,9 @@ YUI.add("inputex-dateselectmonth", function(Y) {
 			return (val instanceof Date && lang.isNumber(val.getTime()));
 		},
 		
+		/**
+		 * @method isEmpty
+		 */
 		isEmpty: function () {
 			var values = inputEx.DateSelectMonthField.superclass.getValue.call(this);
 			return (values[this.monthIndex] === -1 && values[this.yearIndex] === "" &&  values[this.dayIndex] === "");

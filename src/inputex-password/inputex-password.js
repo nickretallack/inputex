@@ -31,12 +31,13 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
    
 	/**
 	 * Add the password regexp, strengthIndicator, capsLockWarning
+	 * @method setOptions
 	 * @param {Object} options Options object as passed to the constructor
 	 */
 	setOptions: function(options) {
 	   inputEx.PasswordField.superclass.setOptions.call(this, options);
 	   
-   	this.options.className = options.className ? options.className : "inputEx-Field inputEx-PasswordField";
+      this.options.className = options.className ? options.className : "inputEx-Field inputEx-PasswordField";
 	   
 	   // Add the password regexp (overridable)
 	   this.options.regexp = options.regexp || inputEx.regexps.password;
@@ -57,6 +58,7 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	
 	/**
 	 * Set the el type to 'password'
+	 * @method renderComponent
 	 */
 	renderComponent: function() {
 	   // IE doesn't want to set the "type" property to 'password' if the node has a parent
@@ -101,6 +103,7 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	   
 	/**
 	 * Set this field as the confirmation for the targeted password field:
+	 * @method setConfirmationField
 	 * @param {inputEx.PasswordField} passwordField The target password field
 	 */
 	setConfirmationField: function(passwordField) {
@@ -111,6 +114,7 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	
 	/**
 	 * The validation adds the confirmation password field support
+	 * @method validate
 	 */
 	validate: function() {
 	   if(this.options.confirmPasswordField) {
@@ -123,6 +127,7 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	
 	/**
 	 * Change the state string
+	 * @method getStateString
 	 */
 	getStateString: function(state) {
 	   if(state == inputEx.stateInvalid && this.options.minLength && this.el.value.length < this.options.minLength) {  
@@ -133,6 +138,7 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	
 	/**
 	 * Update the state of the confirmation field
+	 * @method onInput
 	 * @param {Event} e The original input event
 	 */
 	onInput: function(e) {
@@ -144,6 +150,7 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	
 	/**
 	 * callback to display the capsLockWarning
+	 * @method onKeyPress
 	 */
 	onKeyPress: function(e) {
 	   inputEx.PasswordField.superclass.onKeyPress.call(this,e);
@@ -177,9 +184,10 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	
 	/**
 	 * onkeyup callback to update the strength indicator
+	 * @method onKeyUp
 	 */
 	onKeyUp: function(e) {
- 	   inputEx.PasswordField.superclass.onKeyUp.call(this,e);
+      inputEx.PasswordField.superclass.onKeyUp.call(this,e);
        if(this.options.strengthIndicator) {
           lang.later( 0, this, this.updateStrengthIndicator);
        }
@@ -187,6 +195,7 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
      
      /**
       * Show or hide the caps lock warning given the status
+      * @method setCapsLockWarning
       */
      setCapsLockWarning: function(status) {
         this.capsLockWarning.style.display = status ? '' : 'none';
@@ -194,10 +203,11 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
      
      /**
       * Update the strength indicator (called by onKeyPress)
+      * @method updateStrenghtIndicator
       */
      updateStrengthIndicator: function() {
-  	     var strength = inputEx.PasswordField.getPasswordStrength(this.getValue()),
-  	         i, on, bgColor;
+        var strength = inputEx.PasswordField.getPasswordStrength(this.getValue()),
+            i, on, bgColor;
         for(i = 0 ; i < 4 ; i++) {
            on = (strength >= i*25) && (strength>0);
            bgColor = on ? "#4AE817" : "#FFFFFF";

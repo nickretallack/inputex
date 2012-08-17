@@ -20,6 +20,7 @@ inputEx.NumberField = function(options) {
 Y.extend(inputEx.NumberField, inputEx.StringField, {
    /**
     * Adds the min, and max options
+    * @method setOptions
     * @param {Object} options
     */
    setOptions: function(options) {
@@ -30,6 +31,7 @@ Y.extend(inputEx.NumberField, inputEx.StringField, {
    },
    /**
     * Return a parsed float (javascript type number)
+    * @method getValue
     * @return {Number} The parsed float
     */
    getValue: function() {
@@ -49,6 +51,7 @@ Y.extend(inputEx.NumberField, inputEx.StringField, {
    
    /**
     * Check if the entered number is a float
+    * @method validate
     */
    validate: function() { 
       

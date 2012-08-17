@@ -22,6 +22,7 @@ Y.extend(inputEx.SerializeField, inputEx.Field, {
 	
 	/**
     * Adds some options: subfield & serializer
+    * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
    setOptions: function(options) {
@@ -34,6 +35,7 @@ Y.extend(inputEx.SerializeField, inputEx.Field, {
 	
    /**
     * Render the subfield
+    * @method renderComponent
     */
    renderComponent: function() {
 	
@@ -47,6 +49,7 @@ Y.extend(inputEx.SerializeField, inputEx.Field, {
 
 	/**
 	 * Subscribe the subField
+	 * @method initEvents
 	 */
 	initEvents: function() {
       inputEx.SerializeField.superclass.initEvents.call(this); 
@@ -55,6 +58,7 @@ Y.extend(inputEx.SerializeField, inputEx.Field, {
 
 	/**
 	 * Use the subField getValue and serialize it with the selected serializing method
+	 * @method getValue
 	 */
 	getValue: function() {
 		var val = this.subField.getValue();
@@ -63,6 +67,7 @@ Y.extend(inputEx.SerializeField, inputEx.Field, {
 	
 	/**
 	 * Use the deserialize method and set the value of the subField
+	 * @method setValue
 	 */
 	setValue: function(sValue, sendUpdatedEvt) {
 		var obj = this.deserialize(sValue);
@@ -71,6 +76,7 @@ Y.extend(inputEx.SerializeField, inputEx.Field, {
 	
 	/**
 	 * Use the configured serializer
+	 * @method serialize
 	 */
 	serialize: function(o) {
 		return inputEx.SerializeField.serializers[this.options.serializer].serialize(o);
@@ -78,6 +84,7 @@ Y.extend(inputEx.SerializeField, inputEx.Field, {
 	
 	/**
 	 * Use the configured deserializer
+	 * @method deserialize
 	 */
 	deserialize: function(sValue) {
 		return inputEx.SerializeField.serializers[this.options.serializer].deserialize(sValue);
@@ -85,6 +92,7 @@ Y.extend(inputEx.SerializeField, inputEx.Field, {
 	
 	/**
 	 * Sets the focus on this field
+	 * @method focus
 	 */
 	focus: function() {
 		this.subField.focus();

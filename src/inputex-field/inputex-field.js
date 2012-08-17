@@ -61,6 +61,7 @@ YUI.add("inputex-field",function(Y) {
     
      /**
       * Set the default values of the options
+      * @method setOptions
       * @param {Object} options Options object as passed to the constructor
       */
 	  setOptions: function(options) {
@@ -93,12 +94,14 @@ YUI.add("inputex-field",function(Y) {
 	
 	  /**
 	   * Set the name of the field (or hidden field)
+	   * @method setFieldName
 	   */
 	  setFieldName: function(name) {
 	  },
 
      /**
       * Default render of the dom element. Create a divEl that wraps the field.
+      * @method render
       */
 	  render: function() {
 	
@@ -139,6 +142,7 @@ YUI.add("inputex-field",function(Y) {
 	  /**
 	   * Fire the "updated" event (only if the field validated)
 	   * Escape the stack using a setTimeout
+	   * @method fireUpdatedEvt
 	   */
 	  fireUpdatedEvt: function() {
         // Uses setTimeout to escape the stack (that originiated in an event)
@@ -150,6 +154,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Render the interface component into this.divEl
+      * @method renderComponent
       */
 	  renderComponent: function() {
    	   // override me
@@ -157,6 +162,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * The default render creates a div to put in the messages
+      * @method getEl
       * @return {HTMLElement} divEl The main DIV wrapper
       */
 	  getEl: function() {
@@ -165,6 +171,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Initialize events of the Input
+      * @method initEvents
       */
 	  initEvents: function() {
    	   // override me
@@ -172,6 +179,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Return the value of the input
+      * @method getValue
       * @return {Any} value of the field
       */
 	  getValue: function() { 
@@ -180,6 +188,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Function to set the value
+      * @method setValue
       * @param {Any} value The new value
       * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
       */
@@ -197,6 +206,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Set the styles for valid/invalid state.  If a state is not provided, getState will be called.
+      * @method setClassFromState
       * @param {String} One of the following states: 'empty', 'required', 'valid' or 'invalid'
       */
 	  setClassFromState: function(state) {
@@ -225,6 +235,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Get the string for the given state
+      * @method getStateString
       */
 	  getStateString: function(state) {
         if(state == inputEx.stateRequired) {
@@ -240,6 +251,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Returns the current state (given its value)
+      * @method getState
       * @return {String} One of the following states: 'empty', 'required', 'valid' or 'invalid'
       */
 	  getState: function() { 
@@ -252,6 +264,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Validation of the field
+      * @method validate
       * @return {Boolean} field validation status (true/false)
       */
 	  validate: function() {
@@ -260,6 +273,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Function called on the focus event
+      * @method onFocus
       * @param {Event} e The original 'focus' event
       */
 	  onFocus: function(e) {
@@ -270,6 +284,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Function called on the blur event
+      * @method onBlur
       * @param {Event} e The original 'blur' event
       */
 	  onBlur: function(e) {
@@ -281,6 +296,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * onChange event handler
+      * @method onChange
       * @param {Event} e The original 'change' event
       */
 	  onChange: function(e) {
@@ -289,24 +305,28 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Close the field and eventually opened popups...
+      * @method close
       */
 	  close: function() {
 	  },
 
      /**
       * Disable the field
+      * @method disable
       */
 	  disable: function() {
 	  },
 
      /**
       * Enable the field
+      * @method enable
       */
 	  enable: function() {
 	  },
 
      /**
       * Check if the field is diabled
+      * @method isDisabled
       */
      isDisabled: function() {
         return false;
@@ -314,12 +334,14 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Focus the field
+      * @method focus
       */
      focus: function() {
      },
      
      /**
       * Purge all event listeners and remove the component from the dom
+      * @method destroy
       */
      destroy: function() {
         var el = this.getEl();
@@ -340,6 +362,7 @@ YUI.add("inputex-field",function(Y) {
      
      /**
       * Update the message 
+      * @method displayMessage
       * @param {String} msg Message to display
       */
      displayMessage: function(msg) {
@@ -356,6 +379,7 @@ YUI.add("inputex-field",function(Y) {
 
      /**
       * Show the field
+      * @method show
       */
      show: function() {
         this.divEl.style.display = '';
@@ -363,6 +387,7 @@ YUI.add("inputex-field",function(Y) {
      
      /**
       * Hide the field
+      * @method hide
       */
      hide: function() {
         this.divEl.style.display = 'none';
@@ -370,6 +395,7 @@ YUI.add("inputex-field",function(Y) {
      
      /**
       * Clear the field by setting the field value to this.options.value
+      * @method clear
       * @param {boolean} [sendUpdatedEvt] (optional) Wether this clear should fire the 'updated' event or not (default is true, pass false to NOT send the event)
       */
      clear: function(sendUpdatedEvt) {
@@ -378,6 +404,7 @@ YUI.add("inputex-field",function(Y) {
      
      /**
       * Should return true if empty
+      * @method isEmpty
       */
      isEmpty: function() {
         return this.getValue() === '';
@@ -386,6 +413,7 @@ YUI.add("inputex-field",function(Y) {
 	  /**
 	   * Set the parentField.
 	   * Generally use by composable fields (ie. Group,Form,ListField,CombineField,...}
+	   * @method setParentField
 	   * @param {inputEx.Group|inputEx.Form|inputEx.ListField|inputEx.CombineField} parentField The parent field instance
 	   */
 	  setParentField: function(parentField) {
@@ -394,6 +422,7 @@ YUI.add("inputex-field",function(Y) {
 	
 	  /**
 	   * Return the parent field instance
+	   * @method getParentField
 	   * @return {inputEx.Group|inputEx.Form|inputEx.ListField|inputEx.CombineField}
 	   */
 	  getParentField: function() {

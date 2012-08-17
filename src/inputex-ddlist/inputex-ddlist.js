@@ -1,3 +1,6 @@
+/**
+ * @module inputex-ddlist
+ */
 YUI.add('inputex-ddlist', function (Y) {
 
    var lang       = Y.Lang,
@@ -9,7 +12,7 @@ YUI.add('inputex-ddlist', function (Y) {
    /**
     * Create a sortable list field with drag and drop
     *
-    * @class DDListField
+    * @class inputEx.DDListField
     * @extends inputEx.Field
     * @constructor
     * @param {Object} options Added options:
@@ -35,7 +38,9 @@ YUI.add('inputex-ddlist', function (Y) {
       '</li>';
 
    Y.extend(DDListField, inputEx.Field, {
-
+      /**
+       * @method setOptions
+       */
       setOptions: function (options) {
          DDListField.superclass.setOptions.call(this, options);
 
@@ -49,6 +54,9 @@ YUI.add('inputex-ddlist', function (Y) {
          }
       },
 
+      /**
+       * @method renderComponent
+       */
       renderComponent: function () {
          var html, ul;
 
@@ -70,6 +78,9 @@ YUI.add('inputex-ddlist', function (Y) {
          
       },
 
+      /**
+       * @method renderListItem
+       */
       renderListItem: function (previousValue, currentValue) {
          return previousValue + substitute(DDListField.LIST_ITEM_TEMPLATE, {
             'class': DDListField.LIST_ITEM_CLASS,
@@ -79,6 +90,9 @@ YUI.add('inputex-ddlist', function (Y) {
          });
       },
 
+      /**
+       * @method addItem
+       */
       addItem: function (item) {
          var ul = this.sortable.get('container');
          var a = this.renderListItem('', item);
@@ -86,13 +100,19 @@ YUI.add('inputex-ddlist', function (Y) {
          ul.append(newLi);
          this.sortable.sync();
       },
-
+      
+      /**
+       * @method removeItem
+       */
       removeItem: function (item) {
          // TODO
          
          this.sortable.sync();
       },
 
+      /**
+       * @method getValue
+       */
       getValue: function () {
          return Y.one(this.fieldContainer)
                  .all('.'+DDListField.LIST_ITEM_CLASS+' input')

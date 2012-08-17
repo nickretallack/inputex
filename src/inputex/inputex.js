@@ -7,12 +7,13 @@ YUI.add("inputex", function(Y){
   /**
    * The inputEx method lets you create a field from the JSON definition:
    * <pre>
-   *    inputEx({type: 'string', name: 'company', label: 'Your company' })
+   *    Y.inputEx({type: 'string', name: 'company', label: 'Your company' })
    * </pre>
    * Build a field from an object like: { type: 'color' or fieldClass: inputEx.ColorField, ... }<br />
    * If the neither type or fieldClass are found, it uses inputEx.StringField
    *
    * @class inputEx
+   * @method inputEx
    * @static
    * @param {Object} fieldOptions
    * @param {inputEx.Group|inputEx.Form|inputEx.ListField|inputEx.CombineField} (optional) parentField The parent field instance
@@ -126,6 +127,7 @@ YUI.add("inputex", function(Y){
      /**
       * When you create a new inputEx Field Class, you can register it to give it a simple type.
       * ex:   inputEx.registerType("color", inputEx.ColorField);
+      * @method registerType
       * @static
       * @param {String} type String used as the inputEx field type
       * @param {Class} fieldClass Field Class to register as this type
@@ -153,6 +155,7 @@ YUI.add("inputex", function(Y){
      /**
       * Returns the class for the given type
       * ex: inputEx.getFieldClass("color") returns inputEx.ColorField
+      * @method getFieldClass
       * @static
       * @param {String} type String type of the field
       */
@@ -162,6 +165,7 @@ YUI.add("inputex", function(Y){
      
      /**
       * Get the inputex type for the given class (ex: <code>inputEx.getType(inputEx.ColorField)</code> returns "color")
+      * @method getType
       * @static
       * @param {inputEx.Field} FieldClass An inputEx.Field or derivated class
       * @return {String} returns the inputEx type string or <code>null</code>
@@ -180,6 +184,8 @@ YUI.add("inputex", function(Y){
      
      /**
       * Return recursively the inputex modules from their 'type' property using (modulesByType from loader.js)
+      * @method getRawModulesFromDefinition
+      * @static
       */
      getRawModulesFromDefinition: function(inputexDef) {
         
@@ -206,6 +212,8 @@ YUI.add("inputex", function(Y){
      
      /**
       * Return unique modules definitions
+      * @method getModulesFromDefinition
+      * @static
       */
      getModulesFromDefinition: function(inputexDef) {
         var modules = this.getRawModulesFromDefinition(inputexDef);
@@ -214,6 +222,8 @@ YUI.add("inputex", function(Y){
      
      /**
       * Load the modules from an inputEx definition
+      * @method use
+      * @static
       */
      use: function(inputexDef, cb) {
         var defs, modules = [];
@@ -229,6 +239,7 @@ YUI.add("inputex", function(Y){
      
      /**
       * Helper function to set DOM node attributes and style attributes.
+      * @method sn
       * @static
       * @param {HTMLElement} el The element to set attributes to
       * @param {Object} domAttributes An object containing key/value pairs to set as node attributes (ex: {id: 'myElement', className: 'myCssClass', ...})
@@ -277,6 +288,7 @@ YUI.add("inputex", function(Y){
 
      /**
       * Helper function to create a DOM node. (wrapps the document.createElement tag and the inputEx.sn functions)
+      * @method cn
       * @static
       * @param {String} tag The tagName to create (ex: 'div', 'a', ...)
       * @param {Object} [domAttributes] see inputEx.sn
@@ -308,6 +320,7 @@ YUI.add("inputex", function(Y){
      
      /**
       * Find the position of the given element. (This method is not available in IE 6)
+      * @method indexOf
       * @static
       * @param {Object} el Value to search
       * @param {Array} arr The array to search
@@ -329,6 +342,7 @@ YUI.add("inputex", function(Y){
      
      /**
       * Create a new array without the null or undefined values
+      * @method compactArray
       * @static
       * @param {Array} arr The array to compact
       * @return {Array} The new array
@@ -345,6 +359,7 @@ YUI.add("inputex", function(Y){
      
      /**
       * Return a string without accent (only on lowercase)
+      * @method removeAccents
       * @static
       * @param {String} str The string
       * @return {String} String without accent
@@ -364,6 +379,7 @@ YUI.add("inputex", function(Y){
      
      /**
       * String replaced by some html entities
+      * @method htmlEntities
       * @static
       * @param {String} str The string
       * @return {String} String replaced by some html entities

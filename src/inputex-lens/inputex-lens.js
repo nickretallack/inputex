@@ -25,6 +25,7 @@ Y.extend(inputEx.Lens, inputEx.Group, {
    
    /**
     * Set additional options
+    * @method setOptions
     */
 	setOptions: function(options) {
 		inputEx.Lens.superclass.setOptions.call(this, options);	
@@ -42,6 +43,7 @@ Y.extend(inputEx.Lens, inputEx.Group, {
 	
 	/**
 	 * Render each the fields in each div which class attribute is "field-"+fieldName
+	 * @method renderFields
 	 */
 	renderFields: function(parentEl) {
       

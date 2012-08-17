@@ -59,10 +59,11 @@ inputEx.RPC.SMDTester.prototype = {
 	
 	/**
 	 * When the user select a SMD in the select
+	 * @method loadSMD
 	 */
 	loadSMD: function(smdFile) {
 
-	  	this.serviceMethodEl.innerHTML = "";
+      this.serviceMethodEl.innerHTML = "";
 		this.formContainerEl.innerHTML = "";
 		
 		this.service = new inputEx.RPC.Service(smdFile,{ success: this.onServiceLoaded,	scope: this});
@@ -70,6 +71,7 @@ inputEx.RPC.SMDTester.prototype = {
 	
 	/**
 	 * When the SMD has been loaded
+	 * @method onServiceLoaded
 	 */
 	onServiceLoaded: function() {
 		
@@ -105,6 +107,7 @@ inputEx.RPC.SMDTester.prototype = {
 	
 	/**
 	 * When a method has been selected :
+	 * @method onServiceMethod
 	 */
 	onServiceMethod: function(methodName) {
 		

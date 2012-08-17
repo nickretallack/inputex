@@ -32,6 +32,7 @@ inputEx.StringField = function(options) {
 Y.extend(inputEx.StringField, inputEx.Field, {
    /**
     * Set the default values of the options
+    * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
 	setOptions: function(options) {
@@ -52,6 +53,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
    /**
     * Render an 'INPUT' DOM node
+    * @method renderComponent
     */
    renderComponent: function() {
 
@@ -79,6 +81,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
 	/**
 	 * Set the name of the field (or hidden field)
+	 * @method setFieldName
 	 */
 	setFieldName: function(name) {
 		this.el.name = name;
@@ -86,6 +89,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
    /**
     * Register the change, focus and blur events
+    * @method initEvents
     */
    initEvents: function() {
      Y.on("change", this.onChange,this.el, this);
@@ -106,6 +110,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
    /**
     * Return the string value
+    * @method getValue
     * @param {String} The string value
     */
    getValue: function() {
@@ -123,6 +128,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
    /**
     * Function to set the value
+    * @method setValue
     * @param {String} value The new value
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
     */
@@ -136,6 +142,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
    /**
     * Uses the optional regexp to validate the field value
+    * @method validate
     */
    validate: function() {
       var val = this.getValue();
@@ -161,6 +168,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
    /**
     * Disable the field
+    * @method disable
     */
    disable: function() {
       this.el.disabled = true;
@@ -168,6 +176,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
    /**
     * Enable the field
+    * @method enable
     */
    enable: function() {
       this.el.disabled = false;
@@ -175,6 +184,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
    /**
     * Check if the field is disabled
+    * @method isDisabled
     */
    isDisabled: function() {
       return this.el.disabled;
@@ -182,6 +192,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
    /**
     * Set the focus to this field
+    * @method focus
     */
    focus: function() {
       // Can't use lang.isFunction because IE >= 6 would say focus is not a function (IE says it's an object) !!
@@ -192,6 +203,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
 	/**
     * Add the minLength string message handling
+    * @method getStateString
     */
 	getStateString: function(state) {
 	   if(state == inputEx.stateInvalid && this.options.minLength && this.el.value.length < this.options.minLength) {
@@ -202,6 +214,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
    /**
     * Display the type invite after setting the class
+    * @method setClassFromState
     */
    setClassFromState: function() {
 	   inputEx.StringField.superclass.setClassFromState.call(this);
@@ -212,6 +225,9 @@ Y.extend(inputEx.StringField, inputEx.Field, {
       }
 	},
 
+   /**
+    * @method updateTypeInvite
+    */
 	updateTypeInvite: function() {
 
 	   // field not focused
@@ -242,6 +258,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
 	/**
 	 * Clear the typeInvite when the field gains focus
+	 * @method onFocus
 	 */
 	onFocus: function(e) {
 	   inputEx.StringField.superclass.onFocus.call(this,e);
@@ -251,10 +268,16 @@ Y.extend(inputEx.StringField, inputEx.Field, {
       }
 	},
 
+   /**
+    * @method onKeyPress
+    */
 	onKeyPress: function(e) {
 	   // override me
 	},
 
+   /**
+    * @method onKeyUp
+    */
    onKeyUp: function(e) {
       // override me
       //

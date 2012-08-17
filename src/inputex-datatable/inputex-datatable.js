@@ -1,9 +1,7 @@
 YUI.add("inputex-datatable", function (Y) {
 /**
  * The inputex-datatable module provides the inputEx.Plugin.InputExDataTable class which is a plugin.
- * @namespace inputEx.Plugin.InputExDataTable
  * @module inputex-datatable
- * @since 3.1.0
  */
 
     var inputEx = Y.inputEx,
@@ -27,6 +25,10 @@ YUI.add("inputex-datatable", function (Y) {
    inputEx.Plugin.InputExDataTable.NS = "InputExDataTable";
 
     Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
+       
+       /**
+        * @method initializer
+        */
         initializer: function () {
 
             var host = this.get("host");
@@ -70,7 +72,7 @@ YUI.add("inputex-datatable", function (Y) {
         /**
          * add Columns on the DataTable depending on the plugin configuration
          *
-         * @method enrichData
+         * @method enrichColumns
          */
         enrichColumns: function () {
             if(!this.get("disableModifyFunc")){
@@ -276,9 +278,9 @@ YUI.add("inputex-datatable", function (Y) {
         removeDeleteColumn : function(){this.get("host").removeColumn("delete");},
         generateId : function(size){
             var prefixId = this.get("prefixId"),
-                size = size ? size : 5;
+                s = size ? size : 5;
             prefixId = prefixId ? prefixId : "";
-            return prefixId + Math.floor(Math.random()*Math.pow(10,size));
+            return prefixId + Math.floor(Math.random()*Math.pow(10,s));
         }
     }, {
 /**

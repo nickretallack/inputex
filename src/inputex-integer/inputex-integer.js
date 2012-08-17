@@ -23,6 +23,7 @@ inputEx.IntegerField = function(options) {
 Y.extend(inputEx.IntegerField, inputEx.StringField, {
    /**
     * Adds the negative, min, and max options
+    * @method setOptions
     * @param {Object} options
     */
    setOptions: function(options) {
@@ -35,6 +36,7 @@ Y.extend(inputEx.IntegerField, inputEx.StringField, {
    
    /**
     * Get the value
+    * @method getValue
     * @return {int} The integer value
     */
    getValue: function() {
@@ -54,6 +56,7 @@ Y.extend(inputEx.IntegerField, inputEx.StringField, {
    
    /**
     * Validate  if is a number
+    * @method validate
     */
    validate: function() {
       

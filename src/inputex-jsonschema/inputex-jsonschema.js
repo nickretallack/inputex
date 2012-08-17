@@ -31,6 +31,8 @@ inputEx.JsonSchema = {
    
    /**
     * Convert the inputEx JSON fields to a JSON schema
+    * @method inputExToSchema
+    * @static
     */
    inputExToSchema: function(inputExJson) {
       
@@ -210,6 +212,7 @@ inputEx.JsonSchema.Builder.prototype = {
    
    /** 
  	 * return a schema based on the reference value default is to look up in map
+ 	 * @method defaultReferenceResolver
     */
 	defaultReferenceResolver:function(reference) {
 		return this.schemaIdentifierMap[reference] || null;
@@ -217,6 +220,7 @@ inputEx.JsonSchema.Builder.prototype = {
 	
 	/**
 	 * Convert a JSON schema to inputEx JSON
+	 * @method schemaToInputEx
 	 * @param {JSONSchema} p
 	 */
 	schemaToInputEx:function(p, propertyName) {
@@ -414,6 +418,7 @@ inputEx.JsonSchema.Builder.prototype = {
    /**
     * Create an inputEx Json form definition from a json schema instance object
     * Respect the "Self-Defined Schema Convention"
+    * @method formFromInstance
     */
    formFromInstance: function(instanceObject) {
       if(!instanceObject || !instanceObject["$schema"]) {

@@ -18,6 +18,7 @@ inputEx.VectorField = function(options) {
 Y.extend(inputEx.VectorField, inputEx.CombineField, {  
    /**
     * Additional options for VectorField (dimension, size)
+    * @method setOptions
     */ 
    setOptions: function(options) {
       inputEx.VectorField.superclass.setOptions.call(this, options);

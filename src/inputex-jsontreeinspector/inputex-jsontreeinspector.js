@@ -40,6 +40,7 @@ inputEx.widget.JsonTreeInspector.prototype = {
    
    /**
     * Destroy the widget
+    * @method destroy
     */
    destroy: function() {
       
@@ -54,6 +55,7 @@ inputEx.widget.JsonTreeInspector.prototype = {
    
    /**
     * Build the sub-branch for obj
+    * @method buildBranch
     */
    buildBranch: function(obj,parentEl) {
       
@@ -115,6 +117,7 @@ inputEx.widget.JsonTreeInspector.prototype = {
    
    /**
     * When the user click on a node
+    * @method onItemClick
     */
    onItemClick: function(e, params) {
       
@@ -128,6 +131,7 @@ inputEx.widget.JsonTreeInspector.prototype = {
    
    /**
     * expand the node given the li element
+    * @method expandElement
     */
    expandElement: function(li) {
       
@@ -152,6 +156,7 @@ inputEx.widget.JsonTreeInspector.prototype = {
    
    /**
     * Expand a branch given a li element
+    * @method expandBranch
     * @param {HTMLElement} li 
     * @param {Integer} maxLevel
     */
@@ -171,6 +176,7 @@ inputEx.widget.JsonTreeInspector.prototype = {
    
    /**
     * Expand the root node
+    * @method expandAll
     * @param {Integer} maxLevel
     */
    expandAll: function(maxLevel) {

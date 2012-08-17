@@ -11,7 +11,7 @@ YUI.add("inputex-keyopvalue",function(Y){
  * Add an SQL operator select field in the middle of a KeyValueField
  * @class inputEx.KeyOpValueField
  * @constructor
- * @extend inputEx.KeyValueField
+ * @extends inputEx.KeyValueField
  * @param {Object} options InputEx definition object with the "availableFields"
  */
 inputEx.KeyOpValueField = function (options) {
@@ -22,6 +22,7 @@ Y.extend(inputEx.KeyOpValueField, inputEx.KeyValueField, {
 	
 	/**
 	 * Setup the options.fields from the availableFields option
+	 * @method setOptions
 	 */
 	setOptions: function (options) {
 		

@@ -23,6 +23,7 @@ inputEx.StringAvailability = function(options) {
 Y.extend(inputEx.StringAvailability, inputEx.StringField, {
 
    /**
+    * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
     setOptions: function(options) {
@@ -43,8 +44,10 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
       // Status of AJAX
       this.isRequesting = false;
    },
-
-
+   
+   /**
+    * @method render
+    */
    render: function() {
       inputEx.StringAvailability.superclass.render.call(this);
       
@@ -57,6 +60,9 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
 
    },
    
+   /**
+    * @method renderComponent
+    */
    renderComponent: function() {
       inputEx.StringAvailability.superclass.renderComponent.call(this);    
       
@@ -70,13 +76,16 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
       
    },
    
-
+   /**
+    * @method initEvents
+    */
    initEvents: function() {
       inputEx.StringAvailability.superclass.initEvents.call(this);
    },
 
-
-
+   /**
+    * @method onKeyPress
+    */
    onKeyPress: function(e) {
       // Dont listen for TAB key
       if ( e.keyCode === 9 ) { return; }
@@ -99,11 +108,17 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
    });
    },
    
+   /**
+    * @method resetTimer
+    */
    resetTimer: function() {
       this.stopTimer();
       this.startTimer();
    },
    
+   /**
+    * @method startTimer
+    */
    startTimer: function() {
       var that = this;
       this.timerId = setTimeout(function(){
@@ -111,6 +126,9 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
       },500);
    },
    
+   /**
+    * @method stopTimer
+    */
    stopTimer: function() {
       if(this.timerId){
          clearTimeout(this.timerId);
@@ -120,6 +138,7 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
    
    /**
     * What to do when the string is available
+    * @method onAvailable
     */
     onAvailable: function(){
       this.setAvailabilityState("available");
@@ -129,6 +148,7 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
    
    /**
     * What to do when the string is NOT available
+    * @method onUnavailable
     */
     onUnavailable: function(){
       this.setAvailabilityState("unavailable");
@@ -137,6 +157,7 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
    },
    /**
     * Problem during the request
+    * @method onFailure
     */
    onFailure : function(){
       this.setAvailabilityState("fail");
@@ -144,7 +165,9 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
       this.isRequesting = false;
    },
 
-   
+   /**
+    * @method setAvailabilityState
+    */
    setAvailabilityState: function(state) {
 
       if(state === "none"){
@@ -175,6 +198,9 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
       
    },
    
+   /**
+    * @method setClassFromState
+    */
    setClassFromState: function(){
       inputEx.StringAvailability.superclass.setClassFromState.call(this);
       
@@ -185,6 +211,9 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
       }
    },
    
+   /**
+    * @method validate
+    */
    validate: function() {
 
       // If AJAX request running
@@ -200,6 +229,7 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
    
    /**
     * Perform the Ajax request
+    * @method getAvailability
     */
     getAvailability: function(string) {
 

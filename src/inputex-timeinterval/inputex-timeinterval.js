@@ -23,6 +23,7 @@ Y.extend(inputEx.TimeIntervalField, inputEx.CombineField, {
    
    /**
     * Additional options
+    * @method setOptions
     */
    setOptions: function(options) {
       
@@ -56,6 +57,7 @@ Y.extend(inputEx.TimeIntervalField, inputEx.CombineField, {
    
    /**
     * Concat the values to return a date
+    * @method getValue
     * @return {Integer} the time interval in the field unit
     */
    getValue: function() {
@@ -65,6 +67,7 @@ Y.extend(inputEx.TimeIntervalField, inputEx.CombineField, {
 
    /**
     * Set the value of both subfields
+    * @method setValue
     * @param {Number} val The time interval integer (with the given unit)
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
     */

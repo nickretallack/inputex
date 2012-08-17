@@ -31,6 +31,7 @@ YUI.add("inputex-linkedcombo", function (Y) {
 
         /**
          * Set the default values of the options
+         * @method setOptions
          * @param {Object} options Options object as passed to the constructor
          */
         setOptions: function (options) {
@@ -41,6 +42,7 @@ YUI.add("inputex-linkedcombo", function (Y) {
 
         /**
          * Build two select fields
+         * @method renderComponent
          */
         renderComponent: function () {
 
@@ -104,7 +106,9 @@ YUI.add("inputex-linkedcombo", function (Y) {
 
         },
 
-
+        /**
+         * @method initEvents
+         */
         initEvents: function () {
 
             inputEx.LinkedComboField.superclass.initEvents.call(this);
@@ -132,7 +136,10 @@ YUI.add("inputex-linkedcombo", function (Y) {
         },
 
 
-        // adapt choices of 2nd select relatively to 1st select value
+        /**
+         * adapt choices of 2nd select relatively to 1st select value
+         * @method updateSecondSelectChoices
+         */
         updateSecondSelectChoices: function () {
 
             var i, length, choicesList, secondSelectValues, testValue;
@@ -161,6 +168,7 @@ YUI.add("inputex-linkedcombo", function (Y) {
 
         /**
          * Set the value
+         * @method setValue
          * @param {String} value The value to set
          * @param {boolean} [sendUpdatedEvt] (optional) Whether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
          */
@@ -181,6 +189,7 @@ YUI.add("inputex-linkedcombo", function (Y) {
 
         /**
          * Return the value
+         * @method getValue
          * @return {Any} the selected value
          */
         getValue: function () {
@@ -190,6 +199,7 @@ YUI.add("inputex-linkedcombo", function (Y) {
 
         /**
          * HACK because empty state value is this.options.valueSeparator
+         * @method getState
          */
         getState: function () {
             // if the field is empty :

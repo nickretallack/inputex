@@ -24,6 +24,7 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
 
    /**
     * Adds the invalid Url message
+    * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
    setOptions: function(options) {
@@ -40,6 +41,7 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
 
    /**
     * Adds a img tag before the field to display the favicon
+    * @method render
     */
    render: function() {
       inputEx.UrlField.superclass.render.call(this);
@@ -55,10 +57,13 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
          this.fieldContainer.insertBefore(this.favicon,this.fieldContainer.childNodes[0]);
 
          // focus field when clicking on favicon
-         Y.on("click",function(){this.focus();},this.favicon,this)
+         Y.on("click",function(){this.focus();},this.favicon,this);
       }
    },
 
+   /**
+    * @method setClassFromState
+    */
    setClassFromState: function() {
       inputEx.UrlField.superclass.setClassFromState.call(this);
 
@@ -68,7 +73,9 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
       }
    },
 
-
+   /**
+    * @method updateFavicon
+    */
    updateFavicon: function(url) {
       var newSrc = url ? url.match(/https?:\/\/[^\/]*/)+'/favicon.ico' : inputEx.spacerUrl;
       if(newSrc != this.favicon.src) {
@@ -88,18 +95,23 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
 
    /**
     * Display the favicon if the icon was found (use of the naturalWidth property)
+    * @method displayFavicon
     */
    displayFavicon: function() {
-      inputEx.sn(this.favicon, null, {visibility: (this.favicon.naturalWidth!=0) ? 'visible' : 'hidden'});
+      inputEx.sn(this.favicon, null, {visibility: (this.favicon.naturalWidth!==0) ? 'visible' : 'hidden'});
    },
+   
    /**
-     * Hide the favicon
-     */
+    * Hide the favicon
+    * @method hideFavicon
+    */
     hideFavicon: function () {
         this.favicon.hide();
     },
+    
     /**
      * overriding hide in order to hide the favicon too
+     * @method hide
      */
     hide: function () {
         Y.log("inputex-url : hide", 'debug');

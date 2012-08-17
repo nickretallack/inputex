@@ -23,6 +23,7 @@ inputEx.DatePickerField = function(options) {
 Y.extend(inputEx.DatePickerField, inputEx.DateField, {
    /**
     * Set the default date picker CSS classes
+    * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
    setOptions: function(options) {
@@ -38,8 +39,9 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       this.options.zIndex   = options.zIndex || 4;
    },
 
-
-
+   /**
+    * @method renderOverlay
+    */
    renderOverlay: function() {
 
       // Create overlay
@@ -76,7 +78,10 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       }, this);
    },
 
-
+   /**
+    * @method _toggleOverlay
+    * @private
+    */
    _toggleOverlay: function(e) {
 
       // DON'T stop the event since it will be used to close other overlays...
@@ -93,6 +98,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
    /**
     * Render the input field and the minical container
+    * @method renderComponent
     */
    renderComponent: function() {
 
@@ -115,6 +121,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
    /**
     * Called ONCE to render the calendar lazily
+    * @method renderCalendar
     */
    renderCalendar: function() {
       // if already rendered, ignore call
@@ -149,6 +156,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
    /**
     * Select the right date and display the right page on calendar, when the field has a value
+    * @method beforeShowOverlay
     */
    beforeShowOverlay: function(e) {
 
@@ -168,6 +176,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
    /**
     * Call overlay when field is removed
+    * @method close
     */
    close: function() {
       console.log("DATEPICKER CLOSE", this.oOverlay);
@@ -178,6 +187,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
    /**
     * Disable the field
+    * @method disable
     */
    disable: function() {
       inputEx.DatePickerField.superclass.disable.call(this);
@@ -186,6 +196,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
    /**
     * Enable the field
+    * @method enable
     */
    enable: function() {
       inputEx.DatePickerField.superclass.enable.call(this);

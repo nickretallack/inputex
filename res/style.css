@@ -10,7 +10,8 @@ img { border: 0;}
 .pageWidth { width: 900px; position: relative; margin: auto; }
 
 #titleContainer { padding-top: 50px;}
-#titleContainer h1 { margin: 0;}
+#titleContainer h1 { margin: 0; font-family: cursive; font-size: 25px;}
+#titleContainer p {  font-family: cursive;font-size: 15px;}
 
 .navigation {  position: absolute; margin: 6px 0 0 0; top: 0; left: 0; padding: 0; }
 .navigation li { margin: 0; display: inline; margin-right: 30px;}

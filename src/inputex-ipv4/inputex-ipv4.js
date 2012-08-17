@@ -20,6 +20,7 @@ Y.extend(inputEx.IPv4Field, inputEx.StringField, {
    
    /**
     * set IPv4 regexp and invalid string
+    * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
    setOptions: function(options) {

@@ -23,6 +23,7 @@ Y.extend(inputEx.FileField, inputEx.Field, {
 	
    /**
     * Adds size and accept options
+    * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
    setOptions: function(options) {
@@ -33,6 +34,7 @@ Y.extend(inputEx.FileField, inputEx.Field, {
 	
    /**
     * Render an 'INPUT' DOM node
+    * @method renderComponent
     */
    renderComponent: function() {
       

@@ -20,6 +20,7 @@ YUI.add("inputex-tree", function (Y) {
     Y.extend(inputEx.TreeField, inputEx.ListField, {
         /**
          * Adds a new line to the List Field
+         * @method renderSubField
          * @param {Any} value Value of the subelement
          * @return  {inputEx.Field} instance of the created field (inputEx.Field or derivative)
          */
@@ -63,6 +64,7 @@ YUI.add("inputex-tree", function (Y) {
 
         /**
          * Render the addButton and childContainer
+         * @method renderComponent
          */
         renderComponent: function () {
 
@@ -97,6 +99,7 @@ YUI.add("inputex-tree", function (Y) {
 
         /**
          * Set the value
+         * @method setValue
          * @param {Any} obj The tree object
          * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
          */
@@ -107,6 +110,7 @@ YUI.add("inputex-tree", function (Y) {
 
         /**
          * Get the value
+         * @method getValue
          * @return {Any} The tree object
          */
         getValue: function () {

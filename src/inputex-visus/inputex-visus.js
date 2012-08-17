@@ -21,8 +21,8 @@ inputEx.visus = {
   trimpath: function(options, data) {
       if(!TrimPath) { alert('TrimPath is not on the page. Please load inputex/lib/trimpath-template.js'); return null; }
       var tpl = TrimPath.parseTemplate(options.template);
-     	var ret = tpl.process(data);
-     	return ret;
+      var ret = tpl.process(data);
+      return ret;
   },
   
   /**
@@ -46,6 +46,7 @@ inputEx.visus = {
 
 /**
  * Render 'data' using a visualization function described by 'visuOptions'
+ * @method renderVisu
  * @static
  * @param {Object} visuOptions The visu parameters object with: visuType: 'myType', ...args...
  * @param {Object} data The input data to send to the template

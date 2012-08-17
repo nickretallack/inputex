@@ -44,6 +44,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	/**
 	 * Set the ListField classname
+	 * @method setOptions
 	 * @param {Object} options Options object as passed to the constructor
 	 */
 	setOptions: function(options) {
@@ -65,6 +66,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	/**
 	 * Render the addButton 
+	 * @method renderComponent
 	 */
 	renderComponent: function() {
 	      
@@ -90,6 +92,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	/**
 	 * Handle the click event on the add button
+	 * @method initEvents
 	 */
 	initEvents: function() {
 	   Y.one(this.addButton).on('click', this.onAddButton, this, true);
@@ -97,7 +100,8 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	
 	/**
     * Validate each field
-    * @returns {Boolean} true if all fields validate, required fields are not empty and unique constraint (if specified) is not violated
+    * @method validate
+    * @return {Boolean} true if all fields validate, required fields are not empty and unique constraint (if specified) is not violated
     */
    validate: function() {
 
@@ -136,6 +140,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	/**
 	 * Set the value of all the subfields
+	 * @method setValue
 	 * @param {Array} value The list of values to set
 	 * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
 	 */
@@ -168,6 +173,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	/**
 	 * Return the array of values
+	 * @method getValue
 	 * @return {Array} The array
 	 */
 	getValue: function() {
@@ -180,6 +186,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	/**
 	 * Adds an element
+	 * @method addElement
 	 * @param {Any} The initial value of the subfield to create
 	 * @return {inputEx.Field} SubField added instance
 	 */
@@ -200,6 +207,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	
 	/**
 	 * Re-set the name of all the fields (when we remove an element)
+	 * @method resetAllNames
 	 */
 	resetAllNames: function() {
 		if(this.options.name) {
@@ -212,6 +220,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	
 	/**
 	 * Add a new element to the list and fire updated event
+	 * @method onAddButton
 	 * @param {Event} e The original click event
 	 */
 	onAddButton: function(e) {
@@ -234,6 +243,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	/**
 	 * Adds a new line to the List Field
+	 * @method renderSubField
  	 * @param {Any} The initial value of the subfield to create
 	 * @return  {inputEx.Field} instance of the created field (inputEx.Field or derivative)
 	 */
@@ -294,6 +304,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	/**
 	 * Switch a subField with its previous one
 	 * Called when the user clicked on the up arrow of a sortable list
+	 * @method onArrowUp
 	 * @param {Event} e Original click event
 	 */
 	onArrowUp: function(e) {
@@ -342,6 +353,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	/**
 	 * Switch a subField with its next one
 	 * Called when the user clicked on the down arrow of a sortable list
+	 * @method onArrowDown
 	 * @param {Event} e Original click event
 	 */
 	onArrowDown: function(e) {
@@ -388,6 +400,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	/**
 	 * Called when the user clicked on a delete button.
+	 * @method onDelete
 	 * @param {Event} e The original click event
 	 */
 	onDelete: function(e) {
@@ -427,6 +440,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	/**
 	 * Remove the line from the dom and the subField from the list.
+	 * @method removeElement
 	 * @param {integer} index The index of the element to remove
 	 */
 	removeElement: function(index) {
@@ -441,6 +455,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	
 	/**
     * Clear the field by setting the field value to this.options.value
+    * @method clear
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this clear should fire the 'updated' event or not (default is true, pass false to NOT send the event)
     */
     clear: function(sendUpdatedEvt) {

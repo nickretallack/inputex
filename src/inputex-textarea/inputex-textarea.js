@@ -22,6 +22,7 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
 
    /**
     * Set the specific options (rows and cols)
+    * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
    setOptions: function(options) {
@@ -35,6 +36,7 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
    
    /**
     * Render an 'INPUT' DOM node
+    * @method renderComponent
     */
    renderComponent: function() {
       
@@ -63,6 +65,7 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
    
 	/**
     * Uses the optional regexp to validate the field value
+    * @method validate
     */
    validate: function() { 
       var previous = inputEx.Textarea.superclass.validate.call(this);
@@ -78,6 +81,7 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
    
    /**
     * Add the minLength string message handling
+    * @method getStateString
     */
     getStateString: function(state) {
 	   if(state == inputEx.stateInvalid && this.options.minLength && this.el.value.length < this.options.minLength) {  
@@ -93,6 +97,7 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
 	
 	/**
 	 * Insert text at the current cursor position
+	 * @method insert
 	 * @param {String} text Text to insert
 	 */
 	insert: function(text) {

@@ -28,27 +28,29 @@ Y.extend(inputEx.ObjectField, inputEx.ListField, {
 
    /**
     * Convert the array of 2d elements to an javascript object 
+    * @method getValue
     */
    getValue: function() {
-   	var v = inputEx.ObjectField.superclass.getValue.call(this);
-   	var obj = {};
-   	for(var i = 0 ; i < v.length ; i++) {
-   		obj[ v[i][0] ] = v[i][1];
-   	}
-   	return obj;
+      var v = inputEx.ObjectField.superclass.getValue.call(this);
+      var obj = {};
+      for(var i = 0 ; i < v.length ; i++) {
+         obj[ v[i][0] ] = v[i][1];
+      }
+      return obj;
    },
-
+   
    /**
     * Convert the object into a list of pairs
+    * @method setValue
     */
    setValue: function(v) {
-   	var val = [];
-   	for(var key in v) {
-   		if( v.hasOwnProperty(key) ) {
-   			val.push([key, v[key]]);
-   		}
-   	}
-   	inputEx.ObjectField.superclass.setValue.call(this,val);
+      var val = [];
+      for(var key in v) {
+         if( v.hasOwnProperty(key) ) {
+            val.push([key, v[key]]);
+         }
+      }
+      inputEx.ObjectField.superclass.setValue.call(this,val);
    }
 });
 

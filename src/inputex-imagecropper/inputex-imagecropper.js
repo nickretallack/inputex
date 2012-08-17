@@ -29,8 +29,10 @@ inputEx.ImageCropperField = function(options) {
 };
 
 Y.extend(inputEx.ImageCropperField, inputEx.Field, {
+   
    /**
     * Set the default values of the options
+    * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
    setOptions: function(options) {
@@ -43,6 +45,7 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
 
    /**
     * Render
+    * @method renderComponent
     */
    renderComponent: function() {
       this.wrapEl = Y.Node.create('<div class="inputEx-ImageCropperField-wrapper" style="padding: '+this.options.padding+'px;" />');
@@ -67,6 +70,7 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
 
    /**
     * Set the value
+    * @method setValue
     */
    setValue: function (value, sendUpdatedEvt) {
 
@@ -97,15 +101,25 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
       }
    },
 
+   /**
+    * @method getValue
+    */
    getValue: function () {
       return this.value;
    },
 
+   /**
+    * @method initEvents
+    */
    initEvents: function () {
       this.mask.border.on('mousedown', this._onMouseDown, this);
       this.wrapEl.on('mousedown', this._onMouseDown, this);
    },
 
+   /**
+    * @method _onMouseDown
+    * @private
+    */
    _onMouseDown: function (e) {
       e.halt(true);
       this.dragging    = (e.target === this.mask.border);
@@ -131,6 +145,10 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
       }, this);
    },
 
+   /**
+    * @method _onMouseMove
+    * @private
+    */
    _onMouseMove: function (e) {
       e.halt(true); // prevent text selection
       var imageOrigin = this.imageOrigin,
@@ -156,7 +174,11 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
 
       this.setValue({origin: newOrigin, size: newSize}, false);
    },
-
+   
+   /**
+    * @method _contrain
+    * @private
+    */
    _constrain: function (value) {
       var r = this.options.ratio,
           i = this.imageSize,

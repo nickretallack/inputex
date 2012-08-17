@@ -47,13 +47,21 @@ inputExBase.ATTRS = {
 
 inputExBase.prototype = {
 
+   /**
+    * @method _renderUIInputEx
+    * @private
+    */
    _renderUIInputEx: function() {
      var config = {};
      Y.mix(config, this.get('inputEx') );
      config.parentEl = this.get('contentBox');
      this.set('field', Y.inputEx(config));
    },
-
+   
+   /**
+    * @method _bindUIInputEx
+    * @private
+    */
    _bindUIInputEx: function() {
       // Closing all fields when the widget is hidden
       this.on('visibleChange', function(e) {
