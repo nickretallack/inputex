@@ -32,7 +32,7 @@
 		});
 		ms.on("updated",function(params) {
 			var value = Y.JSON.stringify(params);
-			Y.one('#container1').appendChild( inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
+			Y.one('#container1').appendChild( Y.inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
 		});
   </pre>
  </div>
@@ -64,7 +64,7 @@
 		});
 		ms.on("updated",function(params) {
 			var value = Y.JSON.stringify(params);
-			Y.one('#container2').appendChild( inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
+			Y.one('#container2').appendChild( Y.inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
 		});
   </pre>
  </div>
@@ -95,7 +95,7 @@
 		});
 		ms.on("updated",function(params) {
 			var value = Y.JSON.stringify(params);
-			Y.one('#container3').appendChild( inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
+			Y.one('#container3').appendChild( Y.inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
 		});
 		
 		ms.setValue(['yui','dojo']);

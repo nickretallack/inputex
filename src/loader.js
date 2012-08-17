@@ -43,6 +43,9 @@ YUI().use(function(Y) {
 						requires: ['inputex-group', 'inputex-panel','datatable'],
 						skinnable: true
 					},
+					'inputex-ddlist': {
+					   requires: ['inputex-field', 'array-extras', 'sortable', 'substitute']
+					},
 					'inputex-jsontreeinspector': {
 						requires: ['inputex'],
 						skinnable: true
@@ -171,11 +174,11 @@ YUI().use(function(Y) {
 						ix_provides: 'keyopvalue'
 					},
 					'inputex-multiautocomplete': {
-						requires: ['inputex-autocomplete','json','sortable'],
+						requires: ['inputex-autocomplete','json','inputex-ddlist'],
 						ix_provides: 'multiautocomplete'
 					},
 					'inputex-multiselect': {
-						requires: ['inputex-select', 'sortable'],
+						requires: ['inputex-select', 'inputex-ddlist'],
 						ix_provides: 'multiselect'
 					},
 					'inputex-number': {

@@ -2,9 +2,10 @@
  * @module inputex-multiselect
  */
 YUI.add("inputex-multiselect", function (Y) {
-
-    var inputEx = Y.inputEx;
-    var lang = Y.Lang;
+   
+   var inputEx = Y.inputEx,
+       lang = Y.Lang;
+   
     /**
      * Create a multi select field
      * @class inputEx.MultiSelectField
@@ -28,7 +29,7 @@ YUI.add("inputex-multiselect", function (Y) {
 
             inputEx.MultiSelectField.superclass.renderComponent.call(this);
 
-            this.ddlist = new inputEx.widget.DDList({
+            this.ddlist = new inputEx.DDListField({
                 parentEl: this.fieldContainer
             });
 
@@ -40,7 +41,7 @@ YUI.add("inputex-multiselect", function (Y) {
         initEvents: function () {
             Y.on("change", this.onAddNewItem, this.el, this);
             this.ddlist.on("itemRemoved", this.onItemRemoved, this);
-            this.ddlist.on("listReordered", this.fireUpdatedEvt, this);
+            this.ddlist.on("updated", this.fireUpdatedEvt, this);
         },
 
         /**
@@ -65,28 +66,28 @@ YUI.add("inputex-multiselect", function (Y) {
             var value, position, choice;
 
             if (this.el.selectedIndex !== 0) {
-
-                // Get the selector value
-                value = inputEx.MultiSelectField.superclass.getValue.call(this);
-
-                position = this.getChoicePosition({
-                    value: value
-                });
-                choice = this.choicesList[position];
-
-                this.ddlist.addItem({
-                    value: value,
-                    label: choice.label
-                });
-
-                // hide choice that has just been selected (+ select first choice)
-                this.hideChoice({
-                    position: position
-                });
-                this.el.selectedIndex = 0;
-
-                this.fireUpdatedEvt();
-
+               
+               // Get the selector value
+               value = inputEx.MultiSelectField.superclass.getValue.call(this);
+               
+               position = this.getChoicePosition({
+                  value: value
+               });
+               choice = this.choicesList[position];
+               
+               this.ddlist.addItem({
+                  value: value,
+                  label: choice.label
+               });
+               
+               // hide choice that has just been selected (+ select first choice)
+               this.hideChoice({
+                  position: position
+               });
+               this.el.selectedIndex = 0;
+               
+               this.fireUpdatedEvt();
+               
             }
         },
 
@@ -154,5 +155,5 @@ YUI.add("inputex-multiselect", function (Y) {
     inputEx.registerType("multiselect", inputEx.MultiSelectField);
 
 }, '3.0.0a', {
-    requires: ["inputex-select", "sortable"]
+    requires: ["inputex-select", "inputex-ddlist"]
 });
