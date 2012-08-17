@@ -32,7 +32,7 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
          this.setClassFromState();
          this.fireUpdatedEvt();
       }, this);
-      this.ddlist.on("listReordered",this.fireUpdatedEvt, this);
+      this.ddlist.on("updated", this.fireUpdatedEvt, this);
    },  
    
    /**

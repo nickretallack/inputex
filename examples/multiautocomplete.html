@@ -13,7 +13,7 @@
 
  </head>
 
- <body class="yui-skin-sam">
+ <body class="yui3-skin-sam">
 
 <h1>inputEx - MultiAutoComplete Usage</h1>
 
@@ -36,12 +36,12 @@
         }
 		  });
 
-		var logDiv = inputEx.cn('div', null, null, "");
+		var logDiv = Y.inputEx.cn('div', null, null, "");
 		Y.one('#container1').appendChild(logDiv);
 
 		field.on("updated",function(v) {
 			var value = Y.JSON.stringify(v);
-			logDiv.appendChild( inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
+			logDiv.appendChild( Y.inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
 		});
   </pre>
  </div>
