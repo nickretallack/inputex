@@ -67,11 +67,8 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
 	   
 	   // Awful Hack to work in IE6 and below (the checkbox doesn't fire the change event)
 	   // It seems IE 8 removed this behavior from IE7 so it only works with IE 7 ??
-	   /*if( YAHOO.env.ua.ie && parseInt(YAHOO.env.ua.ie,10) != 7 ) {
-	      Event.addListener(this.el, "click", function() { this.fireUpdatedEvt(); }, this, true);	
-	   }*/
 	   if( Y.UA.ie ) {
-	      Y.one(this.el).on("click", function(e) { Y.later(10,this,function(){this.onChange(e);}); }, this);	
+	      Y.one(this.el).on("click", function(e) { Y.later(10,this,function(){this.onChange(e);}); }, this);
 	   } else {
 	     Y.one(this.el).on("change", this.onChange, this, true);
 	   }

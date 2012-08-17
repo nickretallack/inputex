@@ -3,8 +3,6 @@
  */
  (function() {
   
-  var Event = YAHOO.util.Event;
-  
 /**
  * Create a textarea input
  * @class inputEx.TextAutoTag

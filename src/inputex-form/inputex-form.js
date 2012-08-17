@@ -14,7 +14,7 @@ YUI.add("inputex-form", function(Y){
  * @param {Object} options The following options are added for Forms:
  * <ul>
  *   <li>buttons: list of button definition objects {value: 'Click Me', type: 'submit'}</li>
- *   <li>ajax: send the form through an ajax request (submit button should be present): {method: 'POST', uri: 'myScript.php', callback: same as YAHOO.util.Connect.asyncRequest callback}</li>
+ *   <li>ajax: send the form through an ajax request (submit button should be present): {method: 'POST', uri: 'myScript.php', callback: same as Y.io callback}</li>
  *   <li>showMask: adds a mask over the form while the request is running (default is false)</li>
  * </ul>
  */

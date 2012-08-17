@@ -37,9 +37,7 @@ Y.extend(inputEx.SliderField, inputEx.Field, {
     */
    renderComponent: function() {
             
-      this.sliderbg = inputEx.cn('div', {/*id: YAHOO.util.Dom.generateId(), */className: 'inputEx-SliderField-bg'});
-      //this.sliderthumb = inputEx.cn('div', {className: 'inputEx-SliderField-thumb'} );      
-      //this.sliderbg.appendChild(this.sliderthumb);
+      this.sliderbg = inputEx.cn('div', {className: 'inputEx-SliderField-bg'});
       this.fieldContainer.appendChild(this.sliderbg);
       
       if(this.options.displayValue) {
@@ -49,7 +47,6 @@ Y.extend(inputEx.SliderField, inputEx.Field, {
       
       this.fieldContainer.appendChild( inputEx.cn('div',null,{clear: 'both'}) );
             
-      //this.slider = YAHOO.widget.Slider.getHorizSlider(this.sliderbg, this.sliderthumb, 0,this.options.pixelEnd);
       this.slider = new Y.Slider({
              axis        : 'x',
              min         : this.options.minValue,
