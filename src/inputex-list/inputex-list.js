@@ -27,6 +27,7 @@ inputEx.ListField = function(options) {
 	   
    /**
     * List of all the subField instances
+    * @property subFields
     */
    this.subFields = [];
 	   
@@ -36,6 +37,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 
 	/**
 	 * Colors for the animation
+	 * @property arrowAnimColors
 	 */
 	arrowAnimColors: { 
 		from: '#eeee33',

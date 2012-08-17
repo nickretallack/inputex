@@ -181,30 +181,19 @@ inputEx.JsonSchema.Builder = function(opts) {
 	var options = opts || {};
 	this.options  = options; 
 	
-	/**
-	 * specify how other schema properties are mapped to inputParam properties
-	 */
+	// specify how other schema properties are mapped to inputParam properties
 	this.schemaToParamMap = options.schemaToParamMap || {
 		'title':'label',
 		'description':'description',
 		'_inputex':null	// null value means copy child key/value pairs into field options directly
 	};
 	
-	/**
-	 * @property referenceResolver
-	 */
 	this.referenceResolver = options.referenceResolver || null;
 	
-	/**
-	 * options to be applied unless already specified
-	 * @property defaultOptions
-	 */
+	// options to be applied unless already specified
 	this.defaultOptions = options.defaultOptions || {};	
 	
-	/**
-	 * key is reference, value is schema
-	 * @property schemaIdentifierMap
-	 */
+	// key is reference, value is schema
 	this.schemaIdentifierMap = options.schemaIdentifierMap || {};
 };
 

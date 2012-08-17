@@ -24,6 +24,8 @@ inputEx.PasswordField = function(options) {
 
 /**
  * Keep track of all instances, indexed by ids, for the password confirmation field
+ * @property byId
+ * @static
  */
 inputEx.PasswordField.byId = {}; 
 
@@ -222,6 +224,8 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
  * Return an integer within [0,100] that quantify the password strength
  * Function taken from Mozilla Code: (changed a little bit the values)
  * http://lxr.mozilla.org/seamonkey/source/security/manager/pki/resources/content/password.js
+ * @method getPasswordStrength
+ * @static
  */
 inputEx.PasswordField.getPasswordStrength = function(pw) {
     // Here is how we weigh the quality of the password

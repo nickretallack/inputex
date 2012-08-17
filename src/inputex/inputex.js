@@ -58,53 +58,62 @@ YUI.add("inputex", function(Y){
      
      /**
       * Url to the spacer image. This url schould be changed according to your project directories
+      * @property spacerUrl
       * @type String
       */
      spacerUrl: YUI_config.groups.inputex.base+"inputex/assets/skins/sam/images/space.gif", // 1x1 px
      
      /**
       * Field empty state constant
+      * @property stateEmpty
       * @type String
       */
      stateEmpty: 'empty',
      
      /**
       * Field required state constant
+      * @property stateRequired
       * @type String
       */
      stateRequired: 'required',
      
      /**
       * Field valid state constant
+      * @property stateValid
       * @type String
       */
      stateValid: 'valid',
      
      /**
       * Field invalid state constant
+      * @property stateInvalid
       * @type String
       */
      stateInvalid: 'invalid',
      
      /**
       * Associative array containing field messages => using intl module from YUI
+      * @property messages
       */
      messages: null,
      
      /**
       * inputEx widget namespace
+      * @class inputEx.widget
       * @static 
       */
      widget: {},
      
      /**
       * inputEx mixin namespace
+      * @class inputEx.mixin
       * @static 
       */
      mixin: {},
      
      /**
       * Associative array containing common regular expressions
+      * @property regexps
       */
      regexps: {
         email: /^[a-z0-9!\#\$%&'\*\-\/=\?\+\-\^_`\{\|\}~]+(?:\.[a-z0-9!\#\$%&'\*\-\/=\?\+\-\^_`\{\|\}~]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,6}$/i,
@@ -115,12 +124,14 @@ YUI.add("inputex", function(Y){
      /**
       * Hash between inputEx types and classes (ex: <code>inputEx.typeClasses.color = inputEx.ColorField</code>)<br />
       * Please register the types with the <code>registerType</code> method
+      * @property typeClasses
       */
      typeClasses: {},
      
      /**
       * Property to globally turn on/off the browser autocompletion
       * (used as default autocomplete option value by StringField, Form and their subclasses)
+      * @property browserAutocomplete
       */
      browserAutocomplete: true,
      

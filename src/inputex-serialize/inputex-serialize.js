@@ -27,7 +27,7 @@ Y.extend(inputEx.SerializeField, inputEx.Field, {
     */
    setOptions: function(options) {
       inputEx.SerializeField.superclass.setOptions.call(this, options);
-   	this.options.className = options.className || 'inputEx-SerializedField';
+      this.options.className = options.className || 'inputEx-SerializedField';
 
 		this.options.subfield = options.subfield || {type: 'string'};
 		this.options.serializer = options.serializer || "json";
@@ -109,12 +109,14 @@ inputEx.SerializeField.serializers = {
 
 	/**
 	 * JSON Serializer
+	 * @class inputEx.SerializeField.serializers.json
 	 * @static
 	 */
 	json: {
 		
 		/**
 		 * serialize to JSON
+		 * @method serialize
 		 * @static
 		 */
 		serialize: function(o) {
@@ -123,6 +125,7 @@ inputEx.SerializeField.serializers = {
 
 		/**
 		 * deserialize from JSON
+		 * @method deserialize
 		 * @static
 		 */
 		deserialize: function(sValue) {
@@ -132,12 +135,14 @@ inputEx.SerializeField.serializers = {
 	
 	/**
 	 * XML Serializer (uses the ObjTree library)
+    * @class inputEx.SerializeField.serializers.xml
 	 * @static
 	 */
 	xml: {
 		
 		/**
 		 * serialize to XML
+		 * @method serialize
 		 * @static
 		 */
 		serialize: function(o) {
@@ -151,6 +156,7 @@ inputEx.SerializeField.serializers = {
 
 		/**
 		 * deserialize from XML 
+		 * @method deserialize
 		 * @static
 		 */
 		deserialize: function(sValue) {
@@ -159,7 +165,7 @@ inputEx.SerializeField.serializers = {
 				return null;
 			}
 			var xotree = new XML.ObjTree();
-		  	var tree = xotree.parseXML( sValue );
+         var tree = xotree.parseXML( sValue );
 			return tree;
 		}
 	}/*,

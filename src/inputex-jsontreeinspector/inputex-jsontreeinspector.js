@@ -18,11 +18,13 @@ inputEx.widget.JsonTreeInspector = function(parentEl, object, cfg) {
 
    /**
     * Hash to contain the values indexed by li ids
+    * @property hash
     */
    this.hash = {};
    
    /**
     * Main div element
+    * @property el
     */
    this.el = inputEx.cn('div');
    
@@ -190,14 +192,14 @@ inputEx.widget.JsonTreeInspector.prototype = {
    
 };
 
-/**
- * JSONPath 0.8.0 - XPath for JSON
- * http://code.google.com/p/jsonpath/
- * http://code.google.com/p/jsonpath/wiki/Javascript
- *
- * Copyright (c) 2007 Stefan Goessner (goessner.net)
- * Licensed under the MIT (MIT-LICENSE.txt) licence.
- */
+//
+// JSONPath 0.8.0 - XPath for JSON
+// http://code.google.com/p/jsonpath/
+// http://code.google.com/p/jsonpath/wiki/Javascript
+//
+// Copyright (c) 2007 Stefan Goessner (goessner.net)
+// Licensed under the MIT (MIT-LICENSE.txt) licence.
+//
 inputEx.widget.JsonTreeInspector.jsonPath = function (obj, expr, arg) {
    var P = {
       resultType: arg && arg.resultType || "VALUE",

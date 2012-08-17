@@ -64,31 +64,29 @@ YUI.add("inputex-field",function(Y) {
       * @method setOptions
       * @param {Object} options Options object as passed to the constructor
       */
-	  setOptions: function(options) {
-
-     	/**
-     	 * Configuration object to set the options for this class and the parent classes. See constructor details for options added by this class.
-     	 */
-     	this.options = {};
-     	
-     	// Basic options
-     	this.options.name = options.name;
-     	this.options.value = options.value;
-     	this.options.id = options.id || Y.guid();
-     	this.options.label = options.label;
-     	this.options.description = options.description;
-      this.options.wrapperClassName = options.wrapperClassName;
-      
-     // Define default messages
-	     this.options.messages = {};
-	     this.options.messages.required = (options.messages && options.messages.required) ? options.messages.required : inputEx.messages.required;
-	     this.options.messages.invalid = (options.messages && options.messages.invalid) ? options.messages.invalid : inputEx.messages.invalid;
-	     //this.options.messages.valid = (options.messages && options.messages.valid) ? options.messages.valid : inputEx.messages.valid;
-	
-	     // Other options
-	     this.options.className = options.className ? options.className : 'inputEx-Field';
-	     this.options.required = lang.isUndefined(options.required) ? false : options.required;
-	     this.options.showMsg = lang.isUndefined(options.showMsg) ? false : options.showMsg;
+     setOptions: function(options) {
+        
+        // Configuration object to set the options for this class and the parent classes. See constructor details for options added by this class.
+        this.options = {};
+        
+        // Basic options
+        this.options.name = options.name;
+        this.options.value = options.value;
+        this.options.id = options.id || Y.guid();
+        this.options.label = options.label;
+        this.options.description = options.description;
+        this.options.wrapperClassName = options.wrapperClassName;
+        
+        // Define default messages
+        this.options.messages = {};
+        this.options.messages.required = (options.messages && options.messages.required) ? options.messages.required : inputEx.messages.required;
+        this.options.messages.invalid = (options.messages && options.messages.invalid) ? options.messages.invalid : inputEx.messages.invalid;
+        //this.options.messages.valid = (options.messages && options.messages.valid) ? options.messages.valid : inputEx.messages.valid;
+        
+        // Other options
+        this.options.className = options.className ? options.className : 'inputEx-Field';
+        this.options.required = lang.isUndefined(options.required) ? false : options.required;
+        this.options.showMsg = lang.isUndefined(options.showMsg) ? false : options.showMsg;
 	  },
 	
 	
@@ -132,7 +130,7 @@ YUI.add("inputex-field",function(Y) {
            this.fieldContainer.appendChild(inputEx.cn('div', {id: this.divEl.id+'-desc', className: 'inputEx-description'}, null, this.options.description));
         }
         
-     	this.divEl.appendChild(this.fieldContainer);
+        this.divEl.appendChild(this.fieldContainer);
         
 	     // Insert a float breaker
 	     this.divEl.appendChild( inputEx.cn('div',null, {clear: 'both'}," ") );
@@ -157,7 +155,7 @@ YUI.add("inputex-field",function(Y) {
       * @method renderComponent
       */
 	  renderComponent: function() {
-   	   // override me
+        // override me
 	  },
 
      /**
@@ -174,7 +172,7 @@ YUI.add("inputex-field",function(Y) {
       * @method initEvents
       */
 	  initEvents: function() {
-   	   // override me
+        // override me
 	  },
 
      /**

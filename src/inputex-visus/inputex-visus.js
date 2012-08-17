@@ -17,6 +17,7 @@ inputEx.visus = {
    * Use the trimpath-template engine
    * see http://code.google.com/p/trimpath/wiki/JavaScriptTemplates for syntax
    * options = {visuType: 'trimpath', template: "String template"}
+   * @method trimpath
    */
   trimpath: function(options, data) {
       if(!TrimPath) { alert('TrimPath is not on the page. Please load inputex/lib/trimpath-template.js'); return null; }
@@ -37,6 +38,7 @@ inputEx.visus = {
   /**
    * Use Y.Lang.dump
    * options = {visuType: 'dump'}
+   * @method dump
    */
   dump: function(options, data) {
      return Y.dump(data);

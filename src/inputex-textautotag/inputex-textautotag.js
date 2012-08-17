@@ -22,6 +22,7 @@
                     
       /**
       * Set the specific options (autotagservice)
+      * @method setOptions
       * @param {Object} options Options object as passed to the constructor
       */
       setOptions: function(options) {
@@ -36,25 +37,33 @@
                     this.autoTagMethodName = options.autoTagMethodName || "requestTags";
                     this.tagEl = typeof(options.tagEl) == "string" ? document.getElementById(options.tagEl): options.tagEl;
       },
+      /**
+      * @method initAutoTag
+      */
       initAutoTag: function(){
         this.serviceReady = true;
       },
+      /**
+      * @method addTags
+      */
       addTags: function(results){
         this.tagEl.appendChild(inputEx.cn("span",null,null,results.ResultSet.Result.join(",")));
       },
       /**
       * Set the specific options (autotagservice)
+      * @method getTags
       * @param {Object} options Options object as passed to the constructor
       */      
       getTags: function(text,callback){
         if(this.serviceReady){
-              this.service[this.autoTagMethodName]({context: this.getValue()},callback)        
+              this.service[this.autoTagMethodName]({context: this.getValue()},callback);
         }
 
       
       },
      /**
       * handleUpadte
+      * @method handleUpdate
       */                    
       handleUpdate: function() {
          // TODO : cache function to not call api every time
@@ -62,7 +71,7 @@
         if (this.doWeRequest(value)){
           var callback = {
             success: function(results) {
-                this.addTags(results)
+                this.addTags(results);
               },
             failure: function(o) {
                     // log or try to understand error
@@ -74,13 +83,14 @@
         
       },
       /**
-      * handleUpdate
+      * @method handleResponse
       */     
       handleResponse: function(a,b,c,d){
         console.log(this,"callback",a,b,c,d);
       },
       /**
       * Decide wether or not we request
+      * @method doWeRequest
       * @param {string} updated text 
       * @return {boolean}
       */       
@@ -96,6 +106,6 @@
 });
   
   // Register this class as "text" type
-  inputEx.registerType("autotag", inputEx.Textarea)
+  inputEx.registerType("autotag", inputEx.Textarea);
   
   })();

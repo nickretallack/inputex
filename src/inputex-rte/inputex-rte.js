@@ -78,12 +78,11 @@ Y.extend(inputEx.RTEField, inputEx.Field, {
       }
       
       
-      /**
-       * Filters out msword html comments, classes, and other junk
-       * (complementary with YAHOO.widget.SimpleEditor.prototype.filter_msword, when filterWord option is true)
-       * @param {String} value The html string
-       * @return {String} The html string
-       */
+      //
+      // Filters out msword html comments, classes, and other junk
+      // (complementary with YAHOO.widget.SimpleEditor.prototype.filter_msword, when filterWord option is true)
+      // @param {String} value The html string
+      // @return {String} The html string
       this.editor.filter_msword = function(html) {
          
          html = editorType.prototype.filter_msword.call(this,html);

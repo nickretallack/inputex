@@ -319,6 +319,7 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
 	
 /**
  * Default palettes
+ * @property palettes
  */
 inputEx.ColorField.palettes = [
    ["#FFEA99","#FFFF66","#FFCC99","#FFCAB2","#FF99AD","#FFD6FF","#FF6666","#E8EEF7","#ADC2FF","#ADADFF","#CCFFFF","#D6EAAD","#B5EDBC","#CCFF99"],

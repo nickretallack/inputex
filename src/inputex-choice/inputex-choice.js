@@ -111,6 +111,7 @@ YUI.add("inputex-choice", function(Y){
 		
 		/**
 		 * Hide a choice
+		 * @method hideChoice
 		 * @param {Object} config An object targeting the choice to hide (e.g. { position : 1 } || { value: 'second' } || { label: 'Second' })
 		 */
 		hideChoice: function (config, sendUpdatedEvt) {
