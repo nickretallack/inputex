@@ -42,7 +42,7 @@ Release Notes:
 
   * yuidoc update
   * TinyMCE editor v3.5.6 is now supported
-
+  * Google Maps api v3 is now supported
 
 3.0.0a : August, 19th 2011
 --------

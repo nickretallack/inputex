@@ -17,46 +17,6 @@
 
 <h1>inputEx - MapField Usage</h1>
 
-<!-- Example 1 -->
-<div class='exampleDiv'>
-	<h2>Virtual Earth MapField creation</h2>
-	<p>Use the following code to create a inputEx MapField for Virtual Earth.</p>
-	<div class='demoContainer' id='container1'></div>
-	<div class='codeContainer'>
-		<pre class="brush:js">
-			var id = 'container1';
-			var api = 'virtualearth';
-			var elExample1 = new Y.inputEx.MapField({parentEl: id, name: 'mapField', width: '800px', api: api});
-
-			var elButton1 = inputEx.cn('button', null, null, "getValue");
-			Y.one(elButton1).on( 'click', function() {
-				alert(Y.JSON.stringify(elExample1.getValue()) );
-			});
-			Y.one('#'+id).appendChild(elButton1);
-		</pre>
-	</div>
-</div>
-
-<!-- Example 2 -->
-<div class='exampleDiv'>
-	<h2>Yahoo Maps MapField creation</h2>
-	<p>Use the following code to create a inputEx MapField for Yahoo Maps.</p>
-	<div class='demoContainer' id='container2'></div>
-	<div class='codeContainer'>
-		<pre class="brush:js">
-			var id = 'container2';
-			var api = 'yahoo';
-			var elExample2 = new Y.inputEx.MapField({parentEl: id, name: 'mapField', width: '800px', api: api});
-
-			var elButton2 = Y.inputEx.cn('button', null, null, "getValue");
-			Y.one(elButton2).on('click', function() {
-				alert( Y.JSON.stringify(elExample2.getValue()) );
-			});
-			Y.one('#'+id).appendChild(elButton2);
-		</pre>
-	</div>
-</div>
-
 <!-- Example 3 -->
 <div class='exampleDiv'>
 	<h2>Google Maps MapField creation</h2>
@@ -64,45 +24,37 @@
 	<div class='demoContainer' id='container3'></div>
 	<div class='codeContainer'>
 		<pre class="brush:js">
+		
+
 			var id = 'container3';
 			var api = 'google';
-			var elExample3 = new Y.inputEx.MapField({parentEl: id, name: 'mapField', width: '800px', api: api, apikey: "Nk0DZDzV34FM2CIAsdRAtUgQJRSsJO7x2l5tuDBduamC_gZWkzyTEqcUJxAWjtqxs9Wnxb0-"});
+			var elExample3 = new Y.inputEx.MapField({
+				parentEl: id,
+				name: 'mapField',
+				width: '800px',
+				api: api,
+				// choose between HYBRID,ROADMAP,SATELLITE,TERRAIN
+				mapType : "ROADMAP",
+				lat : 48.85, 
+				lon : 2.3, 
+				uzoom : 8
+			});
 
 			var elButton3 = inputEx.cn('button', null, null, "getValue");
-		 Y.one(elButton3).on('click', function() {
+		 	Y.one(elButton3).on('click', function() {
 				alert( Y.JSON.stringify(elExample3.getValue()) );
 			});
 			Y.one('#'+id).appendChild(elButton3);
+
+
 		</pre>
 	</div>
 </div>
 
-<!-- Example 4 -->
-<div class='exampleDiv'>
-	<h2>Default MapField creation</h2>
-	<p>
-	Use the following code to create a inputEx MapField for whatever the default API is.
-	We should complete this example by making buttons to change the default and store
-	that in cookies.
-	</p>
-	<div class='demoContainer' id='container4'></div>
-	<div class='codeContainer'>
-		<pre class="brush:js">
-			var id = 'container4';
-			var elExample4 = new Y.inputEx.MapField({parentEl: id, name: 'mapField', width: '800px'});
-
-			var elButton4 = inputEx.cn('button', null, null, "getValue");
-			Y.one(elButton4).on('click', function() {
-				alert( Y.JSON.stringify(elExample4.getValue()) );
-			});
-			Y.one('#'+id).appendChild(elButton4);
-		</pre>
-	</div>
-</div>
 
 </script>
 
-
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script src="../src/loader.js"  type='text/javascript'></script>
 <script src="../res/inputex-examples.js"  type='text/javascript'></script>
 <script>
