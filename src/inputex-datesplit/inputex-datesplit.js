@@ -162,6 +162,6 @@ Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
 // Register this class as "datesplit" type
 inputEx.registerType("datesplit", inputEx.DateSplitField);
 
-}, '3.0.0a',{
+}, '3.1.0',{
 requires: ['inputex-combine']
 });

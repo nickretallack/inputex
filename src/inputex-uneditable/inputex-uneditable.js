@@ -57,6 +57,6 @@ Y.extend(inputEx.UneditableField, inputEx.Field, {
 // Register this class as "url" type
 inputEx.registerType("uneditable", inputEx.UneditableField);
 
-}, '3.0.0a',{
+}, '3.1.0',{
 requires: ['inputex-field']
 });

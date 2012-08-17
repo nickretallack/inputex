@@ -183,6 +183,6 @@ Y.extend(inputEx.widget.ListCustom,inputEx.widget.DDList,{
   }
 }); 
 
-}, '3.0.0a',{
+}, '3.1.0',{
   requires: ["sortable","anim"]
 });

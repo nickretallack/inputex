@@ -338,6 +338,6 @@ inputEx.registerType("inplaceedit", inputEx.InPlaceEdit, [
    { type:'type', label: 'Editor', name: 'editorField'}
 ]);
 
-}, '3.0.0a', {
+}, '3.1.0', {
   requires:['inputex-field', 'inputex-button', 'anim','inputex-visus']
 });

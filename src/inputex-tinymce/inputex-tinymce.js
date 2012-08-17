@@ -144,6 +144,6 @@ YUI.add("inputex-tinymce", function (Y) {
     // Register this class as "tinymce" type
     inputEx.registerType("tinymce", inputEx.TinyMCEField, []);
 
-}, '3.0.0a', {
+}, '3.1.0', {
     requires: ["inputex-field"]
 });

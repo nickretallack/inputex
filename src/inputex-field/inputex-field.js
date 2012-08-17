@@ -412,6 +412,6 @@ YUI.add("inputex-field",function(Y) {
      { type: "boolean", label: "Show messages",name: "showMsg", value: false }
   ];
 
-}, '3.0.0a',{
+}, '3.1.0',{
   requires: ["inputex","event-custom"]
 });

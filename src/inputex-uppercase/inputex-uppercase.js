@@ -48,6 +48,6 @@ Y.extend(inputEx.UpperCaseField, inputEx.StringField, {
 // Register this class as "uppercase" type
 inputEx.registerType("uppercase", inputEx.UpperCaseField);
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ['inputex-string']
 });

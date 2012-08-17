@@ -108,6 +108,6 @@ YUI.add("inputex-dsselect", function(Y) {
 	// Register this class as "dsselect" type
 	inputEx.registerType("dsselect", inputEx.DSSelectField);
 
-}, '3.0.0a',{
+}, '3.1.0',{
    requires: ['inputex-select','datasource']
 });

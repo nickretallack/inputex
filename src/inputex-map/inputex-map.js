@@ -473,6 +473,6 @@ inputEx.MapFieldGlobals['api'] = 'yahoo';
 inputEx.MapFieldGlobals['Nk0DZDzV34FM2CIAsdRAtUgQJRSsJO7x2l5tuDBduamC_gZWkzyTEqcUJxAWjtqxs9Wnxb0-'] = 'yahoo';
 
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ['inputex-field']
 });

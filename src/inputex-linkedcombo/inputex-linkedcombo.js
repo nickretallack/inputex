@@ -244,6 +244,6 @@ YUI.add("inputex-linkedcombo", function (Y) {
         required: true
     }]);
 
-}, "3.0.0a", {
+}, "3.1.0", {
     requires: ["inputex-select","inputex-choice"]
 });

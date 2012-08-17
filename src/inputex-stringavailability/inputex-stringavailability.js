@@ -236,4 +236,4 @@ var   that = this,
 inputEx.registerType("string-availability", inputEx.StringAvailability);   
 
 
-},'3.0.0a',{requires : ["inputex-string","event-key","io","json-parse"]});
+},'3.1.0',{requires : ["inputex-string","event-key","io","json-parse"]});

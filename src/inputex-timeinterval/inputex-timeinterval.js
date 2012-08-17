@@ -112,6 +112,6 @@ inputEx.TimeIntervalField.units = {
 // Register this class as "timeinterval" type
 inputEx.registerType("timeinterval", inputEx.TimeIntervalField);
 
-}, '3.0.0a',{
+}, '3.1.0',{
 requires: ['inputex-combine', 'inputex-select']
 });

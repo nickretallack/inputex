@@ -164,6 +164,6 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
 // Register this class as "autocomplete" type
 inputEx.registerType("autocomplete", inputEx.AutoComplete);
 
-}, '3.0.0a',{
+}, '3.1.0',{
   requires: ['inputex-string','autocomplete']
 })

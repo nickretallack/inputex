@@ -142,6 +142,6 @@ inputEx.registerType("date", inputEx.DateField, [
    {type: 'select', label: 'Date format', name: 'dateFormat', choices: [{ value: "m/d/Y" }, { value:"d/m/Y" }] }
 ]);
 	
-}, '3.0.0a',{
+}, '3.1.0',{
 requires: ['inputex-string']
 });

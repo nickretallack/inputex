@@ -69,7 +69,7 @@ inputExBase.prototype = {
 Y.inputEx.Base = inputExBase;
 
 
-}, '3.0.0a',{
+}, '3.1.0',{
   requires: ['inputex', 'base']
 });
 

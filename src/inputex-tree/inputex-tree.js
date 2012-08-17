@@ -122,6 +122,6 @@ YUI.add("inputex-tree", function (Y) {
     // Register this class as "tree" type
     inputEx.registerType("tree", inputEx.TreeField);
 
-}, '3.0.0a', {
+}, '3.1.0', {
     requires: ['inputex-string', 'inputex-list', 'inputex-inplaceedit']
 });

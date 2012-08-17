@@ -55,6 +55,6 @@ Y.extend(inputEx.ObjectField, inputEx.ListField, {
 // Register this class as "object" type
 inputEx.registerType('object', inputEx.ObjectField);
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ['inputex-list','inputex-combine','inputex-string']
 });

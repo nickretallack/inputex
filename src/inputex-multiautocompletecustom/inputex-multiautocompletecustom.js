@@ -122,6 +122,6 @@ YUI.add("inputex-multiautocompletecustom",function(Y){
     }
   });
   inputEx.registerType("multiautocompletecustom", inputEx.MultiAutoCompleteCustom);
-},'3.0.0a', {
+},'3.1.0', {
   requires: ["inputex-multiautocomplete","inputex-pie-listcustom"]
 });

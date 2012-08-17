@@ -39,6 +39,6 @@ inputEx.registerType("vector", inputEx.VectorField, [
    { type: 'list', name: 'separators', label: 'Separators', required: true }
 ]);
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ["inputex-combine"]
 });

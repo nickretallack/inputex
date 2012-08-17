@@ -96,7 +96,7 @@ Y.extend( inputEx.KeyValueField, inputEx.CombineField, {
 
 inputEx.registerType("keyvalue", inputEx.KeyValueField, {});
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ['inputex-combine']
 });
 

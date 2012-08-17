@@ -278,6 +278,6 @@ inputEx.registerType("string", inputEx.StringField, [
     { type: 'integer', label: 'Min. length', name: 'minLength', value: 0}
 ]);
 
-}, '3.0.0a',{
+}, '3.1.0',{
   requires: ["inputex-field","event-key"]
 });

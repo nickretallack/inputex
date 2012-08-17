@@ -275,6 +275,6 @@ inputEx.widget.JsonTreeInspector.jsonPath = function (obj, expr, arg) {
    }
 };
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ['inputex']
 });

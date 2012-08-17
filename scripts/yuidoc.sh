@@ -24,11 +24,11 @@ generator_out="$INPUTEXPATH/api"
 template="$yuidoc_home/template"
 
 # The version of your project to display within the documentation.
-version=3.0.0a
+version=3.1.0
 
 # The version of YUI the project is using.  This effects the output for
 # YUI configuration attributes.  This should start with '2' or '3'.
-yuiversion=3.4.0
+yuiversion=3.6.0
 
 projectName="inputEx-library"
 

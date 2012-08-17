@@ -122,7 +122,7 @@ YUI.add("inputex-dateselectmonth", function(Y) {
 	// Register this class as "dateselectmonth" type
 	inputEx.registerType("dateselectmonth", inputEx.DateSelectMonthField);
 	
-}, '3.0.0a',{
+}, '3.1.0',{
 requires: ['inputex-combine']
 });
 

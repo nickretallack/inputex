@@ -237,7 +237,7 @@ Y.extend(inputEx.RatingStars, inputEx.Field,{
  // Register this class as "url" type
  inputEx.registerType("ratingstars", inputEx.RatingStars);
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ['inputex-field']
 });
 

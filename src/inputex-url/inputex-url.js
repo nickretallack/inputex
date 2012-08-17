@@ -113,6 +113,6 @@ inputEx.registerType("url", inputEx.UrlField, [
    { type: 'boolean', label: 'Display favicon', name:'favicon', value: true}
 ]);
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ["inputex-string"]
 });

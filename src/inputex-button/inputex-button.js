@@ -203,6 +203,6 @@ Y.mix(inputEx.widget.Button.prototype,{
    
 });
   Y.augment(inputEx.widget.Button, Y.EventTarget, null, null, {});
-},'3.0.0a',{
+},'3.1.0',{
   requires:["inputex"]
 });

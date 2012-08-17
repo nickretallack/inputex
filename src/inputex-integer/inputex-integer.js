@@ -81,6 +81,6 @@ inputEx.registerType("integer", inputEx.IntegerField, [
    {type: 'boolean', label: 'Accept negative', name: 'negative', value: false }
 ]);
 
-}, '3.0.0a',{
+}, '3.1.0',{
 requires: ['inputex-string']
 });

@@ -512,6 +512,6 @@ inputEx.RPC.Envelope = {
    
 };
 
-}, '3.0.0a',{
+}, '3.1.0',{
   requires: ['json','inputex','io','inputex-jsonschema','jsonp']
 });

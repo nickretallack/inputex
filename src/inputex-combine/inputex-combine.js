@@ -211,7 +211,7 @@ inputEx.registerType("combine", inputEx.CombineField, [
 ]);
 	
 	
-}, '3.0.0a',{
+}, '3.1.0',{
   requires: ['inputex-group']
 });
    

@@ -154,6 +154,6 @@ YUI.add("inputex-multiselect", function (Y) {
     // Register this class as "multiselect" type
     inputEx.registerType("multiselect", inputEx.MultiSelectField);
 
-}, '3.0.0a', {
+}, '3.1.0', {
     requires: ["inputex-select", "inputex-ddlist"]
 });

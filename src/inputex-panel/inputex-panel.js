@@ -41,6 +41,6 @@ YUI.add('inputex-panel', function (Y) {
         }
     });
 
-}, '3.0.0a', {
+}, '3.1.0', {
     requires: ['inputex', 'panel', 'inputex-base']
 });

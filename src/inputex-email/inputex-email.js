@@ -174,6 +174,6 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
 // Register this class as "email" type
 inputEx.registerType("email", inputEx.EmailField, []);
 
-}, '3.0.0a',{
+}, '3.1.0',{
   requires: ["inputex-string"]
 });

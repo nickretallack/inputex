@@ -99,6 +99,6 @@ inputEx.renderVisu = function(visuOptions,data, parentEl) {
    return v;
 };
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ["inputex","dump"]
 });

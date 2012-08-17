@@ -53,7 +53,7 @@ YUI.add("inputex", function(Y){
   
   Y.mix(Y.inputEx, {
      
-     VERSION: "3.0.0a",
+     VERSION: "3.1.0",
      
      /**
       * Url to the spacer image. This url schould be changed according to your project directories
@@ -373,6 +373,6 @@ YUI.add("inputex", function(Y){
      }
   });
   
-}, '3.0.0a',{
+}, '3.1.0',{
   requires: ['pluginhost-base', 'pluginhost-config', 'base-pluginhost', 'node-pluginhost', 'plugin', 'node','intl']
 });

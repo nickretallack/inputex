@@ -175,6 +175,6 @@ inputEx.registerType("serialize", inputEx.SerializeField, [
 	{ type:'select', name: 'serializer', label: 'Serializer', choices: [{ value: 'json' }, { value: 'xml' }/*, { value: 'flatten' }*/], value: 'json'}
 ]);
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ["inputex-string",'json']
 });

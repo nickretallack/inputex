@@ -124,6 +124,6 @@ inputEx.registerType("text", inputEx.Textarea, [
    { type: 'integer', label: 'Cols', name: 'cols', value: 23 }
 ]);
 
-}, '3.0.0a',{
+}, '3.1.0',{
   requires: ["inputex-string"]
 });

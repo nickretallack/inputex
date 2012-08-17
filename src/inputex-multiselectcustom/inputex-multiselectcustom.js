@@ -135,6 +135,6 @@ YUI.add("inputex-multiselectcustom", function (Y) {
     });
     inputEx.registerType("multiselectcustom", inputEx.MultiSelectCustomField);
 
-}, '3.0.0a', {
+}, '3.1.0', {
     requires: ["inputex-pie-listcustom", "inputex-multiselect"]
 });

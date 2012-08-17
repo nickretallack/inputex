@@ -74,6 +74,6 @@ Y.extend(inputEx.NumberField, inputEx.StringField, {
 // Register this class as "number" type
 inputEx.registerType("number", inputEx.NumberField, []);
 
-}, '3.0.0a',{
+}, '3.1.0',{
 requires: ['inputex-string']
 });

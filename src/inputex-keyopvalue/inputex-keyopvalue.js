@@ -55,6 +55,6 @@ Y.extend(inputEx.KeyOpValueField, inputEx.KeyValueField, {
 
 inputEx.registerType("keyopvalue", inputEx.KeyOpValueField, {});
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ['inputex-keyvalue']
 });

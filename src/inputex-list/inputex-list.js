@@ -455,6 +455,6 @@ inputEx.registerType("list", inputEx.ListField, [
    { type: 'type', label: 'List element type', required: true, name: 'elementType' }
 ]);
 	
-},'3.0.0a',{
+},'3.1.0',{
   requires: ["inputex-field","anim"]
 });

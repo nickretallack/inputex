@@ -124,6 +124,6 @@ inputEx.RPC.SMDTester.prototype = {
 	
 };
 
-}, '3.0.0a',{
+}, '3.1.0',{
   requires: ["inputex"]
 });

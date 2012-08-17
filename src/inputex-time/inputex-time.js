@@ -53,6 +53,6 @@ Y.extend(inputEx.TimeField, inputEx.CombineField, {
 inputEx.registerType("time", inputEx.TimeField);
 
 
-}, '3.0.0a',{
+}, '3.1.0',{
 requires: ['inputex-combine', 'inputex-select']
 });

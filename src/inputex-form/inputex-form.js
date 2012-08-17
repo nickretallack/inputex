@@ -403,6 +403,6 @@ inputEx.registerType("form", inputEx.Form, [
 ]);
 
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ['io-base','inputex-group','json','inputex-button']
 });

@@ -110,6 +110,6 @@ inputEx.registerType("slider", inputEx.SliderField, [
    { type: 'integer', label: 'Max. value', name: 'maxValue', value: 100 }
 ]);
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ['inputex-field', 'slider']
 });

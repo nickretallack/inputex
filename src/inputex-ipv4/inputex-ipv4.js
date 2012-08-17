@@ -33,6 +33,6 @@ Y.extend(inputEx.IPv4Field, inputEx.StringField, {
 // Register this class as "IPv4" type
 inputEx.registerType("IPv4", inputEx.IPv4Field, []);
 
-},'3.0.0a',{
+},'3.1.0',{
   requires: ["inputex-string"]
 });
