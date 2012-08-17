@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src&#x2F;inputex-jsonschema&#x2F;inputex-jsonschema.js - InputEx</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.1&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.5.1&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title="InputEx"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 3.1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/inputEx.html">inputEx</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.AutoComplete.html">inputEx.AutoComplete</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Base.html">inputEx.Base</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.CheckBox.html">inputEx.CheckBox</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ColorField.html">inputEx.ColorField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.CombineField.html">inputEx.CombineField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateField.html">inputEx.DateField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DatePickerField.html">inputEx.DatePickerField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateSelectMonthField.html">inputEx.DateSelectMonthField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateSplitField.html">inputEx.DateSplitField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateTimeField.html">inputEx.DateTimeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DDListField.html">inputEx.DDListField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DSSelectField.html">inputEx.DSSelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.EmailField.html">inputEx.EmailField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Field.html">inputEx.Field</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.FileField.html">inputEx.FileField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Form.html">inputEx.Form</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Group.html">inputEx.Group</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.HiddenField.html">inputEx.HiddenField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ImageCropperField.html">inputEx.ImageCropperField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.InPlaceEdit.html">inputEx.InPlaceEdit</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.IntegerField.html">inputEx.IntegerField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.IPv4Field.html">inputEx.IPv4Field</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.JsonSchema.html">inputEx.JsonSchema</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.JsonSchema.Builder.html">inputEx.JsonSchema.Builder</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.KeyOpValueField.html">inputEx.KeyOpValueField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.KeyValueField.html">inputEx.KeyValueField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Lens.html">inputEx.Lens</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.LinkedComboField.html">inputEx.LinkedComboField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ListField.html">inputEx.ListField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MapField.html">inputEx.MapField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MenuField.html">inputEx.MenuField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.mixin.html">inputEx.mixin</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.mixin.choice.html">inputEx.mixin.choice</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MultiAutoComplete.html">inputEx.MultiAutoComplete</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MultiSelectField.html">inputEx.MultiSelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.NumberField.html">inputEx.NumberField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ObjectField.html">inputEx.ObjectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Panel.html">inputEx.Panel</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.PasswordField.html">inputEx.PasswordField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Plugin.InputExDataTable.html">inputEx.Plugin.InputExDataTable</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RadioField.html">inputEx.RadioField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RatingStars.html">inputEx.RatingStars</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RatingStarsForm.html">inputEx.RatingStarsForm</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.html">inputEx.RPC</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.html">inputEx.RPC.Envelope</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON.html">inputEx.RPC.Envelope.JSON</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON-RPC-1.0.html">inputEx.RPC.Envelope.JSON-RPC-1.0</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON-RPC-2.0.html">inputEx.RPC.Envelope.JSON-RPC-2.0</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.PATH.html">inputEx.RPC.Envelope.PATH</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.URL.html">inputEx.RPC.Envelope.URL</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Service.html">inputEx.RPC.Service</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.SMDTester.html">inputEx.RPC.SMDTester</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Transport.html">inputEx.RPC.Transport</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RTEField.html">inputEx.RTEField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SelectField.html">inputEx.SelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.html">inputEx.SerializeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.html">inputEx.SerializeField.serializers</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.json.html">inputEx.SerializeField.serializers.json</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.xml.html">inputEx.SerializeField.serializers.xml</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SliderField.html">inputEx.SliderField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.StringAvailability.html">inputEx.StringAvailability</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.StringField.html">inputEx.StringField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Textarea.html">inputEx.Textarea</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TextAutoTag.html">inputEx.TextAutoTag</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TimeField.html">inputEx.TimeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TimeIntervalField.html">inputEx.TimeIntervalField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TinyMCEField.html">inputEx.TinyMCEField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TreeField.html">inputEx.TreeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TypeField.html">inputEx.TypeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UneditableField.html">inputEx.UneditableField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UpperCaseField.html">inputEx.UpperCaseField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UrlField.html">inputEx.UrlField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.VectorField.html">inputEx.VectorField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.visus.html">inputEx.visus</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.html">inputEx.widget</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.Button.html">inputEx.widget.Button</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.JsonTreeInspector.html">inputEx.widget.JsonTreeInspector</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/inputex.html">inputex</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-autocomplete.html">inputex-autocomplete</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-base.html">inputex-base</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-button.html">inputex-button</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-checkbox.html">inputex-checkbox</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-choice.html">inputex-choice</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-color.html">inputex-color</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-combine.html">inputex-combine</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datatable.html">inputex-datatable</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-date.html">inputex-date</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datepicker.html">inputex-datepicker</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-dateselectmonth.html">inputex-dateselectmonth</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datesplit.html">inputex-datesplit</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datetime.html">inputex-datetime</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ddlist.html">inputex-ddlist</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-dsselect.html">inputex-dsselect</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-email.html">inputex-email</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-field.html">inputex-field</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-file.html">inputex-file</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-form.html">inputex-form</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-group.html">inputex-group</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-hidden.html">inputex-hidden</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-imagecropper.html">inputex-imagecropper</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-inplaceedit.html">inputex-inplaceedit</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-integer.html">inputex-integer</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ipv4.html">inputex-ipv4</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-jsonschema.html">inputex-jsonschema</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-jsontreeinspector.html">inputex-jsontreeinspector</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-keyopvalue.html">inputex-keyopvalue</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-keyvalue.html">inputex-keyvalue</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-lens.html">inputex-lens</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-linkedcombo.html">inputex-linkedcombo</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-list.html">inputex-list</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-map.html">inputex-map</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-menu.html">inputex-menu</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-multiautocomplete.html">inputex-multiautocomplete</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-multiselect.html">inputex-multiselect</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-number.html">inputex-number</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-object.html">inputex-object</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-panel.html">inputex-panel</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-password.html">inputex-password</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-radio.html">inputex-radio</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ratingstars.html">inputex-ratingstars</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ratingstarsform.html">inputex-ratingstarsform</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-rpc.html">inputex-rpc</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-rte.html">inputex-rte</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-select.html">inputex-select</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-serialize.html">inputex-serialize</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-slider.html">inputex-slider</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-smdtester.html">inputex-smdtester</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-string.html">inputex-string</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-stringavailability.html">inputex-stringavailability</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-textarea.html">inputex-textarea</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-textautotag.html">inputex-textautotag</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-time.html">inputex-time</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-timeinterval.html">inputex-timeinterval</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-timerange.html">inputex-timerange</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-tinymce.html">inputex-tinymce</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-tree.html">inputex-tree</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-type.html">inputex-type</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-uneditable.html">inputex-uneditable</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-uppercase.html">inputex-uppercase</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-url.html">inputex-url</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-vector.html">inputex-vector</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-visus.html">inputex-visus</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src&#x2F;inputex-jsonschema&#x2F;inputex-jsonschema.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+ * @module inputex-jsonschema
+ *&#x2F;
+YUI.add(&quot;inputex-jsonschema&quot;, function(Y){
+
+  var lang = Y.Lang,
+      inputEx = Y.inputEx;
+ 
+&#x2F;**
+ * Namespace containing utility functions for conversion between inputEx JSON format and JSON Schema
+ *
+ * based on &quot;Json Schema Proposal Working Draft&quot;:
+ * http:&#x2F;&#x2F;groups.google.com&#x2F;group&#x2F;json-schema&#x2F;web&#x2F;json-schema-proposal-working-draft
+ * The proposal is still under discussion and the implementation is very minimalist.
+ *
+ *
+ * TODO:
+ *    - we should provide a lot of json schema examples and instances that should&#x2F;should not validate
+ *    - use the $ref (async calls =&gt; provide callbacks to methods)
+ *    - Inheritance
+ *
+ * Limitations:
+ *    - ??? Please do not trust inputEx: the getValue may return a value which do NOT validate the schema (provide an example ?)
+ *    - no tuple typing for arrays
+ *    - no &quot;Union type definition&quot;
+ *
+ * @class inputEx.JsonSchema
+ * @static
+ *&#x2F;
+inputEx.JsonSchema = {
+   
+   &#x2F;**
+    * Convert the inputEx JSON fields to a JSON schema
+    * @method inputExToSchema
+    * @static
+    *&#x2F;
+   inputExToSchema: function(inputExJson) {
+      
+      var t = inputExJson.type || &quot;string&quot;,
+          ip = inputExJson || {};
+      
+      if(t == &quot;group&quot;) {
+         var ret = {
+            type:&#x27;object&#x27;,
+            title: ip.legend,
+            properties:{
+            }
+         };
+         
+         for(var i = 0 ; i &lt; ip.fields.length ; i++) {
+            var field = ip.fields[i];
+            
+            var fieldName = field.name;
+            ret.properties[fieldName] = inputEx.JsonSchema.inputExToSchema(field);
+         }
+         
+         return ret;
+      }
+      else if(t == &quot;number&quot;) {
+         return {
+    			&#x27;type&#x27;:&#x27;number&#x27;,
+    			&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+    			&#x27;title&#x27;: ip.label
+    		};
+      }
+      else if(t == &quot;string&quot;) {
+         return {
+    			&#x27;type&#x27;:&#x27;string&#x27;,
+    			&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+    			&#x27;title&#x27;: ip.label
+    		};
+      }
+      else if(t == &quot;text&quot;) {
+         return {
+ 			   &#x27;type&#x27;:&#x27;string&#x27;,
+			   &#x27;format&#x27;:&#x27;text&#x27;,
+    			&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+    			&#x27;title&#x27;: ip.label,
+				&#x27;_inputex&#x27;:{
+					&#x27;rows&#x27;:5,
+					&#x27;cols&#x27;:50
+				}
+    		};
+      }
+      else if(t == &quot;html&quot;) {
+         return {
+ 			   &#x27;type&#x27;:&#x27;string&#x27;,
+			   &#x27;format&#x27;:&#x27;html&#x27;,
+    			&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+    			&#x27;title&#x27;: ip.label,
+				&#x27;_inputex&#x27;:{
+					
+				}
+    		};
+      }
+      else if(t == &quot;list&quot;) {
+         return {
+ 			   &#x27;type&#x27;:&#x27;array&#x27;,
+    			&#x27;title&#x27;: ip.label,
+    			&#x27;items&#x27;: inputEx.JsonSchema.inputExToSchema(ip.elementType),
+				&#x27;_inputex&#x27;:{
+				}
+    		};
+      }
+      else if(t == &quot;email&quot;) {
+         return {
+    			&#x27;type&#x27;:&#x27;string&#x27;,
+    			&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+    			&#x27;title&#x27;: ip.label,
+    			&#x27;format&#x27;:&#x27;email&#x27;
+    		};
+      }
+      else if(t == &quot;url&quot;) {
+         return {
+    			&#x27;type&#x27;:&#x27;string&#x27;,
+    			&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+    			&#x27;title&#x27;: ip.label,
+    			&#x27;format&#x27;:&#x27;url&#x27;
+    		};
+      }
+      else if(t == &quot;time&quot;) {
+         return {
+    			&#x27;type&#x27;:&#x27;string&#x27;,
+    			&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+    			&#x27;title&#x27;: ip.label,
+    			&#x27;format&#x27;:&#x27;time&#x27;
+    		};
+      }
+      else if(t == &quot;IPv4&quot;) {
+         return {
+    			&#x27;type&#x27;:&#x27;string&#x27;,
+    			&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+    			&#x27;title&#x27;: ip.label,
+    			&#x27;format&#x27;:&#x27;ip-address&#x27;
+    		};
+      }
+      else if(t == &quot;color&quot;) {
+         return {
+    			&#x27;type&#x27;:&#x27;string&#x27;,
+    			&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+    			&#x27;title&#x27;: ip.label,
+    			&#x27;format&#x27;:&#x27;color&#x27;
+    		};
+      }
+      else if(t == &quot;date&quot;) {
+         return {
+    			&#x27;type&#x27;:&#x27;string&#x27;,
+    			&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+    			&#x27;title&#x27;: ip.label,
+    			&#x27;format&#x27;:&#x27;date&#x27;
+    		};
+      }
+      else if(t == &quot;multiselect&quot; || t == &quot;multiautocomplete&quot;){
+        return {
+    			&#x27;type&#x27;:&#x27;array&#x27;,
+    			&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+    			&#x27;title&#x27;: ip.label,
+    			&#x27;items&#x27;: typeof ip.jsonSchemaRef == &quot;undefined&quot; ? {&quot;type&quot;:&quot;string&quot;}: ip.jsonSchemaRef,&#x2F;&#x2F; it&#x27;s a little bit weird to mix a inputEx description field and jsonSchema in a specific attribute, we should had a $ref system to go through this properly
+    			&#x27;_inputex&#x27;: ip
+    		};
+      }
+      else {
+			return {
+				&#x27;type&#x27;: &#x27;string&#x27;,
+				&#x27;title&#x27;: ip.label,
+				&#x27;optional&#x27;: typeof ip.required == &quot;undefined&quot; ? true : !ip.required,
+				&#x27;_inputex&#x27;: ip
+			};
+      }
+      
+   }
+
+};
+
+
+&#x2F;**
+ * @class inputEx.JsonSchema.Builder
+ *&#x2F;
+inputEx.JsonSchema.Builder = function(opts) {
+	
+	var options = opts || {};
+	this.options  = options; 
+	
+	&#x2F;&#x2F; specify how other schema properties are mapped to inputParam properties
+	this.schemaToParamMap = options.schemaToParamMap || {
+		&#x27;title&#x27;:&#x27;label&#x27;,
+		&#x27;description&#x27;:&#x27;description&#x27;,
+		&#x27;_inputex&#x27;:null	&#x2F;&#x2F; null value means copy child key&#x2F;value pairs into field options directly
+	};
+	
+	this.referenceResolver = options.referenceResolver || null;
+	
+	&#x2F;&#x2F; options to be applied unless already specified
+	this.defaultOptions = options.defaultOptions || {};	
+	
+	&#x2F;&#x2F; key is reference, value is schema
+	this.schemaIdentifierMap = options.schemaIdentifierMap || {};
+};
+
+inputEx.JsonSchema.Builder.prototype = {
+   
+   &#x2F;** 
+ 	 * return a schema based on the reference value default is to look up in map
+ 	 * @method defaultReferenceResolver
+    *&#x2F;
+	defaultReferenceResolver:function(reference) {
+		return this.schemaIdentifierMap[reference] || null;
+	},
+	
+	&#x2F;**
+	 * Convert a JSON schema to inputEx JSON
+	 * @method schemaToInputEx
+	 * @param {JSONSchema} p
+	 *&#x2F;
+	schemaToInputEx:function(p, propertyName) {
+	
+	   var fieldDef = { label: propertyName, name: propertyName };
+	   var schemaMap = this.schemaToParamMap;
+    	var referencedSchema = p[&quot;$ref&quot;];
+		var key;
+	    
+	   if(referencedSchema){
+	    	var new_schema = null;
+	    	if(this.referenceResolver) {
+		       new_schema = this.referenceResolver(referencedSchema);
+		    }
+	    	if(new_schema === null) {
+	    		new_schema = this.defaultReferenceResolver(referencedSchema);
+	    	}
+	    	if(new_schema === null) {
+	    		throw new Error(&#x27;Schema for property : &quot;&#x27;+propertyName+&#x27;&quot; $references &quot;&#x27;+referencedSchema+&#x27;&quot;, not found&#x27;);
+	    	}
+	    	&#x2F;&#x2F; copy options into new schema, for example we can overide presentation
+	    	&#x2F;&#x2F; of a defined schema depending on where it is used
+	    	new_schema = Y.mix({},new_schema);	&#x2F;&#x2F; copy new_schema
+	    	
+	    	for(var pk in p) {
+	    		if(p.hasOwnProperty(pk) &amp;&amp; lang.isUndefined(new_schema[pk]) &amp;&amp; pk != &#x27;$ref&#x27;) {
+	    			new_schema[pk] = p[pk];
+	    		}
+	    	}
+	    	p = new_schema;
+	   }
+
+	   if(!p.optional) {
+	      fieldDef.required = true;
+	   }
+
+	    for(key in schemaMap) {
+	        if(schemaMap.hasOwnProperty(key)) {
+	      	  var paramName = schemaMap[key]; 
+	      	  var v = p[key];
+	      	  if(!lang.isUndefined(v)) {
+	      		  if(paramName === null) {
+	      			  &#x2F;&#x2F; copy &#x2F; merge values from v directly into options
+	      			  if(lang.isObject(v)) {
+	      				  &#x2F;&#x2F; v must be an object, copy key&#x2F;value pairs into options
+	      				  for(var vkey in v) {
+	      					  if(v.hasOwnProperty(vkey)) {
+	      						  fieldDef[vkey] = v[vkey];
+	      					  }
+	      				  }
+	      			  }
+	      		  } else {
+	      			  fieldDef[paramName] = v;
+	      		  }
+	      	  }
+	        }
+	    }
+	    if(!p.type) p.type = &#x27;object&#x27;;
+	    var type = p.type;
+	       
+	       &#x2F;&#x2F; If type is a &quot;Union type definition&quot;, we&#x27;ll use the first type for the field
+	       &#x2F;&#x2F; &quot;array&quot; &lt;=&gt;  [] &lt;=&gt; [&quot;any&quot;]
+	       if(lang.isArray(type)) {
+	          if(type.length === 0 || (type.length == 1 &amp;&amp; type[0] == &quot;any&quot;) ) {
+	             type = &quot;array&quot;;
+	          }
+	          else {
+	             type = type[0];
+	          }
+	       }
+	       &#x2F;&#x2F;else if(lang.isObject(type) ) {
+	          &#x2F;&#x2F; What do we do ??
+	          &#x2F;&#x2F;console.log(&quot;type is an object !!&quot;);
+	       &#x2F;&#x2F;}
+	       
+	       fieldDef.type = type;
+	       
+	       &#x2F;&#x2F; default value
+	       if( !lang.isUndefined(p[&quot;default&quot;]) ) {
+	          fieldDef.value = p[&quot;default&quot;];
+	       }
+	    
+	       if(type == &quot;array&quot; ) {
+	          fieldDef.type = &quot;list&quot;;
+	          if(lang.isObject(p.items) &amp;&amp; !lang.isArray(p.items)) {
+	        	  &#x2F;&#x2F; when items is an object, it&#x27;s a schema that describes each item in the list
+	        	  fieldDef.elementType = this.schemaToInputEx(p.items, propertyName);
+	          }
+	
+		       if(p.minItems) { fieldDef.minItems = p.minItems; }
+				 if(p.maxItems) { fieldDef.maxItems = p.maxItems; }
+	
+	       }
+	       else if(type == &quot;object&quot; ) {
+	          fieldDef.type = &quot;group&quot;;
+	          if(p.title &amp;&amp; lang.isUndefined(fieldDef.legend)) {
+	        	  fieldDef.legend = p.title; 
+	          }
+	          &#x2F;&#x2F;fieldDef = this.schemaToInputEx(p, propertyName);
+	          &#x2F;&#x2F;fieldDef = this._parseSchemaProperty(p, propertyName);
+	          var fields = [];
+	          if(propertyName) {
+	        	  fieldDef.name = propertyName;
+	          }
+	
+	          for(key in p.properties) {
+	             if(p.properties.hasOwnProperty(key)) {
+	                fields.push( this.schemaToInputEx(p.properties[key], key) );
+	             }
+	          }
+	
+	          fieldDef.fields = fields;
+	          
+	       }
+	       else if(type == &quot;string&quot; &amp;&amp; (p[&quot;enum&quot;] || p[&quot;choices&quot;]) ) {
+	          fieldDef.type = &quot;select&quot;;
+	          
+	          if(p.choices) {
+	             fieldDef.choices = [];
+	             for(var i = 0 ; i &lt; p.choices.length ; i++) {
+	                var o = p.choices[i];
+	                fieldDef.choices[i] = { label: o.label, value: o.value };
+	             }
+             }
+             else { &#x2F;&#x2F; p.choices
+	             fieldDef.choices = [];
+	             for(var i = 0 ; i &lt; p[&quot;enum&quot;].length ; i++) {
+	                var o = p[&quot;enum&quot;][i];
+						 if(lang.isObject(o)) {
+	                	fieldDef.choices[i] = { label: o.label, value: o.value };
+						 }
+						 else {
+							fieldDef.choices[i] = { value: o };
+						 }
+	             }
+             }		
+	       }
+	       else if(type == &quot;string&quot;) {
+	    	  if(!lang.isUndefined(p.pattern) &amp;&amp; lang.isUndefined(fieldDef.regexp)) {
+	    		  if(lang.isString(p.pattern)) {
+	    			  fieldDef.regexp = new RegExp(p.pattern);
+	    		  } else {
+	    			  fieldDef.regexp = p.pattern;
+	    		  }
+	    	  }
+	    	  if(!lang.isUndefined(p.maxLength) &amp;&amp; lang.isUndefined(fieldDef.maxLength)) {
+	    		  fieldDef.maxLength = p.maxLength; 
+	    	  }
+
+	    	  if(!lang.isUndefined(p.minLength) &amp;&amp; lang.isUndefined(fieldDef.minLength)) {
+	    		  fieldDef.minLength = p.minLength; 
+	    	  }
+
+	    	  if(!lang.isUndefined(p.readonly) &amp;&amp; lang.isUndefined(fieldDef.readonly)) {
+	    		  fieldDef.readonly = p.readonly; 
+	    	  }
+
+           &#x2F;&#x2F; According to http:&#x2F;&#x2F;groups.google.com&#x2F;group&#x2F;json-schema&#x2F;web&#x2F;json-schema-possible-formats
+	          if( p.format ) {
+	             if(p.format == &quot;html&quot;) {
+	                fieldDef.type = &quot;html&quot;;
+	             } else if(p.format == &quot;date&quot;) {
+	                fieldDef.type = &quot;date&quot;;
+	                fieldDef.tooltipIcon = true;
+	             } else if(p.format == &#x27;url&#x27;) {
+	            	 fieldDef.type = &#x27;url&#x27;;
+	             } else if(p.format == &#x27;email&#x27;) {
+	            	 fieldDef.type = &#x27;email&#x27;;
+	             } else if(p.format == &#x27;text&#x27;) {
+	            	 fieldDef.type = &#x27;text&#x27;;
+	             } else if(p.format == &#x27;time&#x27;) {
+	                fieldDef.type = &#x27;time&#x27;;
+	             } else if(p.format == &#x27;ip-address&#x27;) {
+    	             fieldDef.type = &#x27;IPv4&#x27;;
+    	          } else if(p.format == &#x27;color&#x27;) {
+    	             fieldDef.type = &#x27;color&#x27;;
+    	          }
+	          }
+	       }
+	
+			 &#x2F;&#x2F; Override inputEx&#x27;s type with the &quot;_type&quot; attribute
+			 if( !!p[&quot;_inputex&quot;] &amp;&amp; !!p[&quot;_inputex&quot;][&quot;_type&quot;]) {
+				fieldDef.type = p[&quot;_inputex&quot;][&quot;_type&quot;];
+			 }
+	
+	    &#x2F;&#x2F; Add the defaultOptions
+	    for(var kk in this.defaultOptions) {
+	        if(this.defaultOptions.hasOwnProperty(kk) &amp;&amp; lang.isUndefined(fieldDef[kk])) {
+	        	fieldDef[kk] = this.defaultOptions[kk]; 
+	        }	    	
+	    }
+	    return fieldDef;
+	},
+
+   &#x2F;**
+    * Create an inputEx Json form definition from a json schema instance object
+    * Respect the &quot;Self-Defined Schema Convention&quot;
+    * @method formFromInstance
+    *&#x2F;
+   formFromInstance: function(instanceObject) {
+      if(!instanceObject || !instanceObject[&quot;$schema&quot;]) {
+         throw new Error(&quot;Invalid json schema instance object. Object must have a &#x27;$schema&#x27; property.&quot;);
+      }
+      
+      var formDef = this.schemaToInputEx(instanceObject[&quot;$schema&quot;]);
+      
+      &#x2F;&#x2F; Set the default value of each property to the instance value
+      for(var i = 0 ; i &lt; formDef.fields.length ; i++) {
+         var fieldName = formDef.fields[i].name;
+         formDef.fields[i].value = instanceObject[fieldName];
+      }
+      
+      return formDef;
+   }
+   
+};
+
+}, &#x27;3.1.0&#x27;,{
+  requires: [&quot;inputex&quot;]
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

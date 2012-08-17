@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src&#x2F;inputex-email&#x2F;inputex-email.js - InputEx</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.1&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.5.1&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title="InputEx"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 3.1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/inputEx.html">inputEx</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.AutoComplete.html">inputEx.AutoComplete</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Base.html">inputEx.Base</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.CheckBox.html">inputEx.CheckBox</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ColorField.html">inputEx.ColorField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.CombineField.html">inputEx.CombineField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateField.html">inputEx.DateField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DatePickerField.html">inputEx.DatePickerField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateSelectMonthField.html">inputEx.DateSelectMonthField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateSplitField.html">inputEx.DateSplitField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateTimeField.html">inputEx.DateTimeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DDListField.html">inputEx.DDListField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DSSelectField.html">inputEx.DSSelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.EmailField.html">inputEx.EmailField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Field.html">inputEx.Field</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.FileField.html">inputEx.FileField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Form.html">inputEx.Form</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Group.html">inputEx.Group</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.HiddenField.html">inputEx.HiddenField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ImageCropperField.html">inputEx.ImageCropperField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.InPlaceEdit.html">inputEx.InPlaceEdit</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.IntegerField.html">inputEx.IntegerField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.IPv4Field.html">inputEx.IPv4Field</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.JsonSchema.html">inputEx.JsonSchema</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.JsonSchema.Builder.html">inputEx.JsonSchema.Builder</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.KeyOpValueField.html">inputEx.KeyOpValueField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.KeyValueField.html">inputEx.KeyValueField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Lens.html">inputEx.Lens</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.LinkedComboField.html">inputEx.LinkedComboField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ListField.html">inputEx.ListField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MapField.html">inputEx.MapField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MenuField.html">inputEx.MenuField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.mixin.html">inputEx.mixin</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.mixin.choice.html">inputEx.mixin.choice</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MultiAutoComplete.html">inputEx.MultiAutoComplete</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MultiSelectField.html">inputEx.MultiSelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.NumberField.html">inputEx.NumberField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ObjectField.html">inputEx.ObjectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Panel.html">inputEx.Panel</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.PasswordField.html">inputEx.PasswordField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Plugin.InputExDataTable.html">inputEx.Plugin.InputExDataTable</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RadioField.html">inputEx.RadioField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RatingStars.html">inputEx.RatingStars</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RatingStarsForm.html">inputEx.RatingStarsForm</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.html">inputEx.RPC</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.html">inputEx.RPC.Envelope</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON.html">inputEx.RPC.Envelope.JSON</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON-RPC-1.0.html">inputEx.RPC.Envelope.JSON-RPC-1.0</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON-RPC-2.0.html">inputEx.RPC.Envelope.JSON-RPC-2.0</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.PATH.html">inputEx.RPC.Envelope.PATH</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.URL.html">inputEx.RPC.Envelope.URL</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Service.html">inputEx.RPC.Service</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.SMDTester.html">inputEx.RPC.SMDTester</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Transport.html">inputEx.RPC.Transport</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RTEField.html">inputEx.RTEField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SelectField.html">inputEx.SelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.html">inputEx.SerializeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.html">inputEx.SerializeField.serializers</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.json.html">inputEx.SerializeField.serializers.json</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.xml.html">inputEx.SerializeField.serializers.xml</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SliderField.html">inputEx.SliderField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.StringAvailability.html">inputEx.StringAvailability</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.StringField.html">inputEx.StringField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Textarea.html">inputEx.Textarea</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TextAutoTag.html">inputEx.TextAutoTag</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TimeField.html">inputEx.TimeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TimeIntervalField.html">inputEx.TimeIntervalField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TinyMCEField.html">inputEx.TinyMCEField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TreeField.html">inputEx.TreeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TypeField.html">inputEx.TypeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UneditableField.html">inputEx.UneditableField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UpperCaseField.html">inputEx.UpperCaseField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UrlField.html">inputEx.UrlField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.VectorField.html">inputEx.VectorField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.visus.html">inputEx.visus</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.html">inputEx.widget</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.Button.html">inputEx.widget.Button</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.JsonTreeInspector.html">inputEx.widget.JsonTreeInspector</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/inputex.html">inputex</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-autocomplete.html">inputex-autocomplete</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-base.html">inputex-base</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-button.html">inputex-button</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-checkbox.html">inputex-checkbox</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-choice.html">inputex-choice</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-color.html">inputex-color</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-combine.html">inputex-combine</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datatable.html">inputex-datatable</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-date.html">inputex-date</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datepicker.html">inputex-datepicker</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-dateselectmonth.html">inputex-dateselectmonth</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datesplit.html">inputex-datesplit</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datetime.html">inputex-datetime</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ddlist.html">inputex-ddlist</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-dsselect.html">inputex-dsselect</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-email.html">inputex-email</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-field.html">inputex-field</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-file.html">inputex-file</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-form.html">inputex-form</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-group.html">inputex-group</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-hidden.html">inputex-hidden</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-imagecropper.html">inputex-imagecropper</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-inplaceedit.html">inputex-inplaceedit</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-integer.html">inputex-integer</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ipv4.html">inputex-ipv4</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-jsonschema.html">inputex-jsonschema</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-jsontreeinspector.html">inputex-jsontreeinspector</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-keyopvalue.html">inputex-keyopvalue</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-keyvalue.html">inputex-keyvalue</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-lens.html">inputex-lens</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-linkedcombo.html">inputex-linkedcombo</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-list.html">inputex-list</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-map.html">inputex-map</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-menu.html">inputex-menu</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-multiautocomplete.html">inputex-multiautocomplete</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-multiselect.html">inputex-multiselect</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-number.html">inputex-number</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-object.html">inputex-object</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-panel.html">inputex-panel</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-password.html">inputex-password</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-radio.html">inputex-radio</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ratingstars.html">inputex-ratingstars</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ratingstarsform.html">inputex-ratingstarsform</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-rpc.html">inputex-rpc</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-rte.html">inputex-rte</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-select.html">inputex-select</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-serialize.html">inputex-serialize</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-slider.html">inputex-slider</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-smdtester.html">inputex-smdtester</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-string.html">inputex-string</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-stringavailability.html">inputex-stringavailability</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-textarea.html">inputex-textarea</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-textautotag.html">inputex-textautotag</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-time.html">inputex-time</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-timeinterval.html">inputex-timeinterval</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-timerange.html">inputex-timerange</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-tinymce.html">inputex-tinymce</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-tree.html">inputex-tree</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-type.html">inputex-type</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-uneditable.html">inputex-uneditable</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-uppercase.html">inputex-uppercase</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-url.html">inputex-url</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-vector.html">inputex-vector</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-visus.html">inputex-visus</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src&#x2F;inputex-email&#x2F;inputex-email.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+ * @module inputex-email
+ *&#x2F;
+YUI.add(&quot;inputex-email&quot;,function(Y){
+   
+  var inputEx = Y.inputEx;
+&#x2F;**
+ * Field that adds the email regexp for validation. Result is always lower case.
+ * @class inputEx.EmailField
+ * @extends inputEx.StringField
+ * @constructor
+ * @param {Object} options inputEx.Field options object
+ *&#x2F;
+inputEx.EmailField = function(options) {
+   inputEx.EmailField.superclass.constructor.call(this,options);
+};
+Y.extend(inputEx.EmailField, inputEx.StringField, {
+   
+   &#x2F;**
+    * Set the email regexp and invalid message
+    * @method setOptions
+    * @param {Object} options Options object as passed to the constructor
+    *&#x2F;
+   setOptions: function(options) {
+      inputEx.EmailField.superclass.setOptions.call(this, options);
+
+      &#x2F;&#x2F; Overwrite options
+      this.options.messages.invalid = inputEx.messages.invalidEmail;
+      this.options.regexp = inputEx.regexps.email;
+      
+      &#x2F;&#x2F; Validate the domain name ( false by default )
+      this.options.fixdomain = (Y.Lang.isUndefined(options.fixdomain) ? false : !!options.fixdomain);
+      
+      &#x2F;&#x2F; Validate email is not disposable
+      this.options.disallowDisposable = (Y.Lang.isUndefined(options.disallowDisposable) ? false : !!options.disallowDisposable);
+      
+   },
+   
+   &#x2F;**
+    * @method validateDomain
+    *&#x2F;
+	validateDomain : function() {
+		
+		var i, j, val, domain, domainList, domainListLength, groupDomain, groupDomainLength;
+		
+		val = this.getValue();
+		domain = val.split(&#x27;@&#x27;)[1];
+		
+		&#x2F;&#x2F; List of bad emails (only the first one in each array is the valid one)
+		domainList = [
+		
+			&#x2F;&#x2F; gmail.com
+			[&quot;gmail.com&quot;,&quot;gmail.com.br&quot;,&quot;_gmail.com&quot;,&quot;g-mail.com&quot;,&quot;g.mail.com&quot;,&quot;g_mail.com&quot;,&quot;gamail.com&quot;,&quot;gamil.com&quot;,&quot;gemail.com&quot;,&quot;ggmail.com&quot;,&quot;gimail.com&quot;,&quot;gmai.com&quot;,&quot;gmail.cim&quot;,&quot;gmail.co&quot;,&quot;gmaill.com&quot;,&quot;gmain.com&quot;,&quot;gmaio.com&quot;,&quot;gmal.com&quot;,&quot;gmali.com&quot;,&quot;gmeil.com&quot;,&quot;gmial.com&quot;,&quot;gmil.com&quot;,&quot;gtmail.com&quot;,&quot;igmail.com&quot;,&quot;gmail.fr&quot;],
+		
+			&#x2F;&#x2F; hotmail.co.uk
+			[&quot;hotmail.co.uk&quot;,&quot;hotmail.com.uk&quot;],
+		
+			&#x2F;&#x2F; hotmail.com
+			[&quot;hotmail.com&quot;,&quot;hotmail.com.br&quot;,&quot;hotmail.br&quot;,&quot;0hotmail.com&quot;,&quot;8hotmail.com&quot;,&quot;_hotmail.com&quot;,&quot;ahotmail.com&quot;,&quot;ghotmail.com&quot;,&quot;gotmail.com&quot;,&quot;hatmail.com&quot;,&quot;hhotmail.com&quot;,&quot;ho0tmail.com&quot;,&quot;hogmail.com&quot;,&quot;hoimail.com&quot;,&quot;hoitmail.com&quot;,&quot;homail.com&quot;,&quot;homtail.com&quot;,&quot;hootmail.com&quot;,&quot;hopmail.com&quot;,&quot;hoptmail.com&quot;,&quot;hormail.com&quot;,&quot;hot.mail.com&quot;,&quot;hot_mail.com&quot;,&quot;hotail.com&quot;,&quot;hotamail.com&quot;,&quot;hotamil.com&quot;,&quot;hotemail.com&quot;,&quot;hotimail.com&quot;,&quot;hotlmail.com&quot;,&quot;hotmaail.com&quot;,&quot;hotmael.com&quot;,&quot;hotmai.com&quot;,&quot;hotmaial.com&quot;,&quot;hotmaiil.com&quot;,&quot;hotmail.acom&quot;,&quot;hotmail.bom&quot;,&quot;hotmail.ccom&quot;,&quot;hotmail.cm&quot;,&quot;hotmail.co&quot;,&quot;hotmail.coml&quot;,&quot;hotmail.comm&quot;,&quot;hotmail.con&quot;,&quot;hotmail.coom&quot;,&quot;hotmail.copm&quot;,&quot;hotmail.cpm&quot;,&quot;hotmail.lcom&quot;,&quot;hotmail.ocm&quot;,&quot;hotmail.om&quot;,&quot;hotmail.xom&quot;,&quot;hotmail2.com&quot;,&quot;hotmail_.com&quot;,&quot;hotmailc.com&quot;,&quot;hotmaill.com&quot;,&quot;hotmailo.com&quot;,&quot;hotmaio.com&quot;,&quot;hotmaiol.com&quot;,&quot;hotmais.com&quot;,&quot;hotmal.com&quot;,&quot;hotmall.com&quot;,&quot;hotmamil.com&quot;,&quot;hotmaol.com&quot;,&quot;hotmayl.com&quot;,&quot;hotmeil.com&quot;,&quot;hotmial.com&quot;,&quot;hotmil.com&quot;,&quot;hotmmail.com&quot;,&quot;hotmnail.com&quot;,&quot;hotmsil.com&quot;,&quot;hotnail.com&quot;,&quot;hotomail.com&quot;,&quot;hottmail.com&quot;,&quot;hotymail.com&quot;,&quot;hoymail.com&quot;,&quot;hptmail.com&quot;,&quot;htmail.com&quot;,&quot;htomail.com&quot;,&quot;ohotmail.com&quot;,&quot;otmail.com&quot;,&quot;rotmail.com&quot;,&quot;shotmail.com&quot;,&quot;hotmain.com&quot;],
+		
+			&#x2F;&#x2F; hotmail.fr
+			[&quot;hotmail.fr&quot;,&quot;hotmail.ffr&quot;,&quot;hotmail.frr&quot;,&quot;hotmail.fr.br&quot;,&quot;hotmail.br&quot;,&quot;0hotmail.fr&quot;,&quot;8hotmail.fr&quot;,&quot;_hotmail.fr&quot;,&quot;ahotmail.fr&quot;,&quot;ghotmail.fr&quot;,&quot;gotmail.fr&quot;,&quot;hatmail.fr&quot;,&quot;hhotmail.fr&quot;,&quot;ho0tmail.fr&quot;,&quot;hogmail.fr&quot;,&quot;hoimail.fr&quot;,&quot;hoitmail.fr&quot;,&quot;homail.fr&quot;,&quot;homtail.fr&quot;,&quot;hootmail.fr&quot;,&quot;hopmail.fr&quot;,&quot;hoptmail.fr&quot;,&quot;hormail.fr&quot;,&quot;hot.mail.fr&quot;,&quot;hot_mail.fr&quot;,&quot;hotail.fr&quot;,&quot;hotamail.fr&quot;,&quot;hotamil.fr&quot;,&quot;hotemail.fr&quot;,&quot;hotimail.fr&quot;,&quot;hotlmail.fr&quot;,&quot;hotmaail.fr&quot;,&quot;hotmael.fr&quot;,&quot;hotmai.fr&quot;,&quot;hotmaial.fr&quot;,&quot;hotmaiil.fr&quot;,&quot;hotmail.frl&quot;,&quot;hotmail.frm&quot;,&quot;hotmail2.fr&quot;,&quot;hotmail_.fr&quot;,&quot;hotmailc.fr&quot;,&quot;hotmaill.fr&quot;,&quot;hotmailo.fr&quot;,&quot;hotmaio.fr&quot;,&quot;hotmaiol.fr&quot;,&quot;hotmais.fr&quot;,&quot;hotmal.fr&quot;,&quot;hotmall.fr&quot;,&quot;hotmamil.fr&quot;,&quot;hotmaol.fr&quot;,&quot;hotmayl.fr&quot;,&quot;hotmeil.fr&quot;,&quot;hotmial.fr&quot;,&quot;hotmil.fr&quot;,&quot;hotmmail.fr&quot;,&quot;hotmnail.fr&quot;,&quot;hotmsil.fr&quot;,&quot;hotnail.fr&quot;,&quot;hotomail.fr&quot;,&quot;hottmail.fr&quot;,&quot;hotymail.fr&quot;,&quot;hoymail.fr&quot;,&quot;hptmail.fr&quot;,&quot;htmail.fr&quot;,&quot;htomail.fr&quot;,&quot;ohotmail.fr&quot;,&quot;otmail.fr&quot;,&quot;rotmail.fr&quot;,&quot;shotmail.fr&quot;,&quot;hotmain.fr&quot;],
+		
+			&#x2F;&#x2F; yahoo.co.in
+			[&quot;yahoo.co.in&quot;,&quot;yaho.co.in&quot;,&quot;yahoo.co.cn&quot;,&quot;yahoo.co.n&quot;,&quot;yahoo.co.on&quot;,&quot;yahoo.coin&quot;,&quot;yahoo.com.in&quot;,&quot;yahoo.cos.in&quot;,&quot;yahoo.oc.in&quot;,&quot;yaoo.co.in&quot;,&quot;yhoo.co.in&quot;],
+		
+			&#x2F;&#x2F; yahoo.com.br
+			[&quot;yahoo.com.br&quot;,&quot;1yahoo.com.br&quot;,&quot;5yahoo.com.br&quot;,&quot;_yahoo.com.br&quot;,&quot;ayhoo.com.br&quot;,&quot;tahoo.com.br&quot;,&quot;uahoo.com.br&quot;,&quot;yagoo.com.br&quot;,&quot;yahho.com.br&quot;,&quot;yaho.com.br&quot;,&quot;yahoo.cm.br&quot;,&quot;yahoo.co.br&quot;,&quot;yahoo.com.ar&quot;,&quot;yahoo.com.b&quot;,&quot;yahoo.com.be&quot;,&quot;yahoo.com.ber&quot;,&quot;yahoo.com.bl&quot;,&quot;yahoo.com.brr&quot;,&quot;yahoo.com.brv&quot;,&quot;yahoo.com.bt&quot;,&quot;yahoo.com.nr&quot;,&quot;yahoo.coml.br&quot;,&quot;yahoo.con.br&quot;,&quot;yahoo.om.br&quot;,&quot;yahool.com.br&quot;,&quot;yahooo.com.br&quot;,&quot;yahoou.com.br&quot;,&quot;yaoo.com.br&quot;,&quot;yaroo.com.br&quot;,&quot;yhaoo.com.br&quot;,&quot;yhoo.com.br&quot;,&quot;yuhoo.com.br&quot;],
+		
+			&#x2F;&#x2F; yahoo.com
+			[&quot;yahoo.com&quot;,&quot;yahoomail.com&quot;,&quot;_yahoo.com&quot;,&quot;ahoo.com&quot;,&quot;ayhoo.com&quot;,&quot;eyahoo.com&quot;,&quot;hahoo.com&quot;,&quot;sahoo.com&quot;,&quot;yahho.com&quot;,&quot;yaho.com&quot;,&quot;yahol.com&quot;,&quot;yahoo.co&quot;,&quot;yahoo.con&quot;,&quot;yahoo.vom&quot;,&quot;yahoo0.com&quot;,&quot;yahoo1.com&quot;,&quot;yahool.com&quot;,&quot;yahooo.com&quot;,&quot;yahoou.com&quot;,&quot;yahoow.com&quot;,&quot;yahopo.com&quot;,&quot;yaloo.com&quot;,&quot;yaoo.com&quot;,&quot;yaroo.com&quot;,&quot;yayoo.com&quot;,&quot;yhaoo.com&quot;,&quot;yhoo.com&quot;,&quot;yohoo.com&quot;],
+		
+			&#x2F;&#x2F; yahoo.fr
+			[&quot;yahoo.fr&quot;,&quot;yahoomail.fr&quot;,&quot;_yahoo.fr&quot;,&quot;ahoo.fr&quot;,&quot;ayhoo.fr&quot;,&quot;eyahoo.fr&quot;,&quot;hahoo.fr&quot;,&quot;sahoo.fr&quot;,&quot;yahho.fr&quot;,&quot;yaho.fr&quot;,&quot;yahol.fr&quot;,&quot;yahoo.co&quot;,&quot;yahoo.con&quot;,&quot;yahoo.vom&quot;,&quot;yahoo0.fr&quot;,&quot;yahoo1.fr&quot;,&quot;yahool.fr&quot;,&quot;yahooo.fr&quot;,&quot;yahoou.fr&quot;,&quot;yahoow.fr&quot;,&quot;yahopo.fr&quot;,&quot;yaloo.fr&quot;,&quot;yaoo.fr&quot;,&quot;yaroo.fr&quot;,&quot;yayoo.fr&quot;,&quot;yhaoo.fr&quot;,&quot;yhoo.fr&quot;,&quot;yohoo.fr&quot;],
+		
+			&#x2F;&#x2F; wanadoo.fr
+			[&quot;wanadoo.fr&quot;,&quot;wanadoo.frr&quot;,&quot;wanadoo.ffr&quot;,&quot;wanado.fr&quot;,&quot;wanadou.fr&quot;,&quot;wanadop.fr&quot;,&quot;wandoo.fr&quot;,&quot;wanaoo.fr&quot;,&quot;wannadoo.fr&quot;,&quot;wanadoo.com&quot;,&quot;wananadoo.fr&quot;,&quot;wanadoo.fe&quot;,&quot;wanaddo.fr&quot;,&quot;wanadoo.orange&quot;,&quot;waqnadoo.fr&quot;,&quot;wandaoo.fr&quot;,&quot;wannado.fr&quot;],
+			
+			&#x2F;&#x2F; msn.com
+			[&quot;msn.com&quot;,&quot;mns.com&quot;,&quot;msn.co&quot;],
+			
+			&#x2F;&#x2F; aol.com
+			[&quot;aol.com&quot;,&quot;aoel.com&quot;,&quot;aol.co&quot;]
+		];
+		
+		&#x2F;&#x2F; Loop 1
+		for(i=0, domainListLength = domainList.length; i&lt;domainListLength; i++ ) {
+			groupDomain = domainList[i];
+			
+			&#x2F;&#x2F; Loop 2
+			for(j=0, groupDomainLength = groupDomain.length; j&lt;groupDomainLength; j++ ) {
+
+				&#x2F;&#x2F; First domain of array
+				if (inputEx.indexOf(domain, groupDomain) === 0) {
+					
+					&#x2F;&#x2F; If domain matches the first value of the array it means it&#x27;s valid
+					if ( domain === groupDomain[j] ) {
+						return true;
+					}
+				}
+				else if ( domain === groupDomain[j] ) {
+					var linkId = Y.guid();
+					var that = this;
+					
+					&#x2F;&#x2F; Add a listener to the link to allow the user to replace his bad email by clicking the link
+					Y.on(&quot;click&quot;,  function(e){
+						e.halt();
+						var reg = new RegExp(domain, &quot;i&quot;);
+						var fixedVal = val.replace(reg, groupDomain[0]);
+						that.setValue( fixedVal );
+					}, &#x27;#&#x27; + linkId, this);
+					
+					&#x2F;&#x2F; Display the message with the link
+					this.options.messages.invalid = inputEx.messages.didYouMean+&quot;&lt;a href=&#x27;&#x27; id=&#x27;&quot;+linkId+&quot;&#x27; style=&#x27;color:blue;&#x27;&gt;@&quot;+groupDomain[0]+&quot; ?&lt;&#x2F;a&gt;&quot;;
+					
+					&#x2F;&#x2F; field isnt valid
+					return false;
+				}
+			}
+		}
+		
+		&#x2F;&#x2F; field is valid
+		return true;
+	},
+   
+   &#x2F;**
+    * @method validateNotDisposable
+    *&#x2F;
+   validateNotDisposable: function () {
+      
+      var email = this.getValue(),
+          result,
+          disposableRegex = &#x2F;@yopmail|@jetable\.org|@mail-temporaire\.fr|@ephemail\.com|@trashmail\.net|@kasmail\.com|@spamgourmet\.com|@tempomail\.com|@guerrillamail\.com|@mytempemail\.com|@saynotospams\.com|@tempemail\.co\.za|@mailinator\.com|@mytrashmail\.com|@mailexpire\.com|@maileater\.com|@spambox\.us|@guerrillamail\.com|@10minutemail\.com|@dontreg\.com|@filzmail\.com|@spamfree24\.org|@brefmail\.com|@0-mail\.com|@link2mail\.com|@DodgeIt\.com|@dontreg\.com|@e4ward\.com|@gishpuppy|@guerrillamail\.com|@haltospam\.com|@kasmail\.com|@mailexpire\.com|@mailEater\.com|@mailinator\.com|@mailNull\.com|@mytrashMail|@nobulk\.com|@nospamfor\.us|@PookMail\.com|@shortmail\.net|@sneakemail\.com|@spam\.la|@spambob\.com|@spambox\.us|@spamDay\.com|@spamh0le\.com|@spaml\.com|@tempInbox\.com|@temporaryinbox\.com|@willhackforfood\.biz|@willSelfdestruct\.com|@wuzupmail\.net|@cool\.fr\.nf|@jetable\.fr\.nf|@nospam\.ze\.tc|@nomail\.xl\.cx|@mega\.zik\.dj|@speed\.1s\.fr|@courriel\.fr\.nf|@moncourrier\.fr\.nf|@monemail\.fr\.nf|@monmail\.fr\.nf|@Get2mail\.fr|@fakemail\.fr&#x2F;i;
+      
+      result = !email.match(disposableRegex);
+      
+      &#x2F;&#x2F; change invalid message
+      if (!result) {
+         this.options.messages.invalid = inputEx.messages.disposableEmail + email.match(disposableRegex)[0];
+      }
+      
+      return result;
+   },
+   
+   &#x2F;**
+    * @method validate
+    *&#x2F;
+   validate: function() {
+      
+      var result = inputEx.EmailField.superclass.validate.call(this);
+      
+      &#x2F;&#x2F; reset message (useful if changed in previous validation process)
+      this.options.messages.invalid = inputEx.messages.invalidEmail;
+      
+      &#x2F;&#x2F; if we want the domain validation
+      if (result &amp;&amp; !!this.options.fixdomain) {
+         result = this.validateDomain();
+      }
+      
+      &#x2F;&#x2F; if we want to disallow disposable e-mail addresses
+      if (result &amp;&amp; !!this.options.disallowDisposable) {
+         result = this.validateNotDisposable();
+      }
+      
+      return result;
+      
+   },
+   
+   &#x2F;**
+    * Set the value to lower case since email have no case
+    * @method getValue
+    * @return {String} The email string
+    *&#x2F;
+   getValue: function() {
+      
+      var value;
+      
+      value = inputEx.EmailField.superclass.getValue.call(this);
+      
+      return inputEx.removeAccents(value.toLowerCase());
+   }
+
+});
+   
+&#x2F;&#x2F; Register this class as &quot;email&quot; type
+inputEx.registerType(&quot;email&quot;, inputEx.EmailField, []);
+
+}, &#x27;3.1.0&#x27;,{
+  requires: [&quot;inputex-string&quot;]
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

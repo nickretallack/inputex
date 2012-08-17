@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src&#x2F;inputex-datatable&#x2F;inputex-datatable.js - InputEx</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.1&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.5.1&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title="InputEx"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 3.1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/inputEx.html">inputEx</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.AutoComplete.html">inputEx.AutoComplete</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Base.html">inputEx.Base</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.CheckBox.html">inputEx.CheckBox</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ColorField.html">inputEx.ColorField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.CombineField.html">inputEx.CombineField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateField.html">inputEx.DateField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DatePickerField.html">inputEx.DatePickerField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateSelectMonthField.html">inputEx.DateSelectMonthField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateSplitField.html">inputEx.DateSplitField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateTimeField.html">inputEx.DateTimeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DDListField.html">inputEx.DDListField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DSSelectField.html">inputEx.DSSelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.EmailField.html">inputEx.EmailField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Field.html">inputEx.Field</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.FileField.html">inputEx.FileField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Form.html">inputEx.Form</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Group.html">inputEx.Group</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.HiddenField.html">inputEx.HiddenField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ImageCropperField.html">inputEx.ImageCropperField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.InPlaceEdit.html">inputEx.InPlaceEdit</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.IntegerField.html">inputEx.IntegerField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.IPv4Field.html">inputEx.IPv4Field</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.JsonSchema.html">inputEx.JsonSchema</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.JsonSchema.Builder.html">inputEx.JsonSchema.Builder</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.KeyOpValueField.html">inputEx.KeyOpValueField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.KeyValueField.html">inputEx.KeyValueField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Lens.html">inputEx.Lens</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.LinkedComboField.html">inputEx.LinkedComboField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ListField.html">inputEx.ListField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MapField.html">inputEx.MapField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MenuField.html">inputEx.MenuField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.mixin.html">inputEx.mixin</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.mixin.choice.html">inputEx.mixin.choice</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MultiAutoComplete.html">inputEx.MultiAutoComplete</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MultiSelectField.html">inputEx.MultiSelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.NumberField.html">inputEx.NumberField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ObjectField.html">inputEx.ObjectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Panel.html">inputEx.Panel</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.PasswordField.html">inputEx.PasswordField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Plugin.InputExDataTable.html">inputEx.Plugin.InputExDataTable</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RadioField.html">inputEx.RadioField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RatingStars.html">inputEx.RatingStars</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RatingStarsForm.html">inputEx.RatingStarsForm</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.html">inputEx.RPC</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.html">inputEx.RPC.Envelope</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON.html">inputEx.RPC.Envelope.JSON</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON-RPC-1.0.html">inputEx.RPC.Envelope.JSON-RPC-1.0</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON-RPC-2.0.html">inputEx.RPC.Envelope.JSON-RPC-2.0</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.PATH.html">inputEx.RPC.Envelope.PATH</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.URL.html">inputEx.RPC.Envelope.URL</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Service.html">inputEx.RPC.Service</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.SMDTester.html">inputEx.RPC.SMDTester</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Transport.html">inputEx.RPC.Transport</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RTEField.html">inputEx.RTEField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SelectField.html">inputEx.SelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.html">inputEx.SerializeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.html">inputEx.SerializeField.serializers</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.json.html">inputEx.SerializeField.serializers.json</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.xml.html">inputEx.SerializeField.serializers.xml</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SliderField.html">inputEx.SliderField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.StringAvailability.html">inputEx.StringAvailability</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.StringField.html">inputEx.StringField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Textarea.html">inputEx.Textarea</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TextAutoTag.html">inputEx.TextAutoTag</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TimeField.html">inputEx.TimeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TimeIntervalField.html">inputEx.TimeIntervalField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TinyMCEField.html">inputEx.TinyMCEField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TreeField.html">inputEx.TreeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TypeField.html">inputEx.TypeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UneditableField.html">inputEx.UneditableField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UpperCaseField.html">inputEx.UpperCaseField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UrlField.html">inputEx.UrlField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.VectorField.html">inputEx.VectorField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.visus.html">inputEx.visus</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.html">inputEx.widget</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.Button.html">inputEx.widget.Button</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.JsonTreeInspector.html">inputEx.widget.JsonTreeInspector</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/inputex.html">inputex</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-autocomplete.html">inputex-autocomplete</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-base.html">inputex-base</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-button.html">inputex-button</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-checkbox.html">inputex-checkbox</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-choice.html">inputex-choice</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-color.html">inputex-color</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-combine.html">inputex-combine</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datatable.html">inputex-datatable</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-date.html">inputex-date</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datepicker.html">inputex-datepicker</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-dateselectmonth.html">inputex-dateselectmonth</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datesplit.html">inputex-datesplit</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datetime.html">inputex-datetime</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ddlist.html">inputex-ddlist</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-dsselect.html">inputex-dsselect</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-email.html">inputex-email</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-field.html">inputex-field</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-file.html">inputex-file</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-form.html">inputex-form</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-group.html">inputex-group</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-hidden.html">inputex-hidden</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-imagecropper.html">inputex-imagecropper</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-inplaceedit.html">inputex-inplaceedit</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-integer.html">inputex-integer</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ipv4.html">inputex-ipv4</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-jsonschema.html">inputex-jsonschema</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-jsontreeinspector.html">inputex-jsontreeinspector</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-keyopvalue.html">inputex-keyopvalue</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-keyvalue.html">inputex-keyvalue</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-lens.html">inputex-lens</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-linkedcombo.html">inputex-linkedcombo</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-list.html">inputex-list</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-map.html">inputex-map</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-menu.html">inputex-menu</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-multiautocomplete.html">inputex-multiautocomplete</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-multiselect.html">inputex-multiselect</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-number.html">inputex-number</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-object.html">inputex-object</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-panel.html">inputex-panel</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-password.html">inputex-password</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-radio.html">inputex-radio</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ratingstars.html">inputex-ratingstars</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ratingstarsform.html">inputex-ratingstarsform</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-rpc.html">inputex-rpc</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-rte.html">inputex-rte</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-select.html">inputex-select</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-serialize.html">inputex-serialize</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-slider.html">inputex-slider</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-smdtester.html">inputex-smdtester</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-string.html">inputex-string</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-stringavailability.html">inputex-stringavailability</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-textarea.html">inputex-textarea</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-textautotag.html">inputex-textautotag</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-time.html">inputex-time</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-timeinterval.html">inputex-timeinterval</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-timerange.html">inputex-timerange</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-tinymce.html">inputex-tinymce</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-tree.html">inputex-tree</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-type.html">inputex-type</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-uneditable.html">inputex-uneditable</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-uppercase.html">inputex-uppercase</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-url.html">inputex-url</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-vector.html">inputex-vector</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-visus.html">inputex-visus</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src&#x2F;inputex-datatable&#x2F;inputex-datatable.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+YUI.add(&quot;inputex-datatable&quot;, function (Y) {
+&#x2F;**
+ * The inputex-datatable module provides the inputEx.Plugin.InputExDataTable class which is a plugin.
+ * @module inputex-datatable
+ *&#x2F;
+
+    var inputEx = Y.inputEx,
+        MSGS = Y.inputEx.messages;
+
+    &#x2F;&#x2F; namespace definition
+    Y.namespace(&#x27;inputEx.Plugin&#x27;);
+
+
+  &#x2F;**
+   * Provide add&#x2F;modify&#x2F;delete functionalities on a dataTable as a plugin
+   * @class inputEx.Plugin.InputExDataTable
+   * @extends Plugin.Base
+   * @constructor
+   * @param {Object} configuration object
+   *&#x2F;
+   inputEx.Plugin.InputExDataTable = function (config) {
+      inputEx.Plugin.InputExDataTable.superclass.constructor.call(this, config);
+    };
+
+   inputEx.Plugin.InputExDataTable.NS = &quot;InputExDataTable&quot;;
+
+    Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
+       
+       &#x2F;**
+        * @method initializer
+        *&#x2F;
+        initializer: function () {
+
+            var host = this.get(&quot;host&quot;);
+
+            &#x2F;&#x2F; enrich data (Model instance) with modify and delete attributs
+            this.enrichData();
+            &#x2F;&#x2F; enrich DataTable with modify and delete columns
+            this.enrichColumns();
+            &#x2F;&#x2F; add a button called &quot;add&quot; in order to add record in the DataTable
+            this.addAddButton();
+            
+            if(!this.get(&quot;disableModifyFunc&quot;)){
+                &#x2F;&#x2F; handle row modification
+                host.delegate(&quot;click&quot;,this.modifyRecord,&quot;td.inputEx-DataTable-modify&quot;, this);
+            }
+            if(!this.get(&quot;disableDeleteFunc&quot;)){
+                &#x2F;&#x2F; handle row removal
+                host.delegate(&quot;click&quot;,this.deleteRecord, &quot;td.inputEx-DataTable-delete&quot;, this);
+            }
+        },
+        &#x2F;**
+         * add Attributes on the data model depending on the plugin configuration
+         *
+         * @method enrichData
+         * @param {EventFacade} e
+         *&#x2F;
+        enrichData: function (e) {
+
+            var that = this,
+                data = this.get(&quot;host&quot;).get(&quot;data&quot;);
+
+            data.each(function (model) {
+                if(!this.get(&quot;disableModifyFunc&quot;)){
+                    that.addModifyAttr(model);
+                }
+                if(!this.get(&quot;disableDeleteFunc&quot;)){
+                    that.addDeleteAttr(model);
+                }
+            });
+        },
+        &#x2F;**
+         * add Columns on the DataTable depending on the plugin configuration
+         *
+         * @method enrichColumns
+         *&#x2F;
+        enrichColumns: function () {
+            if(!this.get(&quot;disableModifyFunc&quot;)){
+                this.addModifyColumn();
+            }
+            if(!this.get(&quot;disableDeleteFunc&quot;)){
+                this.addDeleteColumn();
+            }
+        },
+        &#x2F;**
+         * Provide the add button in order to add record on the DataTable
+         *
+         * @method addAddButton
+         *&#x2F;
+        addAddButton : function(){
+            if(!this.get(&quot;disableAddFunc&quot;)){
+            var button = Y.Node.create(&quot;&lt;button id=&#x27;addButton&#x27;&gt;&quot;+MSGS.addButtonText+&quot;&lt;&#x2F;button&quot;),
+                panel = this.get(&quot;panel&quot;);
+            this.get(&quot;host&quot;).get(&quot;contentBox&quot;).append(button);
+            button.on(&quot;click&quot;,function  (e) {
+                panel.set(&quot;headerContent&quot;,&quot;Add Item&quot;);
+                panel.get(&quot;field&quot;).clear();
+                panel.show();
+            },this);
+            }
+        },
+        &#x2F;**
+         *
+         * @method modifyRecord
+         *&#x2F;
+        modifyRecord : function(e){
+                e.stopPropagation();
+                var record = this.get(&quot;host&quot;).getRecord(e.currentTarget),
+                    panel = this.get(&quot;panel&quot;);
+                panel.set(&quot;headerContent&quot;,&quot;Modify Item&quot;);
+                panel.get(&#x27;field&#x27;).setValue(record.getAttrs());
+                panel.show();
+        },
+        &#x2F;**
+         *
+         * @method deleteRecord
+         *&#x2F;
+        deleteRecord : function(e){
+                e.stopPropagation();
+                var record = this.get(&quot;host&quot;).getRecord(e.currentTarget);
+                if (!this.get(&quot;confirmDelete&quot;) || confirm(MSGS.confirmDeletion)) {
+                    this.get(&quot;host&quot;).get(&quot;data&quot;).remove(record);
+                }
+        },
+         &#x2F;**
+         *
+         * @method deleteExtraColumns
+         *&#x2F;
+        deleteExtraColumns : function(){
+            if(!this.get(&quot;disableModifyFunc&quot;)){
+                this.removeModifyColumn();
+            }
+            if(!this.get(&quot;disableDeleteFunc&quot;)){
+                this.removeDeleteColumn();
+            }
+        },
+         &#x2F;**
+         *
+         * @method _initPanel
+         * @private
+         *&#x2F;
+        _initPanel: function () {
+
+            var that = this;
+
+            var panel = new Y.inputEx.Panel({
+                centered: true,
+                width: 500,
+                modal: true,
+                zIndex: 5,
+                visible: false,
+                inputEx: that.get(&quot;inputEx&quot;),
+          
+      buttons: [{
+          value: &quot;Cancel&quot;,
+          action: function (e) {
+              e.preventDefault();
+              panel.hide();
+          }
+      },{
+          value: &quot;Save&quot;,
+          action: function (e) {
+              e.preventDefault();
+
+              var field = that.get(&quot;panel&quot;).get(&quot;field&quot;),
+                  fieldValues = field.getValue(),
+                  host = that.get(&quot;host&quot;),
+                  model;
+
+              if (field.validate()) {
+
+                  if (fieldValues.id) {
+                      &#x2F;&#x2F; modification
+                      host.get(&quot;data&quot;).getById(fieldValues.id).setAttrs(fieldValues);
+                  } else {
+                      &#x2F;&#x2F; creation
+                      fieldValues.id = that.generateId(that.get(&quot;idSize&quot;));
+                      model = new Y.Model();
+                      model.setAttrs(fieldValues);
+                      that.addModifyAttr(model);
+                      that.addDeleteAttr(model);
+                      host.get(&quot;data&quot;).add(model);
+                  }
+                  panel.hide();
+              }
+          }
+      }]
+            });
+
+            &#x2F;&#x2F; first the panel needs to be &quot;render&quot; then &quot;show&quot;
+            panel.render();
+            return panel;
+
+        },
+        &#x2F;**
+         *
+         * @method destructor
+         *&#x2F;
+        destructor : function(){
+
+            var that = this,
+                data = this.get(&quot;host&quot;).get(&quot;data&quot;);
+
+            data.each(function (model) {
+
+                if(!this.get(&quot;disableModifyFunc&quot;)){
+                    that.delModifyAttr(model);
+                }
+                if(!this.get(&quot;disableDeleteFunc&quot;)){
+                    that.delDeleteAttr(model);
+                }
+
+            });
+            this.deleteExtraColumns();
+            if(!this.get(&quot;disableAddFunc&quot;)){
+                Y.one(&quot;#addButton&quot;).remove();
+            }
+
+            this.get(&quot;panel&quot;).destroy();
+        },
+        &#x2F;**
+         * Add the modify attribute on the data model
+         *
+         * @method addModifyAttr
+         *&#x2F;
+        addModifyAttr : function(model){model.addAttr(&quot;modify&quot;);},
+        &#x2F;**
+         * Add the delete attribute on the data model
+         *
+         * @method addDeleteAttr
+         *&#x2F;
+        addDeleteAttr : function(model){model.addAttr(&quot;delete&quot;);},
+        &#x2F;**
+         * Remove the modify attribute from the data model
+         *
+         * @method delModifyAttr
+         *&#x2F;
+        delModifyAttr : function(model){model.removeAttr(&quot;modify&quot;);},
+        &#x2F;**
+         * Remove the modify attribute from the data model
+         *
+         * @method delDeleteAttr
+         *&#x2F;
+        delDeleteAttr : function(model){model.removeAttr(&quot;delete&quot;);},
+        &#x2F;**
+         * Add the modify column on the DataTable
+         *
+         * @method addModifyColumn
+         *&#x2F;
+        addModifyColumn : function(){
+                this.get(&quot;host&quot;).addColumn({
+                key: this.get(&quot;modifyColumnLabel&quot;),
+                className: &quot;inputEx-DataTable-modify&quot;
+            });
+        },
+        &#x2F;**
+         * Add the delete column on the DataTable
+         *
+         * @method addDeleteColumn
+         *&#x2F;
+        addDeleteColumn : function(){
+            this.get(&quot;host&quot;).addColumn({
+                key: this.get(&quot;deleteColumnLabel&quot;),
+                className: &quot;inputEx-DataTable-delete&quot;
+            });
+        },
+        &#x2F;**
+         * Remove the modify column from the DataTable
+         *
+         * @method removeModifyColumn
+         *&#x2F;
+        removeModifyColumn : function(){this.get(&quot;host&quot;).removeColumn(&quot;modify&quot;);},
+        &#x2F;**
+         * Remove the delete column from the DataTable
+         *
+         * @method removeDeleteColumn
+         *&#x2F;
+        removeDeleteColumn : function(){this.get(&quot;host&quot;).removeColumn(&quot;delete&quot;);},
+        generateId : function(size){
+            var prefixId = this.get(&quot;prefixId&quot;),
+                s = size ? size : 5;
+            prefixId = prefixId ? prefixId : &quot;&quot;;
+            return prefixId + Math.floor(Math.random()*Math.pow(10,s));
+        }
+    }, {
+&#x2F;**
+ * Static property used to define the default attribute configuration of
+ * the Plugin.
+ *
+ * @property ATTRS
+ * @type {Object}
+ * @static
+ *&#x2F;
+ATTRS: {
+    &#x2F;**
+     * This is an inputEx field definition. This is used when a user try to create&#x2F;modify a record
+     *
+     * @attribute inputEx
+     *&#x2F;
+    inputEx: {},
+    &#x2F;**
+     * This string is inserted before the generated id
+     *
+     * @attribute prefixId
+     * @type String
+     * @example prefixId : &quot;po-&quot; --&gt; id = po-1342561
+     *&#x2F;
+    prefixId: {
+        value: &quot;&quot;
+    },
+    &#x2F;**
+     * This represents the number of digits used in the id generation
+     * 
+     * @attribute idSize
+     * @type Number
+     *&#x2F;
+    idSize: {
+        value: 5
+    },
+    &#x2F;**
+     * If true the add functionality is disabled
+     *
+     * @attribute disableAddFunc
+     * @type boolean
+     *&#x2F;
+    disableAddFunc: {
+        value: false
+    },
+
+    &#x2F;**
+     * If true the modify functionality is disabled
+     * @attribute disableModifyFunc
+     * @type boolean
+     *&#x2F;
+    disableModifyFunc: {
+        value: false
+    },
+    &#x2F;**
+     * If true the delete functionality is disabled
+     *
+     * @attribute disableDeleteFunc
+     * @type boolean
+     *&#x2F;
+    disableDeleteFunc: {
+        value: false
+    },
+    &#x2F;**
+     * Label of the modify column
+     *
+     * @attribute modifyColumnLabel
+     *&#x2F;
+    modifyColumnLabel: {
+        value: MSGS.modifyText
+    },
+    &#x2F;**
+     * Label of the delete column
+     *
+     * @attribute deleteColumnLabel
+     *&#x2F;
+    deleteColumnLabel: {
+        value: MSGS.deleteText
+    },
+    &#x2F;**
+     * If true a confirmation will be asked to the user when a delete attempt appear
+     *
+     * @attribute confirmDelete
+     * @type boolean
+     *&#x2F;
+    confirmDelete: {
+        value: true
+    },
+    &#x2F;**
+     * This panel will be displayed on record creation&#x2F;modication
+     * @attribute panel
+     * @type Y.inputEx.Panel
+     *&#x2F;
+    panel: {
+        valueFn: &#x27;_initPanel&#x27;,
+        lazyAdd: true
+    }
+}});
+
+}, &quot;&quot;, {requires: [&#x27;inputex-group&#x27;, &#x27;inputex-panel&#x27;,&#x27;datatable&#x27;]});
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

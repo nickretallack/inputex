@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>src&#x2F;inputex-form&#x2F;inputex-form.js - InputEx</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.1&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.5.1&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title="InputEx"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 3.1.0</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/inputEx.html">inputEx</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.AutoComplete.html">inputEx.AutoComplete</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Base.html">inputEx.Base</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.CheckBox.html">inputEx.CheckBox</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ColorField.html">inputEx.ColorField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.CombineField.html">inputEx.CombineField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateField.html">inputEx.DateField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DatePickerField.html">inputEx.DatePickerField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateSelectMonthField.html">inputEx.DateSelectMonthField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateSplitField.html">inputEx.DateSplitField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DateTimeField.html">inputEx.DateTimeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DDListField.html">inputEx.DDListField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.DSSelectField.html">inputEx.DSSelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.EmailField.html">inputEx.EmailField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Field.html">inputEx.Field</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.FileField.html">inputEx.FileField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Form.html">inputEx.Form</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Group.html">inputEx.Group</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.HiddenField.html">inputEx.HiddenField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ImageCropperField.html">inputEx.ImageCropperField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.InPlaceEdit.html">inputEx.InPlaceEdit</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.IntegerField.html">inputEx.IntegerField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.IPv4Field.html">inputEx.IPv4Field</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.JsonSchema.html">inputEx.JsonSchema</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.JsonSchema.Builder.html">inputEx.JsonSchema.Builder</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.KeyOpValueField.html">inputEx.KeyOpValueField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.KeyValueField.html">inputEx.KeyValueField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Lens.html">inputEx.Lens</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.LinkedComboField.html">inputEx.LinkedComboField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ListField.html">inputEx.ListField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MapField.html">inputEx.MapField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MenuField.html">inputEx.MenuField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.mixin.html">inputEx.mixin</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.mixin.choice.html">inputEx.mixin.choice</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MultiAutoComplete.html">inputEx.MultiAutoComplete</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.MultiSelectField.html">inputEx.MultiSelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.NumberField.html">inputEx.NumberField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.ObjectField.html">inputEx.ObjectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Panel.html">inputEx.Panel</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.PasswordField.html">inputEx.PasswordField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Plugin.InputExDataTable.html">inputEx.Plugin.InputExDataTable</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RadioField.html">inputEx.RadioField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RatingStars.html">inputEx.RatingStars</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RatingStarsForm.html">inputEx.RatingStarsForm</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.html">inputEx.RPC</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.html">inputEx.RPC.Envelope</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON.html">inputEx.RPC.Envelope.JSON</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON-RPC-1.0.html">inputEx.RPC.Envelope.JSON-RPC-1.0</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.JSON-RPC-2.0.html">inputEx.RPC.Envelope.JSON-RPC-2.0</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.PATH.html">inputEx.RPC.Envelope.PATH</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Envelope.URL.html">inputEx.RPC.Envelope.URL</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Service.html">inputEx.RPC.Service</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.SMDTester.html">inputEx.RPC.SMDTester</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RPC.Transport.html">inputEx.RPC.Transport</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.RTEField.html">inputEx.RTEField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SelectField.html">inputEx.SelectField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.html">inputEx.SerializeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.html">inputEx.SerializeField.serializers</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.json.html">inputEx.SerializeField.serializers.json</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SerializeField.serializers.xml.html">inputEx.SerializeField.serializers.xml</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.SliderField.html">inputEx.SliderField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.StringAvailability.html">inputEx.StringAvailability</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.StringField.html">inputEx.StringField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.Textarea.html">inputEx.Textarea</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TextAutoTag.html">inputEx.TextAutoTag</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TimeField.html">inputEx.TimeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TimeIntervalField.html">inputEx.TimeIntervalField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TinyMCEField.html">inputEx.TinyMCEField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TreeField.html">inputEx.TreeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.TypeField.html">inputEx.TypeField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UneditableField.html">inputEx.UneditableField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UpperCaseField.html">inputEx.UpperCaseField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.UrlField.html">inputEx.UrlField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.VectorField.html">inputEx.VectorField</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.visus.html">inputEx.visus</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.html">inputEx.widget</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.Button.html">inputEx.widget.Button</a></li>
+            
+                <li><a href="..&#x2F;classes/inputEx.widget.JsonTreeInspector.html">inputEx.widget.JsonTreeInspector</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/inputex.html">inputex</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-autocomplete.html">inputex-autocomplete</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-base.html">inputex-base</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-button.html">inputex-button</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-checkbox.html">inputex-checkbox</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-choice.html">inputex-choice</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-color.html">inputex-color</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-combine.html">inputex-combine</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datatable.html">inputex-datatable</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-date.html">inputex-date</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datepicker.html">inputex-datepicker</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-dateselectmonth.html">inputex-dateselectmonth</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datesplit.html">inputex-datesplit</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-datetime.html">inputex-datetime</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ddlist.html">inputex-ddlist</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-dsselect.html">inputex-dsselect</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-email.html">inputex-email</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-field.html">inputex-field</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-file.html">inputex-file</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-form.html">inputex-form</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-group.html">inputex-group</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-hidden.html">inputex-hidden</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-imagecropper.html">inputex-imagecropper</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-inplaceedit.html">inputex-inplaceedit</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-integer.html">inputex-integer</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ipv4.html">inputex-ipv4</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-jsonschema.html">inputex-jsonschema</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-jsontreeinspector.html">inputex-jsontreeinspector</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-keyopvalue.html">inputex-keyopvalue</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-keyvalue.html">inputex-keyvalue</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-lens.html">inputex-lens</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-linkedcombo.html">inputex-linkedcombo</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-list.html">inputex-list</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-map.html">inputex-map</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-menu.html">inputex-menu</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-multiautocomplete.html">inputex-multiautocomplete</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-multiselect.html">inputex-multiselect</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-number.html">inputex-number</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-object.html">inputex-object</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-panel.html">inputex-panel</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-password.html">inputex-password</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-radio.html">inputex-radio</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ratingstars.html">inputex-ratingstars</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-ratingstarsform.html">inputex-ratingstarsform</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-rpc.html">inputex-rpc</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-rte.html">inputex-rte</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-select.html">inputex-select</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-serialize.html">inputex-serialize</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-slider.html">inputex-slider</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-smdtester.html">inputex-smdtester</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-string.html">inputex-string</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-stringavailability.html">inputex-stringavailability</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-textarea.html">inputex-textarea</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-textautotag.html">inputex-textautotag</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-time.html">inputex-time</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-timeinterval.html">inputex-timeinterval</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-timerange.html">inputex-timerange</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-tinymce.html">inputex-tinymce</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-tree.html">inputex-tree</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-type.html">inputex-type</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-uneditable.html">inputex-uneditable</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-uppercase.html">inputex-uppercase</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-url.html">inputex-url</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-vector.html">inputex-vector</a></li>
+            
+                <li><a href="..&#x2F;modules/inputex-visus.html">inputex-visus</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: src&#x2F;inputex-form&#x2F;inputex-form.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+ * @module inputex-form
+ *&#x2F;
+YUI.add(&quot;inputex-form&quot;, function(Y){
+
+  var lang = Y.Lang,
+      inputEx = Y.inputEx;
+
+&#x2F;**
+ * Create a group of fields within a FORM tag and adds buttons
+ * @class inputEx.Form
+ * @extends inputEx.Group
+ * @constructor
+ * @param {Object} options The following options are added for Forms:
+ * &lt;ul&gt;
+ *   &lt;li&gt;buttons: list of button definition objects {value: &#x27;Click Me&#x27;, type: &#x27;submit&#x27;}&lt;&#x2F;li&gt;
+ *   &lt;li&gt;ajax: send the form through an ajax request (submit button should be present): {method: &#x27;POST&#x27;, uri: &#x27;myScript.php&#x27;, callback: same as Y.io callback}&lt;&#x2F;li&gt;
+ *   &lt;li&gt;showMask: adds a mask over the form while the request is running (default is false)&lt;&#x2F;li&gt;
+ * &lt;&#x2F;ul&gt;
+ *&#x2F;
+inputEx.Form = function(options) {
+   inputEx.Form.superclass.constructor.call(this, options);
+};
+
+Y.extend(inputEx.Form, inputEx.Group, {
+
+   &#x2F;**
+    * Adds buttons and set ajax default parameters
+    * @method setOptions
+    * @param {Object} options Options object as passed to the constructor
+    *&#x2F;
+   setOptions: function(options) {
+      inputEx.Form.superclass.setOptions.call(this, options);
+
+      this.buttons = [];
+
+      this.options.buttons = options.buttons || [];
+
+      this.options.action = options.action;
+   	this.options.method = options.method;
+
+		this.options.className =  options.className || &#x27;inputEx-Group&#x27;;
+	   this.options.autocomplete = lang.isUndefined(options.autocomplete) ?
+	                                  inputEx.browserAutocomplete :
+	                                  (options.autocomplete === false || options.autocomplete === &quot;off&quot;) ? false : true;
+		
+		this.options.enctype = options.enctype;
+
+      if(options.ajax) {
+         this.options.ajax = {};
+         this.options.ajax.method = options.ajax.method || &#x27;POST&#x27;;
+         this.options.ajax.uri = options.ajax.uri || &#x27;default.php&#x27;;
+         this.options.ajax.callback = options.ajax.callback || {};
+         this.options.ajax.callback.scope = (options.ajax.callback &amp;&amp; options.ajax.callback.scope) || this;
+         this.options.ajax.showMask = lang.isUndefined(options.ajax.showMask) ? false : options.ajax.showMask;
+
+			this.options.ajax.contentType = options.ajax.contentType || &quot;application&#x2F;json&quot;;
+			this.options.ajax.wrapObject = options.ajax.wrapObject;
+      }
+      
+      if (lang.isFunction(options.onSubmit)) {
+         this.options.onSubmit = options.onSubmit;
+      }
+   },
+
+
+   &#x2F;**
+    * Render the group
+    * @method render
+    *&#x2F;
+   render: function() {
+      &#x2F;&#x2F; Create the div wrapper for this group
+  	   this.divEl = inputEx.cn(&#x27;div&#x27;, {className: this.options.className});
+	   if(this.options.id) {
+   	   this.divEl.id = this.options.id;
+   	}
+   	  	   
+  	   &#x2F;&#x2F; Create the FORM element
+      this.form = inputEx.cn(&#x27;form&#x27;, {method: this.options.method || &#x27;POST&#x27;, action: this.options.action || &#x27;&#x27;, className: this.options.className || &#x27;inputEx-Form&#x27;});
+      this.divEl.appendChild(this.form);
+
+		&#x2F;&#x2F; set the enctype
+		if(this.options.enctype) {
+			this.form.setAttribute(&#x27;enctype&#x27;,this.options.enctype);
+		}
+
+	   &#x2F;&#x2F; Set the autocomplete attribute to off to disable browser autocompletion
+		this.form.setAttribute(&#x27;autocomplete&#x27;, this.options.autocomplete ? &#x27;on&#x27; : &#x27;off&#x27;);
+   	
+      &#x2F;&#x2F; Set the name of the form
+      if(this.options.formName) { this.form.name = this.options.formName; }
+  	   
+  	   this.renderFields(this.form);
+
+      this.renderButtons();
+      
+      if(this.options.disabled) {
+  	      this.disable();
+  	   }	  
+   },
+
+
+   &#x2F;**
+    * Render the buttons
+    * @method renderButtons
+    *&#x2F;
+   renderButtons: function() {
+       
+      var buttonConf, button, i, buttonsNb = this.options.buttons.length;
+      
+      this.buttonDiv = inputEx.cn(&#x27;div&#x27;, {className: &#x27;inputEx-Form-buttonBar&#x27;});
+
+      for(i = 0 ; i &lt; buttonsNb ; i++ ) {
+         buttonConf = this.options.buttons[i];
+   
+         &#x2F;&#x2F; Throw Error if button is undefined
+         if(!buttonConf) {
+            throw new Error(&quot;inputEx.Form: One of the provided button is undefined ! (check trailing comma)&quot;);
+         }
+         
+         button = new inputEx.widget.Button(buttonConf);
+         button.render(this.buttonDiv);
+         
+         this.buttons.push(button);
+         
+      }
+      
+      &#x2F;&#x2F; useful for link buttons re-styling (float required on &lt;a&gt;&#x27;s ... )
+      this.buttonDiv.appendChild(inputEx.cn(&#x27;div&#x27;,null,{clear:&#x27;both&#x27;}));
+      
+      this.form.appendChild(this.buttonDiv);
+   },
+
+
+   &#x2F;**
+    * Init the events
+    * @method initEvents
+    *&#x2F;
+   initEvents: function() {
+      
+      var i, length;
+      
+      inputEx.Form.superclass.initEvents.call(this);
+      
+      
+      &#x2F;&#x2F; Custom event to normalize form submits
+      this.publish(&quot;submit&quot;)
+      
+      &#x2F;&#x2F;CustomEvent to provide additionnal features afterValidation
+      this.publish(&quot;afterValidation&quot;)
+      
+      &#x2F;&#x2F; Two ways to trigger the form submitEvent firing
+      &#x2F;&#x2F;
+      &#x2F;&#x2F;
+      &#x2F;&#x2F; 1. catch a &#x27;submit&#x27; event on form (say a user pressed &lt;Enter&gt; in a field)
+      &#x2F;&#x2F;
+      Y.on(&quot;submit&quot;,function(e) {
+         
+            &#x2F;&#x2F; always stop event
+            e.halt();
+         
+            &#x2F;&#x2F; replace with custom event
+            this.fire(&quot;submit&quot;);
+         
+      },this.form,this);
+      
+      
+      &#x2F;&#x2F;
+      &#x2F;&#x2F; 2. click on a &#x27;submit&#x27; or &#x27;submit-link&#x27; button
+      &#x2F;&#x2F;
+         for(i=0, length=this.buttons.length; i&lt;length; i++) {
+            
+            this.buttons[i].on(&quot;submit&quot;,function() { this.fire(&quot;submit&quot;); }, this);
+         
+         }
+      
+      
+      &#x2F;&#x2F; When form submitEvent is fired, call onSubmit
+      this.on(&quot;submit&quot;, this.options.onSubmit || this.onSubmit,this)
+   },
+
+   &#x2F;**
+    * Intercept the &#x27;onsubmit&#x27; event and stop it if !validate
+    * If the ajax option object is set, use YUI async Request to send the form
+    * @method onSubmit
+    * @param {Event} e The original onSubmit event
+    *&#x2F;
+   onSubmit: function(e) {
+	   
+      &#x2F;&#x2F; do nothing if does not validate
+	   if ( !this.validate() ) {
+		   return; &#x2F;&#x2F; no submit
+	   }
+	   this.fire(&quot;afterValidation&quot;);
+	   
+	   if(this.options.ajax) {
+	      this.asyncRequest(); &#x2F;&#x2F; send ajax request
+	      return;
+	   }
+	   
+	   &#x2F;&#x2F; normal submit finally
+	   &#x2F;&#x2F; (won&#x27;t fire a dom &quot;submit&quot; event, so no risk to loop)
+	   this.form.submit();
+   },
+
+   &#x2F;**
+    * Send the form value in JSON through an ajax request
+    * @method asyncRequest
+    *&#x2F;
+   asyncRequest: function() {
+
+      if(this.options.ajax.showMask) { this.showMask(); }
+
+      var formValue = this.getValue();
+
+      &#x2F;&#x2F; options.ajax.uri and options.ajax.method can also be functions that return a the uri&#x2F;method depending of the value of the form
+      var uri = lang.isFunction(this.options.ajax.uri) ? this.options.ajax.uri(formValue) : this.options.ajax.uri;
+      var method = lang.isFunction(this.options.ajax.method) ? this.options.ajax.method(formValue) : this.options.ajax.method;
+
+      var postData = null;
+      
+      var headers = {};
+
+      &#x2F;&#x2F; Classic application&#x2F;x-www-form-urlencoded (like html forms)
+      if(this.options.ajax.contentType == &quot;application&#x2F;x-www-form-urlencoded&quot; &amp;&amp; method != &quot;PUT&quot;) {
+         
+         headers[&quot;Content-Type&quot;] = &quot;application&#x2F;x-www-form-urlencoded&quot;;
+         
+        var params = [];
+        for(var key in formValue) {
+          if(formValue.hasOwnProperty(key)) {
+            var pName = (this.options.ajax.wrapObject ? this.options.ajax.wrapObject+&#x27;[&#x27; : &#x27;&#x27;)+key+(this.options.ajax.wrapObject ? &#x27;]&#x27; : &#x27;&#x27;);
+            params.push( pName+&quot;=&quot;+window.encodeURIComponent(formValue[key]));
+          }
+        }
+        postData = params.join(&#x27;&amp;&#x27;);
+      }
+      &#x2F;&#x2F; The only other contentType available is &quot;application&#x2F;json&quot;
+      else {
+        headers[&quot;Content-Type&quot;] = &#x27;application&#x2F;json&#x27;;
+
+        &#x2F;&#x2F; method PUT don&#x27;t send as x-www-form-urlencoded but in JSON
+        if(method == &quot;PUT&quot;) {
+          var formVal = this.getValue();
+          var p;
+          if(this.options.ajax.wrapObject) {
+            p = {};
+            p[this.options.ajax.wrapObject] = formVal;
+          }
+          else {
+            p = formVal;
+          }
+          postData = Y.JSON.stringify(p);
+        }
+        else {
+          &#x2F;&#x2F; We keep this case for backward compatibility, but should not be used
+          &#x2F;&#x2F; Used when we send in JSON in POST or GET
+          postData = &quot;value=&quot;+window.encodeURIComponent(Y.JSON.stringify(this.getValue()));
+        }
+      }
+      var onSuccess = function() {
+            if(this.options.ajax.showMask) { this.hideMask(); }
+            if( lang.isFunction(this.options.ajax.callback.success) ) {
+               this.options.ajax.callback.success.apply(this.options.ajax.callback.scope,arguments);
+            }
+      };
+      var onFailure = function() {
+            if(this.options.ajax.showMask) { this.hideMask(); }
+            if( lang.isFunction(this.options.ajax.callback.failure) ) {
+               this.options.ajax.callback.failure.apply(this.options.ajax.callback.scope,arguments);
+            }
+      };
+      Y.io(uri,{
+        method:method,
+        data: postData,
+        headers: headers,
+        on : {
+          success: onSuccess,
+          failure: onFailure
+        },
+        context: this
+      });
+   },
+
+   &#x2F;**
+    * Create a Mask over the form
+    * @method renderMask
+    *&#x2F;
+   renderMask: function() {
+      if(this.maskRendered) return;
+
+      &#x2F;&#x2F; position as &quot;relative&quot; to position formMask inside as &quot;absolute&quot;
+      Y.one(this.divEl).setStyle( &quot;position&quot;, &quot;relative&quot;);
+
+      &#x2F;&#x2F; set zoom = 1 to fix hasLayout issue with IE6&#x2F;7
+      if (Y.UA.ie &gt; 0) { Y.one(this.divEl).setStyle(&quot;zoom&quot;, 1); }
+
+      &#x2F;&#x2F; Render mask over the divEl
+      this.formMask = inputEx.cn(&#x27;div&#x27;, {className: &#x27;inputEx-Form-Mask&#x27;},
+         {
+            display: &#x27;none&#x27;,
+            &#x2F;&#x2F; Use offsetWidth instead of Dom.getStyle(this.divEl,&quot;width&quot;) because
+            &#x2F;&#x2F; would return &quot;auto&quot; with IE instead of size in px
+            width: this.divEl.offsetWidth+&quot;px&quot;,
+            height: this.divEl.offsetHeight+&quot;px&quot;
+         },
+         &quot;&lt;div class=&#x27;inputEx-Form-Mask-bg&#x27;&#x2F;&gt;&lt;center&gt;&lt;br&#x2F;&gt;&lt;div class=&#x27;inputEx-Form-Mask-spinner&#x27;&gt;&lt;&#x2F;div&gt;&lt;br &#x2F;&gt;&lt;span&gt;&quot;+inputEx.messages.ajaxWait+&quot;&lt;&#x2F;span&gt;&lt;&#x2F;div&gt;&quot;);
+      this.divEl.appendChild(this.formMask);
+      this.maskRendered = true;
+   },
+
+   &#x2F;**
+    * Show the form mask
+    * @method showMask
+    *&#x2F;
+   showMask: function() {
+      this.renderMask();
+
+      &#x2F;&#x2F; Hide selects in IE 6
+      this.toggleSelectsInIE(false);
+
+      this.formMask.style.display = &#x27;&#x27;;
+   },
+
+   &#x2F;**
+    * Hide the form mask
+    * @method hideMask
+    *&#x2F;
+   hideMask: function() {
+
+      &#x2F;&#x2F; Show selects back in IE 6
+      this.toggleSelectsInIE(true);
+
+      this.formMask.style.display = &#x27;none&#x27;;
+   },
+
+   &#x2F;**
+    * Method to hide selects in IE 6 when masking the form (else they would appear over the mask)
+    * @method toggleSelectsInIE
+    *&#x2F;
+   toggleSelectsInIE: function(show) {
+      &#x2F;&#x2F; IE 6 only
+      if (!!Y.UA.ie &amp;&amp; Y.UA.ie &lt; 7) {
+         var methodName = !!show ? &quot;removeClass&quot; : &quot;addClass&quot;;
+         var that = this;
+         Y.one(this.divEl).all(&quot;select&quot;).each(function(e){
+           e[methodName](&quot;inputEx-hidden&quot;)
+         });
+      }
+   },
+
+
+   &#x2F;**
+    * Enable all fields and buttons in the form
+    * @method enable
+    *&#x2F;
+   enable: function() {
+      inputEx.Form.superclass.enable.call(this);
+      
+      for (var i = 0 ; i &lt; this.buttons.length ; i++) {
+ 	      this.buttons[i].enable();
+      }
+   },
+
+   &#x2F;**
+    * Disable all fields and buttons in the form
+    * @method disable
+    *&#x2F;
+   disable: function() {
+      inputEx.Form.superclass.disable.call(this);
+      
+      for (var i = 0 ; i &lt; this.buttons.length ; i++) {
+         this.buttons[i].disable();
+      }
+   },
+   
+   
+   &#x2F;**
+    * Purge all event listeners and remove the component from the dom
+    * @method destroy
+    *&#x2F;
+   destroy: function() {
+      
+      var i, length, button;
+      
+      &#x2F;&#x2F; Unsubscribe all listeners to submit event
+      Y.Event.purgeElement(this.form);
+      
+      &#x2F;&#x2F; Recursively destroy buttons
+      for (i = 0, length = this.buttons.length ; i &lt; length ; i++) {
+         button = this.buttons[i];
+         button.destroy();
+      }
+      
+      &#x2F;&#x2F; destroy Form itself (+ inputs)
+      inputEx.Form.superclass.destroy.call(this);
+      
+   }
+
+});
+
+&#x2F;&#x2F; Register this class as &quot;form&quot; type
+inputEx.registerType(&quot;form&quot;, inputEx.Form, [
+   {  
+      type: &#x27;list&#x27;, 
+      label: &#x27;Buttons&#x27;, 
+      name: &#x27;buttons&#x27;, 
+      elementType: {
+         type: &#x27;group&#x27;, 
+         fields: [
+            { label: &#x27;Label&#x27;, name: &#x27;value&#x27;},
+            { type: &#x27;select&#x27;, label: &#x27;Type&#x27;, name: &#x27;type&#x27;, choices:[{ value: &quot;button&quot; }, { value: &quot;submit&quot; }] }
+         ]
+      }
+   }
+]);
+
+
+},&#x27;3.1.0&#x27;,{
+  requires: [&#x27;io-base&#x27;,&#x27;inputex-group&#x27;,&#x27;json&#x27;,&#x27;inputex-button&#x27;]
+});
+
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>
