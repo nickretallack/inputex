@@ -35,7 +35,10 @@ YUI.add("inputex-map", function (Y) {
     };
 
     Y.extend(inputEx.MapField, inputEx.Field, {
-
+       
+       /**
+        * @method setOptions
+        */
         setOptions: function (options) {
             inputEx.MapField.superclass.setOptions.call(this, options);
             this.options.className = options.className || 'inputEx-Field inputEx-MapField';
@@ -55,6 +58,7 @@ YUI.add("inputex-map", function (Y) {
 
         /**
          * Render the field using the appropriate mapping function
+         * @method renderComponent
          */
         renderComponent: function () {
             if (!inputEx.MapFieldsNumber) {
@@ -117,6 +121,10 @@ YUI.add("inputex-map", function (Y) {
             this.map = new google.maps.Map(this.el, mapOptions);
 
         },
+        
+        /**
+          * @method initEvents
+          */
         initEvents: function () {
             var that = this;
 
@@ -141,6 +149,10 @@ YUI.add("inputex-map", function (Y) {
 
             });
         },
+        
+        /**
+          * @method setValue
+          */
         setValue: function (value) {
 
             if (value.uzoom) {
@@ -155,6 +167,9 @@ YUI.add("inputex-map", function (Y) {
                 this.elLon.value = value.lon;
             }
         },
+        /**
+          * @method getValue
+          */
         getValue: function () {
             if (!this.elLat) return {};
             return {
