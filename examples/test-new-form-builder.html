@@ -1,0 +1,191 @@
+<html>
+<head>
+<title>inputEx Builder: generate inputEx Forms</title>
+<meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+<link rel="stylesheet" href="http://yui.yahooapis.com/combo?3.6.0/build/cssreset/reset-min.css&3.6.0/build/cssfonts/fonts-min.css&3.6.0/build/cssbase/cssbase-min.css&3.6.0/build/cssgrids/grids-min.css">
+<style>
+    body {
+        margin: auto; /* center in viewport */
+        width: 960px;
+    }
+	
+	body div.inputEx-label {
+        float:none;
+        text-align: left;
+    }
+	
+	#previewPanel {
+		margin: 20px;
+	}
+	
+	
+	#formHeader { border: 1px solid white; }
+	#formHeader:hover { border: 1px dashed black; }
+	
+	#formHeader.selected {
+		border: 1px solid #C2EF95 !important;
+		background-color: #E7FFCF !important;
+	}
+	
+	
+	#formHeader, #formContent div.inputex-fieldwrapper { padding: 10px; margin: 5px; }
+	
+	#formContent div.inputEx-fieldWrapper { border: 1px solid white; }
+	#formContent div.inputEx-fieldWrapper:hover { border: 1px dashed black; }
+	
+	#formContent div.selected {
+		border: 1px solid #C2D7EF !important;
+		background-color: #DFEFFF !important;
+	}
+	
+	.yui3-skin-sam .yui3-tab-label {
+		width: 106px;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
+</style>
+</head>
+<body class="yui3-skin-sam">
+	
+	<h1>inputEx: Form Builder</h1>
+	
+	<div class="yui3-g">
+
+		<div class="yui3-u-2-5" id="leftPanel">
+			
+			<div id="leftTabview">
+			    <ul>
+			        <li><a href="#addAfield">Add a field</a></li>
+			        <li><a href="#fieldSettings">Field Settings</a></li>
+			        <li><a href="#formSettings">Form Settings</a></li>
+			    </ul>
+			    <div>
+			        <div id="addAfield">
+			        	
+						<h3 class="stand">Standard</h3>
+
+						<ul id="col1">
+							<li><a id="type-string" class="button" href="#">Single Line Text</a></li>
+							<li><a id="type-text" class="button" href="#">Paragraph Text</a></li>
+							<li><a id="type-radio" class="button" href="#">Multiple Choice</a></li>
+							<li><a id="type-select" class="button" href="#">Dropdown</a></li>
+						</ul>
+						
+			        </div>
+					
+			        <div id="fieldSettings"></div>
+					
+			        <div id="formSettings"></div>
+			    </div>
+			</div>
+			
+	    </div>
+	        
+		<div class="yui3-u-3-5">
+			
+			<div id="previewPanel">
+				
+				<div id="formHeader">
+					<h2 id='formName'>Untitled Form</h2>
+					<p id='formDescription'>This is my form. Please fill it out. It's awesome!</p>
+				</div>
+			
+				<div id="formContent">
+				</div>
+			
+				<div id="formToolbar">
+				</div>
+				
+			</div>
+			
+	    </div>
+		
+	</div>
+	
+<script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+<script src="../src/loader.js"  type='text/javascript'></script>
+<script>
+
+YUI.add("inputex-form-builder",function(Y) {
+
+	// 0. render
+	var tabview = new Y.TabView({ srcNode: '#leftTabview' });
+    tabview.render();
+	
+	
+	// 1. Add A Field tab
+	Y.one('#addAfield').delegate("click", function(e) {
+		e.halt();
+		var s = this.get('id').split('-')[1];
+		var klass = Y.inputEx.getFieldClass(s);
+		
+		var opts = {type: s, label: 'Untitled'};
+		if(s == "radio" || s == "select") {
+			opts.label = 'Select a Choice';
+			opts.choices = ["First choice","Second choice","Third choice"];
+		}
+		
+        formContent.addField(opts);
+		
+	}, "ul li a");
+	
+	// 2. field settings
+	
+	// 3. Form Settings
+	var formSettings = new Y.inputEx.Group({parentEl: 'formSettings', fields: [
+			{label: 'Form Name', type: 'string', name: 'name', value: 'Untitled Form'},
+			{label: 'Description', type: 'text', name: 'description', value: 'This is my form. Please fill it out. It\'s awesome!'},
+			{label: 'Language', type: 'select', name: 'language', choices: ['English', 'French'], value: 'English'}
+	]});
+	formSettings.on('updated', function(val) {
+		Y.one('#formName').set('innerHTML', val.name);
+		Y.one('#formDescription').set('innerHTML', val.description);
+	});
+	
+	
+	// 4. Preview Panel
+	var previouslySelected = null;
+	var selectItem = function(node) {
+		if(previouslySelected) { previouslySelected.removeClass('selected'); }
+		node.addClass('selected');
+		previouslySelected = node;
+	};
+	
+	
+	// 4a. formHeader
+	Y.one('#formHeader').on('click', function() {
+		selectItem(this);
+		tabview.selectChild(2);
+	});
+	
+	
+	// 4b. formContent
+	var formContent = new Y.inputEx.Group({parentEl: 'formContent', fields: [
+			{label: 'Form Name', type: 'string', name: 'name', value: 'Untitled Form'},
+			{label: 'Description', type: 'text', name: 'description', value: 'This is my form. Please fill it out. It\'s awesome!'},
+			{label: 'Language', type: 'select', name: 'language', choices: ['English', 'French'], value: 'English'}
+	]});
+	
+	// click on field
+	Y.one('#formContent').delegate("click", function(e) {
+		selectItem(this);
+			
+		// display the field settings
+		tabview.selectChild(1); 
+		var fieldset = this.get('parentNode');
+		var fieldIndex = fieldset.get('children').indexOf(this);	
+		var fields = formContent.inputs[fieldIndex].__proto__.constructor.groupOptions;
+		Y.one('#fieldSettings').set('innerHTML', '');
+		var fieldSettings = new Y.inputEx.Group({parentEl: 'fieldSettings', fields: fields});
+	}, "div.inputEx-fieldWrapper");
+	
+}, '3.1.0',{
+  requires: YUI_config.groups.inputex.allModules.concat(['tabview'])
+});
+
+YUI_config.groups.inputex.base = '../src/';
+YUI({filter: 'raw'}).use("inputex-form-builder");
+</script>
+
+</body>
+</html>
