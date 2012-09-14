@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-string"
-   ],
-   "ix_provides": "email"
+   "inputex-email": {
+      "requires": [
+         "inputex-string"
+      ],
+      "ix_provides": "email"
+   }
 }

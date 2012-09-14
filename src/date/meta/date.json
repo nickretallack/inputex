@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-string"
-   ],
-   "ix_provides": "date"
+	"inputex-date": {
+		"requires": [
+		  "inputex-string"
+		],
+		"ix_provides": "date"
+	}
 }

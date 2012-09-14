@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-field"
-   ],
-   "ix_provides": "map"
+   "inputex-map": {
+      "requires": [
+         "inputex-field"
+      ],
+      "ix_provides": "map"
+   }
 }

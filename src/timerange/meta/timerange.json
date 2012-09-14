@@ -1,7 +1,9 @@
 {
-   "requires": [
-      "inputex-combine",
-      "inputex-select"
-   ],
-   "ix_provides": "timerange"
+   "inputex-timerange": {
+      "requires": [
+         "inputex-combine",
+         "inputex-select"
+      ],
+      "ix_provides": "timerange"
+   }
 }

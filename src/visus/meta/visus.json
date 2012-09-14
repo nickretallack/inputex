@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex",
-      "dump"
-   ]
+   "inputex-visus": {
+      "requires": [
+         "inputex",
+         "dump"
+      ]
+   }
 }

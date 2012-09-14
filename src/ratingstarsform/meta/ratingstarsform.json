@@ -1,7 +1,9 @@
 {
-   "requires": [
-      "inputex-ratingstars",
-      "inputex-form"
-   ],
-   "ix_provides": "ratingstarsform"
+   "inputex-ratingstarsform": {
+      "requires": [
+         "inputex-ratingstars",
+         "inputex-form"
+      ],
+      "ix_provides": "ratingstarsform"
+   }
 }

@@ -1,8 +1,10 @@
 {
-   "requires": [
-      "inputex-group",
-      "inputex-panel",
-      "datatable"
-   ],
-   "skinnable": true
+	"inputex-datatable": {
+		"requires": [
+		  "inputex-group",
+		  "inputex-panel",
+		  "datatable"
+		],
+		"skinnable": true
+	}
 }

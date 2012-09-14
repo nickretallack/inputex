@@ -1,10 +1,12 @@
 {
-   "requires": [
-      "inputex-field",
-      "node-event-delegate",
-      "event-outside",
-      "overlay"
-   ],
-   "skinnable": true,
-   "ix_provides": "color"
+	"inputex-color": {
+		"requires": [
+		  "inputex-field",
+		  "node-event-delegate",
+		  "event-outside",
+		  "overlay"
+		],
+		"skinnable": true,
+		"ix_provides": "color"
+	}
 }

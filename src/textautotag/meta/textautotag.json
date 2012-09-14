@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-textautotag"
-   ],
-   "ix_provides": "autotag"
+   "inputex-textautotag": {
+      "requires": [
+         "inputex-textautotag"
+      ],
+      "ix_provides": "autotag"
+   }
 }

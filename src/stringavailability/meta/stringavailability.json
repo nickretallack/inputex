@@ -1,9 +1,11 @@
 {
-   "requires": [
-      "inputex-string",
-      "event-key",
-      "io",
-      "json-parse"
-   ],
-   "skinnable": true
+   "inputex-stringavailability": {
+      "requires": [
+         "inputex-string",
+         "event-key",
+         "io",
+         "json-parse"
+      ],
+      "skinnable": true
+   }
 }

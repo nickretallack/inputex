@@ -1,7 +1,9 @@
 {
-   "requires": [
-      "inputex-field"
-   ],
-   "skinnable": true,
-   "ix_provides": "ratingstars"
+   "inputex-ratingstars": {
+      "requires": [
+         "inputex-field"
+      ],
+      "skinnable": true,
+      "ix_provides": "ratingstars"
+   }
 }

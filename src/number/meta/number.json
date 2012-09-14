@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-string"
-   ],
-   "ix_provides": "number"
+   "inputex-number": {
+      "requires": [
+         "inputex-string"
+      ],
+      "ix_provides": "number"
+   }
 }

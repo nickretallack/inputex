@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-field"
-   ],
-   "ix_provides": "imagecropper"
+   "inputex-imagecropper": {
+      "requires": [
+         "inputex-field"
+      ],
+      "ix_provides": "imagecropper"
+   }
 }

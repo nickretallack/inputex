@@ -1,5 +1,7 @@
 {
-   "requires": [
-      "inputex"
-   ]
+	"inputex-choice": {
+		"requires": [
+		  "inputex"
+		 ]
+	 }
 }

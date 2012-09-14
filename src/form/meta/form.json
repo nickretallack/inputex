@@ -1,9 +1,11 @@
 {
-   "requires": [
-      "io-base",
-      "inputex-group",
-      "json",
-      "inputex-button"
-   ],
-   "ix_provides": "form"
+   "inputex-form": {
+      "requires": [
+         "io-base",
+         "inputex-group",
+         "json",
+         "inputex-button"
+      ],
+      "ix_provides": "form"
+   }
 }

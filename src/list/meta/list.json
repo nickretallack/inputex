@@ -1,8 +1,10 @@
 {
-   "requires": [
-      "inputex-field",
-      "anim"
-   ],
-   "skinnable": true,
-   "ix_provides": "list"
+   "inputex-list": {
+      "requires": [
+         "inputex-field",
+         "anim"
+      ],
+      "skinnable": true,
+      "ix_provides": "list"
+   }
 }

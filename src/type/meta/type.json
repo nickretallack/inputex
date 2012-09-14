@@ -1,13 +1,15 @@
 {
-   "requires": [
-      "inputex-field",
-      "inputex-group",
-      "inputex-select",
-      "inputex-list",
-      "inputex-string",
-      "inputex-checkbox",
-      "inputex-integer"
-   ],
-   "skinnable": true,
-   "ix_provides": "type"
+   "inputex-type": {
+      "requires": [
+         "inputex-field",
+         "inputex-group",
+         "inputex-select",
+         "inputex-list",
+         "inputex-string",
+         "inputex-checkbox",
+         "inputex-integer"
+      ],
+      "skinnable": true,
+      "ix_provides": "type"
+   }
 }

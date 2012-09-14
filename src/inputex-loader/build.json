@@ -1,0 +1,13 @@
+{
+    "name": "inputex-loader",
+    "builds": {
+        "inputex-loader": {
+            "exec": [
+                "./scripts/meta_join.js"
+            ],
+            "jsfiles": [
+                "inputex.js"
+            ]
+        }
+    }
+}

@@ -1,7 +1,9 @@
 {
-   "requires": [
-      "inputex-string",
-      "json"
-   ],
-   "ix_provides": "serialize"
+   "inputex-serialize": {
+      "requires": [
+         "inputex-string",
+         "json"
+      ],
+      "ix_provides": "serialize"
+   }
 }

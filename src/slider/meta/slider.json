@@ -1,7 +1,9 @@
 {
-   "requires": [
-      "inputex-field",
-      "slider"
-   ],
-   "ix_provides": "slider"
+   "inputex-slider": {
+      "requires": [
+         "inputex-field",
+         "slider"
+      ],
+      "ix_provides": "slider"
+   }
 }

@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-field"
-   ],
-   "ix_provides": "group"
+   "inputex-group": {
+      "requires": [
+         "inputex-field"
+      ],
+      "ix_provides": "group"
+   }
 }

@@ -1,7 +1,9 @@
 {
+	"inputex-base": {
    "requires": [
       "inputex",
       "widget",
       "widget-stdmod"
    ]
+}
 }

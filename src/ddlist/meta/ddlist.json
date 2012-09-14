@@ -1,8 +1,10 @@
 {
-   "requires": [
-      "inputex-field",
-      "array-extras",
-      "sortable",
-      "substitute"
-   ]
+	"inputex-ddlist": {
+		"requires": [
+		  "inputex-field",
+		  "array-extras",
+		  "sortable",
+		  "substitute"
+		]
+	}
 }

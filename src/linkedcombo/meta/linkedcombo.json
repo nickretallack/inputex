@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-select",
-      "inputex-choice"
-   ]
+   "inputex-linkedcombo": {
+      "requires": [
+         "inputex-select",
+         "inputex-choice"
+      ]
+   }
 }

@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-string"
-   ],
-   "ix_provides": "url"
+   "inputex-url": {
+      "requires": [
+         "inputex-string"
+      ],
+      "ix_provides": "url"
+   }
 }

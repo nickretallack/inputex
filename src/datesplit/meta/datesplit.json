@@ -1,7 +1,9 @@
 {
-   "requires": [
-      "inputex-combine",
-      "inputex-integer"
-   ],
-   "ix_provides": "datesplit"
+	"inputex-datesplit": {
+		"requires": [
+		  "inputex-combine",
+		  "inputex-integer"
+		],
+		"ix_provides": "datesplit"
+	}
 }

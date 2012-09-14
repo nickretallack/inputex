@@ -1,7 +1,9 @@
 {
-   "requires": [
-      "inputex-combine",
-      "inputex-select"
-   ],
-   "ix_provides": "timeinterval"
+   "inputex-timeinterval": {
+      "requires": [
+         "inputex-combine",
+         "inputex-select"
+      ],
+      "ix_provides": "timeinterval"
+   }
 }

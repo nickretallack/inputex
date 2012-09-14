@@ -1,7 +1,9 @@
 {
-   "requires": [
-      "inputex-field",
-      "yui2-editor"
-   ],
-   "ix_provides": "html"
+   "inputex-rte": {
+      "requires": [
+         "inputex-field",
+         "yui2-editor"
+      ],
+      "ix_provides": "html"
+   }
 }

@@ -1,7 +1,9 @@
 {
-   "requires": [
-      "inputex-select",
-      "datasource"
-   ],
-   "ix_provides": "dsselect"
+	"inputex-dsselect": {
+		"requires": [
+		  "inputex-select",
+		  "datasource"
+		  ],
+		  "ix_provides": "dsselect"
+	  }
 }

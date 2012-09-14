@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-field"
-   ],
-   "ix_provides": "hidden"
+   "inputex-hidden": {
+      "requires": [
+         "inputex-field"
+      ],
+      "ix_provides": "hidden"
+   }
 }

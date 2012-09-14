@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-string"
-   ],
-   "ix_provides": "text"
+   "inputex-textarea": {
+      "requires": [
+         "inputex-string"
+      ],
+      "ix_provides": "text"
+   }
 }

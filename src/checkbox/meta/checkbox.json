@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-field"
-   ],
-   "ix_provides": "boolean"
+	"inputex-checkbox": {
+		"requires": [
+		  "inputex-field"
+   	    ],
+		"ix_provides": "boolean"
+	}
 }

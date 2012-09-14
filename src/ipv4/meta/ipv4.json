@@ -1,6 +1,8 @@
 {
-   "requires": [
-      "inputex-string"
-   ],
-   "ix_provides": "ipv4"
+   "inputex-ipv4": {
+      "requires": [
+         "inputex-string"
+      ],
+      "ix_provides": "ipv4"
+   }
 }

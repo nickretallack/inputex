@@ -1,8 +1,10 @@
 {
-   "requires": [
-      "inputex-list",
-      "inputex-combine",
-      "inputex-string"
-   ],
-   "ix_provides": "object"
+   "inputex-object": {
+      "requires": [
+         "inputex-list",
+         "inputex-combine",
+         "inputex-string"
+      ],
+      "ix_provides": "object"
+   }
 }
