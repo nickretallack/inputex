@@ -1,8 +1,6 @@
 /**
  * @module inputex-timerange
  */
-YUI.add("inputex-timerange", function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -104,7 +102,3 @@ Y.extend(inputEx.TimeRange, inputEx.CombineField, {
 });
 
 inputEx.registerType("timerange", inputEx.TimeRange);
-
-}, '3.1.0',{
-requires: ['inputex-combine', 'inputex-select']
-});

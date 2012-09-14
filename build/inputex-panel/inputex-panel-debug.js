@@ -8,8 +8,6 @@ YUI.add('inputex-panel', function (Y, NAME) {
  *
  * @module inputex-panel
  */
-YUI.add('inputex-panel', function (Y) {
-
     /**
      * A basic Panel Widget, with added support from inputEx.Base
      *
@@ -43,8 +41,5 @@ YUI.add('inputex-panel', function (Y) {
         }
     });
 
-}, '3.1.0', {
-    requires: ['inputex', 'panel', 'inputex-base']
-});
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex", "panel", "inputex-base"]});

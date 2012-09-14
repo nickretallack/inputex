@@ -1,8 +1,6 @@
 /**
  * @module inputex-datesplit
  */
-YUI.add("inputex-datesplit", function(Y) {
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
 
@@ -177,7 +175,3 @@ Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
 
 // Register this class as "datesplit" type
 inputEx.registerType("datesplit", inputEx.DateSplitField);
-
-}, '3.1.0',{
-requires: ['inputex-combine']
-});

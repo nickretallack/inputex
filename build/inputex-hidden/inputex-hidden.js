@@ -3,8 +3,6 @@ YUI.add('inputex-hidden', function (Y, NAME) {
 /**
  * @module inputex-hidden
  */
-YUI.add("inputex-hidden", function(Y){
-   
   var inputEx = Y.inputEx;
 
 /**
@@ -67,9 +65,5 @@ Y.extend(inputEx.HiddenField, inputEx.Field, {
 // Register this class as "hidden" type
 inputEx.registerType("hidden", inputEx.HiddenField);
 
-}, '0.0.1',{
-  requires:["inputex-field"]
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-field"], "ix_provides": "hidden"});

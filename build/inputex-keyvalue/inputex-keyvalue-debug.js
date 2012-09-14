@@ -3,8 +3,6 @@ YUI.add('inputex-keyvalue', function (Y, NAME) {
 /**
  * @module inputex-keyvalue
  */
-YUI.add("inputex-keyvalue",function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -102,10 +100,5 @@ Y.extend( inputEx.KeyValueField, inputEx.CombineField, {
 
 inputEx.registerType("keyvalue", inputEx.KeyValueField, {});
 
-},'3.1.0',{
-  requires: ['inputex-combine']
-});
 
-
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-combine"], "ix_provides": "keyvalue"});

@@ -1,8 +1,6 @@
 /**
  * @module inputex-integer
  */
-YUI.add("inputex-integer", function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -83,7 +81,3 @@ inputEx.registerType("integer", inputEx.IntegerField, [
    //{ type: 'integer', label: 'Radix', name: 'radix', value: 10},
    {type: 'boolean', label: 'Accept negative', name: 'negative', value: false }
 ]);
-
-}, '3.1.0',{
-requires: ['inputex-string']
-});

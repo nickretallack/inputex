@@ -3,8 +3,6 @@ YUI.add('inputex-jsonschema', function (Y, NAME) {
 /**
  * @module inputex-jsonschema
  */
-YUI.add("inputex-jsonschema", function(Y){
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
  
@@ -429,9 +427,5 @@ inputEx.JsonSchema.Builder.prototype = {
    
 };
 
-}, '3.1.0',{
-  requires: ["inputex"]
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex"]});

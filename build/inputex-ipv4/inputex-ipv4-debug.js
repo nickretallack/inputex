@@ -3,8 +3,6 @@ YUI.add('inputex-ipv4', function (Y, NAME) {
 /**
  * @module inputex-ipv4
  */
-YUI.add("inputex-ipv4",function(Y){
-	
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -36,9 +34,5 @@ Y.extend(inputEx.IPv4Field, inputEx.StringField, {
 // Register this class as "IPv4" type
 inputEx.registerType("IPv4", inputEx.IPv4Field, []);
 
-},'3.1.0',{
-  requires: ["inputex-string"]
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "ipv4"});

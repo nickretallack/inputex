@@ -1,6 +1,5 @@
 YUI.add('inputex-datatable', function (Y, NAME) {
 
-YUI.add("inputex-datatable", function (Y) {
 /**
  * The inputex-datatable module provides the inputEx.Plugin.InputExDataTable class which is a plugin.
  * @module inputex-datatable
@@ -383,6 +382,5 @@ ATTRS: {
     }
 }});
 
-}, "", {requires: ['inputex-group', 'inputex-panel','datatable']});
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-group", "inputex-panel", "datatable"], "skinnable": true});

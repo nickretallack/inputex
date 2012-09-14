@@ -3,8 +3,6 @@ YUI.add('inputex-select', function (Y, NAME) {
 /**
  * @module inputex-select
  */
-YUI.add("inputex-select",function(Y){
-
 	var lang = Y.Lang,
 	    inputEx = Y.inputEx;
 
@@ -283,9 +281,5 @@ YUI.add("inputex-select",function(Y){
 		}
 	]);
 
-}, '3.1.0',{
-  requires: ['inputex-field','inputex-choice']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-field", "inputex-choice"], "ix_provides": "select"});

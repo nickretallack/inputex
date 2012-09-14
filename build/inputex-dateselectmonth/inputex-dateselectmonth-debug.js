@@ -3,8 +3,6 @@ YUI.add('inputex-dateselectmonth', function (Y, NAME) {
 /**
  * @module inputex-dateselectmonth
  */
-YUI.add("inputex-dateselectmonth", function(Y) {
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
 	
@@ -135,12 +133,6 @@ YUI.add("inputex-dateselectmonth", function(Y) {
 	
 	// Register this class as "dateselectmonth" type
 	inputEx.registerType("dateselectmonth", inputEx.DateSelectMonthField);
-	
-}, '3.1.0',{
-requires: ['inputex-combine']
-});
 
 
-
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-combine", "inputex-string", "inputex-select"], "ix_provides": "dateselectmonth"});

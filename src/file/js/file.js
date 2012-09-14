@@ -1,8 +1,6 @@
 /**
  * @module inputex-file
  */
-YUI.add("inputex-file", function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -57,8 +55,3 @@ Y.extend(inputEx.FileField, inputEx.Field, {
 
 // Register this class as "file" type
 inputEx.registerType("file", inputEx.FileField);
-
-
-}, '3.1.0',{
-requires: ['inputex-field']
-});

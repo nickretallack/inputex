@@ -1,8 +1,6 @@
 /**
  * @module inputex-multiselect
  */
-YUI.add("inputex-multiselect", function (Y) {
-   
    var inputEx = Y.inputEx,
        lang = Y.Lang;
    
@@ -159,7 +157,3 @@ YUI.add("inputex-multiselect", function (Y) {
 
     // Register this class as "multiselect" type
     inputEx.registerType("multiselect", inputEx.MultiSelectField);
-
-}, '3.1.0', {
-    requires: ["inputex-select", "inputex-ddlist"]
-});

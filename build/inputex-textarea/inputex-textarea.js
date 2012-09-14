@@ -3,8 +3,6 @@ YUI.add('inputex-textarea', function (Y, NAME) {
 /**
  * @module inputex-textarea
  */
-YUI.add("inputex-textarea",function(Y){
-
    var inputEx = Y.inputEx;
 /**
  * Create a textarea input
@@ -131,9 +129,5 @@ inputEx.registerType("text", inputEx.Textarea, [
    { type: 'integer', label: 'Cols', name: 'cols', value: 23 }
 ]);
 
-}, '3.1.0',{
-  requires: ["inputex-string"]
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "text"});

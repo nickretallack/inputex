@@ -1,8 +1,6 @@
 /**
  * @module inputex-autocomplete
  */
-YUI.add('inputex-autocomplete', function(Y) {
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
 
@@ -173,7 +171,3 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
 
 // Register this class as "autocomplete" type
 inputEx.registerType("autocomplete", inputEx.AutoComplete);
-
-}, '3.1.0',{
-  requires: ['inputex-string','autocomplete']
-})

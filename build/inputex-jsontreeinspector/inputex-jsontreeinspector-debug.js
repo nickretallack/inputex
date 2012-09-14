@@ -3,8 +3,6 @@ YUI.add('inputex-jsontreeinspector', function (Y, NAME) {
 /**
  * @module inputex-jsontreeinspector
  */
-YUI.add("inputex-jsontreeinspector",function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -285,9 +283,5 @@ inputEx.widget.JsonTreeInspector.jsonPath = function (obj, expr, arg) {
    }
 };
 
-},'3.1.0',{
-  requires: ['inputex']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex"], "skinnable": true});

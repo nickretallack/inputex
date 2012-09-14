@@ -1,8 +1,6 @@
 /**
  * @module inputex-time
  */
-YUI.add("inputex-time", function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -53,8 +51,3 @@ Y.extend(inputEx.TimeField, inputEx.CombineField, {
 
 // Register this class as "time" type
 inputEx.registerType("time", inputEx.TimeField);
-
-
-}, '3.1.0',{
-requires: ['inputex-combine', 'inputex-select']
-});

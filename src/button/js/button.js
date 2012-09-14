@@ -1,8 +1,6 @@
 /**
  * @module inputex-button
- */
-YUI.add("inputex-button",function(Y){
-   
+ */   
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -208,7 +206,5 @@ Y.mix(inputEx.widget.Button.prototype,{
    
    
 });
-  Y.augment(inputEx.widget.Button, Y.EventTarget, null, null, {});
-},'3.1.0',{
-  requires:["inputex"]
-});
+
+Y.augment(inputEx.widget.Button, Y.EventTarget, null, null, {});

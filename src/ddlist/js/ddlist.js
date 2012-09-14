@@ -1,8 +1,6 @@
 /**
  * @module inputex-ddlist
  */
-YUI.add('inputex-ddlist', function (Y) {
-
    var lang       = Y.Lang,
        inputEx    = Y.inputEx,
        create     = Y.Node.create,
@@ -123,7 +121,3 @@ YUI.add('inputex-ddlist', function (Y) {
 
    inputEx.DDListField = DDListField;
    inputEx.registerType("ddlist", DDListField);
-
-}, '3.1.0', {
-   requires: ['inputex-field', 'array-extras', 'sortable', 'substitute']
-});

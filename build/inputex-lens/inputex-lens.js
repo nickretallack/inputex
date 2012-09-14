@@ -3,8 +3,6 @@ YUI.add('inputex-lens', function (Y, NAME) {
 /**
  * @module inputex-lens
  */
-YUI.add("inputex-lens",function(Y){
-	
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -80,9 +78,4 @@ inputEx.registerType("lens", inputEx.Lens, [
 ]);
 
 
-},'3.1.0',{
-  requires: ['inputex-group','inputex-inplaceedit']
-});
-
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-group", "inputex-inplaceedit"], "ix_provides": "lens"});

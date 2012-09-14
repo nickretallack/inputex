@@ -3,11 +3,8 @@ YUI.add('inputex-keyopvalue', function (Y, NAME) {
 /**
  * @module inputex-keyopvalue
  */
-YUI.add("inputex-keyopvalue",function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
-
 
 /**
  * Add an SQL operator select field in the middle of a KeyValueField
@@ -58,9 +55,5 @@ Y.extend(inputEx.KeyOpValueField, inputEx.KeyValueField, {
 
 inputEx.registerType("keyopvalue", inputEx.KeyOpValueField, {});
 
-},'3.1.0',{
-  requires: ['inputex-keyvalue']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-keyvalue"], "ix_provides": "keyopvalue"});

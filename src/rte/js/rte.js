@@ -2,8 +2,6 @@
  * WARNING: this field requires YUI2 (for the YUI2 Riche Text Editor)
  * @module inputex-rte
  */
-YUI.add("inputex-rte",function(Y){
-   
    var inputEx = Y.inputEx,
        YAHOO = Y.YUI2,
        lang = Y.Lang;
@@ -153,6 +151,3 @@ Y.extend(inputEx.RTEField, inputEx.Field, {
 // Register this class as "html" type
 inputEx.registerType("html", inputEx.RTEField, []);
    
-},'3.1.0',{
-  requires: ['inputex-field', 'yui2-editor']
-});

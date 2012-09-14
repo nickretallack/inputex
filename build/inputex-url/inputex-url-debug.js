@@ -3,8 +3,6 @@ YUI.add('inputex-url', function (Y, NAME) {
 /**
  * @module inputex-url
  */
-YUI.add("inputex-url",function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -127,9 +125,5 @@ inputEx.registerType("url", inputEx.UrlField, [
    { type: 'boolean', label: 'Display favicon', name:'favicon', value: true}
 ]);
 
-},'3.1.0',{
-  requires: ["inputex-string"]
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "url"});

@@ -1,8 +1,6 @@
 /**
  * @module inputex-group
  */
-YUI.add("inputex-group", function(Y){
-   
    var lang = Y.Lang,
        inputEx = Y.inputEx;
        
@@ -544,8 +542,3 @@ inputEx.registerType("group", inputEx.Group, [
    { type: 'boolean', label: 'Collapsed', name:'collapsed', value: false},
    { type: 'list', label: 'Fields', name: 'fields', elementType: {type: 'type' } }
 ], true);
-
-
-}, '3.1.0',{
-  requires: ["inputex-field"]
-});

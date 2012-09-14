@@ -1,8 +1,6 @@
 /**
  * @module inputex-choice
  */
-YUI.add("inputex-choice", function(Y){
-	
 	var lang = Y.Lang,
 	    inputEx = Y.inputEx;
 	
@@ -255,7 +253,3 @@ YUI.add("inputex-choice", function(Y){
 		}
 		
 	};
-	
-}, '3.1.0',{
-  requires: ["inputex"]
-});

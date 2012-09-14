@@ -3,8 +3,6 @@ YUI.add('inputex-menu', function (Y, NAME) {
 /**
  * @module inputex-menu
  */
-YUI.add("inputex-menu",function(Y){
-
    var inputEx     = Y.inputEx,
        lang        = Y.Lang,
        substitute  = Y.substitute,
@@ -222,10 +220,5 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
 // Register this class as "menu" type
 inputEx.registerType("menu", inputEx.MenuField);
 
-}, '3.1.0',{
-requires: ['inputex-field', 'node-event-delegate', 'node-menunav', 'substitute']
-});
 
-
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-field", "node-event-delegate", "node-menunav", "substitute"], "ix_provides": "menu"});

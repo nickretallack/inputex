@@ -1,8 +1,6 @@
 /**
  * @module inputex-lens
  */
-YUI.add("inputex-lens",function(Y){
-	
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -76,8 +74,3 @@ Y.extend(inputEx.Lens, inputEx.Group, {
 // Register this class as "list" type
 inputEx.registerType("lens", inputEx.Lens, [
 ]);
-
-
-},'3.1.0',{
-  requires: ['inputex-group','inputex-inplaceedit']
-});

@@ -3,8 +3,6 @@ YUI.add('inputex-group', function (Y, NAME) {
 /**
  * @module inputex-group
  */
-YUI.add("inputex-group", function(Y){
-   
    var lang = Y.Lang,
        inputEx = Y.inputEx;
        
@@ -548,9 +546,4 @@ inputEx.registerType("group", inputEx.Group, [
 ], true);
 
 
-}, '3.1.0',{
-  requires: ["inputex-field"]
-});
-
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-field"], "ix_provides": "group"});

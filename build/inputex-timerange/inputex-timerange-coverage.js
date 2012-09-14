@@ -26,23 +26,19 @@ _yuitest_coverage["build/inputex-timerange/inputex-timerange.js"] = {
     path: "build/inputex-timerange/inputex-timerange.js",
     code: []
 };
-_yuitest_coverage["build/inputex-timerange/inputex-timerange.js"].code=["YUI.add('inputex-timerange', function (Y, NAME) {","","/**"," * @module inputex-timerange"," */","YUI.add(\"inputex-timerange\", function(Y){","","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * Tweaking the TimeField to make a Time Range (two TimeFields)"," *    - doesn't show seconds"," *    - Minutes by group of 5"," * @module inputex-timerange"," */","inputEx.TimeRange = function(options) {","   ","   var h1 = [], h2 = [], i, m = [], s;","   for(i = 0 ; i < 25 ; i++) { ","		s=\"\";","		if ( i<10 ){ s=\"0\"; } ","		s+= i;","		h2.push({ value: s });","      if ( i<24 ){ h1.push({ value: s }); } // First block of hours musn't contain 24","	}","	m = [{ value: \"00\" },{ value: \"05\" },{ value: \"10\" },{ value: \"15\" },{ value: \"20\" },{ value: \"25\" },{ value: \"30\" },{ value: \"35\" },{ value: \"40\" },{ value: \"45\" },{ value: \"50\" },{ value: \"55\" }];","	","   options.fields = [","      {type: 'select', choices: h1 },","      {type: 'select', choices: m },","      {type: 'select', choices: h2 },","      {type: 'select', choices: m }","   ];","","   options.separators = options.separators || [false,\"H\",\"&nbsp; à &nbsp;\",\"H\",false];","   inputEx.TimeRange.superclass.constructor.call(this,options);","","	// Hook toogleEndMinutes to the \"updated\" event of the 3d select","	// Like that when the user selects/unselects 24h the minutes will toogle accordingly","	var that = this;","	this.inputs[2].on('updated',function(){","		that.toogleEndMinutes();","	});","	","};","","Y.extend(inputEx.TimeRange, inputEx.CombineField, {   ","   /**","    * Returns an array like [\"HH:MM\",\"HH:MM\"]","    * @method getValue","    */","   getValue: function() {","      var values = inputEx.TimeRange.superclass.getValue.call(this);","","		var returnedValue = [];","		returnedValue.push(values[0]+\":\"+values[1]);","		returnedValue.push(values[2]+\":\"+values[3]);","		","      return returnedValue;","   },","","   /**","    * Set the value ","    * @method setValue","    * @param {array} array with 4 Hour strings in display order (format [\"HH\",\"MM\", \"HH\",\"MM\"])","    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)","    */","   setValue: function(arr, sendUpdatedEvt) {","		var values = arr[0].split(\":\").concat(arr[1].split(\":\"));","      inputEx.TimeRange.superclass.setValue.call(this, values, sendUpdatedEvt);","		this.toogleEndMinutes();","   },","","	/**","	 * Disable the last selector and set it to \"00\" when the third one's value is 24","	 * (it will be inccorect to have an end superior to 24:00)","	 * @method toggleEndMinutes","	 */","	toogleEndMinutes: function(){		","		var endHours = this.inputs[2];","		var endMinutes = this.inputs[3];","		","		if( endHours.getValue() == '24' ){ endMinutes.setValue(\"00\"); endMinutes.disable();}","		else{ endMinutes.enable(); }		","	},","","   /**","    * @method validate","    */","	validate: function(){","		var values = this.getValue();","		","		var hm = values[1].split(\":\");","		if(hm[0] == '24' && hm[1] != '00'){","			return false;","		}","		","		if(values[0] >= values[1]){","			return false;	","		}","		","		return true;","	}","","});","","inputEx.registerType(\"timerange\", inputEx.TimeRange);","","}, '3.1.0',{","requires: ['inputex-combine', 'inputex-select']","});","","","}, '@VERSION@');"];
-_yuitest_coverage["build/inputex-timerange/inputex-timerange.js"].lines = {"1":0,"6":0,"8":0,"17":0,"19":0,"20":0,"21":0,"22":0,"23":0,"24":0,"25":0,"27":0,"29":0,"36":0,"37":0,"41":0,"42":0,"43":0,"48":0,"54":0,"56":0,"57":0,"58":0,"60":0,"70":0,"71":0,"72":0,"81":0,"82":0,"84":0,"92":0,"94":0,"95":0,"96":0,"99":0,"100":0,"103":0,"108":0};
-_yuitest_coverage["build/inputex-timerange/inputex-timerange.js"].functions = {"(anonymous 3):42":0,"TimeRange:17":0,"getValue:53":0,"setValue:69":0,"toogleEndMinutes:80":0,"validate:91":0,"(anonymous 2):6":0,"(anonymous 1):1":0};
-_yuitest_coverage["build/inputex-timerange/inputex-timerange.js"].coveredLines = 38;
-_yuitest_coverage["build/inputex-timerange/inputex-timerange.js"].coveredFunctions = 8;
+_yuitest_coverage["build/inputex-timerange/inputex-timerange.js"].code=["YUI.add('inputex-timerange', function (Y, NAME) {","","/**"," * @module inputex-timerange"," */","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * Tweaking the TimeField to make a Time Range (two TimeFields)"," *    - doesn't show seconds"," *    - Minutes by group of 5"," * @module inputex-timerange"," */","inputEx.TimeRange = function(options) {","   ","   var h1 = [], h2 = [], i, m = [], s;","   for(i = 0 ; i < 25 ; i++) { ","		s=\"\";","		if ( i<10 ){ s=\"0\"; } ","		s+= i;","		h2.push({ value: s });","      if ( i<24 ){ h1.push({ value: s }); } // First block of hours musn't contain 24","	}","	m = [{ value: \"00\" },{ value: \"05\" },{ value: \"10\" },{ value: \"15\" },{ value: \"20\" },{ value: \"25\" },{ value: \"30\" },{ value: \"35\" },{ value: \"40\" },{ value: \"45\" },{ value: \"50\" },{ value: \"55\" }];","	","   options.fields = [","      {type: 'select', choices: h1 },","      {type: 'select', choices: m },","      {type: 'select', choices: h2 },","      {type: 'select', choices: m }","   ];","","   options.separators = options.separators || [false,\"H\",\"&nbsp; à &nbsp;\",\"H\",false];","   inputEx.TimeRange.superclass.constructor.call(this,options);","","	// Hook toogleEndMinutes to the \"updated\" event of the 3d select","	// Like that when the user selects/unselects 24h the minutes will toogle accordingly","	var that = this;","	this.inputs[2].on('updated',function(){","		that.toogleEndMinutes();","	});","	","};","","Y.extend(inputEx.TimeRange, inputEx.CombineField, {   ","   /**","    * Returns an array like [\"HH:MM\",\"HH:MM\"]","    * @method getValue","    */","   getValue: function() {","      var values = inputEx.TimeRange.superclass.getValue.call(this);","","		var returnedValue = [];","		returnedValue.push(values[0]+\":\"+values[1]);","		returnedValue.push(values[2]+\":\"+values[3]);","		","      return returnedValue;","   },","","   /**","    * Set the value ","    * @method setValue","    * @param {array} array with 4 Hour strings in display order (format [\"HH\",\"MM\", \"HH\",\"MM\"])","    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)","    */","   setValue: function(arr, sendUpdatedEvt) {","		var values = arr[0].split(\":\").concat(arr[1].split(\":\"));","      inputEx.TimeRange.superclass.setValue.call(this, values, sendUpdatedEvt);","		this.toogleEndMinutes();","   },","","	/**","	 * Disable the last selector and set it to \"00\" when the third one's value is 24","	 * (it will be inccorect to have an end superior to 24:00)","	 * @method toggleEndMinutes","	 */","	toogleEndMinutes: function(){		","		var endHours = this.inputs[2];","		var endMinutes = this.inputs[3];","		","		if( endHours.getValue() == '24' ){ endMinutes.setValue(\"00\"); endMinutes.disable();}","		else{ endMinutes.enable(); }		","	},","","   /**","    * @method validate","    */","	validate: function(){","		var values = this.getValue();","		","		var hm = values[1].split(\":\");","		if(hm[0] == '24' && hm[1] != '00'){","			return false;","		}","		","		if(values[0] >= values[1]){","			return false;	","		}","		","		return true;","	}","","});","","inputEx.registerType(\"timerange\", inputEx.TimeRange);","","","}, '@VERSION@', {\"requires\": [\"inputex-combine\", \"inputex-select\"], \"ix_provides\": \"timerange\"});"];
+_yuitest_coverage["build/inputex-timerange/inputex-timerange.js"].lines = {"1":0,"6":0,"15":0,"17":0,"18":0,"19":0,"20":0,"21":0,"22":0,"23":0,"25":0,"27":0,"34":0,"35":0,"39":0,"40":0,"41":0,"46":0,"52":0,"54":0,"55":0,"56":0,"58":0,"68":0,"69":0,"70":0,"79":0,"80":0,"82":0,"90":0,"92":0,"93":0,"94":0,"97":0,"98":0,"101":0,"106":0};
+_yuitest_coverage["build/inputex-timerange/inputex-timerange.js"].functions = {"(anonymous 2):40":0,"TimeRange:15":0,"getValue:51":0,"setValue:67":0,"toogleEndMinutes:78":0,"validate:89":0,"(anonymous 1):1":0};
+_yuitest_coverage["build/inputex-timerange/inputex-timerange.js"].coveredLines = 37;
+_yuitest_coverage["build/inputex-timerange/inputex-timerange.js"].coveredFunctions = 7;
 _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 1);
 YUI.add('inputex-timerange', function (Y, NAME) {
 
 /**
  * @module inputex-timerange
  */
-_yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "(anonymous 1)", 1);
+   _yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "(anonymous 1)", 1);
 _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 6);
-YUI.add("inputex-timerange", function(Y){
-
-   _yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "(anonymous 2)", 6);
-_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 8);
 var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -52,29 +48,29 @@ var lang = Y.Lang,
  *    - Minutes by group of 5
  * @module inputex-timerange
  */
-_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 17);
+_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 15);
 inputEx.TimeRange = function(options) {
    
-   _yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "TimeRange", 17);
-_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 19);
+   _yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "TimeRange", 15);
+_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 17);
 var h1 = [], h2 = [], i, m = [], s;
-   _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 20);
+   _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 18);
 for(i = 0 ; i < 25 ; i++) { 
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 21);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 19);
 s="";
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 22);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 20);
 if ( i<10 ){ s="0"; } 
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 23);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 21);
 s+= i;
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 24);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 22);
 h2.push({ value: s });
-      _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 25);
+      _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 23);
 if ( i<24 ){ h1.push({ value: s }); } // First block of hours musn't contain 24
 	}
-	_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 27);
+	_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 25);
 m = [{ value: "00" },{ value: "05" },{ value: "10" },{ value: "15" },{ value: "20" },{ value: "25" },{ value: "30" },{ value: "35" },{ value: "40" },{ value: "45" },{ value: "50" },{ value: "55" }];
 	
-   _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 29);
+   _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 27);
 options.fields = [
       {type: 'select', choices: h1 },
       {type: 'select', choices: m },
@@ -82,43 +78,43 @@ options.fields = [
       {type: 'select', choices: m }
    ];
 
-   _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 36);
+   _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 34);
 options.separators = options.separators || [false,"H","&nbsp; à &nbsp;","H",false];
-   _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 37);
+   _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 35);
 inputEx.TimeRange.superclass.constructor.call(this,options);
 
 	// Hook toogleEndMinutes to the "updated" event of the 3d select
 	// Like that when the user selects/unselects 24h the minutes will toogle accordingly
-	_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 41);
+	_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 39);
 var that = this;
-	_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 42);
+	_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 40);
 this.inputs[2].on('updated',function(){
-		_yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "(anonymous 3)", 42);
-_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 43);
+		_yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "(anonymous 2)", 40);
+_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 41);
 that.toogleEndMinutes();
 	});
 	
 };
 
-_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 48);
+_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 46);
 Y.extend(inputEx.TimeRange, inputEx.CombineField, {   
    /**
     * Returns an array like ["HH:MM","HH:MM"]
     * @method getValue
     */
    getValue: function() {
-      _yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "getValue", 53);
-_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 54);
+      _yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "getValue", 51);
+_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 52);
 var values = inputEx.TimeRange.superclass.getValue.call(this);
 
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 56);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 54);
 var returnedValue = [];
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 57);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 55);
 returnedValue.push(values[0]+":"+values[1]);
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 58);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 56);
 returnedValue.push(values[2]+":"+values[3]);
 		
-      _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 60);
+      _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 58);
 return returnedValue;
    },
 
@@ -129,12 +125,12 @@ return returnedValue;
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
     */
    setValue: function(arr, sendUpdatedEvt) {
-		_yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "setValue", 69);
-_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 70);
+		_yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "setValue", 67);
+_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 68);
 var values = arr[0].split(":").concat(arr[1].split(":"));
-      _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 71);
+      _yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 69);
 inputEx.TimeRange.superclass.setValue.call(this, values, sendUpdatedEvt);
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 72);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 70);
 this.toogleEndMinutes();
    },
 
@@ -144,13 +140,13 @@ this.toogleEndMinutes();
 	 * @method toggleEndMinutes
 	 */
 	toogleEndMinutes: function(){		
-		_yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "toogleEndMinutes", 80);
-_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 81);
+		_yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "toogleEndMinutes", 78);
+_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 79);
 var endHours = this.inputs[2];
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 82);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 80);
 var endMinutes = this.inputs[3];
 		
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 84);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 82);
 if( endHours.getValue() == '24' ){ endMinutes.setValue("00"); endMinutes.disable();}
 		else{ endMinutes.enable(); }		
 	},
@@ -159,36 +155,32 @@ if( endHours.getValue() == '24' ){ endMinutes.setValue("00"); endMinutes.disable
     * @method validate
     */
 	validate: function(){
-		_yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "validate", 91);
-_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 92);
+		_yuitest_coverfunc("build/inputex-timerange/inputex-timerange.js", "validate", 89);
+_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 90);
 var values = this.getValue();
 		
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 94);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 92);
 var hm = values[1].split(":");
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 95);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 93);
 if(hm[0] == '24' && hm[1] != '00'){
-			_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 96);
+			_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 94);
 return false;
 		}
 		
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 99);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 97);
 if(values[0] >= values[1]){
-			_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 100);
+			_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 98);
 return false;	
 		}
 		
-		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 103);
+		_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 101);
 return true;
 	}
 
 });
 
-_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 108);
+_yuitest_coverline("build/inputex-timerange/inputex-timerange.js", 106);
 inputEx.registerType("timerange", inputEx.TimeRange);
 
-}, '3.1.0',{
-requires: ['inputex-combine', 'inputex-select']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-combine", "inputex-select"], "ix_provides": "timerange"});

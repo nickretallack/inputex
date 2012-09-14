@@ -3,8 +3,6 @@ YUI.add('inputex-object', function (Y, NAME) {
 /**
  * @module inputex-object
  */
-YUI.add("inputex-object", function(Y){
-
    var inputEx = Y.inputEx,
        lang = Y.Lang;
    
@@ -59,9 +57,5 @@ Y.extend(inputEx.ObjectField, inputEx.ListField, {
 // Register this class as "object" type
 inputEx.registerType('object', inputEx.ObjectField);
 
-},'3.1.0',{
-  requires: ['inputex-list','inputex-combine','inputex-string']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-list", "inputex-combine", "inputex-string"], "ix_provides": "object"});

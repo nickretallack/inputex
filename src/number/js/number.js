@@ -1,8 +1,6 @@
 /**
  * @module inputex-number
  */
-YUI.add("inputex-number", function(Y) {
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
 
@@ -76,7 +74,3 @@ Y.extend(inputEx.NumberField, inputEx.StringField, {
 
 // Register this class as "number" type
 inputEx.registerType("number", inputEx.NumberField, []);
-
-}, '3.1.0',{
-requires: ['inputex-string']
-});

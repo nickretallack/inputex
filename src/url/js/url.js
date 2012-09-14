@@ -1,8 +1,6 @@
 /**
  * @module inputex-url
  */
-YUI.add("inputex-url",function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -124,7 +122,3 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
 inputEx.registerType("url", inputEx.UrlField, [
    { type: 'boolean', label: 'Display favicon', name:'favicon', value: true}
 ]);
-
-},'3.1.0',{
-  requires: ["inputex-string"]
-});

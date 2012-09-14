@@ -3,8 +3,6 @@ YUI.add('inputex-smdtester', function (Y, NAME) {
 /**
  * @module inputex-smdtester
  */
-YUI.add("inputex-smdtester", function(Y){
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
 
@@ -129,9 +127,5 @@ inputEx.RPC.SMDTester.prototype = {
 	
 };
 
-}, '3.1.0',{
-  requires: ["inputex"]
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-rpc", "inputex-jsontreeinspector"]});

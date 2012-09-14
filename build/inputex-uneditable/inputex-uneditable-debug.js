@@ -3,8 +3,6 @@ YUI.add('inputex-uneditable', function (Y, NAME) {
 /**
  * @module inputex-uneditable
  */
-YUI.add("inputex-uneditable", function(Y){
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
 
@@ -62,9 +60,5 @@ Y.extend(inputEx.UneditableField, inputEx.Field, {
 // Register this class as "url" type
 inputEx.registerType("uneditable", inputEx.UneditableField);
 
-}, '3.1.0',{
-requires: ['inputex-field']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-field", "inputex-visus"], "ix_provides": "uneditable"});

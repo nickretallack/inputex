@@ -3,8 +3,6 @@ YUI.add('inputex-list', function (Y, NAME) {
 /**
  * @module inputex-list
  */
-YUI.add("inputex-list",function(Y){
-	
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 	
@@ -473,10 +471,6 @@ inputEx.registerType("list", inputEx.ListField, [
    { type: 'string', label: 'List label', name: 'listLabel', value: ''},
    { type: 'type', label: 'List element type', required: true, name: 'elementType' }
 ]);
-	
-},'3.1.0',{
-  requires: ["inputex-field","anim"]
-});
 
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-field", "anim"], "skinnable": true, "ix_provides": "list"});

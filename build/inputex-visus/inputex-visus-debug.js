@@ -4,8 +4,6 @@ YUI.add('inputex-visus', function (Y, NAME) {
  * Used by InPlaceEdit and Uneditable fields
  * @module inputex-visus
  */
-YUI.add("inputex-visus",function(Y){
-   
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 /**
@@ -104,9 +102,5 @@ inputEx.renderVisu = function(visuOptions,data, parentEl) {
    return v;
 };
 
-},'3.1.0',{
-  requires: ["inputex","dump"]
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex", "dump"]});

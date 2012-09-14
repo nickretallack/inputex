@@ -26,26 +26,21 @@ _yuitest_coverage["build/inputex-keyopvalue/inputex-keyopvalue.js"] = {
     path: "build/inputex-keyopvalue/inputex-keyopvalue.js",
     code: []
 };
-_yuitest_coverage["build/inputex-keyopvalue/inputex-keyopvalue.js"].code=["YUI.add('inputex-keyopvalue', function (Y, NAME) {","","/**"," * @module inputex-keyopvalue"," */","YUI.add(\"inputex-keyopvalue\",function(Y){","","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","","/**"," * Add an SQL operator select field in the middle of a KeyValueField"," * @class inputEx.KeyOpValueField"," * @constructor"," * @extends inputEx.KeyValueField"," * @param {Object} options InputEx definition object with the \"availableFields\""," */","inputEx.KeyOpValueField = function (options) {","   inputEx.KeyOpValueField.superclass.constructor.call(this, options);","};","","Y.extend(inputEx.KeyOpValueField, inputEx.KeyValueField, {","	","	/**","	 * Setup the options.fields from the availableFields option","	 * @method setOptions","	 */","	setOptions: function (options) {","		","		var selectFieldConfig, operators, labels, selectOptions, newOptions, i, length;","		","		selectFieldConfig = this.generateSelectConfig(options.availableFields);","		","		operators = options.operators || [\"=\", \">\", \"<\", \">=\", \"<=\", \"!=\", \"LIKE\", \"NOT LIKE\", \"IS NULL\", \"IS NOT NULL\"];","		labels = options.operatorLabels || operators;","		","		selectOptions = [];","		","		for (i = 0, length = operators.length; i < length; i += 1) {","			selectOptions.push({ value: operators[i], label: labels[i] });","		}","		","		newOptions = {","			fields: [","				selectFieldConfig,","				{type: 'select', choices: selectOptions},","				this.nameIndex[options.availableFields[0].name]","			]","		};","		","		Y.mix(newOptions, options);","		","		inputEx.KeyValueField.superclass.setOptions.call(this, newOptions);","	}","	","});","","inputEx.registerType(\"keyopvalue\", inputEx.KeyOpValueField, {});","","},'3.1.0',{","  requires: ['inputex-keyvalue']","});","","","}, '@VERSION@');"];
-_yuitest_coverage["build/inputex-keyopvalue/inputex-keyopvalue.js"].lines = {"1":0,"6":0,"8":0,"19":0,"20":0,"23":0,"31":0,"33":0,"35":0,"36":0,"38":0,"40":0,"41":0,"44":0,"52":0,"54":0,"59":0};
-_yuitest_coverage["build/inputex-keyopvalue/inputex-keyopvalue.js"].functions = {"KeyOpValueField:19":0,"setOptions:29":0,"(anonymous 2):6":0,"(anonymous 1):1":0};
-_yuitest_coverage["build/inputex-keyopvalue/inputex-keyopvalue.js"].coveredLines = 17;
-_yuitest_coverage["build/inputex-keyopvalue/inputex-keyopvalue.js"].coveredFunctions = 4;
+_yuitest_coverage["build/inputex-keyopvalue/inputex-keyopvalue.js"].code=["YUI.add('inputex-keyopvalue', function (Y, NAME) {","","/**"," * @module inputex-keyopvalue"," */","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * Add an SQL operator select field in the middle of a KeyValueField"," * @class inputEx.KeyOpValueField"," * @constructor"," * @extends inputEx.KeyValueField"," * @param {Object} options InputEx definition object with the \"availableFields\""," */","inputEx.KeyOpValueField = function (options) {","   inputEx.KeyOpValueField.superclass.constructor.call(this, options);","};","","Y.extend(inputEx.KeyOpValueField, inputEx.KeyValueField, {","	","	/**","	 * Setup the options.fields from the availableFields option","	 * @method setOptions","	 */","	setOptions: function (options) {","		","		var selectFieldConfig, operators, labels, selectOptions, newOptions, i, length;","		","		selectFieldConfig = this.generateSelectConfig(options.availableFields);","		","		operators = options.operators || [\"=\", \">\", \"<\", \">=\", \"<=\", \"!=\", \"LIKE\", \"NOT LIKE\", \"IS NULL\", \"IS NOT NULL\"];","		labels = options.operatorLabels || operators;","		","		selectOptions = [];","		","		for (i = 0, length = operators.length; i < length; i += 1) {","			selectOptions.push({ value: operators[i], label: labels[i] });","		}","		","		newOptions = {","			fields: [","				selectFieldConfig,","				{type: 'select', choices: selectOptions},","				this.nameIndex[options.availableFields[0].name]","			]","		};","		","		Y.mix(newOptions, options);","		","		inputEx.KeyValueField.superclass.setOptions.call(this, newOptions);","	}","	","});","","inputEx.registerType(\"keyopvalue\", inputEx.KeyOpValueField, {});","","","}, '@VERSION@', {\"requires\": [\"inputex-keyvalue\"], \"ix_provides\": \"keyopvalue\"});"];
+_yuitest_coverage["build/inputex-keyopvalue/inputex-keyopvalue.js"].lines = {"1":0,"6":0,"16":0,"17":0,"20":0,"28":0,"30":0,"32":0,"33":0,"35":0,"37":0,"38":0,"41":0,"49":0,"51":0,"56":0};
+_yuitest_coverage["build/inputex-keyopvalue/inputex-keyopvalue.js"].functions = {"KeyOpValueField:16":0,"setOptions:26":0,"(anonymous 1):1":0};
+_yuitest_coverage["build/inputex-keyopvalue/inputex-keyopvalue.js"].coveredLines = 16;
+_yuitest_coverage["build/inputex-keyopvalue/inputex-keyopvalue.js"].coveredFunctions = 3;
 _yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 1);
 YUI.add('inputex-keyopvalue', function (Y, NAME) {
 
 /**
  * @module inputex-keyopvalue
  */
-_yuitest_coverfunc("build/inputex-keyopvalue/inputex-keyopvalue.js", "(anonymous 1)", 1);
+   _yuitest_coverfunc("build/inputex-keyopvalue/inputex-keyopvalue.js", "(anonymous 1)", 1);
 _yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 6);
-YUI.add("inputex-keyopvalue",function(Y){
-
-   _yuitest_coverfunc("build/inputex-keyopvalue/inputex-keyopvalue.js", "(anonymous 2)", 6);
-_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 8);
 var lang = Y.Lang,
        inputEx = Y.inputEx;
-
 
 /**
  * Add an SQL operator select field in the middle of a KeyValueField
@@ -54,14 +49,14 @@ var lang = Y.Lang,
  * @extends inputEx.KeyValueField
  * @param {Object} options InputEx definition object with the "availableFields"
  */
-_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 19);
+_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 16);
 inputEx.KeyOpValueField = function (options) {
-   _yuitest_coverfunc("build/inputex-keyopvalue/inputex-keyopvalue.js", "KeyOpValueField", 19);
-_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 20);
+   _yuitest_coverfunc("build/inputex-keyopvalue/inputex-keyopvalue.js", "KeyOpValueField", 16);
+_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 17);
 inputEx.KeyOpValueField.superclass.constructor.call(this, options);
 };
 
-_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 23);
+_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 20);
 Y.extend(inputEx.KeyOpValueField, inputEx.KeyValueField, {
 	
 	/**
@@ -70,28 +65,28 @@ Y.extend(inputEx.KeyOpValueField, inputEx.KeyValueField, {
 	 */
 	setOptions: function (options) {
 		
-		_yuitest_coverfunc("build/inputex-keyopvalue/inputex-keyopvalue.js", "setOptions", 29);
-_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 31);
+		_yuitest_coverfunc("build/inputex-keyopvalue/inputex-keyopvalue.js", "setOptions", 26);
+_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 28);
 var selectFieldConfig, operators, labels, selectOptions, newOptions, i, length;
 		
-		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 33);
+		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 30);
 selectFieldConfig = this.generateSelectConfig(options.availableFields);
 		
-		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 35);
+		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 32);
 operators = options.operators || ["=", ">", "<", ">=", "<=", "!=", "LIKE", "NOT LIKE", "IS NULL", "IS NOT NULL"];
-		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 36);
+		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 33);
 labels = options.operatorLabels || operators;
 		
-		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 38);
+		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 35);
 selectOptions = [];
 		
-		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 40);
+		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 37);
 for (i = 0, length = operators.length; i < length; i += 1) {
-			_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 41);
+			_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 38);
 selectOptions.push({ value: operators[i], label: labels[i] });
 		}
 		
-		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 44);
+		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 41);
 newOptions = {
 			fields: [
 				selectFieldConfig,
@@ -100,21 +95,17 @@ newOptions = {
 			]
 		};
 		
-		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 52);
+		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 49);
 Y.mix(newOptions, options);
 		
-		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 54);
+		_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 51);
 inputEx.KeyValueField.superclass.setOptions.call(this, newOptions);
 	}
 	
 });
 
-_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 59);
+_yuitest_coverline("build/inputex-keyopvalue/inputex-keyopvalue.js", 56);
 inputEx.registerType("keyopvalue", inputEx.KeyOpValueField, {});
 
-},'3.1.0',{
-  requires: ['inputex-keyvalue']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-keyvalue"], "ix_provides": "keyopvalue"});

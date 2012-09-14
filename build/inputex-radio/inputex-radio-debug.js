@@ -3,8 +3,6 @@ YUI.add('inputex-radio', function (Y, NAME) {
 /**
  * @module inputex-radio
  */
-YUI.add("inputex-radio", function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 	
@@ -537,9 +535,5 @@ YUI.add("inputex-radio", function(Y){
 		{type: 'boolean', label: 'Allow custom value', name: 'allowAny', value: false  }
 	]);
 	
-}, '3.1.0',{
-  requires: ['selector','event-delegate','inputex-field','inputex-choice','inputex-string']
-});
-	
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["selector", "event-delegate", "inputex-field", "inputex-choice", "inputex-string"], "ix_provides": "radio"});

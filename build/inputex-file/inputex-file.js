@@ -3,8 +3,6 @@ YUI.add('inputex-file', function (Y, NAME) {
 /**
  * @module inputex-file
  */
-YUI.add("inputex-file", function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -61,9 +59,4 @@ Y.extend(inputEx.FileField, inputEx.Field, {
 inputEx.registerType("file", inputEx.FileField);
 
 
-}, '3.1.0',{
-requires: ['inputex-field']
-});
-
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-field"], "ix_provides": "file"});

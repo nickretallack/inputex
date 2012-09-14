@@ -1,9 +1,6 @@
-
 /**
  * @module inputex-tree
  */
-YUI.add("inputex-tree", function (Y) {
-
     var lang = Y.Lang,
         inputEx = Y.inputEx;
 
@@ -125,7 +122,3 @@ YUI.add("inputex-tree", function (Y) {
 
     // Register this class as "tree" type
     inputEx.registerType("tree", inputEx.TreeField);
-
-}, '3.1.0', {
-    requires: ['inputex-string', 'inputex-list', 'inputex-inplaceedit']
-});

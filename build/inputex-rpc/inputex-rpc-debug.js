@@ -3,8 +3,6 @@ YUI.add('inputex-rpc', function (Y, NAME) {
 /**
  * @module inputex-rpc
  */
-YUI.add("inputex-rpc", function(Y){
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
 
@@ -528,9 +526,5 @@ inputEx.RPC.Envelope = {
    
 };
 
-}, '3.1.0',{
-  requires: ['json','inputex','io','inputex-jsonschema','jsonp']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["json", "inputex", "io", "inputex-jsonschema", "jsonp"]});

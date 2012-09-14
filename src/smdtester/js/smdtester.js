@@ -1,8 +1,6 @@
 /**
  * @module inputex-smdtester
  */
-YUI.add("inputex-smdtester", function(Y){
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
 
@@ -126,7 +124,3 @@ inputEx.RPC.SMDTester.prototype = {
 	}
 	
 };
-
-}, '3.1.0',{
-  requires: ["inputex"]
-});

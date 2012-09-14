@@ -1,8 +1,6 @@
 /**
  * @module inputex-imagecropper
  */
-YUI.add("inputex-imagecropper", function(Y){
-   
    var lang    = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -230,7 +228,3 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
 
 // Register this class as "imagecropper" type
 inputEx.registerType("imagecropper", inputEx.ImageCropperField);
-
-}, '3.1.0',{
-   requires: ["inputex-field"]
-});

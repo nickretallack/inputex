@@ -1,8 +1,6 @@
 /**
  * @module inputex-slider
  */
-YUI.add("inputex-slider", function(Y) {
-
    var inputEx = Y.inputEx,
        lang = Y.Lang;     
 /**
@@ -116,7 +114,3 @@ inputEx.registerType("slider", inputEx.SliderField, [
    { type: 'integer', label: 'Min. value',  name: 'minValue', value: 0 },
    { type: 'integer', label: 'Max. value', name: 'maxValue', value: 100 }
 ]);
-
-},'3.1.0',{
-  requires: ['inputex-field', 'slider']
-});

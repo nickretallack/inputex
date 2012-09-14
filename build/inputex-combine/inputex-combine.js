@@ -3,8 +3,6 @@ YUI.add('inputex-combine', function (Y, NAME) {
 /**
  * @module inputex-combine
  */
-YUI.add("inputex-combine", function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 	
@@ -224,11 +222,6 @@ inputEx.registerType("combine", inputEx.CombineField, [
    { type: 'list', name: 'fields', label: 'Elements', required: true, elementType: {type: 'type'} },
    { type: 'list', name: 'separators', label: 'Separators', required: true }
 ]);
-	
-	
-}, '3.1.0',{
-  requires: ['inputex-group']
-});
-   
 
-}, '@VERSION@');
+
+}, '@VERSION@', {"requires": ["inputex-group"], "ix_provides": "combine"});

@@ -4,9 +4,6 @@ YUI.add('inputex-map', function (Y, NAME) {
 /**
  * @module inputex-map
  */
-
-YUI.add("inputex-map", function (Y) {
-
     var lang = Y.Lang,
         inputEx = Y.inputEx;
 
@@ -185,9 +182,5 @@ YUI.add("inputex-map", function (Y) {
     // Register this class as "map" type
     inputEx.registerType("map", inputEx.MapField);
 
-}, '3.1.0', {
-    requires: ['inputex-field']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-field"], "ix_provides": "map"});

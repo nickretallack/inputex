@@ -1,8 +1,6 @@
 /**
  * @module inputex-email
  */
-YUI.add("inputex-email",function(Y){
-   
   var inputEx = Y.inputEx;
 /**
  * Field that adds the email regexp for validation. Result is always lower case.
@@ -184,7 +182,3 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
    
 // Register this class as "email" type
 inputEx.registerType("email", inputEx.EmailField, []);
-
-}, '3.1.0',{
-  requires: ["inputex-string"]
-});

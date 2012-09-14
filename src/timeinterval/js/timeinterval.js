@@ -1,8 +1,6 @@
 /**
  * @module inputex-timeinterval
  */
-YUI.add("inputex-timeinterval", function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -114,7 +112,3 @@ inputEx.TimeIntervalField.units = {
 
 // Register this class as "timeinterval" type
 inputEx.registerType("timeinterval", inputEx.TimeIntervalField);
-
-}, '3.1.0',{
-requires: ['inputex-combine', 'inputex-select']
-});

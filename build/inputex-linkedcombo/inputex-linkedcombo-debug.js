@@ -1,11 +1,8 @@
 YUI.add('inputex-linkedcombo', function (Y, NAME) {
 
-
 /**
  * @module inputex-linkedcombo
  */
-YUI.add("inputex-linkedcombo", function (Y) {
-
     var lang = Y.Lang;
     inputEx = Y.inputEx;
 
@@ -256,8 +253,5 @@ YUI.add("inputex-linkedcombo", function (Y) {
         required: true
     }]);
 
-}, "3.1.0", {
-    requires: ["inputex-select","inputex-choice"]
-});
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-select", "inputex-choice"]});

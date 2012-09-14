@@ -3,8 +3,6 @@ YUI.add('inputex-integer', function (Y, NAME) {
 /**
  * @module inputex-integer
  */
-YUI.add("inputex-integer", function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -86,9 +84,5 @@ inputEx.registerType("integer", inputEx.IntegerField, [
    {type: 'boolean', label: 'Accept negative', name: 'negative', value: false }
 ]);
 
-}, '3.1.0',{
-requires: ['inputex-string']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "integer"});

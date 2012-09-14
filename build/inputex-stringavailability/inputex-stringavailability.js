@@ -3,10 +3,6 @@ YUI.add('inputex-stringavailability', function (Y, NAME) {
 /**
  * @module inputex-stringavailability
  */
-
- YUI.add("inputex-stringavailability",function(Y){
-
-
   var lang=Y.Lang,
       inputEx = Y.inputEx;
 
@@ -268,6 +264,4 @@ var   that = this,
 inputEx.registerType("string-availability", inputEx.StringAvailability);   
 
 
-},'3.1.0',{requires : ["inputex-string","event-key","io","json-parse"]});
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-string", "event-key", "io", "json-parse"], "skinnable": true});

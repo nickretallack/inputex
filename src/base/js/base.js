@@ -4,8 +4,6 @@
  * @module inputex-base
  */
 
- YUI.add('inputex-base',function(Y){
-
 /**
  * The inputExBase class provides the hideOn attribute which can
  * be used to hide the widget when certain events occur.
@@ -75,10 +73,3 @@ inputExBase.prototype = {
 
 
 Y.inputEx.Base = inputExBase;
-
-
-}, '3.1.0',{
-  requires: ['inputex', 'base']
-});
-
-

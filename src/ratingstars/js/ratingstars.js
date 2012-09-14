@@ -1,8 +1,6 @@
 /**
  * @module inputex-ratingstars
  */
-YUI.add("inputex-ratingstars",function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -236,9 +234,3 @@ Y.extend(inputEx.RatingStars, inputEx.Field,{
  
  // Register this class as "url" type
  inputEx.registerType("ratingstars", inputEx.RatingStars);
-
-},'3.1.0',{
-  requires: ['inputex-field']
-});
-
-

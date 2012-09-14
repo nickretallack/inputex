@@ -1,8 +1,6 @@
 /**
  * @module inputex-checkbox
  */
-YUI.add("inputex-checkbox",function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -165,7 +163,3 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
 inputEx.registerType("boolean", inputEx.CheckBox, [ 
    {type: 'string', label: 'Right Label', name: 'rightLabel'}
 ]);
-	
-}, '0.0.1',{
-  requires: ["inputex-field"]
-});

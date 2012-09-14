@@ -1,8 +1,6 @@
 /**
  * @module inputex-dsselect
  */
-YUI.add("inputex-dsselect", function(Y) {
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
 	
@@ -112,7 +110,3 @@ YUI.add("inputex-dsselect", function(Y) {
 	
 	// Register this class as "dsselect" type
 	inputEx.registerType("dsselect", inputEx.DSSelectField);
-
-}, '3.1.0',{
-   requires: ['inputex-select','datasource']
-});

@@ -1,8 +1,6 @@
 /**
  * @module inputex-form
  */
-YUI.add("inputex-form", function(Y){
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
 
@@ -414,8 +412,3 @@ inputEx.registerType("form", inputEx.Form, [
       }
    }
 ]);
-
-
-},'3.1.0',{
-  requires: ['io-base','inputex-group','json','inputex-button']
-});

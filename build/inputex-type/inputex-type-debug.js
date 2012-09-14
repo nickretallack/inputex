@@ -3,8 +3,6 @@ YUI.add('inputex-type', function (Y, NAME) {
 /**
  * @module inputex-type
  */
-YUI.add("inputex-type", function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -270,9 +268,5 @@ Y.extend(inputEx.TypeField, inputEx.Field, {
 // Register this class as "type" type
 inputEx.registerType("type", inputEx.TypeField, []);
 
-}, '3.1.0',{
-requires: ['inputex-field','inputex-group','inputex-select', 'inputex-list','inputex-string','inputex-checkbox','inputex-integer']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-field", "inputex-group", "inputex-select", "inputex-list", "inputex-string", "inputex-checkbox", "inputex-integer"], "skinnable": true, "ix_provides": "type"});

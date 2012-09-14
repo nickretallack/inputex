@@ -4,7 +4,6 @@ YUI.add('inputex', function (Y, NAME) {
  * The inputEx Library
  * @module inputex
  */
-YUI.add("inputex", function(Y){
   var lang = Y.Lang;
   /**
    * The inputEx method lets you create a field from the JSON definition:
@@ -401,10 +400,6 @@ YUI.add("inputex", function(Y){
         return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
      }
   });
-  
-}, '3.1.0',{
-  requires: ['pluginhost-base', 'pluginhost-config', 'base-pluginhost', 'node-pluginhost', 'plugin', 'node','intl']
-});
 
 
 }, '@VERSION@', {"lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

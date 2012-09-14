@@ -26,23 +26,19 @@ _yuitest_coverage["build/inputex-checkbox/inputex-checkbox.js"] = {
     path: "build/inputex-checkbox/inputex-checkbox.js",
     code: []
 };
-_yuitest_coverage["build/inputex-checkbox/inputex-checkbox.js"].code=["YUI.add('inputex-checkbox', function (Y, NAME) {","","/**"," * @module inputex-checkbox"," */","YUI.add(\"inputex-checkbox\",function(Y){","","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * Create a checkbox."," * @class inputEx.CheckBox"," * @extends inputEx.Field"," * @constructor"," * @param {Object} options Added options for CheckBoxes:"," * <ul>"," *   <li>sentValues: 2D vector of values for checked/unchecked states (default is [true, false])</li>"," * </ul>"," */","inputEx.CheckBox = function(options) {","	inputEx.CheckBox.superclass.constructor.call(this,options);","};","	","Y.extend(inputEx.CheckBox, inputEx.Field, {","	   ","	/**","	 * Adds the CheckBox specific options","	 * @method setOptions","	 * @param {Object} options Options object as passed to the constructor","	 */","	setOptions: function(options) {","	   inputEx.CheckBox.superclass.setOptions.call(this, options);","	   ","	   // Overwrite options:","	   this.options.className = options.className ? options.className : 'inputEx-Field inputEx-CheckBox';","	   ","	   this.options.rightLabel = options.rightLabel || '';","	   ","	   // Added options","	   this.sentValues = options.sentValues || [true, false];","	   this.options.sentValues = this.sentValues; // for compatibility","	   this.checkedValue = this.sentValues[0];","	   this.uncheckedValue = this.sentValues[1];","	},","	   ","	/**","	 * Render the checkbox and the hidden field","	 * @method renderComponent","	 */","	renderComponent: function() {","	","   	var checkBoxId = this.divEl.id?this.divEl.id+'-field':Y.guid();","	   this.el = inputEx.cn('input', { id: checkBoxId, type: 'checkbox' });","","	   this.fieldContainer.appendChild(this.el);","	","	   this.rightLabelEl = inputEx.cn('label', {\"for\": checkBoxId, className: 'inputEx-CheckBox-rightLabel'}, null, this.options.rightLabel);","	   this.fieldContainer.appendChild(this.rightLabelEl);","	","	   // Keep state of checkbox in a hidden field (format : this.checkedValue or this.uncheckedValue)","	   // This is useful for non-javascript form submit (it allows custom checked/unchecked values to be submitted)","	   this.hiddenEl = inputEx.cn('input', {type: 'hidden', name: this.options.name || '', value: this.uncheckedValue});","	   this.fieldContainer.appendChild(this.hiddenEl);","	},","	   ","	/**","	 * Clear the previous events and listen for the \"change\" event","	 * @method initEvents","	 */","	initEvents: function() {","	   ","	   // Awful Hack to work in IE6 and below (the checkbox doesn't fire the change event)","	   // It seems IE 8 removed this behavior from IE7 so it only works with IE 7 ??","	   if( Y.UA.ie ) {","	      Y.one(this.el).on(\"click\", function(e) { Y.later(10,this,function(){this.onChange(e);}); }, this);","	   } else {","	     Y.one(this.el).on(\"change\", this.onChange, this, true);","	   }","	   ","	   Y.one(this.el).on(\"focus\", this.onFocus, this, true);","	   Y.one(this.el).on(\"blur\", this.onBlur, this, true);","	},","	   ","	/**","	 * Function called when the checkbox is toggled","	 * @method onChange","	 * @param {Event} e The original 'change' event","	 */","	onChange: function(e) {","	   this.hiddenEl.value = this.el.checked ? this.checkedValue : this.uncheckedValue;","	","	   inputEx.CheckBox.superclass.onChange.call(this,e);","	},","	","	/**","	 * Get the state value","	 * @method getValue","	 * @return {Any} one of [checkedValue,uncheckedValue]","	 */","	getValue: function() {","	      return this.el.checked ? this.checkedValue : this.uncheckedValue;","	},","	","	/**","	 * Set the value of the checkedbox","	 * @method setValue","	 * @param {Any} value The value schould be one of [checkedValue,uncheckedValue]","    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)","	 */","	setValue: function(value, sendUpdatedEvt) {","	   if (value===this.checkedValue || (typeof(value) == 'string' && typeof(this.checkedValue) == 'boolean' &&","		value === String(this.checkedValue))) {","			this.hiddenEl.value = this.checkedValue;","			","			// check checkbox (all browsers)","			this.el.checked = true;","			","			// hacks for IE6, because input is not operational at init, ","			// so \"this.el.checked = true\" would work for default values !","			// (but still work for later setValue calls)","			if (Y.UA.ie === 6) {","			   this.el.setAttribute(\"defaultChecked\",\"checked\"); // for IE6","		   }","		}","	   else {","	      // DEBUG :","	      /*if (value!==this.uncheckedValue && lang.isObject(console) && lang.isFunction(console.log) ) {","	         console.log(\"inputEx.CheckBox: value is *\"+value+\"*, schould be in [\"+this.checkedValue+\",\"+this.uncheckedValue+\"]\");","         }*/","			this.hiddenEl.value = this.uncheckedValue;","			","			// uncheck checkbox (all browsers)","		   this.el.checked = false;","		   ","			// hacks for IE6, because input is not operational at init, ","			// so \"this.el.checked = false\" would work for default values !","			// (but still work for later setValue calls)","			if (Y.UA.ie === 6) {","			   this.el.removeAttribute(\"defaultChecked\"); // for IE6","		   }","		}","		","		// Call Field.setValue to set class and fire updated event","		inputEx.CheckBox.superclass.setValue.call(this,value, sendUpdatedEvt);","	},","	","	/**","    * Disable the field","    * @method disable","    */","   disable: function() {","      this.el.disabled = true;","   },","","   /**","    * Enable the field","    * @method enable","    */","   enable: function() {","      this.el.disabled = false;","   }","	","});   ","	","// Register this class as \"boolean\" type","inputEx.registerType(\"boolean\", inputEx.CheckBox, [ ","   {type: 'string', label: 'Right Label', name: 'rightLabel'}","]);","	","}, '0.0.1',{","  requires: [\"inputex-field\"]","});","","","}, '@VERSION@');"];
-_yuitest_coverage["build/inputex-checkbox/inputex-checkbox.js"].lines = {"1":0,"6":0,"8":0,"21":0,"22":0,"25":0,"33":0,"36":0,"38":0,"41":0,"42":0,"43":0,"44":0,"53":0,"54":0,"56":0,"58":0,"59":0,"63":0,"64":0,"75":0,"76":0,"78":0,"81":0,"82":0,"91":0,"93":0,"102":0,"112":0,"114":0,"117":0,"122":0,"123":0,"131":0,"134":0,"139":0,"140":0,"145":0,"153":0,"161":0,"167":0};
-_yuitest_coverage["build/inputex-checkbox/inputex-checkbox.js"].functions = {"CheckBox:21":0,"setOptions:32":0,"renderComponent:51":0,"(anonymous 4):76":0,"(anonymous 3):76":0,"initEvents:71":0,"onChange:90":0,"getValue:101":0,"setValue:111":0,"disable:152":0,"enable:160":0,"(anonymous 2):6":0,"(anonymous 1):1":0};
-_yuitest_coverage["build/inputex-checkbox/inputex-checkbox.js"].coveredLines = 41;
-_yuitest_coverage["build/inputex-checkbox/inputex-checkbox.js"].coveredFunctions = 13;
+_yuitest_coverage["build/inputex-checkbox/inputex-checkbox.js"].code=["YUI.add('inputex-checkbox', function (Y, NAME) {","","/**"," * @module inputex-checkbox"," */","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * Create a checkbox."," * @class inputEx.CheckBox"," * @extends inputEx.Field"," * @constructor"," * @param {Object} options Added options for CheckBoxes:"," * <ul>"," *   <li>sentValues: 2D vector of values for checked/unchecked states (default is [true, false])</li>"," * </ul>"," */","inputEx.CheckBox = function(options) {","	inputEx.CheckBox.superclass.constructor.call(this,options);","};","	","Y.extend(inputEx.CheckBox, inputEx.Field, {","	   ","	/**","	 * Adds the CheckBox specific options","	 * @method setOptions","	 * @param {Object} options Options object as passed to the constructor","	 */","	setOptions: function(options) {","	   inputEx.CheckBox.superclass.setOptions.call(this, options);","	   ","	   // Overwrite options:","	   this.options.className = options.className ? options.className : 'inputEx-Field inputEx-CheckBox';","	   ","	   this.options.rightLabel = options.rightLabel || '';","	   ","	   // Added options","	   this.sentValues = options.sentValues || [true, false];","	   this.options.sentValues = this.sentValues; // for compatibility","	   this.checkedValue = this.sentValues[0];","	   this.uncheckedValue = this.sentValues[1];","	},","	   ","	/**","	 * Render the checkbox and the hidden field","	 * @method renderComponent","	 */","	renderComponent: function() {","	","   	var checkBoxId = this.divEl.id?this.divEl.id+'-field':Y.guid();","	   this.el = inputEx.cn('input', { id: checkBoxId, type: 'checkbox' });","","	   this.fieldContainer.appendChild(this.el);","	","	   this.rightLabelEl = inputEx.cn('label', {\"for\": checkBoxId, className: 'inputEx-CheckBox-rightLabel'}, null, this.options.rightLabel);","	   this.fieldContainer.appendChild(this.rightLabelEl);","	","	   // Keep state of checkbox in a hidden field (format : this.checkedValue or this.uncheckedValue)","	   // This is useful for non-javascript form submit (it allows custom checked/unchecked values to be submitted)","	   this.hiddenEl = inputEx.cn('input', {type: 'hidden', name: this.options.name || '', value: this.uncheckedValue});","	   this.fieldContainer.appendChild(this.hiddenEl);","	},","	   ","	/**","	 * Clear the previous events and listen for the \"change\" event","	 * @method initEvents","	 */","	initEvents: function() {","	   ","	   // Awful Hack to work in IE6 and below (the checkbox doesn't fire the change event)","	   // It seems IE 8 removed this behavior from IE7 so it only works with IE 7 ??","	   if( Y.UA.ie ) {","	      Y.one(this.el).on(\"click\", function(e) { Y.later(10,this,function(){this.onChange(e);}); }, this);","	   } else {","	     Y.one(this.el).on(\"change\", this.onChange, this, true);","	   }","	   ","	   Y.one(this.el).on(\"focus\", this.onFocus, this, true);","	   Y.one(this.el).on(\"blur\", this.onBlur, this, true);","	},","	   ","	/**","	 * Function called when the checkbox is toggled","	 * @method onChange","	 * @param {Event} e The original 'change' event","	 */","	onChange: function(e) {","	   this.hiddenEl.value = this.el.checked ? this.checkedValue : this.uncheckedValue;","	","	   inputEx.CheckBox.superclass.onChange.call(this,e);","	},","	","	/**","	 * Get the state value","	 * @method getValue","	 * @return {Any} one of [checkedValue,uncheckedValue]","	 */","	getValue: function() {","	      return this.el.checked ? this.checkedValue : this.uncheckedValue;","	},","	","	/**","	 * Set the value of the checkedbox","	 * @method setValue","	 * @param {Any} value The value schould be one of [checkedValue,uncheckedValue]","    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)","	 */","	setValue: function(value, sendUpdatedEvt) {","	   if (value===this.checkedValue || (typeof(value) == 'string' && typeof(this.checkedValue) == 'boolean' &&","		value === String(this.checkedValue))) {","			this.hiddenEl.value = this.checkedValue;","			","			// check checkbox (all browsers)","			this.el.checked = true;","			","			// hacks for IE6, because input is not operational at init, ","			// so \"this.el.checked = true\" would work for default values !","			// (but still work for later setValue calls)","			if (Y.UA.ie === 6) {","			   this.el.setAttribute(\"defaultChecked\",\"checked\"); // for IE6","		   }","		}","	   else {","	      // DEBUG :","	      /*if (value!==this.uncheckedValue && lang.isObject(console) && lang.isFunction(console.log) ) {","	         console.log(\"inputEx.CheckBox: value is *\"+value+\"*, schould be in [\"+this.checkedValue+\",\"+this.uncheckedValue+\"]\");","         }*/","			this.hiddenEl.value = this.uncheckedValue;","			","			// uncheck checkbox (all browsers)","		   this.el.checked = false;","		   ","			// hacks for IE6, because input is not operational at init, ","			// so \"this.el.checked = false\" would work for default values !","			// (but still work for later setValue calls)","			if (Y.UA.ie === 6) {","			   this.el.removeAttribute(\"defaultChecked\"); // for IE6","		   }","		}","		","		// Call Field.setValue to set class and fire updated event","		inputEx.CheckBox.superclass.setValue.call(this,value, sendUpdatedEvt);","	},","	","	/**","    * Disable the field","    * @method disable","    */","   disable: function() {","      this.el.disabled = true;","   },","","   /**","    * Enable the field","    * @method enable","    */","   enable: function() {","      this.el.disabled = false;","   }","	","});   ","	","// Register this class as \"boolean\" type","inputEx.registerType(\"boolean\", inputEx.CheckBox, [ ","   {type: 'string', label: 'Right Label', name: 'rightLabel'}","]);","","","}, '@VERSION@', {\"requires\": [\"inputex-field\"], \"ix_provides\": \"boolean\"});"];
+_yuitest_coverage["build/inputex-checkbox/inputex-checkbox.js"].lines = {"1":0,"6":0,"19":0,"20":0,"23":0,"31":0,"34":0,"36":0,"39":0,"40":0,"41":0,"42":0,"51":0,"52":0,"54":0,"56":0,"57":0,"61":0,"62":0,"73":0,"74":0,"76":0,"79":0,"80":0,"89":0,"91":0,"100":0,"110":0,"112":0,"115":0,"120":0,"121":0,"129":0,"132":0,"137":0,"138":0,"143":0,"151":0,"159":0,"165":0};
+_yuitest_coverage["build/inputex-checkbox/inputex-checkbox.js"].functions = {"CheckBox:19":0,"setOptions:30":0,"renderComponent:49":0,"(anonymous 3):74":0,"(anonymous 2):74":0,"initEvents:69":0,"onChange:88":0,"getValue:99":0,"setValue:109":0,"disable:150":0,"enable:158":0,"(anonymous 1):1":0};
+_yuitest_coverage["build/inputex-checkbox/inputex-checkbox.js"].coveredLines = 40;
+_yuitest_coverage["build/inputex-checkbox/inputex-checkbox.js"].coveredFunctions = 12;
 _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 1);
 YUI.add('inputex-checkbox', function (Y, NAME) {
 
 /**
  * @module inputex-checkbox
  */
-_yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "(anonymous 1)", 1);
+   _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "(anonymous 1)", 1);
 _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 6);
-YUI.add("inputex-checkbox",function(Y){
-
-   _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "(anonymous 2)", 6);
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 8);
 var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -56,14 +52,14 @@ var lang = Y.Lang,
  *   <li>sentValues: 2D vector of values for checked/unchecked states (default is [true, false])</li>
  * </ul>
  */
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 21);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 19);
 inputEx.CheckBox = function(options) {
-	_yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "CheckBox", 21);
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 22);
+	_yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "CheckBox", 19);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 20);
 inputEx.CheckBox.superclass.constructor.call(this,options);
 };
 	
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 25);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 23);
 Y.extend(inputEx.CheckBox, inputEx.Field, {
 	   
 	/**
@@ -72,25 +68,25 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
 	 * @param {Object} options Options object as passed to the constructor
 	 */
 	setOptions: function(options) {
-	   _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "setOptions", 32);
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 33);
+	   _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "setOptions", 30);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 31);
 inputEx.CheckBox.superclass.setOptions.call(this, options);
 	   
 	   // Overwrite options:
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 36);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 34);
 this.options.className = options.className ? options.className : 'inputEx-Field inputEx-CheckBox';
 	   
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 38);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 36);
 this.options.rightLabel = options.rightLabel || '';
 	   
 	   // Added options
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 41);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 39);
 this.sentValues = options.sentValues || [true, false];
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 42);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 40);
 this.options.sentValues = this.sentValues; // for compatibility
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 43);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 41);
 this.checkedValue = this.sentValues[0];
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 44);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 42);
 this.uncheckedValue = this.sentValues[1];
 	},
 	   
@@ -100,25 +96,25 @@ this.uncheckedValue = this.sentValues[1];
 	 */
 	renderComponent: function() {
 	
-   	_yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "renderComponent", 51);
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 53);
+   	_yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "renderComponent", 49);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 51);
 var checkBoxId = this.divEl.id?this.divEl.id+'-field':Y.guid();
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 54);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 52);
 this.el = inputEx.cn('input', { id: checkBoxId, type: 'checkbox' });
 
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 56);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 54);
 this.fieldContainer.appendChild(this.el);
 	
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 58);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 56);
 this.rightLabelEl = inputEx.cn('label', {"for": checkBoxId, className: 'inputEx-CheckBox-rightLabel'}, null, this.options.rightLabel);
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 59);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 57);
 this.fieldContainer.appendChild(this.rightLabelEl);
 	
 	   // Keep state of checkbox in a hidden field (format : this.checkedValue or this.uncheckedValue)
 	   // This is useful for non-javascript form submit (it allows custom checked/unchecked values to be submitted)
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 63);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 61);
 this.hiddenEl = inputEx.cn('input', {type: 'hidden', name: this.options.name || '', value: this.uncheckedValue});
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 64);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 62);
 this.fieldContainer.appendChild(this.hiddenEl);
 	},
 	   
@@ -130,21 +126,21 @@ this.fieldContainer.appendChild(this.hiddenEl);
 	   
 	   // Awful Hack to work in IE6 and below (the checkbox doesn't fire the change event)
 	   // It seems IE 8 removed this behavior from IE7 so it only works with IE 7 ??
-	   _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "initEvents", 71);
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 75);
+	   _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "initEvents", 69);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 73);
 if( Y.UA.ie ) {
-	      _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 76);
-Y.one(this.el).on("click", function(e) { _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "(anonymous 3)", 76);
-Y.later(10,this,function(){_yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "(anonymous 4)", 76);
+	      _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 74);
+Y.one(this.el).on("click", function(e) { _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "(anonymous 2)", 74);
+Y.later(10,this,function(){_yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "(anonymous 3)", 74);
 this.onChange(e);}); }, this);
 	   } else {
-	     _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 78);
+	     _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 76);
 Y.one(this.el).on("change", this.onChange, this, true);
 	   }
 	   
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 81);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 79);
 Y.one(this.el).on("focus", this.onFocus, this, true);
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 82);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 80);
 Y.one(this.el).on("blur", this.onBlur, this, true);
 	},
 	   
@@ -154,11 +150,11 @@ Y.one(this.el).on("blur", this.onBlur, this, true);
 	 * @param {Event} e The original 'change' event
 	 */
 	onChange: function(e) {
-	   _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "onChange", 90);
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 91);
+	   _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "onChange", 88);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 89);
 this.hiddenEl.value = this.el.checked ? this.checkedValue : this.uncheckedValue;
 	
-	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 93);
+	   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 91);
 inputEx.CheckBox.superclass.onChange.call(this,e);
 	},
 	
@@ -168,8 +164,8 @@ inputEx.CheckBox.superclass.onChange.call(this,e);
 	 * @return {Any} one of [checkedValue,uncheckedValue]
 	 */
 	getValue: function() {
-	      _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "getValue", 101);
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 102);
+	      _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "getValue", 99);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 100);
 return this.el.checked ? this.checkedValue : this.uncheckedValue;
 	},
 	
@@ -180,23 +176,23 @@ return this.el.checked ? this.checkedValue : this.uncheckedValue;
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
 	 */
 	setValue: function(value, sendUpdatedEvt) {
-	   _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "setValue", 111);
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 112);
+	   _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "setValue", 109);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 110);
 if (value===this.checkedValue || (typeof(value) == 'string' && typeof(this.checkedValue) == 'boolean' &&
 		value === String(this.checkedValue))) {
-			_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 114);
+			_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 112);
 this.hiddenEl.value = this.checkedValue;
 			
 			// check checkbox (all browsers)
-			_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 117);
+			_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 115);
 this.el.checked = true;
 			
 			// hacks for IE6, because input is not operational at init, 
 			// so "this.el.checked = true" would work for default values !
 			// (but still work for later setValue calls)
-			_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 122);
+			_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 120);
 if (Y.UA.ie === 6) {
-			   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 123);
+			   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 121);
 this.el.setAttribute("defaultChecked","checked"); // for IE6
 		   }
 		}
@@ -205,25 +201,25 @@ this.el.setAttribute("defaultChecked","checked"); // for IE6
 	      /*if (value!==this.uncheckedValue && lang.isObject(console) && lang.isFunction(console.log) ) {
 	         console.log("inputEx.CheckBox: value is *"+value+"*, schould be in ["+this.checkedValue+","+this.uncheckedValue+"]");
          }*/
-			_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 131);
+			_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 129);
 this.hiddenEl.value = this.uncheckedValue;
 			
 			// uncheck checkbox (all browsers)
-		   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 134);
+		   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 132);
 this.el.checked = false;
 		   
 			// hacks for IE6, because input is not operational at init, 
 			// so "this.el.checked = false" would work for default values !
 			// (but still work for later setValue calls)
-			_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 139);
+			_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 137);
 if (Y.UA.ie === 6) {
-			   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 140);
+			   _yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 138);
 this.el.removeAttribute("defaultChecked"); // for IE6
 		   }
 		}
 		
 		// Call Field.setValue to set class and fire updated event
-		_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 145);
+		_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 143);
 inputEx.CheckBox.superclass.setValue.call(this,value, sendUpdatedEvt);
 	},
 	
@@ -232,8 +228,8 @@ inputEx.CheckBox.superclass.setValue.call(this,value, sendUpdatedEvt);
     * @method disable
     */
    disable: function() {
-      _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "disable", 152);
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 153);
+      _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "disable", 150);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 151);
 this.el.disabled = true;
    },
 
@@ -242,22 +238,18 @@ this.el.disabled = true;
     * @method enable
     */
    enable: function() {
-      _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "enable", 160);
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 161);
+      _yuitest_coverfunc("build/inputex-checkbox/inputex-checkbox.js", "enable", 158);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 159);
 this.el.disabled = false;
    }
 	
 });   
 	
 // Register this class as "boolean" type
-_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 167);
+_yuitest_coverline("build/inputex-checkbox/inputex-checkbox.js", 165);
 inputEx.registerType("boolean", inputEx.CheckBox, [ 
    {type: 'string', label: 'Right Label', name: 'rightLabel'}
 ]);
-	
-}, '0.0.1',{
-  requires: ["inputex-field"]
-});
 
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-field"], "ix_provides": "boolean"});

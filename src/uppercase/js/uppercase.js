@@ -1,8 +1,6 @@
 /**
  * @module inputex-uppercase
  */
-YUI.add("inputex-uppercase",function(Y){
-	
    var inputEx = Y.inputEx,
        lang = Y.Lang;
 
@@ -49,7 +47,3 @@ Y.extend(inputEx.UpperCaseField, inputEx.StringField, {
 
 // Register this class as "uppercase" type
 inputEx.registerType("uppercase", inputEx.UpperCaseField);
-
-},'3.1.0',{
-  requires: ['inputex-string']
-});

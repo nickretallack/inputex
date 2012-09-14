@@ -1,8 +1,6 @@
 /**
  * @module inputex-serialize
  */
-YUI.add("inputex-serialize", function(Y){
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
       
@@ -188,7 +186,3 @@ inputEx.registerType("serialize", inputEx.SerializeField, [
 	{ type:'type', label: 'SubField', name: 'subfield'},
 	{ type:'select', name: 'serializer', label: 'Serializer', choices: [{ value: 'json' }, { value: 'xml' }/*, { value: 'flatten' }*/], value: 'json'}
 ]);
-
-},'3.1.0',{
-  requires: ["inputex-string",'json']
-});

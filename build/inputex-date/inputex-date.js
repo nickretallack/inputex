@@ -3,8 +3,6 @@ YUI.add('inputex-date', function (Y, NAME) {
 /**
  * @module inputex-date
  */
-YUI.add("inputex-date", function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -151,10 +149,6 @@ inputEx.DateField.formatDate = function(d,format) {
 inputEx.registerType("date", inputEx.DateField, [
    {type: 'select', label: 'Date format', name: 'dateFormat', choices: [{ value: "m/d/Y" }, { value:"d/m/Y" }] }
 ]);
-	
-}, '3.1.0',{
-requires: ['inputex-string']
-});
 
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "date"});

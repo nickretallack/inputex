@@ -3,8 +3,6 @@ YUI.add('inputex-serialize', function (Y, NAME) {
 /**
  * @module inputex-serialize
  */
-YUI.add("inputex-serialize", function(Y){
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
       
@@ -191,9 +189,5 @@ inputEx.registerType("serialize", inputEx.SerializeField, [
 	{ type:'select', name: 'serializer', label: 'Serializer', choices: [{ value: 'json' }, { value: 'xml' }/*, { value: 'flatten' }*/], value: 'json'}
 ]);
 
-},'3.1.0',{
-  requires: ["inputex-string",'json']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-string", "json"], "ix_provides": "serialize"});

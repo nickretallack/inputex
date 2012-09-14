@@ -3,8 +3,6 @@ YUI.add('inputex-datetime', function (Y, NAME) {
 /**
  * @module inputex-datetime
  */
-YUI.add("inputex-datetime", function(Y) {
-
   var lang = Y.Lang,
       inputEx = Y.inputEx;
 
@@ -83,9 +81,5 @@ Y.extend(inputEx.DateTimeField, inputEx.CombineField, {
 // Register this class as "time" type
 inputEx.registerType("datetime", inputEx.DateTimeField);
 
-}, '3.1.0',{
-requires: ['inputex-combine']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-datepicker", "inputex-combine", "inputex-time"], "ix_provides": "datetime"});

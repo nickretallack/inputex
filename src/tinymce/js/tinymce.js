@@ -1,8 +1,6 @@
 /**
  * @module inputex-tinymce
  */
-YUI.add("inputex-tinymce", function (Y) {
-
     var lang = Y.Lang,
         inputEx = Y.inputEx;
 
@@ -151,7 +149,3 @@ YUI.add("inputex-tinymce", function (Y) {
 
     // Register this class as "tinymce" type
     inputEx.registerType("tinymce", inputEx.TinyMCEField, []);
-
-}, '3.1.0', {
-    requires: ["inputex-field"]
-});

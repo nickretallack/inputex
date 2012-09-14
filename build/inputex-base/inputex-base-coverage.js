@@ -26,11 +26,11 @@ _yuitest_coverage["build/inputex-base/inputex-base.js"] = {
     path: "build/inputex-base/inputex-base.js",
     code: []
 };
-_yuitest_coverage["build/inputex-base/inputex-base.js"].code=["YUI.add('inputex-base', function (Y, NAME) {","","/**"," * A widget-stdmod-level extension that provides ability to render a form within the body"," *"," * @module inputex-base"," */",""," YUI.add('inputex-base',function(Y){","","/**"," * The inputExBase class provides the hideOn attribute which can"," * be used to hide the widget when certain events occur."," *"," * @class inputEx.Base"," * @param {Object} config User configuration object"," */","function inputExBase(config) {","    Y.after(this._renderUIInputEx, this, 'renderUI');","","    Y.after(this._bindUIInputEx, this, 'bindUI');","","    if (this.get(\"rendered\")) {","        this._renderUIInputEx();","    }","}","","inputExBase.ATTRS = {","   ","   /**","    * inputEx json configuration","    *","    * @attribute inputEx","    * @type Object","    */","   inputEx: {","   },","   ","   ","   /**","    * Instantiated inputEx field (any type)","    * ","    * @attribute field","    * @type inputEx.Field","    */","   field: {","   }","};","","inputExBase.prototype = {","","   /**","    * @method _renderUIInputEx","    * @private","    */","   _renderUIInputEx: function() {","     var config = {};","     Y.mix(config, this.get('inputEx') );","     config.parentEl = this.get('contentBox');","     this.set('field', Y.inputEx(config));","   },","   ","   /**","    * @method _bindUIInputEx","    * @private","    */","   _bindUIInputEx: function() {","      // Closing all fields when the widget is hidden","      this.on('visibleChange', function(e) {","        if(e.newVal === false) {","          this.get('field').close();","        }","      }, this);","   }","","};","","","Y.inputEx.Base = inputExBase;","","","}, '3.1.0',{","  requires: ['inputex', 'base']","});","","","","","}, '@VERSION@');"];
-_yuitest_coverage["build/inputex-base/inputex-base.js"].lines = {"1":0,"9":0,"18":0,"19":0,"21":0,"23":0,"24":0,"28":0,"50":0,"57":0,"58":0,"59":0,"60":0,"69":0,"70":0,"71":0,"79":0};
-_yuitest_coverage["build/inputex-base/inputex-base.js"].functions = {"inputExBase:18":0,"_renderUIInputEx:56":0,"(anonymous 3):69":0,"_bindUIInputEx:67":0,"(anonymous 2):9":0,"(anonymous 1):1":0};
-_yuitest_coverage["build/inputex-base/inputex-base.js"].coveredLines = 17;
-_yuitest_coverage["build/inputex-base/inputex-base.js"].coveredFunctions = 6;
+_yuitest_coverage["build/inputex-base/inputex-base.js"].code=["YUI.add('inputex-base', function (Y, NAME) {","","/**"," * A widget-stdmod-level extension that provides ability to render a form within the body"," *"," * @module inputex-base"," */","","/**"," * The inputExBase class provides the hideOn attribute which can"," * be used to hide the widget when certain events occur."," *"," * @class inputEx.Base"," * @param {Object} config User configuration object"," */","function inputExBase(config) {","    Y.after(this._renderUIInputEx, this, 'renderUI');","","    Y.after(this._bindUIInputEx, this, 'bindUI');","","    if (this.get(\"rendered\")) {","        this._renderUIInputEx();","    }","}","","inputExBase.ATTRS = {","   ","   /**","    * inputEx json configuration","    *","    * @attribute inputEx","    * @type Object","    */","   inputEx: {","   },","   ","   ","   /**","    * Instantiated inputEx field (any type)","    * ","    * @attribute field","    * @type inputEx.Field","    */","   field: {","   }","};","","inputExBase.prototype = {","","   /**","    * @method _renderUIInputEx","    * @private","    */","   _renderUIInputEx: function() {","     var config = {};","     Y.mix(config, this.get('inputEx') );","     config.parentEl = this.get('contentBox');","     this.set('field', Y.inputEx(config));","   },","   ","   /**","    * @method _bindUIInputEx","    * @private","    */","   _bindUIInputEx: function() {","      // Closing all fields when the widget is hidden","      this.on('visibleChange', function(e) {","        if(e.newVal === false) {","          this.get('field').close();","        }","      }, this);","   }","","};","","","Y.inputEx.Base = inputExBase;","","","}, '@VERSION@', {\"requires\": [\"inputex\", \"widget\", \"widget-stdmod\"]});"];
+_yuitest_coverage["build/inputex-base/inputex-base.js"].lines = {"1":0,"16":0,"17":0,"19":0,"21":0,"22":0,"26":0,"48":0,"55":0,"56":0,"57":0,"58":0,"67":0,"68":0,"69":0,"77":0};
+_yuitest_coverage["build/inputex-base/inputex-base.js"].functions = {"inputExBase:16":0,"_renderUIInputEx:54":0,"(anonymous 2):67":0,"_bindUIInputEx:65":0,"(anonymous 1):1":0};
+_yuitest_coverage["build/inputex-base/inputex-base.js"].coveredLines = 16;
+_yuitest_coverage["build/inputex-base/inputex-base.js"].coveredFunctions = 5;
 _yuitest_coverline("build/inputex-base/inputex-base.js", 1);
 YUI.add('inputex-base', function (Y, NAME) {
 
@@ -40,10 +40,6 @@ YUI.add('inputex-base', function (Y, NAME) {
  * @module inputex-base
  */
 
- _yuitest_coverfunc("build/inputex-base/inputex-base.js", "(anonymous 1)", 1);
-_yuitest_coverline("build/inputex-base/inputex-base.js", 9);
-YUI.add('inputex-base',function(Y){
-
 /**
  * The inputExBase class provides the hideOn attribute which can
  * be used to hide the widget when certain events occur.
@@ -51,24 +47,24 @@ YUI.add('inputex-base',function(Y){
  * @class inputEx.Base
  * @param {Object} config User configuration object
  */
-_yuitest_coverfunc("build/inputex-base/inputex-base.js", "(anonymous 2)", 9);
-_yuitest_coverline("build/inputex-base/inputex-base.js", 18);
+_yuitest_coverfunc("build/inputex-base/inputex-base.js", "(anonymous 1)", 1);
+_yuitest_coverline("build/inputex-base/inputex-base.js", 16);
 function inputExBase(config) {
-    _yuitest_coverfunc("build/inputex-base/inputex-base.js", "inputExBase", 18);
-_yuitest_coverline("build/inputex-base/inputex-base.js", 19);
+    _yuitest_coverfunc("build/inputex-base/inputex-base.js", "inputExBase", 16);
+_yuitest_coverline("build/inputex-base/inputex-base.js", 17);
 Y.after(this._renderUIInputEx, this, 'renderUI');
 
-    _yuitest_coverline("build/inputex-base/inputex-base.js", 21);
+    _yuitest_coverline("build/inputex-base/inputex-base.js", 19);
 Y.after(this._bindUIInputEx, this, 'bindUI');
 
-    _yuitest_coverline("build/inputex-base/inputex-base.js", 23);
+    _yuitest_coverline("build/inputex-base/inputex-base.js", 21);
 if (this.get("rendered")) {
-        _yuitest_coverline("build/inputex-base/inputex-base.js", 24);
+        _yuitest_coverline("build/inputex-base/inputex-base.js", 22);
 this._renderUIInputEx();
     }
 }
 
-_yuitest_coverline("build/inputex-base/inputex-base.js", 28);
+_yuitest_coverline("build/inputex-base/inputex-base.js", 26);
 inputExBase.ATTRS = {
    
    /**
@@ -91,7 +87,7 @@ inputExBase.ATTRS = {
    }
 };
 
-_yuitest_coverline("build/inputex-base/inputex-base.js", 50);
+_yuitest_coverline("build/inputex-base/inputex-base.js", 48);
 inputExBase.prototype = {
 
    /**
@@ -99,14 +95,14 @@ inputExBase.prototype = {
     * @private
     */
    _renderUIInputEx: function() {
-     _yuitest_coverfunc("build/inputex-base/inputex-base.js", "_renderUIInputEx", 56);
-_yuitest_coverline("build/inputex-base/inputex-base.js", 57);
+     _yuitest_coverfunc("build/inputex-base/inputex-base.js", "_renderUIInputEx", 54);
+_yuitest_coverline("build/inputex-base/inputex-base.js", 55);
 var config = {};
-     _yuitest_coverline("build/inputex-base/inputex-base.js", 58);
+     _yuitest_coverline("build/inputex-base/inputex-base.js", 56);
 Y.mix(config, this.get('inputEx') );
-     _yuitest_coverline("build/inputex-base/inputex-base.js", 59);
+     _yuitest_coverline("build/inputex-base/inputex-base.js", 57);
 config.parentEl = this.get('contentBox');
-     _yuitest_coverline("build/inputex-base/inputex-base.js", 60);
+     _yuitest_coverline("build/inputex-base/inputex-base.js", 58);
 this.set('field', Y.inputEx(config));
    },
    
@@ -116,13 +112,13 @@ this.set('field', Y.inputEx(config));
     */
    _bindUIInputEx: function() {
       // Closing all fields when the widget is hidden
-      _yuitest_coverfunc("build/inputex-base/inputex-base.js", "_bindUIInputEx", 67);
-_yuitest_coverline("build/inputex-base/inputex-base.js", 69);
+      _yuitest_coverfunc("build/inputex-base/inputex-base.js", "_bindUIInputEx", 65);
+_yuitest_coverline("build/inputex-base/inputex-base.js", 67);
 this.on('visibleChange', function(e) {
-        _yuitest_coverfunc("build/inputex-base/inputex-base.js", "(anonymous 3)", 69);
-_yuitest_coverline("build/inputex-base/inputex-base.js", 70);
+        _yuitest_coverfunc("build/inputex-base/inputex-base.js", "(anonymous 2)", 67);
+_yuitest_coverline("build/inputex-base/inputex-base.js", 68);
 if(e.newVal === false) {
-          _yuitest_coverline("build/inputex-base/inputex-base.js", 71);
+          _yuitest_coverline("build/inputex-base/inputex-base.js", 69);
 this.get('field').close();
         }
       }, this);
@@ -131,15 +127,8 @@ this.get('field').close();
 };
 
 
-_yuitest_coverline("build/inputex-base/inputex-base.js", 79);
+_yuitest_coverline("build/inputex-base/inputex-base.js", 77);
 Y.inputEx.Base = inputExBase;
 
 
-}, '3.1.0',{
-  requires: ['inputex', 'base']
-});
-
-
-
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex", "widget", "widget-stdmod"]});

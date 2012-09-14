@@ -112,4 +112,4 @@ YUI.add('inputex-textautotag', function (Y, NAME) {
   
   })();
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-textautotag"], "ix_provides": "autotag"});

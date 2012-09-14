@@ -3,8 +3,6 @@ YUI.add('inputex-ratingstarsform', function (Y, NAME) {
 /**
  * @module inputex-ratingstarsform
  */
-YUI.add("inputex-ratingstarsform",function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -81,11 +79,5 @@ Y.extend(inputEx.RatingStarsForm, inputEx.Form,{
 
 });
 
-},'3.1.0',{
-  requires: ['inputex-ratingstars','inputex-form']
-});
 
-
-
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-ratingstars", "inputex-form"], "ix_provides": "ratingstarsform"});

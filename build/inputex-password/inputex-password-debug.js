@@ -3,8 +3,6 @@ YUI.add('inputex-password', function (Y, NAME) {
 /**
  * @module inputex-password
  */
-YUI.add("inputex-password", function(Y){
-
    var inputEx = Y.inputEx,lang=Y.Lang;
 	
 /**
@@ -275,10 +273,6 @@ inputEx.registerType("password", inputEx.PasswordField, [
    {type: 'boolean', label: 'Strength indicator', name: 'strengthIndicator', value: false },
    {type: 'boolean', label: 'CapsLock warning', name: 'capsLockWarning', value: false }
 ]);
-	
-},'3.1.0',{
-  requires: ["inputex-string"]
-});
 
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "password"});

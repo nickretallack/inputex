@@ -1,8 +1,6 @@
 /**
  * @module inputex-multiautocomplete
  */
-YUI.add("inputex-multiautocomplete",function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -149,7 +147,3 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
 
 // Register this class as "multiautocomplete" type
 inputEx.registerType("multiautocomplete", inputEx.MultiAutoComplete);
-
-},'3.1.0',{
-  requires:['inputex-autocomplete','json','inputex-ddlist']
-});

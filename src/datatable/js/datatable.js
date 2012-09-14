@@ -1,4 +1,3 @@
-YUI.add("inputex-datatable", function (Y) {
 /**
  * The inputex-datatable module provides the inputEx.Plugin.InputExDataTable class which is a plugin.
  * @module inputex-datatable
@@ -380,5 +379,3 @@ ATTRS: {
         lazyAdd: true
     }
 }});
-
-}, "", {requires: ['inputex-group', 'inputex-panel','datatable']});

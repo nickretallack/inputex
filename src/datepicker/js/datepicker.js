@@ -1,8 +1,6 @@
 /**
  * @module inputex-datepicker
  */
-YUI.add("inputex-datepicker",function(Y){
-
    var inputEx = Y.inputEx,
        lang = Y.Lang;
 /**
@@ -209,8 +207,3 @@ inputEx.messages.defaultCalendarOpts = { navigator: true };
 
 // Register this class as "datepicker" type
 inputEx.registerType("datepicker", inputEx.DatePickerField);
-
-}, '3.1.0',{
-requires: ['inputex-date', 'event-outside', 'node-event-delegate','overlay','calendar']
-});
-

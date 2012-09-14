@@ -26,23 +26,19 @@ _yuitest_coverage["build/inputex-multiselect/inputex-multiselect.js"] = {
     path: "build/inputex-multiselect/inputex-multiselect.js",
     code: []
 };
-_yuitest_coverage["build/inputex-multiselect/inputex-multiselect.js"].code=["YUI.add('inputex-multiselect', function (Y, NAME) {","","/**"," * @module inputex-multiselect"," */","YUI.add(\"inputex-multiselect\", function (Y) {","   ","   var inputEx = Y.inputEx,","       lang = Y.Lang;","   ","    /**","     * Create a multi select field","     * @class inputEx.MultiSelectField","     * @extends inputEx.SelectField","     * @constructor","     * @param {Object} options Added options:","     * <ul>","     *    <li>choices: contains the list of choices configs ([{value:'usa'}, {value:'fr', label:'France'}])</li>","     * </ul>","     */","    inputEx.MultiSelectField = function (options) {","        inputEx.MultiSelectField.superclass.constructor.call(this, options);","    };","","    Y.extend(inputEx.MultiSelectField, inputEx.SelectField, {","","        /**","         * Build the DDList","         * @method renderComponent","         */","        renderComponent: function () {","","            inputEx.MultiSelectField.superclass.renderComponent.call(this);","","            this.ddlist = new inputEx.DDListField({","                parentEl: this.fieldContainer","            });","","        },","","        /**","         * Register the \"change\" event","         * @method initEvents","         */","        initEvents: function () {","            Y.on(\"change\", this.onAddNewItem, this.el, this);","            this.ddlist.on(\"itemRemoved\", this.onItemRemoved, this);","            this.ddlist.on(\"updated\", this.fireUpdatedEvt, this);","        },","","        /**","         * Re-enable the option element when an item is removed by the user","         * @method onItemRemoved","         */","        onItemRemoved: function (params) {","","            this.showChoice({","                value: params","            });","            this.el.selectedIndex = 0;","","            this.fireUpdatedEvt();","","        },","","        /**","         * Add an item to the list when the select changed","         * @method onAddNewItem","         */","        onAddNewItem: function () {","","            var value, position, choice;","","            if (this.el.selectedIndex !== 0) {","               ","               // Get the selector value","               value = inputEx.MultiSelectField.superclass.getValue.call(this);","               ","               position = this.getChoicePosition({","                  value: value","               });","               choice = this.choicesList[position];","               ","               this.ddlist.addItem({","                  value: value,","                  label: choice.label","               });","               ","               // hide choice that has just been selected (+ select first choice)","               this.hideChoice({","                  position: position","               });","               this.el.selectedIndex = 0;","               ","               this.fireUpdatedEvt();","               ","            }","        },","","        /**","         * Set the value of the list","         * @method setValue","         * @param {String} value The value to set","         * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)","         */","        setValue: function (value, sendUpdatedEvt) {","","            var i, length, position, choice, ddlistValue = [];","","            if (!lang.isArray(value)) {","                return;","            }","","            // Re-show all choices","            for (i = 0, length = this.choicesList.length; i < length; i += 1) {","                this.showChoice({","                    position: i","                });","            }","","            // Hide selected choices and fill ddlist value","            for (i = 0, length = value.length; i < length; i += 1) {","","                position = this.getChoicePosition({","                    value: value[i]","                });","                choice = this.choicesList[position];","","                ddlistValue.push({","                    value: choice.value,","                    label: choice.label","                });","","                this.hideChoice({","                    position: position","                });","            }","","            // set ddlist value","            this.ddlist.setValue(ddlistValue);","","            // reset select to first choice","            this.el.selectedIndex = 0;","","            if (sendUpdatedEvt !== false) {","                // fire update event","                this.fireUpdatedEvt();","            }","        },","","        /**","         * Return the value","         * @method getValue","         * @return {Any} an array of selected values","         */","        getValue: function () {","            return this.ddlist.getValue();","        }","","    });","","    // Register this class as \"multiselect\" type","    inputEx.registerType(\"multiselect\", inputEx.MultiSelectField);","","}, '3.1.0', {","    requires: [\"inputex-select\", \"inputex-ddlist\"]","});","","}, '@VERSION@');"];
-_yuitest_coverage["build/inputex-multiselect/inputex-multiselect.js"].lines = {"1":0,"6":0,"8":0,"21":0,"22":0,"25":0,"33":0,"35":0,"46":0,"47":0,"48":0,"57":0,"60":0,"62":0,"72":0,"74":0,"77":0,"79":0,"82":0,"84":0,"90":0,"93":0,"95":0,"108":0,"110":0,"111":0,"115":0,"116":0,"122":0,"124":0,"127":0,"129":0,"134":0,"140":0,"143":0,"145":0,"147":0,"157":0,"163":0};
-_yuitest_coverage["build/inputex-multiselect/inputex-multiselect.js"].functions = {"MultiSelectField:21":0,"renderComponent:31":0,"initEvents:45":0,"onItemRemoved:55":0,"onAddNewItem:70":0,"setValue:106":0,"getValue:156":0,"(anonymous 2):6":0,"(anonymous 1):1":0};
-_yuitest_coverage["build/inputex-multiselect/inputex-multiselect.js"].coveredLines = 39;
-_yuitest_coverage["build/inputex-multiselect/inputex-multiselect.js"].coveredFunctions = 9;
+_yuitest_coverage["build/inputex-multiselect/inputex-multiselect.js"].code=["YUI.add('inputex-multiselect', function (Y, NAME) {","","/**"," * @module inputex-multiselect"," */","   var inputEx = Y.inputEx,","       lang = Y.Lang;","   ","    /**","     * Create a multi select field","     * @class inputEx.MultiSelectField","     * @extends inputEx.SelectField","     * @constructor","     * @param {Object} options Added options:","     * <ul>","     *    <li>choices: contains the list of choices configs ([{value:'usa'}, {value:'fr', label:'France'}])</li>","     * </ul>","     */","    inputEx.MultiSelectField = function (options) {","        inputEx.MultiSelectField.superclass.constructor.call(this, options);","    };","","    Y.extend(inputEx.MultiSelectField, inputEx.SelectField, {","","        /**","         * Build the DDList","         * @method renderComponent","         */","        renderComponent: function () {","","            inputEx.MultiSelectField.superclass.renderComponent.call(this);","","            this.ddlist = new inputEx.DDListField({","                parentEl: this.fieldContainer","            });","","        },","","        /**","         * Register the \"change\" event","         * @method initEvents","         */","        initEvents: function () {","            Y.on(\"change\", this.onAddNewItem, this.el, this);","            this.ddlist.on(\"itemRemoved\", this.onItemRemoved, this);","            this.ddlist.on(\"updated\", this.fireUpdatedEvt, this);","        },","","        /**","         * Re-enable the option element when an item is removed by the user","         * @method onItemRemoved","         */","        onItemRemoved: function (params) {","","            this.showChoice({","                value: params","            });","            this.el.selectedIndex = 0;","","            this.fireUpdatedEvt();","","        },","","        /**","         * Add an item to the list when the select changed","         * @method onAddNewItem","         */","        onAddNewItem: function () {","","            var value, position, choice;","","            if (this.el.selectedIndex !== 0) {","               ","               // Get the selector value","               value = inputEx.MultiSelectField.superclass.getValue.call(this);","               ","               position = this.getChoicePosition({","                  value: value","               });","               choice = this.choicesList[position];","               ","               this.ddlist.addItem({","                  value: value,","                  label: choice.label","               });","               ","               // hide choice that has just been selected (+ select first choice)","               this.hideChoice({","                  position: position","               });","               this.el.selectedIndex = 0;","               ","               this.fireUpdatedEvt();","               ","            }","        },","","        /**","         * Set the value of the list","         * @method setValue","         * @param {String} value The value to set","         * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)","         */","        setValue: function (value, sendUpdatedEvt) {","","            var i, length, position, choice, ddlistValue = [];","","            if (!lang.isArray(value)) {","                return;","            }","","            // Re-show all choices","            for (i = 0, length = this.choicesList.length; i < length; i += 1) {","                this.showChoice({","                    position: i","                });","            }","","            // Hide selected choices and fill ddlist value","            for (i = 0, length = value.length; i < length; i += 1) {","","                position = this.getChoicePosition({","                    value: value[i]","                });","                choice = this.choicesList[position];","","                ddlistValue.push({","                    value: choice.value,","                    label: choice.label","                });","","                this.hideChoice({","                    position: position","                });","            }","","            // set ddlist value","            this.ddlist.setValue(ddlistValue);","","            // reset select to first choice","            this.el.selectedIndex = 0;","","            if (sendUpdatedEvt !== false) {","                // fire update event","                this.fireUpdatedEvt();","            }","        },","","        /**","         * Return the value","         * @method getValue","         * @return {Any} an array of selected values","         */","        getValue: function () {","            return this.ddlist.getValue();","        }","","    });","","    // Register this class as \"multiselect\" type","    inputEx.registerType(\"multiselect\", inputEx.MultiSelectField);","","","}, '@VERSION@', {\"requires\": [\"inputex-select\", \"inputex-ddlist\"], \"ix_provides\": \"multiselect\"});"];
+_yuitest_coverage["build/inputex-multiselect/inputex-multiselect.js"].lines = {"1":0,"6":0,"19":0,"20":0,"23":0,"31":0,"33":0,"44":0,"45":0,"46":0,"55":0,"58":0,"60":0,"70":0,"72":0,"75":0,"77":0,"80":0,"82":0,"88":0,"91":0,"93":0,"106":0,"108":0,"109":0,"113":0,"114":0,"120":0,"122":0,"125":0,"127":0,"132":0,"138":0,"141":0,"143":0,"145":0,"155":0,"161":0};
+_yuitest_coverage["build/inputex-multiselect/inputex-multiselect.js"].functions = {"MultiSelectField:19":0,"renderComponent:29":0,"initEvents:43":0,"onItemRemoved:53":0,"onAddNewItem:68":0,"setValue:104":0,"getValue:154":0,"(anonymous 1):1":0};
+_yuitest_coverage["build/inputex-multiselect/inputex-multiselect.js"].coveredLines = 38;
+_yuitest_coverage["build/inputex-multiselect/inputex-multiselect.js"].coveredFunctions = 8;
 _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 1);
 YUI.add('inputex-multiselect', function (Y, NAME) {
 
 /**
  * @module inputex-multiselect
  */
-_yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "(anonymous 1)", 1);
+   _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "(anonymous 1)", 1);
 _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 6);
-YUI.add("inputex-multiselect", function (Y) {
-   
-   _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "(anonymous 2)", 6);
-_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 8);
 var inputEx = Y.inputEx,
        lang = Y.Lang;
    
@@ -56,14 +52,14 @@ var inputEx = Y.inputEx,
      *    <li>choices: contains the list of choices configs ([{value:'usa'}, {value:'fr', label:'France'}])</li>
      * </ul>
      */
-    _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 21);
+    _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 19);
 inputEx.MultiSelectField = function (options) {
-        _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "MultiSelectField", 21);
-_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 22);
+        _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "MultiSelectField", 19);
+_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 20);
 inputEx.MultiSelectField.superclass.constructor.call(this, options);
     };
 
-    _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 25);
+    _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 23);
 Y.extend(inputEx.MultiSelectField, inputEx.SelectField, {
 
         /**
@@ -72,11 +68,11 @@ Y.extend(inputEx.MultiSelectField, inputEx.SelectField, {
          */
         renderComponent: function () {
 
-            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "renderComponent", 31);
-_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 33);
+            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "renderComponent", 29);
+_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 31);
 inputEx.MultiSelectField.superclass.renderComponent.call(this);
 
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 35);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 33);
 this.ddlist = new inputEx.DDListField({
                 parentEl: this.fieldContainer
             });
@@ -88,12 +84,12 @@ this.ddlist = new inputEx.DDListField({
          * @method initEvents
          */
         initEvents: function () {
-            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "initEvents", 45);
-_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 46);
+            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "initEvents", 43);
+_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 44);
 Y.on("change", this.onAddNewItem, this.el, this);
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 47);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 45);
 this.ddlist.on("itemRemoved", this.onItemRemoved, this);
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 48);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 46);
 this.ddlist.on("updated", this.fireUpdatedEvt, this);
         },
 
@@ -103,15 +99,15 @@ this.ddlist.on("updated", this.fireUpdatedEvt, this);
          */
         onItemRemoved: function (params) {
 
-            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "onItemRemoved", 55);
-_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 57);
+            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "onItemRemoved", 53);
+_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 55);
 this.showChoice({
                 value: params
             });
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 60);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 58);
 this.el.selectedIndex = 0;
 
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 62);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 60);
 this.fireUpdatedEvt();
 
         },
@@ -122,39 +118,39 @@ this.fireUpdatedEvt();
          */
         onAddNewItem: function () {
 
-            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "onAddNewItem", 70);
-_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 72);
+            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "onAddNewItem", 68);
+_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 70);
 var value, position, choice;
 
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 74);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 72);
 if (this.el.selectedIndex !== 0) {
                
                // Get the selector value
-               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 77);
+               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 75);
 value = inputEx.MultiSelectField.superclass.getValue.call(this);
                
-               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 79);
+               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 77);
 position = this.getChoicePosition({
                   value: value
                });
-               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 82);
+               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 80);
 choice = this.choicesList[position];
                
-               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 84);
+               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 82);
 this.ddlist.addItem({
                   value: value,
                   label: choice.label
                });
                
                // hide choice that has just been selected (+ select first choice)
-               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 90);
+               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 88);
 this.hideChoice({
                   position: position
                });
-               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 93);
+               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 91);
 this.el.selectedIndex = 0;
                
-               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 95);
+               _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 93);
 this.fireUpdatedEvt();
                
             }
@@ -168,60 +164,60 @@ this.fireUpdatedEvt();
          */
         setValue: function (value, sendUpdatedEvt) {
 
-            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "setValue", 106);
-_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 108);
+            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "setValue", 104);
+_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 106);
 var i, length, position, choice, ddlistValue = [];
 
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 110);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 108);
 if (!lang.isArray(value)) {
-                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 111);
+                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 109);
 return;
             }
 
             // Re-show all choices
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 115);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 113);
 for (i = 0, length = this.choicesList.length; i < length; i += 1) {
-                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 116);
+                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 114);
 this.showChoice({
                     position: i
                 });
             }
 
             // Hide selected choices and fill ddlist value
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 122);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 120);
 for (i = 0, length = value.length; i < length; i += 1) {
 
-                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 124);
+                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 122);
 position = this.getChoicePosition({
                     value: value[i]
                 });
-                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 127);
+                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 125);
 choice = this.choicesList[position];
 
-                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 129);
+                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 127);
 ddlistValue.push({
                     value: choice.value,
                     label: choice.label
                 });
 
-                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 134);
+                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 132);
 this.hideChoice({
                     position: position
                 });
             }
 
             // set ddlist value
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 140);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 138);
 this.ddlist.setValue(ddlistValue);
 
             // reset select to first choice
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 143);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 141);
 this.el.selectedIndex = 0;
 
-            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 145);
+            _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 143);
 if (sendUpdatedEvt !== false) {
                 // fire update event
-                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 147);
+                _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 145);
 this.fireUpdatedEvt();
             }
         },
@@ -232,19 +228,16 @@ this.fireUpdatedEvt();
          * @return {Any} an array of selected values
          */
         getValue: function () {
-            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "getValue", 156);
-_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 157);
+            _yuitest_coverfunc("build/inputex-multiselect/inputex-multiselect.js", "getValue", 154);
+_yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 155);
 return this.ddlist.getValue();
         }
 
     });
 
     // Register this class as "multiselect" type
-    _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 163);
+    _yuitest_coverline("build/inputex-multiselect/inputex-multiselect.js", 161);
 inputEx.registerType("multiselect", inputEx.MultiSelectField);
 
-}, '3.1.0', {
-    requires: ["inputex-select", "inputex-ddlist"]
-});
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-select", "inputex-ddlist"], "ix_provides": "multiselect"});

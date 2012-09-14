@@ -3,8 +3,6 @@ YUI.add('inputex-string', function (Y, NAME) {
 /**
  * @module inputex-string
  */
-YUI.add("inputex-string", function(Y){
-   
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 
@@ -303,9 +301,5 @@ inputEx.registerType("string", inputEx.StringField, [
     { type: 'integer', label: 'Min. length', name: 'minLength', value: 0}
 ]);
 
-}, '3.1.0',{
-  requires: ["inputex-field","event-key"]
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-field", "event-key"], "ix_provides": "string"});

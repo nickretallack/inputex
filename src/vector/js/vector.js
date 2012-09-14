@@ -1,8 +1,6 @@
 /**
  * @module inputex-vector
  */
-YUI.add("inputex-vector",function(Y){
-
    var lang = Y.Lang,
        inputEx = Y.inputEx;
 /**
@@ -39,7 +37,3 @@ inputEx.registerType("vector", inputEx.VectorField, [
    { type: 'integer', label: 'Size', name:'size', value: 3},
    { type: 'list', name: 'separators', label: 'Separators', required: true }
 ]);
-
-},'3.1.0',{
-  requires: ["inputex-combine"]
-});

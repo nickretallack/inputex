@@ -2,8 +2,6 @@
  * Provides the base "field" abstract class
  * @module inputex-field
  */
-YUI.add("inputex-field",function(Y) {
- 
      var lang = Y.Lang,
           inputEx = Y.inputEx;
 
@@ -438,7 +436,3 @@ YUI.add("inputex-field",function(Y) {
      { type: "boolean", label: "Required?",name: "required", value: false },
      { type: "boolean", label: "Show messages",name: "showMsg", value: false }
   ];
-
-}, '3.1.0',{
-  requires: ["inputex","event-custom"]
-});

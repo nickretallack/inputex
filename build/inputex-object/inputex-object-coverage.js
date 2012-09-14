@@ -26,23 +26,19 @@ _yuitest_coverage["build/inputex-object/inputex-object.js"] = {
     path: "build/inputex-object/inputex-object.js",
     code: []
 };
-_yuitest_coverage["build/inputex-object/inputex-object.js"].code=["YUI.add('inputex-object', function (Y, NAME) {","","/**"," * @module inputex-object"," */","YUI.add(\"inputex-object\", function(Y){","","   var inputEx = Y.inputEx,","       lang = Y.Lang;","   ","/**"," * list of PairField where where the returned value is converted to an object"," * @class inputEx.ObjectField"," * @extends inputEx.ListField"," * @constructor"," * @param {Object} options inputEx.Field options object"," */","inputEx.ObjectField = function(options) {","	options.elementType = {","		type: 'combine', ","		fields: [","		   {type: 'string', size: 10 },","		   {type:'string', size: 10 }","		]","	};","	inputEx.ObjectField.superclass.constructor.call(this, options);","};","","Y.extend(inputEx.ObjectField, inputEx.ListField, {","","   /**","    * Convert the array of 2d elements to an javascript object ","    * @method getValue","    */","   getValue: function() {","      var v = inputEx.ObjectField.superclass.getValue.call(this);","      var obj = {};","      for(var i = 0 ; i < v.length ; i++) {","         obj[ v[i][0] ] = v[i][1];","      }","      return obj;","   },","   ","   /**","    * Convert the object into a list of pairs","    * @method setValue","    */","   setValue: function(v) {","      var val = [];","      for(var key in v) {","         if( v.hasOwnProperty(key) ) {","            val.push([key, v[key]]);","         }","      }","      inputEx.ObjectField.superclass.setValue.call(this,val);","   }","});","","// Register this class as \"object\" type","inputEx.registerType('object', inputEx.ObjectField);","","},'3.1.0',{","  requires: ['inputex-list','inputex-combine','inputex-string']","});","","","}, '@VERSION@');"];
-_yuitest_coverage["build/inputex-object/inputex-object.js"].lines = {"1":0,"6":0,"8":0,"18":0,"19":0,"26":0,"29":0,"36":0,"37":0,"38":0,"39":0,"41":0,"49":0,"50":0,"51":0,"52":0,"55":0,"60":0};
-_yuitest_coverage["build/inputex-object/inputex-object.js"].functions = {"ObjectField:18":0,"getValue:35":0,"setValue:48":0,"(anonymous 2):6":0,"(anonymous 1):1":0};
-_yuitest_coverage["build/inputex-object/inputex-object.js"].coveredLines = 18;
-_yuitest_coverage["build/inputex-object/inputex-object.js"].coveredFunctions = 5;
+_yuitest_coverage["build/inputex-object/inputex-object.js"].code=["YUI.add('inputex-object', function (Y, NAME) {","","/**"," * @module inputex-object"," */","   var inputEx = Y.inputEx,","       lang = Y.Lang;","   ","/**"," * list of PairField where where the returned value is converted to an object"," * @class inputEx.ObjectField"," * @extends inputEx.ListField"," * @constructor"," * @param {Object} options inputEx.Field options object"," */","inputEx.ObjectField = function(options) {","	options.elementType = {","		type: 'combine', ","		fields: [","		   {type: 'string', size: 10 },","		   {type:'string', size: 10 }","		]","	};","	inputEx.ObjectField.superclass.constructor.call(this, options);","};","","Y.extend(inputEx.ObjectField, inputEx.ListField, {","","   /**","    * Convert the array of 2d elements to an javascript object ","    * @method getValue","    */","   getValue: function() {","      var v = inputEx.ObjectField.superclass.getValue.call(this);","      var obj = {};","      for(var i = 0 ; i < v.length ; i++) {","         obj[ v[i][0] ] = v[i][1];","      }","      return obj;","   },","   ","   /**","    * Convert the object into a list of pairs","    * @method setValue","    */","   setValue: function(v) {","      var val = [];","      for(var key in v) {","         if( v.hasOwnProperty(key) ) {","            val.push([key, v[key]]);","         }","      }","      inputEx.ObjectField.superclass.setValue.call(this,val);","   }","});","","// Register this class as \"object\" type","inputEx.registerType('object', inputEx.ObjectField);","","","}, '@VERSION@', {\"requires\": [\"inputex-list\", \"inputex-combine\", \"inputex-string\"], \"ix_provides\": \"object\"});"];
+_yuitest_coverage["build/inputex-object/inputex-object.js"].lines = {"1":0,"6":0,"16":0,"17":0,"24":0,"27":0,"34":0,"35":0,"36":0,"37":0,"39":0,"47":0,"48":0,"49":0,"50":0,"53":0,"58":0};
+_yuitest_coverage["build/inputex-object/inputex-object.js"].functions = {"ObjectField:16":0,"getValue:33":0,"setValue:46":0,"(anonymous 1):1":0};
+_yuitest_coverage["build/inputex-object/inputex-object.js"].coveredLines = 17;
+_yuitest_coverage["build/inputex-object/inputex-object.js"].coveredFunctions = 4;
 _yuitest_coverline("build/inputex-object/inputex-object.js", 1);
 YUI.add('inputex-object', function (Y, NAME) {
 
 /**
  * @module inputex-object
  */
-_yuitest_coverfunc("build/inputex-object/inputex-object.js", "(anonymous 1)", 1);
+   _yuitest_coverfunc("build/inputex-object/inputex-object.js", "(anonymous 1)", 1);
 _yuitest_coverline("build/inputex-object/inputex-object.js", 6);
-YUI.add("inputex-object", function(Y){
-
-   _yuitest_coverfunc("build/inputex-object/inputex-object.js", "(anonymous 2)", 6);
-_yuitest_coverline("build/inputex-object/inputex-object.js", 8);
 var inputEx = Y.inputEx,
        lang = Y.Lang;
    
@@ -53,10 +49,10 @@ var inputEx = Y.inputEx,
  * @constructor
  * @param {Object} options inputEx.Field options object
  */
-_yuitest_coverline("build/inputex-object/inputex-object.js", 18);
+_yuitest_coverline("build/inputex-object/inputex-object.js", 16);
 inputEx.ObjectField = function(options) {
-	_yuitest_coverfunc("build/inputex-object/inputex-object.js", "ObjectField", 18);
-_yuitest_coverline("build/inputex-object/inputex-object.js", 19);
+	_yuitest_coverfunc("build/inputex-object/inputex-object.js", "ObjectField", 16);
+_yuitest_coverline("build/inputex-object/inputex-object.js", 17);
 options.elementType = {
 		type: 'combine', 
 		fields: [
@@ -64,11 +60,11 @@ options.elementType = {
 		   {type:'string', size: 10 }
 		]
 	};
-	_yuitest_coverline("build/inputex-object/inputex-object.js", 26);
+	_yuitest_coverline("build/inputex-object/inputex-object.js", 24);
 inputEx.ObjectField.superclass.constructor.call(this, options);
 };
 
-_yuitest_coverline("build/inputex-object/inputex-object.js", 29);
+_yuitest_coverline("build/inputex-object/inputex-object.js", 27);
 Y.extend(inputEx.ObjectField, inputEx.ListField, {
 
    /**
@@ -76,17 +72,17 @@ Y.extend(inputEx.ObjectField, inputEx.ListField, {
     * @method getValue
     */
    getValue: function() {
-      _yuitest_coverfunc("build/inputex-object/inputex-object.js", "getValue", 35);
-_yuitest_coverline("build/inputex-object/inputex-object.js", 36);
+      _yuitest_coverfunc("build/inputex-object/inputex-object.js", "getValue", 33);
+_yuitest_coverline("build/inputex-object/inputex-object.js", 34);
 var v = inputEx.ObjectField.superclass.getValue.call(this);
-      _yuitest_coverline("build/inputex-object/inputex-object.js", 37);
+      _yuitest_coverline("build/inputex-object/inputex-object.js", 35);
 var obj = {};
-      _yuitest_coverline("build/inputex-object/inputex-object.js", 38);
+      _yuitest_coverline("build/inputex-object/inputex-object.js", 36);
 for(var i = 0 ; i < v.length ; i++) {
-         _yuitest_coverline("build/inputex-object/inputex-object.js", 39);
+         _yuitest_coverline("build/inputex-object/inputex-object.js", 37);
 obj[ v[i][0] ] = v[i][1];
       }
-      _yuitest_coverline("build/inputex-object/inputex-object.js", 41);
+      _yuitest_coverline("build/inputex-object/inputex-object.js", 39);
 return obj;
    },
    
@@ -95,29 +91,25 @@ return obj;
     * @method setValue
     */
    setValue: function(v) {
-      _yuitest_coverfunc("build/inputex-object/inputex-object.js", "setValue", 48);
-_yuitest_coverline("build/inputex-object/inputex-object.js", 49);
+      _yuitest_coverfunc("build/inputex-object/inputex-object.js", "setValue", 46);
+_yuitest_coverline("build/inputex-object/inputex-object.js", 47);
 var val = [];
-      _yuitest_coverline("build/inputex-object/inputex-object.js", 50);
+      _yuitest_coverline("build/inputex-object/inputex-object.js", 48);
 for(var key in v) {
-         _yuitest_coverline("build/inputex-object/inputex-object.js", 51);
+         _yuitest_coverline("build/inputex-object/inputex-object.js", 49);
 if( v.hasOwnProperty(key) ) {
-            _yuitest_coverline("build/inputex-object/inputex-object.js", 52);
+            _yuitest_coverline("build/inputex-object/inputex-object.js", 50);
 val.push([key, v[key]]);
          }
       }
-      _yuitest_coverline("build/inputex-object/inputex-object.js", 55);
+      _yuitest_coverline("build/inputex-object/inputex-object.js", 53);
 inputEx.ObjectField.superclass.setValue.call(this,val);
    }
 });
 
 // Register this class as "object" type
-_yuitest_coverline("build/inputex-object/inputex-object.js", 60);
+_yuitest_coverline("build/inputex-object/inputex-object.js", 58);
 inputEx.registerType('object', inputEx.ObjectField);
 
-},'3.1.0',{
-  requires: ['inputex-list','inputex-combine','inputex-string']
-});
 
-
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["inputex-list", "inputex-combine", "inputex-string"], "ix_provides": "object"});
