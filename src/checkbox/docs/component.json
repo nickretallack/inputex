@@ -1,0 +1,13 @@
+{
+   "name": "inputex-checkbox",
+   "displayName": "inputex-checkbox",
+   "description": "inputex-checkbox",
+   "author": "neyric",
+   "tags": [
+      "inputex-checkbox"
+   ],
+   "use": [
+      "inputex-field"
+   ],
+   "examples": []
+}

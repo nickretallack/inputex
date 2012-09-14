@@ -1,0 +1,10 @@
+{
+   "name": "inputex-datepicker",
+   "builds": {
+      "inputex-datepicker": {
+         "jsfiles": [
+            "datepicker.js"
+         ]
+      }
+   }
+}

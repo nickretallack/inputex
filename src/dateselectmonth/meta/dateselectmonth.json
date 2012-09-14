@@ -1,0 +1,8 @@
+{
+   "requires": [
+      "inputex-combine",
+      "inputex-string",
+      "inputex-select"
+   ],
+   "ix_provides": "dateselectmonth"
+}

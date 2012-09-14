@@ -1,0 +1,10 @@
+{
+   "name": "inputex-datetime",
+   "builds": {
+      "inputex-datetime": {
+         "jsfiles": [
+            "datetime.js"
+         ]
+      }
+   }
+}

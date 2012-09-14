@@ -1,0 +1,15 @@
+{
+   "name": "inputex-multiautocomplete",
+   "displayName": "inputex-multiautocomplete",
+   "description": "inputex-multiautocomplete",
+   "author": "neyric",
+   "tags": [
+      "inputex-multiautocomplete"
+   ],
+   "use": [
+      "inputex-autocomplete",
+      "json",
+      "inputex-ddlist"
+   ],
+   "examples": []
+}

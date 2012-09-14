@@ -1,0 +1,16 @@
+{
+   "name": "inputex-color",
+   "displayName": "inputex-color",
+   "description": "inputex-color",
+   "author": "neyric",
+   "tags": [
+      "inputex-color"
+   ],
+   "use": [
+      "inputex-field",
+      "node-event-delegate",
+      "event-outside",
+      "overlay"
+   ],
+   "examples": []
+}

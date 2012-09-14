@@ -1,0 +1,13 @@
+{
+   "name": "inputex-hidden",
+   "displayName": "inputex-hidden",
+   "description": "inputex-hidden",
+   "author": "neyric",
+   "tags": [
+      "inputex-hidden"
+   ],
+   "use": [
+      "inputex-field"
+   ],
+   "examples": []
+}

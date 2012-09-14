@@ -1,0 +1,10 @@
+{
+   "name": "inputex-autocomplete",
+   "builds": {
+      "inputex-autocomplete": {
+         "jsfiles": [
+            "autocomplete.js"
+         ]
+      }
+   }
+}

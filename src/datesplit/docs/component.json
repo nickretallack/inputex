@@ -1,0 +1,14 @@
+{
+   "name": "inputex-datesplit",
+   "displayName": "inputex-datesplit",
+   "description": "inputex-datesplit",
+   "author": "neyric",
+   "tags": [
+      "inputex-datesplit"
+   ],
+   "use": [
+      "inputex-combine",
+      "inputex-integer"
+   ],
+   "examples": []
+}

@@ -1,0 +1,13 @@
+{
+   "name": "inputex-password",
+   "displayName": "inputex-password",
+   "description": "inputex-password",
+   "author": "neyric",
+   "tags": [
+      "inputex-password"
+   ],
+   "use": [
+      "inputex-string"
+   ],
+   "examples": []
+}

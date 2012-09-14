@@ -1,0 +1,6 @@
+{
+   "requires": [
+      "inputex-textautotag"
+   ],
+   "ix_provides": "autotag"
+}

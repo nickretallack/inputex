@@ -1,0 +1,8 @@
+{
+   "requires": [
+      "inputex-string",
+      "inputex-list",
+      "inputex-inplaceedit"
+   ],
+   "ix_provides": "tree"
+}

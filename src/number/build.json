@@ -1,0 +1,10 @@
+{
+   "name": "inputex-number",
+   "builds": {
+      "inputex-number": {
+         "jsfiles": [
+            "number.js"
+         ]
+      }
+   }
+}

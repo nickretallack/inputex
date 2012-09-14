@@ -1,0 +1,10 @@
+{
+   "name": "inputex-keyvalue",
+   "builds": {
+      "inputex-keyvalue": {
+         "jsfiles": [
+            "keyvalue.js"
+         ]
+      }
+   }
+}

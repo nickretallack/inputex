@@ -1,0 +1,10 @@
+{
+   "name": "inputex-integer",
+   "builds": {
+      "inputex-integer": {
+         "jsfiles": [
+            "integer.js"
+         ]
+      }
+   }
+}

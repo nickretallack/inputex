@@ -1,0 +1,13 @@
+{
+   "name": "inputex-jsontreeinspector",
+   "displayName": "inputex-jsontreeinspector",
+   "description": "inputex-jsontreeinspector",
+   "author": "neyric",
+   "tags": [
+      "inputex-jsontreeinspector"
+   ],
+   "use": [
+      "inputex"
+   ],
+   "examples": []
+}

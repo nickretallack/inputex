@@ -1,0 +1,14 @@
+{
+   "name": "inputex-smdtester",
+   "displayName": "inputex-smdtester",
+   "description": "inputex-smdtester",
+   "author": "neyric",
+   "tags": [
+      "inputex-smdtester"
+   ],
+   "use": [
+      "inputex-rpc",
+      "inputex-jsontreeinspector"
+   ],
+   "examples": []
+}

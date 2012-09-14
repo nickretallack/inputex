@@ -1,0 +1,13 @@
+{
+   "name": "inputex-email",
+   "displayName": "inputex-email",
+   "description": "inputex-email",
+   "author": "neyric",
+   "tags": [
+      "inputex-email"
+   ],
+   "use": [
+      "inputex-string"
+   ],
+   "examples": []
+}

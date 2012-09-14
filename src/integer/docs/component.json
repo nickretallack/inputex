@@ -1,0 +1,13 @@
+{
+   "name": "inputex-integer",
+   "displayName": "inputex-integer",
+   "description": "inputex-integer",
+   "author": "neyric",
+   "tags": [
+      "inputex-integer"
+   ],
+   "use": [
+      "inputex-string"
+   ],
+   "examples": []
+}

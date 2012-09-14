@@ -1,0 +1,14 @@
+{
+   "name": "inputex-autocomplete",
+   "displayName": "inputex-autocomplete",
+   "description": "inputex-autocomplete",
+   "author": "neyric",
+   "tags": [
+      "inputex-autocomplete"
+   ],
+   "use": [
+      "inputex-string",
+      "autocomplete"
+   ],
+   "examples": []
+}

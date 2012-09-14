@@ -1,0 +1,10 @@
+{
+   "name": "inputex-button",
+   "builds": {
+      "inputex-button": {
+         "jsfiles": [
+            "button.js"
+         ]
+      }
+   }
+}

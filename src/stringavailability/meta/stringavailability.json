@@ -1,0 +1,9 @@
+{
+   "requires": [
+      "inputex-string",
+      "event-key",
+      "io",
+      "json-parse"
+   ],
+   "skinnable": true
+}

@@ -1,10 +1,4 @@
-YUI.add("lang/inputex_ca", function(Y) {
-
-    Y.Intl.add(
-
-    "inputex", // associated module
-    "ca", // BCP 47 language tag
-    {
+{
 
         required: "Aquest camp és obligatori",
         invalid: "Aquest camp no és obligatori",
@@ -70,11 +64,4 @@ YUI.add("lang/inputex_ca", function(Y) {
             YEAR: "anys"
         }
 
-    });
-
-    Y.inputEx.messages = Y.Intl.get("inputex");
-
-},
-'3.1.0', {
-    requires: ['inputex']
-});
+    }

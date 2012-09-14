@@ -1,0 +1,10 @@
+{
+   "name": "inputex-object",
+   "builds": {
+      "inputex-object": {
+         "jsfiles": [
+            "object.js"
+         ]
+      }
+   }
+}

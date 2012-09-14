@@ -1,0 +1,14 @@
+{
+   "name": "inputex-serialize",
+   "displayName": "inputex-serialize",
+   "description": "inputex-serialize",
+   "author": "neyric",
+   "tags": [
+      "inputex-serialize"
+   ],
+   "use": [
+      "inputex-string",
+      "json"
+   ],
+   "examples": []
+}

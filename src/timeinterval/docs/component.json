@@ -1,0 +1,14 @@
+{
+   "name": "inputex-timeinterval",
+   "displayName": "inputex-timeinterval",
+   "description": "inputex-timeinterval",
+   "author": "neyric",
+   "tags": [
+      "inputex-timeinterval"
+   ],
+   "use": [
+      "inputex-combine",
+      "inputex-select"
+   ],
+   "examples": []
+}

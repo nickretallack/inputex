@@ -1,0 +1,10 @@
+{
+   "name": "inputex-serialize",
+   "builds": {
+      "inputex-serialize": {
+         "jsfiles": [
+            "serialize.js"
+         ]
+      }
+   }
+}

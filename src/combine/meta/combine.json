@@ -1,0 +1,6 @@
+{
+   "requires": [
+      "inputex-group"
+   ],
+   "ix_provides": "combine"
+}

@@ -1,0 +1,21 @@
+{
+   "name": "inputex",
+   "builds": {
+      "inputex": {
+         "jsfiles": [
+            "inputex.js"
+         ],
+		 "config": {
+			 "lang": [
+			 	"en",
+				"fr",
+				"de",
+				"es",
+				"fr",
+				"it",
+				"nl"
+			]
+		}
+      }
+   }
+}

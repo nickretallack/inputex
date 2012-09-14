@@ -1,0 +1,19 @@
+{
+   "name": "inputex-type",
+   "displayName": "inputex-type",
+   "description": "inputex-type",
+   "author": "neyric",
+   "tags": [
+      "inputex-type"
+   ],
+   "use": [
+      "inputex-field",
+      "inputex-group",
+      "inputex-select",
+      "inputex-list",
+      "inputex-string",
+      "inputex-checkbox",
+      "inputex-integer"
+   ],
+   "examples": []
+}

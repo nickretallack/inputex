@@ -1,0 +1,9 @@
+{
+   "requires": [
+      "inputex-field",
+      "inputex-button",
+      "anim",
+      "inputex-visus"
+   ],
+   "ix_provides": "inplaceedit"
+}

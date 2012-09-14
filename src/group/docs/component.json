@@ -1,0 +1,13 @@
+{
+   "name": "inputex-group",
+   "displayName": "inputex-group",
+   "description": "inputex-group",
+   "author": "neyric",
+   "tags": [
+      "inputex-group"
+   ],
+   "use": [
+      "inputex-field"
+   ],
+   "examples": []
+}

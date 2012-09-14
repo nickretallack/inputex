@@ -1,0 +1,13 @@
+{
+   "name": "inputex-url",
+   "displayName": "inputex-url",
+   "description": "inputex-url",
+   "author": "neyric",
+   "tags": [
+      "inputex-url"
+   ],
+   "use": [
+      "inputex-string"
+   ],
+   "examples": []
+}

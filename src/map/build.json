@@ -1,0 +1,10 @@
+{
+   "name": "inputex-map",
+   "builds": {
+      "inputex-map": {
+         "jsfiles": [
+            "map.js"
+         ]
+      }
+   }
+}

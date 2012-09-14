@@ -1,0 +1,14 @@
+{
+   "name": "inputex-time",
+   "displayName": "inputex-time",
+   "description": "inputex-time",
+   "author": "neyric",
+   "tags": [
+      "inputex-time"
+   ],
+   "use": [
+      "inputex-combine",
+      "inputex-select"
+   ],
+   "examples": []
+}

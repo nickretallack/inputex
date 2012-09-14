@@ -1,0 +1,9 @@
+{
+   "requires": [
+      "json",
+      "inputex",
+      "io",
+      "inputex-jsonschema",
+      "jsonp"
+   ]
+}

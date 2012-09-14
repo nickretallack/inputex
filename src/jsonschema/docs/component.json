@@ -1,0 +1,13 @@
+{
+   "name": "inputex-jsonschema",
+   "displayName": "inputex-jsonschema",
+   "description": "inputex-jsonschema",
+   "author": "neyric",
+   "tags": [
+      "inputex-jsonschema"
+   ],
+   "use": [
+      "inputex"
+   ],
+   "examples": []
+}

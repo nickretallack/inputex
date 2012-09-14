@@ -1,0 +1,16 @@
+{
+   "name": "inputex-ddlist",
+   "displayName": "inputex-ddlist",
+   "description": "inputex-ddlist",
+   "author": "neyric",
+   "tags": [
+      "inputex-ddlist"
+   ],
+   "use": [
+      "inputex-field",
+      "array-extras",
+      "sortable",
+      "substitute"
+   ],
+   "examples": []
+}

@@ -1,0 +1,15 @@
+{
+   "name": "inputex-datatable",
+   "displayName": "inputex-datatable",
+   "description": "inputex-datatable",
+   "author": "neyric",
+   "tags": [
+      "inputex-datatable"
+   ],
+   "use": [
+      "inputex-group",
+      "inputex-panel",
+      "datatable"
+   ],
+   "examples": []
+}

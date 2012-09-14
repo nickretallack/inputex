@@ -1,0 +1,13 @@
+{
+   "name": "inputex-ratingstars",
+   "displayName": "inputex-ratingstars",
+   "description": "inputex-ratingstars",
+   "author": "neyric",
+   "tags": [
+      "inputex-ratingstars"
+   ],
+   "use": [
+      "inputex-field"
+   ],
+   "examples": []
+}

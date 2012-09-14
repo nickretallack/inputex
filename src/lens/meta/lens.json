@@ -1,0 +1,7 @@
+{
+   "requires": [
+      "inputex-group",
+      "inputex-inplaceedit"
+   ],
+   "ix_provides": "lens"
+}

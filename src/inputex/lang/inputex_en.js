@@ -1,12 +1,4 @@
-YUI.add("lang/inputex_en", function(Y) {
-
-    Y.Intl.add(
-
-    "inputex",
-    // associated module
-    "en",
-    // BCP 47 language tag
-    {
+{
         // inputex
         required: "This field is required",
         invalid: "This field is invalid",
@@ -96,10 +88,4 @@ YUI.add("lang/inputex_en", function(Y) {
         addItemHeader: "Add Item",
         modifyItemHeader: "Modify Item",
 
-    });
-
-    Y.inputEx.messages = Y.Intl.get("inputex");
-},
-'3.1.0', {
-    requires: ['inputex']
-});
+    }

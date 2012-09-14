@@ -1,0 +1,10 @@
+{
+   "name": "inputex-ratingstars",
+   "builds": {
+      "inputex-ratingstars": {
+         "jsfiles": [
+            "ratingstars.js"
+         ]
+      }
+   }
+}

@@ -1,0 +1,14 @@
+{
+   "name": "inputex-rte",
+   "displayName": "inputex-rte",
+   "description": "inputex-rte",
+   "author": "neyric",
+   "tags": [
+      "inputex-rte"
+   ],
+   "use": [
+      "inputex-field",
+      "yui2-editor"
+   ],
+   "examples": []
+}

@@ -1,0 +1,21 @@
+{
+   "requires": [
+      "intl",
+      "pluginhost-base",
+      "pluginhost-config",
+      "base-pluginhost",
+      "node-pluginhost",
+      "plugin",
+      "node"
+   ],
+   "skinnable": true,
+   "lang": [
+      "en",
+      "fr",
+      "de",
+      "es",
+      "fr",
+      "it",
+      "nl"
+   ]
+}

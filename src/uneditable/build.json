@@ -1,0 +1,10 @@
+{
+   "name": "inputex-uneditable",
+   "builds": {
+      "inputex-uneditable": {
+         "jsfiles": [
+            "uneditable.js"
+         ]
+      }
+   }
+}

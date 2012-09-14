@@ -1,0 +1,14 @@
+{
+   "name": "inputex-uneditable",
+   "displayName": "inputex-uneditable",
+   "description": "inputex-uneditable",
+   "author": "neyric",
+   "tags": [
+      "inputex-uneditable"
+   ],
+   "use": [
+      "inputex-field",
+      "inputex-visus"
+   ],
+   "examples": []
+}

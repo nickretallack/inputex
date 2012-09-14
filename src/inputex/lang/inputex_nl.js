@@ -1,10 +1,3 @@
-// Dutch translations for inputEx 0.2.2. Courtesy of Oqapi (http://www.oqapi.nl).
-YUI.add("lang/inputex_nl", function(Y) {
-
-    Y.Intl.add(
-
-    "inputex", // associated module
-    "nl", // BCP 47 language tag
     {
 
         required: "Dit veld is verplicht",
@@ -55,12 +48,4 @@ YUI.add("lang/inputex_nl", function(Y) {
         invalidUrl: "Ongeldige URL, bv: http://www.test.com"
 
 
-    });
-
-    Y.inputEx.messages = Y.Intl.get("inputex");
-
-},
-'3.1.0', {
-    requires: ['inputex']
-});
-
+    }

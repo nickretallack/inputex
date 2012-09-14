@@ -1,0 +1,10 @@
+{
+   "name": "inputex-uppercase",
+   "builds": {
+      "inputex-uppercase": {
+         "jsfiles": [
+            "uppercase.js"
+         ]
+      }
+   }
+}

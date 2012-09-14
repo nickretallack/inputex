@@ -1,0 +1,6 @@
+{
+   "requires": [
+      "inputex-string"
+   ],
+   "ix_provides": "text"
+}

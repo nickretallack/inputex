@@ -1,0 +1,14 @@
+{
+   "name": "inputex-select",
+   "displayName": "inputex-select",
+   "description": "inputex-select",
+   "author": "neyric",
+   "tags": [
+      "inputex-select"
+   ],
+   "use": [
+      "inputex-field",
+      "inputex-choice"
+   ],
+   "examples": []
+}

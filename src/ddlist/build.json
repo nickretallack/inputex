@@ -1,0 +1,10 @@
+{
+   "name": "inputex-ddlist",
+   "builds": {
+      "inputex-ddlist": {
+         "jsfiles": [
+            "ddlist.js"
+         ]
+      }
+   }
+}

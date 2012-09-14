@@ -1,0 +1,14 @@
+{
+   "name": "inputex-lens",
+   "displayName": "inputex-lens",
+   "description": "inputex-lens",
+   "author": "neyric",
+   "tags": [
+      "inputex-lens"
+   ],
+   "use": [
+      "inputex-group",
+      "inputex-inplaceedit"
+   ],
+   "examples": []
+}

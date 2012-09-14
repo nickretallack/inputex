@@ -1,0 +1,10 @@
+{
+   "name": "inputex-hidden",
+   "builds": {
+      "inputex-hidden": {
+         "jsfiles": [
+            "hidden.js"
+         ]
+      }
+   }
+}

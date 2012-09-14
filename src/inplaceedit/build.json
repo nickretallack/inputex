@@ -1,0 +1,10 @@
+{
+   "name": "inputex-inplaceedit",
+   "builds": {
+      "inputex-inplaceedit": {
+         "jsfiles": [
+            "inplaceedit.js"
+         ]
+      }
+   }
+}

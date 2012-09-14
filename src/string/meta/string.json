@@ -1,0 +1,7 @@
+{
+   "requires": [
+      "inputex-field",
+      "event-key"
+   ],
+   "ix_provides": "string"
+}

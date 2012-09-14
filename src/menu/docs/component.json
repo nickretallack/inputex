@@ -1,0 +1,16 @@
+{
+   "name": "inputex-menu",
+   "displayName": "inputex-menu",
+   "description": "inputex-menu",
+   "author": "neyric",
+   "tags": [
+      "inputex-menu"
+   ],
+   "use": [
+      "inputex-field",
+      "node-event-delegate",
+      "node-menunav",
+      "substitute"
+   ],
+   "examples": []
+}

@@ -1,0 +1,13 @@
+{
+   "name": "inputex-choice",
+   "displayName": "inputex-choice",
+   "description": "inputex-choice",
+   "author": "neyric",
+   "tags": [
+      "inputex-choice"
+   ],
+   "use": [
+      "inputex"
+   ],
+   "examples": []
+}

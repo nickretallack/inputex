@@ -1,0 +1,8 @@
+{
+   "requires": [
+      "inputex-field",
+      "array-extras",
+      "sortable",
+      "substitute"
+   ]
+}

@@ -1,0 +1,7 @@
+{
+   "requires": [
+      "inputex-field"
+   ],
+   "skinnable": true,
+   "ix_provides": "ratingstars"
+}

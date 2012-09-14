@@ -1,0 +1,15 @@
+{
+   "name": "inputex-tree",
+   "displayName": "inputex-tree",
+   "description": "inputex-tree",
+   "author": "neyric",
+   "tags": [
+      "inputex-tree"
+   ],
+   "use": [
+      "inputex-string",
+      "inputex-list",
+      "inputex-inplaceedit"
+   ],
+   "examples": []
+}

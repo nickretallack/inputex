@@ -1,0 +1,13 @@
+{
+   "name": "inputex-file",
+   "displayName": "inputex-file",
+   "description": "inputex-file",
+   "author": "neyric",
+   "tags": [
+      "inputex-file"
+   ],
+   "use": [
+      "inputex-field"
+   ],
+   "examples": []
+}

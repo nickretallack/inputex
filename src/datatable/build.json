@@ -1,0 +1,10 @@
+{
+   "name": "inputex-datatable",
+   "builds": {
+      "inputex-datatable": {
+         "jsfiles": [
+            "datatable.js"
+         ]
+      }
+   }
+}

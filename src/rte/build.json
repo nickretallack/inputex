@@ -1,0 +1,10 @@
+{
+   "name": "inputex-rte",
+   "builds": {
+      "inputex-rte": {
+         "jsfiles": [
+            "rte.js"
+         ]
+      }
+   }
+}

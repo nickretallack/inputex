@@ -1,0 +1,15 @@
+{
+   "name": "inputex-base",
+   "displayName": "inputex-base",
+   "description": "inputex-base",
+   "author": "neyric",
+   "tags": [
+      "inputex-base"
+   ],
+   "use": [
+      "inputex",
+      "widget",
+      "widget-stdmod"
+   ],
+   "examples": []
+}

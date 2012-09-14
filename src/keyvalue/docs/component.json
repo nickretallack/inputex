@@ -1,0 +1,13 @@
+{
+   "name": "inputex-keyvalue",
+   "displayName": "inputex-keyvalue",
+   "description": "inputex-keyvalue",
+   "author": "neyric",
+   "tags": [
+      "inputex-keyvalue"
+   ],
+   "use": [
+      "inputex-combine"
+   ],
+   "examples": []
+}

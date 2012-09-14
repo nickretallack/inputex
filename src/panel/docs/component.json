@@ -1,0 +1,15 @@
+{
+   "name": "inputex-panel",
+   "displayName": "inputex-panel",
+   "description": "inputex-panel",
+   "author": "neyric",
+   "tags": [
+      "inputex-panel"
+   ],
+   "use": [
+      "inputex",
+      "panel",
+      "inputex-base"
+   ],
+   "examples": []
+}

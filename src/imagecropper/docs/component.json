@@ -1,0 +1,13 @@
+{
+   "name": "inputex-imagecropper",
+   "displayName": "inputex-imagecropper",
+   "description": "inputex-imagecropper",
+   "author": "neyric",
+   "tags": [
+      "inputex-imagecropper"
+   ],
+   "use": [
+      "inputex-field"
+   ],
+   "examples": []
+}

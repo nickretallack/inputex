@@ -1,0 +1,10 @@
+{
+   "name": "inputex-stringavailability",
+   "builds": {
+      "inputex-stringavailability": {
+         "jsfiles": [
+            "stringavailability.js"
+         ]
+      }
+   }
+}

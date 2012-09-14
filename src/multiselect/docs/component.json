@@ -1,0 +1,14 @@
+{
+   "name": "inputex-multiselect",
+   "displayName": "inputex-multiselect",
+   "description": "inputex-multiselect",
+   "author": "neyric",
+   "tags": [
+      "inputex-multiselect"
+   ],
+   "use": [
+      "inputex-select",
+      "inputex-ddlist"
+   ],
+   "examples": []
+}

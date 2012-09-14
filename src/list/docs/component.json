@@ -1,0 +1,14 @@
+{
+   "name": "inputex-list",
+   "displayName": "inputex-list",
+   "description": "inputex-list",
+   "author": "neyric",
+   "tags": [
+      "inputex-list"
+   ],
+   "use": [
+      "inputex-field",
+      "anim"
+   ],
+   "examples": []
+}

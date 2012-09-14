@@ -1,0 +1,7 @@
+{
+   "requires": [
+      "inputex-ratingstars",
+      "inputex-form"
+   ],
+   "ix_provides": "ratingstarsform"
+}

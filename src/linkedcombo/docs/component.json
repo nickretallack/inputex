@@ -1,0 +1,14 @@
+{
+   "name": "inputex-linkedcombo",
+   "displayName": "inputex-linkedcombo",
+   "description": "inputex-linkedcombo",
+   "author": "neyric",
+   "tags": [
+      "inputex-linkedcombo"
+   ],
+   "use": [
+      "inputex-select",
+      "inputex-choice"
+   ],
+   "examples": []
+}

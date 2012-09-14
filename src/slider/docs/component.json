@@ -1,0 +1,14 @@
+{
+   "name": "inputex-slider",
+   "displayName": "inputex-slider",
+   "description": "inputex-slider",
+   "author": "neyric",
+   "tags": [
+      "inputex-slider"
+   ],
+   "use": [
+      "inputex-field",
+      "slider"
+   ],
+   "examples": []
+}

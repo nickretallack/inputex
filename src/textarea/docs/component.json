@@ -1,0 +1,13 @@
+{
+   "name": "inputex-textarea",
+   "displayName": "inputex-textarea",
+   "description": "inputex-textarea",
+   "author": "neyric",
+   "tags": [
+      "inputex-textarea"
+   ],
+   "use": [
+      "inputex-string"
+   ],
+   "examples": []
+}

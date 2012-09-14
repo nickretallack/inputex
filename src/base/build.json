@@ -1,0 +1,10 @@
+{
+   "name": "inputex-base",
+   "builds": {
+      "inputex-base": {
+         "jsfiles": [
+            "base.js"
+         ]
+      }
+   }
+}

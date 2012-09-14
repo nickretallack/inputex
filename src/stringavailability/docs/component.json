@@ -1,0 +1,16 @@
+{
+   "name": "inputex-stringavailability",
+   "displayName": "inputex-stringavailability",
+   "description": "inputex-stringavailability",
+   "author": "neyric",
+   "tags": [
+      "inputex-stringavailability"
+   ],
+   "use": [
+      "inputex-string",
+      "event-key",
+      "io",
+      "json-parse"
+   ],
+   "examples": []
+}

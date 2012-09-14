@@ -1,0 +1,15 @@
+{
+   "name": "inputex-dateselectmonth",
+   "displayName": "inputex-dateselectmonth",
+   "description": "inputex-dateselectmonth",
+   "author": "neyric",
+   "tags": [
+      "inputex-dateselectmonth"
+   ],
+   "use": [
+      "inputex-combine",
+      "inputex-string",
+      "inputex-select"
+   ],
+   "examples": []
+}

@@ -1,0 +1,13 @@
+{
+   "name": "inputex-ipv4",
+   "displayName": "inputex-ipv4",
+   "description": "inputex-ipv4",
+   "author": "neyric",
+   "tags": [
+      "inputex-ipv4"
+   ],
+   "use": [
+      "inputex-string"
+   ],
+   "examples": []
+}

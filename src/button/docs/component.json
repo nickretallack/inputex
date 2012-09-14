@@ -1,0 +1,13 @@
+{
+   "name": "inputex-button",
+   "displayName": "inputex-button",
+   "description": "inputex-button",
+   "author": "neyric",
+   "tags": [
+      "inputex-button"
+   ],
+   "use": [
+      "inputex"
+   ],
+   "examples": []
+}

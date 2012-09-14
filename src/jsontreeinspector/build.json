@@ -1,0 +1,10 @@
+{
+   "name": "inputex-jsontreeinspector",
+   "builds": {
+      "inputex-jsontreeinspector": {
+         "jsfiles": [
+            "jsontreeinspector.js"
+         ]
+      }
+   }
+}

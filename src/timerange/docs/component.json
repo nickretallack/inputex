@@ -1,0 +1,14 @@
+{
+   "name": "inputex-timerange",
+   "displayName": "inputex-timerange",
+   "description": "inputex-timerange",
+   "author": "neyric",
+   "tags": [
+      "inputex-timerange"
+   ],
+   "use": [
+      "inputex-combine",
+      "inputex-select"
+   ],
+   "examples": []
+}

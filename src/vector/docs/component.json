@@ -1,0 +1,13 @@
+{
+   "name": "inputex-vector",
+   "displayName": "inputex-vector",
+   "description": "inputex-vector",
+   "author": "neyric",
+   "tags": [
+      "inputex-vector"
+   ],
+   "use": [
+      "inputex-combine"
+   ],
+   "examples": []
+}

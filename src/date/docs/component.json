@@ -1,0 +1,13 @@
+{
+   "name": "inputex-date",
+   "displayName": "inputex-date",
+   "description": "inputex-date",
+   "author": "neyric",
+   "tags": [
+      "inputex-date"
+   ],
+   "use": [
+      "inputex-string"
+   ],
+   "examples": []
+}

@@ -1,0 +1,6 @@
+{
+   "requires": [
+      "inputex-rpc",
+      "inputex-jsontreeinspector"
+   ]
+}

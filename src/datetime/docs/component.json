@@ -1,0 +1,15 @@
+{
+   "name": "inputex-datetime",
+   "displayName": "inputex-datetime",
+   "description": "inputex-datetime",
+   "author": "neyric",
+   "tags": [
+      "inputex-datetime"
+   ],
+   "use": [
+      "inputex-datepicker",
+      "inputex-combine",
+      "inputex-time"
+   ],
+   "examples": []
+}

@@ -1,0 +1,6 @@
+{
+   "requires": [
+      "inputex",
+      "dump"
+   ]
+}

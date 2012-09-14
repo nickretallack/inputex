@@ -1,0 +1,7 @@
+{
+   "requires": [
+      "inputex-field",
+      "slider"
+   ],
+   "ix_provides": "slider"
+}

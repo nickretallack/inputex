@@ -1,0 +1,10 @@
+{
+   "name": "inputex-dateselectmonth",
+   "builds": {
+      "inputex-dateselectmonth": {
+         "jsfiles": [
+            "dateselectmonth.js"
+         ]
+      }
+   }
+}

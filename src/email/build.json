@@ -1,0 +1,10 @@
+{
+   "name": "inputex-email",
+   "builds": {
+      "inputex-email": {
+         "jsfiles": [
+            "email.js"
+         ]
+      }
+   }
+}

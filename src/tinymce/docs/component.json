@@ -1,0 +1,13 @@
+{
+   "name": "inputex-tinymce",
+   "displayName": "inputex-tinymce",
+   "description": "inputex-tinymce",
+   "author": "neyric",
+   "tags": [
+      "inputex-tinymce"
+   ],
+   "use": [
+      "inputex-field"
+   ],
+   "examples": []
+}

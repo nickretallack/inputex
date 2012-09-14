@@ -1,0 +1,10 @@
+{
+   "name": "inputex-form",
+   "builds": {
+      "inputex-form": {
+         "jsfiles": [
+            "form.js"
+         ]
+      }
+   }
+}

@@ -1,0 +1,8 @@
+{
+   "requires": [
+      "inputex-list",
+      "inputex-combine",
+      "inputex-string"
+   ],
+   "ix_provides": "object"
+}

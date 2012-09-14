@@ -1,0 +1,13 @@
+{
+   "name": "inputex-uppercase",
+   "displayName": "inputex-uppercase",
+   "description": "inputex-uppercase",
+   "author": "neyric",
+   "tags": [
+      "inputex-uppercase"
+   ],
+   "use": [
+      "inputex-string"
+   ],
+   "examples": []
+}

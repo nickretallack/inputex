@@ -1,0 +1,16 @@
+{
+   "name": "inputex-inplaceedit",
+   "displayName": "inputex-inplaceedit",
+   "description": "inputex-inplaceedit",
+   "author": "neyric",
+   "tags": [
+      "inputex-inplaceedit"
+   ],
+   "use": [
+      "inputex-field",
+      "inputex-button",
+      "anim",
+      "inputex-visus"
+   ],
+   "examples": []
+}

@@ -1,0 +1,10 @@
+{
+   "name": "inputex-ipv4",
+   "builds": {
+      "inputex-ipv4": {
+         "jsfiles": [
+            "ipv4.js"
+         ]
+      }
+   }
+}

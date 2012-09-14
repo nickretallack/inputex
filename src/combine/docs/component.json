@@ -1,0 +1,13 @@
+{
+   "name": "inputex-combine",
+   "displayName": "inputex-combine",
+   "description": "inputex-combine",
+   "author": "neyric",
+   "tags": [
+      "inputex-combine"
+   ],
+   "use": [
+      "inputex-group"
+   ],
+   "examples": []
+}

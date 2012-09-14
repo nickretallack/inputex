@@ -1,0 +1,6 @@
+{
+   "requires": [
+      "inputex"
+   ],
+   "skinnable": true
+}

@@ -1,0 +1,9 @@
+{
+   "requires": [
+      "inputex-field",
+      "node-event-delegate",
+      "node-menunav",
+      "substitute"
+   ],
+   "ix_provides": "menu"
+}

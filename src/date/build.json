@@ -1,0 +1,10 @@
+{
+   "name": "inputex-date",
+   "builds": {
+      "inputex-date": {
+         "jsfiles": [
+            "date.js"
+         ]
+      }
+   }
+}

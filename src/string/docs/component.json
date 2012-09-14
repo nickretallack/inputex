@@ -1,0 +1,14 @@
+{
+   "name": "inputex-string",
+   "displayName": "inputex-string",
+   "description": "inputex-string",
+   "author": "neyric",
+   "tags": [
+      "inputex-string"
+   ],
+   "use": [
+      "inputex-field",
+      "event-key"
+   ],
+   "examples": []
+}

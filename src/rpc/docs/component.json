@@ -1,0 +1,17 @@
+{
+   "name": "inputex-rpc",
+   "displayName": "inputex-rpc",
+   "description": "inputex-rpc",
+   "author": "neyric",
+   "tags": [
+      "inputex-rpc"
+   ],
+   "use": [
+      "json",
+      "inputex",
+      "io",
+      "inputex-jsonschema",
+      "jsonp"
+   ],
+   "examples": []
+}

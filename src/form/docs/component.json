@@ -1,0 +1,16 @@
+{
+   "name": "inputex-form",
+   "displayName": "inputex-form",
+   "description": "inputex-form",
+   "author": "neyric",
+   "tags": [
+      "inputex-form"
+   ],
+   "use": [
+      "io-base",
+      "inputex-group",
+      "json",
+      "inputex-button"
+   ],
+   "examples": []
+}

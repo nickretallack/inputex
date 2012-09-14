@@ -1,0 +1,9 @@
+{
+   "requires": [
+      "io-base",
+      "inputex-group",
+      "json",
+      "inputex-button"
+   ],
+   "ix_provides": "form"
+}

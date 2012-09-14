@@ -1,0 +1,14 @@
+{
+   "name": "inputex-dsselect",
+   "displayName": "inputex-dsselect",
+   "description": "inputex-dsselect",
+   "author": "neyric",
+   "tags": [
+      "inputex-dsselect"
+   ],
+   "use": [
+      "inputex-select",
+      "datasource"
+   ],
+   "examples": []
+}

@@ -1,0 +1,10 @@
+{
+   "requires": [
+      "inputex-field",
+      "node-event-delegate",
+      "event-outside",
+      "overlay"
+   ],
+   "skinnable": true,
+   "ix_provides": "color"
+}

@@ -1,0 +1,14 @@
+{
+   "name": "inputex-visus",
+   "displayName": "inputex-visus",
+   "description": "inputex-visus",
+   "author": "neyric",
+   "tags": [
+      "inputex-visus"
+   ],
+   "use": [
+      "inputex",
+      "dump"
+   ],
+   "examples": []
+}

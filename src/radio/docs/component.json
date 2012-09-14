@@ -1,0 +1,17 @@
+{
+   "name": "inputex-radio",
+   "displayName": "inputex-radio",
+   "description": "inputex-radio",
+   "author": "neyric",
+   "tags": [
+      "inputex-radio"
+   ],
+   "use": [
+      "selector",
+      "event-delegate",
+      "inputex-field",
+      "inputex-choice",
+      "inputex-string"
+   ],
+   "examples": []
+}

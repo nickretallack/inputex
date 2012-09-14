@@ -1,0 +1,10 @@
+{
+   "name": "inputex-string",
+   "builds": {
+      "inputex-string": {
+         "jsfiles": [
+            "string.js"
+         ]
+      }
+   }
+}

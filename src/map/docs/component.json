@@ -1,0 +1,13 @@
+{
+   "name": "inputex-map",
+   "displayName": "inputex-map",
+   "description": "inputex-map",
+   "author": "neyric",
+   "tags": [
+      "inputex-map"
+   ],
+   "use": [
+      "inputex-field"
+   ],
+   "examples": []
+}

@@ -1,0 +1,7 @@
+{
+   "requires": [
+      "inputex-field",
+      "inputex-visus"
+   ],
+   "ix_provides": "uneditable"
+}

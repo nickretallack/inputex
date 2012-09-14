@@ -1,0 +1,17 @@
+{
+   "name": "inputex-datepicker",
+   "displayName": "inputex-datepicker",
+   "description": "inputex-datepicker",
+   "author": "neyric",
+   "tags": [
+      "inputex-datepicker"
+   ],
+   "use": [
+      "inputex-date",
+      "event-outside",
+      "node-event-delegate",
+      "overlay",
+      "calendar"
+   ],
+   "examples": []
+}
