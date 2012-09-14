@@ -291,13 +291,26 @@ moduleDirectories.forEach(function(moduleName) {
    buildObj.builds[moduleName] = {
       jsfiles: [ shortname+'.js' ]
    };
-   fs.writeFileSync( path.join(__dirname, 'src', shortname, 'build.json') , JSON.stringify(buildObj) );
+   fs.writeFileSync( path.join(__dirname, 'src', shortname, 'build.json') , JSON.stringify(buildObj, null, 3) );
    
    // meta.json
    var metaObj = moduleData[moduleName];
-   fs.writeFileSync( path.join(__dirname, 'src', shortname, 'meta', shortname+'.json') , JSON.stringify(metaObj) );
+   fs.writeFileSync( path.join(__dirname, 'src', shortname, 'meta', shortname+'.json') , JSON.stringify(metaObj, null, 3) );
    
    if(moduleName != 'inputex') {
+      
+      // docs/component.json
+      var docObj = {
+         "name"       : moduleName,
+         "displayName": moduleName,
+         "description": moduleName,
+         "author"     : "neyric",
+         "tags": [moduleName],
+         "use" : moduleData[moduleName] ? moduleData[moduleName].requires : [],
+         "examples": []
+      };
+      fs.writeFileSync( path.join(__dirname, 'src', shortname, 'docs', 'component.json') , JSON.stringify(docObj, null, 3) );
+      
       
       // Rename file
       fs.renameSync(  path.join(__dirname, 'src', moduleName, moduleName+'.js') ,  path.join(__dirname, 'src', shortname, 'js', shortname+'.js')  );
