@@ -141,8 +141,13 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
 
       };
 
+
+        if(!this.options.menuItems){
+          throw new Error("Missing 'menuItems' property in options");
+        }
+
       this._menu = create(renderMenuRecurs(Y.guid(), [{
-         text: this.options.typeInvite, 
+         text: this.options.typeInvite,
          submenu: {itemdata: this.options.menuItems}
       }], 0));
 
@@ -173,18 +178,20 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
          this._menu.menuNav._rootMenu.on(['mousedown', 'click'], function (e) {
             var menuNav = that._menu.menuNav;
             menuNav._toggleSubmenuDisplay.call(menuNav, e);
-         }, this._menu.menuNav); 
+         }, this._menu.menuNav);
       }
    },
-     /**
-   * This function will set the background color of the root label node (which is the first node with class="yui3-menu-label" of our component)
-   * Just after the render phase, this node display : "Cliquez ici pour choisir la prestation"
-   *
-   * @param color if undefined white is setted.
-   */
-  setBackgroundColorOfRootLabel: function (color) {
+
+   /**
+    * This function will set the background color of the root label node (which is the first node with class="yui3-menu-label" of our component)
+    * Just after the render phase, this node display : "Cliquez ici pour choisir la prestation"
+    *
+    * @param color if undefined white is setted.
+    */
+   setBackgroundColorOfRootLabel: function (color) {
       this._menu.one(".yui3-menu-label").setStyle("backgroundColor",color);
-  },
+   },
+   
    /**
     * @method onItemClick
     */

@@ -78,6 +78,9 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       this.hiddenEl = inputEx.cn('input', {type: 'hidden', name: this.options.name || '', value: this.options.value || ''});
       this.fieldContainer.appendChild(this.hiddenEl);
       this.renderMenu(this.fieldContainer);
+
+      this.setBackgroundColorOfRootLabel(this.options.colorInvite);
+
    },
 
    /**
@@ -138,8 +141,13 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
 
       };
 
+
+        if(!this.options.menuItems){
+          throw new Error("Missing 'menuItems' property in options");
+        }
+
       this._menu = create(renderMenuRecurs(Y.guid(), [{
-         text: this.options.typeInvite, 
+         text: this.options.typeInvite,
          submenu: {itemdata: this.options.menuItems}
       }], 0));
 
@@ -170,8 +178,18 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
          this._menu.menuNav._rootMenu.on(['mousedown', 'click'], function (e) {
             var menuNav = that._menu.menuNav;
             menuNav._toggleSubmenuDisplay.call(menuNav, e);
-         }, this._menu.menuNav); 
+         }, this._menu.menuNav);
       }
+   },
+
+   /**
+    * This function will set the background color of the root label node (which is the first node with class="yui3-menu-label" of our component)
+    * Just after the render phase, this node display : "Cliquez ici pour choisir la prestation"
+    *
+    * @param color if undefined white is setted.
+    */
+   setBackgroundColorOfRootLabel: function (color) {
+      this._menu.one(".yui3-menu-label").setStyle("backgroundColor",color);
    },
    
    /**
