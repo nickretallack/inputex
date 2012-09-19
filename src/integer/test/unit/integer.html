@@ -6,17 +6,17 @@
 </head>
 <body class="yui3-skin-sam">
 
-<script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-debug.js"></script>
- <script src="../../../loader.js"></script>
+<script src="http://yui.yahooapis.com/3.7.0/build/yui/yui-debug.js"></script>
+ <script src="../../../../build/inputex-loader/inputex-loader.js"></script>
 <script>
 YUI({
     coverage: ['inputex-integer'],
     "groups": {
         'inputex': {
-            base: '../../../'
+            base: '../../../../build/'
         }
     },
-    filter : 'raw',
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw',
     modules: {
         'integer-test': {
             fullpath: './assets/integer-test.js',
