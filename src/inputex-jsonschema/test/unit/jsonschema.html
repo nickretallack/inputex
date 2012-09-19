@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test Page</title>
+</head>
+<body class="yui3-skin-sam">
+
+<script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-debug.js"></script>
+ <script src="../../../loader.js"></script>
+<script>
+YUI({
+    coverage: ['inputex-jsonschema'],
+    "groups": {
+        'inputex': {
+            base: '../../../'
+        }
+    },
+    filter : 'raw',
+    modules: {
+        'jsonschema-test': {
+            fullpath: './assets/jsonschema-test.js',
+            requires: ["test","inputex-jsonschema"]
+        }
+    }
+}).use('console', 'jsonschema-test', "inputex-jsonschema" ,  "inputex-group","inputex-string", "inputex-date","inputex-select" ,"inputex-checkbox", "inputex-list",  function (Y) {
+
+    new Y.Console().render();
+    Y.Test.Runner.run();
+
+});
+</script>
+ <div id="demo"></div>
+</body>
+</html>

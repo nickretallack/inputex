@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test Page</title>
+</head>
+<body class="yui3-skin-sam">
+
+<script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-debug.js"></script>
+ <script src="../../../loader.js"></script>
+<script>
+YUI({
+    coverage: ['inputex-rpc'],
+    "groups": {
+        'inputex': {
+            base: '../../../'
+        }
+    },
+    filter : 'raw',
+    modules: {
+        'rpc-test': {
+            fullpath: './assets/rpc-test.js',
+            requires: ["test","inputex-rpc"]
+        }
+    }
+}).use('console', 'rpc-test','inputex-form','inputex-string',   function (Y) {
+
+    new Y.Console().render();
+    Y.Test.Runner.run();
+
+});
+</script>
+ <div id="demo"></div>
+</body>
+</html>

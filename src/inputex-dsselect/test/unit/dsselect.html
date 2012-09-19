@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test Page</title>
+</head>
+<body class="yui3-skin-sam">
+
+<script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-debug.js"></script>
+ <script src="../../../loader.js"></script>
+<script>
+YUI({
+    coverage: ['inputex-dsselect'],
+    "groups": {
+        'inputex': {
+            base: '../../../'
+        }
+    },
+    filter : 'raw',
+    modules: {
+        'dsselect-test': {
+            fullpath: './assets/dsselect-test.js',
+            requires: ["test","inputex-dsselect"]
+        }
+    }
+}).use('console', 'dsselect-test', function (Y) {
+
+    new Y.Console().render();
+    Y.Test.Runner.run();
+
+});
+</script>
+ <div id="demo"></div>
+</body>
+</html>
