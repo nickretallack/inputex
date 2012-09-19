@@ -35,6 +35,9 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
     */
    setOptions: function(options) {
       inputEx.ImageCropperField.superclass.setOptions.call(this, options);
+      if(!options.url){
+          throw new Error("'url' has to be provided in options for 'imagecropper' type");
+      }
       this.options.url   = options.url;
       this.options.ratio = lang.isArray(options.ratio) ? (options.ratio[0] / options.ratio[1]) : null;
       this.options.padding = options.padding || 10;

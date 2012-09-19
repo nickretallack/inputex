@@ -136,8 +136,13 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
 
       };
 
+
+        if(!this.options.menuItems){
+          throw new Error("Missing 'menuItems' property in options");
+        }
+
       this._menu = create(renderMenuRecurs(Y.guid(), [{
-         text: this.options.typeInvite, 
+         text: this.options.typeInvite,
          submenu: {itemdata: this.options.menuItems}
       }], 0));
 
@@ -168,7 +173,7 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
          this._menu.menuNav._rootMenu.on(['mousedown', 'click'], function (e) {
             var menuNav = that._menu.menuNav;
             menuNav._toggleSubmenuDisplay.call(menuNav, e);
-         }, this._menu.menuNav); 
+         }, this._menu.menuNav);
       }
    },
    

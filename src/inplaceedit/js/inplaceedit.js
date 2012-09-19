@@ -72,6 +72,9 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
       this.editorContainer = inputEx.cn('div', {className: CSS_PREFIX+'editor'}, {display: 'none'});
       
       // Render the editor field
+      if(!this.options.editorField){
+        throw new Error("Missing 'editorField' property in options");
+      }
       this.editorField = inputEx(this.options.editorField,this);
       var editorFieldEl = this.editorField.getEl();
       

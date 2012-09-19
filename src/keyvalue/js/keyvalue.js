@@ -38,6 +38,9 @@ Y.extend( inputEx.KeyValueField, inputEx.CombineField, {
 		
 		var choices = [], i, field, fieldCopy, k, l;
 		
+      if(!availableFields){
+         throw new Error("Missing 'availableFields' property in options");
+      }
 		for (i = 0 , l = availableFields.length ; i < l ; i++) {
 			
 			field =  availableFields[i];

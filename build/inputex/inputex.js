@@ -21,35 +21,42 @@ YUI.add('inputex', function (Y, NAME) {
    * @return {inputEx.Field} Created field instance
    */
   Y.inputEx = function(fieldOptions, parentField) {
-     var fieldClass = null,
-         inputInstance;
-         
-    if(fieldOptions.type) {
-       fieldClass = inputEx.getFieldClass(fieldOptions.type);
-       
-        if( !Y.Lang.isFunction(fieldClass) ){
-           throw new Error("Missing inputEx module for type: '"+fieldOptions.type+"' ?");
-        }
-    }
-    else {
-       fieldClass = fieldOptions.fieldClass ? fieldOptions.fieldClass : inputEx.StringField;
-    }
+      var fieldClass = null,
+          inputInstance;
 
-     // Instanciate the field
-     inputInstance = new fieldClass(fieldOptions);
+      if (fieldOptions.type) {
+          fieldClass = inputEx.getFieldClass(fieldOptions.type);
 
-     // If the parentField argument is provided
-     if(parentField) {
-        inputInstance.setParentField(parentField);
-     }
+          if (!Y.Lang.isFunction(fieldClass)) {
+              throw new Error("Missing inputEx module for type: '" + fieldOptions.type + "' ?");
+          }
+      } else {
+          if (fieldOptions.fieldClass) {
+              fieldClass = fieldOptions.fieldClass;
+          } else {
+              if (!Y.Lang.isFunction(inputEx.StringField)) {
+                  throw new Error("Missing inputEx module called inputex-string ?");
+              } else {
+                  fieldClass = inputEx.StringField;
+              }
+          }
+      }
 
-     // Add the flatten attribute if present in the params
-     /*if(fieldOptions.flatten) {
-        inputInstance._flatten = true;
-     }*/
-     
-     return inputInstance;
-  };
+      // Instanciate the field
+      inputInstance = new fieldClass(fieldOptions);
+
+      // If the parentField argument is provided
+      if (parentField) {
+          inputInstance.setParentField(parentField);
+      }
+
+      // Add the flatten attribute if present in the params
+      /*if(fieldOptions.flatten) {
+              inputInstance._flatten = true;
+           }*/
+
+      return inputInstance;
+};
   
   var inputEx = Y.inputEx;
   
