@@ -7,13 +7,13 @@
 <body class="yui3-skin-sam">
 
 <script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-debug.js"></script>
- <script src="../../../loader.js"></script>
+ <script src="../../../../build/inputex-loader/inputex-loader.js"></script>
 <script>
 YUI({
     coverage: ['inputex-string'],
     "groups": {
         'inputex': {
-            base: '../../../'
+            base: '../../../../build/'
         }
     },
     filter : 'raw',
@@ -27,7 +27,6 @@ YUI({
 
     new Y.Console().render();
     Y.Test.Runner.run();
-
 });
 </script>
  <div id="demo"></div>

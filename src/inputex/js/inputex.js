@@ -52,7 +52,7 @@
   var inputEx = Y.inputEx;
   
   Y.mix(Y.inputEx, {
-     
+
      VERSION: "3.1.0",
      
      /**

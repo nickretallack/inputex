@@ -18,7 +18,7 @@ YUI.add("string-test", function (Y) {
 
                 });
 
-        Y.Assert.isObject(instanceField);
+                Y.Assert.isObject(instanceField);
         
             }
         });

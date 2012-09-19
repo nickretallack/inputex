@@ -7,6 +7,10 @@ YUI.add('inputex-field', function (Y, NAME) {
      var lang = Y.Lang,
           inputEx = Y.inputEx;
 
+
+
+    Y.inputEx.messages = Y.Intl.get("inputex");
+
   /** 
    * An abstract class (never instantiated) that contains the shared features for all fields.
    * @class inputEx.Field

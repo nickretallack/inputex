@@ -21,47 +21,40 @@ YUI.add('inputex', function (Y, NAME) {
    * @return {inputEx.Field} Created field instance
    */
   Y.inputEx = function(fieldOptions, parentField) {
-      var fieldClass = null,
-          inputInstance;
+     var fieldClass = null,
+         inputInstance;
+         
+    if(fieldOptions.type) {
+       fieldClass = inputEx.getFieldClass(fieldOptions.type);
+       
+        if( !Y.Lang.isFunction(fieldClass) ){
+           throw new Error("Missing inputEx module for type: '"+fieldOptions.type+"' ?");
+        }
+    }
+    else {
+       fieldClass = fieldOptions.fieldClass ? fieldOptions.fieldClass : inputEx.StringField;
+    }
 
-      if (fieldOptions.type) {
-          fieldClass = inputEx.getFieldClass(fieldOptions.type);
+     // Instanciate the field
+     inputInstance = new fieldClass(fieldOptions);
 
-          if (!Y.Lang.isFunction(fieldClass)) {
-              throw new Error("Missing inputEx module for type: '" + fieldOptions.type + "' ?");
-          }
-      } else {
-          if (fieldOptions.fieldClass) {
-              fieldClass = fieldOptions.fieldClass;
-          } else {
-              if (!Y.Lang.isFunction(inputEx.StringField)) {
-                  throw new Error("Missing inputEx module called inputex-string ?");
-              } else {
-                  fieldClass = inputEx.StringField;
-              }
-          }
-      }
+     // If the parentField argument is provided
+     if(parentField) {
+        inputInstance.setParentField(parentField);
+     }
 
-      // Instanciate the field
-      inputInstance = new fieldClass(fieldOptions);
-
-      // If the parentField argument is provided
-      if (parentField) {
-          inputInstance.setParentField(parentField);
-      }
-
-      // Add the flatten attribute if present in the params
-      /*if(fieldOptions.flatten) {
-              inputInstance._flatten = true;
-           }*/
-
-      return inputInstance;
-};
+     // Add the flatten attribute if present in the params
+     /*if(fieldOptions.flatten) {
+        inputInstance._flatten = true;
+     }*/
+     
+     return inputInstance;
+  };
   
   var inputEx = Y.inputEx;
   
   Y.mix(Y.inputEx, {
-     
+
      VERSION: "3.1.0",
      
      /**
@@ -409,4 +402,4 @@ YUI.add('inputex', function (Y, NAME) {
   });
 
 
-}, '@VERSION@', {"lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"lang": ["en", "fr", "de", "es", "fr", "it", "nl"], "requires": ["intl", "pluginhost-base", "pluginhost-config", "base-pluginhost", "node-pluginhost", "plugin", "node"], "skinnable": true});

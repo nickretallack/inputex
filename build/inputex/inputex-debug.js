@@ -54,7 +54,7 @@ YUI.add('inputex', function (Y, NAME) {
   var inputEx = Y.inputEx;
   
   Y.mix(Y.inputEx, {
-     
+
      VERSION: "3.1.0",
      
      /**
@@ -402,4 +402,4 @@ YUI.add('inputex', function (Y, NAME) {
   });
 
 
-}, '@VERSION@', {"lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"lang": ["en", "fr", "de", "es", "fr", "it", "nl"], "requires": ["intl", "pluginhost-base", "pluginhost-config", "base-pluginhost", "node-pluginhost", "plugin", "node"], "skinnable": true});

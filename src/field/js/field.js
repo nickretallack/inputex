@@ -5,6 +5,10 @@
      var lang = Y.Lang,
           inputEx = Y.inputEx;
 
+
+    // TODO: GWOHACKPASBO, we should load string resources by module
+    Y.inputEx.messages = Y.Intl.get("inputex");
+
   /** 
    * An abstract class (never instantiated) that contains the shared features for all fields.
    * @class inputEx.Field

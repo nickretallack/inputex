@@ -7,6 +7,27 @@ YUI().use(function(Y) {
             base: 'inputex/src/',
             combine: false,
             modules: {
+    "inputex": {
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
+        "requires": [
+            "intl",
+            "pluginhost-base",
+            "pluginhost-config",
+            "base-pluginhost",
+            "node-pluginhost",
+            "plugin",
+            "node"
+        ],
+        "skinnable": true
+    },
     "inputex-autocomplete": {
         "ix_provides": "autocomplete",
         "requires": [
@@ -167,27 +188,6 @@ YUI().use(function(Y) {
             "anim",
             "inputex-visus"
         ]
-    },
-    "inputex-inputex": {
-        "lang": [
-            "en",
-            "fr",
-            "de",
-            "es",
-            "fr",
-            "it",
-            "nl"
-        ],
-        "requires": [
-            "intl",
-            "pluginhost-base",
-            "pluginhost-config",
-            "base-pluginhost",
-            "node-pluginhost",
-            "plugin",
-            "node"
-        ],
-        "skinnable": true
     },
     "inputex-integer": {
         "ix_provides": "integer",
