@@ -21,5 +21,5 @@ YUI().use('node-base', 'escape', function (Y) {
 
 });
 
-YUI_config.groups.inputex.base = '../src/';
+YUI_config.groups.inputex.base = '../build/';
 YUI_config.filter = 'raw';

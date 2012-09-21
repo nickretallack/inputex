@@ -2,7 +2,7 @@
 <head>
 <title>inputEx Builder: generate inputEx Forms</title>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-<link rel="stylesheet" href="http://yui.yahooapis.com/combo?3.6.0/build/cssreset/reset-min.css&3.6.0/build/cssfonts/fonts-min.css&3.6.0/build/cssbase/cssbase-min.css&3.6.0/build/cssgrids/grids-min.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/combo?3.7.1/build/cssreset/reset-min.css&3.7.1/build/cssfonts/fonts-min.css&3.6.0/build/cssbase/cssbase-min.css&3.6.0/build/cssgrids/grids-min.css">
 <style>
     body {
         margin: auto; /* center in viewport */
@@ -103,7 +103,7 @@
 	</div>
 	
 <script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
-<script src="../src/loader.js"  type='text/javascript'></script>
+<script src="../build/inputex-loader/inputex-loader.js"></script>
 <script>
 
 YUI.add("inputex-form-builder",function(Y) {
@@ -183,7 +183,7 @@ YUI.add("inputex-form-builder",function(Y) {
   requires: YUI_config.groups.inputex.allModules.concat(['tabview'])
 });
 
-YUI_config.groups.inputex.base = '../src/';
+YUI_config.groups.inputex.base = '../build/';
 YUI({filter: 'raw'}).use("inputex-form-builder");
 </script>
 
