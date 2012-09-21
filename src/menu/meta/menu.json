@@ -6,6 +6,7 @@
          "node-menunav",
          "substitute"
       ],
+      "skinnable": true,
       "ix_provides": "menu"
    }
 }
