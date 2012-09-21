@@ -21,6 +21,9 @@ inputEx.RPC.SMDTester = function(parentEl, smdList) {
 		parentEl: this.el,
 		choices: [{ value: selectStr }].concat((function() {
 			var arr = [], i, length;
+			if(!smdList){
+				throw new Error("Missing 'smdList' property in options");
+			}
 			for (i = 0, length = smdList.length; i < length; i += 1) {
 				arr.push({ value: smdList[i] });
 			}

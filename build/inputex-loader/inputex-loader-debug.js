@@ -258,7 +258,8 @@ YUI().use(function(Y) {
             "node-event-delegate",
             "node-menunav",
             "substitute"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-multiautocomplete": {
         "ix_provides": "multiautocomplete",

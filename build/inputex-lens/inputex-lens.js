@@ -28,7 +28,11 @@ Y.extend(inputEx.Lens, inputEx.Group, {
     * @method setOptions
     */
 	setOptions: function(options) {
-		inputEx.Lens.superclass.setOptions.call(this, options);	
+		inputEx.Lens.superclass.setOptions.call(this, options);
+
+		if(!this.options.fields){
+				throw new Error("Missing 'fields' property in options");
+		}
 		
 		var lens = "";
 		if( !lang.isString(options.lens) ) {

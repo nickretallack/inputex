@@ -26,10 +26,10 @@ _yuitest_coverage["build/inputex-keyvalue/inputex-keyvalue.js"] = {
     path: "build/inputex-keyvalue/inputex-keyvalue.js",
     code: []
 };
-_yuitest_coverage["build/inputex-keyvalue/inputex-keyvalue.js"].code=["YUI.add('inputex-keyvalue', function (Y, NAME) {","","/**"," * @module inputex-keyvalue"," */","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * Display a selectors for keys and auto-update the value field"," * @class inputEx.KeyValueField"," * @constructor"," * @extends inputEx.CombineField"," * @param {Object} options InputEx definition object with the \"availableFields\""," */","inputEx.KeyValueField = function(options) {","   inputEx.KeyValueField.superclass.constructor.call(this, options);","};","","Y.extend( inputEx.KeyValueField, inputEx.CombineField, {","   ","   /**","    * Subscribe the \"updated\" event on the key selector","    * @method initEvents","    */","   initEvents: function() {","      inputEx.KeyValueField.superclass.initEvents.call(this);","","      this.inputs[0].on('updated',this.onSelectFieldChange, this, true); ","   },","","","	/**","	 * Generate","	 * @method generateSelectConfig","	 */","	generateSelectConfig: function(availableFields) {","		","		this.nameIndex = {};","		","		var choices = [], i, field, fieldCopy, k, l;","		","		for (i = 0 , l = availableFields.length ; i < l ; i++) {","			","			field =  availableFields[i];","			fieldCopy = {};","			for (k in field) {","				if (field.hasOwnProperty(k) && k != \"label\") {","					fieldCopy[k] = field[k];","				}","			}","			","			this.nameIndex[field.name] = fieldCopy;","			","			choices.push({ value: field.name, label:field.label || field.name });","			","		}","		","		return { type: 'select', choices: choices };","	},","","	/**","	 * Setup the options.fields from the availableFields option","	 * @method setOptions","	 */","	setOptions: function(options) {","		","		var selectFieldConfig = this.generateSelectConfig(options.availableFields);","	","		var newOptions = {","			fields: [","				selectFieldConfig,","				this.nameIndex[options.availableFields[0].name]","			]","		};","		","		Y.mix(newOptions, options);","		","		inputEx.KeyValueField.superclass.setOptions.call(this, newOptions);","	},","   ","   /**","    * Rebuild the value field","    * @method onSelectFieldChange","    */","   onSelectFieldChange: function(value) {","      var f = this.nameIndex[value];","      var lastInput = this.inputs[this.inputs.length-1];","      var next = this.divEl.childNodes[inputEx.indexOf(lastInput.getEl(), this.divEl.childNodes)+1];","      lastInput.destroy();","      this.inputs.pop();","      var field = this.renderField(f);","      var fieldEl = field.getEl();","      Y.one(fieldEl).setStyle('float', 'left');","      ","      this.divEl.insertBefore(fieldEl, next);","   }","   ","});","","inputEx.registerType(\"keyvalue\", inputEx.KeyValueField, {});","","","}, '@VERSION@', {\"requires\": [\"inputex-combine\"], \"ix_provides\": \"keyvalue\"});"];
-_yuitest_coverage["build/inputex-keyvalue/inputex-keyvalue.js"].lines = {"1":0,"6":0,"16":0,"17":0,"20":0,"27":0,"29":0,"39":0,"41":0,"43":0,"45":0,"46":0,"47":0,"48":0,"49":0,"53":0,"55":0,"59":0,"68":0,"70":0,"77":0,"79":0,"87":0,"88":0,"89":0,"90":0,"91":0,"92":0,"93":0,"94":0,"96":0,"101":0};
-_yuitest_coverage["build/inputex-keyvalue/inputex-keyvalue.js"].functions = {"KeyValueField:16":0,"initEvents:26":0,"generateSelectConfig:37":0,"setOptions:66":0,"onSelectFieldChange:86":0,"(anonymous 1):1":0};
-_yuitest_coverage["build/inputex-keyvalue/inputex-keyvalue.js"].coveredLines = 32;
+_yuitest_coverage["build/inputex-keyvalue/inputex-keyvalue.js"].code=["YUI.add('inputex-keyvalue', function (Y, NAME) {","","/**"," * @module inputex-keyvalue"," */","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * Display a selectors for keys and auto-update the value field"," * @class inputEx.KeyValueField"," * @constructor"," * @extends inputEx.CombineField"," * @param {Object} options InputEx definition object with the \"availableFields\""," */","inputEx.KeyValueField = function(options) {","   inputEx.KeyValueField.superclass.constructor.call(this, options);","};","","Y.extend( inputEx.KeyValueField, inputEx.CombineField, {","   ","   /**","    * Subscribe the \"updated\" event on the key selector","    * @method initEvents","    */","   initEvents: function() {","      inputEx.KeyValueField.superclass.initEvents.call(this);","","      this.inputs[0].on('updated',this.onSelectFieldChange, this, true); ","   },","","","	/**","	 * Generate","	 * @method generateSelectConfig","	 */","	generateSelectConfig: function(availableFields) {","		","		this.nameIndex = {};","		","		var choices = [], i, field, fieldCopy, k, l;","		","      if(!availableFields){","         throw new Error(\"Missing 'availableFields' property in options\");","      }","		for (i = 0 , l = availableFields.length ; i < l ; i++) {","			","			field =  availableFields[i];","			fieldCopy = {};","			for (k in field) {","				if (field.hasOwnProperty(k) && k != \"label\") {","					fieldCopy[k] = field[k];","				}","			}","			","			this.nameIndex[field.name] = fieldCopy;","			","			choices.push({ value: field.name, label:field.label || field.name });","			","		}","		","		return { type: 'select', choices: choices };","	},","","	/**","	 * Setup the options.fields from the availableFields option","	 * @method setOptions","	 */","	setOptions: function(options) {","		","		var selectFieldConfig = this.generateSelectConfig(options.availableFields);","	","		var newOptions = {","			fields: [","				selectFieldConfig,","				this.nameIndex[options.availableFields[0].name]","			]","		};","		","		Y.mix(newOptions, options);","		","		inputEx.KeyValueField.superclass.setOptions.call(this, newOptions);","	},","   ","   /**","    * Rebuild the value field","    * @method onSelectFieldChange","    */","   onSelectFieldChange: function(value) {","      var f = this.nameIndex[value];","      var lastInput = this.inputs[this.inputs.length-1];","      var next = this.divEl.childNodes[inputEx.indexOf(lastInput.getEl(), this.divEl.childNodes)+1];","      lastInput.destroy();","      this.inputs.pop();","      var field = this.renderField(f);","      var fieldEl = field.getEl();","      Y.one(fieldEl).setStyle('float', 'left');","      ","      this.divEl.insertBefore(fieldEl, next);","   }","   ","});","","inputEx.registerType(\"keyvalue\", inputEx.KeyValueField, {});","","","}, '@VERSION@', {\"requires\": [\"inputex-combine\"], \"ix_provides\": \"keyvalue\"});"];
+_yuitest_coverage["build/inputex-keyvalue/inputex-keyvalue.js"].lines = {"1":0,"6":0,"16":0,"17":0,"20":0,"27":0,"29":0,"39":0,"41":0,"43":0,"44":0,"46":0,"48":0,"49":0,"50":0,"51":0,"52":0,"56":0,"58":0,"62":0,"71":0,"73":0,"80":0,"82":0,"90":0,"91":0,"92":0,"93":0,"94":0,"95":0,"96":0,"97":0,"99":0,"104":0};
+_yuitest_coverage["build/inputex-keyvalue/inputex-keyvalue.js"].functions = {"KeyValueField:16":0,"initEvents:26":0,"generateSelectConfig:37":0,"setOptions:69":0,"onSelectFieldChange:89":0,"(anonymous 1):1":0};
+_yuitest_coverage["build/inputex-keyvalue/inputex-keyvalue.js"].coveredLines = 34;
 _yuitest_coverage["build/inputex-keyvalue/inputex-keyvalue.js"].coveredFunctions = 6;
 _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 1);
 YUI.add('inputex-keyvalue', function (Y, NAME) {
@@ -86,31 +86,36 @@ this.nameIndex = {};
 		_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 41);
 var choices = [], i, field, fieldCopy, k, l;
 		
-		_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 43);
+      _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 43);
+if(!availableFields){
+         _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 44);
+throw new Error("Missing 'availableFields' property in options");
+      }
+		_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 46);
 for (i = 0 , l = availableFields.length ; i < l ; i++) {
 			
-			_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 45);
+			_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 48);
 field =  availableFields[i];
-			_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 46);
+			_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 49);
 fieldCopy = {};
-			_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 47);
+			_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 50);
 for (k in field) {
-				_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 48);
+				_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 51);
 if (field.hasOwnProperty(k) && k != "label") {
-					_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 49);
+					_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 52);
 fieldCopy[k] = field[k];
 				}
 			}
 			
-			_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 53);
+			_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 56);
 this.nameIndex[field.name] = fieldCopy;
 			
-			_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 55);
+			_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 58);
 choices.push({ value: field.name, label:field.label || field.name });
 			
 		}
 		
-		_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 59);
+		_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 62);
 return { type: 'select', choices: choices };
 	},
 
@@ -120,11 +125,11 @@ return { type: 'select', choices: choices };
 	 */
 	setOptions: function(options) {
 		
-		_yuitest_coverfunc("build/inputex-keyvalue/inputex-keyvalue.js", "setOptions", 66);
-_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 68);
+		_yuitest_coverfunc("build/inputex-keyvalue/inputex-keyvalue.js", "setOptions", 69);
+_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 71);
 var selectFieldConfig = this.generateSelectConfig(options.availableFields);
 	
-		_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 70);
+		_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 73);
 var newOptions = {
 			fields: [
 				selectFieldConfig,
@@ -132,10 +137,10 @@ var newOptions = {
 			]
 		};
 		
-		_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 77);
+		_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 80);
 Y.mix(newOptions, options);
 		
-		_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 79);
+		_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 82);
 inputEx.KeyValueField.superclass.setOptions.call(this, newOptions);
 	},
    
@@ -144,31 +149,31 @@ inputEx.KeyValueField.superclass.setOptions.call(this, newOptions);
     * @method onSelectFieldChange
     */
    onSelectFieldChange: function(value) {
-      _yuitest_coverfunc("build/inputex-keyvalue/inputex-keyvalue.js", "onSelectFieldChange", 86);
-_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 87);
+      _yuitest_coverfunc("build/inputex-keyvalue/inputex-keyvalue.js", "onSelectFieldChange", 89);
+_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 90);
 var f = this.nameIndex[value];
-      _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 88);
-var lastInput = this.inputs[this.inputs.length-1];
-      _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 89);
-var next = this.divEl.childNodes[inputEx.indexOf(lastInput.getEl(), this.divEl.childNodes)+1];
-      _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 90);
-lastInput.destroy();
       _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 91);
-this.inputs.pop();
+var lastInput = this.inputs[this.inputs.length-1];
       _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 92);
-var field = this.renderField(f);
+var next = this.divEl.childNodes[inputEx.indexOf(lastInput.getEl(), this.divEl.childNodes)+1];
       _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 93);
-var fieldEl = field.getEl();
+lastInput.destroy();
       _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 94);
+this.inputs.pop();
+      _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 95);
+var field = this.renderField(f);
+      _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 96);
+var fieldEl = field.getEl();
+      _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 97);
 Y.one(fieldEl).setStyle('float', 'left');
       
-      _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 96);
+      _yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 99);
 this.divEl.insertBefore(fieldEl, next);
    }
    
 });
 
-_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 101);
+_yuitest_coverline("build/inputex-keyvalue/inputex-keyvalue.js", 104);
 inputEx.registerType("keyvalue", inputEx.KeyValueField, {});
 
 

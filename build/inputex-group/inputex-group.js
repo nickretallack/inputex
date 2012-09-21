@@ -103,6 +103,9 @@ Y.extend(inputEx.Group, inputEx.Field, {
          this.fieldset.appendChild(this.legend);
       }
       
+      if(!this.options.fields){
+        throw new Error("Missing 'fields' property in options");
+      }
       // Iterate this.createInput on input fields
       for (var i = 0 ; i < this.options.fields.length ; i++) {
          var fieldOptions = this.options.fields[i];

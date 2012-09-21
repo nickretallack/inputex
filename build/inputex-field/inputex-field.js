@@ -8,7 +8,7 @@ YUI.add('inputex-field', function (Y, NAME) {
           inputEx = Y.inputEx;
 
 
-
+    // TODO: GWOHACKPASBO, we should load string resources by module
     Y.inputEx.messages = Y.Intl.get("inputex");
 
   /** 

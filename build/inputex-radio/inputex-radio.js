@@ -97,6 +97,10 @@ YUI.add('inputex-radio', function (Y, NAME) {
 			
 			choices = this.options.choices;
 			
+			if(!choices){
+				throw new Error("Missing 'choices' property in options");
+			}
+
 			for (i = 0, length = choices.length ; i < length ; i += 1 ) {
 				
 				this.addChoice(choices[i]);
