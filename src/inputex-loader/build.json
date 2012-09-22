@@ -9,5 +9,8 @@
                 "inputex.js"
             ]
         }
-    }
+	},
+	"shifter": {
+	    "jsstamp": false
+	}	
 }
