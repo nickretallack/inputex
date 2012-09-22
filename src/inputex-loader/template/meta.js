@@ -11,11 +11,34 @@ YUI().use(function(Y) {
       }
    };
 
-   if(typeof YUI_config === 'undefined') { 
-      YUI_config = {groups: {}}; 
+   if (typeof YUI_config === 'undefined') {
+      YUI_config = {groups: {}};
    }
-   
+   if (typeof YUI_config.groups === 'undefined') {
+      YUI_config.groups = {};
+   }
    Y.mix(YUI_config.groups, CONFIG.groups);
+
+   // Loop through all modules
+   var modules = YUI_config.groups.inputex.modules,
+       allModules = [],
+       modulesByType = {};
+   for(var moduleName in modules) {
+     if (modules.hasOwnProperty(moduleName) ) {
+       
+       // Build a list of all inputEx modules
+       allModules.push(moduleName);
+       
+       // Build a reverse index on which module provides what type
+       if(modules[moduleName].ix_provides) {
+          modulesByType[modules[moduleName].ix_provides] = moduleName;
+       }
+       
+     }
+   }
+   YUI_config.groups.inputex.allModules = allModules;
+   YUI_config.groups.inputex.modulesByType = modulesByType;
+
 
 });
 
