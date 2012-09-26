@@ -1,0 +1,4 @@
+{
+   cancelEditor: "annuleren",
+   okEditor: "Ok"
+}

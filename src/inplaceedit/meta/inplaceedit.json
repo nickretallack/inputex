@@ -6,6 +6,15 @@
          "anim",
          "inputex-visus"
       ],
-      "ix_provides": "inplaceedit"
+      "ix_provides": "inplaceedit",
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
    }
 }

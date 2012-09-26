@@ -49,7 +49,7 @@
 					]
 				},
 				visu: {visuType: 'func', func: function(val) {
-					if( Y.Lang.isUndefined(val) ) return inputEx.messages.emptyInPlaceEdit;
+					if( Y.Lang.isUndefined(val) ) return this.messages.emptyInPlaceEdit;
 					return '<img src="'+val.picUrl+'" style="width: 128px; height: 128px;" /><br /><b>'+val.firstname+' '+val.lastname+'</b>';
 				}},
 				value: {
