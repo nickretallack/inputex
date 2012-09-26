@@ -22,8 +22,11 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
    setOptions: function(options) {
       inputEx.EmailField.superclass.setOptions.call(this, options);
 
+      //I18N
+      this.messages = Y.mix(this.messages, Y.Intl.get("inputex-email"));
+
       // Overwrite options
-      this.options.messages.invalid = inputEx.messages.invalidEmail;
+      this.messages.invalid = this.messages.invalidEmail;
       this.options.regexp = inputEx.regexps.email;
       
       // Validate the domain name ( false by default )
@@ -109,7 +112,7 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
 					}, '#' + linkId, this);
 					
 					// Display the message with the link
-					this.options.messages.invalid = inputEx.messages.didYouMean+"<a href='' id='"+linkId+"' style='color:blue;'>@"+groupDomain[0]+" ?</a>";
+					this.messages.invalid = this.messages.didYouMean+"<a href='' id='"+linkId+"' style='color:blue;'>@"+groupDomain[0]+" ?</a>";
 					
 					// field isnt valid
 					return false;
@@ -134,7 +137,7 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
       
       // change invalid message
       if (!result) {
-         this.options.messages.invalid = inputEx.messages.disposableEmail + email.match(disposableRegex)[0];
+         this.messages.invalid = this.messages.disposableEmail + email.match(disposableRegex)[0];
       }
       
       return result;
@@ -148,7 +151,7 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
       var result = inputEx.EmailField.superclass.validate.call(this);
       
       // reset message (useful if changed in previous validation process)
-      this.options.messages.invalid = inputEx.messages.invalidEmail;
+      this.messages.invalid = this.messages.invalidEmail;
       
       // if we want the domain validation
       if (result && !!this.options.fixdomain) {
