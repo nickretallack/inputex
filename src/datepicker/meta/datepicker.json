@@ -7,6 +7,15 @@
 		  "overlay",
 		  "calendar"
 		],
-		"ix_provides": "datepicker"
+		"ix_provides": "datepicker",
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
 	}
 }
