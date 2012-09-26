@@ -5,6 +5,15 @@
 		  "inputex-string",
 		  "inputex-select"
 		],
-		"ix_provides": "dateselectmonth"
+		"ix_provides": "dateselectmonth",
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
 	}
 }
