@@ -1,7 +1,18 @@
 {
    "inputex-field": {
       "requires": [
-         "inputex"
+         "inputex",
+         "intl"
+      ],
+      "skinnable" : true,
+       "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
       ]
    }
 }
