@@ -7,6 +7,15 @@
          "substitute"
       ],
       "skinnable": true,
-      "ix_provides": "menu"
+      "ix_provides": "menu",
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
    }
 }

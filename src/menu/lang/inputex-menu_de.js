@@ -1,0 +1,3 @@
+{
+   menuTypeInvite: 'Auswählen'
+}
