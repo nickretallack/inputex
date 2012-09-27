@@ -27,10 +27,10 @@ Y.extend(inputEx.DateField, inputEx.StringField, {
 	 */
    setOptions: function(options) {
 
+      inputEx.DateField.superclass.setOptions.call(this, options);   
+
       this.messages = Y.mix(this.messages,Y.Intl.get("inputex-date"));
       
-   	inputEx.DateField.superclass.setOptions.call(this, options);
-   	
    	// Overwrite options
    	this.options.className = options.className ? options.className : 'inputEx-Field inputEx-DateField';
    	this.messages.invalid = options.invalidDate ? options.invalidDate : this.messages.invalidDate;

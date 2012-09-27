@@ -26,10 +26,10 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
     */
    setOptions: function(options) {
 
+      inputEx.DatePickerField.superclass.setOptions.call(this, options);
+
       // I18N
       this.messages = Y.mix(this.messages,Y.Intl.get("inputex-datepicker"));
-
-      inputEx.DatePickerField.superclass.setOptions.call(this, options);
 
       // Overwrite default options
       this.options.className = options.className ? options.className : 'inputEx-Field inputEx-DateField inputEx-PickerField inputEx-DatePickerField';
@@ -206,8 +206,8 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
    }
 
 });
-
-this.messages.defaultCalendarOpts = { navigator: true };
+//
+// this.messages.defaultCalendarOpts = { navigator: true };
 
 // Register this class as "datepicker" type
 inputEx.registerType("datepicker", inputEx.DatePickerField);
