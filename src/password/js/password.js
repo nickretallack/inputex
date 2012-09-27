@@ -36,6 +36,8 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	 */
 	setOptions: function(options) {
 	   inputEx.PasswordField.superclass.setOptions.call(this, options);
+
+      this.messages = Y.mix(this.messages,Y.Intl.get("inputex-password"));
 	   
       this.options.className = options.className ? options.className : "inputEx-Field inputEx-PasswordField";
 	   
@@ -84,13 +86,13 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 		
 		// Caps lock warning
 		if(this.options.capsLockWarning) {
-		   this.capsLockWarning = inputEx.cn('div',{className: 'capsLockWarning'},{display: 'none'},inputEx.messages.capslockWarning);
+		   this.capsLockWarning = inputEx.cn('div',{className: 'capsLockWarning'},{display: 'none'},this.messages.capslockWarning);
 		   this.wrapEl.appendChild(this.capsLockWarning);
 	   }
 	   
 	   // Password strength indicator
 		if(this.options.strengthIndicator) {
-		   this.strengthEl = inputEx.cn('div', {className: 'inputEx-Password-StrengthIndicator'}, null, inputEx.messages.passwordStrength);
+		   this.strengthEl = inputEx.cn('div', {className: 'inputEx-Password-StrengthIndicator'}, null, this.messages.passwordStrength);
 		   this.strengthBlocks = [];
 		   for(var i = 0 ; i < 4 ; i++) {
 		      var lamp = inputEx.cn('div', {className: 'inputEx-Password-StrengthIndicatorBlock'});
@@ -108,7 +110,7 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	 */
 	setConfirmationField: function(passwordField) {
 	   this.options.confirmPasswordField = passwordField;
-	   this.options.messages.invalid = inputEx.messages.invalidPasswordConfirmation;
+	   this.messages.invalid = this.messages.invalidPasswordConfirmation;
 	   this.options.confirmPasswordField.options.confirmationPasswordField = this;
 	},
 	
@@ -131,7 +133,7 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	 */
 	getStateString: function(state) {
 	   if(state == inputEx.stateInvalid && this.options.minLength && this.el.value.length < this.options.minLength) {  
-	      return inputEx.messages.invalidPassword[0]+this.options.minLength+inputEx.messages.invalidPassword[1];
+	      return this.messages.invalidPassword[0]+this.options.minLength+this.messages.invalidPassword[1];
       }
 	   return inputEx.StringField.superclass.getStateString.call(this, state);
 	},
