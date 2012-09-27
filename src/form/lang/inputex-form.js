@@ -1,0 +1,3 @@
+{
+   ajaxWait: "Envoi en cours..."
+}

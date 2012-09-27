@@ -6,6 +6,15 @@
          "json",
          "inputex-button"
       ],
-      "ix_provides": "form"
+      "ix_provides": "form",
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
    }
 }
