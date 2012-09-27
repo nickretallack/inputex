@@ -5,6 +5,15 @@
 		  "inputex-panel",
 		  "datatable"
 		],
-		"skinnable": true
+		"skinnable": true,
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
 	}
 }
