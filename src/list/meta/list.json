@@ -5,6 +5,15 @@
          "anim"
       ],
       "skinnable": true,
-      "ix_provides": "list"
+      "ix_provides": "list",
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
    }
 }

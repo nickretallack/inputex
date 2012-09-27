@@ -1,0 +1,4 @@
+{
+   listAddLink: "Afegir",
+   listRemoveLink: "Eliminar"
+}
