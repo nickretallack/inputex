@@ -36,6 +36,9 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 	setOptions: function(options) {
 	   inputEx.StringField.superclass.setOptions.call(this, options);
 
+      // I18N
+      this.messages = Y.mix(this.messages,Y.Intl.get("inputex-string"));
+
 	   this.options.regexp = options.regexp;
 	   this.options.size = options.size;
 	   this.options.maxLength = options.maxLength;
@@ -205,7 +208,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
     */
 	getStateString: function(state) {
 	   if(state == inputEx.stateInvalid && this.options.minLength && this.el.value.length < this.options.minLength) {
-	      return inputEx.messages.stringTooShort[0]+this.options.minLength+inputEx.messages.stringTooShort[1];
+	      return this.messages.stringTooShort[0]+this.options.minLength+this.messages.stringTooShort[1];
       }
 	   return inputEx.StringField.superclass.getStateString.call(this, state);
 	},

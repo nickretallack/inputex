@@ -4,6 +4,16 @@
          "inputex-field",
          "event-key"
       ],
-      "ix_provides": "string"
+      "ix_provides": "string",
+      "skinnable": true,
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
    }
 }
