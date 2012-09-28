@@ -3,6 +3,15 @@
       "requires": [
          "inputex-string"
       ],
-      "ix_provides": "url"
+      "ix_provides": "url",
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
    }
 }

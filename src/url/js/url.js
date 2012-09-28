@@ -28,8 +28,11 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
    setOptions: function(options) {
       inputEx.UrlField.superclass.setOptions.call(this, options);
 
+     //I18N
+      this.messages = Y.mix(this.messages, Y.Intl.get("inputex-url"));
+
       this.options.className = options.className ? options.className : "inputEx-Field inputEx-UrlField";
-      this.options.messages.invalid = inputEx.messages.invalidUrl;
+      this.messages.invalid = this.messages.invalidUrl;
       this.options.favicon = lang.isUndefined(options.favicon) ? (("https:" == document.location.protocol) ? false : true) : options.favicon;
       this.options.size = options.size || 50;
 
