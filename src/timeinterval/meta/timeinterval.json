@@ -4,6 +4,15 @@
          "inputex-combine",
          "inputex-select"
       ],
-      "ix_provides": "timeinterval"
+      "ix_provides": "timeinterval",
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
    }
 }

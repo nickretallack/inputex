@@ -17,7 +17,7 @@
 inputEx.TimeIntervalField = function(options) {
    inputEx.TimeIntervalField.superclass.constructor.call(this,options);
 };
-Y.extend(inputEx.TimeIntervalField, inputEx.CombineField, {   
+Y.extend(inputEx.TimeIntervalField, inputEx.CombineField, {
    
    /**
     * Additional options
@@ -27,8 +27,10 @@ Y.extend(inputEx.TimeIntervalField, inputEx.CombineField, {
       
       inputEx.TimeIntervalField.superclass.setOptions.call(this,options);
       
+      this.messages = Y.mix(this.messages, Y.Intl.get("inputex-timeinterval"));
+
       var units = inputEx.TimeIntervalField.units;
-      var unitsStr = inputEx.messages.timeUnits;
+      var unitsStr = this.messages.timeUnits;
       
       this.options.unit = options.unit || units.SECOND;
       

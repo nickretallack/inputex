@@ -43,10 +43,16 @@
  <div class='demoContainer' id='container2'></div>
  <div class='codeContainer'>
   <pre class="brush:js">
-	  var units = inputEx.TimeIntervalField.units;
-	  var unitsStr = inputEx.messages.timeUnits;
-	  var n=[]; for(var i=1;i !=30;i++){ n.push(i); }
-	  var fields = [
+	  
+	  var units = inputEx.TimeIntervalField.units,
+	  		messages = Y.Intl.get("inputex-timeinterval"),
+	  		unitsStr = messages.timeUnits,
+	  		n=[], i, 
+	  		fields; 
+
+	  for(i=1;i !=30;i++){ n.push(i); }
+	  		
+	  		fields = [
 	       {type: 'select', choices: n },
 	       {
 	          type: 'select',
