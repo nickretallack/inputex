@@ -4,6 +4,7 @@
 		  "inputex-string"
 		],
 		"ix_provides": "date",
+      "skinnable" : true,
       "lang": [
          "en",
          "fr",
