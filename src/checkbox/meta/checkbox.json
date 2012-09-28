@@ -3,6 +3,7 @@
 		"requires": [
 		  "inputex-field"
    	    ],
-		"ix_provides": "boolean"
+		"ix_provides": "boolean",
+      "skinnable" : true
 	}
 }
