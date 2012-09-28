@@ -3,6 +3,7 @@
 		"requires": [
 		  "inputex-group"
 		],
-		"ix_provides": "combine"
+		"ix_provides": "combine",
+      "skinnable" : true
 	}
 }
