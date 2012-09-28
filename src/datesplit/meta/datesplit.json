@@ -4,6 +4,15 @@
 		  "inputex-combine",
 		  "inputex-integer"
 		],
-		"ix_provides": "datesplit"
+		"ix_provides": "datesplit",
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
 	}
 }
