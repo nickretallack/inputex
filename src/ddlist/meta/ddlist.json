@@ -5,6 +5,7 @@
 		  "array-extras",
 		  "sortable",
 		  "substitute"
-		]
+		],
+      "skinnable" : true
 	}
 }
