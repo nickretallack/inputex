@@ -1,0 +1,31 @@
+div.inputEx-Form-buttonBar {
+   margin: 3px 0 0 137px;
+}
+
+.inputEx-Button { margin:0 4px 0 0; }
+
+div.inputEx-Form-Mask {
+   height:275px;
+   left:0pt;
+   position:absolute;
+   top:0pt;
+   width:180px;
+}
+
+div.inputEx-Form-Mask div.inputEx-Form-Mask-bg {
+   background-color:#FFFFFF;
+   height:100%;
+   left:0pt;
+   opacity:0.9;
+   position:absolute;
+   top:0pt;
+   width:100%;
+}
+div.inputEx-Form-Mask div.inputEx-Form-Mask-spinner {
+   width: 36px;
+   height: 36px;
+   background-image: url(images/spinner.gif);
+}
+div.inputEx-Form-Mask span {
+   color:#666666;
+}
