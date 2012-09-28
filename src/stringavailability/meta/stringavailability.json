@@ -6,6 +6,15 @@
          "io",
          "json-parse"
       ],
-      "skinnable": true
+      "skinnable": true,
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
    }
 }
