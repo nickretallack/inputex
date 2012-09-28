@@ -4,6 +4,7 @@
          "inputex-field",
          "slider"
       ],
-      "ix_provides": "slider"
+      "ix_provides": "slider",
+      "skinnable" : true
    }
 }
