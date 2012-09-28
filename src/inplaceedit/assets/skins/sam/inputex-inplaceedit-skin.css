@@ -1,0 +1,8 @@
+div.inputEx-InPlaceEdit-visu { cursor: pointer; padding: 3px; }
+
+.inputEx-InPlaceEdit-editor .inputEx-InPlaceEdit-editorDiv {
+  float: left;
+  margin-bottom:0; /* remove 0.2em bottom margin because no need to cumulate field and editor-field margins */
+}
+
+.inputEx-InPlaceEdit-OkButton { margin-left: 5px; }
