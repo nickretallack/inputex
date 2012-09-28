@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-password_de",function(e){e.Intl.add("inputex-password","de",{invalidPassword:["Das Passwort muss aus mindestens "," Zeichen bestehen"],invalidPasswordConfirmation:"Das Passwort stimmt nicht überein!",passwordStrength:"Das Passwort ist zu schwach",capslockWarning:"Achtung: die caps-lock Taste ist aktiviert"})},"@VERSION@");

@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-datepicker_nl",function(e){e.Intl.add("inputex-datepicker","nl",{defaultCalendarOpts:{navigator:{strings:{month:"Kies een maand",year:"Voer een jaar in",submit:"Ok",cancel:"Annuleren",invalidYear:"Jaar is incorrect"}},start_weekday:0}})},"@VERSION@");

@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-field_it",function(e){e.Intl.add("inputex-field","it",{required:"Questo campo è obbligatorio",invalid:"Questo campo non è stato validato",valid:"Questo campo è stato validato"})},"@VERSION@");

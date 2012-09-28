@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-stringavailability",function(e){e.Intl.add("inputex-stringavailability","",{stringLoading:"Vérification de disponibilité ...",stringAvailable:"La ressource est disponible !",stringUnAvailable:"La ressource est indisponible",errorDataText:"Une erreur s'est produite"})},"@VERSION@");

@@ -1,0 +1,11 @@
+{
+    "name": "inputex-builder",
+    "builds": {
+        "inputex-builder": {
+            "jsfiles": [
+				"jsonPretty.js",
+                "builder.js"
+            ]
+        }
+	}
+}

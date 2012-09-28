@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-timeinterval_es",function(e){e.Intl.add("inputex-timeinterval","es",{timeUnits:{SECOND:"segundos",MINUTE:"minutos",HOUR:"horas",DAY:"días",MONTH:"meses",YEAR:"años"}})},"@VERSION@");

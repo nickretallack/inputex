@@ -1,0 +1,36 @@
+
+YUI().use('inputex-autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', function(Y) {
+
+    // Example 2: Delicious autocompleter
+
+    // Delicious DataSource using a JSFunction
+    // Delicious.posts is set by the http://feeds.delicious.com/v2/json/neyric?count=50 script included in the page
+
+    var deliciousAC = new Y.inputEx.AutoComplete({
+
+       label: 'Search my delicious bookmarks',
+       description: 'Try "javascript" or "rails"',
+       parentEl: 'field-container', 
+       name: 'chosen_url',
+
+       // Format the hidden value (value returned by the form)
+       returnValue: function(post) {
+          return post.u; // return post URL
+       },
+       // Autocompleter options
+       autoComp: {
+          source: 'http://feeds.delicious.com/v2/json/neyric?count=50&callback={callback}',
+          forceSelection: true,
+          minQueryLength: 2,
+          maxResultsDisplayed: 50,
+          resultFilters: 'subWordMatch',
+          resultHighlighter: 'subWordMatch',
+          resultTextLocator: 'd'
+       }
+    });
+
+    Y.Node.create("<button>GetValue</button>").appendTo('#container2').on('click', function() {
+       alert( deliciousAC.getValue() );
+    });
+
+});

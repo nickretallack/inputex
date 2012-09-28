@@ -1,7 +1,7 @@
 {
    "name": "inputex-autocomplete",
-   "displayName": "inputex-autocomplete",
-   "description": "inputex-autocomplete",
+   "displayName": "Autocomplete field",
+   "description": "YUI autocomplete widget wrapper",
    "author": "neyric",
    "tags": [
       "inputex-autocomplete"
@@ -10,5 +10,23 @@
       "inputex-string",
       "autocomplete"
    ],
-   "examples": []
+   "examples": [
+	   {
+	       "name"       : "autocomplete",
+	       "displayName": "Basic autocomplete creation",
+	       "description": "How to create an autocomplete field.",
+	       "modules"    : ["inputex-autocomplete"],
+	       "tags"       : ["autocomplete"],
+	       "hideTableOfContents": true
+	   },
+	   {
+	       "name"       : "delicious-autocomplete",
+	       "displayName": "Using a JSONP datasource (delicious)",
+	       "description": "Using a JSONP datasource (delicious)",
+	       "modules"    : ["inputex-autocomplete"],
+	       "tags"       : ["autocomplete"],
+	       "hideTableOfContents": true
+	   }
+		   
+   ]
 }

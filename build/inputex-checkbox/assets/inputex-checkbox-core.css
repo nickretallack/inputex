@@ -1,0 +1,4 @@
+/* Common css */
+div.inputEx-CheckBox { padding-top:0.2em; }
+div.inputEx-CheckBox input { margin-right: 0.2em; }
+label.inputExForm-checkbox-rightLabel { cursor:pointer; }

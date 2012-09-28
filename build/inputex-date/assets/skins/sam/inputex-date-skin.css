@@ -1,0 +1,8 @@
+div.inputEx-DateField {
+   background: transparent url(images/calendar.gif) no-repeat scroll left center;
+   padding-left: 20px;
+}
+
+div.inputEx-DateField input {
+   width: 75px;
+}

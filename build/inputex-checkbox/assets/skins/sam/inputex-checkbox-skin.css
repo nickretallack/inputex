@@ -1,0 +1,5 @@
+/* Awful hack to target IE < 8 */
+div.inputEx-CheckBox { *padding-top:0; }
+
+/* Awful hack to target webkit */
+@media screen and (-webkit-min-device-pixel-ratio:0) { div.inputEx-CheckBox input {position:relative; top:1px;} }

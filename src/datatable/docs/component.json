@@ -11,5 +11,14 @@
       "inputex-panel",
       "datatable"
    ],
-   "examples": []
+   "examples": [
+	   {
+	       "name"       : "datatable",
+	       "displayName": "Basic datatable creation",
+	       "description": "How to create a datatable.",
+	       "modules"    : ["inputex-datatable"],
+	       "tags"       : ["datatable"],
+	       "hideTableOfContents": true
+	   }   		
+   ]
 }

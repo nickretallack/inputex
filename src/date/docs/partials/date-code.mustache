@@ -1,0 +1,49 @@
+YUI().use('inputex-date', function(Y) {
+	
+	
+	new Y.inputEx.DateField({parentEl: 'container1', value: new Date(), showMsg: true});
+	
+	
+	new Y.inputEx.DateField({dateFormat: 'd/m/Y', value: '27/03/2008', parentEl: 'container2', showMsg: true});
+	
+	
+	
+	var exampleDiv = Y.one('#container3');
+	var dateField = new Y.inputEx.DateField({value: new Date(),  parentEl: exampleDiv, showMsg: true, required:true, typeInvite:'m/d/Y'}); 
+	dateField.on('updated', function(val) {
+		exampleDiv.appendChild( Y.inputEx.cn('div', null, null, val) ); 
+	});
+
+	var button1 = Y.inputEx.cn('button', null, null, 'setValue()');
+	exampleDiv.appendChild(button1); 
+	Y.one(button1).on('click', function() { dateField.setValue("11/26/1980"); });
+
+	var button2 = Y.inputEx.cn('button', null, null, 'getValue()');
+	exampleDiv.appendChild(button2); 
+	Y.one(button2).on('click', function() { alert(dateField.getValue()); });
+	
+	
+	
+	
+	
+	// Instantiate the date field
+	var stringdateField = new Y.inputEx.DateField({value: new Date(),  parentEl: 'container4', showMsg: true, required:true, typeInvite:'m/d/Y', valueFormat: 'Y-m-d'}); 
+			
+	// Logger
+	var exampleDiv = Y.one('#container4');
+	stringdateField.on('updated', function(val) {
+		exampleDiv.appendChild( Y.inputEx.cn('div', null, null, val) ); 
+	});
+
+	// Set the value according to the valueFormat
+	var button1 = Y.inputEx.cn('button', null, null, 'setValue()');
+	exampleDiv.appendChild(button1); 
+	Y.one(button1).on('click', function() { stringdateField.setValue("1980-11-16"); });
+
+	// The returned value will use the valueFormat too
+	var button2 = Y.inputEx.cn('button', null, null, 'getValue()');
+	exampleDiv.appendChild(button2); 
+	Y.one(button2).on('click', function() { alert(stringdateField.getValue()); });
+	
+	
+});

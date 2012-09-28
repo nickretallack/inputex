@@ -1,0 +1,11 @@
+.yui-skin-sam div.inputEx-AutoComplete .yui-ac-input {
+   width: auto;
+   position: relative;
+}
+.yui-skin-sam div.inputEx-AutoComplete .yui-ac-content {
+   width: auto;
+}
+div.inputEx-AutoComplete div.yui-ac-container {
+   margin-bottom:2em;
+   width:25em;
+}
