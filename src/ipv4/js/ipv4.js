@@ -23,7 +23,11 @@ Y.extend(inputEx.IPv4Field, inputEx.StringField, {
     */
    setOptions: function(options) {
       inputEx.IPv4Field.superclass.setOptions.call(this, options);
-      this.options.messages.invalid = inputEx.messages.invalidIPv4;
+
+      // I18N
+      this.messages = Y.mix(this.messages,Y.Intl.get("inputex-ipv4"));
+
+      this.messages.invalid = this.messages.invalidIPv4;
       this.options.regexp = /^(?:1\d?\d?|2(?:[0-4]\d?|[6789]|5[0-5]?)?|[3-9]\d?|0)(?:\.(?:1\d?\d?|2(?:[0-4]\d?|[6789]|5[0-5]?)?|[3-9]\d?|0)){3}$/;
    }
   

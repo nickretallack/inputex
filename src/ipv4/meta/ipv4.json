@@ -3,6 +3,15 @@
       "requires": [
          "inputex-string"
       ],
-      "ix_provides": "ipv4"
+      "ix_provides": "ipv4",
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
    }
 }
