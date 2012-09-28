@@ -3,6 +3,7 @@
       "requires": [
          "inputex-field"
       ],
-      "ix_provides": "imagecropper"
+      "ix_provides": "imagecropper",
+      "skinnable" : true
    }
 }
