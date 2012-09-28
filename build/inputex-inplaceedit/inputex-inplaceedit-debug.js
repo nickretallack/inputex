@@ -34,6 +34,9 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
    setOptions: function(options) {
       inputEx.InPlaceEdit.superclass.setOptions.call(this, options);
       
+      //I18N
+      this.messages = Y.mix(this.messages, Y.Intl.get("inputex-inplaceedit"));
+      
       this.options.visu = options.visu;
       
       this.options.editorField = options.editorField;
@@ -42,12 +45,12 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
       
       this.options.buttonConfigs = options.buttonConfigs || [{
                type: "submit",
-               value: inputEx.messages.okEditor,
+               value: this.messages.okEditor,
                className: "inputEx-Button "+CSS_PREFIX+'OkButton',
                onClick: {fn: this.onOkEditor, scope:this}
             },{
                type: "link",
-               value: inputEx.messages.cancelEditor,
+               value: this.messages.cancelEditor,
                className: "inputEx-Button "+CSS_PREFIX+'CancelLink',
                onClick: {fn: this.onCancelEditor, scope:this}
             }];
@@ -169,7 +172,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
          this.formattedContainer.innerHTML = this.options.formatValue(this.options.value);
       }
       else {
-         this.formattedContainer.innerHTML = lang.isUndefined(this.options.value) ? inputEx.messages.emptyInPlaceEdit: this.options.value;
+         this.formattedContainer.innerHTML = lang.isUndefined(this.options.value) ? this.messages.emptyInPlaceEdit: this.options.value;
       }
       
       this.fieldContainer.appendChild(this.formattedContainer);
@@ -333,7 +336,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
      this.value = value;
    
       if(lang.isUndefined(value) || value === "") {
-         inputEx.renderVisu(this.options.visu, inputEx.messages.emptyInPlaceEdit, this.formattedContainer);
+         inputEx.renderVisu(this.options.visu, this.messages.emptyInPlaceEdit, this.formattedContainer);
       }
       else {
          inputEx.renderVisu(this.options.visu, this.value, this.formattedContainer);
@@ -365,4 +368,4 @@ inputEx.registerType("inplaceedit", inputEx.InPlaceEdit, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "inputex-button", "anim", "inputex-visus"], "ix_provides": "inplaceedit"});
+}, '@VERSION@', {"requires": ["inputex-field", "inputex-button", "anim", "inputex-visus"], "ix_provides": "inplaceedit", "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

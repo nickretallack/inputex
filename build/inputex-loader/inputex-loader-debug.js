@@ -33,7 +33,8 @@ YUI().use(function(Y) {
         "requires": [
             "inputex-string",
             "autocomplete"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-base": {
         "requires": [
@@ -51,7 +52,8 @@ YUI().use(function(Y) {
         "ix_provides": "boolean",
         "requires": [
             "inputex-field"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-choice": {
         "requires": [
@@ -72,9 +74,19 @@ YUI().use(function(Y) {
         "ix_provides": "combine",
         "requires": [
             "inputex-group"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-datatable": {
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-group",
             "inputex-panel",
@@ -84,22 +96,51 @@ YUI().use(function(Y) {
     },
     "inputex-date": {
         "ix_provides": "date",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-string"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-datepicker": {
         "ix_provides": "datepicker",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-date",
             "event-outside",
             "node-event-delegate",
             "overlay",
             "calendar"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-dateselectmonth": {
         "ix_provides": "dateselectmonth",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-combine",
             "inputex-string",
@@ -108,6 +149,15 @@ YUI().use(function(Y) {
     },
     "inputex-datesplit": {
         "ix_provides": "datesplit",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-combine",
             "inputex-integer"
@@ -127,7 +177,8 @@ YUI().use(function(Y) {
             "array-extras",
             "sortable",
             "substitute"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-dsselect": {
         "ix_provides": "dsselect",
@@ -138,14 +189,34 @@ YUI().use(function(Y) {
     },
     "inputex-email": {
         "ix_provides": "email",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-string"
         ]
     },
     "inputex-field": {
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
-            "inputex"
-        ]
+            "inputex",
+            "intl"
+        ],
+        "skinnable": true
     },
     "inputex-file": {
         "ix_provides": "file",
@@ -155,18 +226,29 @@ YUI().use(function(Y) {
     },
     "inputex-form": {
         "ix_provides": "form",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "io-base",
             "inputex-group",
             "json",
             "inputex-button"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-group": {
         "ix_provides": "group",
         "requires": [
             "inputex-field"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-hidden": {
         "ix_provides": "hidden",
@@ -178,16 +260,27 @@ YUI().use(function(Y) {
         "ix_provides": "imagecropper",
         "requires": [
             "inputex-field"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-inplaceedit": {
         "ix_provides": "inplaceedit",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-field",
             "inputex-button",
             "anim",
             "inputex-visus"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-integer": {
         "ix_provides": "integer",
@@ -197,6 +290,15 @@ YUI().use(function(Y) {
     },
     "inputex-ipv4": {
         "ix_provides": "ipv4",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-string"
         ]
@@ -239,6 +341,15 @@ YUI().use(function(Y) {
     },
     "inputex-list": {
         "ix_provides": "list",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-field",
             "anim"
@@ -253,6 +364,15 @@ YUI().use(function(Y) {
     },
     "inputex-menu": {
         "ix_provides": "menu",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-field",
             "node-event-delegate",
@@ -299,9 +419,19 @@ YUI().use(function(Y) {
     },
     "inputex-password": {
         "ix_provides": "password",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-string"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-radio": {
         "ix_provides": "radio",
@@ -311,10 +441,20 @@ YUI().use(function(Y) {
             "inputex-field",
             "inputex-choice",
             "inputex-string"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-ratingstars": {
         "ix_provides": "ratingstars",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-field"
         ],
@@ -362,7 +502,8 @@ YUI().use(function(Y) {
         "requires": [
             "inputex-field",
             "slider"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-smdtester": {
         "requires": [
@@ -372,12 +513,31 @@ YUI().use(function(Y) {
     },
     "inputex-string": {
         "ix_provides": "string",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-field",
             "event-key"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-stringavailability": {
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-string",
             "event-key",
@@ -388,6 +548,15 @@ YUI().use(function(Y) {
     },
     "inputex-textarea": {
         "ix_provides": "text",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-string"
         ]
@@ -407,6 +576,15 @@ YUI().use(function(Y) {
     },
     "inputex-timeinterval": {
         "ix_provides": "timeinterval",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-combine",
             "inputex-select"
@@ -461,9 +639,19 @@ YUI().use(function(Y) {
     },
     "inputex-url": {
         "ix_provides": "url",
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ],
         "requires": [
             "inputex-string"
-        ]
+        ],
+        "skinnable": true
     },
     "inputex-vector": {
         "ix_provides": "vector",

@@ -27,7 +27,11 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
     * @param {Object} options Options object as passed to the constructor
     */
    setOptions: function(options) {
+
       inputEx.DatePickerField.superclass.setOptions.call(this, options);
+
+      // I18N
+      this.messages = Y.mix(this.messages,Y.Intl.get("inputex-datepicker"));
 
       // Overwrite default options
       this.options.className = options.className ? options.className : 'inputEx-Field inputEx-DateField inputEx-PickerField inputEx-DatePickerField';
@@ -35,7 +39,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       this.options.readonly = lang.isUndefined(options.readonly) ? true : options.readonly;
 
       // Added options
-      this.options.calendar = options.calendar || inputEx.messages.defaultCalendarOpts;
+      this.options.calendar = options.calendar || this.messages.defaultCalendarOpts;
       this.options.zIndex   = options.zIndex || 4;
    },
 
@@ -204,11 +208,11 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
    }
 
 });
-
-inputEx.messages.defaultCalendarOpts = { navigator: true };
+//
+// this.messages.defaultCalendarOpts = { navigator: true };
 
 // Register this class as "datepicker" type
 inputEx.registerType("datepicker", inputEx.DatePickerField);
 
 
-}, '@VERSION@', {"requires": ["inputex-date", "event-outside", "node-event-delegate", "overlay", "calendar"], "ix_provides": "datepicker"});
+}, '@VERSION@', {"requires": ["inputex-date", "event-outside", "node-event-delegate", "overlay", "calendar"], "ix_provides": "datepicker", "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

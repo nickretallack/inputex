@@ -224,4 +224,4 @@ inputEx.registerType("combine", inputEx.CombineField, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-group"], "ix_provides": "combine"});
+}, '@VERSION@', {"requires": ["inputex-group"], "ix_provides": "combine", "skinnable": true});

@@ -5,8 +5,7 @@ YUI.add('inputex-datatable', function (Y, NAME) {
  * @module inputex-datatable
  */
 
-    var inputEx = Y.inputEx,
-        MSGS = Y.inputEx.messages;
+    var inputEx = Y.inputEx;
 
     // namespace definition
     Y.namespace('inputEx.Plugin');
@@ -90,11 +89,11 @@ YUI.add('inputex-datatable', function (Y, NAME) {
          */
         addAddButton : function(){
             if(!this.get("disableAddFunc")){
-            var button = Y.Node.create("<button id='addButton'>"+MSGS.addButtonText+"</button"),
+            var button = Y.Node.create("<button id='addButton'>"+this.get("strings").addButtonText+"</button"),
                 panel = this.get("panel");
             this.get("host").get("contentBox").append(button);
             button.on("click",function  (e) {
-                panel.set("headerContent",MSGS.addItemHeader);
+                panel.set("headerContent",this.get("strings").addItemHeader);
                 panel.get("field").clear();
                 panel.show();
             },this);
@@ -108,7 +107,7 @@ YUI.add('inputex-datatable', function (Y, NAME) {
                 e.stopPropagation();
                 var record = this.get("host").getRecord(e.currentTarget),
                     panel = this.get("panel");
-                panel.set("headerContent",MSGS.modifyItemHeader);
+                panel.set("headerContent",this.get("strings").modifyItemHeader);
                 panel.get('field').setValue(record.getAttrs());
                 panel.show();
         },
@@ -119,7 +118,7 @@ YUI.add('inputex-datatable', function (Y, NAME) {
         deleteRecord : function(e){
                 e.stopPropagation();
                 var record = this.get("host").getRecord(e.currentTarget);
-                if (!this.get("confirmDelete") || confirm(MSGS.confirmDeletion)) {
+                if (!this.get("confirmDelete") || confirm(this.get("strings").confirmDeletion)) {
                     this.get("host").get("data").remove(record);
                 }
         },
@@ -153,13 +152,13 @@ YUI.add('inputex-datatable', function (Y, NAME) {
                 inputEx: that.get("inputEx"),
           
       buttons: [{
-          value: MSGS.cancelText,
+          value: this.get("strings").cancelText,
           action: function (e) {
               e.preventDefault();
               panel.hide();
           }
       },{
-          value: MSGS.saveText,
+          value: this.get("strings").saveText,
           action: function (e) {
               e.preventDefault();
 
@@ -251,7 +250,7 @@ YUI.add('inputex-datatable', function (Y, NAME) {
          */
         addModifyColumn : function(){
                 this.get("host").addColumn({
-                key: this.get("modifyColumnLabel"),
+                key: this.get("strings").modifyText,
                 className: "inputEx-DataTable-modify"
             });
         },
@@ -262,7 +261,7 @@ YUI.add('inputex-datatable', function (Y, NAME) {
          */
         addDeleteColumn : function(){
             this.get("host").addColumn({
-                key: this.get("deleteColumnLabel"),
+                key: this.get("strings").deleteText,
                 className: "inputEx-DataTable-delete"
             });
         },
@@ -283,6 +282,9 @@ YUI.add('inputex-datatable', function (Y, NAME) {
                 s = size ? size : 5;
             prefixId = prefixId ? prefixId : "";
             return prefixId + Math.floor(Math.random()*Math.pow(10,s));
+        },
+        _initStrings : function(){
+            return Y.Intl.get("inputex-datatable");
         }
     }, {
 /**
@@ -347,21 +349,14 @@ ATTRS: {
         value: false
     },
     /**
-     * Label of the modify column
+     * Labels of the plugin
      *
      * @attribute modifyColumnLabel
      */
-    modifyColumnLabel: {
-        value: MSGS.modifyText
-    },
-    /**
-     * Label of the delete column
-     *
-     * @attribute deleteColumnLabel
-     */
-    deleteColumnLabel: {
-        value: MSGS.deleteText
-    },
+     strings : {
+        value : null,
+        valueFn : '_initStrings'
+     },
     /**
      * If true a confirmation will be asked to the user when a delete attempt appear
      *
@@ -383,4 +378,4 @@ ATTRS: {
 }});
 
 
-}, '@VERSION@', {"requires": ["inputex-group", "inputex-panel", "datatable"], "skinnable": true});
+}, '@VERSION@', {"requires": ["inputex-group", "inputex-panel", "datatable"], "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

@@ -7,10 +7,6 @@ YUI.add('inputex-field', function (Y, NAME) {
      var lang = Y.Lang,
           inputEx = Y.inputEx;
 
-
-    // TODO: GWOHACKPASBO, we should load string resources by module
-    Y.inputEx.messages = Y.Intl.get("inputex");
-
   /** 
    * An abstract class (never instantiated) that contains the shared features for all fields.
    * @class inputEx.Field
@@ -26,6 +22,9 @@ YUI.add('inputex-field', function (Y, NAME) {
    */
   inputEx.Field = function(options) {
 	
+      // I18N
+      this.messages = Y.Intl.get("inputex-field");
+
 	  // Set the default values of the options
 	  this.setOptions(options || {});
 	
@@ -82,10 +81,8 @@ YUI.add('inputex-field', function (Y, NAME) {
         this.options.wrapperClassName = options.wrapperClassName;
         
         // Define default messages
-        this.options.messages = {};
-        this.options.messages.required = (options.messages && options.messages.required) ? options.messages.required : inputEx.messages.required;
-        this.options.messages.invalid = (options.messages && options.messages.invalid) ? options.messages.invalid : inputEx.messages.invalid;
-        //this.options.messages.valid = (options.messages && options.messages.valid) ? options.messages.valid : inputEx.messages.valid;
+        this.messages.required = (options.messages && options.messages.required) ? options.messages.required : this.messages.required;
+        this.messages.invalid = (options.messages && options.messages.invalid) ? options.messages.invalid : this.messages.invalid;
         
         // Other options
         this.options.className = options.className ? options.className : 'inputEx-Field';
@@ -241,10 +238,10 @@ YUI.add('inputex-field', function (Y, NAME) {
       */
 	  getStateString: function(state) {
         if(state == inputEx.stateRequired) {
-           return this.options.messages.required;
+           return this.messages.required;
         }
         else if(state == inputEx.stateInvalid) {
-           return this.options.messages.invalid;
+           return this.messages.invalid;
         }
         else {
            return '';
@@ -444,4 +441,4 @@ YUI.add('inputex-field', function (Y, NAME) {
   ];
 
 
-}, '@VERSION@', {"requires": ["inputex"]});
+}, '@VERSION@', {"requires": ["inputex", "intl"], "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

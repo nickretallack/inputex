@@ -27,14 +27,17 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
     setOptions: function(options) {
       inputEx.StringAvailability.superclass.setOptions.call(this, options);
       
+      // I18N
+      this.messages = Y.mix(this.messages,Y.Intl.get("inputex-stringavailability"));
+
       // Server URI
       this.options.uri = options.uri;
 
       // Messages
-      this.options.messages.stringLoading = (options.messages && options.messages.stringLoading) ? options.messages.stringLoading : inputEx.messages.stringLoading;
-      this.options.messages.stringAvailable = (options.messages && options.messages.stringAvailable) ? options.messages.stringAvailable : inputEx.messages.stringAvailable;
-      this.options.messages.stringUnAvailable = (options.messages && options.messages.stringUnAvailable) ? options.messages.stringUnAvailable : inputEx.messages.stringUnAvailable;
-      this.options.messages.errorDataText = (options.messages && options.messages.errorDataText) ? options.messages.errorDataText : inputEx.messages.errorDataText;
+      this.messages.stringLoading = (options.messages && options.messages.stringLoading) ? options.messages.stringLoading : this.messages.stringLoading;
+      this.messages.stringAvailable = (options.messages && options.messages.stringAvailable) ? options.messages.stringAvailable : this.messages.stringAvailable;
+      this.messages.stringUnAvailable = (options.messages && options.messages.stringUnAvailable) ? options.messages.stringUnAvailable : this.messages.stringUnAvailable;
+      this.messages.errorDataText = (options.messages && options.messages.errorDataText) ? options.messages.errorDataText : this.messages.errorDataText;
       
       // Must hide default Msg to do it custom
       this.options.showMsg = false;
@@ -175,19 +178,19 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
          return;
       }
       else if(state === "loading"){
-         this.availabilityDivText.innerHTML = this.options.messages.stringLoading;
+         this.availabilityDivText.innerHTML = this.messages.stringLoading;
       }
       else if(state === "available"){
-         this.availabilityDivText.innerHTML = this.options.messages.stringAvailable;
+         this.availabilityDivText.innerHTML = this.messages.stringAvailable;
       }
       else if(state === "unavailable"){
-         this.availabilityDivText.innerHTML = this.options.messages.stringUnAvailable;
+         this.availabilityDivText.innerHTML = this.messages.stringUnAvailable;
       }
       else if(state === "required"){
-         this.availabilityDivText.innerHTML = this.options.messages.required;
+         this.availabilityDivText.innerHTML = this.messages.required;
       }
       else if(state === "fail"){
-         this.availabilityDivText.innerHTML = this.options.messages.errorDataText;
+         this.availabilityDivText.innerHTML = this.messages.errorDataText;
       }
       
       // DOM.setAttribute(this.availabilityDiv, 'class', 'availabilityDiv '+state);
@@ -264,4 +267,4 @@ var   that = this,
 inputEx.registerType("string-availability", inputEx.StringAvailability);   
 
 
-}, '@VERSION@', {"requires": ["inputex-string", "event-key", "io", "json-parse"], "skinnable": true});
+}, '@VERSION@', {"requires": ["inputex-string", "event-key", "io", "json-parse"], "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

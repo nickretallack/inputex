@@ -28,17 +28,19 @@ Y.extend(inputEx.DateField, inputEx.StringField, {
 	 * @param {Object} options Options object as passed to the constructor
 	 */
    setOptions: function(options) {
-   	inputEx.DateField.superclass.setOptions.call(this, options);
-   	
+
+      inputEx.DateField.superclass.setOptions.call(this, options);   
+
+      this.messages = Y.mix(this.messages,Y.Intl.get("inputex-date"));
+      
    	// Overwrite options
    	this.options.className = options.className ? options.className : 'inputEx-Field inputEx-DateField';
-   	this.options.messages.invalid = options.invalidDate ? options.invalidDate : inputEx.messages.invalidDate;
+   	this.messages.invalid = options.invalidDate ? options.invalidDate : this.messages.invalidDate;
    	
    	// Added options
-   	this.options.dateFormat = options.dateFormat || inputEx.messages.defaultDateFormat;
+   	this.options.dateFormat = options.dateFormat || this.messages.defaultDateFormat;
 		this.options.valueFormat = options.valueFormat;
    },
-	   
 	/**
 	 * Specific Date validation depending of the 'format' option
 	 * @method validate
@@ -151,4 +153,4 @@ inputEx.registerType("date", inputEx.DateField, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "date"});
+}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "date", "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

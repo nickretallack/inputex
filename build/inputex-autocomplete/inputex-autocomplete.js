@@ -175,4 +175,4 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
 inputEx.registerType("autocomplete", inputEx.AutoComplete);
 
 
-}, '@VERSION@', {"requires": ["inputex-string", "autocomplete"], "ix_provides": "autocomplete"});
+}, '@VERSION@', {"requires": ["inputex-string", "autocomplete"], "ix_provides": "autocomplete", "skinnable": true});

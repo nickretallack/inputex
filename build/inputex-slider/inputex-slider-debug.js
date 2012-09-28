@@ -118,4 +118,4 @@ inputEx.registerType("slider", inputEx.SliderField, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "slider"], "ix_provides": "slider"});
+}, '@VERSION@', {"requires": ["inputex-field", "slider"], "ix_provides": "slider", "skinnable": true});

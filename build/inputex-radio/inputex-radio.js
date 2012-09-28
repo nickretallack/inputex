@@ -540,4 +540,4 @@ YUI.add('inputex-radio', function (Y, NAME) {
 	]);
 	
 
-}, '@VERSION@', {"requires": ["selector", "event-delegate", "inputex-field", "inputex-choice", "inputex-string"], "ix_provides": "radio"});
+}, '@VERSION@', {"requires": ["selector", "event-delegate", "inputex-field", "inputex-choice", "inputex-string"], "ix_provides": "radio", "skinnable": true});

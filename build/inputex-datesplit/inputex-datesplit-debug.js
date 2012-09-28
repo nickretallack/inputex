@@ -12,8 +12,14 @@ YUI.add('inputex-datesplit', function (Y, NAME) {
  * @extends inputEx.CombineField
  */
 inputEx.DateSplitField = function(options) {
-   	
-   if(!options.dateFormat) {options.dateFormat = inputEx.messages.defaultDateFormat; }
+
+    // The ressource bundle is loaded here because
+    // DateSplitField needs them to construct his fields
+
+    // this.messages will be overridden by the constructor of Field and re-loaded and mix in setOptions
+    this.messages = Y.Intl.get("inputex-datesplit");
+
+   if(!options.dateFormat) {options.dateFormat = this.messages.defaultDateFormat; }
    
    var formatSplit = options.dateFormat.split("/");
    this.yearIndex = inputEx.indexOf('Y',formatSplit);
@@ -23,13 +29,13 @@ inputEx.DateSplitField = function(options) {
    options.fields = [];
    for(var i = 0 ; i < 3 ; i++) {
       if(i == this.dayIndex) {
-         options.fields.push({type: 'integer', typeInvite: inputEx.messages.dayTypeInvite, size: 2, trim: true });
+         options.fields.push({type: 'integer', typeInvite: this.messages.dayTypeInvite, size: 2, trim: true });
       }
       else if(i == this.yearIndex) {
-         options.fields.push({type: 'integer', typeInvite: inputEx.messages.yearTypeInvite, size: 4, trim: true });
+         options.fields.push({type: 'integer', typeInvite: this.messages.yearTypeInvite, size: 4, trim: true });
       }
       else {
-         options.fields.push({type: 'integer', typeInvite: inputEx.messages.monthTypeInvite, size: 2, trim: true });
+         options.fields.push({type: 'integer', typeInvite: this.messages.monthTypeInvite, size: 2, trim: true });
       }
    }
 
@@ -42,6 +48,16 @@ inputEx.DateSplitField = function(options) {
 
 Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
    
+    /**
+     * @method setOptions
+     */
+    setOptions: function(options) {
+      inputEx.DateSplitField.superclass.setOptions.call(this, options);
+
+      //I18N
+      this.messages = Y.mix(this.messages, Y.Intl.get("inputex-datesplit"));
+    },
+
    /**
 	 * Set the value. Format the date according to options.dateFormat
 	 * @method setValue
@@ -179,4 +195,4 @@ Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
 inputEx.registerType("datesplit", inputEx.DateSplitField);
 
 
-}, '@VERSION@', {"requires": ["inputex-combine", "inputex-integer"], "ix_provides": "datesplit"});
+}, '@VERSION@', {"requires": ["inputex-combine", "inputex-integer"], "ix_provides": "datesplit", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
