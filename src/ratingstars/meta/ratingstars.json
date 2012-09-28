@@ -4,6 +4,15 @@
          "inputex-field"
       ],
       "skinnable": true,
-      "ix_provides": "ratingstars"
+      "ix_provides": "ratingstars",
+      "lang": [
+         "en",
+         "fr",
+         "de",
+         "es",
+         "fr",
+         "it",
+         "nl"
+      ]
    }
 }
