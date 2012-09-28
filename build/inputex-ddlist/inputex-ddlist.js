@@ -125,4 +125,4 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
    inputEx.registerType("ddlist", DDListField);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "array-extras", "sortable", "substitute"]});
+}, '@VERSION@', {"requires": ["inputex-field", "array-extras", "sortable", "substitute"], "skinnable": true});

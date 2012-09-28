@@ -51,6 +51,8 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	 */
 	setOptions: function(options) {
 	   inputEx.ListField.superclass.setOptions.call(this, options);
+
+	   this.messages = Y.mix(this.messages, Y.Intl.get("inputex-list"));
 	   
 	   this.options.className = options.className ? options.className : 'inputEx-Field inputEx-ListField';
 	   
@@ -59,8 +61,8 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   this.options.useButtons = lang.isUndefined(options.useButtons) ? false : options.useButtons;
 	   this.options.unique = lang.isUndefined(options.unique) ? false : options.unique;
 	   
-	   this.options.listAddLabel = options.listAddLabel || inputEx.messages.listAddLink;
-	   this.options.listRemoveLabel = options.listRemoveLabel || inputEx.messages.listRemoveLink;
+	   this.options.listAddLabel = options.listAddLabel || this.messages.listAddLink;
+	   this.options.listRemoveLabel = options.listRemoveLabel || this.messages.listRemoveLink;
 	   
 	   this.options.maxItems = options.maxItems;
 	   this.options.minItems = options.minItems;
@@ -473,4 +475,4 @@ inputEx.registerType("list", inputEx.ListField, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "anim"], "skinnable": true, "ix_provides": "list"});
+}, '@VERSION@', {"requires": ["inputex-field", "anim"], "skinnable": true, "ix_provides": "list", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

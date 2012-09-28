@@ -15,8 +15,14 @@ YUI.add('inputex-dateselectmonth', function (Y, NAME) {
 		
 		var formatSplit, selectOptions, i, j, monthsNb;
 		
+		// The ressource bundle is loaded here because
+		// DateSelectMonthField needs them to construct his fields
+
+		// this.messages will be overridden by the constructor of Field and re-loaded and mix in setOptions
+		this.messages = Y.Intl.get("inputex-dateselectmonth");
+
 		if (!options.dateFormat) {
-			options.dateFormat = inputEx.messages.defaultDateFormat;
+			options.dateFormat = this.messages.defaultDateFormat;
 		}
 		
 		formatSplit = options.dateFormat.split("/");
@@ -30,17 +36,17 @@ YUI.add('inputex-dateselectmonth', function (Y, NAME) {
 		for (i = 0 ; i < 3 ; i += 1) {
 			
 			if (i === this.dayIndex) {
-				options.fields.push({ type: 'string', typeInvite: inputEx.messages.dayTypeInvite, size: 2 });
+				options.fields.push({ type: 'string', typeInvite: this.messages.dayTypeInvite, size: 2 });
 			}
 			else if (i === this.yearIndex) {
-				options.fields.push({ type: 'string', typeInvite: inputEx.messages.yearTypeInvite, size: 4 });
+				options.fields.push({ type: 'string', typeInvite: this.messages.yearTypeInvite, size: 4 });
 			}
 			else {
 				
-				selectOptions = [{ value: -1, label: inputEx.messages.selectMonth }];
+				selectOptions = [{ value: -1, label: this.messages.selectMonth }];
 				
-				for (j = 0, monthsNb = inputEx.messages.months.length; j < monthsNb; j += 1) {
-					selectOptions.push({ value: j, label: inputEx.messages.months[j] });
+				for (j = 0, monthsNb = this.messages.months.length; j < monthsNb; j += 1) {
+					selectOptions.push({ value: j, label: this.messages.months[j] });
 				}
 				
 				options.fields.push({ type: 'select', choices: selectOptions, value: -1 });
@@ -54,6 +60,16 @@ YUI.add('inputex-dateselectmonth', function (Y, NAME) {
 	};
 	
 	Y.extend(inputEx.DateSelectMonthField, inputEx.CombineField, {
+
+		/**
+		 * @method setOptions
+		 */
+		setOptions: function(options) {
+			inputEx.DateSelectMonthField.superclass.setOptions.call(this, options);
+
+			//I18N
+			this.messages = Y.mix(this.messages, Y.Intl.get("inputex-dateselectmonth"));
+		},
 		
 		/**
 		 * @method setValue
@@ -116,7 +132,7 @@ YUI.add('inputex-dateselectmonth', function (Y, NAME) {
 			//  -> an Invalid Date (== "Invalid Date"), when invalid on FF
 			//  -> NaN, when invalid on IE
 			//
-			// These 3 cases would pass the "val instanceof Date" test, 
+			// These 3 cases would pass the "val instanceof Date" test,
 			// but last 2 cases return NaN on val.getDate(), so "isFinite" test fails.
 			return (val instanceof Date && lang.isNumber(val.getTime()));
 		},
@@ -135,4 +151,4 @@ YUI.add('inputex-dateselectmonth', function (Y, NAME) {
 	inputEx.registerType("dateselectmonth", inputEx.DateSelectMonthField);
 
 
-}, '@VERSION@', {"requires": ["inputex-combine", "inputex-string", "inputex-select"], "ix_provides": "dateselectmonth"});
+}, '@VERSION@', {"requires": ["inputex-combine", "inputex-string", "inputex-select"], "ix_provides": "dateselectmonth", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

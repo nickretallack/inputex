@@ -53,11 +53,14 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
    setOptions: function(options) {
       inputEx.MenuField.superclass.setOptions.call(this,options);
 
+      //I18N
+      this.messages = Y.mix(this.messages, Y.Intl.get("inputex-menu"));
+
       // Overwrite options:
       this.options.className = options.className ? options.className : 'inputEx-Field inputEx-MenuField';
 
       // New options
-      this.options.typeInvite = options.typeInvite || inputEx.messages.menuTypeInvite;
+      this.options.typeInvite = options.typeInvite || this.messages.menuTypeInvite;
       this.options.colorInvite = options.colorInvite || "FFFFFF";
       this.options.menuTrigger = options.menuTrigger || "click";
       this.options.menuOrientation = options.menuOrientation || VERTICAL;
@@ -239,4 +242,4 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
 inputEx.registerType("menu", inputEx.MenuField);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "node-event-delegate", "node-menunav", "substitute"], "skinnable": true, "ix_provides": "menu"});
+}, '@VERSION@', {"requires": ["inputex-field", "node-event-delegate", "node-menunav", "substitute"], "skinnable": true, "ix_provides": "menu", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

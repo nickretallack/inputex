@@ -235,4 +235,4 @@ Y.extend(inputEx.ImageCropperField, inputEx.Field, {
 inputEx.registerType("imagecropper", inputEx.ImageCropperField);
 
 
-}, '@VERSION@', {"requires": ["inputex-field"], "ix_provides": "imagecropper"});
+}, '@VERSION@', {"requires": ["inputex-field"], "ix_provides": "imagecropper", "skinnable": true});

@@ -26,7 +26,12 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
     * @param {Object} options Options object as passed to the constructor
     */
    setOptions: function(options) {
+
       inputEx.Textarea.superclass.setOptions.call(this, options);
+
+      //I18N
+      this.messages = Y.mix(this.messages, Y.Intl.get("inputex-textarea"));
+      
       this.options.rows = options.rows || 6;
       this.options.cols = options.cols || 23;
       
@@ -85,11 +90,11 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
     */
     getStateString: function(state) {
 	   if(state == inputEx.stateInvalid && this.options.minLength && this.el.value.length < this.options.minLength) {  
-	      return inputEx.messages.stringTooShort[0]+this.options.minLength+inputEx.messages.stringTooShort[1];
+	      return this.messages.stringTooShort[0]+this.options.minLength+this.messages.stringTooShort[1];
 	   
 	   // Add message too long
       } else if (state == inputEx.stateInvalid && this.options.maxLength && this.el.value.length > this.options.maxLength) {
-         return inputEx.messages.stringTooLong[0]+this.options.maxLength+inputEx.messages.stringTooLong[1];
+         return this.messages.stringTooLong[0]+this.options.maxLength+this.messages.stringTooLong[1];
       }
 	   return inputEx.Textarea.superclass.getStateString.call(this, state);
 	},
@@ -130,4 +135,4 @@ inputEx.registerType("text", inputEx.Textarea, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "text"});
+}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "text", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

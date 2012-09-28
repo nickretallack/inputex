@@ -33,6 +33,9 @@ Y.extend(inputEx.RatingStars, inputEx.Field,{
   setOptions: function(options){
     inputEx.RatingStars.superclass.setOptions.call(this,options);
     
+    //I18N
+    this.messages = Y.mix(this.messages, Y.Intl.get("inputex-ratingstars"));
+
     // Added options
     if(lang.isArray(options.nStars) && options.nStars[0] && lang.isString(options.nStars[0])){
       this.options.nStars = options.nStars.length;
@@ -49,7 +52,7 @@ Y.extend(inputEx.RatingStars, inputEx.Field,{
     this.disabled = options.disabled || false;
     
     // Overwrite options
-    this.options.message = options.message || inputEx.messages.ratingMsg;
+    this.options.message = options.message || this.messages.ratingMsg;
     this.options.disableMessage = options.disableMessage;
     this.options.className = options.className ? options.className : 'inputEx-Field inputEx-RatingStars';
     this.setMessage();
@@ -196,7 +199,7 @@ Y.extend(inputEx.RatingStars, inputEx.Field,{
      * @method onAsync
      */
     onAsync : function(){
-      this.showMessage("<span class=\"thanks\">"+inputEx.messages.sendingRate+"</span>");
+      this.showMessage("<span class=\"thanks\">"+this.messages.sendingRate+"</span>");
     },
     onEndAsync : function(){
        this.afterRating();
@@ -216,7 +219,7 @@ Y.extend(inputEx.RatingStars, inputEx.Field,{
       
     },
     afterRating: function(){
-      this.showMessage("<span class=\"thanks\">"+inputEx.messages.thanksRate+"</span>");      
+      this.showMessage("<span class=\"thanks\">"+this.messages.thanksRate+"</span>");      
     },
     disable: function(){
       this.disabled = true;  
@@ -238,4 +241,4 @@ Y.extend(inputEx.RatingStars, inputEx.Field,{
  inputEx.registerType("ratingstars", inputEx.RatingStars);
 
 
-}, '@VERSION@', {"requires": ["inputex-field"], "skinnable": true, "ix_provides": "ratingstars"});
+}, '@VERSION@', {"requires": ["inputex-field"], "skinnable": true, "ix_provides": "ratingstars", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

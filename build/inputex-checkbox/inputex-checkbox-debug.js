@@ -167,4 +167,4 @@ inputEx.registerType("boolean", inputEx.CheckBox, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-field"], "ix_provides": "boolean"});
+}, '@VERSION@', {"requires": ["inputex-field"], "ix_provides": "boolean", "skinnable": true});

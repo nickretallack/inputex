@@ -19,7 +19,7 @@ YUI.add('inputex-timeinterval', function (Y, NAME) {
 inputEx.TimeIntervalField = function(options) {
    inputEx.TimeIntervalField.superclass.constructor.call(this,options);
 };
-Y.extend(inputEx.TimeIntervalField, inputEx.CombineField, {   
+Y.extend(inputEx.TimeIntervalField, inputEx.CombineField, {
    
    /**
     * Additional options
@@ -29,8 +29,10 @@ Y.extend(inputEx.TimeIntervalField, inputEx.CombineField, {
       
       inputEx.TimeIntervalField.superclass.setOptions.call(this,options);
       
+      this.messages = Y.mix(this.messages, Y.Intl.get("inputex-timeinterval"));
+
       var units = inputEx.TimeIntervalField.units;
-      var unitsStr = inputEx.messages.timeUnits;
+      var unitsStr = this.messages.timeUnits;
       
       this.options.unit = options.unit || units.SECOND;
       
@@ -116,4 +118,4 @@ inputEx.TimeIntervalField.units = {
 inputEx.registerType("timeinterval", inputEx.TimeIntervalField);
 
 
-}, '@VERSION@', {"requires": ["inputex-combine", "inputex-select"], "ix_provides": "timeinterval"});
+}, '@VERSION@', {"requires": ["inputex-combine", "inputex-select"], "ix_provides": "timeinterval", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

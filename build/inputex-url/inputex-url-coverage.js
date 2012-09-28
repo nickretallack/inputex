@@ -26,10 +26,10 @@ _yuitest_coverage["build/inputex-url/inputex-url.js"] = {
     path: "build/inputex-url/inputex-url.js",
     code: []
 };
-_yuitest_coverage["build/inputex-url/inputex-url.js"].code=["YUI.add('inputex-url', function (Y, NAME) {","","/**"," * @module inputex-url"," */","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * Adds an url regexp, and display the favicon at this url"," * @class inputEx.UrlField"," * @extends inputEx.StringField"," * @constructor"," * @param {Object} options inputEx.Field options object"," * <ul>"," *   <li>favicon: boolean whether the domain favicon.ico should be displayed or not (default is true, except for https)</li>"," * </ul>"," */","inputEx.UrlField = function(options) {","   inputEx.UrlField.superclass.constructor.call(this,options);","};","","Y.extend(inputEx.UrlField, inputEx.StringField, {","","   /**","    * Adds the invalid Url message","    * @method setOptions","    * @param {Object} options Options object as passed to the constructor","    */","   setOptions: function(options) {","      inputEx.UrlField.superclass.setOptions.call(this, options);","","      this.options.className = options.className ? options.className : \"inputEx-Field inputEx-UrlField\";","      this.options.messages.invalid = inputEx.messages.invalidUrl;","      this.options.favicon = lang.isUndefined(options.favicon) ? ((\"https:\" == document.location.protocol) ? false : true) : options.favicon;","      this.options.size = options.size || 50;","","      // validate with url regexp","      this.options.regexp = inputEx.regexps.url;","   },","","   /**","    * Adds a img tag before the field to display the favicon","    * @method render","    */","   render: function() {","      inputEx.UrlField.superclass.render.call(this);","      this.el.size = this.options.size;","","      if(!this.options.favicon) {","         Y.one(this.el).addClass( 'nofavicon');","      }","","      // Create the favicon image tag","      if(this.options.favicon) {","         this.favicon = inputEx.cn('img', {src: inputEx.spacerUrl});","         this.fieldContainer.insertBefore(this.favicon,this.fieldContainer.childNodes[0]);","","         // focus field when clicking on favicon","         Y.on(\"click\",function(){this.focus();},this.favicon,this);","      }","   },","","   /**","    * @method setClassFromState","    */","   setClassFromState: function() {","      inputEx.UrlField.superclass.setClassFromState.call(this);","","      if(this.options.favicon) {","         // try to update with url only if valid url (else pass null to display inputEx.spacerUrl)","         this.updateFavicon((this.previousState == inputEx.stateValid) ? this.getValue() : null);","      }","   },","","   /**","    * @method updateFavicon","    */","   updateFavicon: function(url) {","      var newSrc = url ? url.match(/https?:\\/\\/[^\\/]*/)+'/favicon.ico' : inputEx.spacerUrl;","      if(newSrc != this.favicon.src) {","","         // Hide the favicon","         inputEx.sn(this.favicon, null, {visibility: 'hidden'});","","         // Change the src","         this.favicon.src = newSrc;","","         // Set the timer to launch displayFavicon in 1s","         if(this.timer) { clearTimeout(this.timer); }","         var that = this;","         this.timer = setTimeout(function(){that.displayFavicon();}, 1000);","      }","   },","","   /**","    * Display the favicon if the icon was found (use of the naturalWidth property)","    * @method displayFavicon","    */","   displayFavicon: function() {","      inputEx.sn(this.favicon, null, {visibility: (this.favicon.naturalWidth!==0) ? 'visible' : 'hidden'});","   },","   ","   /**","    * Hide the favicon","    * @method hideFavicon","    */","    hideFavicon: function () {","        this.favicon.hide();","    },","    ","    /**","     * overriding hide in order to hide the favicon too","     * @method hide","     */","    hide: function () {","        inputEx.UrlField.superclass.hide.call(null, this);","        hideFavicon();","    }","});","","// Register this class as \"url\" type","inputEx.registerType(\"url\", inputEx.UrlField, [","   { type: 'boolean', label: 'Display favicon', name:'favicon', value: true}","]);","","","}, '@VERSION@', {\"requires\": [\"inputex-string\"], \"ix_provides\": \"url\"});"];
-_yuitest_coverage["build/inputex-url/inputex-url.js"].lines = {"1":0,"6":0,"19":0,"20":0,"23":0,"31":0,"33":0,"34":0,"35":0,"36":0,"39":0,"47":0,"48":0,"50":0,"51":0,"55":0,"56":0,"57":0,"60":0,"68":0,"70":0,"72":0,"80":0,"81":0,"84":0,"87":0,"90":0,"91":0,"92":0,"101":0,"109":0,"117":0,"118":0,"123":0};
-_yuitest_coverage["build/inputex-url/inputex-url.js"].functions = {"UrlField:19":0,"setOptions:30":0,"(anonymous 2):60":0,"render:46":0,"setClassFromState:67":0,"(anonymous 3):92":0,"updateFavicon:79":0,"displayFavicon:100":0,"hideFavicon:108":0,"hide:116":0,"(anonymous 1):1":0};
-_yuitest_coverage["build/inputex-url/inputex-url.js"].coveredLines = 34;
+_yuitest_coverage["build/inputex-url/inputex-url.js"].code=["YUI.add('inputex-url', function (Y, NAME) {","","/**"," * @module inputex-url"," */","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * Adds an url regexp, and display the favicon at this url"," * @class inputEx.UrlField"," * @extends inputEx.StringField"," * @constructor"," * @param {Object} options inputEx.Field options object"," * <ul>"," *   <li>favicon: boolean whether the domain favicon.ico should be displayed or not (default is true, except for https)</li>"," * </ul>"," */","inputEx.UrlField = function(options) {","   inputEx.UrlField.superclass.constructor.call(this,options);","};","","Y.extend(inputEx.UrlField, inputEx.StringField, {","","   /**","    * Adds the invalid Url message","    * @method setOptions","    * @param {Object} options Options object as passed to the constructor","    */","   setOptions: function(options) {","      inputEx.UrlField.superclass.setOptions.call(this, options);","","     //I18N","      this.messages = Y.mix(this.messages, Y.Intl.get(\"inputex-url\"));","","      this.options.className = options.className ? options.className : \"inputEx-Field inputEx-UrlField\";","      this.messages.invalid = this.messages.invalidUrl;","      this.options.favicon = lang.isUndefined(options.favicon) ? ((\"https:\" == document.location.protocol) ? false : true) : options.favicon;","      this.options.size = options.size || 50;","","      // validate with url regexp","      this.options.regexp = inputEx.regexps.url;","   },","","   /**","    * Adds a img tag before the field to display the favicon","    * @method render","    */","   render: function() {","      inputEx.UrlField.superclass.render.call(this);","      this.el.size = this.options.size;","","      if(!this.options.favicon) {","         Y.one(this.el).addClass( 'nofavicon');","      }","","      // Create the favicon image tag","      if(this.options.favicon) {","         this.favicon = inputEx.cn('img', {src: inputEx.spacerUrl});","         this.fieldContainer.insertBefore(this.favicon,this.fieldContainer.childNodes[0]);","","         // focus field when clicking on favicon","         Y.on(\"click\",function(){this.focus();},this.favicon,this);","      }","   },","","   /**","    * @method setClassFromState","    */","   setClassFromState: function() {","      inputEx.UrlField.superclass.setClassFromState.call(this);","","      if(this.options.favicon) {","         // try to update with url only if valid url (else pass null to display inputEx.spacerUrl)","         this.updateFavicon((this.previousState == inputEx.stateValid) ? this.getValue() : null);","      }","   },","","   /**","    * @method updateFavicon","    */","   updateFavicon: function(url) {","      var newSrc = url ? url.match(/https?:\\/\\/[^\\/]*/)+'/favicon.ico' : inputEx.spacerUrl;","      if(newSrc != this.favicon.src) {","","         // Hide the favicon","         inputEx.sn(this.favicon, null, {visibility: 'hidden'});","","         // Change the src","         this.favicon.src = newSrc;","","         // Set the timer to launch displayFavicon in 1s","         if(this.timer) { clearTimeout(this.timer); }","         var that = this;","         this.timer = setTimeout(function(){that.displayFavicon();}, 1000);","      }","   },","","   /**","    * Display the favicon if the icon was found (use of the naturalWidth property)","    * @method displayFavicon","    */","   displayFavicon: function() {","      inputEx.sn(this.favicon, null, {visibility: (this.favicon.naturalWidth!==0) ? 'visible' : 'hidden'});","   },","   ","   /**","    * Hide the favicon","    * @method hideFavicon","    */","    hideFavicon: function () {","        this.favicon.hide();","    },","    ","    /**","     * overriding hide in order to hide the favicon too","     * @method hide","     */","    hide: function () {","        inputEx.UrlField.superclass.hide.call(null, this);","        hideFavicon();","    }","});","","// Register this class as \"url\" type","inputEx.registerType(\"url\", inputEx.UrlField, [","   { type: 'boolean', label: 'Display favicon', name:'favicon', value: true}","]);","","","}, '@VERSION@', {\"requires\": [\"inputex-string\"], \"ix_provides\": \"url\", \"skinnable\": true, \"lang\": [\"en\", \"fr\", \"de\", \"es\", \"fr\", \"it\", \"nl\"]});"];
+_yuitest_coverage["build/inputex-url/inputex-url.js"].lines = {"1":0,"6":0,"19":0,"20":0,"23":0,"31":0,"34":0,"36":0,"37":0,"38":0,"39":0,"42":0,"50":0,"51":0,"53":0,"54":0,"58":0,"59":0,"60":0,"63":0,"71":0,"73":0,"75":0,"83":0,"84":0,"87":0,"90":0,"93":0,"94":0,"95":0,"104":0,"112":0,"120":0,"121":0,"126":0};
+_yuitest_coverage["build/inputex-url/inputex-url.js"].functions = {"UrlField:19":0,"setOptions:30":0,"(anonymous 2):63":0,"render:49":0,"setClassFromState:70":0,"(anonymous 3):95":0,"updateFavicon:82":0,"displayFavicon:103":0,"hideFavicon:111":0,"hide:119":0,"(anonymous 1):1":0};
+_yuitest_coverage["build/inputex-url/inputex-url.js"].coveredLines = 35;
 _yuitest_coverage["build/inputex-url/inputex-url.js"].coveredFunctions = 11;
 _yuitest_coverline("build/inputex-url/inputex-url.js", 1);
 YUI.add('inputex-url', function (Y, NAME) {
@@ -72,17 +72,21 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
 _yuitest_coverline("build/inputex-url/inputex-url.js", 31);
 inputEx.UrlField.superclass.setOptions.call(this, options);
 
-      _yuitest_coverline("build/inputex-url/inputex-url.js", 33);
-this.options.className = options.className ? options.className : "inputEx-Field inputEx-UrlField";
+     //I18N
       _yuitest_coverline("build/inputex-url/inputex-url.js", 34);
-this.options.messages.invalid = inputEx.messages.invalidUrl;
-      _yuitest_coverline("build/inputex-url/inputex-url.js", 35);
-this.options.favicon = lang.isUndefined(options.favicon) ? (("https:" == document.location.protocol) ? false : true) : options.favicon;
+this.messages = Y.mix(this.messages, Y.Intl.get("inputex-url"));
+
       _yuitest_coverline("build/inputex-url/inputex-url.js", 36);
+this.options.className = options.className ? options.className : "inputEx-Field inputEx-UrlField";
+      _yuitest_coverline("build/inputex-url/inputex-url.js", 37);
+this.messages.invalid = this.messages.invalidUrl;
+      _yuitest_coverline("build/inputex-url/inputex-url.js", 38);
+this.options.favicon = lang.isUndefined(options.favicon) ? (("https:" == document.location.protocol) ? false : true) : options.favicon;
+      _yuitest_coverline("build/inputex-url/inputex-url.js", 39);
 this.options.size = options.size || 50;
 
       // validate with url regexp
-      _yuitest_coverline("build/inputex-url/inputex-url.js", 39);
+      _yuitest_coverline("build/inputex-url/inputex-url.js", 42);
 this.options.regexp = inputEx.regexps.url;
    },
 
@@ -91,29 +95,29 @@ this.options.regexp = inputEx.regexps.url;
     * @method render
     */
    render: function() {
-      _yuitest_coverfunc("build/inputex-url/inputex-url.js", "render", 46);
-_yuitest_coverline("build/inputex-url/inputex-url.js", 47);
+      _yuitest_coverfunc("build/inputex-url/inputex-url.js", "render", 49);
+_yuitest_coverline("build/inputex-url/inputex-url.js", 50);
 inputEx.UrlField.superclass.render.call(this);
-      _yuitest_coverline("build/inputex-url/inputex-url.js", 48);
+      _yuitest_coverline("build/inputex-url/inputex-url.js", 51);
 this.el.size = this.options.size;
 
-      _yuitest_coverline("build/inputex-url/inputex-url.js", 50);
+      _yuitest_coverline("build/inputex-url/inputex-url.js", 53);
 if(!this.options.favicon) {
-         _yuitest_coverline("build/inputex-url/inputex-url.js", 51);
+         _yuitest_coverline("build/inputex-url/inputex-url.js", 54);
 Y.one(this.el).addClass( 'nofavicon');
       }
 
       // Create the favicon image tag
-      _yuitest_coverline("build/inputex-url/inputex-url.js", 55);
+      _yuitest_coverline("build/inputex-url/inputex-url.js", 58);
 if(this.options.favicon) {
-         _yuitest_coverline("build/inputex-url/inputex-url.js", 56);
+         _yuitest_coverline("build/inputex-url/inputex-url.js", 59);
 this.favicon = inputEx.cn('img', {src: inputEx.spacerUrl});
-         _yuitest_coverline("build/inputex-url/inputex-url.js", 57);
+         _yuitest_coverline("build/inputex-url/inputex-url.js", 60);
 this.fieldContainer.insertBefore(this.favicon,this.fieldContainer.childNodes[0]);
 
          // focus field when clicking on favicon
-         _yuitest_coverline("build/inputex-url/inputex-url.js", 60);
-Y.on("click",function(){_yuitest_coverfunc("build/inputex-url/inputex-url.js", "(anonymous 2)", 60);
+         _yuitest_coverline("build/inputex-url/inputex-url.js", 63);
+Y.on("click",function(){_yuitest_coverfunc("build/inputex-url/inputex-url.js", "(anonymous 2)", 63);
 this.focus();},this.favicon,this);
       }
    },
@@ -122,14 +126,14 @@ this.focus();},this.favicon,this);
     * @method setClassFromState
     */
    setClassFromState: function() {
-      _yuitest_coverfunc("build/inputex-url/inputex-url.js", "setClassFromState", 67);
-_yuitest_coverline("build/inputex-url/inputex-url.js", 68);
+      _yuitest_coverfunc("build/inputex-url/inputex-url.js", "setClassFromState", 70);
+_yuitest_coverline("build/inputex-url/inputex-url.js", 71);
 inputEx.UrlField.superclass.setClassFromState.call(this);
 
-      _yuitest_coverline("build/inputex-url/inputex-url.js", 70);
+      _yuitest_coverline("build/inputex-url/inputex-url.js", 73);
 if(this.options.favicon) {
          // try to update with url only if valid url (else pass null to display inputEx.spacerUrl)
-         _yuitest_coverline("build/inputex-url/inputex-url.js", 72);
+         _yuitest_coverline("build/inputex-url/inputex-url.js", 75);
 this.updateFavicon((this.previousState == inputEx.stateValid) ? this.getValue() : null);
       }
    },
@@ -138,27 +142,27 @@ this.updateFavicon((this.previousState == inputEx.stateValid) ? this.getValue() 
     * @method updateFavicon
     */
    updateFavicon: function(url) {
-      _yuitest_coverfunc("build/inputex-url/inputex-url.js", "updateFavicon", 79);
-_yuitest_coverline("build/inputex-url/inputex-url.js", 80);
+      _yuitest_coverfunc("build/inputex-url/inputex-url.js", "updateFavicon", 82);
+_yuitest_coverline("build/inputex-url/inputex-url.js", 83);
 var newSrc = url ? url.match(/https?:\/\/[^\/]*/)+'/favicon.ico' : inputEx.spacerUrl;
-      _yuitest_coverline("build/inputex-url/inputex-url.js", 81);
+      _yuitest_coverline("build/inputex-url/inputex-url.js", 84);
 if(newSrc != this.favicon.src) {
 
          // Hide the favicon
-         _yuitest_coverline("build/inputex-url/inputex-url.js", 84);
+         _yuitest_coverline("build/inputex-url/inputex-url.js", 87);
 inputEx.sn(this.favicon, null, {visibility: 'hidden'});
 
          // Change the src
-         _yuitest_coverline("build/inputex-url/inputex-url.js", 87);
+         _yuitest_coverline("build/inputex-url/inputex-url.js", 90);
 this.favicon.src = newSrc;
 
          // Set the timer to launch displayFavicon in 1s
-         _yuitest_coverline("build/inputex-url/inputex-url.js", 90);
+         _yuitest_coverline("build/inputex-url/inputex-url.js", 93);
 if(this.timer) { clearTimeout(this.timer); }
-         _yuitest_coverline("build/inputex-url/inputex-url.js", 91);
+         _yuitest_coverline("build/inputex-url/inputex-url.js", 94);
 var that = this;
-         _yuitest_coverline("build/inputex-url/inputex-url.js", 92);
-this.timer = setTimeout(function(){_yuitest_coverfunc("build/inputex-url/inputex-url.js", "(anonymous 3)", 92);
+         _yuitest_coverline("build/inputex-url/inputex-url.js", 95);
+this.timer = setTimeout(function(){_yuitest_coverfunc("build/inputex-url/inputex-url.js", "(anonymous 3)", 95);
 that.displayFavicon();}, 1000);
       }
    },
@@ -168,8 +172,8 @@ that.displayFavicon();}, 1000);
     * @method displayFavicon
     */
    displayFavicon: function() {
-      _yuitest_coverfunc("build/inputex-url/inputex-url.js", "displayFavicon", 100);
-_yuitest_coverline("build/inputex-url/inputex-url.js", 101);
+      _yuitest_coverfunc("build/inputex-url/inputex-url.js", "displayFavicon", 103);
+_yuitest_coverline("build/inputex-url/inputex-url.js", 104);
 inputEx.sn(this.favicon, null, {visibility: (this.favicon.naturalWidth!==0) ? 'visible' : 'hidden'});
    },
    
@@ -178,8 +182,8 @@ inputEx.sn(this.favicon, null, {visibility: (this.favicon.naturalWidth!==0) ? 'v
     * @method hideFavicon
     */
     hideFavicon: function () {
-        _yuitest_coverfunc("build/inputex-url/inputex-url.js", "hideFavicon", 108);
-_yuitest_coverline("build/inputex-url/inputex-url.js", 109);
+        _yuitest_coverfunc("build/inputex-url/inputex-url.js", "hideFavicon", 111);
+_yuitest_coverline("build/inputex-url/inputex-url.js", 112);
 this.favicon.hide();
     },
     
@@ -188,19 +192,19 @@ this.favicon.hide();
      * @method hide
      */
     hide: function () {
-        _yuitest_coverfunc("build/inputex-url/inputex-url.js", "hide", 116);
-_yuitest_coverline("build/inputex-url/inputex-url.js", 117);
+        _yuitest_coverfunc("build/inputex-url/inputex-url.js", "hide", 119);
+_yuitest_coverline("build/inputex-url/inputex-url.js", 120);
 inputEx.UrlField.superclass.hide.call(null, this);
-        _yuitest_coverline("build/inputex-url/inputex-url.js", 118);
+        _yuitest_coverline("build/inputex-url/inputex-url.js", 121);
 hideFavicon();
     }
 });
 
 // Register this class as "url" type
-_yuitest_coverline("build/inputex-url/inputex-url.js", 123);
+_yuitest_coverline("build/inputex-url/inputex-url.js", 126);
 inputEx.registerType("url", inputEx.UrlField, [
    { type: 'boolean', label: 'Display favicon', name:'favicon', value: true}
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "url"});
+}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "url", "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});

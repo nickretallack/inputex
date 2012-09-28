@@ -549,4 +549,4 @@ inputEx.registerType("group", inputEx.Group, [
 ], true);
 
 
-}, '@VERSION@', {"requires": ["inputex-field"], "ix_provides": "group"});
+}, '@VERSION@', {"requires": ["inputex-field"], "ix_provides": "group", "skinnable": true});

@@ -32,6 +32,9 @@ Y.extend(inputEx.Form, inputEx.Group, {
    setOptions: function(options) {
       inputEx.Form.superclass.setOptions.call(this, options);
 
+      //I18N
+      this.messages = Y.mix(this.messages, Y.Intl.get("inputex-form"));
+
       this.buttons = [];
 
       this.options.buttons = options.buttons || [];
@@ -304,7 +307,7 @@ Y.extend(inputEx.Form, inputEx.Group, {
             width: this.divEl.offsetWidth+"px",
             height: this.divEl.offsetHeight+"px"
          },
-         "<div class='inputEx-Form-Mask-bg'/><center><br/><div class='inputEx-Form-Mask-spinner'></div><br /><span>"+inputEx.messages.ajaxWait+"</span></div>");
+         "<div class='inputEx-Form-Mask-bg'/><center><br/><div class='inputEx-Form-Mask-spinner'></div><br /><span>"+this.messages.ajaxWait+"</span></div>");
       this.divEl.appendChild(this.formMask);
       this.maskRendered = true;
    },
@@ -416,4 +419,4 @@ inputEx.registerType("form", inputEx.Form, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["io-base", "inputex-group", "json", "inputex-button"], "ix_provides": "form"});
+}, '@VERSION@', {"requires": ["io-base", "inputex-group", "json", "inputex-button"], "ix_provides": "form", "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
