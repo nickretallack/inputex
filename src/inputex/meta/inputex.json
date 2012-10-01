@@ -7,17 +7,9 @@
          "base-pluginhost",
          "node-pluginhost",
          "plugin",
-         "node"
+         "node",
+         "intl"
       ],
-      "skinnable": true,
-      "lang": [
-         "en",
-         "fr",
-         "de",
-         "es",
-         "fr",
-         "it",
-         "nl"
-      ]
+      "skinnable": true
    }
 }
