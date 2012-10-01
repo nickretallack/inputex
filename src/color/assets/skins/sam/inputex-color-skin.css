@@ -1,15 +1,10 @@
-
-/**
- * Color Field
- */
-
 /*div.inputEx-ColorField div.yui-overlay div.bd {
    background:white no-repeat scroll 5px 5px;
    border:1px solid #AAAAAA;
 }*/
 
 div.inputEx-ColorField button {
-    background-image: url(palette.png);
+    background-image: url(images/palette.png);
     
    /*background-position: 3px 0;*/
    background-repeat: no-repeat;
