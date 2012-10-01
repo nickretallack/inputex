@@ -1,0 +1,26 @@
+{
+    "projectName": "inputEx",
+
+    "apiDocs": "http://yuilibrary.com/yui/docs/api",
+
+    "yuiBuildUrl"     : "build",
+    "yuiLocalBuildUrl": "build",
+    "yuiVersion"      : "3.6.0",
+    "inputexVersion"   : "3.2.0",
+    "yuiSeedUrl"      : "http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js",
+    
+    "inputexSeedUrl" : "../build/inputex-loader/inputex-loader.js",
+
+    "componentDefaults": {
+        "yuiBuildUrl"     : "../build",
+        "yuiLocalBuildUrl": "../build",
+        "yuiSeedUrl"      : "http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js",
+        "inputexSeedUrl" : "../../build/inputex-loader/inputex-loader.js"
+    },
+
+    "server": {
+        "staticPaths": [
+            "../../../"
+        ]
+    }
+}

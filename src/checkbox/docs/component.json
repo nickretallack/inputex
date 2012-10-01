@@ -1,7 +1,7 @@
 {
    "name": "inputex-checkbox",
-   "displayName": "inputex-checkbox",
-   "description": "inputex-checkbox",
+   "displayName": "Checkbox Field",
+   "description": "A simple checkbox field",
    "author": "neyric",
    "tags": [
       "inputex-checkbox"
@@ -9,5 +9,14 @@
    "use": [
       "inputex-field"
    ],
-   "examples": []
+   "examples": [
+	   {
+	       "name"       : "checkbox",
+	       "displayName": "Basic checkbox",
+	       "description": "How to create a checkbox field.",
+	       "modules"    : ["inputex-checkbox"],
+	       "tags"       : ["checkbox"],
+	       "hideTableOfContents": true
+	   }
+   ]
 }

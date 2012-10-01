@@ -9,6 +9,15 @@
 Release Notes:
 ==============
 
+3.2.0 : not released yet
+-------
+
+ * I18n
+ * Skinnable modules
+ * Selleck docs
+ * tests
+
+
 3.1.0 : August, 17th 2012
 -------
 

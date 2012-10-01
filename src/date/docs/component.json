@@ -9,5 +9,14 @@
    "use": [
       "inputex-string"
    ],
-   "examples": []
+   "examples": [
+	   {
+	       "name"       : "date",
+	       "displayName": "Basic date field creation",
+	       "description": "How to create a date field.",
+	       "modules"    : ["inputex-date"],
+	       "tags"       : ["date"],
+	       "hideTableOfContents": true
+	   }
+   ]
 }

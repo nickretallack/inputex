@@ -1,0 +1,13 @@
+{
+   "name": "inputex-builder",
+   "displayName": "inputEx Builder",
+   "description": "inputEx Form Builder",
+   "author": "neyric",
+   "tags": [
+      "inputex-builder"
+   ],
+   "use": [
+      "inputex-builder"
+   ],
+   "examples": []
+}

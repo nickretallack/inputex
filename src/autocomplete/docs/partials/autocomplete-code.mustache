@@ -1,0 +1,32 @@
+YUI().use('inputex-autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', function(Y) {
+        
+   var field = Y.inputEx({
+      type: "autocomplete",
+      parentEl: 'field-container', 
+      label: 'Search US state',
+
+      // Format the hidden value (value returned by the form)
+      returnValue: function(oResultItem) {
+         return oResultItem.value;
+      },
+      autoComp: {// options of the YUI3 autocompleter (see http://developer.yahoo.com/yui/3/autocomplete/#config)
+         minQueryLength: 2,
+         maxResults: 50,
+         resultTextLocator: 'label',
+         source:
+          [{label: "Massachusets", value: "MA"},
+          {label: "state2", value: 2},
+          {label: "state3", value:3}]
+
+      }
+   });
+
+Y.Node.create("<button>Get Value</button>").appendTo('#container1').on( 'click', function() {
+      alert( field.getValue() );
+   });
+
+   field.on("updated", function(value) {
+     Y.one('#container1').append("<div>Updated at "+(new Date())+" with value '"+value+"'</div>");
+   });
+
+});

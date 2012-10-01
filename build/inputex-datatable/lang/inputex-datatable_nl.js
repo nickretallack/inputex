@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-datatable_nl",function(e){e.Intl.add("inputex-datatable","nl",{saveText:"Opslaan",cancelText:"Annuleren",modifyText:"Wijzigen",deleteText:"Verwijderen",insertItemText:"Toevoegen",confirmDeletion:"Weet u het zeker?"})},"@VERSION@");

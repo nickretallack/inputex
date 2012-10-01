@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-password_es",function(e){e.Intl.add("inputex-password","es",{invalidPassword:["La contrase\u00f1a debe contener al menos ","numeros o letras"],invalidPasswordConfirmation:"las contrase\u00f1as son diferentes!",passwordStrength:"La contrase\u00f1a es demasiado d\u00e9bil",capslockWarning:"Atenci\u00f3n: bloqueo de may\u00fasculas activado"})},"@VERSION@");

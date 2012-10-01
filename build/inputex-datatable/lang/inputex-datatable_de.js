@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-datatable_de",function(e){e.Intl.add("inputex-datatable","de",{saveText:"Speichern",cancelText:"Abbrechen",modifyText:"Bearbeiten",deleteText:"L\u00f6schen",insertItemText:"Einf\u00fcgen",confirmDeletion:"M\u00f6chten Sie das Element wirklich l\u00f6schen?"})},"@VERSION@");

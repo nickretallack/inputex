@@ -13,5 +13,14 @@
       "overlay",
       "calendar"
    ],
-   "examples": []
+	   "examples": [
+		   {
+		       "name"       : "datepicker",
+		       "displayName": "Basic datepicker field creation",
+		       "description": "How to create a datepicker field.",
+		       "modules"    : ["inputex-datepicker"],
+		       "tags"       : ["datepicker"],
+		       "hideTableOfContents": true
+		   }
+   ]
 }

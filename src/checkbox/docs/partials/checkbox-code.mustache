@@ -1,0 +1,46 @@
+
+YUI().use('inputex-checkbox', function(Y){ 
+	
+	new Y.inputEx.CheckBox({parentEl: 'container1'});
+	
+	
+	new Y.inputEx.CheckBox({label: 'Do you like inputEx ?', rightLabel: 'Check me !', parentEl: 'container2', value: false});
+	
+	
+	var field1 = new Y.inputEx.CheckBox({rightLabel: 'I return true/false', parentEl: 'container3'});		
+	Y.Node.create("<button>getValue()</button>").appendTo('#container3').on('click', function() {
+		alert( field1.getValue() );
+	});
+	
+	
+	var field2 = new Y.inputEx.CheckBox({sentValues: ['Yes', 'No'], rightLabel: 'Do you agree ?', parentEl: 'container4', value: 'Yes'});
+	Y.Node.create("<button>getValue()</button>").appendTo('#container4').on('click', function() {
+	  alert( field2.getValue() );
+	});
+	Y.Node.create("<button>setValue('No')</button>").appendTo('#container4').on('click', function() {
+	  field2.setValue('No');
+	});
+	Y.Node.create("<button>setValue('Yes')</button>").appendTo('#container4').on('click', function() {
+	  field2.setValue('Yes');
+	});
+
+	
+	var el = Y.one('#container5');
+	var field = new Y.inputEx.CheckBox({parentEl: el });
+	var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+	el.appendChild(logDiv);
+	field.on('updated', function(value) {
+		logDiv.innerHTML += "Updated at "+(new Date())+" with value : "+value;
+		logDiv.appendChild(Y.inputEx.cn('br'));
+	});
+	
+	
+	
+	var dc = new Y.inputEx.CheckBox({label: 'Disable', parentEl: 'container6'});
+	dc.disable();
+	
+	
+	
+	
+});
+
