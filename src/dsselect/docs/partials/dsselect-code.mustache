@@ -1,0 +1,27 @@
+YUI().use('inputex-dsselect', function(Y) {
+
+
+	// Configure datasource
+	var myDataSource = new Y.DataSource.IO({ source: "books.json" });
+	myDataSource.plug({fn: Y.Plugin.DataSourceJSONSchema, cfg: {
+	    schema: {
+	        resultListLocator: "Results",
+	        resultFields: ["id","quantity","amount","title", "category"]
+	    }
+	}});
+
+	// Instantiate field
+	field = new Y.inputEx.DSSelectField({
+	  name: 'book', 
+	  datasource: myDataSource, 
+	  valueKey: "id", 
+	  labelKey: "title", 
+	  parentEl: 'container1'
+	});
+
+	Y.Node.create("<button>Get Value</button>").appendTo('#container1').on( 'click', function() {
+		alert( field.getValue() );
+	});
+
+
+});

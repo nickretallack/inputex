@@ -1,0 +1,34 @@
+YUI().use('inputex-dateselectmonth', function(Y) {
+
+	var f = new Y.inputEx.DateSelectMonthField({label: 'Birthday', parentEl: 'container1', showMsg: true, required:true});
+
+	f.on('updated',function(val) {
+		Y.one('#container1').appendChild(inputEx.cn('div', null, null, 'Updated with value= '+val));
+	});
+
+	var div = Y.one('#container1');
+
+	var button1 = inputEx.cn('button', null, null, "SetValue with today date");
+	div.appendChild(button1);
+	Y.one(button1).on('click' ,function() { 
+		f.setValue(new Date()); 
+	});
+	var button2 = inputEx.cn('button', null, null, "SetValue with empty string");
+	div.appendChild(button2);
+	Y.one(button2).on('click' ,function() { 
+		f.setValue(''); 
+	});
+
+	var button3 = inputEx.cn('button', null, null, "GetValue");
+	div.appendChild(button3);
+	Y.one(button3).on('click' ,function() { 
+		alert(f.getValue());
+	});
+
+	var button4 = inputEx.cn('button', null, null, "Clear");
+	div.appendChild(button4);
+	Y.one(button4).on('click' ,function() { 
+		f.clear();
+	});
+
+});

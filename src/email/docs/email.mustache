@@ -1,0 +1,48 @@
+<div class="intro">
+<p>
+{{description}}
+</p>
+</div>
+
+<div class="example">
+
+
+	<h2>Basic EmailField creation</h2>
+	<p>Use the following code to create a basic inputEx EmailField.</p>
+	<div class='demoContainer' id='container1'></div>
+	
+	
+	
+    <h2>EmailField with MX correction</h2>
+    <p>Use the following code to help people fix typos in MX:</p>
+    <div class='demoContainer' id='container2'></div>
+	
+	
+	
+    <h2>EmailField rejecting disposable email addresses</h2>
+    <p>Use the following code to reject disposable domains in your registration forms:</p>
+    <div class='demoContainer' id='container3'></div>
+	
+	
+	
+
+<script>
+{{>email-code}}
+</script>
+
+</div>
+
+<h2>HTML</h2>
+
+```
+<div id="field-container"></div>
+```
+
+<h2>JavaScript</h2>
+
+
+<h3>Implementation</h3>
+
+```
+{{>email-code}}
+```

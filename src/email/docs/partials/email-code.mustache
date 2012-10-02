@@ -1,0 +1,41 @@
+YUI().use('inputex-email', function(Y) {
+
+
+	// Example 1
+	var field = new Y.inputEx.EmailField({parentEl: 'container1', showMsg: true });
+
+	var logDiv = inputEx.cn('div', null, null, "Log :");
+	Y.one('#container1').appendChild(logDiv);
+	field.on('updated', function(val) {
+		logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+		logDiv.appendChild(inputEx.cn('br'));
+	});
+	
+	
+	
+	// Example 2
+    var field = new Y.inputEx.EmailField({parentEl: 'container2', showMsg:true, fixdomain:true, description:"Try abc@gmail.co, abc@yaoo.fr..." });
+
+    var logDiv = inputEx.cn('div', null, null, "Log :");
+    Y.one('#container2').appendChild(logDiv);
+    field.on('updated', function(val) {
+       logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+       logDiv.appendChild(inputEx.cn('br'));
+    });
+	
+	
+	// Example 3
+    var field = new Y.inputEx.EmailField({parentEl: 'container3', showMsg:true, disallowDisposable:true, description:"Try abc@trashmail.net, abc@tempomail.com..." });
+
+    var logDiv = inputEx.cn('div', null, null, "Log :");
+    Y.one('#container3').appendChild(logDiv);
+    field.on('updated', function(val) {
+       logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+       logDiv.appendChild(inputEx.cn('br'));
+    });
+	
+	
+	
+	
+
+});
