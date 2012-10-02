@@ -11,5 +11,14 @@
       "panel",
       "inputex-base"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "panel",
+         "displayName": "Basic panel creation",
+         "description": "How to create a panel.",
+         "modules"    : ["inputex-panel"],
+         "tags"       : ["panel"],
+         "hideTableOfContents": true
+      }
+   ]
 }

@@ -94,13 +94,31 @@
 <p>It should generate the doc in the api/ folder.</p>
 
 
+<h3 id="how-to-run-the-tests">How to run the tests</h3>
+
+<p>Tests are executed with <a href="https://github.com/yui/yeti">Yeti</a>.</p>
+
+
+<p>To install Yeti :</p>
+
+<pre class="code terminal"><span class="noselect">$ </span>[sudo] npm install -g yeti</pre>
+
+
+<p>From the main directory, type :</p>
+
+<pre class="code terminal"><span class="noselect">$ </span>yeti src&#x2F;*&#x2F;tests&#x2F;unit&#x2F;*.html</pre>
+
+
+<p>This command creates a one shot server and return you an adress which you have to connect a browser in order to run the tests. You can also invoke the same command with "--server" in order to have a persistent server  </p>
+
+<pre class="code terminal"><span class="noselect">$ </span>yeti src&#x2F;*&#x2F;tests&#x2F;unit&#x2F;*.html --server</pre>
+
+
 <h3 id="inputex">inputEx</h3>
 
 <p>The <a href="http://neyric.github.com/inputex/">inputEx library</a> is a form and field library for YUI.</p>
 
-<p>It is included in lib/inputex/ so that it easier for people to checkout the project</p>
-
-</div>
+<p>It is included in lib/inputex/ so that it easier for people to checkout the project</p></div>
             </div>
         </div>
 
@@ -125,6 +143,9 @@
 </li>
 <li>
 <a href="#building-the-api-documentation">Building the API documentation</a>
+</li>
+<li>
+<a href="#how-to-run-the-tests">How to run the tests</a>
 </li>
 <li>
 <a href="#inputex">inputEx</a>

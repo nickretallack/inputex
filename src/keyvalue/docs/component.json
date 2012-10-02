@@ -9,5 +9,14 @@
    "use": [
       "inputex-combine"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "keyvalue",
+         "displayName": "Basic keyvalue field creation",
+         "description": "How to create a keyvalue field.",
+         "modules"    : ["inputex-keyvalue"],
+         "tags"       : ["keyvalue"],
+         "hideTableOfContents": true
+      }
+   ]
 }

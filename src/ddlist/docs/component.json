@@ -12,5 +12,14 @@
       "sortable",
       "substitute"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "ddlist",
+         "displayName": "Basic ddlist field creation",
+         "description": "How to create a ddlist field.",
+         "modules"    : ["inputex-ddlist"],
+         "tags"       : ["ddlist"],
+         "hideTableOfContents": true
+      }
+   ]
 }

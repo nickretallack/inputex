@@ -31,7 +31,7 @@ YUI().use('inputex-inplaceedit', 'inputex-group','inputex-email', 'inputex-url',
 	
 	// Example 3
 	var field = new Y.inputEx.InPlaceEdit({parentEl: 'container3', editorField:{type:'string'} });
-	var button = inputEx.cn('button', null, null, "getValue");
+	var button = Y.inputEx.cn('button', null, null, "getValue");
 	Y.one(button).on('click', function() {
 		alert(field.getValue());
 	});
@@ -39,7 +39,7 @@ YUI().use('inputex-inplaceedit', 'inputex-group','inputex-email', 'inputex-url',
 	
 	
 	// Example 4
-	inputEx({
+	Y.inputEx({
 		type: 'inplaceedit',
 		parentEl: 'container4', 
 		label: "PageRank",
@@ -51,11 +51,10 @@ YUI().use('inputex-inplaceedit', 'inputex-group','inputex-email', 'inputex-url',
 		visu: {
 			visuType: 'func', 
 			func: function(val) {
-				return inputEx.cn('img',{src: "http://www.page-rank-lookup.com/i/style1/pagerank"+val+".png"});
+				return Y.inputEx.cn('img',{src: "http://www.page-rank-lookup.com/i/style1/pagerank"+val+".png"});
 			}
 		},
 		value: '5'
 	});
-	
 
 });

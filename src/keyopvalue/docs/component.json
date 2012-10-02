@@ -9,5 +9,14 @@
    "use": [
       "inputex-keyvalue"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "keyopvalue",
+         "displayName": "Basic keyopvalue field creation",
+         "description": "How to create a keyopvalue field.",
+         "modules"    : ["inputex-keyopvalue"],
+         "tags"       : ["keyopvalue"],
+         "hideTableOfContents": true
+      }
+   ]
 }

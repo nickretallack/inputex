@@ -1,0 +1,34 @@
+YUI().use('inputex-map', 'json', function(Y) {
+
+
+  // how to set up Yahoo Maps as the default API
+  Y.inputEx.MapFieldGlobals['api'] = 'yahoo';
+  Y.inputEx.MapFieldGlobals['Nk0DZDzV34FM2CIAsdRAtUgQJRSsJO7x2l5tuDBduamC_gZWkzyTEqcUJxAWjtqxs9Wnxb0-'] = 'yahoo';
+
+
+
+
+         var id = 'container3';
+         var api = 'google';
+         var elExample3 = new Y.inputEx.MapField({
+            parentEl: id,
+            name: 'mapField',
+            width: '800px',
+            api: api,
+            // choose between HYBRID,ROADMAP,SATELLITE,TERRAIN
+            mapType : "ROADMAP",
+            lat : 48.85, 
+            lon : 2.3, 
+            uzoom : 8
+         });
+
+         var elButton3 = Y.inputEx.cn('button', null, null, "getValue");
+         Y.one(elButton3).on('click', function() {
+            alert( Y.JSON.stringify(elExample3.getValue()) );
+         });
+         Y.one('#'+id).appendChild(elButton3);
+
+
+
+
+});

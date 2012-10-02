@@ -9,5 +9,14 @@
    "use": [
       "inputex-string"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "integer",
+         "displayName": "Basic integer field creation",
+         "description": "How to create a integer field.",
+         "modules"    : ["inputex-integer"],
+         "tags"       : ["integer"],
+         "hideTableOfContents": true
+      }
+   ]
 }

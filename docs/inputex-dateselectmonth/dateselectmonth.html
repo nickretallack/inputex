@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>inputex-dateselectmonth</title>
+    <title>Example: Basic dateselectmonth field creation</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -19,10 +19,8 @@
 
 <div id="doc">
     <div id="hd">
-        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> inputex-dateselectmonth</h1>
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> Example: Basic dateselectmonth field creation</h1>
     </div>
-    
-        <a href="#toc" class="jump">Jump to Table of Contents</a>
     
 
     <div class="yui3-g">
@@ -30,11 +28,15 @@
             <div id="main">
                 <div class="content"><div class="intro">
 <p>
-inputex-dateselectmonth
+How to create a dateselectmonth field.
 </p>
 </div>
 
 <div class="example">
+
+	<h2>Basic DateSelectMonthField creation</h2>
+	<p>Use the following code to create a basic inputEx DateSelectMonthField.</p>
+	<div class='demoContainer' id='container1'></div>
 
 
 <script>
@@ -43,29 +45,29 @@ YUI().use('inputex-dateselectmonth', function(Y) {
 	var f = new Y.inputEx.DateSelectMonthField({label: 'Birthday', parentEl: 'container1', showMsg: true, required:true});
 
 	f.on('updated',function(val) {
-		Y.one('#container1').appendChild(inputEx.cn('div', null, null, 'Updated with value= '+val));
+		Y.one('#container1').appendChild( Y.inputEx.cn('div', null, null, 'Updated with value= '+val));
 	});
 
 	var div = Y.one('#container1');
 
-	var button1 = inputEx.cn('button', null, null, "SetValue with today date");
+	var button1 = Y.inputEx.cn('button', null, null, "SetValue with today date");
 	div.appendChild(button1);
 	Y.one(button1).on('click' ,function() { 
 		f.setValue(new Date()); 
 	});
-	var button2 = inputEx.cn('button', null, null, "SetValue with empty string");
+	var button2 = Y.inputEx.cn('button', null, null, "SetValue with empty string");
 	div.appendChild(button2);
 	Y.one(button2).on('click' ,function() { 
 		f.setValue(''); 
 	});
 
-	var button3 = inputEx.cn('button', null, null, "GetValue");
+	var button3 = Y.inputEx.cn('button', null, null, "GetValue");
 	div.appendChild(button3);
 	Y.one(button3).on('click' ,function() { 
 		alert(f.getValue());
 	});
 
-	var button4 = inputEx.cn('button', null, null, "Clear");
+	var button4 = Y.inputEx.cn('button', null, null, "Clear");
 	div.appendChild(button4);
 	Y.one(button4).on('click' ,function() { 
 		f.clear();
@@ -76,44 +78,44 @@ YUI().use('inputex-dateselectmonth', function(Y) {
 
 </div>
 
-<h2 id="html">HTML</h2>
+<h2>HTML</h2>
 
 <pre class="code prettyprint">&lt;div id=&quot;field-container&quot;&gt;&lt;&#x2F;div&gt;</pre>
 
 
-<h2 id="javascript">JavaScript</h2>
+<h2>JavaScript</h2>
 
 
-<h3 id="implementation">Implementation</h3>
+<h3>Implementation</h3>
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-dateselectmonth&#x27;, function(Y) {
 
 	var f = new Y.inputEx.DateSelectMonthField({label: &#x27;Birthday&#x27;, parentEl: &#x27;container1&#x27;, showMsg: true, required:true});
 
 	f.on(&#x27;updated&#x27;,function(val) {
-		Y.one(&#x27;#container1&#x27;).appendChild(inputEx.cn(&#x27;div&#x27;, null, null, &#x27;Updated with value= &#x27;+val));
+		Y.one(&#x27;#container1&#x27;).appendChild( Y.inputEx.cn(&#x27;div&#x27;, null, null, &#x27;Updated with value= &#x27;+val));
 	});
 
 	var div = Y.one(&#x27;#container1&#x27;);
 
-	var button1 = inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with today date&quot;);
+	var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with today date&quot;);
 	div.appendChild(button1);
 	Y.one(button1).on(&#x27;click&#x27; ,function() { 
 		f.setValue(new Date()); 
 	});
-	var button2 = inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with empty string&quot;);
+	var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with empty string&quot;);
 	div.appendChild(button2);
 	Y.one(button2).on(&#x27;click&#x27; ,function() { 
 		f.setValue(&#x27;&#x27;); 
 	});
 
-	var button3 = inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
+	var button3 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
 	div.appendChild(button3);
 	Y.one(button3).on(&#x27;click&#x27; ,function() { 
 		alert(f.getValue());
 	});
 
-	var button4 = inputEx.cn(&#x27;button&#x27;, null, null, &quot;Clear&quot;);
+	var button4 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;Clear&quot;);
 	div.appendChild(button4);
 	Y.one(button4).on(&#x27;click&#x27; ,function() { 
 		f.clear();
@@ -128,29 +130,25 @@ YUI().use('inputex-dateselectmonth', function(Y) {
         <div class="yui3-u-1-4">
             <div class="sidebar">
                 
-                    <div id="toc" class="sidebox">
+
+                
+                    <div class="sidebox">
                         <div class="hd">
-                            <h2 class="no-toc">Table of Contents</h2>
+                            <h2 class="no-toc">Examples</h2>
                         </div>
 
                         <div class="bd">
-                            <ul class="toc">
-<li>
-<a href="#html">HTML</a>
-</li>
-<li>
-<a href="#javascript">JavaScript</a>
-<ul class="toc">
-<li>
-<a href="#implementation">Implementation</a>
-</li>
-</ul>
-</li>
-</ul>
+                            <ul class="examples">
+                                
+                                    
+                                        <li data-description="How to create a dateselectmonth field.">
+                                            <a href="dateselectmonth.html">Basic dateselectmonth field creation</a>
+                                        </li>
+                                    
+                                
+                            </ul>
                         </div>
                     </div>
-                
-
                 
 
                 
@@ -204,11 +202,12 @@ YUI.Env.Tests = {
     examples: [],
     project: '../assets',
     assets: '../assets/inputex-dateselectmonth',
-    name: 'inputex-dateselectmonth',
-    title: 'inputex-dateselectmonth',
+    name: 'dateselectmonth',
+    title: 'Basic dateselectmonth field creation',
     newWindow: '',
     auto:  true 
 };
+YUI.Env.Tests.examples.push('dateselectmonth');
 
 </script>
 <!--script src="../assets/yui/test-runner.js"></script-->

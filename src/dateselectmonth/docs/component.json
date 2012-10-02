@@ -11,5 +11,14 @@
       "inputex-string",
       "inputex-select"
    ],
-   "examples": []
+   "examples": [
+	   {
+	       "name"       : "dateselectmonth",
+	       "displayName": "Basic dateselectmonth field creation",
+	       "description": "How to create a dateselectmonth field.",
+	       "modules"    : ["inputex-dateselectmonth"],
+	       "tags"       : ["dateselectmonth"],
+	       "hideTableOfContents": true
+	   }
+   ]
 }

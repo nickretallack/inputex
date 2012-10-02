@@ -1,7 +1,7 @@
 {
    "name": "inputex-datepicker",
-   "displayName": "inputex-datepicker",
-   "description": "inputex-datepicker",
+   "displayName": "Date Picker",
+   "description": "Displays a calendar for the user to choose a date",
    "author": "neyric",
    "tags": [
       "inputex-datepicker"

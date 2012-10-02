@@ -9,5 +9,14 @@
    "use": [
       "inputex"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "jsonschema",
+         "displayName": "Basic jsonschema field creation",
+         "description": "How to create a jsonschema field.",
+         "modules"    : ["inputex-jsonschema"],
+         "tags"       : ["jsonschema"],
+         "hideTableOfContents": true
+      }
+   ]
 }

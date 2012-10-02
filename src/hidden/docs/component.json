@@ -9,5 +9,14 @@
    "use": [
       "inputex-field"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "hidden",
+         "displayName": "Basic hidden field creation",
+         "description": "How to create a hidden field.",
+         "modules"    : ["inputex-hidden"],
+         "tags"       : ["hidden"],
+         "hideTableOfContents": true
+      }
+   ]
 }

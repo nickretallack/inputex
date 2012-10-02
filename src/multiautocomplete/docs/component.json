@@ -11,5 +11,14 @@
       "json",
       "inputex-ddlist"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "multiautocomplete",
+         "displayName": "Basic multiautocomplete creation",
+         "description": "How to create a multiautocomplete.",
+         "modules"    : ["inputex-multiautocomplete"],
+         "tags"       : ["multiautocomplete"],
+         "hideTableOfContents": true
+      }
+   ]
 }

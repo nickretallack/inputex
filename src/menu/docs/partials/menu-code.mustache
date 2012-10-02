@@ -1,0 +1,225 @@
+YUI().use('inputex-menu', function(Y){
+   
+
+   // Example 1
+
+         var menuItems = [
+            {
+               text:'America',
+               submenu:{
+                  itemdata:[
+                     {text:'United States of America',value:'Us'},
+                     {text:'Canada',value:'Ca'}
+                  ]
+               }
+            },
+            {
+               text:'Europe',
+               submenu:{
+                  itemdata:[
+                     {
+                        text:'Western Europe',
+                        submenu:{
+                           itemdata:[
+                              {text:'France',value:'Fr'},
+                              {text:'United Kingdom',value:'Uk'},
+                              {text:'Germany',value:'De'}
+                           ]
+                        }
+                     },
+                     {
+                        text:'Eastern Europe',
+                        submenu:{
+                           itemdata:[
+                              {text:'Poland',value:'Pl'},
+                              {text:'Czech Republic',value:'Cz'},
+                              {text:'Slovakia',value:'Sk'}
+                           ]
+                        }
+                     }
+                  ]
+               }
+            },
+            {
+               text:'Africa',
+               submenu:{
+                  itemdata:[
+                     {text:'Senegal',value:'Sn'},
+                     {text:'Madagascar',value:'Mg'}
+                  ]
+               }
+            }
+         ];
+
+         new Y.inputEx.MenuField({
+            parentEl: 'container1',
+            name: 'country',
+            label: 'Your Country:',
+            menuItems: menuItems
+         });
+
+   // Example 2
+
+      var menuItems2 = [
+         {
+            text:'America',
+            submenu:{
+               itemdata:[
+                  {text:'United States of America',value:'Us'},
+                  {text:'Canada',value:'Ca'}
+               ]
+            }
+         },
+         {
+            text:'Europe',
+            submenu:{
+               itemdata:[
+                  {
+                     text:'Western Europe',
+                     submenu:{
+                        itemdata:[
+                           {text:'France',value:'Fr'},
+                           {text:'United Kingdom',value:'Uk'},
+                           {text:'Germany',value:'De'}
+                        ]
+                     }
+                  },
+                  {
+                     text:'Eastern Europe',
+                     submenu:{
+                        itemdata:[
+                           {text:'Poland',value:'Pl'},
+                           {text:'Czech Republic',value:'Cz'},
+                           {text:'Slovakia',value:'Sk'}
+                        ]
+                     }
+                  }
+               ]
+            }
+         },
+         {
+            text:'Africa',
+            submenu:{
+               itemdata:[
+                  {text:'Senegal',value:'Sn'},
+                  {text:'Madagascar',value:'Mg'}
+               ]
+            }
+         }
+      ];
+
+      var div = Y.one('#container2');
+
+      var f = new Y.inputEx.MenuField({
+         parentEl: 'container2',
+         name: 'country',
+         label: 'Your Country:',
+         required: true,
+         typeInvite: 'Hover this text to select a country',
+         menuTrigger: 'mouseover',
+         menuOrientation: 'horizontal',
+         menuItems: menuItems2
+      });
+
+      var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+      div.appendChild(logDiv);
+      f.on('updated', function(value) {
+         logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
+               logDiv.appendChild(Y.inputEx.cn('br'));
+      });
+
+      var button1 = Y.inputEx.cn('button', null, null, "SetValue with 'Fr' (France)");
+      div.appendChild(button1);
+      Y.one(button1).on('click' ,function() { 
+         f.setValue("Fr"); 
+      });
+      var button2 = Y.inputEx.cn('button', null, null, "SetValue with empty string");
+      div.appendChild(button2);
+      Y.one(button2).on('click' ,function() { 
+         f.setValue('');
+      });
+
+      var button3 = Y.inputEx.cn('button', null, null, "GetValue");
+      div.appendChild(button3);
+      Y.one(button3).on('click' ,function() { 
+         alert(f.getValue());
+      });
+
+      var button4 = Y.inputEx.cn('button', null, null, "Clear");
+      div.appendChild(button4);
+      Y.one(button4).on('click' ,function() { 
+         f.clear();
+      });
+
+   // Example 3
+
+
+         var menuItems = [
+            {
+               text:'America',
+               submenu:{
+                  itemdata:[
+                     {text:'United States of America',value:'Us'},
+                     {text:'Canada',value:'Ca'}
+                  ]
+               }
+            },
+            {
+               text:'Europe',
+               submenu:{
+                  itemdata:[
+                     {
+                        text:'Western Europe',
+                        submenu:{
+                           itemdata:[
+                              {text:'France',value:'Fr'},
+                              {text:'United Kingdom',value:'Uk'},
+                              {text:'Germany',value:'De'}
+                           ]
+                        }
+                     },
+                     {
+                        text:'Eastern Europe',
+                        submenu:{
+                           itemdata:[
+                              {text:'Poland',value:'Pl'},
+                              {text:'Czech Republic',value:'Cz'},
+                              {text:'Slovakia',value:'Sk'}
+                           ]
+                        }
+                     }
+                  ]
+               }
+            },
+            {
+               text:'Africa',
+               submenu:{
+                  itemdata:[
+                     {text:'Senegal',value:'Sn'},
+                     {text:'Madagascar',value:'Mg'}
+                  ]
+               }
+            }
+         ];
+
+         var menu = new Y.inputEx.MenuField({
+            colorInvite : "#FF0000",
+            parentEl: 'container3',
+            name: 'country',
+            label: 'Your Country:',
+            menuItems: menuItems
+         });
+
+   
+      var div = Y.one('#container3');
+
+      var button1 = Y.inputEx.cn('button', null, null, "Yellow");
+      div.appendChild(button1);
+      Y.one(button1).on('click' ,function() { 
+         menu.setBackgroundColorOfRootLabel("#FFF000");
+      });
+
+
+
+
+});

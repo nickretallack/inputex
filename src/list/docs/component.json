@@ -10,5 +10,14 @@
       "inputex-field",
       "anim"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "list",
+         "displayName": "Basic list creation",
+         "description": "How to create a list.",
+         "modules"    : ["inputex-list"],
+         "tags"       : ["list"],
+         "hideTableOfContents": true
+      }
+   ]
 }

@@ -11,13 +11,13 @@ YUI().use('inputex-keyopvalue','inputex-group','inputex-combine','inputex-string
 		]
 	});
 		
-	var button1 = inputEx.cn('button', null, null, 'getValue()');
+	var button1 = Y.inputEx.cn('button', null, null, 'getValue()');
 	Y.one('#container1').appendChild(button1); 
 	Y.one(button1).on('click', function() { alert( Y.JSON.stringify(field1.getValue())); });  
 			
 			
 	// Example 2
-	inputEx({
+	Y.inputEx({
 		type: 'list',
 		parentEl: 'container2',
 		elementType: {
@@ -44,7 +44,7 @@ YUI().use('inputex-keyopvalue','inputex-group','inputex-combine','inputex-string
 		operatorLabels: ["equals", "different"]
 	});
 		
-	var button3 = inputEx.cn('button', null, null, 'getValue()');
+	var button3 = Y.inputEx.cn('button', null, null, 'getValue()');
 	Y.one('#container3').appendChild(button3); 
 	Y.one(button3).on('click', function() { alert( Y.JSON.stringify(field3.getValue())); });  
 			

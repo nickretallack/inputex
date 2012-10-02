@@ -1,0 +1,59 @@
+YUI().use('inputex-form','inputex-string','inputex-select','inputex-email','inputex-url','inputex-textarea','inputex-panel', 'json', function(Y){
+   
+
+
+var nestedPanel = new Y.inputEx.Panel({
+    headerContent: "A Panel with a Form within",
+
+    bodyContent: "You can add content...",
+
+    zIndex: 5,
+    //We set a z-index higher than the parent's z-index
+    centered: true,
+    width: 500,
+    modal: true,
+    visible: false,
+
+    inputEx: {
+        type: "group",
+        fields: [
+          { type: 'select', label: 'Title', name: 'title', choices: ['Mr', 'Mrs', 'Ms'] },
+          { label: 'Firstname', name: 'firstname', required: true, value: 'Jacques' },
+          { label: 'Lastname', name: 'lastname', value: 'Dupont' },
+          { type: 'email', label: 'Email', name: 'email' },
+          { type: 'url', label: 'Website', name: 'website' }
+        ]
+    },
+
+    //We add the "Yes" and "No" buttons
+    buttons: [
+    {
+        value: "Yes",
+        action: function(e) {
+            e.preventDefault();
+            nestedPanel.hide();
+
+            alert(Y.JSON.stringify(nestedPanel.get('field').getValue()));
+        },
+        section: Y.WidgetStdMod.FOOTER
+    },
+    {
+        value: "No",
+        action: function(e) {
+            e.preventDefault();
+            nestedPanel.hide();
+        },
+        section: Y.WidgetStdMod.FOOTER
+    }
+    ]
+});
+
+nestedPanel.render();
+
+
+Y.Node.create("<button>Show</button>").appendTo('#container1').on('click',
+function() {
+    nestedPanel.show();
+});
+
+});

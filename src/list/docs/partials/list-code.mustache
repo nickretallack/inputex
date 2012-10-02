@@ -1,0 +1,112 @@
+YUI().use('inputex-form','inputex-list', 'inputex-url', 'inputex-select','json', function(Y) {
+   
+
+   // Example 1
+
+      var field = new Y.inputEx.ListField({
+         name: 'websiteUrl', 
+         listLabel: 'Websites',
+         elementType: {type: 'url'},
+         value: ['http://www.neyric.com', 'http://www.ajaxian.com', 'http://www.google.com', 'http://www.yahoo.com'], 
+         parentEl: 'container1'
+      });
+      var button = Y.inputEx.cn('button', null, null, 'getValue()');
+      Y.one('#container1').appendChild(button); 
+      Y.one(button).on('click', function() { alert( Y.JSON.stringify(field.getValue())); });  
+      var button2 = Y.inputEx.cn('button', null, null, 'setValue()');
+      Y.one('#container1').appendChild(button2); 
+      Y.one(button2).on('click', function() {
+         field.setValue(['http://www.sncf.com',
+                                 'http://www.clicrdv.com',
+                                 'http://www.neyric.com',
+                                 'http://javascript.neyric.com/wireit']);        
+      });
+      var button3 = Y.inputEx.cn('button', null, null, 'Clear');
+      Y.one('#container1').appendChild(button3); 
+      Y.one(button3).on('click', function() {
+         field.setValue([]);
+      });
+
+   // Example 2
+
+
+      var field2 = new Y.inputEx.ListField({
+         listLabel: 'Reorder example',
+         elementType: {type: 'string'},
+         value: ['one', 'two', 'three', 'four'], 
+         parentEl: 'container2',
+         sortable: true
+      });
+      var buttonGetValue = Y.inputEx.cn('button', null, null, 'getValue()');
+      Y.one('#container2').appendChild(buttonGetValue); 
+      Y.one(buttonGetValue).on('click', function() { 
+         alert( Y.JSON.stringify(field2.getValue())); 
+      });
+
+
+   // Example 3
+
+      var field3 = new Y.inputEx.ListField({parentEl: 'container3', value: ["one", "two", "three", "four"], sortable: true });
+      var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+      Y.one('#container3').appendChild(logDiv);
+      field3.on('updated',function(value) {
+         logDiv.innerHTML += "Updated at "+(new Date())+" with value "+Y.JSON.stringify(value);
+      });
+
+   // Example 4
+
+
+      new Y.inputEx.ListField({
+         listLabel: 'Websites',
+         elementType: {
+            type: 'select', 
+            choices:  ['http://www.neyric.com', 'http://www.ajaxian.com', 'http://www.google.com', 'http://www.yahoo.com', 'http://javascript.neyric.com/blog', 'http://javascript.neyric.com/wireit', 'http://neyric.github.com/inputex']
+         },
+         value: ['http://www.neyric.com', 'http://www.ajaxian.com', 'http://www.google.com', 'http://www.yahoo.com'], 
+         parentEl: 'container4',
+         useButtons: true // set to true to display buttons instead of links
+      });
+
+   // Example 5
+
+      new Y.inputEx.ListField({
+         listLabel: 'Websites',
+         maxItems: 4,
+         minItems: 1,
+         elementType: {
+            type: 'select',
+            choices:  ['http://www.neyric.com', 'http://www.ajaxian.com', 'http://www.google.com', 'http://www.yahoo.com', 'http://javascript.neyric.com/blog', 'http://javascript.neyric.com/wireit', 'http://neyric.github.com/inputex']
+         },
+         value: ['http://www.neyric.com', 'http://www.ajaxian.com', 'http://www.google.com', 'http://www.yahoo.com'], 
+         parentEl: 'container5',
+         useButtons: true 
+      });
+
+   // Example 6
+
+    new Y.inputEx.Form( {
+         fields: [
+         {
+            name: 'firstVar',
+            label: "First variable",
+            value: "my-custom-value"
+         },
+         {
+            type: 'list',
+            label: "My Array",
+            maxItems: 4,
+            minItems: 1,
+            elementType: {type: 'string'},
+            value: ['this', 'is', 'a', 'test'],
+            name: 'myarray',
+            useButtons: true ,
+            sortable: true
+         }],
+      buttons: [{type: 'submit', value: 'Test to send the GET request'}],
+         method: 'GET',
+         parentEl: 'container6'
+      });
+
+
+
+});

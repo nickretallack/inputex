@@ -12,5 +12,14 @@
       "anim",
       "inputex-visus"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "inplaceedit",
+         "displayName": "Basic inplaceedit field creation",
+         "description": "How to create a inplaceedit field.",
+         "modules"    : ["inputex-inplaceedit"],
+         "tags"       : ["inplaceedit"],
+         "hideTableOfContents": true
+      }
+   ]
 }

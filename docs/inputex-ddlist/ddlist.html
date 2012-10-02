@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>inputex-ddlist</title>
+    <title>Example: Basic ddlist field creation</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -19,10 +19,8 @@
 
 <div id="doc">
     <div id="hd">
-        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> inputex-ddlist</h1>
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> Example: Basic ddlist field creation</h1>
     </div>
-    
-        <a href="#toc" class="jump">Jump to Table of Contents</a>
     
 
     <div class="yui3-g">
@@ -30,30 +28,201 @@
             <div id="main">
                 <div class="content"><div class="intro">
 <p>
-inputex-ddlist
+How to create a ddlist field.
 </p>
 </div>
 
 <div class="example">
 
+	<h2>Basic example</h2>
+	<div class='demoContainer' id='container1'></div>
+	
+	
+	<h2>Add Item</h2>
+	<div class='demoContainer' id='container2'></div>
 
 <script>
+YUI().use('inputex-ddlist', function(Y) {
+
+
+
+	// Example 1
+    var data = [
+       {
+         id: 'book_1',
+         title: 'Book 1 title'
+       },
+       {
+         id: 'book_2',
+         title: 'Book 2 title'
+       },
+       {
+         id: 'book_3',
+         title: 'Book 3 title'
+       },
+       {
+         id: 'book_4',
+         title: 'Book 4 title'
+       },
+       {
+         id: 'book_5',
+         title: 'Book 5 title'
+       }
+     ];
+
+     var container = Y.one('#container1');
+
+     // Instantiate field
+     var field = new Y.inputEx.DDListField({
+       name: 'books', 
+       valueKey: "id", 
+       labelKey: "title", 
+       parentEl: container,
+       items: data
+     });
+
+     Y.Node.create("<button>Get Value</button>").appendTo(container).on( 'click', function() {
+        alert( field.getValue().join(', ') );
+     });
+	 
+	 
+	 
+	 
+	 // Example 2
+     
+     var data = [
+        {
+          id: 'book_1',
+          title: 'Book 1 title'
+        },
+        {
+          id: 'book_2',
+          title: 'Book 2 title'
+        }
+      ];
+
+      var container = Y.one('#container2');
+
+      // Instantiate field
+      var field = new Y.inputEx.DDListField({
+        name: 'books', 
+        valueKey: "id", 
+        labelKey: "title", 
+        parentEl: container,
+        items: data
+      });
+
+      Y.Node.create("<button>Add Item</button>").appendTo(container).on( 'click', function() {
+         field.addItem( {
+            id: 'book_5',
+            title: 'Book 5 title'
+          });
+      });
+      
+      
+      Y.Node.create("<button>Get Value</button>").appendTo(container).on( 'click', function() {
+         alert( field.getValue().join(', ') );
+      });
+
+});
 
 </script>
 
 </div>
 
-<h2 id="html">HTML</h2>
+<h2>HTML</h2>
 
 <pre class="code prettyprint">&lt;div id=&quot;field-container&quot;&gt;&lt;&#x2F;div&gt;</pre>
 
 
-<h2 id="javascript">JavaScript</h2>
+<h2>JavaScript</h2>
 
 
-<h3 id="implementation">Implementation</h3>
+<h3>Implementation</h3>
 
-<pre class="code prettyprint"></pre>
+<pre class="code prettyprint">YUI().use(&#x27;inputex-ddlist&#x27;, function(Y) {
+
+
+
+	&#x2F;&#x2F; Example 1
+    var data = [
+       {
+         id: &#x27;book_1&#x27;,
+         title: &#x27;Book 1 title&#x27;
+       },
+       {
+         id: &#x27;book_2&#x27;,
+         title: &#x27;Book 2 title&#x27;
+       },
+       {
+         id: &#x27;book_3&#x27;,
+         title: &#x27;Book 3 title&#x27;
+       },
+       {
+         id: &#x27;book_4&#x27;,
+         title: &#x27;Book 4 title&#x27;
+       },
+       {
+         id: &#x27;book_5&#x27;,
+         title: &#x27;Book 5 title&#x27;
+       }
+     ];
+
+     var container = Y.one(&#x27;#container1&#x27;);
+
+     &#x2F;&#x2F; Instantiate field
+     var field = new Y.inputEx.DDListField({
+       name: &#x27;books&#x27;, 
+       valueKey: &quot;id&quot;, 
+       labelKey: &quot;title&quot;, 
+       parentEl: container,
+       items: data
+     });
+
+     Y.Node.create(&quot;&lt;button&gt;Get Value&lt;&#x2F;button&gt;&quot;).appendTo(container).on( &#x27;click&#x27;, function() {
+        alert( field.getValue().join(&#x27;, &#x27;) );
+     });
+	 
+	 
+	 
+	 
+	 &#x2F;&#x2F; Example 2
+     
+     var data = [
+        {
+          id: &#x27;book_1&#x27;,
+          title: &#x27;Book 1 title&#x27;
+        },
+        {
+          id: &#x27;book_2&#x27;,
+          title: &#x27;Book 2 title&#x27;
+        }
+      ];
+
+      var container = Y.one(&#x27;#container2&#x27;);
+
+      &#x2F;&#x2F; Instantiate field
+      var field = new Y.inputEx.DDListField({
+        name: &#x27;books&#x27;, 
+        valueKey: &quot;id&quot;, 
+        labelKey: &quot;title&quot;, 
+        parentEl: container,
+        items: data
+      });
+
+      Y.Node.create(&quot;&lt;button&gt;Add Item&lt;&#x2F;button&gt;&quot;).appendTo(container).on( &#x27;click&#x27;, function() {
+         field.addItem( {
+            id: &#x27;book_5&#x27;,
+            title: &#x27;Book 5 title&#x27;
+          });
+      });
+      
+      
+      Y.Node.create(&quot;&lt;button&gt;Get Value&lt;&#x2F;button&gt;&quot;).appendTo(container).on( &#x27;click&#x27;, function() {
+         alert( field.getValue().join(&#x27;, &#x27;) );
+      });
+
+});</pre>
 
 </div>
             </div>
@@ -62,29 +231,25 @@ inputex-ddlist
         <div class="yui3-u-1-4">
             <div class="sidebar">
                 
-                    <div id="toc" class="sidebox">
+
+                
+                    <div class="sidebox">
                         <div class="hd">
-                            <h2 class="no-toc">Table of Contents</h2>
+                            <h2 class="no-toc">Examples</h2>
                         </div>
 
                         <div class="bd">
-                            <ul class="toc">
-<li>
-<a href="#html">HTML</a>
-</li>
-<li>
-<a href="#javascript">JavaScript</a>
-<ul class="toc">
-<li>
-<a href="#implementation">Implementation</a>
-</li>
-</ul>
-</li>
-</ul>
+                            <ul class="examples">
+                                
+                                    
+                                        <li data-description="How to create a ddlist field.">
+                                            <a href="ddlist.html">Basic ddlist field creation</a>
+                                        </li>
+                                    
+                                
+                            </ul>
                         </div>
                     </div>
-                
-
                 
 
                 
@@ -138,11 +303,12 @@ YUI.Env.Tests = {
     examples: [],
     project: '../assets',
     assets: '../assets/inputex-ddlist',
-    name: 'inputex-ddlist',
-    title: 'inputex-ddlist',
+    name: 'ddlist',
+    title: 'Basic ddlist field creation',
     newWindow: '',
     auto:  true 
 };
+YUI.Env.Tests.examples.push('ddlist');
 
 </script>
 <!--script src="../assets/yui/test-runner.js"></script-->

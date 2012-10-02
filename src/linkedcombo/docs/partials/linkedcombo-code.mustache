@@ -1,0 +1,37 @@
+YUI().use('inputex-linkedcombo', function(Y){
+   
+         // Field container
+      var el = Y.one('#container1');
+      // Logs container
+      var el2 = Y.one('#container2');
+      
+      var field1 = new Y.inputEx.LinkedComboField({
+         name: 'car',
+         label: 'Which car ?',
+         choices: [
+            { value: "", choices: [""] },
+            { value: "BMW Z Series", choices: ["Z1", "Z3", "Z4", "Z8"] },
+            { value: "MINI", choices: ["One", "Cooper S", "Cooper D", "Clubman", "John Cooper Works"] }
+         ],
+         parentEl: el,
+         required: true
+      });
+      
+      var button = Y.inputEx.cn('button', null, null, "SetValue with 'MINI_One'");
+      el.appendChild(button);
+      Y.one(button).on('click' ,function() {
+         field1.setValue('MINI_One');
+      });
+      
+
+      
+      var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+      el2.appendChild(logDiv);
+      
+      logDiv.appendChild(Y.inputEx.cn('br'));
+      field1.on('updated', function(value) {
+         logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
+         logDiv.appendChild(Y.inputEx.cn('br'));
+      });
+
+});

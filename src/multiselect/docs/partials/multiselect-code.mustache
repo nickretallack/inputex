@@ -1,0 +1,65 @@
+YUI().use('inputex-multiselect','json', function(Y) {
+   
+   
+   // Example 1
+
+      var ms = new Y.inputEx.MultiSelectField({
+         label: 'Javascript libraries you use', 
+         name: 'country', 
+         choices: [{ value: 'Choose a library' }, { value: 'YUI' }, { value: 'Dojo' }, { value: 'Prototype' }, { value: 'Scriptaculous'}, { value: 'Mootools' }],
+         parentEl: 'container1', 
+         description: 'Select and order your favorite libraries'
+      });
+      ms.on("updated",function(params) {
+         var value = Y.JSON.stringify(params);
+         Y.one('#container1').appendChild( Y.inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
+      });
+
+   // Example 2
+
+
+      var ms = new Y.inputEx.MultiSelectField({
+         label: 'Javascript libraries you use',
+         name: 'country',
+         choices: [
+            { value: null, label: 'Choose a library' },
+            { value: 'yui', label: 'YUI' },
+            { value: 'dojo', label: 'Dojo' },
+            { value: 'prototype', label: 'Prototype' },
+            { value: 'scriptaculous', label: 'Scriptaculous'},
+            { value: 'mootools', label: 'Mootools' }
+         ],
+         parentEl: 'container2',
+         description: 'Select and order your favorite libraries'
+      });
+      ms.on("updated",function(params) {
+         var value = Y.JSON.stringify(params);
+         Y.one('#container2').appendChild( Y.inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
+      });
+
+   // Example 3
+
+   
+      var ms = new Y.inputEx.MultiSelectField({
+         label: 'Javascript libraries you use',
+         name: 'country',
+         choices: [
+            { value: null, label: 'Choose a library' },
+            { value: 'yui', label: 'YUI' },
+            { value: 'dojo', label: 'Dojo' },
+            { value: 'prototype', label: 'Prototype' },
+            { value: 'scriptaculous', label: 'Scriptaculous'},
+            { value: 'mootools', label: 'Mootools' }
+         ],
+         parentEl: 'container3',
+         description: 'Select and order your favorite libraries'
+      });
+      ms.on("updated",function(params) {
+         var value = Y.JSON.stringify(params);
+         Y.one('#container3').appendChild( Y.inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
+      });
+      
+      ms.setValue(['yui','dojo']);
+
+
+});

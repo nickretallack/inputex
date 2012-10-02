@@ -9,5 +9,14 @@
    "use": [
       "inputex-field"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "imagecropper",
+         "displayName": "Basic imagecropper field creation",
+         "description": "How to create a imagecropper field.",
+         "modules"    : ["inputex-imagecropper"],
+         "tags"       : ["imagecropper"],
+         "hideTableOfContents": true
+      }
+   ]
 }

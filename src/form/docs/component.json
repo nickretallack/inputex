@@ -12,5 +12,14 @@
       "json",
       "inputex-button"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "form",
+         "displayName": "Basic form field creation",
+         "description": "How to create a form field.",
+         "modules"    : ["inputex-form"],
+         "tags"       : ["form"],
+         "hideTableOfContents": true
+      }
+   ]
 }

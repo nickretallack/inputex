@@ -12,5 +12,14 @@
       "node-menunav",
       "substitute"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "menu",
+         "displayName": "Basic menu creation",
+         "description": "How to create a menu.",
+         "modules"    : ["inputex-menu"],
+         "tags"       : ["menu"],
+         "hideTableOfContents": true
+      }
+   ]
 }

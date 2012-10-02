@@ -10,5 +10,14 @@
       "inputex-combine",
       "inputex-integer"
    ],
-   "examples": []
+   "examples": [
+	   {
+	       "name"       : "datesplit",
+	       "displayName": "Basic datesplit field creation",
+	       "description": "How to create a datesplit field.",
+	       "modules"    : ["inputex-datesplit"],
+	       "tags"       : ["datesplit"],
+	       "hideTableOfContents": true
+	   }
+   ]
 }

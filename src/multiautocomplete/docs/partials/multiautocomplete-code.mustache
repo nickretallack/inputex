@@ -1,0 +1,24 @@
+YUI().use('inputex-multiautocomplete', function(Y) {
+   
+      var field = new Y.inputEx.MultiAutoComplete({
+        parentEl: 'container1', 
+        label: 'Search US state',
+
+        // autocompleter options
+        autoComp: {
+          source: ["aaa","bbb","cccc","ccc","dddddd"],
+          minQueryLength: 2,
+          maxResultsDisplayed: 50
+        }
+        });
+
+      var logDiv = Y.inputEx.cn('div', null, null, "");
+      Y.one('#container1').appendChild(logDiv);
+
+      field.on("updated",function(v) {
+         var value = Y.JSON.stringify(v);
+         logDiv.appendChild( Y.inputEx.cn('div',null,null,"Updated at "+(new Date())+" "+value) );
+      });
+
+      
+});

@@ -2,7 +2,7 @@ YUI().use('inputex-datetime', function(Y) {
 
 	// Example 1
 	field = new Y.inputEx.DateTimeField({parentEl: 'container1', value: new Date()});
-	var button = inputEx.cn('button', null, null, 'getValue');
+	var button = Y.inputEx.cn('button', null, null, 'getValue');
 	Y.one(button).on('click',function() {
 		alert(field.getValue());
 	});

@@ -11,5 +11,14 @@
       "inputex-combine",
       "inputex-string"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "object",
+         "displayName": "Basic object creation",
+         "description": "How to create a object.",
+         "modules"    : ["inputex-object"],
+         "tags"       : ["object"],
+         "hideTableOfContents": true
+      }
+   ]
 }

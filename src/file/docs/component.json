@@ -9,5 +9,14 @@
    "use": [
       "inputex-field"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "file",
+         "displayName": "Basic file field creation",
+         "description": "How to create a file field.",
+         "modules"    : ["inputex-file"],
+         "tags"       : ["file"],
+         "hideTableOfContents": true
+      }
+   ]
 }

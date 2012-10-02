@@ -10,7 +10,7 @@ YUI().use('inputex-hidden', 'inputex-string', 'inputex-group', 'json', function(
 			], 
 			parentEl: exampleDiv
 	});
-	var button=inputEx.cn('button',null,null, 'Get Value'); 
+	var button = Y.inputEx.cn('button',null,null, 'Get Value'); 
 	exampleDiv.appendChild(button); 
 	Y.one(button).on('click', function(){ alert(Y.JSON.stringify(group.getValue()) ); });
 	

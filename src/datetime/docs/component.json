@@ -11,5 +11,14 @@
       "inputex-combine",
       "inputex-time"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "datetime",
+         "displayName": "Basic datetime field creation",
+         "description": "How to create a datetime field.",
+         "modules"    : ["inputex-datetime"],
+         "tags"       : ["datetime"],
+         "hideTableOfContents": true
+      }
+   ]
 }

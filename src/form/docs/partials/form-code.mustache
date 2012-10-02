@@ -235,7 +235,7 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
         parentEl: 'container8'
      });
          
-     var container = inputEx.cn('div',{id:'destroyButtonContainer'});
+     var container = Y.inputEx.cn('div',{id:'destroyButtonContainer'});
      Y.one('#container8').appendChild(container);
          
      var destroyButton = new Y.inputEx.widget.Button({
@@ -250,7 +250,7 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
         }
      });
          
-     container.appendChild(inputEx.cn('div',null,{clear:'both'}));
+     container.appendChild(Y.inputEx.cn('div',null,{clear:'both'}));
          
          
 		 

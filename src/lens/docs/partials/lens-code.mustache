@@ -1,0 +1,35 @@
+YUI().use('inputex-lens','inputex-string', 'inputex-url', 'inputex-select', 'json', function(Y) {
+   
+
+         var g = new Y.inputEx.Lens({
+            parentEl: 'container1',
+            fields: [
+               { typeInvite: 'Firstname',name: 'firstname'  },  
+               { typeInvite: 'Lastname', name: 'lastname' },
+               { typeInvite: 'Email', name: 'email' },
+               { type: 'url', name: "picUrl", typeInvite: 'url' }
+            ],
+            value: {
+               firstname: 'Lena',
+               email: 'lena@doe.org',
+               picUrl: 'http://www.limsi.fr/Individu/vezien/lena.jpg',
+               position: {"lat":48.821332549646634,"lon":1.47216796875,"nzoom":6,"uzoom":-6}
+            },
+
+            lens: "<div class='field-picUrl'></div>"+
+                     "<div style='float: left;'><div class='field-firstname'></div></div>"+
+                     "<div style='float: left;'><div class='field-lastname'></div></div>"+
+                     "<div style='clear: both;'></div>"+
+                     "<div class='field-email'></div>"+
+                     "<div class='field-position'></div>",
+
+            visus: [
+               null,
+               null,
+               { visuType: 'func', func: function(val) { return "<a href='mailto:"+val+"'>"+val+"</a>"; } },
+               { visuType: 'func', func: function(val) { return "<img src='"+val+"' style='width: 128px; height: 128px;'>"; } },
+               { visuType: 'func', func: function(val) { return "lat:"+val.lat+",long:"+val.lon; } }
+            ]
+         });
+
+});

@@ -9,5 +9,14 @@
    "use": [
       "inputex"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "jsontreeinspector",
+         "displayName": "Basic jsontreeinspector field creation",
+         "description": "How to create a jsontreeinspector field.",
+         "modules"    : ["inputex-jsontreeinspector"],
+         "tags"       : ["jsontreeinspector"],
+         "hideTableOfContents": true
+      }
+   ]
 }

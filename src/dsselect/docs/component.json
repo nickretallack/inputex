@@ -10,5 +10,14 @@
       "inputex-select",
       "datasource"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "dsselect",
+         "displayName": "Basic dsselect field creation",
+         "description": "How to create a dsselect field.",
+         "modules"    : ["inputex-dsselect"],
+         "tags"       : ["dsselect"],
+         "hideTableOfContents": true
+      }
+   ]
 }

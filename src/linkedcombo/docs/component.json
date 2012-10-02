@@ -10,5 +10,14 @@
       "inputex-select",
       "inputex-choice"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "linkedcombo",
+         "displayName": "Basic linkedcombo creation",
+         "description": "How to create a linkedcombo.",
+         "modules"    : ["inputex-linkedcombo"],
+         "tags"       : ["linkedcombo"],
+         "hideTableOfContents": true
+      }
+   ]
 }

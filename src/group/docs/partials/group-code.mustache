@@ -36,14 +36,14 @@ YUI().use('inputex-group', 'inputex-email', 'inputex-select', 'inputex-checkbox'
 			
 	var el = Y.one('#container3');
 	var group3 = new Y.inputEx.Group({parentEl: el, fields: contactFormFields });
-	var logDiv = inputEx.cn('div', null, null, "Log :");
+	var logDiv = Y.inputEx.cn('div', null, null, "Log :");
 	el.appendChild(logDiv);
 	group3.on('updated', function() {
 		logDiv.innerHTML += "Updated at "+(new Date());
-		logDiv.appendChild(inputEx.cn('br'));
+		logDiv.appendChild(Y.inputEx.cn('br'));
 	});
 
-	var setValueButton = inputEx.cn('button', null, null, "SetValue");
+	var setValueButton = Y.inputEx.cn('button', null, null, "SetValue");
 	Y.one(setValueButton).on('click', function() {
 		group3.setValue({
 			title: 'Mme',
@@ -92,12 +92,12 @@ YUI().use('inputex-group', 'inputex-email', 'inputex-select', 'inputex-checkbox'
 		]
 	});
 	var field5 = new Y.inputEx.Group({parentEl: 'container5', fields: contactFormFields2});
-	var button5 = inputEx.cn('button', null, null, 'Get value');
+	var button5 = Y.inputEx.cn('button', null, null, 'Get value');
 	Y.one('#container5').appendChild(button5);
 	Y.one(button5).on('click', function() {
 		alert( Y.JSON.stringify(field5.getValue()) );
 	});
-	var setValueButton = inputEx.cn('button', null, null, "SetValue");
+	var setValueButton = Y.inputEx.cn('button', null, null, "SetValue");
 	Y.one(setValueButton).on('click', function() {
 		field5.setValue({
 			title: 'Mme',
@@ -114,7 +114,7 @@ YUI().use('inputex-group', 'inputex-email', 'inputex-select', 'inputex-checkbox'
 	});
 	var el = Y.one('#container5');
 	el.appendChild(setValueButton);
-	var validButton = inputEx.cn('button', null, null, 'Validate');
+	var validButton = Y.inputEx.cn('button', null, null, 'Validate');
 	Y.one('#container5').appendChild(validButton);
 	Y.one(validButton).on("click", function() {
 		alert( field5.validate() );
@@ -155,7 +155,7 @@ YUI().use('inputex-group', 'inputex-email', 'inputex-select', 'inputex-checkbox'
 	   ]
 	});
 	flattenGroup.on('updated',function(value) {
-		Y.one('#container7').appendChild( inputEx.cn('div',null,null, Y.JSON.stringify(value)) );
+		Y.one('#container7').appendChild( Y.inputEx.cn('div',null,null, Y.JSON.stringify(value)) );
 	});
 
 		

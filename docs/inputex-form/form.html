@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>inputex-form</title>
+    <title>Example: Basic form field creation</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -19,10 +19,8 @@
 
 <div id="doc">
     <div id="hd">
-        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> inputex-form</h1>
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> Example: Basic form field creation</h1>
     </div>
-    
-        <a href="#toc" class="jump">Jump to Table of Contents</a>
     
 
     <div class="yui3-g">
@@ -30,30 +28,693 @@
             <div id="main">
                 <div class="content"><div class="intro">
 <p>
-inputex-form
+How to create a form field.
 </p>
 </div>
+
+
+
+<style>
+div.inputEx-Form-Mask div { background-color:#DDDDFF; }
+div#container3 { width:400px }
+</style>
+
+
+
 
 <div class="example">
 
 
-<script>
+    <h2>Basic Form creation</h2>
+    <p>Use the following code to create a basic inputEx Form.</p>
+    <div class='demoContainer' id='container1'></div>
+	
+	
+    <h2>Multi-group Form</h2>
+    <p>Use the following code to create a Form with multiple Groups (fieldsets).</p>
+    <div class='demoContainer' id='container2'></div>
+	
+	
+    <h2>Send in json with ajax</h2>
+   
+    <p>How to send the form data using Ajax</p>
 
+    <div class='demoContainer' id='container3'></div>
+	
+	
+	
+    <h2>Send with ajax using url encoded parameters</h2>
+    <p>How to send the form data using Ajax</p>
+    <div class='demoContainer' id='container4'></div>
+	
+	
+	
+    <h2>Send with ajax using url encoded parameters wrapped in an object</h2>
+    <p>Use wrapObject</p>
+    <div class='demoContainer' id='container5'></div>
+	
+	
+    <h2>Setting and getting form value</h2>
+    <p>Use the following code to set or get the value from javascript</p>
+    <div class='demoContainer' id='container6'></div>
+	
+	
+    <h2>Different button types</h2>
+    <p>Use the following code to create submit buttons, or "link" buttons.</p>
+    <div class='demoContainer' id='container7'></div>
+	
+    <p>You can use 3 types of inputEx form buttons :
+       <ul style="margin-left:40px;list-style-type:disc">
+          <li style="list-style-type:disc"><u>submit</u>&nbsp;: a (&lt;input type="submit" /&gt;)-tag is created. A handler is automatically added on 'click' to submit the form only if it validates (no invalid fields, or no empty required fields). </li>
+          <li style="list-style-type:disc"><u>submit-link</u>&nbsp;: same as 'submit' type, but with a different markup (&lt;a&gt;&lt;span&gt;Submit&lt;/span&gt;&lt;/a&gt;) to render as 'link'. The same handler as with 'submit' type is added on link.</li>
+          <li style="list-style-type:disc"><u>link</u>&nbsp;: same markup as 'submit-link' but with no handler to submit the form. You must add your own 'onClick' function to trigger a specific action. The default link behavior is disabled, so you don't have to do it yourself in the onClick handler.</li>
+       </ul>
+    </p>
+    <br />
+    <p>"link" and "submit-link" buttons are also useful because :
+       <ul style="margin-left:40px;list-style-type:disc">
+          <li style="list-style-type:disc">they allow to differenciate strong actions (like a "submit"), and weak actions (like a form "reset")</li>
+          <li style="list-style-type:disc">they are easier to style (see : <a href="styling_buttons.html">styling buttons example</a>)</li>
+       </ul>
+    </p>
+	
+	
+    <h2>Destroy a form</h2>
+    <p>Remove DOM nodes, remove event listeners, free memory...</p>
+    <div class='demoContainer' id='container8'></div>
+	
+	
+	
+    <h2>Turn off / on browser autocompletion</h2>
+    <p>Activate/deactivate browser autocompletion by field, by form, or for all inputEx fields in the page.</p>
+    <div class='demoContainer' id='container9'></div>
+	
+	
+	
+	
+
+
+<script>
+YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  function(Y) {
+
+	// Example 1
+
+    new Y.inputEx.Form( { 
+       fields: [ 
+          {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
+          {label: 'Firstname', name: 'firstname', required: true, value:'Jacques' },
+          {label: 'Lastname', name: 'lastname', value:'Dupont' },
+          {type:'email', label: 'Email', name: 'email'},
+          {type:'url', label: 'Website',name:'website'}
+       ], 
+       buttons: [{type: 'submit', value: 'Change'}],
+       parentEl: 'container1'
+    });
+	
+	
+	
+	// Example 2
+
+    new Y.inputEx.Form( {
+         fields: [
+             { 
+                type:'group',
+                legend:'group 1',
+                name:'group1',
+                fields:[
+                  {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
+                  {label: 'Firstname', name: 'firstname', required: true, value:'Jacques' },
+                  {label: 'Lastname', name: 'lastname', value:'Dupont' }
+                ]
+             },
+             { 
+                type:'group',
+                legend:'group 2',
+                name:'group2',
+                fields:[
+                  {type:'email', label: 'Email', name: 'email'},
+                  {type:'url', label: 'Website',name:'website'}
+                ]
+             }
+         ],
+         buttons: [{type: 'submit', value: 'Change'}],
+         parentEl: 'container2'
+     });
+	 
+	 
+	 // Example 3
+	 
+
+     new Y.inputEx.Form( {
+        fields: [ 
+           { type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
+           { label: 'Firstname', name: 'firstname', required: true, value:'Jacques' },
+           { label: 'Lastname', name: 'lastname', value:'Dupont' }
+        ], 
+        buttons: [{type: 'submit', value: 'Change'}],    
+        parentEl: 'container3',
+        ajax: {
+           method: 'POST',
+           uri: 'default.php',
+           callback: {
+              success: function(o) { alert("success", o); },
+              failure: function(o) { alert("failure", o); }
+           },
+           showMask:true
+        }
+     });
+	 
+	 
+	 // Example 4
+
+     new Y.inputEx.Form( {
+        fields: [ 
+           { type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
+           { label: 'Firstname', name: 'firstname', required: true, value:'Jacques' },
+           { label: 'Lastname', name: 'lastname', value:'Dupont' }
+        ], 
+        buttons: [{type: 'submit', value: 'Change'}],    
+        parentEl: 'container4',
+        ajax: {
+           method: 'POST',
+           uri: 'default.php',
+           contentType: "application/x-www-form-urlencoded",
+           callback: {
+              success: function(o) { alert("success", o); },
+              failure: function(o) { alert("failure", o); }
+           },
+           showMask:true
+        }
+     });
+	 
+	 
+	 // Example 5
+
+     new Y.inputEx.Form( {
+        fields: [ 
+           { type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
+           { label: 'Firstname', name: 'firstname', required: true, value:'Jacques' },
+           { label: 'Lastname', name: 'lastname', value:'Dupont' }
+        ], 
+        buttons: [{type: 'submit', value: 'Change'}],    
+        parentEl: 'container5',
+        ajax: {
+           method: 'POST',
+           uri: 'default.php',
+           contentType: "application/x-www-form-urlencoded",
+           wrapObject: "person",
+           callback: {
+              success: function(o) { alert("success", o); },
+              failure: function(o) { alert("failure", o); }
+           },
+           showMask:true
+        }
+     });
+	 
+	 
+	 // Example 6
+
+     var form6 = new Y.inputEx.Form( { 
+        fields: [ 
+           {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }], value:'Mr' },
+           {label: 'Firstname', name: 'firstname', required: true, value:'Jacques' },
+           {label: 'Lastname', name: 'lastname', value:'Dupont' },
+           {
+              type: 'group',
+              legend: 'Emails',
+              name: 'emails',
+              fields: [
+                 {type:'email', label: 'Email 1', name:'first'},
+                 {type:'email', label: 'Email 2', name:'second'}
+              ]
+           }
+        ],
+        buttons: [
+           {
+              type: 'submit',
+              value: 'Set form value',
+                  
+              onClick: function(e) { // e === clickEvent (inputEx.widget.Button custom event)
+                     
+                 // valueObject : object to be passed to setValue function
+                 //               its structure is { field_name : field_value, ... }
+                     
+                 var valueObject = {
+                    title:"Mrs",
+                    firstname:"Candy",
+                    lastname:"Jones",
+                    // note the nested object when setting value of a form with a 'group' field :
+                    emails:{
+                       first:'first@email.com',
+                       second:'second@email.com'
+                    }
+                 };
+                     
+                 form6.setValue(valueObject);
+                     
+                 return false; // stop clickEvent, to prevent form submitting
+                     
+              }
+           },
+           {
+              type: 'submit',
+              value: 'Get form value',
+                  
+              onClick:function(e) { // e === clickEvent (inputEx.widget.Button custom event)
+                     
+                 var valueAsJsObject = form6.getValue();
+                 var valueAsJsonString = Y.JSON.stringify(valueAsJsObject);
+                     
+                 alert(valueAsJsonString);
+                     
+                 return false; // stop clickEvent, to prevent form submitting
+              }
+           }
+        ],
+        parentEl: 'container6'
+     });
+	 
+	 
+	 // Example 7
+	 
+
+         
+     var confirmation = {
+            
+        message : "Are you sure you want to submit ?",
+            
+        handler : function() {
+           if (!confirm(this.message)) {
+              return false;  // return false to prevent form submit
+           }
+        }
+            
+     };
+         
+     var form7 = new Y.inputEx.Form( { 
+        fields: [ 
+           {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }], value:'Mr' },
+           {label: 'Firstname', name: 'firstname', required: true, value:'Jacques' },
+           {label: 'Lastname', name: 'lastname', value:'Dupont' }
+        ], 
+        buttons: [
+           {type: 'submit', value: 'Submit'},
+           {type: 'submit-link', value: 'Submit'},
+           {
+              type: 'submit-link',
+              value: 'Confirm and submit',
+              onClick: {
+                 fn: confirmation.handler, // function called on click
+                 scope : confirmation // will become 'this' inside fn, when fn is called
+              }
+           },
+           {
+              type: 'link',
+              value: 'Reset form',
+              onClick: function() {form7.clear();} // when scope doesn't matter, simpler syntax to attach a click handler
+           }
+        ],
+        parentEl: 'container7'
+     });
+	 
+	 
+	 // Example 8
+
+     var form8 = new Y.inputEx.Form( { 
+        fields: [ 
+           {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }], value:'Mr' },
+           {label: 'Firstname', name: 'firstname', required: true, value:'Jacques' },
+           {label: 'Lastname', name: 'lastname', value:'Dupont' }
+        ], 
+        buttons: [
+           {type: 'submit', value: 'Submit'}
+        ],
+        parentEl: 'container8'
+     });
+         
+     var container = Y.inputEx.cn('div',{id:'destroyButtonContainer'});
+     Y.one('#container8').appendChild(container);
+         
+     var destroyButton = new Y.inputEx.widget.Button({
+        parentEl: 'destroyButtonContainer',
+        id: 'destroyButton',
+        type: 'submit',
+        value: 'Destroy the form',
+        onClick: function() {
+           alert('clicked : form will be destroyed');
+           form8.destroy(); // remove nodes from DOM, remove event listeners
+           delete form8;  // free memory (no references to removed DOM nodes)
+        }
+     });
+         
+     container.appendChild(Y.inputEx.cn('div',null,{clear:'both'}));
+         
+         
+		 
+	 // Example 9
+	 
+
+     // autocompletion is 'on'
+     new Y.inputEx.Form( { 
+        legend: "Form with autocompletion",
+        fields: [ 
+           {label: 'Lastname', name: 'lastname', description:'autocomplete option set to true by default' },
+           // except on this field
+           {type:'email', label: 'Email', name: 'email', autocomplete:false, description:"autocomplete option set to false on this field"}
+        ], 
+        buttons: [{type: 'submit', value: 'Change'}],
+        parentEl: 'container9'
+     });
+
+     // autocompletion is 'off' on the whole form
+     new Y.inputEx.Form( { 
+        legend: "Form without autocompletion",
+        autocomplete: false,
+        fields: [ 
+           {label: 'Lastname', name: 'lastname' },
+           {type:'email', label: 'Email', name: 'email'}
+        ], 
+        buttons: [{type: 'submit', value: 'Change'}],
+        parentEl: 'container9'
+     });
+
+     // to turn off the browser autocompletion by default in all
+     // inputEx fields of the page, set the following value after
+     // inputEx source inclusion :
+     //
+     //   inputEx.browserAutocomplete = false;
+     //
+	 
+	 
+
+});
 </script>
 
 </div>
 
-<h2 id="html">HTML</h2>
+<h2>HTML</h2>
 
 <pre class="code prettyprint">&lt;div id=&quot;field-container&quot;&gt;&lt;&#x2F;div&gt;</pre>
 
 
-<h2 id="javascript">JavaScript</h2>
+<h2>JavaScript</h2>
 
 
-<h3 id="implementation">Implementation</h3>
+<h3>Implementation</h3>
 
-<pre class="code prettyprint"></pre>
+<pre class="code prettyprint">YUI().use(&#x27;inputex-form&#x27;, &#x27;inputex-email&#x27;, &#x27;inputex-url&#x27;, &#x27;inputex-select&#x27;,  function(Y) {
+
+	&#x2F;&#x2F; Example 1
+
+    new Y.inputEx.Form( { 
+       fields: [ 
+          {type: &#x27;select&#x27;, label: &#x27;Title&#x27;, name: &#x27;title&#x27;, choices: [{ value: &#x27;Mr&#x27; }, { value: &#x27;Mrs&#x27; }, { value: &#x27;Ms&#x27; }] },
+          {label: &#x27;Firstname&#x27;, name: &#x27;firstname&#x27;, required: true, value:&#x27;Jacques&#x27; },
+          {label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, value:&#x27;Dupont&#x27; },
+          {type:&#x27;email&#x27;, label: &#x27;Email&#x27;, name: &#x27;email&#x27;},
+          {type:&#x27;url&#x27;, label: &#x27;Website&#x27;,name:&#x27;website&#x27;}
+       ], 
+       buttons: [{type: &#x27;submit&#x27;, value: &#x27;Change&#x27;}],
+       parentEl: &#x27;container1&#x27;
+    });
+	
+	
+	
+	&#x2F;&#x2F; Example 2
+
+    new Y.inputEx.Form( {
+         fields: [
+             { 
+                type:&#x27;group&#x27;,
+                legend:&#x27;group 1&#x27;,
+                name:&#x27;group1&#x27;,
+                fields:[
+                  {type: &#x27;select&#x27;, label: &#x27;Title&#x27;, name: &#x27;title&#x27;, choices: [{ value: &#x27;Mr&#x27; }, { value: &#x27;Mrs&#x27; }, { value: &#x27;Ms&#x27; }] },
+                  {label: &#x27;Firstname&#x27;, name: &#x27;firstname&#x27;, required: true, value:&#x27;Jacques&#x27; },
+                  {label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, value:&#x27;Dupont&#x27; }
+                ]
+             },
+             { 
+                type:&#x27;group&#x27;,
+                legend:&#x27;group 2&#x27;,
+                name:&#x27;group2&#x27;,
+                fields:[
+                  {type:&#x27;email&#x27;, label: &#x27;Email&#x27;, name: &#x27;email&#x27;},
+                  {type:&#x27;url&#x27;, label: &#x27;Website&#x27;,name:&#x27;website&#x27;}
+                ]
+             }
+         ],
+         buttons: [{type: &#x27;submit&#x27;, value: &#x27;Change&#x27;}],
+         parentEl: &#x27;container2&#x27;
+     });
+	 
+	 
+	 &#x2F;&#x2F; Example 3
+	 
+
+     new Y.inputEx.Form( {
+        fields: [ 
+           { type: &#x27;select&#x27;, label: &#x27;Title&#x27;, name: &#x27;title&#x27;, choices: [{ value: &#x27;Mr&#x27; }, { value: &#x27;Mrs&#x27; }, { value: &#x27;Ms&#x27; }] },
+           { label: &#x27;Firstname&#x27;, name: &#x27;firstname&#x27;, required: true, value:&#x27;Jacques&#x27; },
+           { label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, value:&#x27;Dupont&#x27; }
+        ], 
+        buttons: [{type: &#x27;submit&#x27;, value: &#x27;Change&#x27;}],    
+        parentEl: &#x27;container3&#x27;,
+        ajax: {
+           method: &#x27;POST&#x27;,
+           uri: &#x27;default.php&#x27;,
+           callback: {
+              success: function(o) { alert(&quot;success&quot;, o); },
+              failure: function(o) { alert(&quot;failure&quot;, o); }
+           },
+           showMask:true
+        }
+     });
+	 
+	 
+	 &#x2F;&#x2F; Example 4
+
+     new Y.inputEx.Form( {
+        fields: [ 
+           { type: &#x27;select&#x27;, label: &#x27;Title&#x27;, name: &#x27;title&#x27;, choices: [{ value: &#x27;Mr&#x27; }, { value: &#x27;Mrs&#x27; }, { value: &#x27;Ms&#x27; }] },
+           { label: &#x27;Firstname&#x27;, name: &#x27;firstname&#x27;, required: true, value:&#x27;Jacques&#x27; },
+           { label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, value:&#x27;Dupont&#x27; }
+        ], 
+        buttons: [{type: &#x27;submit&#x27;, value: &#x27;Change&#x27;}],    
+        parentEl: &#x27;container4&#x27;,
+        ajax: {
+           method: &#x27;POST&#x27;,
+           uri: &#x27;default.php&#x27;,
+           contentType: &quot;application&#x2F;x-www-form-urlencoded&quot;,
+           callback: {
+              success: function(o) { alert(&quot;success&quot;, o); },
+              failure: function(o) { alert(&quot;failure&quot;, o); }
+           },
+           showMask:true
+        }
+     });
+	 
+	 
+	 &#x2F;&#x2F; Example 5
+
+     new Y.inputEx.Form( {
+        fields: [ 
+           { type: &#x27;select&#x27;, label: &#x27;Title&#x27;, name: &#x27;title&#x27;, choices: [{ value: &#x27;Mr&#x27; }, { value: &#x27;Mrs&#x27; }, { value: &#x27;Ms&#x27; }] },
+           { label: &#x27;Firstname&#x27;, name: &#x27;firstname&#x27;, required: true, value:&#x27;Jacques&#x27; },
+           { label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, value:&#x27;Dupont&#x27; }
+        ], 
+        buttons: [{type: &#x27;submit&#x27;, value: &#x27;Change&#x27;}],    
+        parentEl: &#x27;container5&#x27;,
+        ajax: {
+           method: &#x27;POST&#x27;,
+           uri: &#x27;default.php&#x27;,
+           contentType: &quot;application&#x2F;x-www-form-urlencoded&quot;,
+           wrapObject: &quot;person&quot;,
+           callback: {
+              success: function(o) { alert(&quot;success&quot;, o); },
+              failure: function(o) { alert(&quot;failure&quot;, o); }
+           },
+           showMask:true
+        }
+     });
+	 
+	 
+	 &#x2F;&#x2F; Example 6
+
+     var form6 = new Y.inputEx.Form( { 
+        fields: [ 
+           {type: &#x27;select&#x27;, label: &#x27;Title&#x27;, name: &#x27;title&#x27;, choices: [{ value: &#x27;Mr&#x27; }, { value: &#x27;Mrs&#x27; }, { value: &#x27;Ms&#x27; }], value:&#x27;Mr&#x27; },
+           {label: &#x27;Firstname&#x27;, name: &#x27;firstname&#x27;, required: true, value:&#x27;Jacques&#x27; },
+           {label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, value:&#x27;Dupont&#x27; },
+           {
+              type: &#x27;group&#x27;,
+              legend: &#x27;Emails&#x27;,
+              name: &#x27;emails&#x27;,
+              fields: [
+                 {type:&#x27;email&#x27;, label: &#x27;Email 1&#x27;, name:&#x27;first&#x27;},
+                 {type:&#x27;email&#x27;, label: &#x27;Email 2&#x27;, name:&#x27;second&#x27;}
+              ]
+           }
+        ],
+        buttons: [
+           {
+              type: &#x27;submit&#x27;,
+              value: &#x27;Set form value&#x27;,
+                  
+              onClick: function(e) { &#x2F;&#x2F; e === clickEvent (inputEx.widget.Button custom event)
+                     
+                 &#x2F;&#x2F; valueObject : object to be passed to setValue function
+                 &#x2F;&#x2F;               its structure is { field_name : field_value, ... }
+                     
+                 var valueObject = {
+                    title:&quot;Mrs&quot;,
+                    firstname:&quot;Candy&quot;,
+                    lastname:&quot;Jones&quot;,
+                    &#x2F;&#x2F; note the nested object when setting value of a form with a &#x27;group&#x27; field :
+                    emails:{
+                       first:&#x27;first@email.com&#x27;,
+                       second:&#x27;second@email.com&#x27;
+                    }
+                 };
+                     
+                 form6.setValue(valueObject);
+                     
+                 return false; &#x2F;&#x2F; stop clickEvent, to prevent form submitting
+                     
+              }
+           },
+           {
+              type: &#x27;submit&#x27;,
+              value: &#x27;Get form value&#x27;,
+                  
+              onClick:function(e) { &#x2F;&#x2F; e === clickEvent (inputEx.widget.Button custom event)
+                     
+                 var valueAsJsObject = form6.getValue();
+                 var valueAsJsonString = Y.JSON.stringify(valueAsJsObject);
+                     
+                 alert(valueAsJsonString);
+                     
+                 return false; &#x2F;&#x2F; stop clickEvent, to prevent form submitting
+              }
+           }
+        ],
+        parentEl: &#x27;container6&#x27;
+     });
+	 
+	 
+	 &#x2F;&#x2F; Example 7
+	 
+
+         
+     var confirmation = {
+            
+        message : &quot;Are you sure you want to submit ?&quot;,
+            
+        handler : function() {
+           if (!confirm(this.message)) {
+              return false;  &#x2F;&#x2F; return false to prevent form submit
+           }
+        }
+            
+     };
+         
+     var form7 = new Y.inputEx.Form( { 
+        fields: [ 
+           {type: &#x27;select&#x27;, label: &#x27;Title&#x27;, name: &#x27;title&#x27;, choices: [{ value: &#x27;Mr&#x27; }, { value: &#x27;Mrs&#x27; }, { value: &#x27;Ms&#x27; }], value:&#x27;Mr&#x27; },
+           {label: &#x27;Firstname&#x27;, name: &#x27;firstname&#x27;, required: true, value:&#x27;Jacques&#x27; },
+           {label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, value:&#x27;Dupont&#x27; }
+        ], 
+        buttons: [
+           {type: &#x27;submit&#x27;, value: &#x27;Submit&#x27;},
+           {type: &#x27;submit-link&#x27;, value: &#x27;Submit&#x27;},
+           {
+              type: &#x27;submit-link&#x27;,
+              value: &#x27;Confirm and submit&#x27;,
+              onClick: {
+                 fn: confirmation.handler, &#x2F;&#x2F; function called on click
+                 scope : confirmation &#x2F;&#x2F; will become &#x27;this&#x27; inside fn, when fn is called
+              }
+           },
+           {
+              type: &#x27;link&#x27;,
+              value: &#x27;Reset form&#x27;,
+              onClick: function() {form7.clear();} &#x2F;&#x2F; when scope doesn&#x27;t matter, simpler syntax to attach a click handler
+           }
+        ],
+        parentEl: &#x27;container7&#x27;
+     });
+	 
+	 
+	 &#x2F;&#x2F; Example 8
+
+     var form8 = new Y.inputEx.Form( { 
+        fields: [ 
+           {type: &#x27;select&#x27;, label: &#x27;Title&#x27;, name: &#x27;title&#x27;, choices: [{ value: &#x27;Mr&#x27; }, { value: &#x27;Mrs&#x27; }, { value: &#x27;Ms&#x27; }], value:&#x27;Mr&#x27; },
+           {label: &#x27;Firstname&#x27;, name: &#x27;firstname&#x27;, required: true, value:&#x27;Jacques&#x27; },
+           {label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, value:&#x27;Dupont&#x27; }
+        ], 
+        buttons: [
+           {type: &#x27;submit&#x27;, value: &#x27;Submit&#x27;}
+        ],
+        parentEl: &#x27;container8&#x27;
+     });
+         
+     var container = Y.inputEx.cn(&#x27;div&#x27;,{id:&#x27;destroyButtonContainer&#x27;});
+     Y.one(&#x27;#container8&#x27;).appendChild(container);
+         
+     var destroyButton = new Y.inputEx.widget.Button({
+        parentEl: &#x27;destroyButtonContainer&#x27;,
+        id: &#x27;destroyButton&#x27;,
+        type: &#x27;submit&#x27;,
+        value: &#x27;Destroy the form&#x27;,
+        onClick: function() {
+           alert(&#x27;clicked : form will be destroyed&#x27;);
+           form8.destroy(); &#x2F;&#x2F; remove nodes from DOM, remove event listeners
+           delete form8;  &#x2F;&#x2F; free memory (no references to removed DOM nodes)
+        }
+     });
+         
+     container.appendChild(Y.inputEx.cn(&#x27;div&#x27;,null,{clear:&#x27;both&#x27;}));
+         
+         
+		 
+	 &#x2F;&#x2F; Example 9
+	 
+
+     &#x2F;&#x2F; autocompletion is &#x27;on&#x27;
+     new Y.inputEx.Form( { 
+        legend: &quot;Form with autocompletion&quot;,
+        fields: [ 
+           {label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, description:&#x27;autocomplete option set to true by default&#x27; },
+           &#x2F;&#x2F; except on this field
+           {type:&#x27;email&#x27;, label: &#x27;Email&#x27;, name: &#x27;email&#x27;, autocomplete:false, description:&quot;autocomplete option set to false on this field&quot;}
+        ], 
+        buttons: [{type: &#x27;submit&#x27;, value: &#x27;Change&#x27;}],
+        parentEl: &#x27;container9&#x27;
+     });
+
+     &#x2F;&#x2F; autocompletion is &#x27;off&#x27; on the whole form
+     new Y.inputEx.Form( { 
+        legend: &quot;Form without autocompletion&quot;,
+        autocomplete: false,
+        fields: [ 
+           {label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27; },
+           {type:&#x27;email&#x27;, label: &#x27;Email&#x27;, name: &#x27;email&#x27;}
+        ], 
+        buttons: [{type: &#x27;submit&#x27;, value: &#x27;Change&#x27;}],
+        parentEl: &#x27;container9&#x27;
+     });
+
+     &#x2F;&#x2F; to turn off the browser autocompletion by default in all
+     &#x2F;&#x2F; inputEx fields of the page, set the following value after
+     &#x2F;&#x2F; inputEx source inclusion :
+     &#x2F;&#x2F;
+     &#x2F;&#x2F;   inputEx.browserAutocomplete = false;
+     &#x2F;&#x2F;
+	 
+	 
+
+});</pre>
 
 </div>
             </div>
@@ -62,29 +723,25 @@ inputex-form
         <div class="yui3-u-1-4">
             <div class="sidebar">
                 
-                    <div id="toc" class="sidebox">
+
+                
+                    <div class="sidebox">
                         <div class="hd">
-                            <h2 class="no-toc">Table of Contents</h2>
+                            <h2 class="no-toc">Examples</h2>
                         </div>
 
                         <div class="bd">
-                            <ul class="toc">
-<li>
-<a href="#html">HTML</a>
-</li>
-<li>
-<a href="#javascript">JavaScript</a>
-<ul class="toc">
-<li>
-<a href="#implementation">Implementation</a>
-</li>
-</ul>
-</li>
-</ul>
+                            <ul class="examples">
+                                
+                                    
+                                        <li data-description="How to create a form field.">
+                                            <a href="form.html">Basic form field creation</a>
+                                        </li>
+                                    
+                                
+                            </ul>
                         </div>
                     </div>
-                
-
                 
 
                 
@@ -138,11 +795,12 @@ YUI.Env.Tests = {
     examples: [],
     project: '../assets',
     assets: '../assets/inputex-form',
-    name: 'inputex-form',
-    title: 'inputex-form',
+    name: 'form',
+    title: 'Basic form field creation',
     newWindow: '',
     auto:  true 
 };
+YUI.Env.Tests.examples.push('form');
 
 </script>
 <!--script src="../assets/yui/test-runner.js"></script-->

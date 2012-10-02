@@ -10,5 +10,14 @@
       "inputex-group",
       "inputex-inplaceedit"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "lens",
+         "displayName": "Basic lens  creation",
+         "description": "How to create a lens.",
+         "modules"    : ["inputex-lens"],
+         "tags"       : ["lens"],
+         "hideTableOfContents": true
+      }
+   ]
 }

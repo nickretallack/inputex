@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>inputex-number</title>
+    <title>Example: Basic number creation</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -19,10 +19,8 @@
 
 <div id="doc">
     <div id="hd">
-        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> inputex-number</h1>
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> Example: Basic number creation</h1>
     </div>
-    
-        <a href="#toc" class="jump">Jump to Table of Contents</a>
     
 
     <div class="yui3-g">
@@ -30,30 +28,111 @@
             <div id="main">
                 <div class="content"><div class="intro">
 <p>
-inputex-number
+How to create a number.
 </p>
 </div>
 
 <div class="example">
 
+   
+   <h2>Basic NumberField creation</h2>
+   <p>Use the following code to create a basic inputEx NumberField.</p>
+   <div class='demoContainer' id='container1'></div>
+
+
+
+   <h2>Supported format</h2>
+   <p>Everything accepted by parseFloat is valid.</p>
+   <div class='demoContainer' id='container2'></div>
+
+
+   
+   <h2>Min &amp; Max</h2>
+   <p>Check a minimum or a maximum value</p>
+   <div class='demoContainer' id='container3'></div>
+
 
 <script>
+YUI().use('inputex-number',  function(Y) {
+   
+
+   // Example 1
+         field = new Y.inputEx.NumberField({parentEl: 'container1', showMsg: true, value: 0.03});
+         var button = Y.inputEx.cn('button', null, null, 'getValue');
+         Y.one(button).on('click',function() {
+            alert(field.getValue());
+         });
+         Y.one('#container1').appendChild(button);
+
+
+   // Example 2
+
+         field2 = new Y.inputEx.NumberField({parentEl: 'container2', showMsg: true, value: '03e-2', required:true, typeInvite:"Float numbers accepted"});
+         var button = Y.inputEx.cn('button', null, null, 'getValue');
+         Y.one(button).on('click',function() {
+            alert(field2.getValue());
+         });
+         Y.one('#container2').appendChild(button);
+
+   // Example 3
+   
+            field3 = new Y.inputEx.NumberField({parentEl: 'container3', showMsg: true, min:-15, max:'1e3', typeInvite:"Numbers between -15 and 1e3 (1000) only", size:40});
+            var button = Y.inputEx.cn('button', null, null, 'getValue');
+            Y.one(button).on('click',function() {
+               alert(field3.getValue());
+            });
+            Y.one('#container3').appendChild(button);
+
+
+});
+
 
 </script>
 
 </div>
 
-<h2 id="html">HTML</h2>
+<h2>HTML</h2>
 
 <pre class="code prettyprint">&lt;div id=&quot;field-container&quot;&gt;&lt;&#x2F;div&gt;</pre>
 
 
-<h2 id="javascript">JavaScript</h2>
+<h2>JavaScript</h2>
 
 
-<h3 id="implementation">Implementation</h3>
+<h3>Implementation</h3>
 
-<pre class="code prettyprint"></pre>
+<pre class="code prettyprint">YUI().use(&#x27;inputex-number&#x27;,  function(Y) {
+   
+
+   &#x2F;&#x2F; Example 1
+         field = new Y.inputEx.NumberField({parentEl: &#x27;container1&#x27;, showMsg: true, value: 0.03});
+         var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
+         Y.one(button).on(&#x27;click&#x27;,function() {
+            alert(field.getValue());
+         });
+         Y.one(&#x27;#container1&#x27;).appendChild(button);
+
+
+   &#x2F;&#x2F; Example 2
+
+         field2 = new Y.inputEx.NumberField({parentEl: &#x27;container2&#x27;, showMsg: true, value: &#x27;03e-2&#x27;, required:true, typeInvite:&quot;Float numbers accepted&quot;});
+         var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
+         Y.one(button).on(&#x27;click&#x27;,function() {
+            alert(field2.getValue());
+         });
+         Y.one(&#x27;#container2&#x27;).appendChild(button);
+
+   &#x2F;&#x2F; Example 3
+   
+            field3 = new Y.inputEx.NumberField({parentEl: &#x27;container3&#x27;, showMsg: true, min:-15, max:&#x27;1e3&#x27;, typeInvite:&quot;Numbers between -15 and 1e3 (1000) only&quot;, size:40});
+            var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
+            Y.one(button).on(&#x27;click&#x27;,function() {
+               alert(field3.getValue());
+            });
+            Y.one(&#x27;#container3&#x27;).appendChild(button);
+
+
+});</pre>
 
 </div>
             </div>
@@ -62,29 +141,25 @@ inputex-number
         <div class="yui3-u-1-4">
             <div class="sidebar">
                 
-                    <div id="toc" class="sidebox">
+
+                
+                    <div class="sidebox">
                         <div class="hd">
-                            <h2 class="no-toc">Table of Contents</h2>
+                            <h2 class="no-toc">Examples</h2>
                         </div>
 
                         <div class="bd">
-                            <ul class="toc">
-<li>
-<a href="#html">HTML</a>
-</li>
-<li>
-<a href="#javascript">JavaScript</a>
-<ul class="toc">
-<li>
-<a href="#implementation">Implementation</a>
-</li>
-</ul>
-</li>
-</ul>
+                            <ul class="examples">
+                                
+                                    
+                                        <li data-description="How to create a number.">
+                                            <a href="number.html">Basic number creation</a>
+                                        </li>
+                                    
+                                
+                            </ul>
                         </div>
                     </div>
-                
-
                 
 
                 
@@ -138,11 +213,12 @@ YUI.Env.Tests = {
     examples: [],
     project: '../assets',
     assets: '../assets/inputex-number',
-    name: 'inputex-number',
-    title: 'inputex-number',
+    name: 'number',
+    title: 'Basic number creation',
     newWindow: '',
     auto:  true 
 };
+YUI.Env.Tests.examples.push('number');
 
 </script>
 <!--script src="../assets/yui/test-runner.js"></script-->

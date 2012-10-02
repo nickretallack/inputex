@@ -2,7 +2,7 @@ YUI().use('inputex-dsselect', function(Y) {
 
 
 	// Configure datasource
-	var myDataSource = new Y.DataSource.IO({ source: "books.json" });
+	var myDataSource = new Y.DataSource.IO({ source: "../assets/inputex-dsselect/books.json" });
 	myDataSource.plug({fn: Y.Plugin.DataSourceJSONSchema, cfg: {
 	    schema: {
 	        resultListLocator: "Results",

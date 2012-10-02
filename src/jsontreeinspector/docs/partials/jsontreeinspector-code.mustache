@@ -1,0 +1,14 @@
+YUI().use('inputex-jsontreeinspector', function(Y) {
+   
+
+   // Example 1
+   new Y.inputEx.widget.JsonTreeInspector('container1', {inputEx: Y.inputEx, Global: window});
+
+
+   // Example 2
+   var obj = {
+      content: "<div><b>yeah</b></div>"
+   };
+   new Y.inputEx.widget.JsonTreeInspector('container2', {htmlContent: obj});
+
+});

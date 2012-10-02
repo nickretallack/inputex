@@ -9,5 +9,14 @@
    "use": [
       "inputex-string"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "number",
+         "displayName": "Basic number creation",
+         "description": "How to create a number.",
+         "modules"    : ["inputex-number"],
+         "tags"       : ["number"],
+         "hideTableOfContents": true
+      }
+   ]
 }

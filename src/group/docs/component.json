@@ -9,5 +9,14 @@
    "use": [
       "inputex-field"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "group",
+         "displayName": "Basic group field creation",
+         "description": "How to create a group field.",
+         "modules"    : ["inputex-group"],
+         "tags"       : ["group"],
+         "hideTableOfContents": true
+      }
+   ]
 }

@@ -10,5 +10,14 @@
       "inputex-select",
       "inputex-ddlist"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "multiselect",
+         "displayName": "Basic multiselect creation",
+         "description": "How to create a multiselect.",
+         "modules"    : ["inputex-multiselect"],
+         "tags"       : ["multiselect"],
+         "hideTableOfContents": true
+      }
+   ]
 }

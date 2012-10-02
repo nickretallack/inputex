@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>inputex-integer</title>
+    <title>Example: Basic integer field creation</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -19,10 +19,8 @@
 
 <div id="doc">
     <div id="hd">
-        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> inputex-integer</h1>
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> Example: Basic integer field creation</h1>
     </div>
-    
-        <a href="#toc" class="jump">Jump to Table of Contents</a>
     
 
     <div class="yui3-g">
@@ -30,30 +28,114 @@
             <div id="main">
                 <div class="content"><div class="intro">
 <p>
-inputex-integer
+How to create a integer field.
 </p>
 </div>
 
 <div class="example">
 
+	
+	<h2>Basic IntegerField creation</h2>
+	<p>Use the following code to create a basic inputEx IntegerField.</p>
+	<div class='demoContainer' id='container1'></div>
+	<div id='valueContainer1'></div>
+	
+	
+	
+	<h2>IntegerField with options</h2>
+	<p>Test IntegerField with more options.</p>
+	<div class='demoContainer' id='container2'></div>
+	<div id='valueContainer2'></div>
+	
+	
+	
+	<h2>Negative values</h2>
+	<p>Set the negative attribute to true if you allow negative values.</p>
+	<div class='demoContainer' id='container3'></div>
+	
+	
+	<h2>Min &amp; Max</h2>
+	<p>Check values are within a range</p>
+	<div class='demoContainer' id='container4'></div>
+	
+	
+	
+	
 
 <script>
+YUI().use('inputex-integer', function(Y) {
+
+	// Example 1
+	var field = new Y.inputEx.IntegerField({parentEl: 'container1', showMsg: true});
+	field.on('updated', function(value) {
+		Y.one('#valueContainer1').innerHTML = "value: "+value+", type: "+typeof(value);
+	});
+	
+	
+	// Example 2
+	var field = new Y.inputEx.IntegerField({parentEl: 'container2', showMsg: true, required:true, typeInvite:"Enter a number", trim: true});
+	field.on('updated', function(value) {
+		Y.one('#valueContainer2').innerHTML = "value: "+value+", type: "+typeof(value);
+	});
+	
+	
+	// Example 3
+	new Y.inputEx.IntegerField({parentEl: 'container3', showMsg: true, required:true, negative:true});
+	
+	
+	// Example 4
+	new Y.inputEx.IntegerField({parentEl: 'container4', showMsg: true, min:3, max:10, typeInvite:"Integers between 3 and 10 only", size:30});
+	
+	
+	
+	
+
+});
+
+
 
 </script>
 
 </div>
 
-<h2 id="html">HTML</h2>
+<h2>HTML</h2>
 
 <pre class="code prettyprint">&lt;div id=&quot;field-container&quot;&gt;&lt;&#x2F;div&gt;</pre>
 
 
-<h2 id="javascript">JavaScript</h2>
+<h2>JavaScript</h2>
 
 
-<h3 id="implementation">Implementation</h3>
+<h3>Implementation</h3>
 
-<pre class="code prettyprint"></pre>
+<pre class="code prettyprint">YUI().use(&#x27;inputex-integer&#x27;, function(Y) {
+
+	&#x2F;&#x2F; Example 1
+	var field = new Y.inputEx.IntegerField({parentEl: &#x27;container1&#x27;, showMsg: true});
+	field.on(&#x27;updated&#x27;, function(value) {
+		Y.one(&#x27;#valueContainer1&#x27;).innerHTML = &quot;value: &quot;+value+&quot;, type: &quot;+typeof(value);
+	});
+	
+	
+	&#x2F;&#x2F; Example 2
+	var field = new Y.inputEx.IntegerField({parentEl: &#x27;container2&#x27;, showMsg: true, required:true, typeInvite:&quot;Enter a number&quot;, trim: true});
+	field.on(&#x27;updated&#x27;, function(value) {
+		Y.one(&#x27;#valueContainer2&#x27;).innerHTML = &quot;value: &quot;+value+&quot;, type: &quot;+typeof(value);
+	});
+	
+	
+	&#x2F;&#x2F; Example 3
+	new Y.inputEx.IntegerField({parentEl: &#x27;container3&#x27;, showMsg: true, required:true, negative:true});
+	
+	
+	&#x2F;&#x2F; Example 4
+	new Y.inputEx.IntegerField({parentEl: &#x27;container4&#x27;, showMsg: true, min:3, max:10, typeInvite:&quot;Integers between 3 and 10 only&quot;, size:30});
+	
+	
+	
+	
+
+});</pre>
 
 </div>
             </div>
@@ -62,29 +144,25 @@ inputex-integer
         <div class="yui3-u-1-4">
             <div class="sidebar">
                 
-                    <div id="toc" class="sidebox">
+
+                
+                    <div class="sidebox">
                         <div class="hd">
-                            <h2 class="no-toc">Table of Contents</h2>
+                            <h2 class="no-toc">Examples</h2>
                         </div>
 
                         <div class="bd">
-                            <ul class="toc">
-<li>
-<a href="#html">HTML</a>
-</li>
-<li>
-<a href="#javascript">JavaScript</a>
-<ul class="toc">
-<li>
-<a href="#implementation">Implementation</a>
-</li>
-</ul>
-</li>
-</ul>
+                            <ul class="examples">
+                                
+                                    
+                                        <li data-description="How to create a integer field.">
+                                            <a href="integer.html">Basic integer field creation</a>
+                                        </li>
+                                    
+                                
+                            </ul>
                         </div>
                     </div>
-                
-
                 
 
                 
@@ -138,11 +216,12 @@ YUI.Env.Tests = {
     examples: [],
     project: '../assets',
     assets: '../assets/inputex-integer',
-    name: 'inputex-integer',
-    title: 'inputex-integer',
+    name: 'integer',
+    title: 'Basic integer field creation',
     newWindow: '',
     auto:  true 
 };
+YUI.Env.Tests.examples.push('integer');
 
 </script>
 <!--script src="../assets/yui/test-runner.js"></script-->

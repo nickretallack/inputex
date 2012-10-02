@@ -9,5 +9,14 @@
    "use": [
       "inputex-string"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "email",
+         "displayName": "Basic email field creation",
+         "description": "How to create a email field.",
+         "modules"    : ["inputex-email"],
+         "tags"       : ["email"],
+         "hideTableOfContents": true
+      }
+   ]
 }

@@ -9,5 +9,14 @@
    "use": [
       "inputex-string"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "ipv4",
+         "displayName": "Basic ipv4 field creation",
+         "description": "How to create a ipv4 field.",
+         "modules"    : ["inputex-ipv4"],
+         "tags"       : ["ipv4"],
+         "hideTableOfContents": true
+      }
+   ]
 }

@@ -9,5 +9,14 @@
    "use": [
       "inputex-field"
    ],
-   "examples": []
+   "examples": [
+      {
+         "name"       : "map",
+         "displayName": "Basic map creation",
+         "description": "How to create a map.",
+         "modules"    : ["inputex-map"],
+         "tags"       : ["map"],
+         "hideTableOfContents": true
+      }
+   ]
 }
