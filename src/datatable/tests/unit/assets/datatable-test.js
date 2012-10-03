@@ -135,5 +135,5 @@ YUI.add("datatable-test", function (Y) {
     Y.Test.Runner.add(suite);
 
 }, "", {
-    requires: ["test", 'datatype', 'inputex-datatable', 'inputex-uneditable', 'inputex-datepicker', 'inputex-integer', 'inputex-number', 'inputex-select', 'inputex-color', "inputex-examples"]
+    requires: ["test", 'datatype', 'inputex-datatable', 'inputex-uneditable', 'inputex-datepicker', 'inputex-integer', 'inputex-number', 'inputex-select', 'inputex-color']
 });
