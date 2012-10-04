@@ -1,4 +1,2 @@
 .*
 !.git*
-build/
-scripts/script.js
