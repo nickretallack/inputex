@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-date_ca",function(e){e.Intl.add("inputex-date","ca",{invalidDate:"Data no v\u00e0lida, ej: 25/01/2007",defaultDateFormat:"d/m/Y",selectMonth:"- Seleccioni un mes -",dayTypeInvite:"Dia",monthTypeInvite:"Mes",yearTypeInvite:"Any"})},"@VERSION@");

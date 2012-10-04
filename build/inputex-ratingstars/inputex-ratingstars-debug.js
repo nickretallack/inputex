@@ -241,4 +241,4 @@ Y.extend(inputEx.RatingStars, inputEx.Field,{
  inputEx.registerType("ratingstars", inputEx.RatingStars);
 
 
-}, '@VERSION@', {"requires": ["inputex-field"], "skinnable": true, "ix_provides": "ratingstars", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"requires": ["inputex-field"], "skinnable": true, "ix_provides": "ratingstars", "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});

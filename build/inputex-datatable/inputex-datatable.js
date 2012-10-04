@@ -378,4 +378,4 @@ ATTRS: {
 }});
 
 
-}, '@VERSION@', {"requires": ["inputex-group", "inputex-panel", "datatable"], "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"requires": ["inputex-group", "inputex-panel", "datatable"], "skinnable": true, "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});

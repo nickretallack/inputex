@@ -153,4 +153,4 @@ inputEx.registerType("date", inputEx.DateField, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "date", "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "date", "skinnable": true, "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});

@@ -242,4 +242,4 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
 inputEx.registerType("menu", inputEx.MenuField);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "node-event-delegate", "node-menunav", "substitute"], "skinnable": true, "ix_provides": "menu", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"requires": ["inputex-field", "node-event-delegate", "node-menunav", "substitute"], "skinnable": true, "ix_provides": "menu", "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});

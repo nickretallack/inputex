@@ -118,4 +118,4 @@ inputEx.TimeIntervalField.units = {
 inputEx.registerType("timeinterval", inputEx.TimeIntervalField);
 
 
-}, '@VERSION@', {"requires": ["inputex-combine", "inputex-select"], "ix_provides": "timeinterval", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"requires": ["inputex-combine", "inputex-select"], "ix_provides": "timeinterval", "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});

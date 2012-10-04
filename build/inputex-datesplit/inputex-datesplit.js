@@ -195,4 +195,4 @@ Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
 inputEx.registerType("datesplit", inputEx.DateSplitField);
 
 
-}, '@VERSION@', {"requires": ["inputex-combine", "inputex-integer"], "ix_provides": "datesplit", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"requires": ["inputex-combine", "inputex-integer"], "ix_provides": "datesplit", "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});

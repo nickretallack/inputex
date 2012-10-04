@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-field_ca",function(e){e.Intl.add("inputex-field","ca",{required:"Aquest camp \u00e9s obligatori",invalid:"Aquest camp no \u00e9s obligatori",valid:"Aquest camp \u00e9s v\u00e0lid"})},"@VERSION@");

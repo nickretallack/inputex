@@ -441,4 +441,4 @@ YUI.add('inputex-field', function (Y, NAME) {
   ];
 
 
-}, '@VERSION@', {"requires": ["inputex", "intl"], "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"requires": ["inputex", "intl"], "skinnable": true, "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});

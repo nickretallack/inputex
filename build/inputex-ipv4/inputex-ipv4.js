@@ -39,4 +39,4 @@ Y.extend(inputEx.IPv4Field, inputEx.StringField, {
 inputEx.registerType("IPv4", inputEx.IPv4Field, []);
 
 
-}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "ipv4", "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "ipv4", "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});

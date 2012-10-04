@@ -215,4 +215,4 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 inputEx.registerType("datepicker", inputEx.DatePickerField);
 
 
-}, '@VERSION@', {"requires": ["inputex-date", "event-outside", "node-event-delegate", "overlay", "calendar"], "ix_provides": "datepicker", "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"requires": ["inputex-date", "event-outside", "node-event-delegate", "overlay", "calendar"], "ix_provides": "datepicker", "skinnable": true, "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});

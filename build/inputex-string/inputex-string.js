@@ -305,4 +305,4 @@ inputEx.registerType("string", inputEx.StringField, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "event-key"], "ix_provides": "string", "skinnable": true, "lang": ["en", "fr", "de", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {"requires": ["inputex-field", "event-key"], "ix_provides": "string", "skinnable": true, "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});
