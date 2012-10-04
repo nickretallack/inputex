@@ -16,6 +16,7 @@ Release Notes:
  * Skinnable modules
  * Selleck docs
  * tests
+ * YUI 3.7.2
 
 
 3.1.0 : August, 17th 2012
