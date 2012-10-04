@@ -17,6 +17,14 @@
          "modules"    : ["inputex-group"],
          "tags"       : ["group"],
          "hideTableOfContents": true
-      }
+      },
+      {
+           "name"       : "interactions",
+           "displayName": "Group interactions",
+           "description": "How to create a group with interactions.",
+           "modules"    : ["inputex-group"],
+           "tags"       : ["group"],
+           "hideTableOfContents": true
+        }
    ]
 }

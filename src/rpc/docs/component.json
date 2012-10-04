@@ -13,5 +13,22 @@
       "inputex-jsonschema",
       "jsonp"
    ],
-   "examples": []
+   "examples": [
+   {
+        "name"       : "yahoo-answers",
+        "displayName": "yahoo-answers",
+        "description": "yahoo-answers",
+        "modules"    : ["inputex-rpc"],
+        "tags"       : ["rpc"],
+        "hideTableOfContents": true
+      },
+           {
+             "name"       : "smdtester",
+             "displayName": "smdtester",
+             "description": "smdtester",
+             "modules"    : ["inputex-rpc"],
+             "tags"       : ["rpc"],
+             "hideTableOfContents": true
+           }
+      ]
 }

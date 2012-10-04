@@ -10,5 +10,14 @@
       "inputex-string",
       "json"
    ],
-   "examples": []
+   "examples": [
+          {
+            "name"       : "serialize",
+            "displayName": "Basic serialize field creation",
+            "description": "How to create a serialize field.",
+            "modules"    : ["inputex-serialize"],
+            "tags"       : ["serialize"],
+            "hideTableOfContents": true
+          }
+     ]
 }

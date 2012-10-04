@@ -1,0 +1,10 @@
+YUI().use("inputex-form","inputex-string","inputex-select","inputex-integer","inputex-number","inputex-textarea","inputex-url","inputex-jsonschema","inputex-rpc","inputex-jsontreeinspector","inputex-smdtester", function(Y) {
+
+  var smdList = ['../assets/inputex-rpc/smd/json-time.smd', '../assets/inputex-rpc/smd/json-head.smd', '../assets/inputex-rpc/smd/langdetect.smd', '../assets/inputex-rpc/smd/html-whitelist.smd',
+				   '../assets/inputex-rpc/smd/yql.smd', '../assets/inputex-rpc/smd/jsonptunnel.smd', '../assets/inputex-rpc/smd/flickr.smd',
+				   '../assets/inputex-rpc/smd/yahoopipes.smd', '../assets/inputex-rpc/smd/delicious.smd', '../assets/inputex-rpc/smd/wikipedia.smd', '../assets/inputex-rpc/smd/google.smd',
+ 				   '../assets/inputex-rpc/smd/twitter.smd', '../assets/inputex-rpc/smd/geonames.smd', '../assets/inputex-rpc/smd/yahoo.smd', '../assets/inputex-rpc/smd/freebase.smd', '../assets/inputex-rpc/smd/tinyurl.smd'];
+	new Y.inputEx.RPC.SMDTester('mainBox', smdList);
+  
+});
+

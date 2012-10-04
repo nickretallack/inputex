@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Example: Group interactions</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
+    <script src="http://yui.yahooapis.com/3.7.2/build/yui/yui-min.js"></script>
+    <script src="../../build/inputex-loader/inputex-loader.js"></script>
+    <script>YUI_config.groups.inputex.base = '../../build/';</script>
+    
+</head>
+<body class="yui-skin-sam yui3-skin-sam">
+
+<a href="https://github.com/neyric/inputex"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+<div id="doc">
+    <div id="hd">
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> Example: Group interactions</h1>
+    </div>
+    
+
+    <div class="yui3-g">
+        <div class="yui3-u-3-4">
+            <div id="main">
+                <div class="content"><div class="intro">
+<p>
+How to create a group with interactions.
+</p>
+</div>
+
+<div class="example">
+
+<h2>Using a checkbox to show/hide another field</h2>
+<p>Use an action</p>
+<div class='demoContainer' id='container1'></div>
+
+
+<h2>Basic Group Interactions</h2>
+<p>Toggle a field</p>
+<div class='demoContainer' id='container2'></div>
+
+
+<h2>Basic Group Interactions</h2>
+<p>Toggle a field</p>
+<div class='demoContainer' id='container3'></div>
+
+
+<script>
+YUI().use('inputex-group', 'inputex-checkbox','inputex-select','inputex-string','inputex-email','inputex-url', function(Y) { 
+
+
+    // Example 1
+    Y.inputEx({
+		type: "group",
+   	parentEl: 'container1',
+   	fields: [
+       {
+			   type: 'boolean', // inputex type
+				name: 'toggler',
+			   value: true,
+				rightLabel: 'Stay anonymous',
+			   interactions: [
+			       {
+			          valueTrigger: false, // this action will run when this field value is set to false
+			          actions: [
+			             {
+			                name: 'username', // name of the field on which the action should run
+			                action: 'show' // name of the method to run on the field instance !
+			             }
+			          ]
+			       },
+			       {
+			          valueTrigger: true, // when set to true:
+			          actions: [
+			             {
+			                name: 'username', 
+			                action: 'hide'
+			             },
+									 {
+					            name: 'username', // name of the field on which the action should run
+					            action: 'clear' // name of the method to run on the field instance !
+					         }
+			          ]
+			       }
+			   ]
+			},
+         {type: "string", name: "username", label: "Enter your name" }
+      ]
+   });
+
+
+
+    // Example 2
+    new Y.inputEx.Group({ 
+	   parentEl: 'container2',
+
+	   fields: [
+	       {
+				   type: 'boolean', // inputex type
+					name: 'toggler',
+				   value: true,
+					rightLabel: 'Check this box to toggle the enabled field',
+				   interactions: [
+				       {
+				          valueTrigger: true, // this action will run when this field value is set to true
+				          actions: [
+				             {
+				                name: 'group1', // name of the field on which the action should run
+				                action: 'disable' // name of the method to run on the field instance !
+				             },
+				             {
+				                name: 'group2', 
+				                action: 'enable'
+				             }
+				          ]
+				       },
+				       {
+				          valueTrigger: false, // when set to false:
+				          actions: [
+				             {
+				                name: 'group1', 
+				                action: 'enable'
+				             },
+				             {
+				                name: 'group2', 
+				                action: 'disable'
+				             }
+				          ]
+				       }
+				   ]
+			},
+	      {
+				   type: 'group',
+			      name: 'group1',
+			      fields: [ 
+							{ type: 'select', label: 'Title',name: 'title', choices: [{ value : 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
+							{ label: 'Firstname', name: 'firstname', required: true, value:'Jacques' },
+							{ label: 'Lastname', name: 'lastname', value:'Dupont' },
+							{ type:'email', label: 'Email', name: 'email'}
+					]
+			},
+	      {
+			   type: 'group',
+			   name: 'group2',
+			   fields: [
+					{type: 'url', label: "Website",  name: 'myUrl' }
+				]
+			}
+	   ]
+	});
+	
+	
+	// Example 3
+	new Y.inputEx.Group({ 
+	   parentEl: 'container3',
+
+	   fields: [
+	       {
+						type: 'select', 
+						label: 'Select your country',
+						choices: [{ value: "France" }, { value: "USA" }],
+						interactions: [
+							{
+								valueTrigger: "France",
+								actions: [
+									{
+										name: "franceCitiesSelect",
+										action: "show"
+									},
+									{
+										name: "USACitiesSelect",
+										action: "hide"
+									},
+								]
+							},
+							{
+								valueTrigger: "USA",
+								actions: [
+									{
+										name: "franceCitiesSelect",
+										action: "hide"
+									},
+									{
+										name: "USACitiesSelect",
+										action: "show"
+									},
+								]
+							}
+						]
+				 },
+			   {type: 'select', label: 'Select your city', name: 'franceCitiesSelect', choices: [{ value : "Paris" }, { value: "Lyon" }, { value: "Marseille" }] },
+			   {type: 'select', label: 'Select your city', name: 'USACitiesSelect', choices: [{ value: "NewYork" }, { value: "Chicago" }, { value: "LA" }, { value: "San Francisco" }] }
+	   ]
+	});
+	
+
+});
+</script>
+
+</div>
+
+<h2>HTML</h2>
+
+<pre class="code prettyprint">&lt;div id=&quot;field-container&quot;&gt;&lt;&#x2F;div&gt;</pre>
+
+
+<h2>JavaScript</h2>
+
+
+<h3>Implementation</h3>
+
+<pre class="code prettyprint">YUI().use(&#x27;inputex-group&#x27;, &#x27;inputex-checkbox&#x27;,&#x27;inputex-select&#x27;,&#x27;inputex-string&#x27;,&#x27;inputex-email&#x27;,&#x27;inputex-url&#x27;, function(Y) { 
+
+
+    &#x2F;&#x2F; Example 1
+    Y.inputEx({
+		type: &quot;group&quot;,
+   	parentEl: &#x27;container1&#x27;,
+   	fields: [
+       {
+			   type: &#x27;boolean&#x27;, &#x2F;&#x2F; inputex type
+				name: &#x27;toggler&#x27;,
+			   value: true,
+				rightLabel: &#x27;Stay anonymous&#x27;,
+			   interactions: [
+			       {
+			          valueTrigger: false, &#x2F;&#x2F; this action will run when this field value is set to false
+			          actions: [
+			             {
+			                name: &#x27;username&#x27;, &#x2F;&#x2F; name of the field on which the action should run
+			                action: &#x27;show&#x27; &#x2F;&#x2F; name of the method to run on the field instance !
+			             }
+			          ]
+			       },
+			       {
+			          valueTrigger: true, &#x2F;&#x2F; when set to true:
+			          actions: [
+			             {
+			                name: &#x27;username&#x27;, 
+			                action: &#x27;hide&#x27;
+			             },
+									 {
+					            name: &#x27;username&#x27;, &#x2F;&#x2F; name of the field on which the action should run
+					            action: &#x27;clear&#x27; &#x2F;&#x2F; name of the method to run on the field instance !
+					         }
+			          ]
+			       }
+			   ]
+			},
+         {type: &quot;string&quot;, name: &quot;username&quot;, label: &quot;Enter your name&quot; }
+      ]
+   });
+
+
+
+    &#x2F;&#x2F; Example 2
+    new Y.inputEx.Group({ 
+	   parentEl: &#x27;container2&#x27;,
+
+	   fields: [
+	       {
+				   type: &#x27;boolean&#x27;, &#x2F;&#x2F; inputex type
+					name: &#x27;toggler&#x27;,
+				   value: true,
+					rightLabel: &#x27;Check this box to toggle the enabled field&#x27;,
+				   interactions: [
+				       {
+				          valueTrigger: true, &#x2F;&#x2F; this action will run when this field value is set to true
+				          actions: [
+				             {
+				                name: &#x27;group1&#x27;, &#x2F;&#x2F; name of the field on which the action should run
+				                action: &#x27;disable&#x27; &#x2F;&#x2F; name of the method to run on the field instance !
+				             },
+				             {
+				                name: &#x27;group2&#x27;, 
+				                action: &#x27;enable&#x27;
+				             }
+				          ]
+				       },
+				       {
+				          valueTrigger: false, &#x2F;&#x2F; when set to false:
+				          actions: [
+				             {
+				                name: &#x27;group1&#x27;, 
+				                action: &#x27;enable&#x27;
+				             },
+				             {
+				                name: &#x27;group2&#x27;, 
+				                action: &#x27;disable&#x27;
+				             }
+				          ]
+				       }
+				   ]
+			},
+	      {
+				   type: &#x27;group&#x27;,
+			      name: &#x27;group1&#x27;,
+			      fields: [ 
+							{ type: &#x27;select&#x27;, label: &#x27;Title&#x27;,name: &#x27;title&#x27;, choices: [{ value : &#x27;Mr&#x27; }, { value: &#x27;Mrs&#x27; }, { value: &#x27;Ms&#x27; }] },
+							{ label: &#x27;Firstname&#x27;, name: &#x27;firstname&#x27;, required: true, value:&#x27;Jacques&#x27; },
+							{ label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, value:&#x27;Dupont&#x27; },
+							{ type:&#x27;email&#x27;, label: &#x27;Email&#x27;, name: &#x27;email&#x27;}
+					]
+			},
+	      {
+			   type: &#x27;group&#x27;,
+			   name: &#x27;group2&#x27;,
+			   fields: [
+					{type: &#x27;url&#x27;, label: &quot;Website&quot;,  name: &#x27;myUrl&#x27; }
+				]
+			}
+	   ]
+	});
+	
+	
+	&#x2F;&#x2F; Example 3
+	new Y.inputEx.Group({ 
+	   parentEl: &#x27;container3&#x27;,
+
+	   fields: [
+	       {
+						type: &#x27;select&#x27;, 
+						label: &#x27;Select your country&#x27;,
+						choices: [{ value: &quot;France&quot; }, { value: &quot;USA&quot; }],
+						interactions: [
+							{
+								valueTrigger: &quot;France&quot;,
+								actions: [
+									{
+										name: &quot;franceCitiesSelect&quot;,
+										action: &quot;show&quot;
+									},
+									{
+										name: &quot;USACitiesSelect&quot;,
+										action: &quot;hide&quot;
+									},
+								]
+							},
+							{
+								valueTrigger: &quot;USA&quot;,
+								actions: [
+									{
+										name: &quot;franceCitiesSelect&quot;,
+										action: &quot;hide&quot;
+									},
+									{
+										name: &quot;USACitiesSelect&quot;,
+										action: &quot;show&quot;
+									},
+								]
+							}
+						]
+				 },
+			   {type: &#x27;select&#x27;, label: &#x27;Select your city&#x27;, name: &#x27;franceCitiesSelect&#x27;, choices: [{ value : &quot;Paris&quot; }, { value: &quot;Lyon&quot; }, { value: &quot;Marseille&quot; }] },
+			   {type: &#x27;select&#x27;, label: &#x27;Select your city&#x27;, name: &#x27;USACitiesSelect&#x27;, choices: [{ value: &quot;NewYork&quot; }, { value: &quot;Chicago&quot; }, { value: &quot;LA&quot; }, { value: &quot;San Francisco&quot; }] }
+	   ]
+	});
+	
+
+});</pre>
+
+</div>
+            </div>
+        </div>
+
+        <div class="yui3-u-1-4">
+            <div class="sidebar">
+                
+
+                
+                    <div class="sidebox">
+                        <div class="hd">
+                            <h2 class="no-toc">Examples</h2>
+                        </div>
+
+                        <div class="bd">
+                            <ul class="examples">
+                                
+                                    
+                                        <li data-description="How to create a group field.">
+                                            <a href="group.html">Basic group field creation</a>
+                                        </li>
+                                    
+                                
+                                    
+                                        <li data-description="How to create a group with interactions.">
+                                            <a href="interactions.html">Group interactions</a>
+                                        </li>
+                                    
+                                
+                            </ul>
+                        </div>
+                    </div>
+                
+
+                
+
+
+                    <div id="links-sidebox" class="sidebox">
+                        <div class="hd">
+                            <h2 class="no-toc">Links</h2>
+                        </div>
+
+                        <div class="bd">
+<ul>
+    <li><a href="../assets/../index.html">Home</a></li>
+    <li><a href="../assets/../index.html#examples">All Examples</a></li>
+    <li><a href="../assets/../getting-started.html">Getting Started</a></li>
+    <li><a href="../assets/../contribute.html">How to Contribute</a></li>
+    <li><a href="../assets/../../api/index.html">API Documentation</a></li>
+</ul>
+
+<ul>
+    <li><a href="http://github.com/neyric/inputex">Fork/Follow on GitHub</a></li>
+    <li><a href="http://github.com/neyric/inputex/issues">GitHub Issues</a></li>
+    <li><a href="http://neyric.com/category/inputex/">Blog</a></li>
+    <li><a href="http://groups.google.com/group/inputex/">Forums</a></li>
+    <li><a href="../assets/../../license.txt">License</a></li>
+</ul>
+
+                        </div>
+                    </div>
+
+
+            <div>
+                <center>
+                <img src="http://www.twitter.com/favicon.ico" alt="twitter"> follow <a href="http://twitter.com/inputex"> on Twitter</a><br>
+                <img src="http://github.com/favicon.ico" alt="GitHub"> fork <a href="http://github.com/neyric/inputex"> on GitHub</a><br><br>
+                <br /><br />
+            </center>
+            </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+
+<script>
+YUI.Env.Tests = {
+    examples: [],
+    project: '../assets',
+    assets: '../assets/inputex-group',
+    name: 'interactions',
+    title: 'Group interactions',
+    newWindow: '',
+    auto:  true 
+};
+YUI.Env.Tests.examples.push('group');
+YUI.Env.Tests.examples.push('interactions');
+
+</script>
+<!--script src="../assets/yui/test-runner.js"></script-->
+
+
+
+</body>
+</html>
