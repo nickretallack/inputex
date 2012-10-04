@@ -54,7 +54,7 @@
 <script src="../res/inputex-examples.js"  type='text/javascript'></script>
 <script>
 YUI_config.groups.inputex.base = '../build/';
-YUI({filter: 'raw'}).use('inputex-group','inputex-select','inputex-checkbox','inputex-url','inputex-radio','inputex-textarea','inputex-examples', function(Y) {
+YUI().use('inputex-group','inputex-select','inputex-checkbox','inputex-url','inputex-radio','inputex-textarea',function(Y) { }, function(Y) {
   
 	// Example 1
 	var descriptedFields = [ 

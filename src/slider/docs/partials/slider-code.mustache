@@ -1,0 +1,23 @@
+YUI().use('inputex-slider',function(Y) { 
+
+    // Example 1
+    
+    sliderField = new Y.inputEx.SliderField({parentEl: 'container1'});
+    
+    
+    // Example 2
+    var el = Y.one('#container2');
+    var field = new Y.inputEx.SliderField({parentEl: el, displayValue: false}); 
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :"); 
+    el.appendChild(logDiv); 
+    field.on('updated', function(value) { 
+        logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+value+"<br />";
+    });
+    
+    
+    // Example 3
+    
+    new Y.inputEx.SliderField({parentEl: 'container3', minValue: 50, maxValue: 500});
+    
+
+});

@@ -43,7 +43,7 @@
 <script src="../res/inputex-examples.js"  type='text/javascript'></script>
 <script>
 YUI_config.groups.inputex.base = '../build/';
-YUI({filter: 'raw'}).use('inputex-group','inputex-select','inputex-string', 'inputex-date','inputex-datepicker','inputex-jsonschema','inputex-checkbox','inputex-list','inputex-number','inputex-textarea','inputex-rte','inputex-email','inputex-url', 'inputex-examples');
+YUI().use('inputex-group','inputex-select','inputex-string', 'inputex-date','inputex-datepicker','inputex-jsonschema','inputex-checkbox','inputex-list','inputex-number','inputex-textarea','inputex-rte','inputex-email','inputex-url', function(Y) { });
 </script>
 
 

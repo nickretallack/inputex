@@ -2,27 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>inputex-time</title>
+    <title>Example: Basic time creation</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
-    <script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+    <script src="http://yui.yahooapis.com/3.7.2/build/yui/yui-min.js"></script>
     <script src="../../build/inputex-loader/inputex-loader.js"></script>
     <script>YUI_config.groups.inputex.base = '../../build/';</script>
     
 </head>
-<body class="yui3-skin-sam">
+<body class="yui-skin-sam yui3-skin-sam">
 
 <a href="https://github.com/neyric/inputex"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
 <div id="doc">
     <div id="hd">
-        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> inputex-time</h1>
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> Example: Basic time creation</h1>
     </div>
-    
-        <a href="#toc" class="jump">Jump to Table of Contents</a>
     
 
     <div class="yui3-g">
@@ -30,30 +28,90 @@
             <div id="main">
                 <div class="content"><div class="intro">
 <p>
-inputex-time
+How to create a time field.
 </p>
 </div>
 
 <div class="example">
 
+    <h2>Basic TimeField creation</h2>
+	
+	<p>Use the following code to create a basic inputEx TimeField.</p>
+
+	<div class='demoContainer' id='container1'></div>
+	
+	
+	<h2>Change separators</h2>
+	
+	<p>Use the separators attribute from CombineField to change the separator strings.</p>
+
+	<div class='demoContainer' id='container2'></div>
+	
 
 <script>
+YUI().use('inputex-time',function(Y) {
+
+    // Example 1
+    field = new Y.inputEx.TimeField({
+		parentEl: 'container1', 
+		value:'15:17:34'
+	});
+	var button = Y.inputEx.cn('button', null, null, 'getValue');
+	Y.one(button).on('click',function() {
+		alert(field.getValue());
+	});
+	Y.one('#container1').appendChild(button);
+	
+	
+	// Example 2
+	new Y.inputEx.TimeField({
+		parentEl: 'container2', 
+		separators: [false,"h","m","s"],
+		value:'15:17:34'
+	});
+	
+
+
+});
 
 </script>
 
 </div>
 
-<h2 id="html">HTML</h2>
+<h2>HTML</h2>
 
 <pre class="code prettyprint">&lt;div id=&quot;field-container&quot;&gt;&lt;&#x2F;div&gt;</pre>
 
 
-<h2 id="javascript">JavaScript</h2>
+<h2>JavaScript</h2>
 
 
-<h3 id="implementation">Implementation</h3>
+<h3>Implementation</h3>
 
-<pre class="code prettyprint"></pre>
+<pre class="code prettyprint">YUI().use(&#x27;inputex-time&#x27;,function(Y) {
+
+    &#x2F;&#x2F; Example 1
+    field = new Y.inputEx.TimeField({
+		parentEl: &#x27;container1&#x27;, 
+		value:&#x27;15:17:34&#x27;
+	});
+	var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
+	Y.one(button).on(&#x27;click&#x27;,function() {
+		alert(field.getValue());
+	});
+	Y.one(&#x27;#container1&#x27;).appendChild(button);
+	
+	
+	&#x2F;&#x2F; Example 2
+	new Y.inputEx.TimeField({
+		parentEl: &#x27;container2&#x27;, 
+		separators: [false,&quot;h&quot;,&quot;m&quot;,&quot;s&quot;],
+		value:&#x27;15:17:34&#x27;
+	});
+	
+
+
+});</pre>
 
 </div>
             </div>
@@ -62,29 +120,25 @@ inputex-time
         <div class="yui3-u-1-4">
             <div class="sidebar">
                 
-                    <div id="toc" class="sidebox">
+
+                
+                    <div class="sidebox">
                         <div class="hd">
-                            <h2 class="no-toc">Table of Contents</h2>
+                            <h2 class="no-toc">Examples</h2>
                         </div>
 
                         <div class="bd">
-                            <ul class="toc">
-<li>
-<a href="#html">HTML</a>
-</li>
-<li>
-<a href="#javascript">JavaScript</a>
-<ul class="toc">
-<li>
-<a href="#implementation">Implementation</a>
-</li>
-</ul>
-</li>
-</ul>
+                            <ul class="examples">
+                                
+                                    
+                                        <li data-description="How to create a time field.">
+                                            <a href="time.html">Basic time creation</a>
+                                        </li>
+                                    
+                                
+                            </ul>
                         </div>
                     </div>
-                
-
                 
 
                 
@@ -138,11 +192,12 @@ YUI.Env.Tests = {
     examples: [],
     project: '../assets',
     assets: '../assets/inputex-time',
-    name: 'inputex-time',
-    title: 'inputex-time',
+    name: 'time',
+    title: 'Basic time creation',
     newWindow: '',
     auto:  true 
 };
+YUI.Env.Tests.examples.push('time');
 
 </script>
 <!--script src="../assets/yui/test-runner.js"></script-->

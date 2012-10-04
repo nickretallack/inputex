@@ -1,0 +1,49 @@
+YUI().use('inputex-tinymce',function(Y) {
+
+
+    // Example 1
+    new Y.inputEx.TinyMCEField({parentEl: 'container1', name: 'rteField', value: String.fromCharCode(60)+"b"+String.fromCharCode(62)+"I'm"+String.fromCharCode(60)+"/b"+String.fromCharCode(62)+" the default value. I've been set through the value option."});
+	
+	
+	// Example 2
+	var div = Y.one('#container2');
+	var htmlField = new Y.inputEx.TinyMCEField({parentEl: div, name: 'test2'});
+
+	var button1 = Y.inputEx.cn('button', null, null, "SetValue");
+	div.appendChild(button1);
+	Y.one(button1).on('click' ,function() { 
+		htmlField.setValue('TinyMCEField can contain HTML !'); 
+	});
+	var button2 = Y.inputEx.cn('button', null, null, "GetValue");
+	div.appendChild(button2);
+	Y.one(button2).on('click' ,function() { 
+		alert(htmlField.getValue());
+	});
+	var button3 = Y.inputEx.cn('button', null, null, "GetText");
+	div.appendChild(button3);
+	Y.one(button3).on('click' ,function() { 
+		alert(htmlField.getText());
+	});
+	
+	
+	// Example 3
+	
+	var field3 = new Y.inputEx.TinyMCEField({parentEl: 'container3', name: 'rteField3'});
+	field3.setValue("Value set just after init...");
+	
+	
+	// Example 4
+	var field4 = new Y.inputEx.TinyMCEField({
+	  parentEl: 'container4', 
+	  name: 'rteField4',
+	  opts: {
+		mode : "textareas",
+		height: "400",
+		width: "400"
+		}
+	});
+	field4.setValue("Value set just after init...");
+	
+
+
+});

@@ -13,7 +13,7 @@
 <script>
 
 YUI_config.groups.inputex.base = '../../src/';
-YUI({filter: 'raw'}).use('inputex-rpc', function(Y) {
+YUI().use('inputex-rpc', function(Y) {
 	
 	var service = new Y.inputEx.RPC.Service("mathservice.smd",{
 			success: function() {

@@ -12,5 +12,14 @@
       "io",
       "json-parse"
    ],
-   "examples": []
+   "examples": [
+            {
+              "name"       : "string-availability",
+              "displayName": "Basic stringavailability field creation",
+              "description": "How to create a stringavailability field.",
+              "modules"    : ["inputex-stringavailability"],
+              "tags"       : ["stringavailability"],
+              "hideTableOfContents": true
+            }
+       ]
 }

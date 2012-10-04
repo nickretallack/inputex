@@ -1,0 +1,21 @@
+YUI().use('inputex-tree', function(Y) {
+    
+    
+    new Y.inputEx.TreeField({
+        parentEl: 'container1',
+        elementType: {
+            type: 'inplaceedit',
+            visu: {
+                visuType: "func",	
+                func: function (val) {
+                    var url = "http://" + val + "/favicon.ico";
+                    return '<img src="' + url + '">' + val;
+                }
+            },
+            editorField: {
+                type: 'string'
+            }
+        }
+    });
+    
+});

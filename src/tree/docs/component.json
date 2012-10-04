@@ -11,5 +11,14 @@
       "inputex-list",
       "inputex-inplaceedit"
    ],
-   "examples": []
+   "examples": [
+                        {
+                          "name"       : "tree",
+                          "displayName": "Basic tree field creation",
+                          "description": "How to create a tree field.",
+                          "modules"    : ["inputex-tree"],
+                          "tags"       : ["tree"],
+                          "hideTableOfContents": true
+                        }
+                   ]
 }

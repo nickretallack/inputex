@@ -10,5 +10,14 @@
       "inputex-field",
       "yui2-editor"
    ],
-   "examples": []
+   "examples": [
+        {
+          "name"       : "rte",
+          "displayName": "Basic rte field creation",
+          "description": "How to create a rte field.",
+          "modules"    : ["inputex-rte"],
+          "tags"       : ["rte"],
+          "hideTableOfContents": true
+        }
+   ]
 }

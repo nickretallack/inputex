@@ -9,5 +9,14 @@
    "use": [
       "inputex-field"
    ],
-   "examples": []
+   "examples": [
+           {
+             "name"       : "ratingstars",
+             "displayName": "Basic ratingstars field creation",
+             "description": "How to create a ratingstars field.",
+             "modules"    : ["inputex-ratingstars"],
+             "tags"       : ["ratingstars"],
+             "hideTableOfContents": true
+           }
+      ]
 }

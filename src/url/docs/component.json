@@ -9,5 +9,14 @@
    "use": [
       "inputex-string"
    ],
-   "examples": []
+   "examples": [
+                                   {
+                                     "name"       : "url",
+                                     "displayName": "Basic url field creation",
+                                     "description": "How to create a url field.",
+                                     "modules"    : ["inputex-url"],
+                                     "tags"       : ["url"],
+                                     "hideTableOfContents": true
+                                   }
+                              ]
 }

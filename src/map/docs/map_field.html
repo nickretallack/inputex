@@ -59,7 +59,7 @@
 <script src="../res/inputex-examples.js"  type='text/javascript'></script>
 <script>
 YUI_config.groups.inputex.base = '../build/';
-YUI({filter: 'raw'}).use('inputex-map', 'json', 'inputex-examples', function(Y) {
+YUI().use('inputex-map', 'json', function(Y) { }, function(Y) {
   // how to set up Yahoo Maps as the default API
   Y.inputEx.MapFieldGlobals['api'] = 'yahoo';
   Y.inputEx.MapFieldGlobals['Nk0DZDzV34FM2CIAsdRAtUgQJRSsJO7x2l5tuDBduamC_gZWkzyTEqcUJxAWjtqxs9Wnxb0-'] = 'yahoo';

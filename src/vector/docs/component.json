@@ -9,5 +9,14 @@
    "use": [
       "inputex-combine"
    ],
-   "examples": []
+   "examples": [
+                                      {
+                                        "name"       : "vector",
+                                        "displayName": "Basic vector field creation",
+                                        "description": "How to create a vector field.",
+                                        "modules"    : ["inputex-vector"],
+                                        "tags"       : ["vector"],
+                                        "hideTableOfContents": true
+                                      }
+                                 ]
 }

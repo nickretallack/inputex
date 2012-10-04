@@ -9,5 +9,14 @@
    "use": [
       "inputex-field"
    ],
-   "examples": []
+   "examples": [
+                     {
+                       "name"       : "tinymce",
+                       "displayName": "Basic tinymce field creation",
+                       "description": "How to create a tinymce field.",
+                       "modules"    : ["inputex-tinymce"],
+                       "tags"       : ["tinymce"],
+                       "hideTableOfContents": true
+                     }
+                ]
 }

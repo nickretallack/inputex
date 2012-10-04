@@ -7,6 +7,38 @@
 <div class="example">
 
 
+    <h2>Important Notice :</h2>
+	<p>TinyMCE is not included in the inputEx distribution ! <br />
+		Download it on <a href="http://tinymce.moxiecode.com/">http://tinymce.moxiecode.com/</a> (tested with version 3.5.6) and install it in lib/tiny_mce</p>
+	
+	    <script src="http://tinymce.moxiecode.com/js/tinymce/jscripts/tiny_mce/tiny_mce.js" type='text/javascript'></script>
+    
+	
+	
+		<h2>Basic TinyMCEField creation</h2>
+    	<p>Use the following code to create a basic inputEx TinyMCEField.</p>
+    	<div class='demoContainer' id='container1'></div>
+    
+    
+    	<h2>TinyMCEField setValue/getValue</h2>
+    	<p>Test for setValue/getValue using the TinyMCEField.</p>
+    	<div class='demoContainer' id='container2'></div>
+    
+    
+    
+    	<h2>Using the SimpleEditor</h2>
+    	<p>Use the following code to create a SimpleEditor widget</p>
+    	<div class='demoContainer' id='container3'></div>
+    
+    
+    
+    	<h2>Changing the config</h2>
+    	<p>You can have access to all the tinymce config options through the "opts" attribute. Check out the <a href="http://tinymce.moxiecode.com/examples/full.php">TinyMCE examples</a> for all options.</p>
+    	<div class='demoContainer' id='container4'></div>
+    
+    
+    
+
 <script>
 {{>tinymce-code}}
 </script>
@@ -16,6 +48,8 @@
 <h2>HTML</h2>
 
 ```
+<script src="http://tinymce.moxiecode.com/js/tinymce/jscripts/tiny_mce/tiny_mce.js" type='text/javascript'></script>
+
 <div id="field-container"></div>
 ```
 

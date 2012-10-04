@@ -10,5 +10,14 @@
       "inputex-combine",
       "inputex-select"
    ],
-   "examples": []
+   "examples": [
+                  {
+                    "name"       : "timeinterval",
+                    "displayName": "Basic timeinterval field creation",
+                    "description": "How to create a timeinterval field.",
+                    "modules"    : ["inputex-timeinterval"],
+                    "tags"       : ["timeinterval"],
+                    "hideTableOfContents": true
+                  }
+             ]
 }

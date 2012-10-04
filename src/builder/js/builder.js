@@ -77,7 +77,7 @@ Y.one('#generateButton').on('click', function() {
 		
 		  "var formDef = "+g.getValue().toPrettyJSONString(true)+";",
 		
-        "YUI({filter: 'raw'}).use('inputex-group', function(Y) {",
+        "YUI().use('inputex-group', function(Y) {",
 
          " // Load the modules using Y.use (asynchronously)",
          " Y.inputEx.use(formDef, function(){",

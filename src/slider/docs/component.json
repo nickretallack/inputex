@@ -10,5 +10,14 @@
       "inputex-field",
       "slider"
    ],
-   "examples": []
+   "examples": [
+          {
+            "name"       : "slider",
+            "displayName": "Basic slider field creation",
+            "description": "How to create a slider field.",
+            "modules"    : ["inputex-slider"],
+            "tags"       : ["slider"],
+            "hideTableOfContents": true
+          }
+     ]
 }

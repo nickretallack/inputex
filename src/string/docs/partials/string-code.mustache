@@ -1,0 +1,78 @@
+YUI().use('inputex-string',function(Y) { 
+
+
+    // Example 1
+    new Y.inputEx.StringField({parentEl: 'container1'});
+    
+    // Example 2
+    new Y.inputEx.StringField({value: 'inputEx rocks', parentEl: 'container2'});
+    
+    // Example 3
+    new Y.inputEx.StringField({size: 40, value: 'size is set to 40 (default is 20)', parentEl: 'container3'});
+    
+    // Example 4
+    new Y.inputEx.StringField({value: '0123456789', showMsg: true, minLength: 3, maxLength: 10, parentEl: 'container4'});
+    
+    // Example 5
+    new Y.inputEx.StringField({required: true, showMsg: true, parentEl: 'container5'});
+    
+    // Example 6
+    new Y.inputEx.StringField({label: 'Enter your age', regexp: /^[0-9]*$/, parentEl: 'container6'});
+    
+    // Example 7
+    new Y.inputEx.StringField({showMsg: true,regexp: Y.inputEx.regexps.email, value: 'wrong@email', parentEl: 'container7'});
+    
+    // Example 8
+    var field = new Y.inputEx.StringField({value: 'This field is disabled', parentEl: 'container8'});
+    field.disable();
+    
+    // Example 9
+    
+    var el = Y.one('#container9');
+    var field = new Y.inputEx.StringField({parentEl: el });
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+    el.appendChild(logDiv);
+    field.on("updated",function(val) {
+        logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+    });
+    
+    // Example 10
+    new Y.inputEx.StringField({parentEl: 'container10', typeInvite: 'lastname', description: 'Enter your lastname'});
+    
+    // Example 11
+    var field1 = new Y.inputEx.StringField({
+        parentEl: 'container11', 
+        typeInvite: 'lastname', 
+        description: 'Enter your lastname', 
+        minLength:10, 
+        trim:true, // getValue will return a trimed value
+        required:true, 
+        showMsg:true
+    });
+
+    var exampleDiv = Y.one('#container11');
+
+    var button1 = Y.inputEx.cn('button', null, null, 'setValue()');
+    exampleDiv.appendChild(button1); 
+    Y.on('click', function() { 
+        field1.setValue("I've been set by setValue"); 
+    }, button1);
+
+    var button2 = Y.inputEx.cn('button', null, null, 'getValue()');
+    exampleDiv.appendChild(button2); 
+    Y.on( 'click', function() { 
+        alert(field1.getValue()); 
+    },button2);
+    
+    // Example 12
+    var field12 = new Y.inputEx.StringField({parentEl: 'container12'});
+
+    var exampleDiv = Y.one('#container12');
+
+    var button3 = Y.inputEx.cn('button', null, null, 'focus()');
+    exampleDiv.appendChild(button3); 
+    Y.on('click', function() { field12.focus(); }, button3);
+
+
+
+});

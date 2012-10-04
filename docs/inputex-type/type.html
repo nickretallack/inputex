@@ -2,27 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>inputex-type</title>
+    <title>Example: Basic type field creation</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
-    <script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+    <script src="http://yui.yahooapis.com/3.7.2/build/yui/yui-min.js"></script>
     <script src="../../build/inputex-loader/inputex-loader.js"></script>
     <script>YUI_config.groups.inputex.base = '../../build/';</script>
     
 </head>
-<body class="yui3-skin-sam">
+<body class="yui-skin-sam yui3-skin-sam">
 
 <a href="https://github.com/neyric/inputex"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
 <div id="doc">
     <div id="hd">
-        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> inputex-type</h1>
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> Example: Basic type field creation</h1>
     </div>
-    
-        <a href="#toc" class="jump">Jump to Table of Contents</a>
     
 
     <div class="yui3-g">
@@ -30,30 +28,80 @@
             <div id="main">
                 <div class="content"><div class="intro">
 <p>
-inputex-type
+How to create a type field.
 </p>
 </div>
 
 <div class="example">
 
+    <h2>Basic TypeField creation</h2>
+	<p>The TypeField provide an interface to create a custom form.</p>
+	<div class='demoContainer' id='container1'></div>
+	
+	
+	<h2>Setting the value</h2>
+	<p>The value returned by a TypeField is a JSON configuration for an inputEx field. Here's how to load such a value :</p>
+	<div class='demoContainer' id='container2'></div>
+	
+	
+	
 
 <script>
+YUI().use('inputex-type','inputex-url',function(Y) {
+
+
+    new Y.inputEx.TypeField({parentEl: 'container1'});
+	
+	
+	new Y.inputEx.TypeField({
+		parentEl: 'container2', 
+		value: {
+			type:'url',
+			label: 'Website', 
+			name:'website', 
+			typeInvite: 'Enter a URL', 
+			size: 30,
+			description: 'You can provide a default value to TypeField',
+			value: 'http://developer.yahoo.com/yui/3/'
+		}
+	});
+
+});
 
 </script>
 
 </div>
 
-<h2 id="html">HTML</h2>
+<h2>HTML</h2>
 
 <pre class="code prettyprint">&lt;div id=&quot;field-container&quot;&gt;&lt;&#x2F;div&gt;</pre>
 
 
-<h2 id="javascript">JavaScript</h2>
+<h2>JavaScript</h2>
 
 
-<h3 id="implementation">Implementation</h3>
+<h3>Implementation</h3>
 
-<pre class="code prettyprint"></pre>
+<pre class="code prettyprint">YUI().use(&#x27;inputex-type&#x27;,&#x27;inputex-url&#x27;,function(Y) {
+
+
+    new Y.inputEx.TypeField({parentEl: &#x27;container1&#x27;});
+	
+	
+	new Y.inputEx.TypeField({
+		parentEl: &#x27;container2&#x27;, 
+		value: {
+			type:&#x27;url&#x27;,
+			label: &#x27;Website&#x27;, 
+			name:&#x27;website&#x27;, 
+			typeInvite: &#x27;Enter a URL&#x27;, 
+			size: 30,
+			description: &#x27;You can provide a default value to TypeField&#x27;,
+			value: &#x27;http:&#x2F;&#x2F;developer.yahoo.com&#x2F;yui&#x2F;3&#x2F;&#x27;
+		}
+	});
+
+});</pre>
 
 </div>
             </div>
@@ -62,29 +110,25 @@ inputex-type
         <div class="yui3-u-1-4">
             <div class="sidebar">
                 
-                    <div id="toc" class="sidebox">
+
+                
+                    <div class="sidebox">
                         <div class="hd">
-                            <h2 class="no-toc">Table of Contents</h2>
+                            <h2 class="no-toc">Examples</h2>
                         </div>
 
                         <div class="bd">
-                            <ul class="toc">
-<li>
-<a href="#html">HTML</a>
-</li>
-<li>
-<a href="#javascript">JavaScript</a>
-<ul class="toc">
-<li>
-<a href="#implementation">Implementation</a>
-</li>
-</ul>
-</li>
-</ul>
+                            <ul class="examples">
+                                
+                                    
+                                        <li data-description="How to create a type field.">
+                                            <a href="type.html">Basic type field creation</a>
+                                        </li>
+                                    
+                                
+                            </ul>
                         </div>
                     </div>
-                
-
                 
 
                 
@@ -138,11 +182,12 @@ YUI.Env.Tests = {
     examples: [],
     project: '../assets',
     assets: '../assets/inputex-type',
-    name: 'inputex-type',
-    title: 'inputex-type',
+    name: 'type',
+    title: 'Basic type field creation',
     newWindow: '',
     auto:  true 
 };
+YUI.Env.Tests.examples.push('type');
 
 </script>
 <!--script src="../assets/yui/test-runner.js"></script-->

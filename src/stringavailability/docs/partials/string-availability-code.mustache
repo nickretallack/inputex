@@ -1,0 +1,29 @@
+YUI().use('inputex-stringavailability','inputex-select',function(Y) {
+
+
+    // Customize you answer : 
+    var field2 = new Y.inputEx.SelectField({
+    label : "Customize the web service response :",
+    name: 'answer',
+    choices: [        
+        { value: 'True' }, 
+        { value: 'False' },
+        { value: 'Error during request'}  
+    ],                      
+    parentEl: 'container2'
+    });
+
+    field2.on("updated",function(value) {
+        availabilityField.options.uri = "../assets/inputex-stringavailability/answer"+field2.getValue();
+    });
+
+
+
+    // String availability field
+    var availabilityField = new Y.inputEx.StringAvailability({
+        parentEl : "container1",  
+        // please give a real URI
+        uri : "../assets/inputex-stringavailability/answerTrue"
+    });
+
+});

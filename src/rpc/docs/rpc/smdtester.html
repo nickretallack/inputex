@@ -31,7 +31,7 @@ p { margin: 10px; font-weight: bold; }
 <script>
 YUI_config.groups.inputex.base = '../../src/';
 
-YUI({filter: 'raw'}).use("inputex-form","inputex-string","inputex-select","inputex-integer","inputex-number","inputex-textarea","inputex-url","inputex-jsonschema","inputex-rpc","inputex-jsontreeinspector","inputex-smdtester", function(Y) {
+YUI().use("inputex-form","inputex-string","inputex-select","inputex-integer","inputex-number","inputex-textarea","inputex-url","inputex-jsonschema","inputex-rpc","inputex-jsontreeinspector","inputex-smdtester", function(Y) {
 
   var smdList = ['smd/json-time.smd', 'smd/json-head.smd', 'smd/langdetect.smd', 'smd/html-whitelist.smd',
 				   'smd/yql.smd', 'smd/jsonptunnel.smd', 'smd/flickr.smd',

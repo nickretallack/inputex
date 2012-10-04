@@ -13,5 +13,14 @@
       "inputex-choice",
       "inputex-string"
    ],
-   "examples": []
+   "examples": [
+        {
+          "name"       : "radio",
+          "displayName": "Basic radio field creation",
+          "description": "How to create a radio field.",
+          "modules"    : ["inputex-radio"],
+          "tags"       : ["radio"],
+          "hideTableOfContents": true
+        }
+   ]
 }

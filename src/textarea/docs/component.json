@@ -9,5 +9,14 @@
    "use": [
       "inputex-string"
    ],
-   "examples": []
+   "examples": [
+            {
+              "name"       : "textarea",
+              "displayName": "Basic string textarea creation",
+              "description": "How to create a textarea field.",
+              "modules"    : ["inputex-textarea"],
+              "tags"       : ["textarea"],
+              "hideTableOfContents": true
+            }
+       ]
 }

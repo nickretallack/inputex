@@ -9,5 +9,14 @@
    "use": [
       "inputex-string"
    ],
-   "examples": []
+   "examples": [
+                                {
+                                  "name"       : "uppercase",
+                                  "displayName": "Basic uppercase field creation",
+                                  "description": "How to create a uppercase field.",
+                                  "modules"    : ["inputex-uppercase"],
+                                  "tags"       : ["uppercase"],
+                                  "hideTableOfContents": true
+                                }
+                           ]
 }

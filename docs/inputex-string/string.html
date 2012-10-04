@@ -2,27 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>inputex-string</title>
+    <title>Example: Basic string field creation</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
-    <script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+    <script src="http://yui.yahooapis.com/3.7.2/build/yui/yui-min.js"></script>
     <script src="../../build/inputex-loader/inputex-loader.js"></script>
     <script>YUI_config.groups.inputex.base = '../../build/';</script>
     
 </head>
-<body class="yui3-skin-sam">
+<body class="yui-skin-sam yui3-skin-sam">
 
 <a href="https://github.com/neyric/inputex"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
 <div id="doc">
     <div id="hd">
-        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> inputex-string</h1>
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> Example: Basic string field creation</h1>
     </div>
-    
-        <a href="#toc" class="jump">Jump to Table of Contents</a>
     
 
     <div class="yui3-g">
@@ -30,30 +28,247 @@
             <div id="main">
                 <div class="content"><div class="intro">
 <p>
-inputex-string
+How to create a string field.
 </p>
 </div>
 
 <div class="example">
 
+    <h2>Basic StringField creation</h2>
+	<p>Use the following code to create a basic inputEx field.</p>
+	<div class='demoContainer' id='container1'></div>
+	
+	
+	<h2>With a default value</h2>
+	<p>You can set a default value by specifying the 'value' property in the options object.</p>
+	<div class='demoContainer' id='container2'></div>
+	
+	
+	<h2>Changing the size</h2>
+	<p>You can set the size of the input.</p>
+	<div class='demoContainer' id='container3'></div>
+	
+	
+	<h2>Maximum and minimum length</h2>
+	<p>You can add a maximum/minimum length on string fields :</p>
+	<div class='demoContainer' id='container4'></div>
+	
+	
+	<h2>Required</h2>
+	<p>If the 'required' property is set, the 'validate' method will return false if the field is empty. In a form, the 'validate' method will be called on each field and will return false if at least one field doesn't validate.</p>
+	<div class='demoContainer' id='container5'></div>
+	
+	
+	
+	<h2>Regular Expression 1</h2>
+	<p>Here is an example on how to check the value with a regular expression. (It is better to use the IntegerField, but this is a simple example.)</p>
+	<div class='demoContainer' id='container6'></div>
+	
+	
+	<h2>Regular Expression 2</h2>
+	<p>The basic Field class can use regular expressions to validate the field content. Here is an example with this wonderful email regular expression (note that there is an Email Field class).</p>
+	<div class='demoContainer' id='container7'></div>
+	
+	
+	<h2>Enabling/Disabling inputs</h2>
+	<p>You can call the methods 'disable' or 'enable' to set the state of the field.</p>
+	<div class='demoContainer' id='container8'></div>
+	
+	
+	<h2>Updated event</h2>	
+	<p>How to listen to the updated event :</p>
+	<div class='demoContainer' id='container9'></div>
+	
+	
+	<h2>Type invitation</h2>
+	<p>Display a text when the field is empty.</p>
+	<div class='demoContainer' id='container10'></div>
+	
+	
+	<h2>Various options</h2>
+	<p>Config with various options : typeInvite, required, minLength, trim  &nbsp;--&nbsp; Test setValue and getValue methods</p>
+	<div class='demoContainer' id='container11'></div>
+	
+	
+	<h2>Focus the field</h2>
+	<p>Use the focus method</p>
+	<div class='demoContainer' id='container12'></div>
+	
+	
+	
 
 <script>
+YUI().use('inputex-string',function(Y) { 
+
+
+    // Example 1
+    new Y.inputEx.StringField({parentEl: 'container1'});
+    
+    // Example 2
+    new Y.inputEx.StringField({value: 'inputEx rocks', parentEl: 'container2'});
+    
+    // Example 3
+    new Y.inputEx.StringField({size: 40, value: 'size is set to 40 (default is 20)', parentEl: 'container3'});
+    
+    // Example 4
+    new Y.inputEx.StringField({value: '0123456789', showMsg: true, minLength: 3, maxLength: 10, parentEl: 'container4'});
+    
+    // Example 5
+    new Y.inputEx.StringField({required: true, showMsg: true, parentEl: 'container5'});
+    
+    // Example 6
+    new Y.inputEx.StringField({label: 'Enter your age', regexp: /^[0-9]*$/, parentEl: 'container6'});
+    
+    // Example 7
+    new Y.inputEx.StringField({showMsg: true,regexp: Y.inputEx.regexps.email, value: 'wrong@email', parentEl: 'container7'});
+    
+    // Example 8
+    var field = new Y.inputEx.StringField({value: 'This field is disabled', parentEl: 'container8'});
+    field.disable();
+    
+    // Example 9
+    
+    var el = Y.one('#container9');
+    var field = new Y.inputEx.StringField({parentEl: el });
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+    el.appendChild(logDiv);
+    field.on("updated",function(val) {
+        logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+    });
+    
+    // Example 10
+    new Y.inputEx.StringField({parentEl: 'container10', typeInvite: 'lastname', description: 'Enter your lastname'});
+    
+    // Example 11
+    var field1 = new Y.inputEx.StringField({
+        parentEl: 'container11', 
+        typeInvite: 'lastname', 
+        description: 'Enter your lastname', 
+        minLength:10, 
+        trim:true, // getValue will return a trimed value
+        required:true, 
+        showMsg:true
+    });
+
+    var exampleDiv = Y.one('#container11');
+
+    var button1 = Y.inputEx.cn('button', null, null, 'setValue()');
+    exampleDiv.appendChild(button1); 
+    Y.on('click', function() { 
+        field1.setValue("I've been set by setValue"); 
+    }, button1);
+
+    var button2 = Y.inputEx.cn('button', null, null, 'getValue()');
+    exampleDiv.appendChild(button2); 
+    Y.on( 'click', function() { 
+        alert(field1.getValue()); 
+    },button2);
+    
+    // Example 12
+    var field12 = new Y.inputEx.StringField({parentEl: 'container12'});
+
+    var exampleDiv = Y.one('#container12');
+
+    var button3 = Y.inputEx.cn('button', null, null, 'focus()');
+    exampleDiv.appendChild(button3); 
+    Y.on('click', function() { field12.focus(); }, button3);
+
+
+
+});
 
 </script>
 
 </div>
 
-<h2 id="html">HTML</h2>
+<h2>HTML</h2>
 
 <pre class="code prettyprint">&lt;div id=&quot;field-container&quot;&gt;&lt;&#x2F;div&gt;</pre>
 
 
-<h2 id="javascript">JavaScript</h2>
+<h2>JavaScript</h2>
 
 
-<h3 id="implementation">Implementation</h3>
+<h3>Implementation</h3>
 
-<pre class="code prettyprint"></pre>
+<pre class="code prettyprint">YUI().use(&#x27;inputex-string&#x27;,function(Y) { 
+
+
+    &#x2F;&#x2F; Example 1
+    new Y.inputEx.StringField({parentEl: &#x27;container1&#x27;});
+    
+    &#x2F;&#x2F; Example 2
+    new Y.inputEx.StringField({value: &#x27;inputEx rocks&#x27;, parentEl: &#x27;container2&#x27;});
+    
+    &#x2F;&#x2F; Example 3
+    new Y.inputEx.StringField({size: 40, value: &#x27;size is set to 40 (default is 20)&#x27;, parentEl: &#x27;container3&#x27;});
+    
+    &#x2F;&#x2F; Example 4
+    new Y.inputEx.StringField({value: &#x27;0123456789&#x27;, showMsg: true, minLength: 3, maxLength: 10, parentEl: &#x27;container4&#x27;});
+    
+    &#x2F;&#x2F; Example 5
+    new Y.inputEx.StringField({required: true, showMsg: true, parentEl: &#x27;container5&#x27;});
+    
+    &#x2F;&#x2F; Example 6
+    new Y.inputEx.StringField({label: &#x27;Enter your age&#x27;, regexp: &#x2F;^[0-9]*$&#x2F;, parentEl: &#x27;container6&#x27;});
+    
+    &#x2F;&#x2F; Example 7
+    new Y.inputEx.StringField({showMsg: true,regexp: Y.inputEx.regexps.email, value: &#x27;wrong@email&#x27;, parentEl: &#x27;container7&#x27;});
+    
+    &#x2F;&#x2F; Example 8
+    var field = new Y.inputEx.StringField({value: &#x27;This field is disabled&#x27;, parentEl: &#x27;container8&#x27;});
+    field.disable();
+    
+    &#x2F;&#x2F; Example 9
+    
+    var el = Y.one(&#x27;#container9&#x27;);
+    var field = new Y.inputEx.StringField({parentEl: el });
+    var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
+    el.appendChild(logDiv);
+    field.on(&quot;updated&quot;,function(val) {
+        logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value: &quot;+val;
+    });
+    
+    &#x2F;&#x2F; Example 10
+    new Y.inputEx.StringField({parentEl: &#x27;container10&#x27;, typeInvite: &#x27;lastname&#x27;, description: &#x27;Enter your lastname&#x27;});
+    
+    &#x2F;&#x2F; Example 11
+    var field1 = new Y.inputEx.StringField({
+        parentEl: &#x27;container11&#x27;, 
+        typeInvite: &#x27;lastname&#x27;, 
+        description: &#x27;Enter your lastname&#x27;, 
+        minLength:10, 
+        trim:true, &#x2F;&#x2F; getValue will return a trimed value
+        required:true, 
+        showMsg:true
+    });
+
+    var exampleDiv = Y.one(&#x27;#container11&#x27;);
+
+    var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;setValue()&#x27;);
+    exampleDiv.appendChild(button1); 
+    Y.on(&#x27;click&#x27;, function() { 
+        field1.setValue(&quot;I&#x27;ve been set by setValue&quot;); 
+    }, button1);
+
+    var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue()&#x27;);
+    exampleDiv.appendChild(button2); 
+    Y.on( &#x27;click&#x27;, function() { 
+        alert(field1.getValue()); 
+    },button2);
+    
+    &#x2F;&#x2F; Example 12
+    var field12 = new Y.inputEx.StringField({parentEl: &#x27;container12&#x27;});
+
+    var exampleDiv = Y.one(&#x27;#container12&#x27;);
+
+    var button3 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;focus()&#x27;);
+    exampleDiv.appendChild(button3); 
+    Y.on(&#x27;click&#x27;, function() { field12.focus(); }, button3);
+
+
+
+});</pre>
 
 </div>
             </div>
@@ -62,29 +277,25 @@ inputex-string
         <div class="yui3-u-1-4">
             <div class="sidebar">
                 
-                    <div id="toc" class="sidebox">
+
+                
+                    <div class="sidebox">
                         <div class="hd">
-                            <h2 class="no-toc">Table of Contents</h2>
+                            <h2 class="no-toc">Examples</h2>
                         </div>
 
                         <div class="bd">
-                            <ul class="toc">
-<li>
-<a href="#html">HTML</a>
-</li>
-<li>
-<a href="#javascript">JavaScript</a>
-<ul class="toc">
-<li>
-<a href="#implementation">Implementation</a>
-</li>
-</ul>
-</li>
-</ul>
+                            <ul class="examples">
+                                
+                                    
+                                        <li data-description="How to create a string field.">
+                                            <a href="string.html">Basic string field creation</a>
+                                        </li>
+                                    
+                                
+                            </ul>
                         </div>
                     </div>
-                
-
                 
 
                 
@@ -138,11 +349,12 @@ YUI.Env.Tests = {
     examples: [],
     project: '../assets',
     assets: '../assets/inputex-string',
-    name: 'inputex-string',
-    title: 'inputex-string',
+    name: 'string',
+    title: 'Basic string field creation',
     newWindow: '',
     auto:  true 
 };
+YUI.Env.Tests.examples.push('string');
 
 </script>
 <!--script src="../assets/yui/test-runner.js"></script-->

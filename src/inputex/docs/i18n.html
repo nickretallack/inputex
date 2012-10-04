@@ -31,7 +31,7 @@
 		<pre class="brush:js">
 			/*
 			 * Note the 'lang: fr' in the YUI config :
-			 * YUI({lang:"fr"}).use('inputex-datepicker','inputex-examples');
+			 * YUI({lang:"fr"}).use('inputex-datepicker',function(Y) { });
 			 */
 			var field = new Y.inputEx.DatePickerField({
 			    parentEl: 'container1',
@@ -45,7 +45,7 @@
 <script src="../res/inputex-examples.js"  type='text/javascript'></script>
 <script>
 YUI_config.groups.inputex.base = '../build/';
-YUI({lang:"fr", filter: "raw"}).use('inputex-datepicker','inputex-examples');
+YUI({lang:"fr", filter: "raw"}).use('inputex-datepicker',function(Y) { });
 </script>
 
  </body>

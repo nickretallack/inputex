@@ -9,5 +9,14 @@
    "use": [
       "inputex-string"
    ],
-   "examples": []
+   "examples": [
+       {
+          "name"       : "password",
+          "displayName": "Basic password field creation",
+          "description": "How to create a password field.",
+          "modules"    : ["inputex-password"],
+          "tags"       : ["password"],
+          "hideTableOfContents": true
+       }
+   ]
 }

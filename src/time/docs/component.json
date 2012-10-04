@@ -10,5 +10,14 @@
       "inputex-combine",
       "inputex-select"
    ],
-   "examples": []
+   "examples": [
+               {
+                 "name"       : "time",
+                 "displayName": "Basic time creation",
+                 "description": "How to create a time field.",
+                 "modules"    : ["inputex-time"],
+                 "tags"       : ["time"],
+                 "hideTableOfContents": true
+               }
+          ]
 }

@@ -15,5 +15,14 @@
       "inputex-checkbox",
       "inputex-integer"
    ],
-   "examples": []
+   "examples": [
+                           {
+                             "name"       : "type",
+                             "displayName": "Basic type field creation",
+                             "description": "How to create a type field.",
+                             "modules"    : ["inputex-type"],
+                             "tags"       : ["type"],
+                             "hideTableOfContents": true
+                           }
+                      ]
 }

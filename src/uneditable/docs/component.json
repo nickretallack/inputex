@@ -10,5 +10,14 @@
       "inputex-field",
       "inputex-visus"
    ],
-   "examples": []
+   "examples": [
+                              {
+                                "name"       : "uneditable",
+                                "displayName": "Basic uneditable field creation",
+                                "description": "How to create a uneditable field.",
+                                "modules"    : ["inputex-uneditable"],
+                                "tags"       : ["uneditable"],
+                                "hideTableOfContents": true
+                              }
+                         ]
 }

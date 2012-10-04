@@ -2,27 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>inputex-uneditable</title>
+    <title>Example: Basic uneditable field creation</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
-    <script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+    <script src="http://yui.yahooapis.com/3.7.2/build/yui/yui-min.js"></script>
     <script src="../../build/inputex-loader/inputex-loader.js"></script>
     <script>YUI_config.groups.inputex.base = '../../build/';</script>
     
 </head>
-<body class="yui3-skin-sam">
+<body class="yui-skin-sam yui3-skin-sam">
 
 <a href="https://github.com/neyric/inputex"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
 <div id="doc">
     <div id="hd">
-        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> inputex-uneditable</h1>
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> Example: Basic uneditable field creation</h1>
     </div>
-    
-        <a href="#toc" class="jump">Jump to Table of Contents</a>
     
 
     <div class="yui3-g">
@@ -30,30 +28,110 @@
             <div id="main">
                 <div class="content"><div class="intro">
 <p>
-inputex-uneditable
+How to create a uneditable field.
 </p>
 </div>
 
 <div class="example">
 
+    <h2>UneditableField with HTML string</h2>
+	<p>To format the value of the field with an html string, use the <i>formatValue</i> function (schould return a string):</p>
+	<div class='demoContainer' id='container1'></div>
+	
+	
+	<h2>UneditableField with DOM rendering</h2>
+	<p>To render the value of the field with a DOM element (to add a behaviour), use the <i>formatDom</i> function (schould return a dom element):</p>
+	<div class='demoContainer' id='container2'></div>
+	
+	
+	
+	<h2>UneditableField with DOM rendering</h2>
+	<p>Display an image from the field value :</p>
+	<div class='demoContainer' id='container3'></div>
+	
 
 <script>
+YUI().use('inputex-uneditable',function(Y) {
+
+    // Example 1
+    new Y.inputEx.UneditableField({
+		name: 'date', 
+		value: new Date(), 
+		parentEl: 'container1'
+	});
+	
+	// Example 2
+	new Y.inputEx.UneditableField({
+		name: 'date', 
+		value: 'http://farm2.static.flickr.com/1052/913643741_a83000f8e4.jpg', 
+		visu: {
+			visuType: 'func', 
+			func: function(value){ return Y.inputEx.cn('img',{src:value},{border: '2px solid black'}); } 
+		},
+		parentEl: 'container2' 
+	});
+	
+	
+	// Example 3
+		Y.inputEx({
+			type: "uneditable",
+			name: 'pagerank', 
+			value: 5, 
+			label: "Pagerank",
+			visu: {visuType: 'func', func: function(value){ return Y.inputEx.cn('img',{src: "http://www.page-rank-lookup.com/i/style1/pagerank"+value+".png"}) } },
+			parentEl: 'container3'
+		});
+
+
+});
 
 </script>
 
 </div>
 
-<h2 id="html">HTML</h2>
+<h2>HTML</h2>
 
 <pre class="code prettyprint">&lt;div id=&quot;field-container&quot;&gt;&lt;&#x2F;div&gt;</pre>
 
 
-<h2 id="javascript">JavaScript</h2>
+<h2>JavaScript</h2>
 
 
-<h3 id="implementation">Implementation</h3>
+<h3>Implementation</h3>
 
-<pre class="code prettyprint"></pre>
+<pre class="code prettyprint">YUI().use(&#x27;inputex-uneditable&#x27;,function(Y) {
+
+    &#x2F;&#x2F; Example 1
+    new Y.inputEx.UneditableField({
+		name: &#x27;date&#x27;, 
+		value: new Date(), 
+		parentEl: &#x27;container1&#x27;
+	});
+	
+	&#x2F;&#x2F; Example 2
+	new Y.inputEx.UneditableField({
+		name: &#x27;date&#x27;, 
+		value: &#x27;http:&#x2F;&#x2F;farm2.static.flickr.com&#x2F;1052&#x2F;913643741_a83000f8e4.jpg&#x27;, 
+		visu: {
+			visuType: &#x27;func&#x27;, 
+			func: function(value){ return Y.inputEx.cn(&#x27;img&#x27;,{src:value},{border: &#x27;2px solid black&#x27;}); } 
+		},
+		parentEl: &#x27;container2&#x27; 
+	});
+	
+	
+	&#x2F;&#x2F; Example 3
+		Y.inputEx({
+			type: &quot;uneditable&quot;,
+			name: &#x27;pagerank&#x27;, 
+			value: 5, 
+			label: &quot;Pagerank&quot;,
+			visu: {visuType: &#x27;func&#x27;, func: function(value){ return Y.inputEx.cn(&#x27;img&#x27;,{src: &quot;http:&#x2F;&#x2F;www.page-rank-lookup.com&#x2F;i&#x2F;style1&#x2F;pagerank&quot;+value+&quot;.png&quot;}) } },
+			parentEl: &#x27;container3&#x27;
+		});
+
+
+});</pre>
 
 </div>
             </div>
@@ -62,29 +140,25 @@ inputex-uneditable
         <div class="yui3-u-1-4">
             <div class="sidebar">
                 
-                    <div id="toc" class="sidebox">
+
+                
+                    <div class="sidebox">
                         <div class="hd">
-                            <h2 class="no-toc">Table of Contents</h2>
+                            <h2 class="no-toc">Examples</h2>
                         </div>
 
                         <div class="bd">
-                            <ul class="toc">
-<li>
-<a href="#html">HTML</a>
-</li>
-<li>
-<a href="#javascript">JavaScript</a>
-<ul class="toc">
-<li>
-<a href="#implementation">Implementation</a>
-</li>
-</ul>
-</li>
-</ul>
+                            <ul class="examples">
+                                
+                                    
+                                        <li data-description="How to create a uneditable field.">
+                                            <a href="uneditable.html">Basic uneditable field creation</a>
+                                        </li>
+                                    
+                                
+                            </ul>
                         </div>
                     </div>
-                
-
                 
 
                 
@@ -138,11 +212,12 @@ YUI.Env.Tests = {
     examples: [],
     project: '../assets',
     assets: '../assets/inputex-uneditable',
-    name: 'inputex-uneditable',
-    title: 'inputex-uneditable',
+    name: 'uneditable',
+    title: 'Basic uneditable field creation',
     newWindow: '',
     auto:  true 
 };
+YUI.Env.Tests.examples.push('uneditable');
 
 </script>
 <!--script src="../assets/yui/test-runner.js"></script-->

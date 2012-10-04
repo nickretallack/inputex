@@ -1,0 +1,45 @@
+YUI().use('inputex-timeinterval',function(Y) {
+
+
+    var field = new Y.inputEx.TimeIntervalField({parentEl: 'container1', label: 'Length',value:82800});
+	var button = Y.inputEx.cn('button', null, null, 'getValue');
+	Y.one(button).on('click',function() {
+		alert(field.getValue()+" (seconds)");
+	});
+	Y.one('#container1').appendChild(button);
+	
+	
+	
+	
+	
+	var units = Y.inputEx.TimeIntervalField.units,
+	  		messages = Y.Intl.get("inputex-timeinterval"),
+	  		unitsStr = messages.timeUnits,
+	  		n=[], i, 
+	  		fields; 
+
+	  for(i=1;i !=30;i++){ n.push(i); }
+	  		
+	  		fields = [
+	       {type: 'select', choices: n },
+	       {
+	          type: 'select',
+	          choices: [
+					{ value: units.DAY, label: unitsStr.DAY },
+					{ value: units.MONTH, label: unitsStr.MONTH },
+					{ value: units.YEAR, label: unitsStr.YEAR }
+				]
+	       }
+	    ];
+
+		new Y.inputEx.TimeIntervalField({
+			parentEl: 'container2',
+			value: 60*24*2, // 2 days 
+			unit: Y.inputEx.TimeIntervalField.units.MINUTE,
+			label: 'Continue',
+			fields: fields,
+			separators: ["for&nbsp;", "&nbsp;&nbsp;", false]
+		});
+	
+
+});

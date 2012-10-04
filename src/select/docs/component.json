@@ -10,5 +10,14 @@
       "inputex-field",
       "inputex-choice"
    ],
-   "examples": []
+   "examples": [
+       {
+         "name"       : "select",
+         "displayName": "Basic select field creation",
+         "description": "How to create a select field.",
+         "modules"    : ["inputex-select"],
+         "tags"       : ["select"],
+         "hideTableOfContents": true
+       }
+  ]
 }

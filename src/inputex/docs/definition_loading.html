@@ -29,7 +29,7 @@
 		<pre class="brush:js">
 		  
 		  /**
-		   * Only bootstrap: YUI().use('inputex','inputex-examples'); // no additional inputex module
+		   * Only bootstrap: YUI().use('inputex',function(Y) { }); // no additional inputex module
 		   */
 		  
 		  var def = {
@@ -67,7 +67,7 @@
 <script src="../res/inputex-examples.js"  type='text/javascript'></script>
 <script>
 YUI_config.groups.inputex.base = '../build/';
-YUI({filter: 'raw'}).use('inputex','inputex-examples');
+YUI().use('inputex',function(Y) { });
 </script>
 
  </body>

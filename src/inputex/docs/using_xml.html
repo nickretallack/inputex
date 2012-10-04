@@ -99,7 +99,7 @@ Y.io('rss-example.xml', {
 <script src="../res/inputex-examples.js"  type='text/javascript'></script>
 <script>
   YUI_config.groups.inputex.base = '../build/';
-  YUI({filter: 'raw'}).use('inputex-form','inputex-email','inputex-url', 'inputex-select','inputex-integer', 'inputex-number','inputex-list', 'inputex-inplaceedit', 'io', 'inputex-examples');
+  YUI().use('inputex-form','inputex-email','inputex-url', 'inputex-select','inputex-integer', 'inputex-number','inputex-list', 'inputex-inplaceedit', 'io', function(Y) { });
 </script>
 </body>
 </html>
