@@ -33,7 +33,7 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
    	
    	// Overwrite options
    	this.options.className = options.className ? options.className : 'inputEx-Field inputEx-ColorField inputEx-PickerField';
-      this.options.zIndex = options.zIndex || 4;
+      this.options.zIndex = options.zIndex || 4;
    	
    	// Added options
    	this.options.palette = options.palette;
@@ -100,7 +100,7 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
 	      value: this.options.value || '#FFFFFF' });
 	   	   
 	   // Create a colored area
-	   this.colorEl = inputEx.cn('div', {className: 'inputEx-ColorField-button'}, {backgroundColor: this.el.value});
+	   this.colorEl = inputEx.cn('div', {className: 'inputEx-ColorField-colorArea'}, {backgroundColor: this.el.value});
 	
       // This element wraps the input node in a float: none div
       this.wrapEl = inputEx.cn('div', {className: 'inputEx-PickerField-wrapper'});
@@ -109,7 +109,8 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
 
       
       // Create button
-      this.button = Y.Node.create("<button>&nbsp;</button>").addClass("inputEx-ColorField-button");
+      // this.button = Y.Node.create("<button>&nbsp;</button>").addClass("inputEx-ColorField-button");
+      this.button = Y.Node.create('<span class="inputEx-ColorField-ButtonWraper"><span class="first-child"><button type="button" class="inputEx-ColorField-Button">&nbsp;&nbsp;&nbsp;&nbsp;</button></span></span>');
       this.button.appendTo(this.wrapEl);
 
       
@@ -344,7 +345,7 @@ inputEx.ColorField.ensureHexa = function (color) {
 	   //   ex: "214" -> "d6"
       var DecToHex = function(dec) {
          var r = parseInt(dec,10).toString(16);
-         if (r.length == 1) r = "0"+r;
+         if (r.length == 1) { r = "0" + r; }
          return r;
       };
    
