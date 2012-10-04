@@ -12,19 +12,6 @@
 inputEx.visus = {
   
   /**
-   * Use the trimpath-template engine
-   * see http://code.google.com/p/trimpath/wiki/JavaScriptTemplates for syntax
-   * options = {visuType: 'trimpath', template: "String template"}
-   * @method trimpath
-   */
-  trimpath: function(options, data) {
-      if(!TrimPath) { alert('TrimPath is not on the page. Please load inputex/lib/trimpath-template.js'); return null; }
-      var tpl = TrimPath.parseTemplate(options.template);
-      var ret = tpl.process(data);
-      return ret;
-  },
-  
-  /**
    * Use a rendering function
    * options = {visuType: 'func', func: function(data) { ...code here...} }
    * @method func
