@@ -107,7 +107,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       inputEx.DatePickerField.superclass.renderComponent.call(this);
 
       // Create button
-      this.button = Y.Node.create('<span class="inputEx-DatePicker-ButtonWraper"><span class="first-child"><button type="button" class="inputEx-DatePicker-Button">&nbsp;&nbsp;&nbsp;&nbsp;</button></span></span>');
+      this.button = Y.Node.create('<span class="inputEx-DatePicker-ButtonWrapper"><span class="first-child"><button type="button" class="inputEx-DatePicker-Button"></button></span></span>');
       this.button.appendTo(this.wrapEl);
 
 

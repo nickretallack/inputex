@@ -1,13 +1,16 @@
-.inputEx-ColorField-ButtonWraper {
+.inputEx-ColorField-Wrapper {
+	line-height:0;
+}
+
+.inputEx-ColorField-ButtonWrapper {
 	display:inline-block;
-	background:url(images/back-h.png) repeat-x 0 0 transparent;
 	margin:auto 0.25em;
 	border-style:solid;
 	border-color:#808080;
 	border-width:1px 0;
 }
 
-.inputEx-ColorField-ButtonWraper .first-child {
+.inputEx-ColorField-ButtonWrapper .first-child {
 	display:block;
 	border-style:solid;
 	border-color:#808080;
@@ -20,7 +23,7 @@
 	background-repeat:no-repeat;
 	background-position:3px 2px;
 	width:21px;
-	height:17px;
+	height:19px;
 	padding:0;
 	cursor:pointer;
 	border:none;
@@ -35,8 +38,7 @@
 }
 
 .inputEx-ColorField-Grid { 
-   padding:5px; 
-   
+   padding:5px;
    background-color: white;
    border: 1px solid #AAAAAA;
    -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
