@@ -8,13 +8,8 @@ div.inputEx-PickerField {
    padding-left: 0;
 }
 
-div.inputEx-PickerField button {
-    background-position: center center;
-    background-repeat: no-repeat;
-    padding:0;
-    width:20px;
-    height:18px;
-    min-height:0; /* reset "min-height:2em" that prevented "height:18px" to be applied */
+.inputEx-StringField-wrapper {
+	line-height:0;
 }
 
 div.inputEx-PickerField .yui3-overlay {
@@ -23,20 +18,37 @@ div.inputEx-PickerField .yui3-overlay {
    box-shadow:         2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-
-div.inputEx-DatePickerField  button {
-   background-image: url(images/calendar.gif);
-   background-repeat: no-repeat;
-   background-position: -1px -1px;
-   margin: 0 0 0 2px;
-   width: 22px;
-   height: 22px;
-   padding: 0;
-}
-
 .yui3-skin-sam div.inputEx-DatePickerField .yui3-calendar-content {
    -moz-border-radius: 0;
    -webkit-border-radius: 0;
    border-radius: 0;
     border-color: #BBB;
+}
+
+.inputEx-DatePicker-ButtonWrapper {
+	display:inline-block;
+	margin:auto 0.25em;
+	border-style:solid;
+	border-color:#808080;
+	border-width:1px 0;
+}
+
+.inputEx-DatePicker-ButtonWrapper .first-child {
+	display:block;
+	border-style:solid;
+	border-color:#808080;
+	border-width:0 1px;
+	margin:0 -1px;
+}
+
+.inputEx-DatePicker-Button {
+	background-image:url(images/calendar.gif);
+	background-repeat:no-repeat;
+	background-position:1px 1px;
+	width:20px;
+	height:20px;
+	min-height:0; /* reset "min-height:2em" that prevented "height:18px" to be applied */
+	padding:0;
+	cursor:pointer;
+	border:none;
 }

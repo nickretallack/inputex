@@ -34,8 +34,8 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
    	inputEx.ColorField.superclass.setOptions.call(this, options);
    	
    	// Overwrite options
-   	this.options.className = options.className ? options.className : 'inputEx-Field inputEx-ColorField inputEx-PickerField';
-      this.options.zIndex = options.zIndex || 4;
+   	this.options.className = options.className ? options.className : 'inputEx-Field inputEx-ColorField';
+      this.options.zIndex = options.zIndex || 4;
    	
    	// Added options
    	this.options.palette = options.palette;
@@ -102,16 +102,17 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
 	      value: this.options.value || '#FFFFFF' });
 	   	   
 	   // Create a colored area
-	   this.colorEl = inputEx.cn('div', {className: 'inputEx-ColorField-button'}, {backgroundColor: this.el.value});
+	   this.colorEl = inputEx.cn('div', {className: 'inputEx-ColorField-colorArea'}, {backgroundColor: this.el.value});
 	
       // This element wraps the input node in a float: none div
-      this.wrapEl = inputEx.cn('div', {className: 'inputEx-PickerField-wrapper'});
+      this.wrapEl = inputEx.cn('div', {className: 'inputEx-ColorField-Wrapper'});
 	   this.wrapEl.appendChild(this.el);
 	   this.wrapEl.appendChild(this.colorEl);
 
       
       // Create button
-      this.button = Y.Node.create("<button>&nbsp;</button>").addClass("inputEx-ColorField-button");
+      // this.button = Y.Node.create("<button>&nbsp;</button>").addClass("inputEx-ColorField-button");
+      this.button = Y.Node.create('<span class="inputEx-ColorField-ButtonWrapper"><span class="first-child"><button type="button" class="inputEx-ColorField-Button"></button></span></span>');
       this.button.appendTo(this.wrapEl);
 
       
@@ -346,7 +347,7 @@ inputEx.ColorField.ensureHexa = function (color) {
 	   //   ex: "214" -> "d6"
       var DecToHex = function(dec) {
          var r = parseInt(dec,10).toString(16);
-         if (r.length == 1) r = "0"+r;
+         if (r.length == 1) { r = "0" + r; }
          return r;
       };
    

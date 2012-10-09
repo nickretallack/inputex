@@ -109,7 +109,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       inputEx.DatePickerField.superclass.renderComponent.call(this);
 
       // Create button
-      this.button = Y.Node.create("<button>&nbsp;</button>").addClass("inputEx-DatePicker-button");
+      this.button = Y.Node.create('<span class="inputEx-DatePicker-ButtonWrapper"><span class="first-child"><button type="button" class="inputEx-DatePicker-Button"></button></span></span>');
       this.button.appendTo(this.wrapEl);
 
 
@@ -129,7 +129,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
     */
    renderCalendar: function() {
       // if already rendered, ignore call
-      if (!!this.calendarRendered) return;
+      if (!!this.calendarRendered) { return; }
 
       this.calendar = new Y.Calendar({
          width:'250px',
