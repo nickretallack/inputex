@@ -131,14 +131,16 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       // if already rendered, ignore call
       if (!!this.calendarRendered) { return; }
 
-      this.calendar = new Y.Calendar({
+      var localCalendarOptions = {
          width:'250px',
          showPrevMonth: true,
          showNextMonth: true,
          date: new Date()
-      });
+      },
 
-      this.calendar.setAttrs(this.options.calendar);
+      finalCalendarOptions = Y.mix(this.options.calendar, localCalendarOptions);
+
+      this.calendar = new Y.Calendar(finalCalendarOptions);
 
       this.calendar.render( this.oOverlay.get('contentBox') );
 
