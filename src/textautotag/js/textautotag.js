@@ -1,8 +1,7 @@
 /**
  * @module inputex-textautotag
  */
- (function() {
-  
+ var inputEx = Y.inputEx;
 /**
  * Create a textarea input
  * @class inputEx.TextAutoTag
@@ -104,8 +103,7 @@
         return false;
       }
 });
+ 
+// Register this class as "text" type
+inputEx.registerType("autotag", inputEx.Textarea);
   
-  // Register this class as "text" type
-  inputEx.registerType("autotag", inputEx.Textarea);
-  
-  })();

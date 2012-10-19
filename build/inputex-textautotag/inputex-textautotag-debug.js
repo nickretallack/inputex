@@ -3,8 +3,7 @@ YUI.add('inputex-textautotag', function (Y, NAME) {
 /**
  * @module inputex-textautotag
  */
- (function() {
-  
+ var inputEx = Y.inputEx;
 /**
  * Create a textarea input
  * @class inputEx.TextAutoTag
@@ -106,10 +105,9 @@ YUI.add('inputex-textautotag', function (Y, NAME) {
         return false;
       }
 });
+ 
+// Register this class as "text" type
+inputEx.registerType("autotag", inputEx.Textarea);
   
-  // Register this class as "text" type
-  inputEx.registerType("autotag", inputEx.Textarea);
-  
-  })();
 
-}, '@VERSION@', {"requires": ["inputex-textautotag"], "ix_provides": "autotag"});
+}, '@VERSION@', {"requires": ["inputex-textarea"], "ix_provides": "autotag"});
