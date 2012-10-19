@@ -28,68 +28,102 @@
     <div class="yui3-g">
         <div class="yui3-u-3-4">
             <div id="main">
-                <div class="content"><h2 id="how-to-contribute">How to contribute</h2>
+                <div class="content"><h2 id="developers-guide">Developer's Guide</h2>
 
-<p>Here are some guidelines to help you help us :</p>
+<p>inputEx is a library, so it is meant to be used by developers. Here are some of the prerequisites before starting to use the library :</p>
 
 <ul>
-   <li>Fork the repository on github</li>
-   <li>Please write documentation</li>
-   <li>Write examples</li>
-   <li>Send pull requests from GitHub</li>
+   <li>You should be able to serve the files locally (setup a local HTTP server or embed into your application)</li>
+   <li>Have a good knowledge of Javascript</li>
+   <li>Have a good knowledge of the <a href="http://yuilibrary.com/">YUI library</a></li>
+   <li>It is strongly recommanded to have Node.js installed</li>
 </ul>
 
 
+<h3 id="building-components">Building components</h3>
+
+<p>We use <a href="http://davglass.github.com/shifter/">shifter</a> to build inputEx's modules.</p>
+
+<p>To install shifter :</p>
+
+<pre class="code terminal"><span class="noselect">$ </span>[sudo] npm install -g shifter</pre>
 
 
-<h2 id="reporting-an-issue">Reporting an Issue</h2>
+<p>To build the 'container' module :</p>
 
-<p>The issues/bugs and feature requests are managed through the <a href="http://github.com/neyric/inputex/issues">GitHub issue tracker</a>. Feel free to add new ones, vote for your favorites, comment on existing one, ...</p>
-
-<p>Then don’t get your hopes up. Unless you have a "Code Red, Mission Critical, The World is Coming to an End" kind of bug, you’re creating this ticket in the hope that others with the same problem will be able to collaborate with you on solving it. Do not expect that the ticket automatically will see any activity or that others will jump to fix it. Creating a ticket like this is mostly to help yourself start on the path of fixing the problem and for others to confirm it with a "I’m having this problem too" comment.</p>
-
-
-<h2 id="contributing-to-the-documentation">Contributing to the Documentation</h2>
-
-<p>This guide represents the biggest documentation effort of the library. The <a href="../api/index.html">API documentation</a> is also a huge part of inputEx's documentation. How can you help ?</p>
-
-<ul>
-<li>fix typos, spelling</li>
-<li>improve code documentation (and therefore the auto-generated API documentation)</li>
-<li>write new examples</li>
-<li>write about uncovered topics</li>
-</ul>
-
-<h2 id="contributing-to-the-code">Contributing to the Code</h2>
+<pre class="code terminal"><span class="noselect">$ </span>cd src&#x2F;container
+<span class="noselect">$ </span>shifter</pre>
 
 
-<p>You can contribute in a lot of different ways :</p>
+<p>To build all modules at once :</p>
 
-<ul>
-<li>Design/Styling - images or css</li>
-<li>Adapters/backend code</li>
-<li>core contributions</li>
-</ul>
+<pre class="code terminal"><span class="noselect">$ </span>cd src
+<span class="noselect">$ </span>shifter --walk</pre>
 
 
+<h3 id="building-user-guides-and-examples-pages">Building user guides and examples pages</h3>
 
-<h2 id="contributors">Contributors</h2>
+<p>We are using <a href="http://rgrove.github.com/selleck/">selleck</a> to build the examples and user guide pages.</p>
 
-<p>Special thanks to the major contributors :</p>
 
-<ul>
-<li><a href="http://github.com/neyric">neyric</a> - creator</li>
-<li><a href="http://github.com/jamesk">jamesk</a> and <a href="http://github.com/ciaranj">ciaranj</a> - grouping plugin</li>
-<li>Barun - Left/Right square Arrow Wire</li>
-<li><a href="http://tarpipe.com">Tarpipe</a> - bug fixes, css, images</li>
-<li><a href="http://github.com/LeifW">LeifW</a> - bug reports, forum replies</li>
-<li><a href="http://github.com/dlitz">dlitz</a> - bug fix</li>
-<li><a href="http://github.com/piercus">piercus</a> - bug fix</li>
-<li><a href="http://www.jaybyjayfresh.com">Jonathan L.</a> - feature requests, blog post</li>
-<li><a href="http://github.com/maximerety">maximerety</a> - major contributor on the inputEx library</li>
-</ul>
+<p>To install shifter :</p>
 
-</div>
+<pre class="code terminal"><span class="noselect">$ </span>[sudo] npm install -g selleck</pre>
+
+
+<p>To build all docs :</p>
+
+<pre class="code terminal"><span class="noselect">$ </span>selleck --out docs</pre>
+
+
+<h3 id="building-the-api-documentation">Building the API documentation</h3>
+
+<p>The API documentation is build using <a href="https://github.com/yui/yuidoc">YUIDocJS</a>.</p>
+
+
+<p>To install YUIDocJS :</p>
+
+<pre class="code terminal"><span class="noselect">$ </span>[sudo] npm install -g yuidocjs</pre>
+
+
+<p>From the main directory, type :</p>
+
+<pre class="code terminal"><span class="noselect">$ </span>yuidoc src</pre>
+
+
+<p>It should generate the doc in the api/ folder.</p>
+
+
+<h3 id="how-to-run-the-tests">How to run the tests</h3>
+
+<p>Tests are executed with <a href="https://github.com/yui/yeti">Yeti</a>.</p>
+
+
+<p>To install Yeti :</p>
+
+<pre class="code terminal"><span class="noselect">$ </span>[sudo] npm install -g yeti</pre>
+
+
+<p>From the main directory, type :</p>
+
+<pre class="code terminal"><span class="noselect">$ </span>yeti src&#x2F;*&#x2F;tests&#x2F;unit&#x2F;*.html</pre>
+
+
+<p>This command creates a one shot server and return you an adress which you have to connect a browser in order to run the tests. You can also invoke the same command with "--server" in order to have a persistent server  </p>
+
+<pre class="code terminal"><span class="noselect">$ </span>yeti src&#x2F;*&#x2F;tests&#x2F;unit&#x2F;*.html --server</pre>
+
+
+<p>Testing with coverage :</p>
+
+<pre class="code terminal"><span class="noselect">$ </span>yeti src&#x2F;*&#x2F;tests&#x2F;unit&#x2F;*.html --server --query &#x27;filter=coverage&#x27;</pre>
+
+
+<h3 id="inputex">inputEx</h3>
+
+<p>The <a href="http://neyric.github.com/inputex/">inputEx library</a> is a form and field library for YUI.</p>
+
+<p>It is included in lib/inputex/ so that it easier for people to checkout the project</p></div>
             </div>
         </div>
 
@@ -104,19 +138,24 @@
                         <div class="bd">
                             <ul class="toc">
 <li>
-<a href="#how-to-contribute">How to contribute</a>
+<a href="#developers-guide">Developer's Guide</a>
+<ul class="toc">
+<li>
+<a href="#building-components">Building components</a>
 </li>
 <li>
-<a href="#reporting-an-issue">Reporting an Issue</a>
+<a href="#building-user-guides-and-examples-pages">Building user guides and examples pages</a>
 </li>
 <li>
-<a href="#contributing-to-the-documentation">Contributing to the Documentation</a>
+<a href="#building-the-api-documentation">Building the API documentation</a>
 </li>
 <li>
-<a href="#contributing-to-the-code">Contributing to the Code</a>
+<a href="#how-to-run-the-tests">How to run the tests</a>
 </li>
 <li>
-<a href="#contributors">Contributors</a>
+<a href="#inputex">inputEx</a>
+</li>
+</ul>
 </li>
 </ul>
                         </div>
