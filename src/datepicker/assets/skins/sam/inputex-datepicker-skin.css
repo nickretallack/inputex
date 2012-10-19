@@ -7,7 +7,10 @@ div.inputEx-PickerField {
    background: none;
    padding-left: 0;
 }
-
+.inputEx-DatePicker-ButtonWrapper {
+	line-height:0;
+	vertical-align: top; /* for all ff */
+}
 div.inputEx-PickerField .yui3-overlay {
    -moz-box-shadow:    2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
