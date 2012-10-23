@@ -1,8 +1,7 @@
-div.inputEx-MenuField div.inputEx-Result {background-color:#FFFFFF; border:1px solid #CCCCCC; padding:2px 25px 2px 5px; cursor:pointer}
-div.inputEx-MenuField div.inputEx-RightArrow {background-image:url(images/menu-right-arrow.png);background-position:right center;background-repeat:no-repeat;}
-div.inputEx-MenuField div.inputEx-DownArrow {background-image:url(images/menu-down-arrow.png);background-position:right center;background-repeat:no-repeat;}
-
 .yui3-skin-sam .inputEx-MenuField .yui3-menu-content, 
 .yui3-skin-sam .inputEx-MenuField .yui3-menu .yui3-menu .yui3-menu-content {
     padding : 0;
+}
+.yui3-skin-sam .yui3-menubuttonnav li {
+border-right: 0px;
 }
