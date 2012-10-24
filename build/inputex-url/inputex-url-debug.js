@@ -35,7 +35,7 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
 
       this.options.className = options.className ? options.className : "inputEx-Field inputEx-UrlField";
       this.messages.invalid = this.messages.invalidUrl;
-      this.options.favicon = lang.isUndefined(options.favicon) ? (("https:" == document.location.protocol) ? false : true) : options.favicon;
+      this.options.favicon = lang.isUndefined(options.favicon) ? (("https:" === document.location.protocol) ? false : true) : options.favicon;
       this.options.size = options.size || 50;
 
       // validate with url regexp
@@ -72,7 +72,7 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
 
       if(this.options.favicon) {
          // try to update with url only if valid url (else pass null to display inputEx.spacerUrl)
-         this.updateFavicon((this.previousState == inputEx.stateValid) ? this.getValue() : null);
+         this.updateFavicon((this.previousState === inputEx.stateValid) ? this.getValue() : null);
       }
    },
 
@@ -80,8 +80,10 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
     * @method updateFavicon
     */
    updateFavicon: function(url) {
-      var newSrc = url ? url.match(/https?:\/\/[^\/]*/)+'/favicon.ico' : inputEx.spacerUrl;
-      if(newSrc != this.favicon.src) {
+      var newSrc = url ? url.match(/https?:\/\/[^\/]*/)+'/favicon.ico' : inputEx.spacerUrl,
+          that = this;
+
+      if(newSrc !== this.favicon.src) {
 
          // Hide the favicon
          inputEx.sn(this.favicon, null, {visibility: 'hidden'});
@@ -91,7 +93,6 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
 
          // Set the timer to launch displayFavicon in 1s
          if(this.timer) { clearTimeout(this.timer); }
-         var that = this;
          this.timer = setTimeout(function(){that.displayFavicon();}, 1000);
       }
    },

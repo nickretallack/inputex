@@ -3,8 +3,8 @@ div.inputEx-UrlField {position:relative;}
 
 div.inputEx-UrlField input { padding-left: 20px; }
 
-div.inputEx-UrlField input.nofavicon {
-   padding-left: 0px;
+div.inputEx-UrlField .nofavicon {
+   padding-left: 0;
 }
 
 div.inputEx-UrlField img {
