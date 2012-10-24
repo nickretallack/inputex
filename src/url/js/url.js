@@ -28,16 +28,16 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
    setOptions: function(options) {
       inputEx.UrlField.superclass.setOptions.call(this, options);
 
-     //I18N
+      //I18N
       this.messages = Y.mix(this.messages, Y.Intl.get("inputex-url"));
 
       this.options.className = options.className ? options.className : "inputEx-Field inputEx-UrlField";
-      this.messages.invalid = this.messages.invalidUrl;
+      this.messages.invalid = (options.messages && options.messages.invalid) ? options.messages.invalid : this.messages.invalidUrl;
       this.options.favicon = lang.isUndefined(options.favicon) ? (("https:" === document.location.protocol) ? false : true) : options.favicon;
       this.options.size = options.size || 50;
 
       // validate with url regexp
-      this.options.regexp = inputEx.regexps.url;
+      this.options.regexp = options.regexp ? options.regexp : inputEx.regexps.url;
    },
 
    /**
