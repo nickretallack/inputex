@@ -44,6 +44,7 @@ div.inputEx-PickerField .yui3-overlay {
 	background-image:url(images/calendar.gif);
 	background-repeat:no-repeat;
 	background-position:1px 1px;
+   background-color: transparent;
 	width:20px;
 	height:20px;
 	min-height:0; /* reset "min-height:2em" that prevented "height:18px" to be applied */
