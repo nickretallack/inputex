@@ -32,6 +32,9 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     * @param {Object} options Options object as passed to the constructor
     */
    setOptions: function(options) {
+
+      var that = this;
+
       inputEx.InPlaceEdit.superclass.setOptions.call(this, options);
       
       //I18N
@@ -42,19 +45,52 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
       this.options.editorField = options.editorField;
       
       //this.options.buttonTypes = options.buttonTypes || {ok:"submit",cancel:"link"};
-      
-      this.options.buttonConfigs = options.buttonConfigs || [{
-               type: "submit",
-               value: this.messages.okEditor,
-               className: "inputEx-Button "+CSS_PREFIX+'OkButton',
-               onClick: {fn: this.onOkEditor, scope:this}
-            },{
-               type: "link",
-               value: this.messages.cancelEditor,
-               className: "inputEx-Button "+CSS_PREFIX+'CancelLink',
-               onClick: {fn: this.onCancelEditor, scope:this}
-            }];
-      
+
+      if (!options.buttonConfigs) {
+          // Default 
+          this.options.buttonConfigs = [{
+              type: "submit",
+              value: this.messages.okEditor,
+              className: "inputEx-Button " + CSS_PREFIX + 'OkButton',
+              onClick: {
+                  fn: this.onOkEditor,
+                  scope: this
+              }
+          }, {
+              type: "link",
+              value: this.messages.cancelEditor,
+              className: "inputEx-Button " + CSS_PREFIX + 'CancelLink',
+              onClick: {
+                  fn: this.onCancelEditor,
+                  scope: this
+              }
+          }];
+
+      } else {
+          // Custumized buttons
+          options.buttonConfigs.forEach(function (item) {
+
+              if (item.isOkButton) {
+                  item.value = that.messages.okEditor;
+                  item.className ? item.className += "inputEx-Button " + CSS_PREFIX + 'OkButton' : "inputEx-Button " + CSS_PREFIX + 'OkButton';
+                  item.onClick ? item.onClick : item.onClick = {
+                      fn: that.onOkEditor,
+                      scope: that
+                  };
+              } else {
+                  item.value = that.messages.cancelEditor;
+                  item.className ? item.className += "inputEx-Button " + CSS_PREFIX + 'CancelLink' : "inputEx-Button " + CSS_PREFIX + 'CancelLink';
+                  item.onClick ? item.onClick : item.onClick = {
+                      fn: that.onCancelEditor,
+                      scope: that
+                  };
+              }
+          });
+
+          this.options.buttonConfigs = options.buttonConfigs;
+
+      }
+ 
       this.options.animColors = options.animColors || null;
    },
    

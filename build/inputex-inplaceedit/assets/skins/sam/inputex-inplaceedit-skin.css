@@ -5,4 +5,4 @@ div.inputEx-InPlaceEdit-visu { cursor: pointer; padding: 3px; }
   margin-bottom:0; /* remove 0.2em bottom margin because no need to cumulate field and editor-field margins */
 }
 
-.inputEx-InPlaceEdit-OkButton { margin-left: 5px; }
+.inputEx-OkButton { margin-left: 5px; }
