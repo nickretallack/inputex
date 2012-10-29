@@ -33,7 +33,9 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     */
    setOptions: function(options) {
 
-      var that = this;
+      var that = this, 
+      buttonConfigs, buttonConfigsLength ,i, item;
+
 
       inputEx.InPlaceEdit.superclass.setOptions.call(this, options);
       
@@ -68,26 +70,32 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
 
       } else {
           // Custumized buttons
-          options.buttonConfigs.forEach(function (item) {
+          buttonConfigs = options.buttonConfigs,
+          buttonConfigsLength = buttonConfigs.length,
+          i, item;  
 
+
+          for (i = 0 ; i < buttonConfigsLength ; i++){
+            item = buttonConfigs[i]  ;
+ 
               if (item.isOkButton) {
-                  item.value = that.messages.okEditor;
+                  item.value = item.value || that.messages.okEditor;
                   item.className ? item.className += "inputEx-Button " + CSS_PREFIX + 'OkButton' : "inputEx-Button " + CSS_PREFIX + 'OkButton';
                   item.onClick ? item.onClick : item.onClick = {
                       fn: that.onOkEditor,
                       scope: that
                   };
               } else {
-                  item.value = that.messages.cancelEditor;
+                  item.value = item.value || that.messages.cancelEditor;
                   item.className ? item.className += "inputEx-Button " + CSS_PREFIX + 'CancelLink' : "inputEx-Button " + CSS_PREFIX + 'CancelLink';
                   item.onClick ? item.onClick : item.onClick = {
                       fn: that.onCancelEditor,
                       scope: that
-                  };
+                };
               }
-          });
+          }
 
-          this.options.buttonConfigs = options.buttonConfigs;
+          this.options.buttonConfigs = buttonConfigs;
 
       }
  

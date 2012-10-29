@@ -57,4 +57,26 @@ YUI().use('inputex-inplaceedit', 'inputex-group','inputex-email', 'inputex-url',
 		value: '5'
 	});
 
+   // Example 5
+   Y.inputEx({
+      buttonConfigs : [{
+         isOkButton : true,
+         value : "myButton"
+      }],
+      type: 'inplaceedit',
+      parentEl: 'container5', 
+      label: "Customized buttons",
+      editorField:{
+         name: 'firstname'
+      },
+      visu: {
+         visuType: 'func', 
+         func: function(val) {
+            return val;
+         }
+      },
+      value: 'Chuck Norris doesn\'t wear a watch'
+   });
+
+
 });
