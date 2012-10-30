@@ -430,7 +430,8 @@ Y.extend(inputEx.Group, inputEx.Field, {
       
       var index = inputEx.indexOf(fieldInstance, this.inputs);
       var fieldConfig = this.options.fields[index];
-      if(lang.isUndefined(fieldConfig.interactions) ) return;
+
+      if(lang.isUndefined(fieldConfig) || lang.isUndefined(fieldConfig.interactions) ) return;
       
       // Let's run the interactions !
       var interactions = fieldConfig.interactions;
