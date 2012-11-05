@@ -66,7 +66,7 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
 
       // Configuration options for the generated YUI MenuNav node plugin
       this.options.menuConfig = options.menuConfig || {
-         autoSubmenuDisplay: (this.options.menuTrigger == 'mouseover')
+         autoSubmenuDisplay: (this.options.menuTrigger === 'mouseover')
       };
    },
 
@@ -94,49 +94,48 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       // Keep corresponding text for each value selectable in the menu
       //   -> will be used to display selection after click
       this._textFromValue = {};
+      this._valueFromHref = {};
 
       // This method returns template completed with data.
-      var renderMenuRecurs = function (id, conf, level) {
+      var renderMenuRecurs = function (parent_id, conf, level) {
+
          if (level>5) throw new Error("MenuField : too much recursion, menuItems property should be 5 level deep at most.");
 
          var html = '',
              length = conf.length,
              item,
              templateData,
+             id,
              i;
 
          for (i = 0; i < length; i++) {
             item = conf[i];
-
-            if (lang.isUndefined(item.text) && !lang.isUndefined(item.value)) {
-               item.text = item.value;
-            }
-            if (lang.isUndefined(item.value) && !lang.isUndefined(item.text)) {
-               item.value = item.text;
-            }
+            id = Y.guid();
 
             templateData = {
                label:         item.text,
-               href:          '#'+item.value,
+               href:          '#' + id,
                submenu:       '',
                label_class:   'yui3-menuitem-content',
-               item_class:    item.classname
+               item_class:    item.classname || ''
             };
 
             // item with submenu
             if (!lang.isUndefined(item.submenu)) {
                templateData.label_class = 'yui3-menu-label';
-               templateData.submenu     = renderMenuRecurs(item.value, item.submenu.itemdata, level+1);
+               templateData.submenu     = renderMenuRecurs(id, item.submenu.itemdata, level+1);
+               templateData.item_class += ' yui3-submenu';
             } else {
                templateData.item_class += ' yui3-menuitem';
                that._textFromValue[item.value] = item.text;
+               that._valueFromHref['#' + id] = item.value;
             }
 
             html += substitute(inputEx.MenuField.MENU_ITEM_TEMPLATE, templateData);
          }
 
          return substitute(inputEx.MenuField.MENU_TEMPLATE, {
-            menu_id:    id,
+            menu_id:    parent_id,
             menu_items: html
          });
 
@@ -151,6 +150,14 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
          text: this.options.typeInvite,
          submenu: {itemdata: this.options.menuItems}
       }], 0));
+
+      if (Y.UA.ie === 7) {
+         a_tags = this._menu.all('a');
+         a_tags.each(function (a) {
+            var href = a.get('href');
+            a.set('href', '#' + href.split('#')[1]);
+         });
+      }
 
       if (this.options.menuOrientation === HORIZONTAL) {
          this._menu.addClass('yui3-menu-horizontal  yui3-menubuttonnav');
@@ -171,16 +178,7 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
     * @method initEvents
     */
    initEvents: function() {
-      var that = this;
-
       this._menu.delegate('click', Y.bind(this.onItemClick, this), 'a');
-
-      if (this.options.menuTrigger == 'click') {
-         this._menu.menuNav._rootMenu.on(['mousedown', 'click'], function (e) {
-            var menuNav = that._menu.menuNav;
-            menuNav._toggleSubmenuDisplay.call(menuNav, e);
-         }, this._menu.menuNav);
-      }
    },
 
    /**
@@ -192,7 +190,6 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
    setBackgroundColorOfRootLabel: function (color) {
       this._menu.one(".yui3-menu-label").setStyle("backgroundColor",color);
    },
-   
    /**
     * @method onItemClick
     */
@@ -208,7 +205,7 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
          // value of the "href" attribute.
          // http://msdn.microsoft.com/en-us/library/ms536429(VS.85).aspx
          href = target.getAttribute("href", 2);
-         this.setValue(href.substr(href.indexOf('#') + 1), true);
+         this.setValue(this._valueFromHref[href], true);
 
          // Hides submenus
          this._menu.menuNav._hideAllSubmenus(this._menu.menuNav._rootMenu);
