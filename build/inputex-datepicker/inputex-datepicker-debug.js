@@ -141,7 +141,9 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       finalCalendarOptions = Y.mix(this.options.calendar, localCalendarOptions);
 
       this.calendar = new Y.Calendar(finalCalendarOptions);
-
+      if(finalCalendarOptions.customRenderer){
+        this.calendar.set("customRenderer", finalCalendarOptions.customRenderer);
+      }
       this.calendar.render( this.oOverlay.get('contentBox') );
 
       this.calendar.on("selectionChange", function (ev) {
