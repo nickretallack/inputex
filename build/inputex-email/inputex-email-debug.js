@@ -189,4 +189,19 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
 inputEx.registerType("email", inputEx.EmailField, []);
 
 
-}, '@VERSION@', {"requires": ["inputex-string"], "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"], "ix_provides": "email"});
+}, '@VERSION@', {
+    "requires": [
+        "inputex-string"
+    ],
+    "lang": [
+        "en",
+        "fr",
+        "de",
+        "ca",
+        "es",
+        "fr",
+        "it",
+        "nl"
+    ],
+    "ix_provides": "email"
+});

@@ -475,4 +475,21 @@ inputEx.registerType("list", inputEx.ListField, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "anim"], "skinnable": true, "ix_provides": "list", "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {
+    "requires": [
+        "inputex-field",
+        "anim"
+    ],
+    "skinnable": true,
+    "ix_provides": "list",
+    "lang": [
+        "en",
+        "fr",
+        "de",
+        "ca",
+        "es",
+        "fr",
+        "it",
+        "nl"
+    ]
+});

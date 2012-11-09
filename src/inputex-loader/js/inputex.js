@@ -110,6 +110,20 @@ YUI().use(function(Y) {
             "inputex"
         ]
     },
+    "inputex-calendarNavigationPlugin": {
+        "lang": [
+            "en",
+            "fr"
+        ],
+        "requires": [
+            "intl",
+            "plugin",
+            "inputex-panel",
+            "inputex-group",
+            "inputex-select"
+        ],
+        "skinnable": true
+    },
     "inputex-checkbox": {
         "ix_provides": "boolean",
         "requires": [

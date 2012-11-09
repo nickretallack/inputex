@@ -41,6 +41,9 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       // Added options
       this.options.calendar = options.calendar || this.messages.defaultCalendarOpts;
       this.options.zIndex   = options.zIndex || 4;
+
+      window.datepicker = this;
+
    },
 
    /**
@@ -67,6 +70,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
             // Activate outside event handler
             this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {
+              console.log("mousedownoutside");
                this.oOverlay.hide();
             }, this);
          }
@@ -145,6 +149,9 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
         this.calendar.set("customRenderer", finalCalendarOptions.customRenderer);
       }
       this.calendar.render( this.oOverlay.get('contentBox') );
+      if(finalCalendarOptions.plugin){
+        this.calendar.plug(finalCalendarOptions.plugin);
+      }
 
       this.calendar.on("selectionChange", function (ev) {
 
@@ -219,4 +226,24 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 inputEx.registerType("datepicker", inputEx.DatePickerField);
 
 
-}, '@VERSION@', {"requires": ["inputex-date", "event-outside", "node-event-delegate", "overlay", "calendar"], "ix_provides": "datepicker", "skinnable": true, "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {
+    "requires": [
+        "inputex-date",
+        "event-outside",
+        "node-event-delegate",
+        "overlay",
+        "calendar"
+    ],
+    "ix_provides": "datepicker",
+    "skinnable": true,
+    "lang": [
+        "en",
+        "fr",
+        "de",
+        "ca",
+        "es",
+        "fr",
+        "it",
+        "nl"
+    ]
+});

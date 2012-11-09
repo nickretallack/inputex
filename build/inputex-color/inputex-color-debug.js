@@ -371,4 +371,13 @@ inputEx.ColorField.ensureHexa = function (color) {
 inputEx.registerType("color", inputEx.ColorField, []);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "node-event-delegate", "event-outside", "overlay"], "skinnable": true, "ix_provides": "color"});
+}, '@VERSION@', {
+    "requires": [
+        "inputex-field",
+        "node-event-delegate",
+        "event-outside",
+        "overlay"
+    ],
+    "skinnable": true,
+    "ix_provides": "color"
+});

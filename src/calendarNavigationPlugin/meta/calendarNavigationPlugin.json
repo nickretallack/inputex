@@ -1,0 +1,9 @@
+{
+   "inputex-calendarNavigationPlugin" : {
+      "requires": [
+         "intl","plugin","inputex-panel", "inputex-group", "inputex-select"
+      ],
+      "skinnable": true,
+      "lang" : ["en","fr"]
+   }
+}

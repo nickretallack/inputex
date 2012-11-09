@@ -267,4 +267,22 @@ var   that = this,
 inputEx.registerType("string-availability", inputEx.StringAvailability);   
 
 
-}, '@VERSION@', {"requires": ["inputex-string", "event-key", "io", "json-parse"], "skinnable": true, "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {
+    "requires": [
+        "inputex-string",
+        "event-key",
+        "io",
+        "json-parse"
+    ],
+    "skinnable": true,
+    "lang": [
+        "en",
+        "fr",
+        "de",
+        "ca",
+        "es",
+        "fr",
+        "it",
+        "nl"
+    ]
+});

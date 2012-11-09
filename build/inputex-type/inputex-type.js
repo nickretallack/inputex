@@ -269,4 +269,16 @@ Y.extend(inputEx.TypeField, inputEx.Field, {
 inputEx.registerType("type", inputEx.TypeField, []);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "inputex-group", "inputex-select", "inputex-list", "inputex-string", "inputex-checkbox", "inputex-integer"], "skinnable": true, "ix_provides": "type"});
+}, '@VERSION@', {
+    "requires": [
+        "inputex-field",
+        "inputex-group",
+        "inputex-select",
+        "inputex-list",
+        "inputex-string",
+        "inputex-checkbox",
+        "inputex-integer"
+    ],
+    "skinnable": true,
+    "ix_provides": "type"
+});

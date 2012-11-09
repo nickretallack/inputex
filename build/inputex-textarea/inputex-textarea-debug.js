@@ -135,4 +135,19 @@ inputEx.registerType("text", inputEx.Textarea, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "text", "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {
+    "requires": [
+        "inputex-string"
+    ],
+    "ix_provides": "text",
+    "lang": [
+        "en",
+        "fr",
+        "de",
+        "ca",
+        "es",
+        "fr",
+        "it",
+        "nl"
+    ]
+});

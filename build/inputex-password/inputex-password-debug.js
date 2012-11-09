@@ -277,4 +277,20 @@ inputEx.registerType("password", inputEx.PasswordField, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-string"], "ix_provides": "password", "skinnable": true, "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {
+    "requires": [
+        "inputex-string"
+    ],
+    "ix_provides": "password",
+    "skinnable": true,
+    "lang": [
+        "en",
+        "fr",
+        "de",
+        "ca",
+        "es",
+        "fr",
+        "it",
+        "nl"
+    ]
+});

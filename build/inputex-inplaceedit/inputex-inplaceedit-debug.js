@@ -412,4 +412,23 @@ inputEx.registerType("inplaceedit", inputEx.InPlaceEdit, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "inputex-button", "anim", "inputex-visus"], "ix_provides": "inplaceedit", "skinnable": true, "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {
+    "requires": [
+        "inputex-field",
+        "inputex-button",
+        "anim",
+        "inputex-visus"
+    ],
+    "ix_provides": "inplaceedit",
+    "skinnable": true,
+    "lang": [
+        "en",
+        "fr",
+        "de",
+        "ca",
+        "es",
+        "fr",
+        "it",
+        "nl"
+    ]
+});

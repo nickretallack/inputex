@@ -402,4 +402,16 @@ YUI.add('inputex', function (Y, NAME) {
   });
 
 
-}, '@VERSION@', {"requires": ["intl", "pluginhost-base", "pluginhost-config", "base-pluginhost", "node-pluginhost", "plugin", "node", "intl"], "skinnable": true});
+}, '@VERSION@', {
+    "requires": [
+        "intl",
+        "pluginhost-base",
+        "pluginhost-config",
+        "base-pluginhost",
+        "node-pluginhost",
+        "plugin",
+        "node",
+        "intl"
+    ],
+    "skinnable": true
+});

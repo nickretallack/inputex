@@ -151,4 +151,21 @@ YUI.add('inputex-dateselectmonth', function (Y, NAME) {
 	inputEx.registerType("dateselectmonth", inputEx.DateSelectMonthField);
 
 
-}, '@VERSION@', {"requires": ["inputex-combine", "inputex-string", "inputex-select"], "ix_provides": "dateselectmonth", "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {
+    "requires": [
+        "inputex-combine",
+        "inputex-string",
+        "inputex-select"
+    ],
+    "ix_provides": "dateselectmonth",
+    "lang": [
+        "en",
+        "fr",
+        "de",
+        "ca",
+        "es",
+        "fr",
+        "it",
+        "nl"
+    ]
+});

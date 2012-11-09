@@ -419,4 +419,23 @@ inputEx.registerType("form", inputEx.Form, [
 ]);
 
 
-}, '@VERSION@', {"requires": ["io-base", "inputex-group", "json", "inputex-button"], "ix_provides": "form", "skinnable": true, "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {
+    "requires": [
+        "io-base",
+        "inputex-group",
+        "json",
+        "inputex-button"
+    ],
+    "ix_provides": "form",
+    "skinnable": true,
+    "lang": [
+        "en",
+        "fr",
+        "de",
+        "ca",
+        "es",
+        "fr",
+        "it",
+        "nl"
+    ]
+});
