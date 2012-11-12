@@ -13,6 +13,9 @@ div.inputEx-Group div.inputEx-Group-collapseImg {
    float: left;
 }
 
+div.inputEx-Group fieldset {
+    border : 0;
+}
 div.inputEx-Group fieldset.inputEx-Expanded legend ,
 div.inputEx-Group fieldset.inputEx-Collapsed legend {
    cursor: pointer;
