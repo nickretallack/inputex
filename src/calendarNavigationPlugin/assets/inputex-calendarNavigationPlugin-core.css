@@ -1,0 +1,13 @@
+.inputex-select-panel-boundingbox {
+   outline : none;
+}
+.inputex-select-panel-boundingbox  .yui3-button{
+    font-size : 9px;
+}
+.inputex-select-panel-boundingbox .inputEx-Group .inputEx-label {
+    width : 25%;
+}
+.inputex-select-panel-boundingbox .inputEx-Group fieldset {
+    border : 0;
+    padding : 8px 0 0 10px;
+}

@@ -120,7 +120,8 @@ YUI().use(function(Y) {
             "plugin",
             "inputex-panel",
             "inputex-group",
-            "inputex-select"
+            "inputex-select",
+            "align-plugin"
         ],
         "skinnable": true
     },

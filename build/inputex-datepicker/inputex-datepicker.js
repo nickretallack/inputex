@@ -150,7 +150,14 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       }
       this.calendar.render( this.oOverlay.get('contentBox') );
       if(finalCalendarOptions.plugin){
-        this.calendar.plug(finalCalendarOptions.plugin);
+        this.calendar.plug(finalCalendarOptions.plugin.pluginClass, Y.mix(
+        /* Inside this plug in we can only control the calendar.
+          problem is when we click on the month selector (in the panel plugin) the overlay automatically hide itself
+          by giving the datepicker we can control the overlay behavior */
+          {datepicker : this},
+          finalCalendarOptions.plugin.pluginOptions
+          )
+        );
       }
 
       this.calendar.on("selectionChange", function (ev) {
