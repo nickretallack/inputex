@@ -148,6 +148,7 @@
                     buttons: [{
                         value: strings.ok,
                         section: Y.WidgetStdMod.FOOTER,
+                        classNames : "ok-button",
                         action : Y.bind(this.saveAndHidePanel, this)
                     }, {
                         value: strings.cancel,
