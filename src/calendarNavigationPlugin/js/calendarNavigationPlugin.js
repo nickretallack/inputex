@@ -102,9 +102,6 @@
                 // Y.node preparation
                 this.calendarBoundingBox = this.get("host").get("boundingBox");
                 this.calendarContentBox = this.get("host").get("contentBox");
-            
-                this.calendarBoundingBox.addClass("calendarBoundingBox");
-                this.calendarContentBox.addClass("calendarContentBox");
 
                 this.selectPanelBoundingBox = Y.Node.create('<div class="inputex-select-panel-boundingbox"></div>');
                 this.selectPanelContentBox = Y.Node.create('<div class="inputex-select-panel-contentbox"></div>');
@@ -136,8 +133,6 @@
                     contentBox : this.selectPanelContentBox,
                     centered : this.calendarContentBox,
                     headerContent: strings.select,
-                    width : this.panelOptions.width,
-                    height : this.panelOptions.height,
                     inputEx: group,
                     label: 'label',
                     modal: true,
