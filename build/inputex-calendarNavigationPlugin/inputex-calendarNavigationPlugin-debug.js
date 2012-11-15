@@ -205,6 +205,9 @@ YUI.add('inputex-calendarNavigationPlugin', function (Y, NAME) {
          * @method saveAndHidePanel
          */
         saveAndHidePanel : function(){
+
+            e.halt(true);
+
             if(  this.validateFormInPanel()  ){
                 // set the choosen values to the calendar
                 var dateToUpdate = this.get("host").get("date"),
