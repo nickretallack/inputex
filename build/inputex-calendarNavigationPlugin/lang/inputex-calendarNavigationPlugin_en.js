@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-calendarNavigationPlugin_en",function(e){e.Intl.add("inputex-calendarNavigationPlugin","en",{select:"Select",month:"Month",year:"Year",ok:"Ok",cancel:"Cancel",monthsList:["January","February","March","April","May","June","July","August","September","October","November","December"]})},"@VERSION@");
