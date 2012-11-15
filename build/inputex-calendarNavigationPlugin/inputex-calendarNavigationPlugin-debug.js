@@ -204,7 +204,7 @@ YUI.add('inputex-calendarNavigationPlugin', function (Y, NAME) {
          *
          * @method saveAndHidePanel
          */
-        saveAndHidePanel : function(){
+        saveAndHidePanel : function(e){
 
             e.halt(true);
 

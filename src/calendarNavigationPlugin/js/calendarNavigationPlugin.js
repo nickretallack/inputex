@@ -202,7 +202,7 @@
          *
          * @method saveAndHidePanel
          */
-        saveAndHidePanel : function(){
+        saveAndHidePanel : function(e){
 
             e.halt(true);
 
