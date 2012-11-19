@@ -41,9 +41,6 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       // Added options
       this.options.calendar = options.calendar || this.messages.defaultCalendarOpts;
       this.options.zIndex   = options.zIndex || 4;
-
-      window.datepicker = this;
-
    },
 
    /**
@@ -70,7 +67,6 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
             // Activate outside event handler
             this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {
-              console.log("mousedownoutside");
                this.oOverlay.hide();
             }, this);
          }
@@ -201,7 +197,6 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
     * @method close
     */
    close: function() {
-      console.log("DATEPICKER CLOSE", this.oOverlay);
       if (this.oOverlay) {
          this.oOverlay.hide();
       }
