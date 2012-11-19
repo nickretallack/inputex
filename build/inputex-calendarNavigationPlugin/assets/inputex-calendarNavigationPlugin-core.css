@@ -11,3 +11,11 @@
     border : 0;
     padding : 8px 0 0 10px;
 }
+.yui3-calendar .yui3-calendar-content .yui3-calendar-header-label {
+   margin : 0 16% 0 16%;
+   width : 66%;
+   border : 1px solid transparent;
+}
+.yui3-calendar .yui3-calendar-content .yui3-calendar-header-label:hover {
+   border-color :  black;
+}

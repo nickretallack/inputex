@@ -150,9 +150,7 @@ YUI.add('inputex-calendarNavigationPlugin', function (Y, NAME) {
                     }, {
                         value: strings.cancel,
                         section: Y.WidgetStdMod.FOOTER,
-                        action : function(){
-                            that.hidePanel();
-                        }
+                        action : Y.bind(this.cancelAndHidePanel, this)
                     }]
                 };
 
@@ -221,6 +219,16 @@ YUI.add('inputex-calendarNavigationPlugin', function (Y, NAME) {
                 this.get("host").set("date",dateToUpdate);
                 this.hidePanel();
             }
+        },
+        /**
+         *
+         * @method cancelAndHidePanel
+         */
+        cancelAndHidePanel : function(e){
+            
+            e.halt(true);
+            this.hidePanel();
+            
         },
         /**
          *

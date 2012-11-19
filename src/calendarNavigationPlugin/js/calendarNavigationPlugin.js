@@ -148,9 +148,7 @@
                     }, {
                         value: strings.cancel,
                         section: Y.WidgetStdMod.FOOTER,
-                        action : function(){
-                            that.hidePanel();
-                        }
+                        action : Y.bind(this.cancelAndHidePanel, this)
                     }]
                 };
 
@@ -219,6 +217,16 @@
                 this.get("host").set("date",dateToUpdate);
                 this.hidePanel();
             }
+        },
+        /**
+         *
+         * @method cancelAndHidePanel
+         */
+        cancelAndHidePanel : function(e){
+            
+            e.halt(true);
+            this.hidePanel();
+            
         },
         /**
          *
