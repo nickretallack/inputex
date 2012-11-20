@@ -67,7 +67,10 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
             // Activate outside event handler
             this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {
-               this.oOverlay.hide();
+               // if the target is not the button do not hide the overlay
+              if(!this.isDatePickerButton(e.target)){
+                this.oOverlay.hide();
+              }
             }, this);
          }
          else { // hide
@@ -218,6 +221,14 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
    enable: function() {
       inputEx.DatePickerField.superclass.enable.call(this);
       this.button.set('disabled', false);
+   },
+   /**
+    *
+    * @method isDatePickerButton
+    * @return true if this is the toggle button of the datepicker
+    */
+   isDatePickerButton : function(Ynode){
+      return Ynode.hasClass("inputEx-DatePicker-Button");
    }
 
 });
