@@ -54,8 +54,12 @@ YUI.add('inputex-calendarNavigationPlugin', function (Y, NAME) {
             /* Inside this plug in we can only control the calendar.
             problem is when we click on the month selector (in the panel plugin) the overlay automatically hide itself
             by giving the datepickerID we can control the overlay behavior */
-            this.panelOptions = options;
+            this.options = options;
             this.datepicker = options.datepicker;
+
+            // could be "all" or "content"
+            this.options.mask = options.mask ? options.mask : "content";
+
             var i = 0,
                 month,
                 listOfMonths = this.get("string").monthsList;
@@ -140,7 +144,7 @@ YUI.add('inputex-calendarNavigationPlugin', function (Y, NAME) {
                     modal: true,
                     zIndex : 5,
                     // override the default behavior which is to hide the panel with the esc key
-                    // because some problem on ie
+                    // because some problem on ie7
                     hideOn : [{}],
                     buttons: [{
                         value: strings.ok,
@@ -159,20 +163,26 @@ YUI.add('inputex-calendarNavigationPlugin', function (Y, NAME) {
             }else {
                 this.showPanel();
             }
+            
+            // when the panel is visible the mask take all the screen
+            // we want to have the mask only on the calendar's contentbox
+            if(this.options.mask === "content"){
+                Y.one(".yui3-widget-mask").setStyle("position", "absolute");
+            }
+            
 
-
+            // align the panel in the center of the calendar's contentbox
             this.selectPanelBoundingBox.align.center(this.calendarContentBox);
+            
             this.calendarBoundingBox.on('keyup',function(e){
                 if(that._isPanelVisible()){
                     //enter
                     if(e.keyCode === 13){
-                        that.saveAndHidePanel();
+                        that.saveAndHidePanel(e);
                     }
                 }
             });
-
             this.set("panel", this.panelField);
-
         },
         /**
          * Prepare the panel
