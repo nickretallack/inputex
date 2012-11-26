@@ -55,6 +55,8 @@
             this.options = options;
             this.datepicker = options.datepicker;
 
+
+
             // could be "all" or "content"
             this.options.mask = options.mask ? options.mask : "content";
 
@@ -83,11 +85,15 @@
         bindUI : function(){
             var that = this;
             this.get("host").get("boundingBox").delegate("click", Y.bind(this.onHeaderClick, this), ".yui3-calendar-header-label");
-            this._getOverlay().get('boundingBox').on("mousedownoutside", function(e){
-                if(that._isPanelVisible()){
-                    e.stopImmediatePropagation();
-                }
-            });
+            
+            if(this.datepicker){
+                this._getOverlay().get('boundingBox').on("mousedownoutside", function(e){
+                    if(that._isPanelVisible()){
+                        e.stopImmediatePropagation();
+                    }
+                });
+            }
+
         },
         /**
          * Prepare the panel
