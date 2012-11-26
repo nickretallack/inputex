@@ -308,6 +308,7 @@ YUI.add('inputex-calendarNavigationPlugin', function (Y, NAME) {
         "inputex-panel",
         "inputex-group",
         "inputex-select",
+        "inputex-string",
         "align-plugin"
     ],
     "skinnable": true,
