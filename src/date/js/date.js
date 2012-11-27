@@ -134,13 +134,15 @@ Y.extend(inputEx.DateField, inputEx.StringField, {
  * @static
  */
 inputEx.DateField.parseWithFormat = function(sDate, format) {
-   var separator = format.match(/[^Ymd ]/g)[0],
-      ladate = sDate.split(separator),
-      formatSplit = format.split(separator),
-      d = parseInt(ladate[inputEx.indexOf('d', formatSplit)], 10),
-      Y = parseInt(ladate[inputEx.indexOf('Y', formatSplit)], 10),
-      m = parseInt(ladate[inputEx.indexOf('m', formatSplit)], 10) - 1;
-   return(new Date(Y, m, d));
+   if(sDate){
+      var separator = format.match(/[^Ymd ]/g)[0],
+         ladate = sDate.split(separator),
+         formatSplit = format.split(separator),
+         d = parseInt(ladate[inputEx.indexOf('d', formatSplit)], 10),
+         Y = parseInt(ladate[inputEx.indexOf('Y', formatSplit)], 10),
+         m = parseInt(ladate[inputEx.indexOf('m', formatSplit)], 10) - 1;
+      return(new Date(Y, m, d));
+   }
 };
 
 /**
@@ -149,13 +151,15 @@ inputEx.DateField.parseWithFormat = function(sDate, format) {
  * @static
  */
 inputEx.DateField.formatDate = function(d, format) {
-   var str = format.replace('Y', d.getFullYear()),
-      m = d.getMonth() + 1,
-      day;
-   str = str.replace('m', ((m < 10) ? '0' : '') + m);
-   day = d.getDate();
-   str = str.replace('d', ((day < 10) ? '0' : '') + day);
-   return str;
+   if(d){
+      var str = format.replace('Y', d.getFullYear()),
+         m = d.getMonth() + 1,
+         day;
+      str = str.replace('m', ((m < 10) ? '0' : '') + m);
+      day = d.getDate();
+      str = str.replace('d', ((day < 10) ? '0' : '') + day);
+      return str;
+   }
 };
 
 // Register this class as "date" type
