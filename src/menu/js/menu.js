@@ -27,7 +27,7 @@ inputEx.MenuField = function(options) {
    inputEx.MenuField.superclass.constructor.call(this,options);
 };
 
-inputEx.MenuField.MENU_TEMPLATE = 
+inputEx.MenuField.MENU_TEMPLATE =
    '<div class="yui3-menu" id="{menu_id}">' +
        '<div class="yui3-menu-content">' +
            '<ul>' +
@@ -36,7 +36,7 @@ inputEx.MenuField.MENU_TEMPLATE =
        '</div>' +
    '</div>';
 
-inputEx.MenuField.MENU_ITEM_TEMPLATE = 
+inputEx.MenuField.MENU_ITEM_TEMPLATE =
    '<li class="{item_class}">' +
       '<a href="{href}" class="{label_class}">{label}</a>' +
       '{submenu}' +
@@ -89,17 +89,21 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
     * @method renderMenu
     */
    renderMenu: function(container) {
-      var that = this;
 
       // Keep corresponding text for each value selectable in the menu
       //   -> will be used to display selection after click
       this._textFromValue = {};
       this._valueFromHref = {};
 
-      // This method returns template completed with data.
-      var renderMenuRecurs = function (parent_id, conf, level) {
 
-         if (level>5) throw new Error("MenuField : too much recursion, menuItems property should be 5 level deep at most.");
+      var that = this,
+      
+      // This method returns template completed with data.
+      renderMenuRecurs = function (parent_id, conf, level) {
+
+         if (level>5) {
+            throw new Error("MenuField : too much recursion, menuItems property should be 5 level deep at most.");
+         }
 
          var html = '',
              length = conf.length,
