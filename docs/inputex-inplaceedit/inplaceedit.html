@@ -51,9 +51,6 @@ How to create a inplaceedit field.
 	<p></p>
 	<div class='demoContainer' id='container4'></div>
 	
-   <h2>Customized buttons</h2>
-   <p></p>
-   <div class='demoContainer' id='container5'></div>
 	
 
 <script>
@@ -116,7 +113,6 @@ YUI().use('inputex-inplaceedit', 'inputex-group','inputex-email', 'inputex-url',
 		value: '5'
 	});
 
-
    // Example 5
    Y.inputEx({
       buttonConfigs : [{
@@ -137,6 +133,7 @@ YUI().use('inputex-inplaceedit', 'inputex-group','inputex-email', 'inputex-url',
       },
       value: 'Chuck Norris doesn\'t wear a watch'
    });
+
 
 });
 
@@ -212,6 +209,28 @@ YUI().use('inputex-inplaceedit', 'inputex-group','inputex-email', 'inputex-url',
 		},
 		value: &#x27;5&#x27;
 	});
+
+   &#x2F;&#x2F; Example 5
+   Y.inputEx({
+      buttonConfigs : [{
+         isOkButton : true,
+         value : &quot;myButton&quot;
+      }],
+      type: &#x27;inplaceedit&#x27;,
+      parentEl: &#x27;container5&#x27;, 
+      label: &quot;Customized buttons&quot;,
+      editorField:{
+         name: &#x27;firstname&#x27;
+      },
+      visu: {
+         visuType: &#x27;func&#x27;, 
+         func: function(val) {
+            return val;
+         }
+      },
+      value: &#x27;Chuck Norris doesn\&#x27;t wear a watch&#x27;
+   });
+
 
 });</pre>
 

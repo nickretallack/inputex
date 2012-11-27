@@ -60,7 +60,7 @@ YUI().use('inputex-ddlist', function(Y) {
       var container = Y.one('#container2');
 
       // Instantiate field
-      var field = new Y.inputEx.DDListField({
+      var field2 = new Y.inputEx.DDListField({
         name: 'books', 
         valueKey: "id", 
         labelKey: "title", 
@@ -69,7 +69,7 @@ YUI().use('inputex-ddlist', function(Y) {
       });
 
       Y.Node.create("<button>Add Item</button>").appendTo(container).on( 'click', function() {
-         field.addItem( {
+         field2.addItem( {
             id: 'book_5',
             title: 'Book 5 title'
           });
@@ -77,7 +77,7 @@ YUI().use('inputex-ddlist', function(Y) {
       
       
       Y.Node.create("<button>Get Value</button>").appendTo(container).on( 'click', function() {
-         alert( field.getValue().join(', ') );
+         alert( field2.getValue().join(', ') );
       });
 
 });

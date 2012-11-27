@@ -104,7 +104,7 @@ YUI().use('inputex-ddlist', function(Y) {
       var container = Y.one('#container2');
 
       // Instantiate field
-      var field = new Y.inputEx.DDListField({
+      var field2 = new Y.inputEx.DDListField({
         name: 'books', 
         valueKey: "id", 
         labelKey: "title", 
@@ -113,7 +113,7 @@ YUI().use('inputex-ddlist', function(Y) {
       });
 
       Y.Node.create("<button>Add Item</button>").appendTo(container).on( 'click', function() {
-         field.addItem( {
+         field2.addItem( {
             id: 'book_5',
             title: 'Book 5 title'
           });
@@ -121,7 +121,7 @@ YUI().use('inputex-ddlist', function(Y) {
       
       
       Y.Node.create("<button>Get Value</button>").appendTo(container).on( 'click', function() {
-         alert( field.getValue().join(', ') );
+         alert( field2.getValue().join(', ') );
       });
 
 });
@@ -202,7 +202,7 @@ YUI().use('inputex-ddlist', function(Y) {
       var container = Y.one(&#x27;#container2&#x27;);
 
       &#x2F;&#x2F; Instantiate field
-      var field = new Y.inputEx.DDListField({
+      var field2 = new Y.inputEx.DDListField({
         name: &#x27;books&#x27;, 
         valueKey: &quot;id&quot;, 
         labelKey: &quot;title&quot;, 
@@ -211,7 +211,7 @@ YUI().use('inputex-ddlist', function(Y) {
       });
 
       Y.Node.create(&quot;&lt;button&gt;Add Item&lt;&#x2F;button&gt;&quot;).appendTo(container).on( &#x27;click&#x27;, function() {
-         field.addItem( {
+         field2.addItem( {
             id: &#x27;book_5&#x27;,
             title: &#x27;Book 5 title&#x27;
           });
@@ -219,7 +219,7 @@ YUI().use('inputex-ddlist', function(Y) {
       
       
       Y.Node.create(&quot;&lt;button&gt;Get Value&lt;&#x2F;button&gt;&quot;).appendTo(container).on( &#x27;click&#x27;, function() {
-         alert( field.getValue().join(&#x27;, &#x27;) );
+         alert( field2.getValue().join(&#x27;, &#x27;) );
       });
 
 });</pre>
