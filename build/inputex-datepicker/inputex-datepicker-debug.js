@@ -89,7 +89,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
     * @method _toggleOverlay
     * @private
     */
-   _toggleOverlay: function(e) {
+   _toggleOverlay: function() {
 
       // DON'T stop the event since it will be used to close other overlays...
       //e.stopPropagation();
@@ -112,9 +112,14 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       inputEx.DatePickerField.superclass.renderComponent.call(this);
 
       // Create button
-      this.button = Y.Node.create('<span class="inputEx-DatePicker-ButtonWrapper"><span class="first-child"><button type="button" class="inputEx-DatePicker-Button"></button></span></span>');
+      this.button = Y.Node.create('<span class="inputEx-DatePicker-ButtonWrapper">'+
+                                    '<span class="first-child"> '+
+                                      '<button type="button" class="inputEx-DatePicker-Button">'+
+                                      '</button>'+
+                                    '</span>'+
+                                  '</span>');
+      
       this.button.appendTo(this.wrapEl);
-
 
       // Subscribe the click handler on the field only if readonly
       if(this.options.readonly) {
@@ -135,7 +140,6 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       if (!!this.calendarRendered) { return; }
 
       var localCalendarOptions = {
-         width:'250px',
          showPrevMonth: true,
          showNextMonth: true,
          date: new Date()
@@ -179,7 +183,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
     * Select the right date and display the right page on calendar, when the field has a value
     * @method beforeShowOverlay
     */
-   beforeShowOverlay: function(e) {
+   beforeShowOverlay: function() {
 
       if (!!this.calendar) {
 
