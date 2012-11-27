@@ -71,32 +71,26 @@ YUI().use('inputex-email', function(Y) {
 	
 	
 	// Example 2
-    var field = new Y.inputEx.EmailField({parentEl: 'container2', showMsg:true, fixdomain:true, description:"Try abc@gmail.co, abc@yaoo.fr..." });
+    var field2 = new Y.inputEx.EmailField({parentEl: 'container2', showMsg:true, fixdomain:true, description:"Try abc@gmail.co, abc@yaoo.fr..." });
 
-    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-    Y.one('#container2').appendChild(logDiv);
-    field.on('updated', function(val) {
-       logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
-       logDiv.appendChild(Y.inputEx.cn('br'));
+    var logDiv2 = Y.inputEx.cn('div', null, null, "Log :");
+    Y.one('#container2').appendChild(logDiv2);
+    field2.on('updated', function(val) {
+       logDiv2.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+       logDiv2.appendChild(Y.inputEx.cn('br'));
     });
 	
 	
 	// Example 3
-    var field = new Y.inputEx.EmailField({parentEl: 'container3', showMsg:true, disallowDisposable:true, description:"Try abc@trashmail.net, abc@tempomail.com..." });
+    var field3 = new Y.inputEx.EmailField({parentEl: 'container3', showMsg:true, disallowDisposable:true, description:"Try abc@trashmail.net, abc@tempomail.com..." });
 
-    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-    Y.one('#container3').appendChild(logDiv);
-    field.on('updated', function(val) {
-       logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
-       logDiv.appendChild(Y.inputEx.cn('br'));
+    var logDiv3 = Y.inputEx.cn('div', null, null, "Log :");
+    Y.one('#container3').appendChild(logDiv3);
+    field3.on('updated', function(val) {
+       logDiv3.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+       logDiv3.appendChild(Y.inputEx.cn('br'));
     });
-	
-	
-	
-	
-
 });
-
 </script>
 
 </div>
@@ -127,30 +121,25 @@ YUI().use('inputex-email', function(Y) {
 	
 	
 	&#x2F;&#x2F; Example 2
-    var field = new Y.inputEx.EmailField({parentEl: &#x27;container2&#x27;, showMsg:true, fixdomain:true, description:&quot;Try abc@gmail.co, abc@yaoo.fr...&quot; });
+    var field2 = new Y.inputEx.EmailField({parentEl: &#x27;container2&#x27;, showMsg:true, fixdomain:true, description:&quot;Try abc@gmail.co, abc@yaoo.fr...&quot; });
 
-    var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
-    Y.one(&#x27;#container2&#x27;).appendChild(logDiv);
-    field.on(&#x27;updated&#x27;, function(val) {
-       logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value: &quot;+val;
-       logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
+    var logDiv2 = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
+    Y.one(&#x27;#container2&#x27;).appendChild(logDiv2);
+    field2.on(&#x27;updated&#x27;, function(val) {
+       logDiv2.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value: &quot;+val;
+       logDiv2.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
     });
 	
 	
 	&#x2F;&#x2F; Example 3
-    var field = new Y.inputEx.EmailField({parentEl: &#x27;container3&#x27;, showMsg:true, disallowDisposable:true, description:&quot;Try abc@trashmail.net, abc@tempomail.com...&quot; });
+    var field3 = new Y.inputEx.EmailField({parentEl: &#x27;container3&#x27;, showMsg:true, disallowDisposable:true, description:&quot;Try abc@trashmail.net, abc@tempomail.com...&quot; });
 
-    var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
-    Y.one(&#x27;#container3&#x27;).appendChild(logDiv);
-    field.on(&#x27;updated&#x27;, function(val) {
-       logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value: &quot;+val;
-       logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
+    var logDiv3 = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
+    Y.one(&#x27;#container3&#x27;).appendChild(logDiv3);
+    field3.on(&#x27;updated&#x27;, function(val) {
+       logDiv3.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value: &quot;+val;
+       logDiv3.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
     });
-	
-	
-	
-	
-
 });</pre>
 
 </div>
