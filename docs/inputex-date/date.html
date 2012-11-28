@@ -40,7 +40,7 @@ How to create a date field.
 	
 	
 	<h2>Change date format</h2>
-	<p>Set the formatDate to your localized date format ! Here is the french format :</p>
+	<p>Set the formatDate to your localized date format ! Here is the french format (dd/mm/yyyy) :</p>
 	<div class='demoContainer' id='container2'></div>
 	
 	
@@ -58,53 +58,50 @@ How to create a date field.
 
 <script>
 YUI().use('inputex-date', function(Y) {
-	
-	
-	new Y.inputEx.DateField({parentEl: 'container1', value: new Date(), showMsg: true});
-	
-	
-	new Y.inputEx.DateField({dateFormat: 'd/m/Y', value: '27/03/2008', parentEl: 'container2', showMsg: true});
-	
-	
-	
-	var exampleDiv = Y.one('#container3');
-	var dateField = new Y.inputEx.DateField({value: new Date(),  parentEl: exampleDiv, showMsg: true, required:true, typeInvite:'m/d/Y'}); 
-	dateField.on('updated', function(val) {
-		exampleDiv.appendChild( Y.inputEx.cn('div', null, null, val) ); 
-	});
-
-	var button1 = Y.inputEx.cn('button', null, null, 'setValue()');
-	exampleDiv.appendChild(button1); 
-	Y.one(button1).on('click', function() { dateField.setValue("11/26/1980"); });
-
-	var button2 = Y.inputEx.cn('button', null, null, 'getValue()');
-	exampleDiv.appendChild(button2); 
-	Y.one(button2).on('click', function() { alert(dateField.getValue()); });
-	
-	
-	
-	
-	
-	// Instantiate the date field
-	var stringdateField = new Y.inputEx.DateField({value: new Date(),  parentEl: 'container4', showMsg: true, required:true, typeInvite:'m/d/Y', valueFormat: 'Y-m-d'}); 
-			
-	// Logger
-	var exampleDiv = Y.one('#container4');
-	stringdateField.on('updated', function(val) {
-		exampleDiv.appendChild( Y.inputEx.cn('div', null, null, val) ); 
-	});
-
-	// Set the value according to the valueFormat
-	var button1 = Y.inputEx.cn('button', null, null, 'setValue()');
-	exampleDiv.appendChild(button1); 
-	Y.one(button1).on('click', function() { stringdateField.setValue("1980-11-16"); });
-
-	// The returned value will use the valueFormat too
-	var button2 = Y.inputEx.cn('button', null, null, 'getValue()');
-	exampleDiv.appendChild(button2); 
-	Y.one(button2).on('click', function() { alert(stringdateField.getValue()); });
-	
-	
+    
+    // example 1
+    new Y.inputEx.DateField({parentEl: 'container1', value: new Date(), showMsg: true});
+    
+    
+    // example 2
+    new Y.inputEx.DateField({dateFormat: 'd/m/Y', value: '27/03/2008', parentEl: 'container2', showMsg: true});
+    
+    
+    // example 3
+    var logDiv3 = Y.one('#container3');
+    var dateField = new Y.inputEx.DateField({value: new Date(),  parentEl: logDiv3, showMsg: true, required:true, typeInvite:'m/d/Y'}); 
+    dateField.on('updated', function(val) {
+        logDiv3.appendChild( Y.inputEx.cn('div', null, null, val) ); 
+    });
+    
+    var button1 = Y.inputEx.cn('button', null, null, 'setValue()');
+    logDiv3.appendChild(button1); 
+    Y.one(button1).on('click', function() { dateField.setValue("11/26/1980"); });
+    
+    var button2 = Y.inputEx.cn('button', null, null, 'getValue()');
+    logDiv3.appendChild(button2); 
+    Y.one(button2).on('click', function() { alert(dateField.getValue()); });
+    
+    
+    // example 4
+    var stringdateField = new Y.inputEx.DateField({value: new Date(),  parentEl: 'container4', showMsg: true, required:true, typeInvite:'m/d/Y', valueFormat: 'Y-m-d'}); 
+    
+    // Logger
+    var logDiv4 = Y.one('#container4');
+    stringdateField.on('updated', function(val) {
+        logDiv4.appendChild( Y.inputEx.cn('div', null, null, val) ); 
+    });
+    
+    // Set the value according to the valueFormat
+    var button1 = Y.inputEx.cn('button', null, null, 'setValue()');
+    logDiv4.appendChild(button1); 
+    Y.one(button1).on('click', function() { stringdateField.setValue("1980-11-16"); });
+    
+    // The returned value will use the valueFormat too
+    var button2 = Y.inputEx.cn('button', null, null, 'getValue()');
+    logDiv4.appendChild(button2); 
+    Y.one(button2).on('click', function() { alert(stringdateField.getValue()); });
+    
 });
 </script>
 
@@ -121,53 +118,50 @@ YUI().use('inputex-date', function(Y) {
 <h3>Implementation</h3>
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-date&#x27;, function(Y) {
-	
-	
-	new Y.inputEx.DateField({parentEl: &#x27;container1&#x27;, value: new Date(), showMsg: true});
-	
-	
-	new Y.inputEx.DateField({dateFormat: &#x27;d&#x2F;m&#x2F;Y&#x27;, value: &#x27;27&#x2F;03&#x2F;2008&#x27;, parentEl: &#x27;container2&#x27;, showMsg: true});
-	
-	
-	
-	var exampleDiv = Y.one(&#x27;#container3&#x27;);
-	var dateField = new Y.inputEx.DateField({value: new Date(),  parentEl: exampleDiv, showMsg: true, required:true, typeInvite:&#x27;m&#x2F;d&#x2F;Y&#x27;}); 
-	dateField.on(&#x27;updated&#x27;, function(val) {
-		exampleDiv.appendChild( Y.inputEx.cn(&#x27;div&#x27;, null, null, val) ); 
-	});
-
-	var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;setValue()&#x27;);
-	exampleDiv.appendChild(button1); 
-	Y.one(button1).on(&#x27;click&#x27;, function() { dateField.setValue(&quot;11&#x2F;26&#x2F;1980&quot;); });
-
-	var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue()&#x27;);
-	exampleDiv.appendChild(button2); 
-	Y.one(button2).on(&#x27;click&#x27;, function() { alert(dateField.getValue()); });
-	
-	
-	
-	
-	
-	&#x2F;&#x2F; Instantiate the date field
-	var stringdateField = new Y.inputEx.DateField({value: new Date(),  parentEl: &#x27;container4&#x27;, showMsg: true, required:true, typeInvite:&#x27;m&#x2F;d&#x2F;Y&#x27;, valueFormat: &#x27;Y-m-d&#x27;}); 
-			
-	&#x2F;&#x2F; Logger
-	var exampleDiv = Y.one(&#x27;#container4&#x27;);
-	stringdateField.on(&#x27;updated&#x27;, function(val) {
-		exampleDiv.appendChild( Y.inputEx.cn(&#x27;div&#x27;, null, null, val) ); 
-	});
-
-	&#x2F;&#x2F; Set the value according to the valueFormat
-	var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;setValue()&#x27;);
-	exampleDiv.appendChild(button1); 
-	Y.one(button1).on(&#x27;click&#x27;, function() { stringdateField.setValue(&quot;1980-11-16&quot;); });
-
-	&#x2F;&#x2F; The returned value will use the valueFormat too
-	var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue()&#x27;);
-	exampleDiv.appendChild(button2); 
-	Y.one(button2).on(&#x27;click&#x27;, function() { alert(stringdateField.getValue()); });
-	
-	
+    
+    &#x2F;&#x2F; example 1
+    new Y.inputEx.DateField({parentEl: &#x27;container1&#x27;, value: new Date(), showMsg: true});
+    
+    
+    &#x2F;&#x2F; example 2
+    new Y.inputEx.DateField({dateFormat: &#x27;d&#x2F;m&#x2F;Y&#x27;, value: &#x27;27&#x2F;03&#x2F;2008&#x27;, parentEl: &#x27;container2&#x27;, showMsg: true});
+    
+    
+    &#x2F;&#x2F; example 3
+    var logDiv3 = Y.one(&#x27;#container3&#x27;);
+    var dateField = new Y.inputEx.DateField({value: new Date(),  parentEl: logDiv3, showMsg: true, required:true, typeInvite:&#x27;m&#x2F;d&#x2F;Y&#x27;}); 
+    dateField.on(&#x27;updated&#x27;, function(val) {
+        logDiv3.appendChild( Y.inputEx.cn(&#x27;div&#x27;, null, null, val) ); 
+    });
+    
+    var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;setValue()&#x27;);
+    logDiv3.appendChild(button1); 
+    Y.one(button1).on(&#x27;click&#x27;, function() { dateField.setValue(&quot;11&#x2F;26&#x2F;1980&quot;); });
+    
+    var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue()&#x27;);
+    logDiv3.appendChild(button2); 
+    Y.one(button2).on(&#x27;click&#x27;, function() { alert(dateField.getValue()); });
+    
+    
+    &#x2F;&#x2F; example 4
+    var stringdateField = new Y.inputEx.DateField({value: new Date(),  parentEl: &#x27;container4&#x27;, showMsg: true, required:true, typeInvite:&#x27;m&#x2F;d&#x2F;Y&#x27;, valueFormat: &#x27;Y-m-d&#x27;}); 
+    
+    &#x2F;&#x2F; Logger
+    var logDiv4 = Y.one(&#x27;#container4&#x27;);
+    stringdateField.on(&#x27;updated&#x27;, function(val) {
+        logDiv4.appendChild( Y.inputEx.cn(&#x27;div&#x27;, null, null, val) ); 
+    });
+    
+    &#x2F;&#x2F; Set the value according to the valueFormat
+    var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;setValue()&#x27;);
+    logDiv4.appendChild(button1); 
+    Y.one(button1).on(&#x27;click&#x27;, function() { stringdateField.setValue(&quot;1980-11-16&quot;); });
+    
+    &#x2F;&#x2F; The returned value will use the valueFormat too
+    var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue()&#x27;);
+    logDiv4.appendChild(button2); 
+    Y.one(button2).on(&#x27;click&#x27;, function() { alert(stringdateField.getValue()); });
+    
 });</pre>
 
 </div>
