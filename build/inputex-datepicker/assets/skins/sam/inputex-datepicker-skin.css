@@ -7,8 +7,8 @@
    padding-left: 0;
 }
 .inputEx-DatePicker-ButtonWrapper {
-	line-height:0;
-	vertical-align: top; /* for all ff */
+  line-height:0;
+  vertical-align: top; /* for all ff */
 }
 .inputEx-PickerField .yui3-overlay {
    -moz-box-shadow:    2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -24,29 +24,29 @@
 }
 
 .inputEx-DatePicker-ButtonWrapper {
-	display:inline-block;
-	margin:auto 0.25em;
-	border-style:solid;
-	border-color:#808080;
-	border-width:1px 0;
+  display:inline-block;
+  margin:auto 0.25em;
+  border-style:solid;
+  border-color:#808080;
+  border-width:1px 0;
 }
 
 .inputEx-DatePicker-ButtonWrapper .first-child {
-	display:block;
-	border-style:solid;
-	border-color:#808080;
-	border-width:0 1px;
+  display:block;
+  border-style:solid;
+  border-color:#808080;
+  border-width:0 1px;
 }
 
 .inputEx-DatePicker-Button {
-	background-image:url(images/calendar.gif);
-	background-repeat:no-repeat;
-	background-position:1px 1px;
-   background-color: transparent;
-	width:20px;
-	height:20px;
-	min-height:0; /* reset "min-height:2em" that prevented "height:18px" to be applied */
-	padding:0;
-	cursor:pointer;
-	border:none;
+  background-image:url(images/calendar.gif);
+  background-repeat:no-repeat;
+  background-position:1px 1px;
+  background-color: transparent;
+  width:20px;
+  height:20px;
+  min-height:0; /* reset "min-height:2em" that prevented "height:18px" to be applied */
+  padding:0;
+  cursor:pointer;
+  border:none;
 }
