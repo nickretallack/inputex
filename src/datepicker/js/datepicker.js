@@ -200,6 +200,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
             // instead.
             this.calendar._clearSelection(true);        // pass true so that selectionChange event is not fired
             this.calendar._addDateToSelection(date, 1); // pass 1    so that selectionChange event is not fired
+            this.calendar._renderSelectedDates();       // need to be called explicitely since selectionChange is had not been fired
          }
       }
    },
