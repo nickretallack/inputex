@@ -356,7 +356,8 @@
         "requires": [
             "inputex-field",
             "inputex-button",
-            "anim",
+            "anim-base",
+            "anim-color",
             "inputex-visus"
         ],
         "skinnable": true
@@ -433,7 +434,8 @@
         ],
         "requires": [
             "inputex-field",
-            "anim"
+            "anim-base",
+            "anim-color"
         ],
         "skinnable": true
     },

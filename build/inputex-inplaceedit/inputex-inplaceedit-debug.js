@@ -416,7 +416,8 @@ inputEx.registerType("inplaceedit", inputEx.InPlaceEdit, [
     "requires": [
         "inputex-field",
         "inputex-button",
-        "anim",
+        "anim-base",
+        "anim-color",
         "inputex-visus"
     ],
     "ix_provides": "inplaceedit",

@@ -39,9 +39,9 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	 * Colors for the animation
 	 * @property arrowAnimColors
 	 */
-	arrowAnimColors: { 
-		from: '#eeee33',
-		to: '#eeeeee' 
+	arrowAnimColors: {
+		from: "#FFFF99",
+		to: "#FFFFFF"
 	},
 	   
 	/**
@@ -478,7 +478,8 @@ inputEx.registerType("list", inputEx.ListField, [
 }, '@VERSION@', {
     "requires": [
         "inputex-field",
-        "anim"
+        "anim-base",
+        "anim-color"
     ],
     "skinnable": true,
     "ix_provides": "list",

@@ -364,7 +364,8 @@ YUI().use(function(Y) {
         "requires": [
             "inputex-field",
             "inputex-button",
-            "anim",
+            "anim-base",
+            "anim-color",
             "inputex-visus"
         ],
         "skinnable": true
@@ -441,7 +442,8 @@ YUI().use(function(Y) {
         ],
         "requires": [
             "inputex-field",
-            "anim"
+            "anim-base",
+            "anim-color"
         ],
         "skinnable": true
     },

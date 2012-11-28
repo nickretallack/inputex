@@ -2,7 +2,8 @@
    "inputex-list": {
       "requires": [
          "inputex-field",
-         "anim"
+         "anim-base",
+         "anim-color"
       ],
       "skinnable": true,
       "ix_provides": "list",

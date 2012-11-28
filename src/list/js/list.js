@@ -37,9 +37,9 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	 * Colors for the animation
 	 * @property arrowAnimColors
 	 */
-	arrowAnimColors: { 
-		from: '#eeee33',
-		to: '#eeeeee' 
+	arrowAnimColors: {
+		from: "#FFFF99",
+		to: "#FFFFFF"
 	},
 	   
 	/**

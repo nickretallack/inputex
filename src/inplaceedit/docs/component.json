@@ -9,7 +9,8 @@
    "use": [
       "inputex-field",
       "inputex-button",
-      "anim",
+      "anim-base",
+      "anim-color",
       "inputex-visus"
    ],
    "examples": [
