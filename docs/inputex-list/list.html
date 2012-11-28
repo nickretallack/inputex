@@ -124,7 +124,7 @@ YUI().use('inputex-form','inputex-list', 'inputex-url', 'inputex-select','json',
       var logDiv = Y.inputEx.cn('div', null, null, "Log :");
       Y.one('#container3').appendChild(logDiv);
       field3.on('updated',function(value) {
-         logDiv.innerHTML += "Updated at "+(new Date())+" with value "+Y.JSON.stringify(value);
+         logDiv.innerHTML += "Updated at "+(new Date())+" with value "+Y.JSON.stringify(value) + "<br />";
       });
 
    // Example 4
@@ -251,7 +251,7 @@ YUI().use('inputex-form','inputex-list', 'inputex-url', 'inputex-select','json',
       var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
       Y.one(&#x27;#container3&#x27;).appendChild(logDiv);
       field3.on(&#x27;updated&#x27;,function(value) {
-         logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+Y.JSON.stringify(value);
+         logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+Y.JSON.stringify(value) + &quot;&lt;br &#x2F;&gt;&quot;;
       });
 
    &#x2F;&#x2F; Example 4

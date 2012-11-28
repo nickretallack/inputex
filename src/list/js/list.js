@@ -325,10 +325,10 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	   if(previousChildNode) {
 	      // Remove the line
-	      var removedEl = this.childContainer.removeChild(childElement);
+	      var elToMove = this.childContainer.removeChild(childElement);
 	      
 	      // Adds it before the previousChildNode
-	      var insertedEl = this.childContainer.insertBefore(removedEl, previousChildNode);
+	      this.childContainer.insertBefore(elToMove, previousChildNode);
 	      
 	      // Swap this.subFields elements (i,i-1)
 	      var temp = this.subFields[nodeIndex];
@@ -343,8 +343,8 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	         this.arrowAnim.stop(true);
 	      }
 	      
-	      this.arrowAnim = new Y.Anim({node:insertedEl, from: {backgroundColor: this.arrowAnimColors.from}, to : {backgroundColor: this.arrowAnimColors.to },duration: 0.4});
-	      this.arrowAnim.on("end",function() { Y.one(insertedEl).setStyle('backgroundColor', ''); });
+	      this.arrowAnim = new Y.Anim({node:elToMove, from: {backgroundColor: this.arrowAnimColors.from}, to : {backgroundColor: this.arrowAnimColors.to },duration: 0.4});
+	      this.arrowAnim.on("end",function() { Y.one(elToMove).setStyle('backgroundColor', ''); });
 	      this.arrowAnim.run();
 	      
 	      // Fire updated !
@@ -374,10 +374,10 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	   if(nextChildNode) {
 	      // Remove the line
-	      var removedEl = this.childContainer.removeChild(childElement);
+	      var elToMove = this.childContainer.removeChild(childElement);
 	      
 	      // Adds it after the nextChildNode
-	      var insertedEl = Y.one(nextChildNode).insert(removedEl, "after");
+	      Y.one(nextChildNode).insert(elToMove, "after");
 	      
 	      // Swap this.subFields elements (i,i+1)
 	      var temp = this.subFields[nodeIndex];
@@ -391,8 +391,8 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	      if(this.arrowAnim) {
 	         this.arrowAnim.stop(true);
 	      }
-	      this.arrowAnim = new Y.Anim({node: insertedEl, from: {backgroundColor: this.arrowAnimColors.from}, to : {backgroundColor: this.arrowAnimColors.to }, duration: 1});
-	      this.arrowAnim.on("end",function() { Y.one(insertedEl).setStyle( 'backgroundColor', ''); });
+	      this.arrowAnim = new Y.Anim({node: elToMove, from: {backgroundColor: this.arrowAnimColors.from}, to : {backgroundColor: this.arrowAnimColors.to }, duration: 1});
+	      this.arrowAnim.on("end",function() { Y.one(elToMove).setStyle( 'backgroundColor', ''); });
 	      this.arrowAnim.run();
 	      
 	      // Fire updated !

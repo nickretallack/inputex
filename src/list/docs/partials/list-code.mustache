@@ -50,7 +50,7 @@ YUI().use('inputex-form','inputex-list', 'inputex-url', 'inputex-select','json',
       var logDiv = Y.inputEx.cn('div', null, null, "Log :");
       Y.one('#container3').appendChild(logDiv);
       field3.on('updated',function(value) {
-         logDiv.innerHTML += "Updated at "+(new Date())+" with value "+Y.JSON.stringify(value);
+         logDiv.innerHTML += "Updated at "+(new Date())+" with value "+Y.JSON.stringify(value) + "<br />";
       });
 
    // Example 4
