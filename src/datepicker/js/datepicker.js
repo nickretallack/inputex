@@ -61,7 +61,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
             this.calendar.show();
 
             // align
-            this.oOverlay.set("align", {node:this.button,  points:[Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL]});
+            this.oOverlay.set("align", { node: this.buttonWrapper,  points: [Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL] });
 
             // Activate outside event handler
             this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {
@@ -109,23 +109,27 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
       inputEx.DatePickerField.superclass.renderComponent.call(this);
 
-      // Create button
-      this.button = Y.Node.create('<span class="inputEx-DatePicker-ButtonWrapper">'+
-                                    '<span class="first-child"> '+
-                                      '<button type="button" class="inputEx-DatePicker-Button">'+
-                                      '</button>'+
-                                    '</span>'+
-                                  '</span>');
+      // create button + wrapper
+      this.buttonWrapper = Y.Node.create('<span class="inputEx-DatePicker-ButtonWrapper">'+
+                                            '<span class="first-child"> '+
+                                               '<button type="button" class="inputEx-DatePicker-Button">'+
+                                               '</button>'+
+                                            '</span>'+
+                                         '</span>');
       
-      this.button.appendTo(this.wrapEl);
-
-      // Subscribe the click handler on the field only if readonly
+      this.buttonWrapper.appendTo(this.wrapEl);
+      
+      // get a reference to the <button> element
+      this.button = this.buttonWrapper.one('.inputEx-DatePicker-Button');
+      
+      // toggle overlay if click on the <button> element
+      this.button.on('click', this._toggleOverlay, this);
+      
+      // toggle overlay if click on the <input> element (only if readonly)
       if (this.options.readonly) {
          Y.one(this.el).on('click', this._toggleOverlay, this);
       }
-
-      // Subscribe to the first click
-      this.button.on('click', this._toggleOverlay, this);
+      
    },
 
 

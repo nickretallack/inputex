@@ -26,10 +26,10 @@ _yuitest_coverage["build/inputex-datepicker/inputex-datepicker.js"] = {
     path: "build/inputex-datepicker/inputex-datepicker.js",
     code: []
 };
-_yuitest_coverage["build/inputex-datepicker/inputex-datepicker.js"].code=["YUI.add('inputex-datepicker', function (Y, NAME) {","","/**"," * @module inputex-datepicker"," */","   var inputEx = Y.inputEx,","       lang = Y.Lang;","/**"," * A DatePicker Field."," * @class inputEx.DatePickerField"," * @extends inputEx.DateField"," * @constructor"," * @param {Object} options No added option for this field (same as DateField)"," * <ul>"," *   <li>calendar: yui calendar configuration object</li>"," *   <li>zIndex: calendar overlay zIndex</li>"," * </ul>"," */","inputEx.DatePickerField = function(options) {","   inputEx.DatePickerField.superclass.constructor.call(this,options);","};","","Y.extend(inputEx.DatePickerField, inputEx.DateField, {","   /**","    * Set the default date picker CSS classes","    * @method setOptions","    * @param {Object} options Options object as passed to the constructor","    */","   setOptions: function(options) {","","      inputEx.DatePickerField.superclass.setOptions.call(this, options);","","      // I18N","      this.messages = Y.mix(this.messages,Y.Intl.get(\"inputex-datepicker\"));","","      // Overwrite default options","      this.options.className = options.className ? options.className : 'inputEx-Field inputEx-DateField inputEx-PickerField inputEx-DatePickerField';","","      this.options.readonly = lang.isUndefined(options.readonly) ? true : options.readonly;","","      // Added options","      this.options.calendar = options.calendar || this.messages.defaultCalendarOpts;","      this.options.zIndex   = options.zIndex || 4;","   },","","   /**","    * @method renderOverlay","    */","   renderOverlay: function() {","","      // Create overlay","      this.oOverlay = new Y.Overlay({","         visible:false,","         zIndex: this.options.zIndex","      });","","      this.oOverlay.render(this.fieldContainer);","","      this.oOverlay.on('visibleChange', function (e) {","","         if (e.newVal) { // show","            this.beforeShowOverlay();","            this.calendar.show();","","            // align","            this.oOverlay.set(\"align\", {node:this.button,  points:[Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL]});","","            // Activate outside event handler","            this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {","               // if the target is not the button do not hide the overlay","              if(!this.isDatePickerButton(e.target)){","                this.oOverlay.hide();","              }","            }, this);","         }","         else { // hide","            this.calendar.hide();","            ","            if(this.outsideHandler){","              this.outsideHandler.detach();","            }","            ","         }","","      }, this);","   },","","   /**","    * @method _toggleOverlay","    * @private","    */","   _toggleOverlay: function() {","","      // DON'T stop the event since it will be used to close other overlays...","      //e.stopPropagation();","","      if (!this.oOverlay) {","         this.renderOverlay();","         this.renderCalendar();","      }","","      var method = this.oOverlay.get('visible') ? 'hide' : 'show';","      this.oOverlay[method]();","   },","","   /**","    * Render the input field and the minical container","    * @method renderComponent","    */","   renderComponent: function() {","","      inputEx.DatePickerField.superclass.renderComponent.call(this);","","      // Create button","      this.button = Y.Node.create('<span class=\"inputEx-DatePicker-ButtonWrapper\">'+","                                    '<span class=\"first-child\"> '+","                                      '<button type=\"button\" class=\"inputEx-DatePicker-Button\">'+","                                      '</button>'+","                                    '</span>'+","                                  '</span>');","      ","      this.button.appendTo(this.wrapEl);","","      // Subscribe the click handler on the field only if readonly","      if (this.options.readonly) {","         Y.one(this.el).on('click', this._toggleOverlay, this);","      }","","      // Subscribe to the first click","      this.button.on('click', this._toggleOverlay, this);","   },","","","   /**","    * Called ONCE to render the calendar lazily","    * @method renderCalendar","    */","   renderCalendar: function() {","      // if already rendered, ignore call","      if (!!this.calendarRendered) { return; }","","      var localCalendarOptions = {","         showPrevMonth: true,","         showNextMonth: true,","         date: new Date()","      },","","      finalCalendarOptions = Y.mix(this.options.calendar, localCalendarOptions);","","      this.calendar = new Y.Calendar(finalCalendarOptions);","      if(finalCalendarOptions.customRenderer){","        this.calendar.set(\"customRenderer\", finalCalendarOptions.customRenderer);","      }","      this.calendar.render( this.oOverlay.get('contentBox') );","      if(finalCalendarOptions.plugin){","        this.calendar.plug(finalCalendarOptions.plugin.pluginClass, Y.mix(","        /* Inside this plug in we can only control the calendar.","          problem is when we click on the month selector (in the panel plugin) the overlay automatically hide itself","          by giving the datepicker we can control the overlay behavior */","          {datepicker : this},","          finalCalendarOptions.plugin.pluginOptions","          )","        );","      }","","      this.calendar.on(\"selectionChange\", function (ev) {","         ","         // Get the date from the list of selected","         // dates returned with the event (since only","         // single selection is enabled by default,","         // we expect there to be only one date)","         var newDate = ev.newSelection[0];","","         this.setValue(newDate);","","         this.oOverlay.hide();","      }, this);","","      this.calendarRendered = true;","   },","","   /**","   * Select the right date and display the right page on calendar, when the field has a value","   * @method beforeShowOverlay","   */","   beforeShowOverlay: function() {","","      if (!!this.calendar) {","","         var date  = this.getValue(true),","             valid = this.validate();","","         // check if valid to exclude invalid dates (that are truthy !)","         // check date to exclude empty values ('')","         if (valid && !!date) {","","            // display the right month","            this.calendar.set('date', date);","","            // there's no way to use deselectDates or selectDates without firing the","            // selectionChange event so we use _clearSelection and _addDateToSelection","            // instead.","            this.calendar._clearSelection(true);        // pass true so that selectionChange event is not fired","            this.calendar._addDateToSelection(date, 1); // pass 1    so that selectionChange event is not fired","            this.calendar._renderSelectedDates();       // need to be called explicitely since selectionChange is had not been fired","         }","      }","   },","    ","   /**","    * Call overlay when field is removed","    * @method close","    */","   close: function() {","      if (this.oOverlay) {","         this.oOverlay.hide();","      }","   },","","   /**","    * Disable the field","    * @method disable","    */","   disable: function() {","      inputEx.DatePickerField.superclass.disable.call(this);","      this.button.set('disabled', true);","   },","","   /**","    * Enable the field","    * @method enable","    */","   enable: function() {","      inputEx.DatePickerField.superclass.enable.call(this);","      this.button.set('disabled', false);","   },","   /**","    *","    * @method isDatePickerButton","    * @return true if this is the toggle button of the datepicker","    */","   isDatePickerButton : function(Ynode){","      return Ynode.hasClass(\"inputEx-DatePicker-Button\");","   }","","});","//","// this.messages.defaultCalendarOpts = { navigator: true };","","// Register this class as \"datepicker\" type","inputEx.registerType(\"datepicker\", inputEx.DatePickerField);","","","}, '@VERSION@', {","    \"requires\": [","        \"inputex-date\",","        \"event-outside\",","        \"node-event-delegate\",","        \"overlay\",","        \"calendar\"","    ],","    \"ix_provides\": \"datepicker\",","    \"skinnable\": true,","    \"lang\": [","        \"en\",","        \"fr\",","        \"de\",","        \"ca\",","        \"es\",","        \"fr\",","        \"it\",","        \"nl\"","    ]","});"];
-_yuitest_coverage["build/inputex-datepicker/inputex-datepicker.js"].lines = {"1":0,"6":0,"19":0,"20":0,"23":0,"31":0,"34":0,"37":0,"39":0,"42":0,"43":0,"52":0,"57":0,"59":0,"61":0,"62":0,"63":0,"66":0,"69":0,"71":0,"72":0,"77":0,"79":0,"80":0,"97":0,"98":0,"99":0,"102":0,"103":0,"112":0,"115":0,"122":0,"125":0,"126":0,"130":0,"140":0,"142":0,"150":0,"151":0,"152":0,"154":0,"155":0,"156":0,"166":0,"172":0,"174":0,"176":0,"179":0,"188":0,"190":0,"195":0,"198":0,"203":0,"204":0,"205":0,"215":0,"216":0,"225":0,"226":0,"234":0,"235":0,"243":0,"251":0};
-_yuitest_coverage["build/inputex-datepicker/inputex-datepicker.js"].functions = {"DatePickerField:19":0,"setOptions:29":0,"(anonymous 3):69":0,"(anonymous 2):59":0,"renderOverlay:49":0,"_toggleOverlay:92":0,"renderComponent:110":0,"(anonymous 4):166":0,"renderCalendar:138":0,"beforeShowOverlay:186":0,"close:214":0,"disable:224":0,"enable:233":0,"isDatePickerButton:242":0,"(anonymous 1):1":0};
-_yuitest_coverage["build/inputex-datepicker/inputex-datepicker.js"].coveredLines = 63;
+_yuitest_coverage["build/inputex-datepicker/inputex-datepicker.js"].code=["YUI.add('inputex-datepicker', function (Y, NAME) {","","/**"," * @module inputex-datepicker"," */","   var inputEx = Y.inputEx,","       lang = Y.Lang;","/**"," * A DatePicker Field."," * @class inputEx.DatePickerField"," * @extends inputEx.DateField"," * @constructor"," * @param {Object} options No added option for this field (same as DateField)"," * <ul>"," *   <li>calendar: yui calendar configuration object</li>"," *   <li>zIndex: calendar overlay zIndex</li>"," * </ul>"," */","inputEx.DatePickerField = function(options) {","   inputEx.DatePickerField.superclass.constructor.call(this,options);","};","","Y.extend(inputEx.DatePickerField, inputEx.DateField, {","   /**","    * Set the default date picker CSS classes","    * @method setOptions","    * @param {Object} options Options object as passed to the constructor","    */","   setOptions: function(options) {","","      inputEx.DatePickerField.superclass.setOptions.call(this, options);","","      // I18N","      this.messages = Y.mix(this.messages,Y.Intl.get(\"inputex-datepicker\"));","","      // Overwrite default options","      this.options.className = options.className ? options.className : 'inputEx-Field inputEx-DateField inputEx-PickerField inputEx-DatePickerField';","","      this.options.readonly = lang.isUndefined(options.readonly) ? true : options.readonly;","","      // Added options","      this.options.calendar = options.calendar || this.messages.defaultCalendarOpts;","      this.options.zIndex   = options.zIndex || 4;","   },","","   /**","    * @method renderOverlay","    */","   renderOverlay: function() {","","      // Create overlay","      this.oOverlay = new Y.Overlay({","         visible:false,","         zIndex: this.options.zIndex","      });","","      this.oOverlay.render(this.fieldContainer);","","      this.oOverlay.on('visibleChange', function (e) {","","         if (e.newVal) { // show","            this.beforeShowOverlay();","            this.calendar.show();","","            // align","            this.oOverlay.set(\"align\", { node: this.buttonWrapper,  points: [Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL] });","","            // Activate outside event handler","            this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {","               // if the target is not the button do not hide the overlay","              if(!this.isDatePickerButton(e.target)){","                this.oOverlay.hide();","              }","            }, this);","         }","         else { // hide","            this.calendar.hide();","            ","            if(this.outsideHandler){","              this.outsideHandler.detach();","            }","            ","         }","","      }, this);","   },","","   /**","    * @method _toggleOverlay","    * @private","    */","   _toggleOverlay: function() {","","      // DON'T stop the event since it will be used to close other overlays...","      //e.stopPropagation();","","      if (!this.oOverlay) {","         this.renderOverlay();","         this.renderCalendar();","      }","","      var method = this.oOverlay.get('visible') ? 'hide' : 'show';","      this.oOverlay[method]();","   },","","   /**","    * Render the input field and the minical container","    * @method renderComponent","    */","   renderComponent: function() {","","      inputEx.DatePickerField.superclass.renderComponent.call(this);","","      // create button + wrapper","      this.buttonWrapper = Y.Node.create('<span class=\"inputEx-DatePicker-ButtonWrapper\">'+","                                            '<span class=\"first-child\"> '+","                                               '<button type=\"button\" class=\"inputEx-DatePicker-Button\">'+","                                               '</button>'+","                                            '</span>'+","                                         '</span>');","      ","      this.buttonWrapper.appendTo(this.wrapEl);","      ","      // get a reference to the <button> element","      this.button = this.buttonWrapper.one('.inputEx-DatePicker-Button');","      ","      // toggle overlay if click on the <button> element","      this.button.on('click', this._toggleOverlay, this);","      ","      // toggle overlay if click on the <input> element (only if readonly)","      if (this.options.readonly) {","         Y.one(this.el).on('click', this._toggleOverlay, this);","      }","      ","   },","","","   /**","    * Called ONCE to render the calendar lazily","    * @method renderCalendar","    */","   renderCalendar: function() {","      // if already rendered, ignore call","      if (!!this.calendarRendered) { return; }","","      var localCalendarOptions = {","         showPrevMonth: true,","         showNextMonth: true,","         date: new Date()","      },","","      finalCalendarOptions = Y.mix(this.options.calendar, localCalendarOptions);","","      this.calendar = new Y.Calendar(finalCalendarOptions);","      if(finalCalendarOptions.customRenderer){","        this.calendar.set(\"customRenderer\", finalCalendarOptions.customRenderer);","      }","      this.calendar.render( this.oOverlay.get('contentBox') );","      if(finalCalendarOptions.plugin){","        this.calendar.plug(finalCalendarOptions.plugin.pluginClass, Y.mix(","        /* Inside this plug in we can only control the calendar.","          problem is when we click on the month selector (in the panel plugin) the overlay automatically hide itself","          by giving the datepicker we can control the overlay behavior */","          {datepicker : this},","          finalCalendarOptions.plugin.pluginOptions","          )","        );","      }","","      this.calendar.on(\"selectionChange\", function (ev) {","         ","         // Get the date from the list of selected","         // dates returned with the event (since only","         // single selection is enabled by default,","         // we expect there to be only one date)","         var newDate = ev.newSelection[0];","","         this.setValue(newDate);","","         this.oOverlay.hide();","      }, this);","","      this.calendarRendered = true;","   },","","   /**","   * Select the right date and display the right page on calendar, when the field has a value","   * @method beforeShowOverlay","   */","   beforeShowOverlay: function() {","","      if (!!this.calendar) {","","         var date  = this.getValue(true),","             valid = this.validate();","","         // check if valid to exclude invalid dates (that are truthy !)","         // check date to exclude empty values ('')","         if (valid && !!date) {","","            // display the right month","            this.calendar.set('date', date);","","            // there's no way to use deselectDates or selectDates without firing the","            // selectionChange event so we use _clearSelection and _addDateToSelection","            // instead.","            this.calendar._clearSelection(true);        // pass true so that selectionChange event is not fired","            this.calendar._addDateToSelection(date, 1); // pass 1    so that selectionChange event is not fired","            this.calendar._renderSelectedDates();       // need to be called explicitely since selectionChange is had not been fired","         }","      }","   },","    ","   /**","    * Call overlay when field is removed","    * @method close","    */","   close: function() {","      if (this.oOverlay) {","         this.oOverlay.hide();","      }","   },","","   /**","    * Disable the field","    * @method disable","    */","   disable: function() {","      inputEx.DatePickerField.superclass.disable.call(this);","      this.button.set('disabled', true);","   },","","   /**","    * Enable the field","    * @method enable","    */","   enable: function() {","      inputEx.DatePickerField.superclass.enable.call(this);","      this.button.set('disabled', false);","   },","   /**","    *","    * @method isDatePickerButton","    * @return true if this is the toggle button of the datepicker","    */","   isDatePickerButton : function(Ynode){","      return Ynode.hasClass(\"inputEx-DatePicker-Button\");","   }","","});","//","// this.messages.defaultCalendarOpts = { navigator: true };","","// Register this class as \"datepicker\" type","inputEx.registerType(\"datepicker\", inputEx.DatePickerField);","","","}, '@VERSION@', {","    \"requires\": [","        \"inputex-date\",","        \"event-outside\",","        \"node-event-delegate\",","        \"overlay\",","        \"calendar\"","    ],","    \"ix_provides\": \"datepicker\",","    \"skinnable\": true,","    \"lang\": [","        \"en\",","        \"fr\",","        \"de\",","        \"ca\",","        \"es\",","        \"fr\",","        \"it\",","        \"nl\"","    ]","});"];
+_yuitest_coverage["build/inputex-datepicker/inputex-datepicker.js"].lines = {"1":0,"6":0,"19":0,"20":0,"23":0,"31":0,"34":0,"37":0,"39":0,"42":0,"43":0,"52":0,"57":0,"59":0,"61":0,"62":0,"63":0,"66":0,"69":0,"71":0,"72":0,"77":0,"79":0,"80":0,"97":0,"98":0,"99":0,"102":0,"103":0,"112":0,"115":0,"122":0,"125":0,"128":0,"131":0,"132":0,"144":0,"146":0,"154":0,"155":0,"156":0,"158":0,"159":0,"160":0,"170":0,"176":0,"178":0,"180":0,"183":0,"192":0,"194":0,"199":0,"202":0,"207":0,"208":0,"209":0,"219":0,"220":0,"229":0,"230":0,"238":0,"239":0,"247":0,"255":0};
+_yuitest_coverage["build/inputex-datepicker/inputex-datepicker.js"].functions = {"DatePickerField:19":0,"setOptions:29":0,"(anonymous 3):69":0,"(anonymous 2):59":0,"renderOverlay:49":0,"_toggleOverlay:92":0,"renderComponent:110":0,"(anonymous 4):170":0,"renderCalendar:142":0,"beforeShowOverlay:190":0,"close:218":0,"disable:228":0,"enable:237":0,"isDatePickerButton:246":0,"(anonymous 1):1":0};
+_yuitest_coverage["build/inputex-datepicker/inputex-datepicker.js"].coveredLines = 64;
 _yuitest_coverage["build/inputex-datepicker/inputex-datepicker.js"].coveredFunctions = 15;
 _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 1);
 YUI.add('inputex-datepicker', function (Y, NAME) {
@@ -119,7 +119,7 @@ this.calendar.show();
 
             // align
             _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 66);
-this.oOverlay.set("align", {node:this.button,  points:[Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL]});
+this.oOverlay.set("align", { node: this.buttonWrapper,  points: [Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL] });
 
             // Activate outside event handler
             _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 69);
@@ -182,28 +182,33 @@ this.oOverlay[method]();
 _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 112);
 inputEx.DatePickerField.superclass.renderComponent.call(this);
 
-      // Create button
+      // create button + wrapper
       _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 115);
-this.button = Y.Node.create('<span class="inputEx-DatePicker-ButtonWrapper">'+
-                                    '<span class="first-child"> '+
-                                      '<button type="button" class="inputEx-DatePicker-Button">'+
-                                      '</button>'+
-                                    '</span>'+
-                                  '</span>');
+this.buttonWrapper = Y.Node.create('<span class="inputEx-DatePicker-ButtonWrapper">'+
+                                            '<span class="first-child"> '+
+                                               '<button type="button" class="inputEx-DatePicker-Button">'+
+                                               '</button>'+
+                                            '</span>'+
+                                         '</span>');
       
       _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 122);
-this.button.appendTo(this.wrapEl);
-
-      // Subscribe the click handler on the field only if readonly
+this.buttonWrapper.appendTo(this.wrapEl);
+      
+      // get a reference to the <button> element
       _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 125);
+this.button = this.buttonWrapper.one('.inputEx-DatePicker-Button');
+      
+      // toggle overlay if click on the <button> element
+      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 128);
+this.button.on('click', this._toggleOverlay, this);
+      
+      // toggle overlay if click on the <input> element (only if readonly)
+      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 131);
 if (this.options.readonly) {
-         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 126);
+         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 132);
 Y.one(this.el).on('click', this._toggleOverlay, this);
       }
-
-      // Subscribe to the first click
-      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 130);
-this.button.on('click', this._toggleOverlay, this);
+      
    },
 
 
@@ -213,11 +218,11 @@ this.button.on('click', this._toggleOverlay, this);
     */
    renderCalendar: function() {
       // if already rendered, ignore call
-      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "renderCalendar", 138);
-_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 140);
+      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "renderCalendar", 142);
+_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 144);
 if (!!this.calendarRendered) { return; }
 
-      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 142);
+      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 146);
 var localCalendarOptions = {
          showPrevMonth: true,
          showNextMonth: true,
@@ -226,18 +231,18 @@ var localCalendarOptions = {
 
       finalCalendarOptions = Y.mix(this.options.calendar, localCalendarOptions);
 
-      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 150);
+      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 154);
 this.calendar = new Y.Calendar(finalCalendarOptions);
-      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 151);
+      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 155);
 if(finalCalendarOptions.customRenderer){
-        _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 152);
+        _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 156);
 this.calendar.set("customRenderer", finalCalendarOptions.customRenderer);
       }
-      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 154);
+      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 158);
 this.calendar.render( this.oOverlay.get('contentBox') );
-      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 155);
+      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 159);
 if(finalCalendarOptions.plugin){
-        _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 156);
+        _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 160);
 this.calendar.plug(finalCalendarOptions.plugin.pluginClass, Y.mix(
         /* Inside this plug in we can only control the calendar.
           problem is when we click on the month selector (in the panel plugin) the overlay automatically hide itself
@@ -248,25 +253,25 @@ this.calendar.plug(finalCalendarOptions.plugin.pluginClass, Y.mix(
         );
       }
 
-      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 166);
+      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 170);
 this.calendar.on("selectionChange", function (ev) {
          
          // Get the date from the list of selected
          // dates returned with the event (since only
          // single selection is enabled by default,
          // we expect there to be only one date)
-         _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "(anonymous 4)", 166);
-_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 172);
+         _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "(anonymous 4)", 170);
+_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 176);
 var newDate = ev.newSelection[0];
 
-         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 174);
+         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 178);
 this.setValue(newDate);
 
-         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 176);
+         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 180);
 this.oOverlay.hide();
       }, this);
 
-      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 179);
+      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 183);
 this.calendarRendered = true;
    },
 
@@ -276,31 +281,31 @@ this.calendarRendered = true;
    */
    beforeShowOverlay: function() {
 
-      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "beforeShowOverlay", 186);
-_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 188);
+      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "beforeShowOverlay", 190);
+_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 192);
 if (!!this.calendar) {
 
-         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 190);
+         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 194);
 var date  = this.getValue(true),
              valid = this.validate();
 
          // check if valid to exclude invalid dates (that are truthy !)
          // check date to exclude empty values ('')
-         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 195);
+         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 199);
 if (valid && !!date) {
 
             // display the right month
-            _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 198);
+            _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 202);
 this.calendar.set('date', date);
 
             // there's no way to use deselectDates or selectDates without firing the
             // selectionChange event so we use _clearSelection and _addDateToSelection
             // instead.
-            _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 203);
+            _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 207);
 this.calendar._clearSelection(true);        // pass true so that selectionChange event is not fired
-            _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 204);
+            _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 208);
 this.calendar._addDateToSelection(date, 1); // pass 1    so that selectionChange event is not fired
-            _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 205);
+            _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 209);
 this.calendar._renderSelectedDates();       // need to be called explicitely since selectionChange is had not been fired
          }
       }
@@ -311,10 +316,10 @@ this.calendar._renderSelectedDates();       // need to be called explicitely sin
     * @method close
     */
    close: function() {
-      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "close", 214);
-_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 215);
+      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "close", 218);
+_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 219);
 if (this.oOverlay) {
-         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 216);
+         _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 220);
 this.oOverlay.hide();
       }
    },
@@ -324,10 +329,10 @@ this.oOverlay.hide();
     * @method disable
     */
    disable: function() {
-      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "disable", 224);
-_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 225);
+      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "disable", 228);
+_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 229);
 inputEx.DatePickerField.superclass.disable.call(this);
-      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 226);
+      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 230);
 this.button.set('disabled', true);
    },
 
@@ -336,10 +341,10 @@ this.button.set('disabled', true);
     * @method enable
     */
    enable: function() {
-      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "enable", 233);
-_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 234);
+      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "enable", 237);
+_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 238);
 inputEx.DatePickerField.superclass.enable.call(this);
-      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 235);
+      _yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 239);
 this.button.set('disabled', false);
    },
    /**
@@ -348,8 +353,8 @@ this.button.set('disabled', false);
     * @return true if this is the toggle button of the datepicker
     */
    isDatePickerButton : function(Ynode){
-      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "isDatePickerButton", 242);
-_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 243);
+      _yuitest_coverfunc("build/inputex-datepicker/inputex-datepicker.js", "isDatePickerButton", 246);
+_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 247);
 return Ynode.hasClass("inputEx-DatePicker-Button");
    }
 
@@ -358,7 +363,7 @@ return Ynode.hasClass("inputEx-DatePicker-Button");
 // this.messages.defaultCalendarOpts = { navigator: true };
 
 // Register this class as "datepicker" type
-_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 251);
+_yuitest_coverline("build/inputex-datepicker/inputex-datepicker.js", 255);
 inputEx.registerType("datepicker", inputEx.DatePickerField);
 
 
