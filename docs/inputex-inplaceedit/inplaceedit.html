@@ -34,110 +34,110 @@ How to create a inplaceedit field.
 
 <div class="example">
 
-	<h2>Basic InPlaceEdit creation</h2>
-	<p>Use the following code to create a basic inputEx InPlaceEdit.</p>
-	<div class='demoContainer' id='container1'></div>
-	
-	<h2>Complex group example</h2>
-	<p>Combine InPlaceEdit and groups</p>
-	<div class='demoContainer' id='container2'></div>
-	
-	<h2>Getting the value</h2>
-	<p>When the editor is opened, getValue return the editor value.</p>
-	<div class='demoContainer' id='container3'></div>
-	
-	
-	<h2>Image url from a dropdown menu</h2>
-	<p></p>
-	<div class='demoContainer' id='container4'></div>
-	
-	
-
-<script>
-YUI().use('inputex-inplaceedit', 'inputex-group','inputex-email', 'inputex-url', 'inputex-select', 'inputex-list', 'json', function(Y) {
-
-
-	// Example 1
-	new Y.inputEx.InPlaceEdit({parentEl: 'container1', editorField:{type:'string'}, animColors:{from:"#FFFF99" , to:"#DDDDFF"} });
-	
-	
-	
-	// Example 2
-	new Y.inputEx.InPlaceEdit({
-		parentEl: 'container2', 
-		editorField:{
-			type:'group', 
-			fields: [
-				{ label: 'Firstname',name: 'firstname' },
-				{ label: 'Lastname', name: 'lastname' },
-				{ type:'url', label: 'Photo', name:'picUrl', favicon: false }
-			]
-		},
-		visu: {visuType: 'func', func: function(val) {
-			if( Y.Lang.isUndefined(val) ) return this.messages.emptyInPlaceEdit;
-			return '<img src="'+val.picUrl+'" style="width: 128px; height: 128px;" /><br /><b>'+val.firstname+' '+val.lastname+'</b>';
-		}},
-		value: {
-				firstname: 'Lena',
-				lastname: 'Idontknow',
-				picUrl: 'http://www.limsi.fr/Individu/vezien/lena.jpg'
-		}
-	});
-	
-	
-	// Example 3
-	var field = new Y.inputEx.InPlaceEdit({parentEl: 'container3', editorField:{type:'string'} });
-	var button = Y.inputEx.cn('button', null, null, "getValue");
-	Y.one(button).on('click', function() {
-		alert(field.getValue());
-	});
-	Y.one('#container3').appendChild(button);
-	
-	
-	// Example 4
-	Y.inputEx({
-		type: 'inplaceedit',
-		parentEl: 'container4', 
-		label: "PageRank",
-		editorField:{
-			type:'select', 
-			name: 'pagerank',
-			choices: ['0','1','2','3','4','5','6','7','8','9','10']
-		},
-		visu: {
-			visuType: 'func', 
-			func: function(val) {
-				return Y.inputEx.cn('img',{src: "http://www.page-rank-lookup.com/i/style1/pagerank"+val+".png"});
-			}
-		},
-		value: '5'
-	});
-
-   // Example 5
-   Y.inputEx({
-      buttonConfigs : [{
-         isOkButton : true,
-         value : "myButton"
-      }],
-      type: 'inplaceedit',
-      parentEl: 'container5', 
-      label: "Customized buttons",
-      editorField:{
-         name: 'firstname'
-      },
-      visu: {
-         visuType: 'func', 
-         func: function(val) {
-            return val;
-         }
-      },
-      value: 'Chuck Norris doesn\'t wear a watch'
-   });
+    <h2>Basic InPlaceEdit creation</h2>
+    <p>Use the following code to create a basic inputEx InPlaceEdit.</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    <h2>Complex group example</h2>
+    <p>Combine InPlaceEdit and groups</p>
+    <div class='demoContainer' id='container2'></div>
+    
+    <h2>Getting the value</h2>
+    <p>When the editor is opened, getValue return the editor value.</p>
+    <div class='demoContainer' id='container3'></div>
+    
+    <h2>Image url from a dropdown menu</h2>
+    <p></p>
+    <div class='demoContainer' id='container4'></div>
+    
+    <h2>Customize the buttons</h2>
+    <p></p>
+    <div class='demoContainer' id='container5'></div>
+    
+    
+    <script>
+    YUI().use('inputex-inplaceedit', 'inputex-group','inputex-email', 'inputex-url', 'inputex-select', 'inputex-list', 'json', function(Y) {
 
 
+    // Example 1
+    new Y.inputEx.InPlaceEdit({parentEl: 'container1', editorField:{type:'string'}, animColors:{from:"#FFFF99" , to:"#DDDDFF"} });
+    
+    
+    // Example 2
+    new Y.inputEx.InPlaceEdit({
+        parentEl: 'container2',
+        editorField:{
+            type:'group',
+            fields: [
+                { label: 'Firstname',name: 'firstname' },
+                { label: 'Lastname', name: 'lastname' },
+                { type:'url', label: 'Photo', name:'picUrl', favicon: false }
+            ]
+        },
+        visu: {visuType: 'func', func: function(val) {
+            if( Y.Lang.isUndefined(val) ) return this.messages.emptyInPlaceEdit;
+            return '<img src="'+val.picUrl+'" style="width: 128px; height: 128px;" /><br /><b>'+val.firstname+' '+val.lastname+'</b>';
+        }},
+        value: {
+                firstname: 'Lena',
+                lastname: 'Idontknow',
+                picUrl: 'http://www.limsi.fr/Individu/vezien/lena.jpg'
+        }
+    });
+    
+    
+    // Example 3
+    var field = new Y.inputEx.InPlaceEdit({parentEl: 'container3', editorField:{type:'string'} });
+    var button = Y.inputEx.cn('button', null, null, "getValue");
+    Y.one(button).on('click', function() {
+        alert(field.getValue());
+    });
+    Y.one('#container3').appendChild(button);
+    
+    
+    // Example 4
+    Y.inputEx({
+        type: 'inplaceedit',
+        parentEl: 'container4',
+        label: "PageRank",
+        editorField:{
+            type:'select',
+            name: 'pagerank',
+            choices: ['0','1','2','3','4','5','6','7','8','9','10']
+        },
+        visu: {
+            visuType: 'func',
+            func: function(val) {
+                return Y.inputEx.cn('img',{src: "http://www.page-rank-lookup.com/i/style1/pagerank"+val+".png"});
+            }
+        },
+        value: '5'
+    });
+    
+    // Example 5
+    Y.inputEx({
+        buttonConfigs : [{
+            isOkButton : true,
+            value : "myButton"
+        }],
+        type: 'inplaceedit',
+        parentEl: 'container5',
+        label: "Customized buttons",
+        editorField:{
+            name: 'firstname'
+        },
+        visu: {
+            visuType: 'func',
+            func: function(val) {
+                return val;
+            }
+        },
+        value: 'Chuck Norris doesn\'t wear a watch'
+    });
+    
 });
 
-</script>
+    </script>
 
 </div>
 
@@ -154,84 +154,82 @@ YUI().use('inputex-inplaceedit', 'inputex-group','inputex-email', 'inputex-url',
 <pre class="code prettyprint">YUI().use(&#x27;inputex-inplaceedit&#x27;, &#x27;inputex-group&#x27;,&#x27;inputex-email&#x27;, &#x27;inputex-url&#x27;, &#x27;inputex-select&#x27;, &#x27;inputex-list&#x27;, &#x27;json&#x27;, function(Y) {
 
 
-	&#x2F;&#x2F; Example 1
-	new Y.inputEx.InPlaceEdit({parentEl: &#x27;container1&#x27;, editorField:{type:&#x27;string&#x27;}, animColors:{from:&quot;#FFFF99&quot; , to:&quot;#DDDDFF&quot;} });
-	
-	
-	
-	&#x2F;&#x2F; Example 2
-	new Y.inputEx.InPlaceEdit({
-		parentEl: &#x27;container2&#x27;, 
-		editorField:{
-			type:&#x27;group&#x27;, 
-			fields: [
-				{ label: &#x27;Firstname&#x27;,name: &#x27;firstname&#x27; },
-				{ label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27; },
-				{ type:&#x27;url&#x27;, label: &#x27;Photo&#x27;, name:&#x27;picUrl&#x27;, favicon: false }
-			]
-		},
-		visu: {visuType: &#x27;func&#x27;, func: function(val) {
-			if( Y.Lang.isUndefined(val) ) return this.messages.emptyInPlaceEdit;
-			return &#x27;&lt;img src=&quot;&#x27;+val.picUrl+&#x27;&quot; style=&quot;width: 128px; height: 128px;&quot; &#x2F;&gt;&lt;br &#x2F;&gt;&lt;b&gt;&#x27;+val.firstname+&#x27; &#x27;+val.lastname+&#x27;&lt;&#x2F;b&gt;&#x27;;
-		}},
-		value: {
-				firstname: &#x27;Lena&#x27;,
-				lastname: &#x27;Idontknow&#x27;,
-				picUrl: &#x27;http:&#x2F;&#x2F;www.limsi.fr&#x2F;Individu&#x2F;vezien&#x2F;lena.jpg&#x27;
-		}
-	});
-	
-	
-	&#x2F;&#x2F; Example 3
-	var field = new Y.inputEx.InPlaceEdit({parentEl: &#x27;container3&#x27;, editorField:{type:&#x27;string&#x27;} });
-	var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;getValue&quot;);
-	Y.one(button).on(&#x27;click&#x27;, function() {
-		alert(field.getValue());
-	});
-	Y.one(&#x27;#container3&#x27;).appendChild(button);
-	
-	
-	&#x2F;&#x2F; Example 4
-	Y.inputEx({
-		type: &#x27;inplaceedit&#x27;,
-		parentEl: &#x27;container4&#x27;, 
-		label: &quot;PageRank&quot;,
-		editorField:{
-			type:&#x27;select&#x27;, 
-			name: &#x27;pagerank&#x27;,
-			choices: [&#x27;0&#x27;,&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;,&#x27;7&#x27;,&#x27;8&#x27;,&#x27;9&#x27;,&#x27;10&#x27;]
-		},
-		visu: {
-			visuType: &#x27;func&#x27;, 
-			func: function(val) {
-				return Y.inputEx.cn(&#x27;img&#x27;,{src: &quot;http:&#x2F;&#x2F;www.page-rank-lookup.com&#x2F;i&#x2F;style1&#x2F;pagerank&quot;+val+&quot;.png&quot;});
-			}
-		},
-		value: &#x27;5&#x27;
-	});
-
-   &#x2F;&#x2F; Example 5
-   Y.inputEx({
-      buttonConfigs : [{
-         isOkButton : true,
-         value : &quot;myButton&quot;
-      }],
-      type: &#x27;inplaceedit&#x27;,
-      parentEl: &#x27;container5&#x27;, 
-      label: &quot;Customized buttons&quot;,
-      editorField:{
-         name: &#x27;firstname&#x27;
-      },
-      visu: {
-         visuType: &#x27;func&#x27;, 
-         func: function(val) {
-            return val;
-         }
-      },
-      value: &#x27;Chuck Norris doesn\&#x27;t wear a watch&#x27;
-   });
-
-
+    &#x2F;&#x2F; Example 1
+    new Y.inputEx.InPlaceEdit({parentEl: &#x27;container1&#x27;, editorField:{type:&#x27;string&#x27;}, animColors:{from:&quot;#FFFF99&quot; , to:&quot;#DDDDFF&quot;} });
+    
+    
+    &#x2F;&#x2F; Example 2
+    new Y.inputEx.InPlaceEdit({
+        parentEl: &#x27;container2&#x27;,
+        editorField:{
+            type:&#x27;group&#x27;,
+            fields: [
+                { label: &#x27;Firstname&#x27;,name: &#x27;firstname&#x27; },
+                { label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27; },
+                { type:&#x27;url&#x27;, label: &#x27;Photo&#x27;, name:&#x27;picUrl&#x27;, favicon: false }
+            ]
+        },
+        visu: {visuType: &#x27;func&#x27;, func: function(val) {
+            if( Y.Lang.isUndefined(val) ) return this.messages.emptyInPlaceEdit;
+            return &#x27;&lt;img src=&quot;&#x27;+val.picUrl+&#x27;&quot; style=&quot;width: 128px; height: 128px;&quot; &#x2F;&gt;&lt;br &#x2F;&gt;&lt;b&gt;&#x27;+val.firstname+&#x27; &#x27;+val.lastname+&#x27;&lt;&#x2F;b&gt;&#x27;;
+        }},
+        value: {
+                firstname: &#x27;Lena&#x27;,
+                lastname: &#x27;Idontknow&#x27;,
+                picUrl: &#x27;http:&#x2F;&#x2F;www.limsi.fr&#x2F;Individu&#x2F;vezien&#x2F;lena.jpg&#x27;
+        }
+    });
+    
+    
+    &#x2F;&#x2F; Example 3
+    var field = new Y.inputEx.InPlaceEdit({parentEl: &#x27;container3&#x27;, editorField:{type:&#x27;string&#x27;} });
+    var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;getValue&quot;);
+    Y.one(button).on(&#x27;click&#x27;, function() {
+        alert(field.getValue());
+    });
+    Y.one(&#x27;#container3&#x27;).appendChild(button);
+    
+    
+    &#x2F;&#x2F; Example 4
+    Y.inputEx({
+        type: &#x27;inplaceedit&#x27;,
+        parentEl: &#x27;container4&#x27;,
+        label: &quot;PageRank&quot;,
+        editorField:{
+            type:&#x27;select&#x27;,
+            name: &#x27;pagerank&#x27;,
+            choices: [&#x27;0&#x27;,&#x27;1&#x27;,&#x27;2&#x27;,&#x27;3&#x27;,&#x27;4&#x27;,&#x27;5&#x27;,&#x27;6&#x27;,&#x27;7&#x27;,&#x27;8&#x27;,&#x27;9&#x27;,&#x27;10&#x27;]
+        },
+        visu: {
+            visuType: &#x27;func&#x27;,
+            func: function(val) {
+                return Y.inputEx.cn(&#x27;img&#x27;,{src: &quot;http:&#x2F;&#x2F;www.page-rank-lookup.com&#x2F;i&#x2F;style1&#x2F;pagerank&quot;+val+&quot;.png&quot;});
+            }
+        },
+        value: &#x27;5&#x27;
+    });
+    
+    &#x2F;&#x2F; Example 5
+    Y.inputEx({
+        buttonConfigs : [{
+            isOkButton : true,
+            value : &quot;myButton&quot;
+        }],
+        type: &#x27;inplaceedit&#x27;,
+        parentEl: &#x27;container5&#x27;,
+        label: &quot;Customized buttons&quot;,
+        editorField:{
+            name: &#x27;firstname&#x27;
+        },
+        visu: {
+            visuType: &#x27;func&#x27;,
+            func: function(val) {
+                return val;
+            }
+        },
+        value: &#x27;Chuck Norris doesn\&#x27;t wear a watch&#x27;
+    });
+    
 });</pre>
 
 </div>
