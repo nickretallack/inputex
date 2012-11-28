@@ -1,7 +1,13 @@
 .yui3-skin-sam .inputEx-MenuField .yui3-menu-content, 
 .yui3-skin-sam .inputEx-MenuField .yui3-menu .yui3-menu .yui3-menu-content {
-    padding : 0;
+    padding-top : 0;
+    padding-bottom : 0;
 }
-.yui3-skin-sam .yui3-menubuttonnav li {
-	border-right: 0;
+.yui3-skin-sam .inputEx-MenuField .yui3-menu .yui3-menu-content .yui3-menu-label,
+.yui3-skin-sam .inputEx-MenuField .yui3-menu .yui3-menu-content .yui3-menu .yui3-submenu .yui3-menu-label,
+.yui3-skin-sam .inputEx-MenuField .yui3-menu-horizontal .yui3-menu-content .yui3-menu .yui3-submenu .yui3-menu-label {
+    padding-right : 18px;
+}
+.yui3-skin-sam .inputEx-MenuField .yui3-menu-horizontal .yui3-menu-content .yui3-menu-label {
+    padding-right : 0;
 }
