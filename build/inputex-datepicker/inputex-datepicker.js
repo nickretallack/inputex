@@ -94,13 +94,13 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       // DON'T stop the event since it will be used to close other overlays...
       //e.stopPropagation();
 
-      if(!this.oOverlay) {
+      if (!this.oOverlay) {
          this.renderOverlay();
          this.renderCalendar();
       }
 
       var method = this.oOverlay.get('visible') ? 'hide' : 'show';
-      this.oOverlay[method] ();
+      this.oOverlay[method]();
    },
 
    /**
@@ -122,7 +122,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       this.button.appendTo(this.wrapEl);
 
       // Subscribe the click handler on the field only if readonly
-      if(this.options.readonly) {
+      if (this.options.readonly) {
          Y.one(this.el).on('click', this._toggleOverlay, this);
       }
 
@@ -164,7 +164,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       }
 
       this.calendar.on("selectionChange", function (ev) {
-
+         
          // Get the date from the list of selected
          // dates returned with the event (since only
          // single selection is enabled by default,
@@ -180,25 +180,32 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
    },
 
    /**
-    * Select the right date and display the right page on calendar, when the field has a value
-    * @method beforeShowOverlay
-    */
+   * Select the right date and display the right page on calendar, when the field has a value
+   * @method beforeShowOverlay
+   */
    beforeShowOverlay: function() {
 
       if (!!this.calendar) {
 
-         var date = this.getValue(true), valid = this.validate();
+         var date  = this.getValue(true),
+             valid = this.validate();
 
          // check if valid to exclude invalid dates (that are truthy !)
          // check date to exclude empty values ('')
          if (valid && !!date) {
+
+            // display the right month
             this.calendar.set('date', date);
-            this.calendar.deselectDates();
-            this.calendar.selectDates(date);
+
+            // there's no way to use deselectDates or selectDates without firing the
+            // selectionChange event so we use _clearSelection and _addDateToSelection
+            // instead.
+            this.calendar._clearSelection(true);        // pass true so that selectionChange event is not fired
+            this.calendar._addDateToSelection(date, 1); // pass 1    so that selectionChange event is not fired
          }
       }
    },
-
+    
    /**
     * Call overlay when field is removed
     * @method close
