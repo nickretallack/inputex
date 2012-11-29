@@ -54,38 +54,32 @@ How to create a color field.
 
 <script>
 YUI().use('inputex-color', function(Y) {
-
-	new Y.inputEx.ColorField({parentEl: 'container1', label: 'Choose a color', description: 'Click to view the available colors'});
-	
-	
-	
-	
-	var el = Y.one('#container2');
-	var field = new Y.inputEx.ColorField({parentEl: el });
-	var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-	el.appendChild(logDiv);
-	field.on('updated', function() {
-		logDiv.innerHTML += "Updated at "+(new Date());
-		logDiv.appendChild(Y.inputEx.cn('br'));
-	});
-	
-	
-	
-	
-	new Y.inputEx.ColorField({parentEl: 'container3', value: '#ADC2FF'});
-	
-	
-	
-	new Y.inputEx.ColorField({parentEl: 'container4', palette:1, label:"Palette 1"});
-	new Y.inputEx.ColorField({parentEl: 'container4', palette:2, label:"Palette 2", cellPerLine:5});
-	new Y.inputEx.ColorField({parentEl: 'container4', palette:3, label:"Palette 3", cellPerLine:10});
-	new Y.inputEx.ColorField({parentEl: 'container4', palette:4, label:"Palette 4", cellPerLine:9});
-	new Y.inputEx.ColorField({parentEl: 'container4', palette:5, label:"Palette 5"});
-	new Y.inputEx.ColorField({parentEl: 'container4', palette:6, label:"Palette 6"});
-	new Y.inputEx.ColorField({parentEl: 'container4', label:"Custom colors", colors:["#D0D0D0","#31A8FA","#8EC1E5","#58D7CF","#89E2BB","#A7F7F8","#F6B77C","#FE993F","#EEEEEE","#84CBFC","#BCDAF0","#9BE7E3","#B9EED7","#CBFBFB","#FAD4B1","#FFC28C","#FE6440","#F56572","#FA9AA3","#F7B1CA","#E584AF","#D1C3EF","#AB77B8","#C69FE7","#FFA28D","#F9A3AB","#FCC3C8","#FBD1E0","#F0B6CF","#E4DBF6","#CDAED5","#DDC6F1"]});
-	
-	
-
+    
+    // example 1
+    new Y.inputEx.ColorField({parentEl: 'container1', label: 'Choose a color', description: 'Click to view the available colors'});
+    
+    // example 2
+    var el = Y.one('#container2');
+    var field = new Y.inputEx.ColorField({parentEl: el });
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+    el.appendChild(logDiv);
+    field.on('updated', function (value) {
+        logDiv.innerHTML += "Updated at " + (new Date()) + " with value: " + value;
+        logDiv.appendChild(Y.inputEx.cn('br'));
+    });
+    
+    // example 3
+    new Y.inputEx.ColorField({parentEl: 'container3', value: '#ADC2FF'});
+    
+    // example 4
+    new Y.inputEx.ColorField({parentEl: 'container4', palette:1, label:"Palette 1"});
+    new Y.inputEx.ColorField({parentEl: 'container4', palette:2, label:"Palette 2", cellPerLine:5});
+    new Y.inputEx.ColorField({parentEl: 'container4', palette:3, label:"Palette 3", cellPerLine:10});
+    new Y.inputEx.ColorField({parentEl: 'container4', palette:4, label:"Palette 4", cellPerLine:9});
+    new Y.inputEx.ColorField({parentEl: 'container4', palette:5, label:"Palette 5"});
+    new Y.inputEx.ColorField({parentEl: 'container4', palette:6, label:"Palette 6"});
+    new Y.inputEx.ColorField({parentEl: 'container4', label:"Custom colors", colors:["#D0D0D0","#31A8FA","#8EC1E5","#58D7CF","#89E2BB","#A7F7F8","#F6B77C","#FE993F","#EEEEEE","#84CBFC","#BCDAF0","#9BE7E3","#B9EED7","#CBFBFB","#FAD4B1","#FFC28C","#FE6440","#F56572","#FA9AA3","#F7B1CA","#E584AF","#D1C3EF","#AB77B8","#C69FE7","#FFA28D","#F9A3AB","#FCC3C8","#FBD1E0","#F0B6CF","#E4DBF6","#CDAED5","#DDC6F1"]});
+    
 });
 
 </script>
@@ -94,7 +88,10 @@ YUI().use('inputex-color', function(Y) {
 
 <h2>HTML</h2>
 
-<pre class="code prettyprint">&lt;div id=&quot;field-container&quot;&gt;&lt;&#x2F;div&gt;</pre>
+<pre class="code prettyprint">&lt;div class=&#x27;demoContainer&#x27; id=&#x27;container1&#x27;&gt;&lt;&#x2F;div&gt;
+&lt;div class=&#x27;demoContainer&#x27; id=&#x27;container2&#x27;&gt;&lt;&#x2F;div&gt;
+&lt;div class=&#x27;demoContainer&#x27; id=&#x27;container3&#x27;&gt;&lt;&#x2F;div&gt;
+&lt;div class=&#x27;demoContainer&#x27; id=&#x27;container4&#x27;&gt;&lt;&#x2F;div&gt;</pre>
 
 
 <h2>JavaScript</h2>
@@ -103,38 +100,32 @@ YUI().use('inputex-color', function(Y) {
 <h3>Implementation</h3>
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-color&#x27;, function(Y) {
-
-	new Y.inputEx.ColorField({parentEl: &#x27;container1&#x27;, label: &#x27;Choose a color&#x27;, description: &#x27;Click to view the available colors&#x27;});
-	
-	
-	
-	
-	var el = Y.one(&#x27;#container2&#x27;);
-	var field = new Y.inputEx.ColorField({parentEl: el });
-	var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
-	el.appendChild(logDiv);
-	field.on(&#x27;updated&#x27;, function() {
-		logDiv.innerHTML += &quot;Updated at &quot;+(new Date());
-		logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
-	});
-	
-	
-	
-	
-	new Y.inputEx.ColorField({parentEl: &#x27;container3&#x27;, value: &#x27;#ADC2FF&#x27;});
-	
-	
-	
-	new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:1, label:&quot;Palette 1&quot;});
-	new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:2, label:&quot;Palette 2&quot;, cellPerLine:5});
-	new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:3, label:&quot;Palette 3&quot;, cellPerLine:10});
-	new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:4, label:&quot;Palette 4&quot;, cellPerLine:9});
-	new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:5, label:&quot;Palette 5&quot;});
-	new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:6, label:&quot;Palette 6&quot;});
-	new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, label:&quot;Custom colors&quot;, colors:[&quot;#D0D0D0&quot;,&quot;#31A8FA&quot;,&quot;#8EC1E5&quot;,&quot;#58D7CF&quot;,&quot;#89E2BB&quot;,&quot;#A7F7F8&quot;,&quot;#F6B77C&quot;,&quot;#FE993F&quot;,&quot;#EEEEEE&quot;,&quot;#84CBFC&quot;,&quot;#BCDAF0&quot;,&quot;#9BE7E3&quot;,&quot;#B9EED7&quot;,&quot;#CBFBFB&quot;,&quot;#FAD4B1&quot;,&quot;#FFC28C&quot;,&quot;#FE6440&quot;,&quot;#F56572&quot;,&quot;#FA9AA3&quot;,&quot;#F7B1CA&quot;,&quot;#E584AF&quot;,&quot;#D1C3EF&quot;,&quot;#AB77B8&quot;,&quot;#C69FE7&quot;,&quot;#FFA28D&quot;,&quot;#F9A3AB&quot;,&quot;#FCC3C8&quot;,&quot;#FBD1E0&quot;,&quot;#F0B6CF&quot;,&quot;#E4DBF6&quot;,&quot;#CDAED5&quot;,&quot;#DDC6F1&quot;]});
-	
-	
-
+    
+    &#x2F;&#x2F; example 1
+    new Y.inputEx.ColorField({parentEl: &#x27;container1&#x27;, label: &#x27;Choose a color&#x27;, description: &#x27;Click to view the available colors&#x27;});
+    
+    &#x2F;&#x2F; example 2
+    var el = Y.one(&#x27;#container2&#x27;);
+    var field = new Y.inputEx.ColorField({parentEl: el });
+    var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
+    el.appendChild(logDiv);
+    field.on(&#x27;updated&#x27;, function (value) {
+        logDiv.innerHTML += &quot;Updated at &quot; + (new Date()) + &quot; with value: &quot; + value;
+        logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
+    });
+    
+    &#x2F;&#x2F; example 3
+    new Y.inputEx.ColorField({parentEl: &#x27;container3&#x27;, value: &#x27;#ADC2FF&#x27;});
+    
+    &#x2F;&#x2F; example 4
+    new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:1, label:&quot;Palette 1&quot;});
+    new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:2, label:&quot;Palette 2&quot;, cellPerLine:5});
+    new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:3, label:&quot;Palette 3&quot;, cellPerLine:10});
+    new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:4, label:&quot;Palette 4&quot;, cellPerLine:9});
+    new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:5, label:&quot;Palette 5&quot;});
+    new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, palette:6, label:&quot;Palette 6&quot;});
+    new Y.inputEx.ColorField({parentEl: &#x27;container4&#x27;, label:&quot;Custom colors&quot;, colors:[&quot;#D0D0D0&quot;,&quot;#31A8FA&quot;,&quot;#8EC1E5&quot;,&quot;#58D7CF&quot;,&quot;#89E2BB&quot;,&quot;#A7F7F8&quot;,&quot;#F6B77C&quot;,&quot;#FE993F&quot;,&quot;#EEEEEE&quot;,&quot;#84CBFC&quot;,&quot;#BCDAF0&quot;,&quot;#9BE7E3&quot;,&quot;#B9EED7&quot;,&quot;#CBFBFB&quot;,&quot;#FAD4B1&quot;,&quot;#FFC28C&quot;,&quot;#FE6440&quot;,&quot;#F56572&quot;,&quot;#FA9AA3&quot;,&quot;#F7B1CA&quot;,&quot;#E584AF&quot;,&quot;#D1C3EF&quot;,&quot;#AB77B8&quot;,&quot;#C69FE7&quot;,&quot;#FFA28D&quot;,&quot;#F9A3AB&quot;,&quot;#FCC3C8&quot;,&quot;#FBD1E0&quot;,&quot;#F0B6CF&quot;,&quot;#E4DBF6&quot;,&quot;#CDAED5&quot;,&quot;#DDC6F1&quot;]});
+    
 });</pre>
 
 </div>
