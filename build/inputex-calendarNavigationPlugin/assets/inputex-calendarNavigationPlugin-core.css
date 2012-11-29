@@ -32,7 +32,7 @@
     padding: 10px 0 0 10px ;
 }
 .yui3-panel .yui3-calendar-navplugin-widget{
-     *width : 200px; /* ie only */
+     /**width : 200px; /* ie only */
 }
 .yui3-skin-sam .yui3-calendar-content {
     position: relative;

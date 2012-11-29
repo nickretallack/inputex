@@ -14,7 +14,7 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
 
         var strings = this.get("string"),
             that = this,
-            calendarContentBox, bodyNode, panel;
+            calendarContentBox, bodyNode, panel, inputexGroup;
 
         if(!this.panel_container) {
             this.panel_container = Y.Node.create('<div class="yui3-calendar-navplugin-widget"></div>');
@@ -49,7 +49,7 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
 
             }).render();
 
-            var inputexGroup = new Y.inputEx.Group({
+            inputexGroup = new Y.inputEx.Group({
                 parentEl: bodyNode,
                 fields: [{
                     type: "select",
@@ -136,7 +136,8 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
      * @method showPanel
      */
     showPanel: function() {
-       
+        
+        // preselect the current month and year
         var date = this.get("host").get("date");
         
         this.get("inputexGroup").setValue({
@@ -144,21 +145,24 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
            year: date.getFullYear()
         });
         
+        // and display the panel
         this.get("panel").show();
     },
-
+    
     _prepareMonthsData: function() {
+        
         var i = 0,
-            month, listOfMonths = this.get("string").monthsList;
-        var monthsField = this.monthsField = [];
-
-        for(i = 0; i < 12; i++) {
+            month, listOfMonths = this.get("string").monthsList,
+            monthsField = [];
+            
+        for (i = 0; i < 12; i++) {
             month = listOfMonths[i];
             monthsField.push({
                 label: month,
                 value: i
             });
         }
+        
         return monthsField;
     },
     /**
@@ -169,12 +173,10 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
      * return isPanelVisible
      */
     _isPanelVisible: function() {
-        var panel = this.get("panel"),
-            isPanelVisible;
-        if(panel) {
-            isPanelVisible = panel.get("visible");
-        }
-        return isPanelVisible;
+        
+        var panel = this.get("panel");
+        
+        return panel ? panel.get("visible") : false;
     }
 
 }, {
