@@ -1,0 +1,24 @@
+{
+   "name": "inputex-calendar-week-number-plugin",
+   "displayName": "inputex-calendar-week-number-plugin",
+   "description": "inputex-calendar-week-number-plugin",
+   "author": "neyric",
+   "tags": [
+      "inputex-calendar-week-number-plugin"
+   ],
+   "use": [
+      "plugin",
+      "calendar",
+      "datatype-date-math"
+   ],
+   "examples": [
+      {
+          "name"       : "calendar-week-number-plugin",
+          "displayName": "Display week numbers",
+          "description": "Display week numbers in a Calendar instance.",
+          "modules"    : ["inputex-calendar-week-number-plugin"],
+          "tags"       : ["calendar-week-number-plugin"],
+          "hideTableOfContents": true
+      }
+   ]
+}

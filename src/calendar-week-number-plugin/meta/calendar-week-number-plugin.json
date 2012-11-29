@@ -1,0 +1,11 @@
+{
+   "inputex-calendar-week-number-plugin": {
+      "requires": [
+         "plugin",
+         "calendar",
+         "datatype-date-math"
+      ],
+      "skinnable": true,
+      "lang": ["en","fr"]
+   }
+}

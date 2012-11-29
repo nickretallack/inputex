@@ -1,0 +1,10 @@
+{
+   "name" : "inputex-calendar-week-number-plugin",
+   "builds" : {
+      "inputex-calendar-week-number-plugin" : {
+         "jsfiles" : [
+            "calendar-week-number-plugin.js"
+         ]
+      }
+   }
+}
