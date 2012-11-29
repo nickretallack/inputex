@@ -1,39 +1,58 @@
-/* Calendar Only*/
-.yui3-calendar .yui3-calendar-content .yui3-calendar-header-label {
-   margin : 0 16% 0 16%;
-   width : 66%;
-   border : 1px solid transparent;
-   /* ie7 only : fix little arrows problem */
-   *+margin : 0 15% 0 15%; 
+.yui3-calendar .yui3-calendar-content .yui3-calendar-clickable-header-label {
+  margin: 0 16% 0 16%;
+  width: 66%;
+  border: 1px solid transparent;
+  /* ie7 only : fix little arrows problem */
+  *+margin: 0 15% 0 15%;
 }
-.yui3-calendar .yui3-calendar-content .yui3-calendar-header-label:hover {
-   border-color :  black;
+
+.yui3-calendar .yui3-calendar-content .yui3-calendar-clickable-header-label:hover {
+  border-color: #A0A0A0;
+  /*
+    @include background-image(linear-gradient(top, #f9f9f9, #efefef));
+    *zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#efefef', GradientType=0); // IE 6-9
+  */
+  background-color: #f9f9f9;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f9f9f9), color-stop(100%, #efefef));
+  background-image: -webkit-linear-gradient(top, #f9f9f9, #efefef);
+  background-image: -moz-linear-gradient(top, #f9f9f9, #efefef);
+  background-image: -o-linear-gradient(top, #f9f9f9, #efefef);
+  background-image: -ms-linear-gradient(top, #f9f9f9, #efefef);
+  background-image: linear-gradient(top, #f9f9f9, #efefef);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#efefef', GradientType=0);
 }
-/* End Calendar Only*/
 
 .yui3-skin-sam .yui3-calendar-content .yui3-panel-content {
-    font-size : 12px;
+  font-size: 12px;
 }
-.yui3-skin-sam .yui3-calendar-content .inputEx-Group .inputEx-label,
+
+.yui3-skin-sam .yui3-calendar-content .inputEx-Group {
+  min-width: 160px;
+}
+
+.yui3-skin-sam .yui3-calendar-content .inputEx-Group .inputEx-label {
+  width: 30%;
+}
+
 .yui3-skin-sam .yui3-calendar-content .inputEx-Group input {
-    width : 25%;
+  width: inherit; /* override any fixed width applied (ex: calendar in the datepicker) */
 }
-.yui3-skin-sam .yui3-calendar-content .inputEx-Group .inputEx-label{
-    padding-right : 10%;
-    padding-bottom : 4%;
-}
-.yui3-skin-sam .yui3-calendar-content .yui3-panel{
-   outline : none;
+
+.yui3-skin-sam .yui3-calendar-content .yui3-panel {
+  outline: none;
 }
 .yui3-skin-sam .yui3-calendar-content .inputEx-Group fieldset {
-    padding : 0;
+  padding: 0;
 }
 .yui3-skin-sam .yui3-panel .yui3-widget-bd {
-    padding: 10px 0 0 10px ;
+  padding: 10px 0 0 10px;
 }
-.yui3-panel .yui3-calendar-navplugin-widget{
-     *width : 200px; /* ie only */
+
+.yui3-panel .yui3-calendar-navplugin-widget {
+  width: 200px\9; /* ie <= 8: fixes the width of the header in the panel */
 }
 .yui3-skin-sam .yui3-calendar-content {
-    position: relative;
+  position: relative;
 }

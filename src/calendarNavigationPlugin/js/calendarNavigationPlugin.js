@@ -2,9 +2,29 @@ var pluginName = "calendarNavigationPlugin";
 
 Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [], {
 
-    initializer: function() {
-        this.get("host").get("boundingBox").delegate("click", Y.bind(this.onHeaderClick, this), ".yui3-calendar-header-label");
+    initializer: function () {
+        
+        if (this.get('host').get('rendered')) {
+            this._initHeaders();
+        } else {
+            this.afterHostMethod('renderUI', this._initHeaders);
+        }
+        
     },
+    
+    _initHeaders: function () {
+        
+        var contentBox = this.get("host").get("contentBox"),
+            headers    = contentBox.all('.yui3-calendar-header-label');
+        
+        // add a class an the months' headers (for styling purpose)
+        headers.addClass('yui3-calendar-clickable-header-label');
+        
+        // intercept every click on the headers to display the panel
+        contentBox.delegate("click", Y.bind(this.onHeaderClick, this), '.yui3-calendar-clickable-header-label');
+        
+    },
+    
     /**
      * Prepare the panel
      *
@@ -16,7 +36,7 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
             that = this,
             calendarContentBox, bodyNode, panel, inputexGroup;
 
-        if(!this.panel_container) {
+        if (!this.panel_container) {
             this.panel_container = Y.Node.create('<div class="yui3-calendar-navplugin-widget"></div>');
             calendarContentBox = this.get("host").get("contentBox");
             calendarContentBox.append(this.panel_container);
@@ -79,6 +99,8 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
                     label: strings.year,
                     required: true,
                     showMsg: true,
+                    maxLength: 4,
+                    size: 4,
                     regexp: /^[0-9]{4}$/
                 }]
             });
