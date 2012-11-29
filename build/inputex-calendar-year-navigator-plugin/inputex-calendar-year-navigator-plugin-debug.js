@@ -1,8 +1,6 @@
-YUI.add('inputex-calendarNavigationPlugin', function (Y, NAME) {
+YUI.add('inputex-calendar-year-navigator-plugin', function (Y, NAME) {
 
-var pluginName = "calendarNavigationPlugin";
-
-Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [], {
+Y.Plugin.CalendarYearNavigator = Y.Base.create("CalendarYearNavigator", Y.Plugin.Base, [], {
 
     initializer: function () {
         
@@ -237,7 +235,7 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
          */
         strings: {
             valueFn: function() {
-                return Y.Intl.get("inputex-" + pluginName);
+                return Y.Intl.get("inputex-calendar-year-navigator-plugin");
             }
         },
         /**
@@ -261,7 +259,7 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
      * @type String
      * @static
      */
-    NS: "calNavPlug"
+    NS: "yearNavigator"
 });
 
 }, '@VERSION@', {

@@ -1,5 +1,5 @@
 {
-   "inputex-calendarNavigationPlugin" : {
+   "inputex-calendar-year-navigator-plugin" : {
       "requires": [
          "intl","plugin","panel","inputex-group","inputex-select","inputex-string"
       ],

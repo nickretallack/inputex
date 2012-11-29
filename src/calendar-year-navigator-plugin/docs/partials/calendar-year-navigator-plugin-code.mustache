@@ -1,5 +1,5 @@
 // example 1
-YUI().use('calendar', 'inputex-calendarNavigationPlugin', function(Y) {
+YUI().use('calendar', 'inputex-calendar-year-navigator-plugin', function(Y) {
    
    var calendar = new Y.Calendar({
          contentBox: '#container1',
@@ -8,7 +8,7 @@ YUI().use('calendar', 'inputex-calendarNavigationPlugin', function(Y) {
          showNextMonth: true,
          disabledDatesRule: 'disabled_days',
          // add the plugin to the config
-         plugins: [Y.Plugin.CalendarNavigationPlugin]
+         plugins: [Y.Plugin.CalendarYearNavigator]
    });
    
    calendar.render();
@@ -16,7 +16,7 @@ YUI().use('calendar', 'inputex-calendarNavigationPlugin', function(Y) {
 });
 
 // example 2
-YUI({ lang: 'fr' }).use('calendar', 'inputex-calendarNavigationPlugin', function(Y) {
+YUI({ lang: 'fr' }).use('calendar', 'inputex-calendar-year-navigator-plugin', function(Y) {
    
    var calendar = new Y.Calendar({
          contentBox: '#container2',
@@ -30,12 +30,12 @@ YUI({ lang: 'fr' }).use('calendar', 'inputex-calendarNavigationPlugin', function
    
    // you can also manually plug calendarNavigationPlugin on the instance,
    // before or after the rendering.
-   calendar.plug(Y.Plugin.CalendarNavigationPlugin);
+   calendar.plug(Y.Plugin.CalendarYearNavigator);
    
 });
 
 // example 3
-YUI().use('calendar', 'inputex-calendarNavigationPlugin', function(Y) {
+YUI().use('calendar', 'inputex-calendar-year-navigator-plugin', function(Y) {
    
    Y.CalendarBase.CONTENT_TEMPLATE = Y.CalendarBase.TWO_PANE_TEMPLATE;
    
@@ -53,7 +53,7 @@ YUI().use('calendar', 'inputex-calendarNavigationPlugin', function(Y) {
            }
    });
    
-   calendar.plug(Y.Plugin.CalendarNavigationPlugin);
+   calendar.plug(Y.Plugin.CalendarYearNavigator);
    calendar.render();
    
 });

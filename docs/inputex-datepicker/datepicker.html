@@ -123,12 +123,12 @@ YUI().use('inputex-datepicker', function(Y) {
 
 
 // example 7
-YUI({lang: 'fr'}).use('calendar', 'inputex-calendarNavigationPlugin', 'inputex-calendar-week-number-plugin', 'inputex-datepicker', function(Y) {
+YUI({lang: 'fr'}).use('calendar', 'inputex-calendar-year-navigator-plugin', 'inputex-calendar-week-number-plugin', 'inputex-datepicker', function(Y) {
    
    new Y.inputEx.DatePickerField({
        parentEl: 'container7',
        calendarOpts: {
-           plugins: [Y.Plugin.CalendarNavigationPlugin, Y.Plugin.CalendarWeekNumber]
+           plugins: [Y.Plugin.CalendarYearNavigator, Y.Plugin.CalendarWeekNumber]
        }
    });
    
@@ -194,12 +194,12 @@ YUI({lang: 'fr'}).use('calendar', 'inputex-calendarNavigationPlugin', 'inputex-c
 
 
 &#x2F;&#x2F; example 7
-YUI({lang: &#x27;fr&#x27;}).use(&#x27;calendar&#x27;, &#x27;inputex-calendarNavigationPlugin&#x27;, &#x27;inputex-calendar-week-number-plugin&#x27;, &#x27;inputex-datepicker&#x27;, function(Y) {
+YUI({lang: &#x27;fr&#x27;}).use(&#x27;calendar&#x27;, &#x27;inputex-calendar-year-navigator-plugin&#x27;, &#x27;inputex-calendar-week-number-plugin&#x27;, &#x27;inputex-datepicker&#x27;, function(Y) {
    
    new Y.inputEx.DatePickerField({
        parentEl: &#x27;container7&#x27;,
        calendarOpts: {
-           plugins: [Y.Plugin.CalendarNavigationPlugin, Y.Plugin.CalendarWeekNumber]
+           plugins: [Y.Plugin.CalendarYearNavigator, Y.Plugin.CalendarWeekNumber]
        }
    });
    

@@ -44,12 +44,12 @@ YUI().use('inputex-datepicker', function(Y) {
 
 
 // example 7
-YUI({lang: 'fr'}).use('calendar', 'inputex-calendarNavigationPlugin', 'inputex-calendar-week-number-plugin', 'inputex-datepicker', function(Y) {
+YUI({lang: 'fr'}).use('calendar', 'inputex-calendar-year-navigator-plugin', 'inputex-calendar-week-number-plugin', 'inputex-datepicker', function(Y) {
    
    new Y.inputEx.DatePickerField({
        parentEl: 'container7',
        calendarOpts: {
-           plugins: [Y.Plugin.CalendarNavigationPlugin, Y.Plugin.CalendarWeekNumber]
+           plugins: [Y.Plugin.CalendarYearNavigator, Y.Plugin.CalendarWeekNumber]
        }
    });
    

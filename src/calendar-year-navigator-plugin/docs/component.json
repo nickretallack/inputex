@@ -1,0 +1,22 @@
+{
+   "name": "inputex-calendar-year-navigator-plugin",
+   "displayName": "inputex-calendar-year-navigator-plugin",
+   "description": "inputex-calendar-year-navigator-plugin",
+   "author": "neyric",
+   "tags": [
+      "inputex-calendar-year-navigator-plugin"
+   ],
+   "use": [
+      "intl","plugin","panel","inputex-group","inputex-select","inputex-string"
+   ],
+   "examples": [
+      {
+          "name"       : "calendar-year-navigator-plugin",
+          "displayName": "Navigation by year (and month)",
+          "description": "Add navigation by year and month selector in a Calendar instance.",
+          "modules"    : ["inputex-calendar-year-navigator-plugin"],
+          "tags"       : ["calendar-year-navigator-plugin"],
+          "hideTableOfContents": true
+      }
+   ]
+}

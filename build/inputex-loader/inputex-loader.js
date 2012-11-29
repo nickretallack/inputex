@@ -122,7 +122,7 @@ YUI().use(function(Y) {
         ],
         "skinnable": true
     },
-    "inputex-calendarNavigationPlugin": {
+    "inputex-calendar-year-navigator-plugin": {
         "lang": [
             "en",
             "fr"
