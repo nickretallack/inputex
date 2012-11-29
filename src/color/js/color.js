@@ -59,11 +59,14 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
 
          if (e.newVal) { // show
             // align
-            this.oOverlay.set("align", {node:this.button,  points:[Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL]});
+            this.oOverlay.set("align", {node:this.buttonWrapper,  points:[Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL]});
 
             // Activate outside event handler
             this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {
-               this.oOverlay.hide();
+               // if the target is not the button, hide the overlay
+               if (e.target !== this.button){
+                  this.oOverlay.hide();
+               }
             }, this);
          }
          else { // hide
@@ -108,11 +111,12 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
 	   this.wrapEl.appendChild(this.colorEl);
 
       
-      // Create button
-      // this.button = Y.Node.create("<button>&nbsp;</button>").addClass("inputEx-ColorField-button");
-      this.button = Y.Node.create('<span class="inputEx-ColorField-ButtonWrapper"><button type="button" class="inputEx-ColorField-Button"></button></span>');
-      this.button.appendTo(this.wrapEl);
-
+      // Create button + wrapper
+      this.buttonWrapper = Y.Node.create('<span class="inputEx-ColorField-ButtonWrapper"><button type="button" class="inputEx-ColorField-Button"></button></span>');
+      this.buttonWrapper.appendTo(this.wrapEl);
+      
+      // get a reference to the <button> element
+      this.button = this.buttonWrapper.one('.inputEx-ColorField-Button');
       
       // toggle Menu when clicking on the button
       this.button.on('click',this._toggleOverlay, this, true);
