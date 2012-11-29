@@ -1,0 +1,48 @@
+<div class="intro">
+<p>
+{{description}}
+</p>
+</div>
+
+<div class="example">
+    
+    <h2>Basic example</h2>
+    <div class='demoContainer' id='container1'></div>
+    
+    <h2>Try with another locale (fr)</h2>
+    <div class='demoContainer' id='container2'></div>
+    
+    <h2>Two-pane Calendar</h2>
+    <div class='demoContainer' id='container3'></div>
+    
+    <style>
+        .example th {
+            background: none;
+            color: black;
+            text-transform: none;
+            border: none;
+        }
+    </style>
+    
+<script>
+{{>calendarNavigationPlugin-code}}
+</script>
+
+</div>
+
+<h2>HTML</h2>
+
+```
+<div class='demoContainer' id='container1'></div>
+<div class='demoContainer' id='container2'></div>
+<div class='demoContainer' id='container3'></div>
+```
+
+<h2>JavaScript</h2>
+
+
+<h3>Implementation</h3>
+
+```
+{{>calendarNavigationPlugin-code}}
+```
