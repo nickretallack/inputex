@@ -34,35 +34,39 @@ How to create a datepicker field.
 
 <div class="example">
 
-	<h2>Basic DatePickerField creation</h2>
-	<p>Use the following code to create a basic inputEx DatePickerField.</p>
-	<div class='demoContainer' id='container1'></div>
+    <h2>Basic DatePickerField creation</h2>
+    <p>Use the following code to create a basic inputEx DatePickerField.</p>
+    <div class='demoContainer' id='container1'></div>
 
 
-	<h2>Change DatePickerField date format</h2>
-	<p>Use the following code to select another date format</p>
-	<div class='demoContainer' id='container2'></div>
+    <h2>Change DatePickerField date format</h2>
+    <p>Use the following code to select another date format</p>
+    <div class='demoContainer' id='container2'></div>
 
 
-	<h2>DatePickerField Updated event</h2>
-	<p>Listening for the updated event</p>
-	<div class='demoContainer' id='container3'></div>
+    <h2>DatePickerField Updated event</h2>
+    <p>Listening for the updated event</p>
+    <div class='demoContainer' id='container3'></div>
 
 
-	<h2>Use a string input/output formatting</h2>
-	<p>The setValue/getValue methods will parse/format the dates to the <i>valueFormat</i> option.</p>
-	<div class='demoContainer' id='container4'></div>
+    <h2>Use a string input/output formatting</h2>
+    <p>The setValue/getValue methods will parse/format the dates to the <i>valueFormat</i> option.</p>
+    <div class='demoContainer' id='container4'></div>
 
 
-	<h2>Disable DatePicker</h2>
-	<p>Disable method</p>
-	<div class='demoContainer' id='container5'></div>
+    <h2>Disable DatePicker</h2>
+    <p>Disable method</p>
+    <div class='demoContainer' id='container5'></div>
 
 
-	<h2>Disable readonly option</h2>
-	<p>If you want to let users enter the date manually</p>
-	<div class='demoContainer' id='container6'></div>
+    <h2>Disable readonly option</h2>
+    <p>If you want to let users enter the date manually</p>
+    <div class='demoContainer' id='container6'></div>
 
+    <h2>Real life example</h2>
+    <p>Customize the calendar with two plugins (show week numbers, add year navigation), in the french locale.</p>
+    <div class='demoContainer' id='container7'></div>
+    
     <style>
         .example th {
             background: none;
@@ -74,49 +78,62 @@ How to create a datepicker field.
 
 <script>
 YUI().use('inputex-datepicker', function(Y) {
-
-
-	// Example 1
-	new Y.inputEx.DatePickerField({parentEl: 'container1'});
-	
-	
-	// Example 2
-	new Y.inputEx.DatePickerField({parentEl: 'container2', value: new Date(1984,0,6), dateFormat: 'd/m/Y'});
-	
-	
-	// Example 3
-	var datepicker = new Y.inputEx.DatePickerField({parentEl: 'container3', value: new Date(), dateFormat: 'd/m/Y'});
-	datepicker.on('updated', function(value) {
-		Y.one('#container3').appendChild( Y.inputEx.cn('div',null,null, value) );
-	});
-	
-	// Example 4
-	var datepicker2 = new Y.inputEx.DatePickerField({parentEl: 'container4', value: new Date(), valueFormat: 'Y-m-d', value: '2009-01-01'});
-	datepicker2.on('updated', function(value) {
-		Y.one('#container4').appendChild( Y.inputEx.cn('div',null,null, value) );
-	});
-	
-	
-	// Example 5
-	var f = new Y.inputEx.DatePickerField({parentEl: 'container5'});
-			
-	var exampleDiv = Y.one('#container5');
-			
-	var button1 = Y.inputEx.cn('button', null, null, 'disable()');
-	exampleDiv.appendChild(button1); 
-	Y.one(button1).on('click', function() { f.disable(); });
-
-	var button2 = Y.inputEx.cn('button', null, null, 'enable()');
-	exampleDiv.appendChild(button2); 
-	Y.one(button2).on('click', function() { f.enable(); });
-	
-	
-	
-	// Example 6
-	new Y.inputEx.DatePickerField({parentEl: 'container6', readonly: false, showMsg: true});
-	
-
+    
+    // Example 1
+    new Y.inputEx.DatePickerField({parentEl: 'container1'});
+    
+    
+    // Example 2
+    new Y.inputEx.DatePickerField({parentEl: 'container2', value: new Date(1984,0,6), dateFormat: 'd/m/Y'});
+    
+    
+    // Example 3
+    var datepicker = new Y.inputEx.DatePickerField({parentEl: 'container3', value: new Date(), dateFormat: 'd/m/Y'});
+    datepicker.on('updated', function(value) {
+        Y.one('#container3').appendChild( Y.inputEx.cn('div',null,null, value) );
+    });
+    
+    
+    // Example 4
+    var datepicker2 = new Y.inputEx.DatePickerField({parentEl: 'container4', value: new Date(), valueFormat: 'Y-m-d', value: '2009-01-01'});
+    datepicker2.on('updated', function(value) {
+        Y.one('#container4').appendChild( Y.inputEx.cn('div',null,null, value) );
+    });
+    
+    
+    // Example 5
+    var f = new Y.inputEx.DatePickerField({parentEl: 'container5'});
+    
+    var exampleDiv = Y.one('#container5');
+    
+    var button1 = Y.inputEx.cn('button', null, null, 'disable()');
+    exampleDiv.appendChild(button1); 
+    Y.one(button1).on('click', function() { f.disable(); });
+    
+    var button2 = Y.inputEx.cn('button', null, null, 'enable()');
+    exampleDiv.appendChild(button2); 
+    Y.one(button2).on('click', function() { f.enable(); });
+    
+    
+    // Example 6
+    new Y.inputEx.DatePickerField({parentEl: 'container6', readonly: false, showMsg: true});
+    
 });
+
+
+
+// example 7
+YUI({lang: 'fr'}).use('calendar', 'inputex-calendarNavigationPlugin', 'inputex-calendar-week-number-plugin', 'inputex-datepicker', function(Y) {
+   
+   new Y.inputEx.DatePickerField({
+       parentEl: 'container7',
+       calendarOpts: {
+           plugins: [Y.Plugin.CalendarNavigationPlugin, Y.Plugin.CalendarWeekNumber]
+       }
+   });
+   
+});
+
 </script>
 
 </div>
@@ -132,48 +149,60 @@ YUI().use('inputex-datepicker', function(Y) {
 <h3>Implementation</h3>
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-datepicker&#x27;, function(Y) {
+    
+    &#x2F;&#x2F; Example 1
+    new Y.inputEx.DatePickerField({parentEl: &#x27;container1&#x27;});
+    
+    
+    &#x2F;&#x2F; Example 2
+    new Y.inputEx.DatePickerField({parentEl: &#x27;container2&#x27;, value: new Date(1984,0,6), dateFormat: &#x27;d&#x2F;m&#x2F;Y&#x27;});
+    
+    
+    &#x2F;&#x2F; Example 3
+    var datepicker = new Y.inputEx.DatePickerField({parentEl: &#x27;container3&#x27;, value: new Date(), dateFormat: &#x27;d&#x2F;m&#x2F;Y&#x27;});
+    datepicker.on(&#x27;updated&#x27;, function(value) {
+        Y.one(&#x27;#container3&#x27;).appendChild( Y.inputEx.cn(&#x27;div&#x27;,null,null, value) );
+    });
+    
+    
+    &#x2F;&#x2F; Example 4
+    var datepicker2 = new Y.inputEx.DatePickerField({parentEl: &#x27;container4&#x27;, value: new Date(), valueFormat: &#x27;Y-m-d&#x27;, value: &#x27;2009-01-01&#x27;});
+    datepicker2.on(&#x27;updated&#x27;, function(value) {
+        Y.one(&#x27;#container4&#x27;).appendChild( Y.inputEx.cn(&#x27;div&#x27;,null,null, value) );
+    });
+    
+    
+    &#x2F;&#x2F; Example 5
+    var f = new Y.inputEx.DatePickerField({parentEl: &#x27;container5&#x27;});
+    
+    var exampleDiv = Y.one(&#x27;#container5&#x27;);
+    
+    var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;disable()&#x27;);
+    exampleDiv.appendChild(button1); 
+    Y.one(button1).on(&#x27;click&#x27;, function() { f.disable(); });
+    
+    var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;enable()&#x27;);
+    exampleDiv.appendChild(button2); 
+    Y.one(button2).on(&#x27;click&#x27;, function() { f.enable(); });
+    
+    
+    &#x2F;&#x2F; Example 6
+    new Y.inputEx.DatePickerField({parentEl: &#x27;container6&#x27;, readonly: false, showMsg: true});
+    
+});
 
 
-	&#x2F;&#x2F; Example 1
-	new Y.inputEx.DatePickerField({parentEl: &#x27;container1&#x27;});
-	
-	
-	&#x2F;&#x2F; Example 2
-	new Y.inputEx.DatePickerField({parentEl: &#x27;container2&#x27;, value: new Date(1984,0,6), dateFormat: &#x27;d&#x2F;m&#x2F;Y&#x27;});
-	
-	
-	&#x2F;&#x2F; Example 3
-	var datepicker = new Y.inputEx.DatePickerField({parentEl: &#x27;container3&#x27;, value: new Date(), dateFormat: &#x27;d&#x2F;m&#x2F;Y&#x27;});
-	datepicker.on(&#x27;updated&#x27;, function(value) {
-		Y.one(&#x27;#container3&#x27;).appendChild( Y.inputEx.cn(&#x27;div&#x27;,null,null, value) );
-	});
-	
-	&#x2F;&#x2F; Example 4
-	var datepicker2 = new Y.inputEx.DatePickerField({parentEl: &#x27;container4&#x27;, value: new Date(), valueFormat: &#x27;Y-m-d&#x27;, value: &#x27;2009-01-01&#x27;});
-	datepicker2.on(&#x27;updated&#x27;, function(value) {
-		Y.one(&#x27;#container4&#x27;).appendChild( Y.inputEx.cn(&#x27;div&#x27;,null,null, value) );
-	});
-	
-	
-	&#x2F;&#x2F; Example 5
-	var f = new Y.inputEx.DatePickerField({parentEl: &#x27;container5&#x27;});
-			
-	var exampleDiv = Y.one(&#x27;#container5&#x27;);
-			
-	var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;disable()&#x27;);
-	exampleDiv.appendChild(button1); 
-	Y.one(button1).on(&#x27;click&#x27;, function() { f.disable(); });
 
-	var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;enable()&#x27;);
-	exampleDiv.appendChild(button2); 
-	Y.one(button2).on(&#x27;click&#x27;, function() { f.enable(); });
-	
-	
-	
-	&#x2F;&#x2F; Example 6
-	new Y.inputEx.DatePickerField({parentEl: &#x27;container6&#x27;, readonly: false, showMsg: true});
-	
-
+&#x2F;&#x2F; example 7
+YUI({lang: &#x27;fr&#x27;}).use(&#x27;calendar&#x27;, &#x27;inputex-calendarNavigationPlugin&#x27;, &#x27;inputex-calendar-week-number-plugin&#x27;, &#x27;inputex-datepicker&#x27;, function(Y) {
+   
+   new Y.inputEx.DatePickerField({
+       parentEl: &#x27;container7&#x27;,
+       calendarOpts: {
+           plugins: [Y.Plugin.CalendarNavigationPlugin, Y.Plugin.CalendarWeekNumber]
+       }
+   });
+   
 });</pre>
 
 </div>

@@ -203,16 +203,6 @@ YUI().use(function(Y) {
     },
     "inputex-datepicker": {
         "ix_provides": "datepicker",
-        "lang": [
-            "en",
-            "fr",
-            "de",
-            "ca",
-            "es",
-            "fr",
-            "it",
-            "nl"
-        ],
         "requires": [
             "inputex-date",
             "event-outside",

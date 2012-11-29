@@ -8,16 +8,6 @@
 		  "calendar"
 		],
 		"ix_provides": "datepicker",
-      "skinnable" : true,
-      "lang": [
-         "en",
-         "fr",
-         "de",
-         "ca",
-         "es",
-         "fr",
-         "it",
-         "nl"
-      ]
+      "skinnable" : true
 	}
 }

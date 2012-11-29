@@ -12,7 +12,7 @@ YUI.add('inputex-datepicker', function (Y, NAME) {
  * @constructor
  * @param {Object} options No added option for this field (same as DateField)
  * <ul>
- *   <li>calendar: yui calendar configuration object</li>
+ *   <li>calendarOpts: yui calendar configuration object</li>
  *   <li>zIndex: calendar overlay zIndex</li>
  * </ul>
  */
@@ -20,7 +20,12 @@ inputEx.DatePickerField = function(options) {
    inputEx.DatePickerField.superclass.constructor.call(this,options);
 };
 
+
 Y.extend(inputEx.DatePickerField, inputEx.DateField, {
+   
+   // in the prototype so that it can be overridden at the "class" level
+   defaultCalendarOpts: {},
+   
    /**
     * Set the default date picker CSS classes
     * @method setOptions
@@ -30,17 +35,14 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
       inputEx.DatePickerField.superclass.setOptions.call(this, options);
 
-      // I18N
-      this.messages = Y.mix(this.messages,Y.Intl.get("inputex-datepicker"));
-
       // Overwrite default options
       this.options.className = options.className ? options.className : 'inputEx-Field inputEx-DateField inputEx-PickerField inputEx-DatePickerField';
 
       this.options.readonly = lang.isUndefined(options.readonly) ? true : options.readonly;
 
       // Added options
-      this.options.calendar = options.calendar || this.messages.defaultCalendarOpts;
-      this.options.zIndex   = options.zIndex || 4;
+      this.options.calendarOpts = options.calendarOpts || this.defaultCalendarOpts;
+      this.options.zIndex       = options.zIndex || 4;
    },
 
    /**
@@ -147,7 +149,7 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
          date: new Date()
       },
 
-      finalCalendarOptions = Y.mix(this.options.calendar, localCalendarOptions);
+      finalCalendarOptions = Y.mix(this.options.calendarOpts, localCalendarOptions);
 
       this.calendar = new Y.Calendar(finalCalendarOptions);
       if(finalCalendarOptions.customRenderer){
@@ -238,8 +240,6 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
    }
 
 });
-//
-// this.messages.defaultCalendarOpts = { navigator: true };
 
 // Register this class as "datepicker" type
 inputEx.registerType("datepicker", inputEx.DatePickerField);
@@ -254,15 +254,5 @@ inputEx.registerType("datepicker", inputEx.DatePickerField);
         "calendar"
     ],
     "ix_provides": "datepicker",
-    "skinnable": true,
-    "lang": [
-        "en",
-        "fr",
-        "de",
-        "ca",
-        "es",
-        "fr",
-        "it",
-        "nl"
-    ]
+    "skinnable": true
 });

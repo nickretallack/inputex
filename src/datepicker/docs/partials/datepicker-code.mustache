@@ -1,44 +1,56 @@
 YUI().use('inputex-datepicker', function(Y) {
+    
+    // Example 1
+    new Y.inputEx.DatePickerField({parentEl: 'container1'});
+    
+    
+    // Example 2
+    new Y.inputEx.DatePickerField({parentEl: 'container2', value: new Date(1984,0,6), dateFormat: 'd/m/Y'});
+    
+    
+    // Example 3
+    var datepicker = new Y.inputEx.DatePickerField({parentEl: 'container3', value: new Date(), dateFormat: 'd/m/Y'});
+    datepicker.on('updated', function(value) {
+        Y.one('#container3').appendChild( Y.inputEx.cn('div',null,null, value) );
+    });
+    
+    
+    // Example 4
+    var datepicker2 = new Y.inputEx.DatePickerField({parentEl: 'container4', value: new Date(), valueFormat: 'Y-m-d', value: '2009-01-01'});
+    datepicker2.on('updated', function(value) {
+        Y.one('#container4').appendChild( Y.inputEx.cn('div',null,null, value) );
+    });
+    
+    
+    // Example 5
+    var f = new Y.inputEx.DatePickerField({parentEl: 'container5'});
+    
+    var exampleDiv = Y.one('#container5');
+    
+    var button1 = Y.inputEx.cn('button', null, null, 'disable()');
+    exampleDiv.appendChild(button1); 
+    Y.one(button1).on('click', function() { f.disable(); });
+    
+    var button2 = Y.inputEx.cn('button', null, null, 'enable()');
+    exampleDiv.appendChild(button2); 
+    Y.one(button2).on('click', function() { f.enable(); });
+    
+    
+    // Example 6
+    new Y.inputEx.DatePickerField({parentEl: 'container6', readonly: false, showMsg: true});
+    
+});
 
 
-	// Example 1
-	new Y.inputEx.DatePickerField({parentEl: 'container1'});
-	
-	
-	// Example 2
-	new Y.inputEx.DatePickerField({parentEl: 'container2', value: new Date(1984,0,6), dateFormat: 'd/m/Y'});
-	
-	
-	// Example 3
-	var datepicker = new Y.inputEx.DatePickerField({parentEl: 'container3', value: new Date(), dateFormat: 'd/m/Y'});
-	datepicker.on('updated', function(value) {
-		Y.one('#container3').appendChild( Y.inputEx.cn('div',null,null, value) );
-	});
-	
-	// Example 4
-	var datepicker2 = new Y.inputEx.DatePickerField({parentEl: 'container4', value: new Date(), valueFormat: 'Y-m-d', value: '2009-01-01'});
-	datepicker2.on('updated', function(value) {
-		Y.one('#container4').appendChild( Y.inputEx.cn('div',null,null, value) );
-	});
-	
-	
-	// Example 5
-	var f = new Y.inputEx.DatePickerField({parentEl: 'container5'});
-			
-	var exampleDiv = Y.one('#container5');
-			
-	var button1 = Y.inputEx.cn('button', null, null, 'disable()');
-	exampleDiv.appendChild(button1); 
-	Y.one(button1).on('click', function() { f.disable(); });
 
-	var button2 = Y.inputEx.cn('button', null, null, 'enable()');
-	exampleDiv.appendChild(button2); 
-	Y.one(button2).on('click', function() { f.enable(); });
-	
-	
-	
-	// Example 6
-	new Y.inputEx.DatePickerField({parentEl: 'container6', readonly: false, showMsg: true});
-	
-
+// example 7
+YUI({lang: 'fr'}).use('calendar', 'inputex-calendarNavigationPlugin', 'inputex-calendar-week-number-plugin', 'inputex-datepicker', function(Y) {
+   
+   new Y.inputEx.DatePickerField({
+       parentEl: 'container7',
+       calendarOpts: {
+           plugins: [Y.Plugin.CalendarNavigationPlugin, Y.Plugin.CalendarWeekNumber]
+       }
+   });
+   
 });
