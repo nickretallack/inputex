@@ -130,12 +130,10 @@ YUI().use(function(Y) {
         "requires": [
             "intl",
             "plugin",
-            "inputex-panel",
+            "panel",
             "inputex-group",
             "inputex-select",
-            "inputex-string",
-            "align-plugin",
-            "substitute"
+            "inputex-string"
         ],
         "skinnable": true
     },
