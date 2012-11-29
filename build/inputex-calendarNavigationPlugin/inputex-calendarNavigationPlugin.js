@@ -14,7 +14,7 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
      */
     onHeaderClick: function() {
 
-        var strings = this.get("string"),
+        var strings = this.get("strings"),
             that = this,
             calendarContentBox, bodyNode, panel, inputexGroup;
 
@@ -171,7 +171,7 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
     _prepareMonthsData: function() {
         
         var i = 0,
-            month, listOfMonths = this.get("string").monthsList,
+            month, listOfMonths = this.get("strings").monthsList,
             monthsField = [];
             
         for (i = 0; i < 12; i++) {
@@ -210,10 +210,10 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
         /**
          * I18N
          *
-         * @attribute string
+         * @attribute strings
          * @type Object
          */
-        string: {
+        strings: {
             valueFn: function() {
                 return Y.Intl.get("inputex-" + pluginName);
             }
@@ -227,7 +227,7 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
         /**
          * represents the inputex group inside the panel
          *
-         * @attribute string
+         * @attribute inputexGroup
          * @type Object
          */
         inputexGroup: {}
