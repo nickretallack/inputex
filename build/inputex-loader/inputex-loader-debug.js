@@ -122,7 +122,8 @@ YUI().use(function(Y) {
             "inputex-group",
             "inputex-select",
             "inputex-string",
-            "align-plugin"
+            "align-plugin",
+            "substitute"
         ],
         "skinnable": true
     },
