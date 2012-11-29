@@ -112,7 +112,7 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
       
       // Create button
       // this.button = Y.Node.create("<button>&nbsp;</button>").addClass("inputEx-ColorField-button");
-      this.button = Y.Node.create('<span class="inputEx-ColorField-ButtonWrapper"><span class="first-child"><button type="button" class="inputEx-ColorField-Button"></button></span></span>');
+      this.button = Y.Node.create('<span class="inputEx-ColorField-ButtonWrapper"><button type="button" class="inputEx-ColorField-Button"></button></span>');
       this.button.appendTo(this.wrapEl);
 
       

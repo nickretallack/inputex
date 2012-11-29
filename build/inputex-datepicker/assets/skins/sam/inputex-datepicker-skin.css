@@ -6,10 +6,7 @@
    background: none;
    padding-left: 0;
 }
-.inputEx-DatePicker-ButtonWrapper {
-  line-height:0;
-  vertical-align: top; /* for all ff */
-}
+
 .inputEx-PickerField .yui3-overlay {
    -moz-box-shadow:    2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
    -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
@@ -20,22 +17,58 @@
    -moz-border-radius: 0;
    -webkit-border-radius: 0;
    border-radius: 0;
-    border-color: #BBB;
+   border-color: #BBB;
 }
 
 .inputEx-DatePicker-ButtonWrapper {
-  display:inline-block;
-  margin:auto 0.25em;
-  border-style:solid;
-  border-color:#808080;
-  border-width:1px 0;
+  line-height: 0;
+  vertical-align: top; /* for all FF */
+  display: -moz-inline-box; /* for FF2 */
+  display: inline-block;
+  margin: auto 0.25em;
+  /* @include box-shadow(inset 0 1px 0 0 #ffffff); */
+  -moz-box-shadow: inset 0 1px 0 0 #ffffff;
+  -webkit-box-shadow: inset 0 1px 0 0 #ffffff;
+  -o-box-shadow: inset 0 1px 0 0 #ffffff;
+  box-shadow: inset 0 1px 0 0 #ffffff;
+  /* @include border-radius(2px); */
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -khtml-border-radius: 2px;
+  border-radius: 2px;
+  border:1px solid #aaaaaa;
+  /*
+    @include background-image(linear-gradient(top, #f9f9f9, #efefef));
+    *zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#efefef', GradientType=0); // IE 6-9
+  */
+  background-color: #f9f9f9;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f9f9f9), color-stop(100%, #efefef));
+  background-image: -webkit-linear-gradient(top, #f9f9f9, #efefef);
+  background-image: -moz-linear-gradient(top, #f9f9f9, #efefef);
+  background-image: -o-linear-gradient(top, #f9f9f9, #efefef);
+  background-image: -ms-linear-gradient(top, #f9f9f9, #efefef);
+  background-image: linear-gradient(top, #f9f9f9, #efefef);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#efefef', GradientType=0);
 }
-
-.inputEx-DatePicker-ButtonWrapper .first-child {
-  display:block;
-  border-style:solid;
-  border-color:#808080;
-  border-width:0 1px;
+.inputEx-DatePicker-ButtonWrapper:hover {
+  /*
+    @include background-image(linear-gradient(top, #f9f9f9, #efefef));
+    *zoom: 1;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#efefef', GradientType=0); // IE 6-9
+  */
+  background-color: #efefef;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #efefef), color-stop(100%, #f9f9f9));
+  background-image: -webkit-linear-gradient(top, #efefef, #f9f9f9);
+  background-image: -moz-linear-gradient(top, #efefef, #f9f9f9);
+  background-image: -o-linear-gradient(top, #efefef, #f9f9f9);
+  background-image: -ms-linear-gradient(top, #efefef, #f9f9f9);
+  background-image: linear-gradient(top, #efefef, #f9f9f9);
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#efefef', endColorstr='#f9f9f9', GradientType=0);
 }
 
 .inputEx-DatePicker-Button {

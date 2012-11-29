@@ -113,10 +113,8 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
       // create button + wrapper
       this.buttonWrapper = Y.Node.create('<span class="inputEx-DatePicker-ButtonWrapper">'+
-                                            '<span class="first-child"> '+
-                                               '<button type="button" class="inputEx-DatePicker-Button">'+
-                                               '</button>'+
-                                            '</span>'+
+                                             '<button type="button" class="inputEx-DatePicker-Button">'+
+                                             '</button>'+
                                          '</span>');
       
       this.buttonWrapper.appendTo(this.wrapEl);
