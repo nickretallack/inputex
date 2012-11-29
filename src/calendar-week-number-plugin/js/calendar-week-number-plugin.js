@@ -101,26 +101,42 @@ Y.extend(CalendarWeekNumber, Y.Plugin.Base, {
     
     _rerenderWeekNumbers: function (newDate, pane) {
         
-        var plugin = this,
-            host   = plugin.get('host');
+        var plugin       = this,
+            host         = plugin.get('host'),
+            weekDayCells = pane.all(".yui3-calendar-week-number"),
+            startDay     = host.get('strings.first_weekday'),
+            workingDate  = newDate,
+            preMonthDays, weekNumber, weekNumberStr;
             
+        // some computation to get the first date displayed (maybe from previous month)
+        preMonthDays = workingDate.getDay();
+        
+        if (startDay > 0) {
+            preMonthDays -= startDay;
+        }
+        
+        if (preMonthDays < 0) {
+            preMonthDays += 7;
+        }
+        
+        workingDate = Y.Date.addDays(workingDate, -preMonthDays);
+        
         // Hide the pane before making DOM changes to speed them up
         // NOTE: will be made visible again by _rerenderCalendarPane
         pane.setStyle("visibility", "hidden");
         
-        var weekDayCells = pane.all(".yui3-calendar-week-number"),
-            weekNumber   = plugin.getWeekNumber(newDate, host.get('strings.first_weekday'), plugin.get('strings.week_one_jan_date')),
-            weekNumberStr;
-        
+        // iterate over weekDay cells to fill them
         weekDayCells.each(function () {
+            
+            weekNumber = plugin.getWeekNumber(workingDate, startDay, plugin.get('strings.week_one_jan_date'));
             
             // format week number on 2 chars
             weekNumberStr = (weekNumber < 10 ? "&nbsp;" : "") + weekNumber;
             
             this.set('innerHTML', weekNumberStr);
             
-            // increment week number
-            weekNumber = (weekNumber % 52) + 1;
+            // next date
+            workingDate = Y.Date.addDays(workingDate, 7);
         });
         
     },
