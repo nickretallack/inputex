@@ -33,11 +33,28 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
                 visible: false,
                 centered: calendarContentBox,
                 modal: true,
-                maskNode: this.panel_container,
-                // hideOn
-                // override the default behavior which is to hide the panel with the esc key
-                // because some problem on ie7
-                hideOn: [{}],
+                // strict policy of panel hiding because the panel's mask can't
+                // be shared between several instances of Calendar (due to the
+                // way WidgetModality extension is implemented).
+                hideOn: [
+                    // hide on 'esc' key
+                    {
+                       node: Y.one('document'),
+                       eventName: 'key',
+                       keyCode: 'esc'
+                    },
+                    // hide when mousedown or mouseup on anything outside the calendar
+                    {
+                       node: this.get("host").get("boundingBox"), // (default is panel's boundingBox if node not provided)
+                       
+                       eventName: [
+                          'mousedownoutside',
+                          // sometimes redundant with 'mousedownoutside', but useful when
+                          // 'mousedown' is caught and default behavior is prevented...
+                          'mouseupoutside'
+                       ]
+                    }
+                ],
                 buttons: [{
                     value: strings.ok,
                     section: Y.WidgetStdMod.FOOTER,
