@@ -64,8 +64,7 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
                     label: strings.year,
                     required: true,
                     showMsg: true,
-                    regexp: /^[0-9]{4}$/,
-                    value: this.get("host").get("date").getFullYear()
+                    regexp: /^[0-9]{4}$/
                 }]
             });
 
@@ -139,6 +138,11 @@ Y.Plugin.CalendarNavigationPlugin = Y.Base.create(pluginName, Y.Plugin.Base, [],
      * @method showPanel
      */
     showPanel: function() {
+        var date = this.get("host").get("date");
+        this.get("inputexGroup").setValue({
+           month: date.getMonth(),
+           year: date.getFullYear()
+        });
         this.get("panel").show();
     },
 
