@@ -7,6 +7,7 @@
 }
 
 .yui3-calendar .yui3-calendar-content .yui3-calendar-clickable-header-label:hover {
+  cursor: pointer;
   border-color: #A0A0A0;
   /*
     @include background-image(linear-gradient(top, #f9f9f9, #efefef));
