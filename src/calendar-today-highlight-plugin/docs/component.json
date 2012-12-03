@@ -1,0 +1,24 @@
+{
+   "name": "inputex-calendar-today-highlight-plugin",
+   "displayName": "inputex-calendar-today-highlight-plugin",
+   "description": "inputex-calendar-today-highlight-plugin",
+   "author": "neyric",
+   "tags": [
+      "inputex-calendar-today-highlight-plugin"
+   ],
+   "use": [
+      "plugin",
+      "calendar",
+      "datatype-date-math"
+   ],
+   "examples": [
+      {
+          "name"       : "calendar-today-highlight-plugin",
+          "displayName": "Add a class to style today's cell",
+          "description": "Add a class to style today's cell.",
+          "modules"    : ["inputex-calendar-today-highlight-plugin"],
+          "tags"       : ["calendar-today-highlight-plugin"],
+          "hideTableOfContents": true
+      }
+   ]
+}

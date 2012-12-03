@@ -1,0 +1,43 @@
+<div class="intro">
+<p>
+{{description}}
+</p>
+</div>
+
+<div class="example">
+    
+    <h2>Basic example</h2>
+    <p>Display today's cell in red.</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    <style>
+        .example th {
+            background: none;
+            color: black;
+            text-transform: none;
+            border: none;
+        }
+    </style>
+    
+<script>
+{{>calendar-today-highlight-plugin-code}}
+</script>
+
+</div>
+
+<h2>HTML</h2>
+
+```
+<div class='demoContainer' id='container1'></div>
+<div class='demoContainer' id='container2'></div>
+<div class='demoContainer' id='container3'></div>
+```
+
+<h2>JavaScript</h2>
+
+
+<h3>Implementation</h3>
+
+```
+{{>calendar-today-highlight-plugin-code}}
+```

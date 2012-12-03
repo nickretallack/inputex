@@ -1,0 +1,10 @@
+{
+   "name" : "inputex-calendar-today-highlight-plugin",
+   "builds" : {
+      "inputex-calendar-today-highlight-plugin" : {
+         "jsfiles" : [
+            "calendar-today-highlight-plugin.js"
+         ]
+      }
+   }
+}

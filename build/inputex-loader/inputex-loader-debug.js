@@ -110,6 +110,14 @@ YUI().use(function(Y) {
             "inputex"
         ]
     },
+    "inputex-calendar-today-highlight-plugin": {
+        "requires": [
+            "plugin",
+            "calendar",
+            "datatype-date-math"
+        ],
+        "skinnable": true
+    },
     "inputex-calendar-week-number-plugin": {
         "lang": [
             "en",
