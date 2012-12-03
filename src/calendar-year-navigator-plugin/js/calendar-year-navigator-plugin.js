@@ -92,7 +92,6 @@ Y.Plugin.CalendarYearNavigator = Y.Base.create("CalendarYearNavigator", Y.Plugin
                     label: strings.month,
                     choices: this._prepareMonthsData()
                 }, {
-                    className: "select-year",
                     name: "year",
                     label: strings.year,
                     required: true,

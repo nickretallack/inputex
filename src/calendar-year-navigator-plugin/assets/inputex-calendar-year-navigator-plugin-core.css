@@ -47,13 +47,12 @@
 .yui3-skin-sam .yui3-calendar-content .inputEx-Group fieldset {
   padding: 0;
 }
-.yui3-skin-sam .yui3-panel .yui3-widget-bd {
-  padding: 10px 0 0 10px;
-}
 
 .yui3-panel .yui3-calendar-navplugin-widget {
   width: 200px\9; /* ie <= 8: fixes the width of the header in the panel */
 }
+
+/* required for the model mask to be rendered over the calendar */
 .yui3-skin-sam .yui3-calendar-content {
   position: relative;
 }
