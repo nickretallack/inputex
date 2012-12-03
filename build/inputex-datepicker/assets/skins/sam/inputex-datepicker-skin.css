@@ -20,6 +20,10 @@
    border-color: #BBB;
 }
 
+.yui3-skin-sam .inputEx-DatePickerField .yui3-calendar {
+   *+width: 310px; /* IE7 only */
+}
+
 .inputEx-DatePicker-ButtonWrapper {
   line-height: 0;
   vertical-align: top; /* for all FF */
