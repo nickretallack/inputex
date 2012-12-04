@@ -54,11 +54,13 @@ Y.extend(CalendarWeekNumber, Y.Plugin.Base, {
         if (!host.get('rendered')) {
             
             this.afterHostMethod('renderUI', function () {
+                host.get('boundingBox').addClass('yui3-calendar-with-week-numbers');
                 this._initWeekNumbers();
                 host._afterDateChange();
             });
             
         } else {
+            host.get('boundingBox').addClass('yui3-calendar-with-week-numbers');
             this._initWeekNumbers();
             host._afterDateChange();
         }
@@ -84,6 +86,8 @@ Y.extend(CalendarWeekNumber, Y.Plugin.Base, {
                 pane.all('.yui3-calendar-week-number-spacer').remove();
                 pane.all('.yui3-calendar-week-number').remove();
             });
+            
+            host.get('boundingBox').removeClass('yui3-calendar-with-week-numbers');
         }
     },
     

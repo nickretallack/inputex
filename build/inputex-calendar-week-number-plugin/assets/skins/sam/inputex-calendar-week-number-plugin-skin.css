@@ -1,4 +1,4 @@
-.yui3-calendar-grid .yui3-calendar-week-number {
+.yui3-skin-sam .yui3-calendar-grid .yui3-calendar-week-number {
   color: #A6A6A6;
   font-size: 85%;
   font-style: normal;
@@ -7,3 +7,7 @@
   text-align: right;
   padding: 8px 8px 5px;
 }
+
+/* remove left margin on right grid in two-pane / three-pane calendars */
+.yui3-skin-sam .yui3-calendar-with-week-numbers .yui3-calendar-left-grid { margin-right: 0.5em; }
+.yui3-skin-sam .yui3-calendar-with-week-numbers .yui3-calendar-right-grid { margin-left: 0.5em; }
