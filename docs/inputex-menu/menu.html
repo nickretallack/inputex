@@ -55,226 +55,251 @@ How to create a menu.
 
    
 <script>
-YUI().use('inputex-menu', function(Y){
-   
+YUI({filter: 'raw'}).use('inputex-menu', function(Y){
 
-   // Example 1
+// Trick to make huge menus !
+function makeLonger (factor, items) {
+   var result = [],
+       addText = function (node) {
+          node.text += ' ' + i;
+          return node;
+       };
 
-         var menuItems = [
+   for (var i = 1; i <= factor; i++) {
+      for(var j = 0; j < items.length; j++) {
+         result.push(Y.mix(items[j], {text: items[j] + ' ' + i}));
+      }
+   }
+   return result;
+}
+
+// Example 1
+
+var menuItems = makeLonger(15, [
+   {
+      text:'America',
+      submenu:{
+         itemdata: makeLonger(6, [
+            {text:'United States of America',value:'Us'},
+            {text:'Canada',value:'Ca'}
+         ])
+      }
+   },
+   {
+      text:'Europe',
+      submenu:{
+         itemdata: makeLonger(10, [
             {
-               text:'America',
+               text:'Western Europe',
+               submenu:{
+                  itemdata: makeLonger(10, [
+                     {text:'France',value:'Fr'},
+                     {text:'United Kingdom',value:'Uk'},
+                     {text:'Germany',value:'De'}
+                  ])
+               }
+            },
+            {
+               text:'Eastern Europe',
+               submenu: {
+                  itemdata: makeLonger(20, [
+                     {text:'Poland',value:'Pl'},
+                     {text:'Czech Republic',value:'Cz'},
+                     {text:'Slovakia',value:'Sk'}
+                  ])
+               }
+            }
+         ])
+      }
+   },
+   {
+      text:'Africa',
+      submenu:{
+         itemdata: makeLonger(40, [
+            {text:'Senegal',value:'Sn'},
+            {text:'Madagascar',value:'Mg'}
+         ])
+      }
+   },
+   {
+      text:'Ajouter / Modifier une prestation WTF',
+      submenu:{
+         itemdata: makeLonger(40, [
+            {text:'Senegal',value:'Sn'},
+            {text:'Madagascar',value:'Mg'}
+         ])
+      }
+   }
+]);
+
+new Y.inputEx.MenuField({
+   parentEl: 'container1',
+   name: 'country',
+   label: 'Your Country:',
+   menuItems: menuItems
+});
+
+// Example 2
+
+var menuItems2 = [
+   {
+      text:'America',
+      submenu:{
+         itemdata:[
+            {text:'United States of America',value:'Us'},
+            {text:'Canada',value:'Ca'}
+         ]
+      }
+   },
+   {
+      text:'Europe',
+      submenu:{
+         itemdata:[
+            {
+               text:'Western Europe',
                submenu:{
                   itemdata:[
-                     {text:'United States of America',value:'Us'},
-                     {text:'Canada',value:'Ca'}
+                     {text:'France',value:'Fr'},
+                     {text:'United Kingdom',value:'Uk'},
+                     {text:'Germany',value:'De'}
                   ]
                }
             },
             {
-               text:'Europe',
+               text:'Eastern Europe',
                submenu:{
                   itemdata:[
-                     {
-                        text:'Western Europe',
-                        submenu:{
-                           itemdata:[
-                              {text:'France',value:'Fr'},
-                              {text:'United Kingdom',value:'Uk'},
-                              {text:'Germany',value:'De'}
-                           ]
-                        }
-                     },
-                     {
-                        text:'Eastern Europe',
-                        submenu:{
-                           itemdata:[
-                              {text:'Poland',value:'Pl'},
-                              {text:'Czech Republic',value:'Cz'},
-                              {text:'Slovakia',value:'Sk'}
-                           ]
-                        }
-                     }
-                  ]
-               }
-            },
-            {
-               text:'Africa',
-               submenu:{
-                  itemdata:[
-                     {text:'Senegal',value:'Sn'},
-                     {text:'Madagascar',value:'Mg'}
+                     {text:'Poland',value:'Pl'},
+                     {text:'Czech Republic',value:'Cz'},
+                     {text:'Slovakia',value:'Sk'}
                   ]
                }
             }
-         ];
+         ]
+      }
+   },
+   {
+      text:'Africa',
+      submenu:{
+         itemdata:[
+            {text:'Senegal',value:'Sn'},
+            {text:'Madagascar',value:'Mg'}
+         ]
+      }
+   }
+];
 
-         new Y.inputEx.MenuField({
-            parentEl: 'container1',
-            name: 'country',
-            label: 'Your Country:',
-            menuItems: menuItems
-         });
+var div = Y.one('#container2');
 
-   // Example 2
+var f = new Y.inputEx.MenuField({
+   parentEl: 'container2',
+   name: 'country',
+   label: 'Your Country:',
+   required: true,
+   typeInvite: 'Hover this text to select a country',
+   menuTrigger: 'mouseover',
+   menuOrientation: 'horizontal',
+   constrained: true,
+   menuItems: menuItems
+});
 
-      var menuItems2 = [
-         {
-            text:'America',
-            submenu:{
-               itemdata:[
-                  {text:'United States of America',value:'Us'},
-                  {text:'Canada',value:'Ca'}
-               ]
-            }
-         },
-         {
-            text:'Europe',
-            submenu:{
-               itemdata:[
-                  {
-                     text:'Western Europe',
-                     submenu:{
-                        itemdata:[
-                           {text:'France',value:'Fr'},
-                           {text:'United Kingdom',value:'Uk'},
-                           {text:'Germany',value:'De'}
-                        ]
-                     }
-                  },
-                  {
-                     text:'Eastern Europe',
-                     submenu:{
-                        itemdata:[
-                           {text:'Poland',value:'Pl'},
-                           {text:'Czech Republic',value:'Cz'},
-                           {text:'Slovakia',value:'Sk'}
-                        ]
-                     }
-                  }
-               ]
-            }
-         },
-         {
-            text:'Africa',
-            submenu:{
-               itemdata:[
-                  {text:'Senegal',value:'Sn'},
-                  {text:'Madagascar',value:'Mg'}
-               ]
-            }
+var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+div.appendChild(logDiv);
+f.on('updated', function(value) {
+   logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
+         logDiv.appendChild(Y.inputEx.cn('br'));
+});
+
+var button1 = Y.inputEx.cn('button', null, null, "SetValue with 'Fr' (France)");
+div.appendChild(button1);
+Y.one(button1).on('click' ,function() { 
+   f.setValue("Fr"); 
+});
+var button2 = Y.inputEx.cn('button', null, null, "SetValue with empty string");
+div.appendChild(button2);
+Y.one(button2).on('click' ,function() { 
+   f.setValue('');
+});
+
+var button3 = Y.inputEx.cn('button', null, null, "GetValue");
+div.appendChild(button3);
+Y.one(button3).on('click' ,function() { 
+   alert(f.getValue());
+});
+
+var button4 = Y.inputEx.cn('button', null, null, "Clear");
+div.appendChild(button4);
+Y.one(button4).on('click' ,function() { 
+   f.clear();
+});
+
+// Example 3
+
+
+   var menuItems = [
+      {
+         text:'America',
+         submenu:{
+            itemdata:[
+               {text:'United States of America',value:'Us'},
+               {text:'Canada',value:'Ca'}
+            ]
          }
-      ];
-
-      var div = Y.one('#container2');
-
-      var f = new Y.inputEx.MenuField({
-         parentEl: 'container2',
-         name: 'country',
-         label: 'Your Country:',
-         required: true,
-         typeInvite: 'Hover this text to select a country',
-         menuTrigger: 'mouseover',
-         menuOrientation: 'horizontal',
-         menuItems: menuItems2
-      });
-
-      var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-      div.appendChild(logDiv);
-      f.on('updated', function(value) {
-         logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
-               logDiv.appendChild(Y.inputEx.cn('br'));
-      });
-
-      var button1 = Y.inputEx.cn('button', null, null, "SetValue with 'Fr' (France)");
-      div.appendChild(button1);
-      Y.one(button1).on('click' ,function() { 
-         f.setValue("Fr"); 
-      });
-      var button2 = Y.inputEx.cn('button', null, null, "SetValue with empty string");
-      div.appendChild(button2);
-      Y.one(button2).on('click' ,function() { 
-         f.setValue('');
-      });
-
-      var button3 = Y.inputEx.cn('button', null, null, "GetValue");
-      div.appendChild(button3);
-      Y.one(button3).on('click' ,function() { 
-         alert(f.getValue());
-      });
-
-      var button4 = Y.inputEx.cn('button', null, null, "Clear");
-      div.appendChild(button4);
-      Y.one(button4).on('click' ,function() { 
-         f.clear();
-      });
-
-   // Example 3
-
-
-         var menuItems = [
-            {
-               text:'America',
-               submenu:{
-                  itemdata:[
-                     {text:'United States of America',value:'Us'},
-                     {text:'Canada',value:'Ca'}
-                  ]
+      },
+      {
+         text:'Europe',
+         submenu:{
+            itemdata:[
+               {
+                  text:'Western Europe',
+                  submenu:{
+                     itemdata:[
+                        {text:'France',value:'Fr'},
+                        {text:'United Kingdom',value:'Uk'},
+                        {text:'Germany',value:'De'}
+                     ]
+                  }
+               },
+               {
+                  text:'Eastern Europe',
+                  submenu:{
+                     itemdata:[
+                        {text:'Poland',value:'Pl'},
+                        {text:'Czech Republic',value:'Cz'},
+                        {text:'Slovakia',value:'Sk'}
+                     ]
+                  }
                }
-            },
-            {
-               text:'Europe',
-               submenu:{
-                  itemdata:[
-                     {
-                        text:'Western Europe',
-                        submenu:{
-                           itemdata:[
-                              {text:'France',value:'Fr'},
-                              {text:'United Kingdom',value:'Uk'},
-                              {text:'Germany',value:'De'}
-                           ]
-                        }
-                     },
-                     {
-                        text:'Eastern Europe',
-                        submenu:{
-                           itemdata:[
-                              {text:'Poland',value:'Pl'},
-                              {text:'Czech Republic',value:'Cz'},
-                              {text:'Slovakia',value:'Sk'}
-                           ]
-                        }
-                     }
-                  ]
-               }
-            },
-            {
-               text:'Africa',
-               submenu:{
-                  itemdata:[
-                     {text:'Senegal',value:'Sn'},
-                     {text:'Madagascar',value:'Mg'}
-                  ]
-               }
-            }
-         ];
+            ]
+         }
+      },
+      {
+         text:'Africa',
+         submenu:{
+            itemdata:[
+               {text:'Senegal',value:'Sn'},
+               {text:'Madagascar',value:'Mg'}
+            ]
+         }
+      }
+   ];
 
-         var menu = new Y.inputEx.MenuField({
-            colorInvite : "#FF0000",
-            parentEl: 'container3',
-            name: 'country',
-            label: 'Your Country:',
-            menuItems: menuItems
-         });
+   var menu = new Y.inputEx.MenuField({
+      colorInvite : "#FF0000",
+      parentEl: 'container3',
+      name: 'country',
+      label: 'Your Country:',
+      menuItems: menuItems
+   });
 
-   
-      var div = Y.one('#container3');
 
-      var button1 = Y.inputEx.cn('button', null, null, "Yellow");
-      div.appendChild(button1);
-      Y.one(button1).on('click' ,function() { 
-         menu.setBackgroundColorOfRootLabel("#FFF000");
-      });
+var div = Y.one('#container3');
+
+var button1 = Y.inputEx.cn('button', null, null, "Yellow");
+div.appendChild(button1);
+Y.one(button1).on('click' ,function() { 
+   menu.setBackgroundColorOfRootLabel("#FFF000");
+});
 
 
 
@@ -295,226 +320,251 @@ YUI().use('inputex-menu', function(Y){
 
 <h3>Implementation</h3>
 
-<pre class="code prettyprint">YUI().use(&#x27;inputex-menu&#x27;, function(Y){
-   
+<pre class="code prettyprint">YUI({filter: &#x27;raw&#x27;}).use(&#x27;inputex-menu&#x27;, function(Y){
 
-   &#x2F;&#x2F; Example 1
+&#x2F;&#x2F; Trick to make huge menus !
+function makeLonger (factor, items) {
+   var result = [],
+       addText = function (node) {
+          node.text += &#x27; &#x27; + i;
+          return node;
+       };
 
-         var menuItems = [
+   for (var i = 1; i &lt;= factor; i++) {
+      for(var j = 0; j &lt; items.length; j++) {
+         result.push(Y.mix(items[j], {text: items[j] + &#x27; &#x27; + i}));
+      }
+   }
+   return result;
+}
+
+&#x2F;&#x2F; Example 1
+
+var menuItems = makeLonger(15, [
+   {
+      text:&#x27;America&#x27;,
+      submenu:{
+         itemdata: makeLonger(6, [
+            {text:&#x27;United States of America&#x27;,value:&#x27;Us&#x27;},
+            {text:&#x27;Canada&#x27;,value:&#x27;Ca&#x27;}
+         ])
+      }
+   },
+   {
+      text:&#x27;Europe&#x27;,
+      submenu:{
+         itemdata: makeLonger(10, [
             {
-               text:&#x27;America&#x27;,
+               text:&#x27;Western Europe&#x27;,
+               submenu:{
+                  itemdata: makeLonger(10, [
+                     {text:&#x27;France&#x27;,value:&#x27;Fr&#x27;},
+                     {text:&#x27;United Kingdom&#x27;,value:&#x27;Uk&#x27;},
+                     {text:&#x27;Germany&#x27;,value:&#x27;De&#x27;}
+                  ])
+               }
+            },
+            {
+               text:&#x27;Eastern Europe&#x27;,
+               submenu: {
+                  itemdata: makeLonger(20, [
+                     {text:&#x27;Poland&#x27;,value:&#x27;Pl&#x27;},
+                     {text:&#x27;Czech Republic&#x27;,value:&#x27;Cz&#x27;},
+                     {text:&#x27;Slovakia&#x27;,value:&#x27;Sk&#x27;}
+                  ])
+               }
+            }
+         ])
+      }
+   },
+   {
+      text:&#x27;Africa&#x27;,
+      submenu:{
+         itemdata: makeLonger(40, [
+            {text:&#x27;Senegal&#x27;,value:&#x27;Sn&#x27;},
+            {text:&#x27;Madagascar&#x27;,value:&#x27;Mg&#x27;}
+         ])
+      }
+   },
+   {
+      text:&#x27;Ajouter &#x2F; Modifier une prestation WTF&#x27;,
+      submenu:{
+         itemdata: makeLonger(40, [
+            {text:&#x27;Senegal&#x27;,value:&#x27;Sn&#x27;},
+            {text:&#x27;Madagascar&#x27;,value:&#x27;Mg&#x27;}
+         ])
+      }
+   }
+]);
+
+new Y.inputEx.MenuField({
+   parentEl: &#x27;container1&#x27;,
+   name: &#x27;country&#x27;,
+   label: &#x27;Your Country:&#x27;,
+   menuItems: menuItems
+});
+
+&#x2F;&#x2F; Example 2
+
+var menuItems2 = [
+   {
+      text:&#x27;America&#x27;,
+      submenu:{
+         itemdata:[
+            {text:&#x27;United States of America&#x27;,value:&#x27;Us&#x27;},
+            {text:&#x27;Canada&#x27;,value:&#x27;Ca&#x27;}
+         ]
+      }
+   },
+   {
+      text:&#x27;Europe&#x27;,
+      submenu:{
+         itemdata:[
+            {
+               text:&#x27;Western Europe&#x27;,
                submenu:{
                   itemdata:[
-                     {text:&#x27;United States of America&#x27;,value:&#x27;Us&#x27;},
-                     {text:&#x27;Canada&#x27;,value:&#x27;Ca&#x27;}
+                     {text:&#x27;France&#x27;,value:&#x27;Fr&#x27;},
+                     {text:&#x27;United Kingdom&#x27;,value:&#x27;Uk&#x27;},
+                     {text:&#x27;Germany&#x27;,value:&#x27;De&#x27;}
                   ]
                }
             },
             {
-               text:&#x27;Europe&#x27;,
+               text:&#x27;Eastern Europe&#x27;,
                submenu:{
                   itemdata:[
-                     {
-                        text:&#x27;Western Europe&#x27;,
-                        submenu:{
-                           itemdata:[
-                              {text:&#x27;France&#x27;,value:&#x27;Fr&#x27;},
-                              {text:&#x27;United Kingdom&#x27;,value:&#x27;Uk&#x27;},
-                              {text:&#x27;Germany&#x27;,value:&#x27;De&#x27;}
-                           ]
-                        }
-                     },
-                     {
-                        text:&#x27;Eastern Europe&#x27;,
-                        submenu:{
-                           itemdata:[
-                              {text:&#x27;Poland&#x27;,value:&#x27;Pl&#x27;},
-                              {text:&#x27;Czech Republic&#x27;,value:&#x27;Cz&#x27;},
-                              {text:&#x27;Slovakia&#x27;,value:&#x27;Sk&#x27;}
-                           ]
-                        }
-                     }
-                  ]
-               }
-            },
-            {
-               text:&#x27;Africa&#x27;,
-               submenu:{
-                  itemdata:[
-                     {text:&#x27;Senegal&#x27;,value:&#x27;Sn&#x27;},
-                     {text:&#x27;Madagascar&#x27;,value:&#x27;Mg&#x27;}
+                     {text:&#x27;Poland&#x27;,value:&#x27;Pl&#x27;},
+                     {text:&#x27;Czech Republic&#x27;,value:&#x27;Cz&#x27;},
+                     {text:&#x27;Slovakia&#x27;,value:&#x27;Sk&#x27;}
                   ]
                }
             }
-         ];
+         ]
+      }
+   },
+   {
+      text:&#x27;Africa&#x27;,
+      submenu:{
+         itemdata:[
+            {text:&#x27;Senegal&#x27;,value:&#x27;Sn&#x27;},
+            {text:&#x27;Madagascar&#x27;,value:&#x27;Mg&#x27;}
+         ]
+      }
+   }
+];
 
-         new Y.inputEx.MenuField({
-            parentEl: &#x27;container1&#x27;,
-            name: &#x27;country&#x27;,
-            label: &#x27;Your Country:&#x27;,
-            menuItems: menuItems
-         });
+var div = Y.one(&#x27;#container2&#x27;);
 
-   &#x2F;&#x2F; Example 2
+var f = new Y.inputEx.MenuField({
+   parentEl: &#x27;container2&#x27;,
+   name: &#x27;country&#x27;,
+   label: &#x27;Your Country:&#x27;,
+   required: true,
+   typeInvite: &#x27;Hover this text to select a country&#x27;,
+   menuTrigger: &#x27;mouseover&#x27;,
+   menuOrientation: &#x27;horizontal&#x27;,
+   constrained: true,
+   menuItems: menuItems
+});
 
-      var menuItems2 = [
-         {
-            text:&#x27;America&#x27;,
-            submenu:{
-               itemdata:[
-                  {text:&#x27;United States of America&#x27;,value:&#x27;Us&#x27;},
-                  {text:&#x27;Canada&#x27;,value:&#x27;Ca&#x27;}
-               ]
-            }
-         },
-         {
-            text:&#x27;Europe&#x27;,
-            submenu:{
-               itemdata:[
-                  {
-                     text:&#x27;Western Europe&#x27;,
-                     submenu:{
-                        itemdata:[
-                           {text:&#x27;France&#x27;,value:&#x27;Fr&#x27;},
-                           {text:&#x27;United Kingdom&#x27;,value:&#x27;Uk&#x27;},
-                           {text:&#x27;Germany&#x27;,value:&#x27;De&#x27;}
-                        ]
-                     }
-                  },
-                  {
-                     text:&#x27;Eastern Europe&#x27;,
-                     submenu:{
-                        itemdata:[
-                           {text:&#x27;Poland&#x27;,value:&#x27;Pl&#x27;},
-                           {text:&#x27;Czech Republic&#x27;,value:&#x27;Cz&#x27;},
-                           {text:&#x27;Slovakia&#x27;,value:&#x27;Sk&#x27;}
-                        ]
-                     }
-                  }
-               ]
-            }
-         },
-         {
-            text:&#x27;Africa&#x27;,
-            submenu:{
-               itemdata:[
-                  {text:&#x27;Senegal&#x27;,value:&#x27;Sn&#x27;},
-                  {text:&#x27;Madagascar&#x27;,value:&#x27;Mg&#x27;}
-               ]
-            }
+var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
+div.appendChild(logDiv);
+f.on(&#x27;updated&#x27;, function(value) {
+   logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
+         logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
+});
+
+var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with &#x27;Fr&#x27; (France)&quot;);
+div.appendChild(button1);
+Y.one(button1).on(&#x27;click&#x27; ,function() { 
+   f.setValue(&quot;Fr&quot;); 
+});
+var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with empty string&quot;);
+div.appendChild(button2);
+Y.one(button2).on(&#x27;click&#x27; ,function() { 
+   f.setValue(&#x27;&#x27;);
+});
+
+var button3 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
+div.appendChild(button3);
+Y.one(button3).on(&#x27;click&#x27; ,function() { 
+   alert(f.getValue());
+});
+
+var button4 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;Clear&quot;);
+div.appendChild(button4);
+Y.one(button4).on(&#x27;click&#x27; ,function() { 
+   f.clear();
+});
+
+&#x2F;&#x2F; Example 3
+
+
+   var menuItems = [
+      {
+         text:&#x27;America&#x27;,
+         submenu:{
+            itemdata:[
+               {text:&#x27;United States of America&#x27;,value:&#x27;Us&#x27;},
+               {text:&#x27;Canada&#x27;,value:&#x27;Ca&#x27;}
+            ]
          }
-      ];
-
-      var div = Y.one(&#x27;#container2&#x27;);
-
-      var f = new Y.inputEx.MenuField({
-         parentEl: &#x27;container2&#x27;,
-         name: &#x27;country&#x27;,
-         label: &#x27;Your Country:&#x27;,
-         required: true,
-         typeInvite: &#x27;Hover this text to select a country&#x27;,
-         menuTrigger: &#x27;mouseover&#x27;,
-         menuOrientation: &#x27;horizontal&#x27;,
-         menuItems: menuItems2
-      });
-
-      var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
-      div.appendChild(logDiv);
-      f.on(&#x27;updated&#x27;, function(value) {
-         logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
-               logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
-      });
-
-      var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with &#x27;Fr&#x27; (France)&quot;);
-      div.appendChild(button1);
-      Y.one(button1).on(&#x27;click&#x27; ,function() { 
-         f.setValue(&quot;Fr&quot;); 
-      });
-      var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with empty string&quot;);
-      div.appendChild(button2);
-      Y.one(button2).on(&#x27;click&#x27; ,function() { 
-         f.setValue(&#x27;&#x27;);
-      });
-
-      var button3 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
-      div.appendChild(button3);
-      Y.one(button3).on(&#x27;click&#x27; ,function() { 
-         alert(f.getValue());
-      });
-
-      var button4 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;Clear&quot;);
-      div.appendChild(button4);
-      Y.one(button4).on(&#x27;click&#x27; ,function() { 
-         f.clear();
-      });
-
-   &#x2F;&#x2F; Example 3
-
-
-         var menuItems = [
-            {
-               text:&#x27;America&#x27;,
-               submenu:{
-                  itemdata:[
-                     {text:&#x27;United States of America&#x27;,value:&#x27;Us&#x27;},
-                     {text:&#x27;Canada&#x27;,value:&#x27;Ca&#x27;}
-                  ]
+      },
+      {
+         text:&#x27;Europe&#x27;,
+         submenu:{
+            itemdata:[
+               {
+                  text:&#x27;Western Europe&#x27;,
+                  submenu:{
+                     itemdata:[
+                        {text:&#x27;France&#x27;,value:&#x27;Fr&#x27;},
+                        {text:&#x27;United Kingdom&#x27;,value:&#x27;Uk&#x27;},
+                        {text:&#x27;Germany&#x27;,value:&#x27;De&#x27;}
+                     ]
+                  }
+               },
+               {
+                  text:&#x27;Eastern Europe&#x27;,
+                  submenu:{
+                     itemdata:[
+                        {text:&#x27;Poland&#x27;,value:&#x27;Pl&#x27;},
+                        {text:&#x27;Czech Republic&#x27;,value:&#x27;Cz&#x27;},
+                        {text:&#x27;Slovakia&#x27;,value:&#x27;Sk&#x27;}
+                     ]
+                  }
                }
-            },
-            {
-               text:&#x27;Europe&#x27;,
-               submenu:{
-                  itemdata:[
-                     {
-                        text:&#x27;Western Europe&#x27;,
-                        submenu:{
-                           itemdata:[
-                              {text:&#x27;France&#x27;,value:&#x27;Fr&#x27;},
-                              {text:&#x27;United Kingdom&#x27;,value:&#x27;Uk&#x27;},
-                              {text:&#x27;Germany&#x27;,value:&#x27;De&#x27;}
-                           ]
-                        }
-                     },
-                     {
-                        text:&#x27;Eastern Europe&#x27;,
-                        submenu:{
-                           itemdata:[
-                              {text:&#x27;Poland&#x27;,value:&#x27;Pl&#x27;},
-                              {text:&#x27;Czech Republic&#x27;,value:&#x27;Cz&#x27;},
-                              {text:&#x27;Slovakia&#x27;,value:&#x27;Sk&#x27;}
-                           ]
-                        }
-                     }
-                  ]
-               }
-            },
-            {
-               text:&#x27;Africa&#x27;,
-               submenu:{
-                  itemdata:[
-                     {text:&#x27;Senegal&#x27;,value:&#x27;Sn&#x27;},
-                     {text:&#x27;Madagascar&#x27;,value:&#x27;Mg&#x27;}
-                  ]
-               }
-            }
-         ];
+            ]
+         }
+      },
+      {
+         text:&#x27;Africa&#x27;,
+         submenu:{
+            itemdata:[
+               {text:&#x27;Senegal&#x27;,value:&#x27;Sn&#x27;},
+               {text:&#x27;Madagascar&#x27;,value:&#x27;Mg&#x27;}
+            ]
+         }
+      }
+   ];
 
-         var menu = new Y.inputEx.MenuField({
-            colorInvite : &quot;#FF0000&quot;,
-            parentEl: &#x27;container3&#x27;,
-            name: &#x27;country&#x27;,
-            label: &#x27;Your Country:&#x27;,
-            menuItems: menuItems
-         });
+   var menu = new Y.inputEx.MenuField({
+      colorInvite : &quot;#FF0000&quot;,
+      parentEl: &#x27;container3&#x27;,
+      name: &#x27;country&#x27;,
+      label: &#x27;Your Country:&#x27;,
+      menuItems: menuItems
+   });
 
-   
-      var div = Y.one(&#x27;#container3&#x27;);
 
-      var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;Yellow&quot;);
-      div.appendChild(button1);
-      Y.one(button1).on(&#x27;click&#x27; ,function() { 
-         menu.setBackgroundColorOfRootLabel(&quot;#FFF000&quot;);
-      });
+var div = Y.one(&#x27;#container3&#x27;);
+
+var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;Yellow&quot;);
+div.appendChild(button1);
+Y.one(button1).on(&#x27;click&#x27; ,function() { 
+   menu.setBackgroundColorOfRootLabel(&quot;#FFF000&quot;);
+});
 
 
 

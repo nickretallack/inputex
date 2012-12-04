@@ -477,7 +477,7 @@ YUI().use(function(Y) {
         "requires": [
             "inputex-field",
             "node-event-delegate",
-            "node-menunav",
+            "node-constrained-menunav",
             "substitute"
         ],
         "skinnable": true
@@ -771,6 +771,12 @@ YUI().use(function(Y) {
         "requires": [
             "inputex",
             "dump"
+        ]
+    },
+    "node-constrained-menunav": {
+        "requires": [
+            "event-resize",
+            "node-menunav"
         ]
     }
 }

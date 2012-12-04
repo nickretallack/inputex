@@ -23,6 +23,7 @@ YUI.add('inputex-menu', function (Y, NAME) {
  *    <li>menuTrigger     : (optional, default: 'click') event to trigger menu show, ex: mouseover</li>
  *    <li>menuOrientation : (optional, default: 'vertical') menu orientation, ex: 'horizontal'</li>
  *    <li>menuConfig      : (optional) object used as a config for the MenuNav node plugin</li>
+ *    <li>constrained     : (optional) boolean to specify if menu panels should be constrained to the viewport</li>
  * </ul>
  */
 inputEx.MenuField = function(options) {
@@ -65,6 +66,7 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       this.options.menuTrigger = options.menuTrigger || "click";
       this.options.menuOrientation = options.menuOrientation || VERTICAL;
       this.options.menuItems = options.menuItems;
+      this.options.constrained = options.constrained || false;
 
       // Configuration options for the generated YUI MenuNav node plugin
       this.options.menuConfig = options.menuConfig || {
@@ -98,7 +100,7 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       this._valueFromHref = {};
 
 
-      var that = this,
+      var that = this, pluginClass,
       
       // This method returns template completed with data.
       renderMenuRecurs = function (parent_id, conf, level) {
@@ -176,7 +178,8 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
          this._rootItemLabel = this._rootItemLabel.one('em');
       }
 
-      this._menu.plug(Y.Plugin.NodeMenuNav, this.options.menuConfig);
+      pluginClass = this.options.constrained ? 'NodeConstrainedMenuNav' : 'NodeMenuNav';
+      this._menu.plug(Y.Plugin[pluginClass], this.options.menuConfig);
       this._menu.appendTo(container);
    },
 
@@ -247,7 +250,7 @@ inputEx.registerType("menu", inputEx.MenuField);
     "requires": [
         "inputex-field",
         "node-event-delegate",
-        "node-menunav",
+        "node-constrained-menunav",
         "substitute"
     ],
     "skinnable": true,
