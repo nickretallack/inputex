@@ -1,0 +1,8 @@
+{
+   "node-constrained-menunav": {
+      "requires": [
+         "event-resize",
+         "node-menunav"
+      ]
+   }
+}

@@ -1,0 +1,10 @@
+{
+   "name": "node-constrained-menunav",
+   "builds": {
+      "node-constrained-menunav": {
+         "jsfiles": [
+            "node-constrained-menunav.js"
+         ]
+      }
+   }
+}

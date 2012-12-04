@@ -3,7 +3,7 @@
       "requires": [
          "inputex-field",
          "node-event-delegate",
-         "node-menunav",
+         "node-constrained-menunav",
          "substitute"
       ],
       "skinnable": true,

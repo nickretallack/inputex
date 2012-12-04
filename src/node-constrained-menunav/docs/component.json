@@ -1,0 +1,20 @@
+{
+   "name": "node-constrained-menunav",
+   "displayName": "node-constrained-menunav",
+   "description": "TODO",
+   "tags": [
+      "node-constrained-menunav"
+   ],
+   "use": [
+   ],
+   "examples": [
+       {
+           "name"       : "firstexample",
+           "displayName": "Basic example",
+           "description": "How to instantiate...",
+           "modules"    : ["node-constrained-menunav"],
+           "tags"       : [],
+           "hideTableOfContents": true
+       }
+   ]
+}

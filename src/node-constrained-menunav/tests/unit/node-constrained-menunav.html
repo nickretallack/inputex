@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>node-constrained-menunav tests</title>
+    <script src="http://yui.yahooapis.com/3.7.3/build/yui/yui.js"></script>
+    
+    <script src="../../../../build/InputEx-loader/InputEx-loader.js"></script>
+    
+</head>
+<body class="yui3-skin-sam">
+<h1>node-constrained-menunav Tests</h1>
+<div id="testLogger"></div>
+<script>
+
+YUI({
+    coverage: ['node-constrained-menunav'],
+    "groups": {
+        'InputEx': {
+            base: '../../../../build/'
+        }
+    },
+    filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw',
+    modules: {
+        'node-constrained-menunav-test': {
+            fullpath: './assets/node-constrained-menunav-test.js',
+            requires: ["test","node-constrained-menunav"]
+        }
+    }
+}).use("test", "test-console", "node-constrained-menunav", "node-constrained-menunav-test", function(Y) {
+  
+    window.Y = Y; // keep this for the yui selenium driver
+
+   //create the console
+   (new Y.Test.Console({
+      newestOnTop : false,
+      filters: {
+         pass: true,
+         fail: true
+      }
+   })).render('#testLogger');
+  
+    Y.Test.Runner.run();
+    
+});
+</script>
+</body>
+</html>
