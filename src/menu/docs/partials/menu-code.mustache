@@ -1,4 +1,12 @@
-YUI({filter: 'raw'}).use('inputex-menu', function(Y){
+YUI({
+   filter: 'raw',
+   filters: {
+      "inputex-menu": 'debug',
+      "node-constrained-menunav": 'debug'
+   }
+}).use('inputex-menu', 'console', function(Y){
+
+new Y.Console().render();
 
 // Trick to make huge menus !
 function makeLonger (factor, items) {
@@ -18,7 +26,7 @@ function makeLonger (factor, items) {
 
 // Example 1
 
-var menuItems = makeLonger(15, [
+var menuItems = makeLonger(1, [
    {
       text:'America',
       submenu:{
@@ -31,7 +39,7 @@ var menuItems = makeLonger(15, [
    {
       text:'Europe',
       submenu:{
-         itemdata: makeLonger(10, [
+         itemdata: makeLonger(1, [
             {
                text:'Western Europe',
                submenu:{
@@ -79,6 +87,7 @@ new Y.inputEx.MenuField({
    parentEl: 'container1',
    name: 'country',
    label: 'Your Country:',
+   menuOrientation: 'horizontal',
    menuItems: menuItems
 });
 

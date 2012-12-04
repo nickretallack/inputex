@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="shortcut icon" type="image/png" href="../assets/favicon.png">
-    <script src="http://yui.yahooapis.com/3.7.2/build/yui/yui-min.js"></script>
+    <script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
     <script src="../../build/inputex-loader/inputex-loader.js"></script>
     <script>YUI_config.groups.inputex.base = '../../build/';</script>
     
@@ -55,7 +55,15 @@ How to create a menu.
 
    
 <script>
-YUI({filter: 'raw'}).use('inputex-menu', function(Y){
+YUI({
+   filter: 'raw',
+   filters: {
+      "inputex-menu": 'debug',
+      "node-constrained-menunav": 'debug'
+   }
+}).use('inputex-menu', 'console', function(Y){
+
+new Y.Console().render();
 
 // Trick to make huge menus !
 function makeLonger (factor, items) {
@@ -75,7 +83,7 @@ function makeLonger (factor, items) {
 
 // Example 1
 
-var menuItems = makeLonger(15, [
+var menuItems = makeLonger(1, [
    {
       text:'America',
       submenu:{
@@ -88,7 +96,7 @@ var menuItems = makeLonger(15, [
    {
       text:'Europe',
       submenu:{
-         itemdata: makeLonger(10, [
+         itemdata: makeLonger(1, [
             {
                text:'Western Europe',
                submenu:{
@@ -136,6 +144,7 @@ new Y.inputEx.MenuField({
    parentEl: 'container1',
    name: 'country',
    label: 'Your Country:',
+   menuOrientation: 'horizontal',
    menuItems: menuItems
 });
 
@@ -320,7 +329,15 @@ Y.one(button1).on('click' ,function() {
 
 <h3>Implementation</h3>
 
-<pre class="code prettyprint">YUI({filter: &#x27;raw&#x27;}).use(&#x27;inputex-menu&#x27;, function(Y){
+<pre class="code prettyprint">YUI({
+   filter: &#x27;raw&#x27;,
+   filters: {
+      &quot;inputex-menu&quot;: &#x27;debug&#x27;,
+      &quot;node-constrained-menunav&quot;: &#x27;debug&#x27;
+   }
+}).use(&#x27;inputex-menu&#x27;, &#x27;console&#x27;, function(Y){
+
+new Y.Console().render();
 
 &#x2F;&#x2F; Trick to make huge menus !
 function makeLonger (factor, items) {
@@ -340,7 +357,7 @@ function makeLonger (factor, items) {
 
 &#x2F;&#x2F; Example 1
 
-var menuItems = makeLonger(15, [
+var menuItems = makeLonger(1, [
    {
       text:&#x27;America&#x27;,
       submenu:{
@@ -353,7 +370,7 @@ var menuItems = makeLonger(15, [
    {
       text:&#x27;Europe&#x27;,
       submenu:{
-         itemdata: makeLonger(10, [
+         itemdata: makeLonger(1, [
             {
                text:&#x27;Western Europe&#x27;,
                submenu:{
@@ -401,6 +418,7 @@ new Y.inputEx.MenuField({
    parentEl: &#x27;container1&#x27;,
    name: &#x27;country&#x27;,
    label: &#x27;Your Country:&#x27;,
+   menuOrientation: &#x27;horizontal&#x27;,
    menuItems: menuItems
 });
 

@@ -354,36 +354,3 @@ th {
 
 /* List with extra vertical spacing between items. */
 .spaced li { margin: 0.8em 0; }
-adada;
-    *padding-bottom: 5px;
-}
-
-.button:hover {
-    border-color: #466899;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
-    color: #fff;
-    text-decoration: none;
-    -moz-text-shadow: 1px 1px 0 #222;
-    -webkit-text-shadow: 1px 1px 0 #222;
-    text-shadow: 1px 1px 0 #222;
-
-    background: #6396D8; /* old browsers */
-    background: -moz-linear-gradient(top, #6396D8 0%, #5A83BC 50%, #547AB7 51%, #466899 100%); /* firefox */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6396D8), color-stop(50%,#5A83BC), color-stop(51%,#547AB7), color-stop(100%,#466899)); /* webkit */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6396D8', endColorstr='#466899',GradientType=0 ); /* ie */
-}
-
-/* Big download button, like on the Home page. */
-.button.download {
-    display: block;
-    font-size: 18px;
-    margin: 0 0 1em;
-    padding: 9px 17px 8px;
-}
-
-.newwindow { text-align: center; }
-
-/* List with extra vertical spacing between items. */
-.spaced li { margin: 0.8em 0; }

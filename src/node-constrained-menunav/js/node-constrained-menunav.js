@@ -48,6 +48,7 @@ Y.extend(NodeConstrainedMenuNav, Y.Plugin.NodeMenuNav, {
 
    _hideMenu: function (menu, activateAndFocusLabel) {
       Y.one('win').detach('windowresize', this._onWindowResize);
+      this.revertStyle(menu.one('.yui3-menu-content'));
       NodeConstrainedMenuNav.superclass._hideMenu.call(this, menu, activateAndFocusLabel);
    },
 
@@ -58,36 +59,40 @@ Y.extend(NodeConstrainedMenuNav, Y.Plugin.NodeMenuNav, {
           menuRegion      = menuContent.get('region'),
           maxHeight       = viewportHeight - viewportPadding * 2;
 
-      if (menu.get('offsetHeight') >= maxHeight) {
-         // Only update width if the style hasn't been applied yet
-         if (menuContent.getStyle('overflowY') !== 'scroll') {
-            menu.setStyle('width', menuContent.get('offsetWidth') + getScrollbarWidth());
-         }
+      if (menuRegion.height >= maxHeight) {
+         menuContent.set('isConstrained', true);
 
          menuContent.setStyles({
             height: maxHeight,
-            overflowY: 'scroll'
+            overflowY: 'scroll',
+            width: menuRegion.width + getScrollbarWidth() + 'px'
          });
 
-         menu.setStyle('height', maxHeight);
          menu.setY(viewportHeight - viewportPadding - maxHeight);
       }
       else {
-         // No need for scrollbars
-         menuContent.setStyles({
-            overflowY: 'visible',
-            height: ''
-         });
+         // Reset style only if needed
+         if (menuContent.get('isConstrained')) {
+            menu.set('isConstrained', false);
+            this.revertStyle(menuContent);
 
-         menu.setStyles({height: '', width: ''});
-
-         NodeConstrainedMenuNav.superclass._showMenu.call(this, menu); // Just to reset height/width
+            NodeConstrainedMenuNav.superclass._showMenu.call(this, menu); // Just to reset height/width
+         }
 
          // Readjust position if needed
          if (menuRegion.bottom > viewportHeight - viewportPadding) {
             menu.setY(menu.getY() - ((menuRegion.bottom - viewportHeight) + viewportPadding));
          }
       }
+   },
+
+   revertStyle: function (menuContent) {
+      // No need for scrollbars
+      menuContent.setStyles({
+         overflowY: 'visible',
+         height: '',
+         width: ''
+      });
    }
 
 });
