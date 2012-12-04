@@ -64,8 +64,10 @@ Y.extend(inputEx.ColorField, inputEx.Field, {
             
             // Activate outside event handler
             this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {
-               // if the target is not the button, hide the overlay
-               if (e.target !== this.button){
+               // hide the overlay if
+               //   - the target is not the button, and
+               //   - the target is not the colorEl
+               if (e.target !== this.button && e.target._node !== this.colorEl){
                   this.oOverlay.hide();
                }
             }, this);
