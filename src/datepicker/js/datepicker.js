@@ -60,6 +60,8 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
          if (e.newVal) { // show
             this.beforeShowOverlay();
+            
+            // required for IE 7 (see hide below)
             this.calendar.show();
 
             // align
@@ -67,17 +69,22 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
 
             // Activate outside event handler
             this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {
-               // if the target is not the button, hide the overlay
-              if (e.target !== this.button){
-                this.oOverlay.hide();
-              }
+               // hide the overlay if
+               //   - the target is not the button, and
+               //   - the target is not the readonly input node
+               if (e.target !== this.button && !(this.options.readonly && e.target._node === this.el)) {
+                  this.oOverlay.hide();
+               }
             }, this);
          }
          else { // hide
+            
+            // required for IE 7, else borders of cells will be displayed
+            // even if the overlay isn't shown...
             this.calendar.hide();
             
-            if(this.outsideHandler){
-              this.outsideHandler.detach();
+            if (this.outsideHandler) {
+               this.outsideHandler.detach();
             }
             
          }
