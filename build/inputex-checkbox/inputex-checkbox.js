@@ -49,7 +49,7 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
 	renderComponent: function() {
 	
    	var checkBoxId = this.divEl.id?this.divEl.id+'-field':Y.guid();
-	   this.el = inputEx.cn('input', { id: checkBoxId, type: 'checkbox' });
+	   this.el = inputEx.cn('input', { id: checkBoxId, type: 'checkbox', className: 'inputEx-CheckBox-checkbox' });
 
 	   this.fieldContainer.appendChild(this.el);
 	
