@@ -40,216 +40,26 @@ How to create a menu.
    <div class='demoContainer' id='container1'></div>
 
 
-
    <h2>Test with more options</h2>
    <p>Menu triggered on hover, displayed below the text invite, etc.</p>
    <div class='demoContainer' id='container2'></div>
 
 
-
-
-   <h2>Basic MenuField creation with color</h2>
-   <p>Use the following code to create a basic inputEx MenuField with some color.</p>
+   <h2>MenuField scroll</h2>
+   <p>The menu can handle the scrolling of huge submenus, just set the 'constrained' option to true.</p>
    <div class='demoContainer' id='container3'></div>
 
 
-   
 <script>
-YUI({
-   filter: 'raw',
-   filters: {
-      "inputex-menu": 'debug',
-      "node-constrained-menunav": 'debug'
-   }
-}).use('inputex-menu', 'console', function(Y){
-
-new Y.Console().render();
-
-// Trick to make huge menus !
-function makeLonger (factor, items) {
-   var result = [],
-       addText = function (node) {
-          node.text += ' ' + i;
-          return node;
-       };
-
-   for (var i = 1; i <= factor; i++) {
-      for(var j = 0; j < items.length; j++) {
-         result.push(Y.mix(items[j], {text: items[j] + ' ' + i}));
-      }
-   }
-   return result;
-}
-
-// Example 1
-
-var menuItems = makeLonger(1, [
-   {
-      text:'America',
-      submenu:{
-         itemdata: makeLonger(6, [
-            {text:'United States of America',value:'Us'},
-            {text:'Canada',value:'Ca'}
-         ])
-      }
-   },
-   {
-      text:'Europe',
-      submenu:{
-         itemdata: makeLonger(1, [
-            {
-               text:'Western Europe',
-               submenu:{
-                  itemdata: makeLonger(10, [
-                     {text:'France',value:'Fr'},
-                     {text:'United Kingdom',value:'Uk'},
-                     {text:'Germany',value:'De'}
-                  ])
-               }
-            },
-            {
-               text:'Eastern Europe',
-               submenu: {
-                  itemdata: makeLonger(20, [
-                     {text:'Poland',value:'Pl'},
-                     {text:'Czech Republic',value:'Cz'},
-                     {text:'Slovakia',value:'Sk'}
-                  ])
-               }
-            }
-         ])
-      }
-   },
-   {
-      text:'Africa',
-      submenu:{
-         itemdata: makeLonger(40, [
-            {text:'Senegal',value:'Sn'},
-            {text:'Madagascar',value:'Mg'}
-         ])
-      }
-   },
-   {
-      text:'Ajouter / Modifier une prestation WTF',
-      submenu:{
-         itemdata: makeLonger(40, [
-            {text:'Senegal',value:'Sn'},
-            {text:'Madagascar',value:'Mg'}
-         ])
-      }
-   }
-]);
-
-new Y.inputEx.MenuField({
-   parentEl: 'container1',
-   name: 'country',
-   label: 'Your Country:',
-   menuOrientation: 'horizontal',
-   menuItems: menuItems
-});
-
-// Example 2
-
-var menuItems2 = [
-   {
-      text:'America',
-      submenu:{
-         itemdata:[
-            {text:'United States of America',value:'Us'},
-            {text:'Canada',value:'Ca'}
-         ]
-      }
-   },
-   {
-      text:'Europe',
-      submenu:{
-         itemdata:[
-            {
-               text:'Western Europe',
-               submenu:{
-                  itemdata:[
-                     {text:'France',value:'Fr'},
-                     {text:'United Kingdom',value:'Uk'},
-                     {text:'Germany',value:'De'}
-                  ]
-               }
-            },
-            {
-               text:'Eastern Europe',
-               submenu:{
-                  itemdata:[
-                     {text:'Poland',value:'Pl'},
-                     {text:'Czech Republic',value:'Cz'},
-                     {text:'Slovakia',value:'Sk'}
-                  ]
-               }
-            }
-         ]
-      }
-   },
-   {
-      text:'Africa',
-      submenu:{
-         itemdata:[
-            {text:'Senegal',value:'Sn'},
-            {text:'Madagascar',value:'Mg'}
-         ]
-      }
-   }
-];
-
-var div = Y.one('#container2');
-
-var f = new Y.inputEx.MenuField({
-   parentEl: 'container2',
-   name: 'country',
-   label: 'Your Country:',
-   required: true,
-   typeInvite: 'Hover this text to select a country',
-   menuTrigger: 'mouseover',
-   menuOrientation: 'horizontal',
-   constrained: true,
-   menuItems: menuItems
-});
-
-var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-div.appendChild(logDiv);
-f.on('updated', function(value) {
-   logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
-         logDiv.appendChild(Y.inputEx.cn('br'));
-});
-
-var button1 = Y.inputEx.cn('button', null, null, "SetValue with 'Fr' (France)");
-div.appendChild(button1);
-Y.one(button1).on('click' ,function() { 
-   f.setValue("Fr"); 
-});
-var button2 = Y.inputEx.cn('button', null, null, "SetValue with empty string");
-div.appendChild(button2);
-Y.one(button2).on('click' ,function() { 
-   f.setValue('');
-});
-
-var button3 = Y.inputEx.cn('button', null, null, "GetValue");
-div.appendChild(button3);
-Y.one(button3).on('click' ,function() { 
-   alert(f.getValue());
-});
-
-var button4 = Y.inputEx.cn('button', null, null, "Clear");
-div.appendChild(button4);
-Y.one(button4).on('click' ,function() { 
-   f.clear();
-});
-
-// Example 3
+YUI({}).use('inputex-menu', function(Y){
 
 
+   // Example 1
    var menuItems = [
       {
          text:'America',
          submenu:{
-            itemdata:[
+            itemdata: [
                {text:'United States of America',value:'Us'},
                {text:'Canada',value:'Ca'}
             ]
@@ -262,7 +72,7 @@ Y.one(button4).on('click' ,function() {
                {
                   text:'Western Europe',
                   submenu:{
-                     itemdata:[
+                     itemdata: [
                         {text:'France',value:'Fr'},
                         {text:'United Kingdom',value:'Uk'},
                         {text:'Germany',value:'De'}
@@ -271,8 +81,8 @@ Y.one(button4).on('click' ,function() {
                },
                {
                   text:'Eastern Europe',
-                  submenu:{
-                     itemdata:[
+                  submenu: {
+                     itemdata: [
                         {text:'Poland',value:'Pl'},
                         {text:'Czech Republic',value:'Cz'},
                         {text:'Slovakia',value:'Sk'}
@@ -285,7 +95,7 @@ Y.one(button4).on('click' ,function() {
       {
          text:'Africa',
          submenu:{
-            itemdata:[
+            itemdata: [
                {text:'Senegal',value:'Sn'},
                {text:'Madagascar',value:'Mg'}
             ]
@@ -293,24 +103,337 @@ Y.one(button4).on('click' ,function() {
       }
    ];
 
-   var menu = new Y.inputEx.MenuField({
-      colorInvite : "#FF0000",
-      parentEl: 'container3',
+   new Y.inputEx.MenuField({
+      parentEl: 'container1',
       name: 'country',
       label: 'Your Country:',
+      menuOrientation: 'horizontal',
       menuItems: menuItems
    });
 
 
-var div = Y.one('#container3');
 
-var button1 = Y.inputEx.cn('button', null, null, "Yellow");
-div.appendChild(button1);
-Y.one(button1).on('click' ,function() { 
-   menu.setBackgroundColorOfRootLabel("#FFF000");
-});
+   // Example 2
+   var div = Y.one('#container2');
+
+   var f = new Y.inputEx.MenuField({
+      parentEl: 'container2',
+      name: 'country',
+      label: 'Your Country:',
+      required: true,
+      typeInvite: 'Hover this text to select a country',
+      menuTrigger: 'mouseover',
+      menuOrientation: 'horizontal',
+      menuItems: menuItems
+   });
+
+   var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+   div.appendChild(logDiv);
+   f.on('updated', function(value) {
+      logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
+            logDiv.appendChild(Y.inputEx.cn('br'));
+   });
+
+   var button1 = Y.inputEx.cn('button', null, null, "SetValue with 'Fr' (France)");
+   div.appendChild(button1);
+   Y.one(button1).on('click' ,function() { 
+      f.setValue("Fr"); 
+   });
+   var button2 = Y.inputEx.cn('button', null, null, "SetValue with empty string");
+   div.appendChild(button2);
+   Y.one(button2).on('click' ,function() { 
+      f.setValue('');
+   });
+
+   var button3 = Y.inputEx.cn('button', null, null, "GetValue");
+   div.appendChild(button3);
+   Y.one(button3).on('click' ,function() { 
+      alert(f.getValue());
+   });
+
+   var button4 = Y.inputEx.cn('button', null, null, "Clear");
+   div.appendChild(button4);
+   Y.one(button4).on('click' ,function() { 
+      f.clear();
+   });
 
 
+
+   // Example 3
+   var menuItems3 = [
+      {
+         text:'America',
+         submenu:{
+            itemdata:[
+               {text:'United States of America',value:'Us'},
+               {text:'Canada',value:'Ca'}
+            ]
+         }
+      },
+      {
+         text:'All countries',
+         submenu:{
+            itemdata:[
+               { text: 'Afghanistan', value: 'AF' },
+               { text: 'Afrique du Sud', value: 'ZA' },
+               { text: 'Åland', value: 'AX' },
+               { text: 'Albanie', value: 'AL' },
+               { text: 'Algérie', value: 'DZ' },
+               { text: 'Allemagne', value: 'DE' },
+               { text: 'Andorre', value: 'AD' },
+               { text: 'Angola', value: 'AO' },
+               { text: 'Anguilla', value: 'AI' },
+               { text: 'Antarctique', value: 'AQ' },
+               { text: 'Antigua et Barbuda', value: 'AG' },
+               { text: 'Arabie saoudite', value: 'SA' },
+               { text: 'Argentine', value: 'AR' },
+               { text: 'Arménie', value: 'AM' },
+               { text: 'Aruba', value: 'AW' },
+               { text: 'Australie', value: 'AU' },
+               { text: 'Autriche', value: 'AT' },
+               { text: 'Azerbaïdjan', value: 'AZ' },
+               { text: 'Bahamas', value: 'BS' },
+               { text: 'Bahreïn', value: 'BH' },
+               { text: 'Bangladesh', value: 'BD' },
+               { text: 'Barbade', value: 'BB' },
+               { text: 'Belgique', value: 'BE' },
+               { text: 'Belize', value: 'BZ' },
+               { text: 'Bermudes', value: 'BM' },
+               { text: 'Bhoutan', value: 'BT' },
+               { text: 'Birmanie', value: 'MM' },
+               { text: 'Biélorussie', value: 'BY' },
+               { text: 'Bolivie', value: 'BO' },
+               { text: 'Bonaire, Saint-Eustache et Saba', value: 'BQ' },
+               { text: 'Bosnie-Herzégovine', value: 'BA' },
+               { text: 'Botswana', value: 'BW' },
+               { text: 'Brunei', value: 'BN' },
+               { text: 'Brésil', value: 'BR' },
+               { text: 'Bulgarie', value: 'BG' },
+               { text: 'Burkina Faso', value: 'BF' },
+               { text: 'Burundi', value: 'BI' },
+               { text: 'Bénin', value: 'BJ' },
+               { text: 'Cambodge', value: 'KH' },
+               { text: 'Cameroun', value: 'CM' },
+               { text: 'Canada', value: 'CA' },
+               { text: 'Cap-Vert', value: 'CV' },
+               { text: 'Chili', value: 'CL' },
+               { text: 'Chine (Taïwan)', value: 'TW' },
+               { text: 'Chine', value: 'CN' },
+               { text: 'Chypre', value: 'CY' },
+               { text: 'Colombie', value: 'CO' },
+               { text: 'Comores', value: 'KM' },
+               { text: 'Congo-Brazzaville', value: 'CG' },
+               { text: 'Corée du Nord', value: 'KP' },
+               { text: 'Corée du Sud', value: 'KR' },
+               { text: 'Costa Rica', value: 'CR' },
+               { text: 'Croatie', value: 'HR' },
+               { text: 'Cuba', value: 'CU' },
+               { text: 'Curaçao', value: 'CW' },
+               { text: 'Côte d\'Ivoire', value: 'CI' },
+               { text: 'Danemark', value: 'DK' },
+               { text: 'Djibouti', value: 'DJ' },
+               { text: 'Dominique', value: 'DM' },
+               { text: 'Espagne', value: 'ES' },
+               { text: 'Estonie', value: 'EE' },
+               { text: 'Égypte', value: 'EG' },
+               { text: 'Émirats arabes unis', value: 'AE' },
+               { text: 'Équateur', value: 'EC' },
+               { text: 'Érythrée', value: 'ER' },
+               { text: 'États-Unis', value: 'US' },
+               { text: 'Éthiopie', value: 'ET' },
+               { text: 'Fidji', value: 'FJ' },
+               { text: 'Finlande', value: 'FI' },
+               { text: 'France', value: 'FR' },
+               { text: 'France (Guadeloupe)', value: 'GP' },
+               { text: 'France (Martinique)', value: 'MQ' },
+               { text: 'France (Mayotte)', value: 'YT' },
+               { text: 'France (Nouvelle Calédonie)', value: 'NC' },
+               { text: 'France (Réunion)', value: 'RE' },
+               { text: 'France (Saint-Pierre-et-Miquelon)', value: 'PM' },
+               { text: 'France (Terres australes et antarctiques françaises)', value: 'TF' },
+               { text: 'France (Wallis et Futuna)', value: 'WF' },
+               { text: 'Gabon', value: 'GA' },
+               { text: 'Gambie', value: 'GM' },
+               { text: 'Ghana', value: 'GH' },
+               { text: 'Gibraltar', value: 'GI' },
+               { text: 'Grenade', value: 'GD' },
+               { text: 'Groenland', value: 'GL' },
+               { text: 'Grèce', value: 'GR' },
+               { text: 'Guam', value: 'GU' },
+               { text: 'Guatemala', value: 'GT' },
+               { text: 'Guernesey', value: 'GG' },
+               { text: 'Guinée équatoriale', value: 'GQ' },
+               { text: 'Guinée-Bissau', value: 'GW' },
+               { text: 'Guinée', value: 'GN' },
+               { text: 'Guyana', value: 'GY' },
+               { text: 'Guyane', value: 'GF' },
+               { text: 'Géorgie du Sud et les Îles Sandwich du Sud', value: 'GS' },
+               { text: 'Géorgie', value: 'GE' },
+               { text: 'Haïti', value: 'HT' },
+               { text: 'Honduras', value: 'HN' },
+               { text: 'Hong Kong', value: 'HK' },
+               { text: 'Hongrie', value: 'HU' },
+               { text: 'Île Bouvet', value: 'BV' },
+               { text: 'Île Christmas (Australie)', value: 'CX' },
+               { text: 'Île de Man', value: 'IM' },
+               { text: 'Îles Caïmans', value: 'KY' },
+               { text: 'Îles Cocos (Keeling)', value: 'CC' },
+               { text: 'Îles Cook', value: 'CK' },
+               { text: 'Îles Féroé', value: 'FO' },
+               { text: 'Îles Heard et MacDonald', value: 'HM' },
+               { text: 'Îles Malouines', value: 'FK' },
+               { text: 'Îles Mariannes du Nord', value: 'MP' },
+               { text: 'Îles mineures éloignées des États-Unis', value: 'UM' },
+               { text: 'Îles Pitcairn', value: 'PN' },
+               { text: 'Îles Turques-et-Caïques', value: 'TC' },
+               { text: 'Îles Vierges britanniques', value: 'VG' },
+               { text: 'Îles Vierges des États-Unis', value: 'VI' },
+               { text: 'Inde', value: 'IN' },
+               { text: 'Indonésie', value: 'ID' },
+               { text: 'Irak', value: 'IQ' },
+               { text: 'Iran', value: 'IR' },
+               { text: 'Irlande', value: 'IE' },
+               { text: 'Islande', value: 'IS' },
+               { text: 'Israël', value: 'IL' },
+               { text: 'Italie', value: 'IT' },
+               { text: 'Jamaïque', value: 'JM' },
+               { text: 'Japon', value: 'JP' },
+               { text: 'Jersey', value: 'JE' },
+               { text: 'Jordanie', value: 'JO' },
+               { text: 'Kazakhstan', value: 'KZ' },
+               { text: 'Kenya', value: 'KE' },
+               { text: 'Kirghizistan', value: 'KG' },
+               { text: 'Kiribati', value: 'KI' },
+               { text: 'Koweït', value: 'KW' },
+               { text: 'Laos', value: 'LA' },
+               { text: 'Lesotho', value: 'LS' },
+               { text: 'Lettonie', value: 'LV' },
+               { text: 'Liban', value: 'LB' },
+               { text: 'Liberia', value: 'LR' },
+               { text: 'Libye', value: 'LY' },
+               { text: 'Liechtenstein', value: 'LI' },
+               { text: 'Lituanie', value: 'LT' },
+               { text: 'Luxembourg', value: 'LU' },
+               { text: 'Macao', value: 'MO' },
+               { text: 'Macédoine', value: 'MK' },
+               { text: 'Madagascar', value: 'MG' },
+               { text: 'Malaisie', value: 'MY' },
+               { text: 'Malawi', value: 'MW' },
+               { text: 'Maldives', value: 'MV' },
+               { text: 'Mali', value: 'ML' },
+               { text: 'Malte', value: 'MT' },
+               { text: 'Maroc', value: 'MA' },
+               { text: 'Marshall, Îles', value: 'MH' },
+               { text: 'Maurice', value: 'MU' },
+               { text: 'Mauritanie', value: 'MR' },
+               { text: 'Mexique', value: 'MX' },
+               { text: 'Micronésie', value: 'FM' },
+               { text: 'Moldavie', value: 'MD' },
+               { text: 'Monaco', value: 'MC' },
+               { text: 'Mongolie', value: 'MN' },
+               { text: 'Montserrat', value: 'MS' },
+               { text: 'Monténégro', value: 'ME' },
+               { text: 'Mozambique', value: 'MZ' },
+               { text: 'Namibie', value: 'NA' },
+               { text: 'Nauru', value: 'NR' },
+               { text: 'Nicaragua', value: 'NI' },
+               { text: 'Niger', value: 'NE' },
+               { text: 'Nigeria', value: 'NG' },
+               { text: 'Niué', value: 'NU' },
+               { text: 'Norfolk, Île', value: 'NF' },
+               { text: 'Norvège', value: 'NO' },
+               { text: 'Nouvelle-Zélande', value: 'NZ' },
+               { text: 'Népal', value: 'NP' },
+               { text: 'Oman', value: 'OM' },
+               { text: 'Ouganda', value: 'UG' },
+               { text: 'Ouzbékistan', value: 'UZ' },
+               { text: 'Pakistan', value: 'PK' },
+               { text: 'Palaos', value: 'PW' },
+               { text: 'Palestine', value: 'PS' },
+               { text: 'Panamá', value: 'PA' },
+               { text: 'Papouasie-Nouvelle-Guinée', value: 'PG' },
+               { text: 'Paraguay', value: 'PY' },
+               { text: 'Pays-Bas', value: 'NL' },
+               { text: 'Philippines', value: 'PH' },
+               { text: 'Pologne', value: 'PL' },
+               { text: 'Polynésie française', value: 'PF' },
+               { text: 'Porto Rico', value: 'PR' },
+               { text: 'Portugal', value: 'PT' },
+               { text: 'Pérou', value: 'PE' },
+               { text: 'Qatar', value: 'QA' },
+               { text: 'Roumanie', value: 'RO' },
+               { text: 'Royaume-Uni', value: 'GB' },
+               { text: 'Russie', value: 'RU' },
+               { text: 'Rwanda', value: 'RW' },
+               { text: 'République centrafricaine', value: 'CF' },
+               { text: 'République dominicaine', value: 'DO' },
+               { text: 'République démocratique du Congo', value: 'CD' },
+               { text: 'République tchèque', value: 'CZ' },
+               { text: 'Sahara occidental', value: 'EH' },
+               { text: 'Saint-Barthélemy', value: 'BL' },
+               { text: 'Saint-Christophe-et-Niévès', value: 'KN' },
+               { text: 'Sainte-Hélène, Ascension et Tristan da Cunha', value: 'SH' },
+               { text: 'Saint-Marin', value: 'SM' },
+               { text: 'Saint-Martin (Antilles françaises)', value: 'MF' },
+               { text: 'Saint-Martin (Pays-Bas)', value: 'SX' },
+               { text: 'Saint-Siège (État de la Cité du Vatican)', value: 'VA' },
+               { text: 'Saint-Vincent-et-les Grenadines', value: 'VC' },
+               { text: 'Sainte-Lucie', value: 'LC' },
+               { text: 'Salomon, Îles', value: 'SB' },
+               { text: 'Salvador', value: 'SV' },
+               { text: 'Samoa américaines', value: 'AS' },
+               { text: 'Samoa', value: 'WS' },
+               { text: 'Serbie', value: 'RS' },
+               { text: 'Seychelles', value: 'SC' },
+               { text: 'Sierra Leone', value: 'SL' },
+               { text: 'Singapour', value: 'SG' },
+               { text: 'Slovaquie', value: 'SK' },
+               { text: 'Slovénie', value: 'SI' },
+               { text: 'Somalie', value: 'SO' },
+               { text: 'Soudan', value: 'SD' },
+               { text: 'Sri Lanka', value: 'LK' },
+               { text: 'Suisse', value: 'CH' },
+               { text: 'Suriname', value: 'SR' },
+               { text: 'Suède', value: 'SE' },
+               { text: 'Svalbard et île Jan Mayen', value: 'SJ' },
+               { text: 'Swaziland', value: 'SZ' },
+               { text: 'Syrie', value: 'SY' },
+               { text: 'São Tomé-et-Principe', value: 'ST' },
+               { text: 'Sénégal', value: 'SN' },
+               { text: 'Tadjikistan', value: 'TJ' },
+               { text: 'Tanzanie', value: 'TZ' },
+               { text: 'Tchad', value: 'TD' },
+               { text: 'Territoire britannique de l\'océan Indien', value: 'IO' },
+               { text: 'Thaïlande', value: 'TH' },
+               { text: 'Timor oriental', value: 'TL' },
+               { text: 'Togo', value: 'TG' },
+               { text: 'Tokelau', value: 'TK' },
+               { text: 'Tonga', value: 'TO' },
+               { text: 'Trinité-et-Tobago', value: 'TT' },
+               { text: 'Tunisie', value: 'TN' },
+               { text: 'Turkménistan', value: 'TM' },
+               { text: 'Turquie', value: 'TR' },
+               { text: 'Tuvalu', value: 'TV' },
+               { text: 'Ukraine', value: 'UA' },
+               { text: 'Uruguay', value: 'UY' },
+               { text: 'Vanuatu', value: 'VU' },
+               { text: 'Venezuela', value: 'VE' },
+               { text: 'Viêt Nam', value: 'VN' },
+               { text: 'Yémen', value: 'YE' },
+               { text: 'Zambie', value: 'ZM' },
+               { text: 'Zimbabwe', value: 'ZW' }
+            ]
+         }
+      }
+   ];
+   
+   var menu = new Y.inputEx.MenuField({
+      parentEl: 'container3',
+      name: 'country',
+      label: 'Your Country:',
+      menuItems: menuItems3,
+      constrained: true
+   });
 
 
 });
@@ -329,201 +452,15 @@ Y.one(button1).on('click' ,function() {
 
 <h3>Implementation</h3>
 
-<pre class="code prettyprint">YUI({
-   filter: &#x27;raw&#x27;,
-   filters: {
-      &quot;inputex-menu&quot;: &#x27;debug&#x27;,
-      &quot;node-constrained-menunav&quot;: &#x27;debug&#x27;
-   }
-}).use(&#x27;inputex-menu&#x27;, &#x27;console&#x27;, function(Y){
-
-new Y.Console().render();
-
-&#x2F;&#x2F; Trick to make huge menus !
-function makeLonger (factor, items) {
-   var result = [],
-       addText = function (node) {
-          node.text += &#x27; &#x27; + i;
-          return node;
-       };
-
-   for (var i = 1; i &lt;= factor; i++) {
-      for(var j = 0; j &lt; items.length; j++) {
-         result.push(Y.mix(items[j], {text: items[j] + &#x27; &#x27; + i}));
-      }
-   }
-   return result;
-}
-
-&#x2F;&#x2F; Example 1
-
-var menuItems = makeLonger(1, [
-   {
-      text:&#x27;America&#x27;,
-      submenu:{
-         itemdata: makeLonger(6, [
-            {text:&#x27;United States of America&#x27;,value:&#x27;Us&#x27;},
-            {text:&#x27;Canada&#x27;,value:&#x27;Ca&#x27;}
-         ])
-      }
-   },
-   {
-      text:&#x27;Europe&#x27;,
-      submenu:{
-         itemdata: makeLonger(1, [
-            {
-               text:&#x27;Western Europe&#x27;,
-               submenu:{
-                  itemdata: makeLonger(10, [
-                     {text:&#x27;France&#x27;,value:&#x27;Fr&#x27;},
-                     {text:&#x27;United Kingdom&#x27;,value:&#x27;Uk&#x27;},
-                     {text:&#x27;Germany&#x27;,value:&#x27;De&#x27;}
-                  ])
-               }
-            },
-            {
-               text:&#x27;Eastern Europe&#x27;,
-               submenu: {
-                  itemdata: makeLonger(20, [
-                     {text:&#x27;Poland&#x27;,value:&#x27;Pl&#x27;},
-                     {text:&#x27;Czech Republic&#x27;,value:&#x27;Cz&#x27;},
-                     {text:&#x27;Slovakia&#x27;,value:&#x27;Sk&#x27;}
-                  ])
-               }
-            }
-         ])
-      }
-   },
-   {
-      text:&#x27;Africa&#x27;,
-      submenu:{
-         itemdata: makeLonger(40, [
-            {text:&#x27;Senegal&#x27;,value:&#x27;Sn&#x27;},
-            {text:&#x27;Madagascar&#x27;,value:&#x27;Mg&#x27;}
-         ])
-      }
-   },
-   {
-      text:&#x27;Ajouter &#x2F; Modifier une prestation WTF&#x27;,
-      submenu:{
-         itemdata: makeLonger(40, [
-            {text:&#x27;Senegal&#x27;,value:&#x27;Sn&#x27;},
-            {text:&#x27;Madagascar&#x27;,value:&#x27;Mg&#x27;}
-         ])
-      }
-   }
-]);
-
-new Y.inputEx.MenuField({
-   parentEl: &#x27;container1&#x27;,
-   name: &#x27;country&#x27;,
-   label: &#x27;Your Country:&#x27;,
-   menuOrientation: &#x27;horizontal&#x27;,
-   menuItems: menuItems
-});
-
-&#x2F;&#x2F; Example 2
-
-var menuItems2 = [
-   {
-      text:&#x27;America&#x27;,
-      submenu:{
-         itemdata:[
-            {text:&#x27;United States of America&#x27;,value:&#x27;Us&#x27;},
-            {text:&#x27;Canada&#x27;,value:&#x27;Ca&#x27;}
-         ]
-      }
-   },
-   {
-      text:&#x27;Europe&#x27;,
-      submenu:{
-         itemdata:[
-            {
-               text:&#x27;Western Europe&#x27;,
-               submenu:{
-                  itemdata:[
-                     {text:&#x27;France&#x27;,value:&#x27;Fr&#x27;},
-                     {text:&#x27;United Kingdom&#x27;,value:&#x27;Uk&#x27;},
-                     {text:&#x27;Germany&#x27;,value:&#x27;De&#x27;}
-                  ]
-               }
-            },
-            {
-               text:&#x27;Eastern Europe&#x27;,
-               submenu:{
-                  itemdata:[
-                     {text:&#x27;Poland&#x27;,value:&#x27;Pl&#x27;},
-                     {text:&#x27;Czech Republic&#x27;,value:&#x27;Cz&#x27;},
-                     {text:&#x27;Slovakia&#x27;,value:&#x27;Sk&#x27;}
-                  ]
-               }
-            }
-         ]
-      }
-   },
-   {
-      text:&#x27;Africa&#x27;,
-      submenu:{
-         itemdata:[
-            {text:&#x27;Senegal&#x27;,value:&#x27;Sn&#x27;},
-            {text:&#x27;Madagascar&#x27;,value:&#x27;Mg&#x27;}
-         ]
-      }
-   }
-];
-
-var div = Y.one(&#x27;#container2&#x27;);
-
-var f = new Y.inputEx.MenuField({
-   parentEl: &#x27;container2&#x27;,
-   name: &#x27;country&#x27;,
-   label: &#x27;Your Country:&#x27;,
-   required: true,
-   typeInvite: &#x27;Hover this text to select a country&#x27;,
-   menuTrigger: &#x27;mouseover&#x27;,
-   menuOrientation: &#x27;horizontal&#x27;,
-   constrained: true,
-   menuItems: menuItems
-});
-
-var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
-div.appendChild(logDiv);
-f.on(&#x27;updated&#x27;, function(value) {
-   logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
-         logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
-});
-
-var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with &#x27;Fr&#x27; (France)&quot;);
-div.appendChild(button1);
-Y.one(button1).on(&#x27;click&#x27; ,function() { 
-   f.setValue(&quot;Fr&quot;); 
-});
-var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with empty string&quot;);
-div.appendChild(button2);
-Y.one(button2).on(&#x27;click&#x27; ,function() { 
-   f.setValue(&#x27;&#x27;);
-});
-
-var button3 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
-div.appendChild(button3);
-Y.one(button3).on(&#x27;click&#x27; ,function() { 
-   alert(f.getValue());
-});
-
-var button4 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;Clear&quot;);
-div.appendChild(button4);
-Y.one(button4).on(&#x27;click&#x27; ,function() { 
-   f.clear();
-});
-
-&#x2F;&#x2F; Example 3
+<pre class="code prettyprint">YUI({}).use(&#x27;inputex-menu&#x27;, function(Y){
 
 
+   &#x2F;&#x2F; Example 1
    var menuItems = [
       {
          text:&#x27;America&#x27;,
          submenu:{
-            itemdata:[
+            itemdata: [
                {text:&#x27;United States of America&#x27;,value:&#x27;Us&#x27;},
                {text:&#x27;Canada&#x27;,value:&#x27;Ca&#x27;}
             ]
@@ -536,7 +473,7 @@ Y.one(button4).on(&#x27;click&#x27; ,function() {
                {
                   text:&#x27;Western Europe&#x27;,
                   submenu:{
-                     itemdata:[
+                     itemdata: [
                         {text:&#x27;France&#x27;,value:&#x27;Fr&#x27;},
                         {text:&#x27;United Kingdom&#x27;,value:&#x27;Uk&#x27;},
                         {text:&#x27;Germany&#x27;,value:&#x27;De&#x27;}
@@ -545,8 +482,8 @@ Y.one(button4).on(&#x27;click&#x27; ,function() {
                },
                {
                   text:&#x27;Eastern Europe&#x27;,
-                  submenu:{
-                     itemdata:[
+                  submenu: {
+                     itemdata: [
                         {text:&#x27;Poland&#x27;,value:&#x27;Pl&#x27;},
                         {text:&#x27;Czech Republic&#x27;,value:&#x27;Cz&#x27;},
                         {text:&#x27;Slovakia&#x27;,value:&#x27;Sk&#x27;}
@@ -559,7 +496,7 @@ Y.one(button4).on(&#x27;click&#x27; ,function() {
       {
          text:&#x27;Africa&#x27;,
          submenu:{
-            itemdata:[
+            itemdata: [
                {text:&#x27;Senegal&#x27;,value:&#x27;Sn&#x27;},
                {text:&#x27;Madagascar&#x27;,value:&#x27;Mg&#x27;}
             ]
@@ -567,24 +504,337 @@ Y.one(button4).on(&#x27;click&#x27; ,function() {
       }
    ];
 
-   var menu = new Y.inputEx.MenuField({
-      colorInvite : &quot;#FF0000&quot;,
-      parentEl: &#x27;container3&#x27;,
+   new Y.inputEx.MenuField({
+      parentEl: &#x27;container1&#x27;,
       name: &#x27;country&#x27;,
       label: &#x27;Your Country:&#x27;,
+      menuOrientation: &#x27;horizontal&#x27;,
       menuItems: menuItems
    });
 
 
-var div = Y.one(&#x27;#container3&#x27;);
 
-var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;Yellow&quot;);
-div.appendChild(button1);
-Y.one(button1).on(&#x27;click&#x27; ,function() { 
-   menu.setBackgroundColorOfRootLabel(&quot;#FFF000&quot;);
-});
+   &#x2F;&#x2F; Example 2
+   var div = Y.one(&#x27;#container2&#x27;);
+
+   var f = new Y.inputEx.MenuField({
+      parentEl: &#x27;container2&#x27;,
+      name: &#x27;country&#x27;,
+      label: &#x27;Your Country:&#x27;,
+      required: true,
+      typeInvite: &#x27;Hover this text to select a country&#x27;,
+      menuTrigger: &#x27;mouseover&#x27;,
+      menuOrientation: &#x27;horizontal&#x27;,
+      menuItems: menuItems
+   });
+
+   var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
+   div.appendChild(logDiv);
+   f.on(&#x27;updated&#x27;, function(value) {
+      logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
+            logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
+   });
+
+   var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with &#x27;Fr&#x27; (France)&quot;);
+   div.appendChild(button1);
+   Y.one(button1).on(&#x27;click&#x27; ,function() { 
+      f.setValue(&quot;Fr&quot;); 
+   });
+   var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with empty string&quot;);
+   div.appendChild(button2);
+   Y.one(button2).on(&#x27;click&#x27; ,function() { 
+      f.setValue(&#x27;&#x27;);
+   });
+
+   var button3 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
+   div.appendChild(button3);
+   Y.one(button3).on(&#x27;click&#x27; ,function() { 
+      alert(f.getValue());
+   });
+
+   var button4 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;Clear&quot;);
+   div.appendChild(button4);
+   Y.one(button4).on(&#x27;click&#x27; ,function() { 
+      f.clear();
+   });
 
 
+
+   &#x2F;&#x2F; Example 3
+   var menuItems3 = [
+      {
+         text:&#x27;America&#x27;,
+         submenu:{
+            itemdata:[
+               {text:&#x27;United States of America&#x27;,value:&#x27;Us&#x27;},
+               {text:&#x27;Canada&#x27;,value:&#x27;Ca&#x27;}
+            ]
+         }
+      },
+      {
+         text:&#x27;All countries&#x27;,
+         submenu:{
+            itemdata:[
+               { text: &#x27;Afghanistan&#x27;, value: &#x27;AF&#x27; },
+               { text: &#x27;Afrique du Sud&#x27;, value: &#x27;ZA&#x27; },
+               { text: &#x27;Åland&#x27;, value: &#x27;AX&#x27; },
+               { text: &#x27;Albanie&#x27;, value: &#x27;AL&#x27; },
+               { text: &#x27;Algérie&#x27;, value: &#x27;DZ&#x27; },
+               { text: &#x27;Allemagne&#x27;, value: &#x27;DE&#x27; },
+               { text: &#x27;Andorre&#x27;, value: &#x27;AD&#x27; },
+               { text: &#x27;Angola&#x27;, value: &#x27;AO&#x27; },
+               { text: &#x27;Anguilla&#x27;, value: &#x27;AI&#x27; },
+               { text: &#x27;Antarctique&#x27;, value: &#x27;AQ&#x27; },
+               { text: &#x27;Antigua et Barbuda&#x27;, value: &#x27;AG&#x27; },
+               { text: &#x27;Arabie saoudite&#x27;, value: &#x27;SA&#x27; },
+               { text: &#x27;Argentine&#x27;, value: &#x27;AR&#x27; },
+               { text: &#x27;Arménie&#x27;, value: &#x27;AM&#x27; },
+               { text: &#x27;Aruba&#x27;, value: &#x27;AW&#x27; },
+               { text: &#x27;Australie&#x27;, value: &#x27;AU&#x27; },
+               { text: &#x27;Autriche&#x27;, value: &#x27;AT&#x27; },
+               { text: &#x27;Azerbaïdjan&#x27;, value: &#x27;AZ&#x27; },
+               { text: &#x27;Bahamas&#x27;, value: &#x27;BS&#x27; },
+               { text: &#x27;Bahreïn&#x27;, value: &#x27;BH&#x27; },
+               { text: &#x27;Bangladesh&#x27;, value: &#x27;BD&#x27; },
+               { text: &#x27;Barbade&#x27;, value: &#x27;BB&#x27; },
+               { text: &#x27;Belgique&#x27;, value: &#x27;BE&#x27; },
+               { text: &#x27;Belize&#x27;, value: &#x27;BZ&#x27; },
+               { text: &#x27;Bermudes&#x27;, value: &#x27;BM&#x27; },
+               { text: &#x27;Bhoutan&#x27;, value: &#x27;BT&#x27; },
+               { text: &#x27;Birmanie&#x27;, value: &#x27;MM&#x27; },
+               { text: &#x27;Biélorussie&#x27;, value: &#x27;BY&#x27; },
+               { text: &#x27;Bolivie&#x27;, value: &#x27;BO&#x27; },
+               { text: &#x27;Bonaire, Saint-Eustache et Saba&#x27;, value: &#x27;BQ&#x27; },
+               { text: &#x27;Bosnie-Herzégovine&#x27;, value: &#x27;BA&#x27; },
+               { text: &#x27;Botswana&#x27;, value: &#x27;BW&#x27; },
+               { text: &#x27;Brunei&#x27;, value: &#x27;BN&#x27; },
+               { text: &#x27;Brésil&#x27;, value: &#x27;BR&#x27; },
+               { text: &#x27;Bulgarie&#x27;, value: &#x27;BG&#x27; },
+               { text: &#x27;Burkina Faso&#x27;, value: &#x27;BF&#x27; },
+               { text: &#x27;Burundi&#x27;, value: &#x27;BI&#x27; },
+               { text: &#x27;Bénin&#x27;, value: &#x27;BJ&#x27; },
+               { text: &#x27;Cambodge&#x27;, value: &#x27;KH&#x27; },
+               { text: &#x27;Cameroun&#x27;, value: &#x27;CM&#x27; },
+               { text: &#x27;Canada&#x27;, value: &#x27;CA&#x27; },
+               { text: &#x27;Cap-Vert&#x27;, value: &#x27;CV&#x27; },
+               { text: &#x27;Chili&#x27;, value: &#x27;CL&#x27; },
+               { text: &#x27;Chine (Taïwan)&#x27;, value: &#x27;TW&#x27; },
+               { text: &#x27;Chine&#x27;, value: &#x27;CN&#x27; },
+               { text: &#x27;Chypre&#x27;, value: &#x27;CY&#x27; },
+               { text: &#x27;Colombie&#x27;, value: &#x27;CO&#x27; },
+               { text: &#x27;Comores&#x27;, value: &#x27;KM&#x27; },
+               { text: &#x27;Congo-Brazzaville&#x27;, value: &#x27;CG&#x27; },
+               { text: &#x27;Corée du Nord&#x27;, value: &#x27;KP&#x27; },
+               { text: &#x27;Corée du Sud&#x27;, value: &#x27;KR&#x27; },
+               { text: &#x27;Costa Rica&#x27;, value: &#x27;CR&#x27; },
+               { text: &#x27;Croatie&#x27;, value: &#x27;HR&#x27; },
+               { text: &#x27;Cuba&#x27;, value: &#x27;CU&#x27; },
+               { text: &#x27;Curaçao&#x27;, value: &#x27;CW&#x27; },
+               { text: &#x27;Côte d\&#x27;Ivoire&#x27;, value: &#x27;CI&#x27; },
+               { text: &#x27;Danemark&#x27;, value: &#x27;DK&#x27; },
+               { text: &#x27;Djibouti&#x27;, value: &#x27;DJ&#x27; },
+               { text: &#x27;Dominique&#x27;, value: &#x27;DM&#x27; },
+               { text: &#x27;Espagne&#x27;, value: &#x27;ES&#x27; },
+               { text: &#x27;Estonie&#x27;, value: &#x27;EE&#x27; },
+               { text: &#x27;Égypte&#x27;, value: &#x27;EG&#x27; },
+               { text: &#x27;Émirats arabes unis&#x27;, value: &#x27;AE&#x27; },
+               { text: &#x27;Équateur&#x27;, value: &#x27;EC&#x27; },
+               { text: &#x27;Érythrée&#x27;, value: &#x27;ER&#x27; },
+               { text: &#x27;États-Unis&#x27;, value: &#x27;US&#x27; },
+               { text: &#x27;Éthiopie&#x27;, value: &#x27;ET&#x27; },
+               { text: &#x27;Fidji&#x27;, value: &#x27;FJ&#x27; },
+               { text: &#x27;Finlande&#x27;, value: &#x27;FI&#x27; },
+               { text: &#x27;France&#x27;, value: &#x27;FR&#x27; },
+               { text: &#x27;France (Guadeloupe)&#x27;, value: &#x27;GP&#x27; },
+               { text: &#x27;France (Martinique)&#x27;, value: &#x27;MQ&#x27; },
+               { text: &#x27;France (Mayotte)&#x27;, value: &#x27;YT&#x27; },
+               { text: &#x27;France (Nouvelle Calédonie)&#x27;, value: &#x27;NC&#x27; },
+               { text: &#x27;France (Réunion)&#x27;, value: &#x27;RE&#x27; },
+               { text: &#x27;France (Saint-Pierre-et-Miquelon)&#x27;, value: &#x27;PM&#x27; },
+               { text: &#x27;France (Terres australes et antarctiques françaises)&#x27;, value: &#x27;TF&#x27; },
+               { text: &#x27;France (Wallis et Futuna)&#x27;, value: &#x27;WF&#x27; },
+               { text: &#x27;Gabon&#x27;, value: &#x27;GA&#x27; },
+               { text: &#x27;Gambie&#x27;, value: &#x27;GM&#x27; },
+               { text: &#x27;Ghana&#x27;, value: &#x27;GH&#x27; },
+               { text: &#x27;Gibraltar&#x27;, value: &#x27;GI&#x27; },
+               { text: &#x27;Grenade&#x27;, value: &#x27;GD&#x27; },
+               { text: &#x27;Groenland&#x27;, value: &#x27;GL&#x27; },
+               { text: &#x27;Grèce&#x27;, value: &#x27;GR&#x27; },
+               { text: &#x27;Guam&#x27;, value: &#x27;GU&#x27; },
+               { text: &#x27;Guatemala&#x27;, value: &#x27;GT&#x27; },
+               { text: &#x27;Guernesey&#x27;, value: &#x27;GG&#x27; },
+               { text: &#x27;Guinée équatoriale&#x27;, value: &#x27;GQ&#x27; },
+               { text: &#x27;Guinée-Bissau&#x27;, value: &#x27;GW&#x27; },
+               { text: &#x27;Guinée&#x27;, value: &#x27;GN&#x27; },
+               { text: &#x27;Guyana&#x27;, value: &#x27;GY&#x27; },
+               { text: &#x27;Guyane&#x27;, value: &#x27;GF&#x27; },
+               { text: &#x27;Géorgie du Sud et les Îles Sandwich du Sud&#x27;, value: &#x27;GS&#x27; },
+               { text: &#x27;Géorgie&#x27;, value: &#x27;GE&#x27; },
+               { text: &#x27;Haïti&#x27;, value: &#x27;HT&#x27; },
+               { text: &#x27;Honduras&#x27;, value: &#x27;HN&#x27; },
+               { text: &#x27;Hong Kong&#x27;, value: &#x27;HK&#x27; },
+               { text: &#x27;Hongrie&#x27;, value: &#x27;HU&#x27; },
+               { text: &#x27;Île Bouvet&#x27;, value: &#x27;BV&#x27; },
+               { text: &#x27;Île Christmas (Australie)&#x27;, value: &#x27;CX&#x27; },
+               { text: &#x27;Île de Man&#x27;, value: &#x27;IM&#x27; },
+               { text: &#x27;Îles Caïmans&#x27;, value: &#x27;KY&#x27; },
+               { text: &#x27;Îles Cocos (Keeling)&#x27;, value: &#x27;CC&#x27; },
+               { text: &#x27;Îles Cook&#x27;, value: &#x27;CK&#x27; },
+               { text: &#x27;Îles Féroé&#x27;, value: &#x27;FO&#x27; },
+               { text: &#x27;Îles Heard et MacDonald&#x27;, value: &#x27;HM&#x27; },
+               { text: &#x27;Îles Malouines&#x27;, value: &#x27;FK&#x27; },
+               { text: &#x27;Îles Mariannes du Nord&#x27;, value: &#x27;MP&#x27; },
+               { text: &#x27;Îles mineures éloignées des États-Unis&#x27;, value: &#x27;UM&#x27; },
+               { text: &#x27;Îles Pitcairn&#x27;, value: &#x27;PN&#x27; },
+               { text: &#x27;Îles Turques-et-Caïques&#x27;, value: &#x27;TC&#x27; },
+               { text: &#x27;Îles Vierges britanniques&#x27;, value: &#x27;VG&#x27; },
+               { text: &#x27;Îles Vierges des États-Unis&#x27;, value: &#x27;VI&#x27; },
+               { text: &#x27;Inde&#x27;, value: &#x27;IN&#x27; },
+               { text: &#x27;Indonésie&#x27;, value: &#x27;ID&#x27; },
+               { text: &#x27;Irak&#x27;, value: &#x27;IQ&#x27; },
+               { text: &#x27;Iran&#x27;, value: &#x27;IR&#x27; },
+               { text: &#x27;Irlande&#x27;, value: &#x27;IE&#x27; },
+               { text: &#x27;Islande&#x27;, value: &#x27;IS&#x27; },
+               { text: &#x27;Israël&#x27;, value: &#x27;IL&#x27; },
+               { text: &#x27;Italie&#x27;, value: &#x27;IT&#x27; },
+               { text: &#x27;Jamaïque&#x27;, value: &#x27;JM&#x27; },
+               { text: &#x27;Japon&#x27;, value: &#x27;JP&#x27; },
+               { text: &#x27;Jersey&#x27;, value: &#x27;JE&#x27; },
+               { text: &#x27;Jordanie&#x27;, value: &#x27;JO&#x27; },
+               { text: &#x27;Kazakhstan&#x27;, value: &#x27;KZ&#x27; },
+               { text: &#x27;Kenya&#x27;, value: &#x27;KE&#x27; },
+               { text: &#x27;Kirghizistan&#x27;, value: &#x27;KG&#x27; },
+               { text: &#x27;Kiribati&#x27;, value: &#x27;KI&#x27; },
+               { text: &#x27;Koweït&#x27;, value: &#x27;KW&#x27; },
+               { text: &#x27;Laos&#x27;, value: &#x27;LA&#x27; },
+               { text: &#x27;Lesotho&#x27;, value: &#x27;LS&#x27; },
+               { text: &#x27;Lettonie&#x27;, value: &#x27;LV&#x27; },
+               { text: &#x27;Liban&#x27;, value: &#x27;LB&#x27; },
+               { text: &#x27;Liberia&#x27;, value: &#x27;LR&#x27; },
+               { text: &#x27;Libye&#x27;, value: &#x27;LY&#x27; },
+               { text: &#x27;Liechtenstein&#x27;, value: &#x27;LI&#x27; },
+               { text: &#x27;Lituanie&#x27;, value: &#x27;LT&#x27; },
+               { text: &#x27;Luxembourg&#x27;, value: &#x27;LU&#x27; },
+               { text: &#x27;Macao&#x27;, value: &#x27;MO&#x27; },
+               { text: &#x27;Macédoine&#x27;, value: &#x27;MK&#x27; },
+               { text: &#x27;Madagascar&#x27;, value: &#x27;MG&#x27; },
+               { text: &#x27;Malaisie&#x27;, value: &#x27;MY&#x27; },
+               { text: &#x27;Malawi&#x27;, value: &#x27;MW&#x27; },
+               { text: &#x27;Maldives&#x27;, value: &#x27;MV&#x27; },
+               { text: &#x27;Mali&#x27;, value: &#x27;ML&#x27; },
+               { text: &#x27;Malte&#x27;, value: &#x27;MT&#x27; },
+               { text: &#x27;Maroc&#x27;, value: &#x27;MA&#x27; },
+               { text: &#x27;Marshall, Îles&#x27;, value: &#x27;MH&#x27; },
+               { text: &#x27;Maurice&#x27;, value: &#x27;MU&#x27; },
+               { text: &#x27;Mauritanie&#x27;, value: &#x27;MR&#x27; },
+               { text: &#x27;Mexique&#x27;, value: &#x27;MX&#x27; },
+               { text: &#x27;Micronésie&#x27;, value: &#x27;FM&#x27; },
+               { text: &#x27;Moldavie&#x27;, value: &#x27;MD&#x27; },
+               { text: &#x27;Monaco&#x27;, value: &#x27;MC&#x27; },
+               { text: &#x27;Mongolie&#x27;, value: &#x27;MN&#x27; },
+               { text: &#x27;Montserrat&#x27;, value: &#x27;MS&#x27; },
+               { text: &#x27;Monténégro&#x27;, value: &#x27;ME&#x27; },
+               { text: &#x27;Mozambique&#x27;, value: &#x27;MZ&#x27; },
+               { text: &#x27;Namibie&#x27;, value: &#x27;NA&#x27; },
+               { text: &#x27;Nauru&#x27;, value: &#x27;NR&#x27; },
+               { text: &#x27;Nicaragua&#x27;, value: &#x27;NI&#x27; },
+               { text: &#x27;Niger&#x27;, value: &#x27;NE&#x27; },
+               { text: &#x27;Nigeria&#x27;, value: &#x27;NG&#x27; },
+               { text: &#x27;Niué&#x27;, value: &#x27;NU&#x27; },
+               { text: &#x27;Norfolk, Île&#x27;, value: &#x27;NF&#x27; },
+               { text: &#x27;Norvège&#x27;, value: &#x27;NO&#x27; },
+               { text: &#x27;Nouvelle-Zélande&#x27;, value: &#x27;NZ&#x27; },
+               { text: &#x27;Népal&#x27;, value: &#x27;NP&#x27; },
+               { text: &#x27;Oman&#x27;, value: &#x27;OM&#x27; },
+               { text: &#x27;Ouganda&#x27;, value: &#x27;UG&#x27; },
+               { text: &#x27;Ouzbékistan&#x27;, value: &#x27;UZ&#x27; },
+               { text: &#x27;Pakistan&#x27;, value: &#x27;PK&#x27; },
+               { text: &#x27;Palaos&#x27;, value: &#x27;PW&#x27; },
+               { text: &#x27;Palestine&#x27;, value: &#x27;PS&#x27; },
+               { text: &#x27;Panamá&#x27;, value: &#x27;PA&#x27; },
+               { text: &#x27;Papouasie-Nouvelle-Guinée&#x27;, value: &#x27;PG&#x27; },
+               { text: &#x27;Paraguay&#x27;, value: &#x27;PY&#x27; },
+               { text: &#x27;Pays-Bas&#x27;, value: &#x27;NL&#x27; },
+               { text: &#x27;Philippines&#x27;, value: &#x27;PH&#x27; },
+               { text: &#x27;Pologne&#x27;, value: &#x27;PL&#x27; },
+               { text: &#x27;Polynésie française&#x27;, value: &#x27;PF&#x27; },
+               { text: &#x27;Porto Rico&#x27;, value: &#x27;PR&#x27; },
+               { text: &#x27;Portugal&#x27;, value: &#x27;PT&#x27; },
+               { text: &#x27;Pérou&#x27;, value: &#x27;PE&#x27; },
+               { text: &#x27;Qatar&#x27;, value: &#x27;QA&#x27; },
+               { text: &#x27;Roumanie&#x27;, value: &#x27;RO&#x27; },
+               { text: &#x27;Royaume-Uni&#x27;, value: &#x27;GB&#x27; },
+               { text: &#x27;Russie&#x27;, value: &#x27;RU&#x27; },
+               { text: &#x27;Rwanda&#x27;, value: &#x27;RW&#x27; },
+               { text: &#x27;République centrafricaine&#x27;, value: &#x27;CF&#x27; },
+               { text: &#x27;République dominicaine&#x27;, value: &#x27;DO&#x27; },
+               { text: &#x27;République démocratique du Congo&#x27;, value: &#x27;CD&#x27; },
+               { text: &#x27;République tchèque&#x27;, value: &#x27;CZ&#x27; },
+               { text: &#x27;Sahara occidental&#x27;, value: &#x27;EH&#x27; },
+               { text: &#x27;Saint-Barthélemy&#x27;, value: &#x27;BL&#x27; },
+               { text: &#x27;Saint-Christophe-et-Niévès&#x27;, value: &#x27;KN&#x27; },
+               { text: &#x27;Sainte-Hélène, Ascension et Tristan da Cunha&#x27;, value: &#x27;SH&#x27; },
+               { text: &#x27;Saint-Marin&#x27;, value: &#x27;SM&#x27; },
+               { text: &#x27;Saint-Martin (Antilles françaises)&#x27;, value: &#x27;MF&#x27; },
+               { text: &#x27;Saint-Martin (Pays-Bas)&#x27;, value: &#x27;SX&#x27; },
+               { text: &#x27;Saint-Siège (État de la Cité du Vatican)&#x27;, value: &#x27;VA&#x27; },
+               { text: &#x27;Saint-Vincent-et-les Grenadines&#x27;, value: &#x27;VC&#x27; },
+               { text: &#x27;Sainte-Lucie&#x27;, value: &#x27;LC&#x27; },
+               { text: &#x27;Salomon, Îles&#x27;, value: &#x27;SB&#x27; },
+               { text: &#x27;Salvador&#x27;, value: &#x27;SV&#x27; },
+               { text: &#x27;Samoa américaines&#x27;, value: &#x27;AS&#x27; },
+               { text: &#x27;Samoa&#x27;, value: &#x27;WS&#x27; },
+               { text: &#x27;Serbie&#x27;, value: &#x27;RS&#x27; },
+               { text: &#x27;Seychelles&#x27;, value: &#x27;SC&#x27; },
+               { text: &#x27;Sierra Leone&#x27;, value: &#x27;SL&#x27; },
+               { text: &#x27;Singapour&#x27;, value: &#x27;SG&#x27; },
+               { text: &#x27;Slovaquie&#x27;, value: &#x27;SK&#x27; },
+               { text: &#x27;Slovénie&#x27;, value: &#x27;SI&#x27; },
+               { text: &#x27;Somalie&#x27;, value: &#x27;SO&#x27; },
+               { text: &#x27;Soudan&#x27;, value: &#x27;SD&#x27; },
+               { text: &#x27;Sri Lanka&#x27;, value: &#x27;LK&#x27; },
+               { text: &#x27;Suisse&#x27;, value: &#x27;CH&#x27; },
+               { text: &#x27;Suriname&#x27;, value: &#x27;SR&#x27; },
+               { text: &#x27;Suède&#x27;, value: &#x27;SE&#x27; },
+               { text: &#x27;Svalbard et île Jan Mayen&#x27;, value: &#x27;SJ&#x27; },
+               { text: &#x27;Swaziland&#x27;, value: &#x27;SZ&#x27; },
+               { text: &#x27;Syrie&#x27;, value: &#x27;SY&#x27; },
+               { text: &#x27;São Tomé-et-Principe&#x27;, value: &#x27;ST&#x27; },
+               { text: &#x27;Sénégal&#x27;, value: &#x27;SN&#x27; },
+               { text: &#x27;Tadjikistan&#x27;, value: &#x27;TJ&#x27; },
+               { text: &#x27;Tanzanie&#x27;, value: &#x27;TZ&#x27; },
+               { text: &#x27;Tchad&#x27;, value: &#x27;TD&#x27; },
+               { text: &#x27;Territoire britannique de l\&#x27;océan Indien&#x27;, value: &#x27;IO&#x27; },
+               { text: &#x27;Thaïlande&#x27;, value: &#x27;TH&#x27; },
+               { text: &#x27;Timor oriental&#x27;, value: &#x27;TL&#x27; },
+               { text: &#x27;Togo&#x27;, value: &#x27;TG&#x27; },
+               { text: &#x27;Tokelau&#x27;, value: &#x27;TK&#x27; },
+               { text: &#x27;Tonga&#x27;, value: &#x27;TO&#x27; },
+               { text: &#x27;Trinité-et-Tobago&#x27;, value: &#x27;TT&#x27; },
+               { text: &#x27;Tunisie&#x27;, value: &#x27;TN&#x27; },
+               { text: &#x27;Turkménistan&#x27;, value: &#x27;TM&#x27; },
+               { text: &#x27;Turquie&#x27;, value: &#x27;TR&#x27; },
+               { text: &#x27;Tuvalu&#x27;, value: &#x27;TV&#x27; },
+               { text: &#x27;Ukraine&#x27;, value: &#x27;UA&#x27; },
+               { text: &#x27;Uruguay&#x27;, value: &#x27;UY&#x27; },
+               { text: &#x27;Vanuatu&#x27;, value: &#x27;VU&#x27; },
+               { text: &#x27;Venezuela&#x27;, value: &#x27;VE&#x27; },
+               { text: &#x27;Viêt Nam&#x27;, value: &#x27;VN&#x27; },
+               { text: &#x27;Yémen&#x27;, value: &#x27;YE&#x27; },
+               { text: &#x27;Zambie&#x27;, value: &#x27;ZM&#x27; },
+               { text: &#x27;Zimbabwe&#x27;, value: &#x27;ZW&#x27; }
+            ]
+         }
+      }
+   ];
+   
+   var menu = new Y.inputEx.MenuField({
+      parentEl: &#x27;container3&#x27;,
+      name: &#x27;country&#x27;,
+      label: &#x27;Your Country:&#x27;,
+      menuItems: menuItems3,
+      constrained: true
+   });
 
 
 });</pre>

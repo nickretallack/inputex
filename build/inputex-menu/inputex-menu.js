@@ -62,7 +62,6 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
 
       // New options
       this.options.typeInvite = options.typeInvite || this.messages.menuTypeInvite;
-      this.options.colorInvite = options.colorInvite || "FFFFFF";
       this.options.menuTrigger = options.menuTrigger || "click";
       this.options.menuOrientation = options.menuOrientation || VERTICAL;
       this.options.menuItems = options.menuItems;
@@ -83,9 +82,6 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       this.hiddenEl = inputEx.cn('input', {type: 'hidden', name: this.options.name || '', value: this.options.value || ''});
       this.fieldContainer.appendChild(this.hiddenEl);
       this.renderMenu(this.fieldContainer);
-
-      this.setBackgroundColorOfRootLabel(this.options.colorInvite);
-
    },
 
    /**
@@ -100,7 +96,7 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       this._valueFromHref = {};
 
 
-      var that = this, pluginClass,
+      var that = this, a_tags, pluginClass,
       
       // This method returns template completed with data.
       renderMenuRecurs = function (parent_id, conf, level) {
@@ -150,9 +146,9 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       };
 
 
-        if(!this.options.menuItems){
-          throw new Error("Missing 'menuItems' property in options");
-        }
+      if (!this.options.menuItems) {
+         throw new Error("Missing 'menuItems' property in options");
+      }
 
       this._menu = create(renderMenuRecurs(Y.guid(), [{
          text: this.options.typeInvite,
@@ -166,17 +162,13 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
             a.set('href', '#' + href.split('#')[1]);
          });
       }
-
+      
       if (this.options.menuOrientation === HORIZONTAL) {
-         this._menu.addClass('yui3-menu-horizontal  yui3-menubuttonnav');
+         this._menu.addClass('yui3-menu-horizontal yui3-menubuttonnav');
       }
 
       // Retrieve the first label for later use
-      this._rootItemLabel = this._menu.one('.yui3-menu-label');
-      if (this.options.menuOrientation === HORIZONTAL) {
-         this._rootItemLabel.setContent('<em>'+this.options.typeInvite+'</em>');
-         this._rootItemLabel = this._rootItemLabel.one('em');
-      }
+      this._rootItemLabel = this._menu.one('.yui3-menu-label').setContent('<em>'+this.options.typeInvite+'</em>').one('em');
 
       pluginClass = this.options.constrained ? 'NodeConstrainedMenuNav' : 'NodeMenuNav';
       this._menu.plug(Y.Plugin[pluginClass], this.options.menuConfig);
@@ -190,15 +182,6 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       this._menu.delegate('click', Y.bind(this.onItemClick, this), 'a');
    },
 
-   /**
-    * This function will set the background color of the root label node (which is the first node with class="yui3-menu-label" of our component)
-    * Just after the render phase, this node display : "Cliquez ici pour choisir la prestation"
-    *
-    * @param color if undefined white is setted.
-    */
-   setBackgroundColorOfRootLabel: function (color) {
-      this._menu.one(".yui3-menu-label").setStyle("backgroundColor",color);
-   },
    /**
     * @method onItemClick
     */
