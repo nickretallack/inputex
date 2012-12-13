@@ -2,19 +2,19 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>node-constrained-menunav tests</title>
+    <title>node-menunav-improved tests</title>
     <script src="http://yui.yahooapis.com/3.7.3/build/yui/yui.js"></script>
     
     <script src="../../../../build/InputEx-loader/InputEx-loader.js"></script>
     
 </head>
 <body class="yui3-skin-sam">
-<h1>node-constrained-menunav Tests</h1>
+<h1>node-menunav-improved Tests</h1>
 <div id="testLogger"></div>
 <script>
 
 YUI({
-    coverage: ['node-constrained-menunav'],
+    coverage: ['node-menunav-improved'],
     "groups": {
         'InputEx': {
             base: '../../../../build/'
@@ -22,12 +22,12 @@ YUI({
     },
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw',
     modules: {
-        'node-constrained-menunav-test': {
-            fullpath: './assets/node-constrained-menunav-test.js',
-            requires: ["test","node-constrained-menunav"]
+        'node-menunav-improved-test': {
+            fullpath: './assets/node-menunav-improved-test.js',
+            requires: ["test","node-menunav-improved"]
         }
     }
-}).use("test", "test-console", "node-constrained-menunav", "node-constrained-menunav-test", function(Y) {
+}).use("test", "test-console", "node-menunav-improved", "node-menunav-improved-test", function(Y) {
   
     window.Y = Y; // keep this for the yui selenium driver
 

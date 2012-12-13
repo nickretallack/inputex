@@ -1,8 +1,9 @@
-YUI.add('node-constrained-menunav', function (Y, NAME) {
+YUI.add('node-menunav-improved', function (Y, NAME) {
 
 
 var scrollbarWidth = null,
-    getScrollbarWidth;
+    getScrollbarWidth,
+    NodeMenuNavImproved;
 
 
 getScrollbarWidth = function () {
@@ -25,33 +26,49 @@ getScrollbarWidth = function () {
 
 
 /**
- * Y.Plugin.NodeConstrainedMenuNav is a subclass of Y.Plugin.NodeMenuNav which
+ * Y.Plugin.NodeMenuNavImproved is a subclass of Y.Plugin.NodeMenuNav which
  * display scroll bars on menu nodes taller than the viewport.
  */
-NodeConstrainedMenuNav = function () {
-   NodeConstrainedMenuNav.superclass.constructor.apply(this, arguments);
+NodeMenuNavImproved = function () {
+   NodeMenuNavImproved.superclass.constructor.apply(this, arguments);
 };
 
-NodeConstrainedMenuNav.NAME = "nodeConstrainedMenuNav";
-NodeConstrainedMenuNav.NS   = "menuNav";
-NodeConstrainedMenuNav.ATTRS = {
+NodeMenuNavImproved.NAME = "nodeMenuNavImproved";
+NodeMenuNavImproved.NS   = "menuNav";
+NodeMenuNavImproved.ATTRS = {
    viewportPadding: {
       value: 20
    }
 };
 
-Y.extend(NodeConstrainedMenuNav, Y.Plugin.NodeMenuNav, {
-
+Y.extend(NodeMenuNavImproved, Y.Plugin.NodeMenuNav, {
+   
+   /***************************
+   * 1. Viewport constraining
+   ***************************/
+   initializer: function () {
+      this.constrained = this.get('host').hasClass('yui3-menu-constrained');
+   },
+   
    _showMenu: function (menu) {
-      NodeConstrainedMenuNav.superclass._showMenu.call(this, menu);
-      this._onWindowResize(null, menu);
-      Y.one('win').on('windowresize', this._onWindowResize, this, menu);
+      
+      NodeMenuNavImproved.superclass._showMenu.call(this, menu);
+      
+      if (this.constrained) {
+         this._onWindowResize(null, menu);
+         Y.one('win').on('windowresize', this._onWindowResize, this, menu);
+      }
    },
 
    _hideMenu: function (menu, activateAndFocusLabel) {
-      Y.one('win').detach('windowresize', this._onWindowResize);
-      this.revertStyle(menu.one('.yui3-menu-content'));
-      NodeConstrainedMenuNav.superclass._hideMenu.call(this, menu, activateAndFocusLabel);
+      
+      if (this.constrained) {
+         Y.one('win').detach('windowresize', this._onWindowResize);
+         this.revertStyle(menu.one('.yui3-menu-content'));
+      }
+      
+      NodeMenuNavImproved.superclass._hideMenu.call(this, menu, activateAndFocusLabel);
+      
    },
 
    _onWindowResize: function (e, menu) {
@@ -78,7 +95,7 @@ Y.extend(NodeConstrainedMenuNav, Y.Plugin.NodeMenuNav, {
             menu.set('isConstrained', false);
             this.revertStyle(menuContent);
 
-            NodeConstrainedMenuNav.superclass._showMenu.call(this, menu); // Just to reset height/width
+            NodeMenuNavImproved.superclass._showMenu.call(this, menu); // Just to reset height/width
          }
 
          // Readjust position if needed
@@ -95,12 +112,36 @@ Y.extend(NodeConstrainedMenuNav, Y.Plugin.NodeMenuNav, {
          height: '',
          width: ''
       });
+   },
+   
+   
+   
+   /***************************
+   * 2. Fix submenu hiding
+   ***************************/
+   _onActiveDescendantChange: function () {
+      /* a lot of stuff removed here... */
+      return false;
+   },
+   
+   _onMenuLabelMouseOut: function () {
+      
+      var menuNav = this,
+          hoverTimer = menuNav._hoverTimer;
+          
+      if (hoverTimer) {
+         hoverTimer.cancel();
+      }
+        
+      menuNav._clearActiveItem();
+      
+      /* a lot of stuff removed here... */
    }
 
 });
 
 Y.namespace('Plugin');
 
-Y.Plugin.NodeConstrainedMenuNav = NodeConstrainedMenuNav;
+Y.Plugin.NodeMenuNavImproved = NodeMenuNavImproved;
 
 }, '@VERSION@', {"requires": ["event-resize", "node-menunav"]});

@@ -1,17 +1,17 @@
 
-YUI.add("node-constrained-menunav-test", function (Y) {
+YUI.add("node-menunav-improved-test", function (Y) {
 
     var suite = new Y.Test.Suite({
-        name: "node-constrained-menunav Test Suite"
+        name: "node-menunav-improved Test Suite"
     }),
         testCase = new Y.Test.Case({
 
-            name: "node-constrained-menunav first test case",
+            name: "node-menunav-improved first test case",
             testGeneration: function () {
 
                 Y.log("test",'debug');
 
-                var instance = new Y.NodeConstrainedMenunav({
+                var instance = new Y.NodeMenunavImproved({
                 });
 
                 Y.Assert.isObject(instance);
@@ -23,5 +23,5 @@ YUI.add("node-constrained-menunav-test", function (Y) {
     Y.Test.Runner.add(suite);
 
 }, "", {
-    requires: ["test", "node-constrained-menunav"]
+    requires: ["test", "node-menunav-improved"]
 });

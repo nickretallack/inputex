@@ -9,7 +9,7 @@
    "use": [
       "inputex-field",
       "node-event-delegate",
-      "node-constrained-menunav",
+      "node-menunav-improved",
       "substitute"
    ],
    "examples": [

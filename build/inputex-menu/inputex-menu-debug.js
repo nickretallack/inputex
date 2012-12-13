@@ -96,7 +96,7 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       this._valueFromHref = {};
 
 
-      var that = this, a_tags, pluginClass,
+      var that = this, a_tags,
       
       // This method returns template completed with data.
       renderMenuRecurs = function (parent_id, conf, level) {
@@ -167,11 +167,14 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
          this._menu.addClass('yui3-menu-horizontal yui3-menubuttonnav');
       }
 
+      if (this.options.constrained) {
+         this._menu.addClass('yui3-menu-constrained');
+      }
+      
       // Retrieve the first label for later use
       this._rootItemLabel = this._menu.one('.yui3-menu-label').setContent('<em>'+this.options.typeInvite+'</em>').one('em');
 
-      pluginClass = this.options.constrained ? 'NodeConstrainedMenuNav' : 'NodeMenuNav';
-      this._menu.plug(Y.Plugin[pluginClass], this.options.menuConfig);
+      this._menu.plug(Y.Plugin.NodeMenuNavImproved, this.options.menuConfig);
       this._menu.appendTo(container);
    },
 
@@ -233,7 +236,7 @@ inputEx.registerType("menu", inputEx.MenuField);
     "requires": [
         "inputex-field",
         "node-event-delegate",
-        "node-constrained-menunav",
+        "node-menunav-improved",
         "substitute"
     ],
     "skinnable": true,

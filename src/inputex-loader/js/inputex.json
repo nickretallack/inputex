@@ -469,7 +469,7 @@
         "requires": [
             "inputex-field",
             "node-event-delegate",
-            "node-constrained-menunav",
+            "node-menunav-improved",
             "substitute"
         ],
         "skinnable": true
@@ -765,7 +765,7 @@
             "dump"
         ]
     },
-    "node-constrained-menunav": {
+    "node-menunav-improved": {
         "requires": [
             "event-resize",
             "node-menunav"

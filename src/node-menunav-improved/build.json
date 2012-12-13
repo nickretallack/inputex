@@ -1,0 +1,10 @@
+{
+   "name": "node-menunav-improved",
+   "builds": {
+      "node-menunav-improved": {
+         "jsfiles": [
+            "node-menunav-improved.js"
+         ]
+      }
+   }
+}
