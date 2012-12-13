@@ -51,6 +51,11 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
    initEvents: function() {
       inputEx.AutoComplete.superclass.initEvents.call(this);
 
+      if (Y.UA.ie > 0){
+         // Restore "enter" key support for selecting items (prevented in inputex-string)
+         Y.Event.detach('key', undefined, this.el);
+      }
+
       // remove standard blur listener
       // TODO: ?
    },
