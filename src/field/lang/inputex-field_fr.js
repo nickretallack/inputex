@@ -1,5 +1,5 @@
 {
-   required: "Este campo es obligatorio",
-   invalid: "Este campo no es válido",
-   valid: "Este campo es válido"
+   required: "Ce champ est obligatoire",
+   invalid: "Ce champ n'est pas valide",
+   valid: "Ce champ est valide"
 }
