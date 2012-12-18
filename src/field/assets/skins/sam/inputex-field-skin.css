@@ -32,4 +32,8 @@ div.inputEx-message {
 
 div.inputEx-clear-div {
    clear: both;
+   /* (added for inputex-combine)
+    ie7 only */
+   width : 0;
+   height : 0;
 }

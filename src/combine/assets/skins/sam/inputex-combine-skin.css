@@ -6,9 +6,3 @@
 .inputEx-CombineField .inputEx-fieldWrapper{
    float: left;
 }
-
-/* ie7 only */
-*+#plageForm-TimeRange .inputEx-clear-div{
-    width : 0;
-    height : 0;
-}
