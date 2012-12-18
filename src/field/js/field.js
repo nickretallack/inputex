@@ -219,10 +219,6 @@ inputEx.Field.prototype = {
     */
    setClassFromState: function(state) {
 
-      console.log("this.previousState", this.previousState);
-      console.log("inputEx.stateRequired", inputEx.stateRequired);
-
-
       var className;
       // remove previous class
       if(this.previousState) {
