@@ -1,36 +1,36 @@
-div.inputEx-fieldWrapper {
+.inputEx-fieldWrapper {
    margin-bottom:0.2em;
 }
 
-div.inputEx-label {
+.inputEx-label {
    float: left;
    color: #505050;
    text-align: right;
    padding: 0.2em 0.5em 0 0;
 }
 
-div.inputEx-Group div.inputEx-label {
+.inputEx-Group .inputEx-label {
    width: 130px;
 }
 
-div.inputEx-Field {
+.inputEx-Field {
    float: left;
 }
 
-div.inputEx-description {
+.inputEx-description {
    clear:both;
    color: #505050;
    font-size: 75%;
    margin-top: 2px;
 }
 
-div.inputEx-message {
+.inputEx-message {
    float: left;
    margin: 4px;
    font-size: 85%;
 }
 
-div.inputEx-clear-div {
+.inputEx-clear-div {
    clear: both;
    /* (added for inputex-combine)
     ie7 only */
