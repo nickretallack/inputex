@@ -87,9 +87,7 @@ Y.extend( inputEx.CombineField, inputEx.Group, {
 	         // remove the line breaker (<div style='clear: both;'>)
 	         field.divEl.removeChild(fieldEl.childNodes[fieldEl.childNodes.length-1]);
          }
-      	// make the field float left
-      	Y.one(fieldEl).setStyle('float', 'left');
-   	
+
       	this.divEl.appendChild(fieldEl);
       	
       	this.appendSeparator(i+1);

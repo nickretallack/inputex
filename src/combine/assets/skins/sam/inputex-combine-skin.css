@@ -1,4 +1,14 @@
-div.inputEx-CombineField-separator {
+.inputEx-CombineField-separator {
    float: left;
    margin-top:2px;
+}
+
+.inputEx-CombineField .inputEx-fieldWrapper{
+   float: left;
+}
+
+/* ie7 only */
+*+#plageForm-TimeRange .inputEx-clear-div{
+    width : 0;
+    height : 0;
 }
