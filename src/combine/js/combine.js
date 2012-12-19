@@ -98,7 +98,15 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
             // remove the line breaker (<div style='clear: both;'>)
             field.divEl.removeChild(fieldEl.childNodes[fieldEl.childNodes.length - 1]);
          }
-
+         
+         /* This rule should stay in javascript because the cross-browser equivalent in css would be like:
+         *      .inputEx-CombineField .inputEx-fieldWrapper { float: left }
+         *
+         *  That css would need to be overriden later by nested fields inside the combine (ex: datepicker),
+         *  and every time we have to do that, a unicorn dies.
+         */
+         Y.one(fieldEl).setStyle('float', 'left');
+         
          this.divEl.appendChild(fieldEl);
 
          this.appendSeparator(i + 1);
