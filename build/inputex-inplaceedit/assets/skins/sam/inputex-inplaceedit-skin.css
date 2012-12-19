@@ -6,3 +6,8 @@
 }
 
 .inputEx-OkButton { margin-left: 5px; }
+
+/* because of this change in combine.js d497d619d18149c1a877f8bc5ddba1fff6850972*/
+.inputEx-editorDiv .inputEx-CombineField {
+  float: left;
+}
