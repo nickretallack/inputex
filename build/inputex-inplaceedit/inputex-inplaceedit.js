@@ -8,7 +8,7 @@ YUI.add('inputex-inplaceedit', function (Y, NAME) {
        CSS_PREFIX = "inputEx-";
 
 /**
- * Meta field providing in place editing (the editor appears when you click on the formatted value). 
+ * Meta field providing in place editing (the editor appears when you click on the formatted value).
  * @class inputEx.InPlaceEdit
  * @extends inputEx.Field
  * @constructor
@@ -33,7 +33,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     */
    setOptions: function(options) {
 
-      var that = this, 
+      var that = this,
       buttonConfigs, buttonConfigsLength ,i, item;
 
 
@@ -49,7 +49,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
       //this.options.buttonTypes = options.buttonTypes || {ok:"submit",cancel:"link"};
 
       if (!options.buttonConfigs) {
-          // Default 
+          // Default
           this.options.buttonConfigs = [{
               type: "submit",
               value: this.messages.okEditor,
@@ -72,7 +72,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
           // Custumized buttons
           buttonConfigs = options.buttonConfigs,
           buttonConfigsLength = buttonConfigs.length,
-          i, item;  
+          i, item;
 
 
           for (i = 0 ; i < buttonConfigsLength ; i++){
@@ -116,7 +116,9 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     * @method renderEditor
     */
    renderEditor: function() {
-      var i;
+      var i,
+         editorFieldEl,
+         config;
 
       this.editorContainer = inputEx.cn('div', {className: CSS_PREFIX+'editor'}, {display: 'none'});
       
@@ -125,13 +127,13 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
         throw new Error("Missing 'editorField' property in options");
       }
       this.editorField = inputEx(this.options.editorField,this);
-      var editorFieldEl = this.editorField.getEl();
+      editorFieldEl = this.editorField.getEl();
       
       this.editorContainer.appendChild( editorFieldEl );
       Y.one(editorFieldEl).addClass(CSS_PREFIX+'editorDiv');
       this.buttons = [];
       for (i = 0; i < this.options.buttonConfigs.length ; i++){
-        var config = this.options.buttonConfigs[i];
+        config = this.options.buttonConfigs[i];
         config.parentEl = this.editorContainer;
         this.buttons.push(new inputEx.widget.Button(config));
       }
@@ -148,7 +150,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     * @method onVisuMouseOver
     * @param {Event} e The original mouseover event
     */
-   onVisuMouseOver: function(e) {
+   onVisuMouseOver: function() {
       // to totally disable the visual effect on mouse enter, you should change css options inputEx-InPlaceEdit-visu:hover
       if(this.disabled) {
          return;
@@ -165,8 +167,8 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     * @method onVisuMouseOut
     * @param {Event} e The original mouseout event
     */
-   onVisuMouseOut: function(e) {
-      var optionsAnim;
+   onVisuMouseOut: function() {
+      var optionsAnim, that;
       if(this.disabled) {
          return;
       }
@@ -194,9 +196,9 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
         };
       }
       this.colorAnim = new Y.Anim(optionsAnim);
-      var that = this;
-      this.colorAnim.on("end",function() { 
-        Y.one(that.formattedContainer).setStyle('backgroundColor', ''); 
+      that = this;
+      this.colorAnim.on("end",function() {
+        Y.one(that.formattedContainer).setStyle('backgroundColor', '');
       });
       this.colorAnim.run();
       
@@ -227,7 +229,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     * Adds the events for the editor and color animations
     * @method initEvents
     */
-   initEvents: function() {  
+   initEvents: function() {
       Y.one(this.formattedContainer).on("click", this.openEditor, this, true);
             
       // For color animation (if specified)
@@ -278,16 +280,18 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     */
    onOkEditor: function(e) {
 
+      var newValue, that;
+
       if(e) {
          e.halt();
       }
       
-      var newValue = this.editorField.getValue();
+      newValue = this.editorField.getValue();
       this.setValue(newValue);
       this.closeEditor();
       
-      var that = this;
-      setTimeout(function() {that.fire("updated",newValue);}, 50);      
+      that = this;
+      setTimeout(function() {that.fire("updated",newValue);}, 50);
    },
 
    
@@ -312,7 +316,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
       this.editorContainer.style.display = 'none';
       this.formattedContainer.style.display = '';
       this.fire("closeEditor");
-   },  
+   },
        
    /**
     * Override enable to Enable openEditor
@@ -321,12 +325,12 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     enable: function(){
       this.disabled = false;
       inputEx.sn(this.formattedContainer, {className: 'inputEx-InPlaceEdit-visu'});
-    },  
+    },
     
    /**
     * Override disable to Disable openEditor
     * @method disable
-    */   
+    */
     disable: function(){
       this.disabled = true;
       inputEx.sn(this.formattedContainer, {className: 'inputEx-InPlaceEdit-visu-disable'});
@@ -338,7 +342,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     */
    openEditor: function() {
       if(this.disabled) {
-         return; 
+         return;
       }
 
       var value = this.getValue();
@@ -346,7 +350,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
       this.formattedContainer.style.display = 'none';
    
       if(!lang.isUndefined(value)) {
-         this.editorField.setValue(value);   
+         this.editorField.setValue(value);
       }
       
       // Set focus in the element !
@@ -373,9 +377,10 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     * Set the value and update the display
     * @method setValue
     * @param {Any} value The value to set
-    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
+    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated'
+    * event or not (default is true, pass false to NOT send the event)
     */
-   setValue: function(value, sendUpdatedEvt) {   
+   setValue: function(value, sendUpdatedEvt) {
       // Store the value
      this.value = value;
    
@@ -386,7 +391,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
          inputEx.renderVisu(this.options.visu, this.value, this.formattedContainer);
       }
       
-      // If the editor is opened, update it 
+      // If the editor is opened, update it
       if(this.editorContainer.style.display === '') {
          this.editorField.setValue(value);
       }
