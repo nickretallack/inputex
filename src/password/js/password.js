@@ -40,9 +40,6 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
       this.messages = Y.mix(this.messages,Y.Intl.get("inputex-password"));
 	   
       this.options.className = options.className ? options.className : "inputEx-Field inputEx-PasswordField";
-	   
-	   // Add the password regexp (overridable)
-	   this.options.regexp = options.regexp || inputEx.regexps.password;
 	  
 		// display a strength indicator
 		this.options.strengthIndicator = lang.isUndefined(options.strengthIndicator) ? false : options.strengthIndicator;
