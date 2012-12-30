@@ -84,7 +84,23 @@ YUI().use('datatype','inputex-datatable','inputex-uneditable','inputex-datepicke
 	});
 	table.render("#container2");
 
-	var pluginConfig = {inputEx : inputExConfig};
+	var pluginConfig = {
+        inputEx : inputExConfig,
+        inplaceedit: true,
+        deleteMethod: function(record, cb) {
+            console.log("delete", record.getAttrs());
+            setTimeout(function() {
+                cb(true);
+            }, 800);
+        },
+        updateMethod: function(id, newValues, cb) {
+            console.log("updateMethod", id, newValues);
+            setTimeout(function() {
+                cb(true);
+            }, 800);
+            
+        }
+    };
 	table.plug(Y.inputEx.Plugin.InputExDataTable, pluginConfig);
 
 
@@ -169,7 +185,23 @@ YUI().use('datatype','inputex-datatable','inputex-uneditable','inputex-datepicke
 	});
 	table.render(&quot;#container2&quot;);
 
-	var pluginConfig = {inputEx : inputExConfig};
+	var pluginConfig = {
+        inputEx : inputExConfig,
+        inplaceedit: true,
+        deleteMethod: function(record, cb) {
+            console.log(&quot;delete&quot;, record.getAttrs());
+            setTimeout(function() {
+                cb(true);
+            }, 800);
+        },
+        updateMethod: function(id, newValues, cb) {
+            console.log(&quot;updateMethod&quot;, id, newValues);
+            setTimeout(function() {
+                cb(true);
+            }, 800);
+            
+        }
+    };
 	table.plug(Y.inputEx.Plugin.InputExDataTable, pluginConfig);
 
 

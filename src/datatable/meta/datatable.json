@@ -1,20 +1,22 @@
 {
-	"inputex-datatable": {
-		"requires": [
-		  "inputex-group",
-		  "inputex-panel",
-		  "datatable"
-		],
-		"skinnable": true,
-      "lang": [
-         "en",
-         "fr",
-         "de",
-         "ca",
-         "es",
-         "fr",
-         "it",
-         "nl"
-      ]
-	}
+    "inputex-datatable": {
+        "requires": [
+            "inputex-group",
+            "inputex-panel",
+            "datatable",
+            "overlay",
+            "intl"
+        ],
+        "skinnable": true,
+        "lang": [
+            "en",
+            "fr",
+            "de",
+            "ca",
+            "es",
+            "fr",
+            "it",
+            "nl"
+        ]
+    }
 }

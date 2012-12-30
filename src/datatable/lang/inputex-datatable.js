@@ -1,4 +1,6 @@
 {
+   addItemHeader: "Ajouter",
+   modifyItemHeader: "Modifier",
    saveText: "Sauver",
    cancelText: "Annuler",
    modifyText: "modifier",

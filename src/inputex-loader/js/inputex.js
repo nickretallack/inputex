@@ -188,7 +188,9 @@ YUI().use(function(Y) {
         "requires": [
             "inputex-group",
             "inputex-panel",
-            "datatable"
+            "datatable",
+            "overlay",
+            "intl"
         ],
         "skinnable": true
     },

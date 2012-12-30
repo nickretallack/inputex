@@ -1,29 +1,71 @@
-.yui-skin-sam .inputex-datatable-columnsDlg {visibility:hidden;border:1px solid #808080;background-color:#E3E3E3;}
-.yui-skin-sam .inputex-datatable-columnsDlg .hd {font-weight:bold;padding:1em;background:none;background-color:#E3E3E3;border-bottom:0;}
-.yui-skin-sam .inputex-datatable-columnsDlg .ft {text-align:right;padding:.5em;background-color:#E3E3E3;}
-.yui-skin-sam .inputex-datatable-columnsDlg .bd {height:10em;margin:0 1em;overflow:auto;border:1px solid black;background-color:white;}
-.yui-skin-sam .inputex-datatable-columnsDlg .dt-dlg-pickercol {clear:both;padding:.5em 1em 3em;border-bottom:1px solid gray;}
-.yui-skin-sam .inputex-datatable-columnsDlg .dt-dlg-pickerkey {float:left;}
-.yui-skin-sam .inputex-datatable-columnsDlg .dt-dlg-pickerbtns {float:right;}
+
+/* This was for the old "columnsDlg" dialog, which was use to select the visible columns  */
+/*.inputex-datatable-columnsDlg {visibility:hidden;border:1px solid #808080;background-color:#E3E3E3;}
+.inputex-datatable-columnsDlg .hd {font-weight:bold;padding:1em;background:none;background-color:#E3E3E3;border-bottom:0;}
+.inputex-datatable-columnsDlg .ft {text-align:right;padding:.5em;background-color:#E3E3E3;}
+.inputex-datatable-columnsDlg .bd {height:10em;margin:0 1em;overflow:auto;border:1px solid black;background-color:white;}
+.inputex-datatable-columnsDlg .dt-dlg-pickercol {clear:both;padding:.5em 1em 3em;border-bottom:1px solid gray;}
+.inputex-datatable-columnsDlg .dt-dlg-pickerkey {float:left;}
+.inputex-datatable-columnsDlg .dt-dlg-pickerbtns {float:right;}*/
+
 /* Container workarounds for Mac Gecko scrollbar issues */
-.yui-skin-sam .yui-panel-container.hide-scrollbars .inputex-datatable-columnsDlg .bd {
+/*.yui-panel-container.hide-scrollbars .inputex-datatable-columnsDlg .bd {*/
     /* Hide scrollbars by default for Gecko on OS X */
-    overflow: hidden;
+    /*overflow: hidden;
 }
-.yui-skin-sam .yui-panel-container.show-scrollbars .inputex-datatable-columnsDlg .bd {
+.yui-panel-container.show-scrollbars .inputex-datatable-columnsDlg .bd {*/
     /* Show scrollbars for Gecko on OS X when the Panel is visible  */
-    overflow: auto;
-}
-td.inputEx-DataTable-modify {
+    /*overflow: auto;
+}*/
+
+/**
+ * Additionnal columns
+ */
+
+.yui3-datatable-cell-modify {
 	background-image: url(images/edit.png);
-	background-position:center;
+	background-position: center center;
 	background-repeat: no-repeat;
 	margin: 2px;
 }
 
-td.inputEx-DataTable-delete {
+.yui3-datatable-cell-delete {
 	background-image: url(images/cross.png);    
-	background-position:center;
+	background-position: center center;
 	background-repeat: no-repeat;
 	margin: 2px;
 }
+
+
+/**
+ * InPlace Editing :
+ */
+
+.yui3-datatable-inplaceOverlay {
+    padding: 3px;
+    border: 1px solid #A0A0FF;
+    background-color: #D0D0FF;
+}
+
+.yui3-datatable-inplaceedit  .yui3-datatable-even:hover .yui3-datatable-cell,
+.yui3-datatable-inplaceedit  .yui3-datatable-odd:hover .yui3-datatable-cell {
+    background-color: #DFDFDF;
+}
+
+.yui3-datatable-inplaceedit .yui3-datatable-even .yui3-datatable-cell:hover,
+.yui3-datatable-inplaceedit .yui3-datatable-odd .yui3-datatable-cell:hover {
+    background-color: #B2D2FF;
+}
+
+.yui3-datatable-inplaceedit  .yui3-datatable-even .yui3-datatable-cell-edited,
+.yui3-datatable-inplaceedit  .yui3-datatable-odd .yui3-datatable-cell-edited {
+    background-color: red;
+}
+
+
+.yui3-datatable-inplaceedit  .yui3-datatable-row-edited .yui3-datatable-cell {
+    background-color: red;    
+}
+
+
+
