@@ -256,7 +256,7 @@ Y.extend(inputEx.Form, inputEx.Group, {
         else {
           // We keep this case for backward compatibility, but should not be used
           // Used when we send in JSON in POST or GET
-          postData = "value="+window.encodeURIComponent(Y.JSON.stringify(this.getValue()));
+          postData = Y.JSON.stringify(this.getValue());
         }
       }
       var onSuccess = function() {
