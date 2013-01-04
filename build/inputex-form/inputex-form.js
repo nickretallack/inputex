@@ -14,7 +14,8 @@ YUI.add('inputex-form', function (Y, NAME) {
  * @param {Object} options The following options are added for Forms:
  * <ul>
  *   <li>buttons: list of button definition objects {value: 'Click Me', type: 'submit'}</li>
- *   <li>ajax: send the form through an ajax request (submit button should be present): {method: 'POST', uri: 'myScript.php', callback: same as Y.io callback}</li>
+ *   <li>ajax: send the form through an ajax request (submit button should be present):
+ *       {method: 'POST', uri: 'myScript.php', callback: same as Y.io callback}</li>
  *   <li>showMask: adds a mask over the form while the request is running (default is false)</li>
  * </ul>
  */
@@ -40,14 +41,14 @@ Y.extend(inputEx.Form, inputEx.Group, {
       this.options.buttons = options.buttons || [];
 
       this.options.action = options.action;
-   	this.options.method = options.method;
+      this.options.method = options.method;
 
-		this.options.className =  options.className || 'inputEx-Group';
-	   this.options.autocomplete = lang.isUndefined(options.autocomplete) ?
-	                                  inputEx.browserAutocomplete :
-	                                  (options.autocomplete === false || options.autocomplete === "off") ? false : true;
-		
-		this.options.enctype = options.enctype;
+      this.options.className =  options.className || 'inputEx-Group';
+      this.options.autocomplete = lang.isUndefined(options.autocomplete) ?
+                                     inputEx.browserAutocomplete :
+                                     (options.autocomplete === false || options.autocomplete === "off") ? false : true;
+      
+      this.options.enctype = options.enctype;
 
       if(options.ajax) {
          this.options.ajax = {};
@@ -57,8 +58,8 @@ Y.extend(inputEx.Form, inputEx.Group, {
          this.options.ajax.callback.scope = (options.ajax.callback && options.ajax.callback.scope) || this;
          this.options.ajax.showMask = lang.isUndefined(options.ajax.showMask) ? false : options.ajax.showMask;
 
-			this.options.ajax.contentType = options.ajax.contentType || "application/json";
-			this.options.ajax.wrapObject = options.ajax.wrapObject;
+         this.options.ajax.contentType = options.ajax.contentType || "application/json";
+         this.options.ajax.wrapObject = options.ajax.wrapObject;
       }
       
       if (lang.isFunction(options.onSubmit)) {
@@ -73,33 +74,34 @@ Y.extend(inputEx.Form, inputEx.Group, {
     */
    render: function() {
       // Create the div wrapper for this group
-  	   this.divEl = inputEx.cn('div', {className: this.options.className});
-	   if(this.options.id) {
-   	   this.divEl.id = this.options.id;
-   	}
-   	  	   
-  	   // Create the FORM element
-      this.form = inputEx.cn('form', {method: this.options.method || 'POST', action: this.options.action || '', className: this.options.className || 'inputEx-Form'});
+      this.divEl = inputEx.cn('div', {className: this.options.className});
+      if(this.options.id) {
+         this.divEl.id = this.options.id;
+      }
+            
+      // Create the FORM element
+      this.form = inputEx.cn('form', {method: this.options.method || 'POST', action: this.options.action || '',
+                     className: this.options.className || 'inputEx-Form'});
       this.divEl.appendChild(this.form);
 
-		// set the enctype
-		if(this.options.enctype) {
-			this.form.setAttribute('enctype',this.options.enctype);
-		}
+      // set the enctype
+      if(this.options.enctype) {
+         this.form.setAttribute('enctype',this.options.enctype);
+      }
 
-	   // Set the autocomplete attribute to off to disable browser autocompletion
-		this.form.setAttribute('autocomplete', this.options.autocomplete ? 'on' : 'off');
-   	
+      // Set the autocomplete attribute to off to disable browser autocompletion
+      this.form.setAttribute('autocomplete', this.options.autocomplete ? 'on' : 'off');
+      
       // Set the name of the form
       if(this.options.formName) { this.form.name = this.options.formName; }
-  	   
-  	   this.renderFields(this.form);
+      
+      this.renderFields(this.form);
 
       this.renderButtons();
       
       if(this.options.disabled) {
-  	      this.disable();
-  	   }	  
+         this.disable();
+      }
    },
 
 
@@ -147,10 +149,10 @@ Y.extend(inputEx.Form, inputEx.Group, {
       
       
       // Custom event to normalize form submits
-      this.publish("submit")
+      this.publish("submit");
       
       //CustomEvent to provide additionnal features afterValidation
-      this.publish("afterValidation")
+      this.publish("afterValidation");
       
       // Two ways to trigger the form submitEvent firing
       //
@@ -179,7 +181,7 @@ Y.extend(inputEx.Form, inputEx.Group, {
       
       
       // When form submitEvent is fired, call onSubmit
-      this.on("submit", this.options.onSubmit || this.onSubmit,this)
+      this.on("submit", this.options.onSubmit || this.onSubmit,this);
    },
 
    /**
@@ -188,22 +190,22 @@ Y.extend(inputEx.Form, inputEx.Group, {
     * @method onSubmit
     * @param {Event} e The original onSubmit event
     */
-   onSubmit: function(e) {
-	   
+   onSubmit: function() {
+      
       // do nothing if does not validate
-	   if ( !this.validate() ) {
-		   return; // no submit
-	   }
-	   this.fire("afterValidation");
-	   
-	   if(this.options.ajax) {
-	      this.asyncRequest(); // send ajax request
-	      return;
-	   }
-	   
-	   // normal submit finally
-	   // (won't fire a dom "submit" event, so no risk to loop)
-	   this.form.submit();
+      if ( !this.validate() ) {
+         return; // no submit
+      }
+      this.fire("afterValidation");
+      
+      if(this.options.ajax) {
+         this.asyncRequest(); // send ajax request
+         return;
+      }
+      
+      // normal submit finally
+      // (won't fire a dom "submit" event, so no risk to loop)
+      this.form.submit();
    },
 
    /**
@@ -214,25 +216,26 @@ Y.extend(inputEx.Form, inputEx.Group, {
 
       if(this.options.ajax.showMask) { this.showMask(); }
 
-      var formValue = this.getValue();
+      var formValue = this.getValue(),
+      uri, method, postData, headers, params, key, pName, formVal, p,onSuccess, onFailure;
 
       // options.ajax.uri and options.ajax.method can also be functions that return a the uri/method depending of the value of the form
-      var uri = lang.isFunction(this.options.ajax.uri) ? this.options.ajax.uri(formValue) : this.options.ajax.uri;
-      var method = lang.isFunction(this.options.ajax.method) ? this.options.ajax.method(formValue) : this.options.ajax.method;
+      uri = lang.isFunction(this.options.ajax.uri) ? this.options.ajax.uri(formValue) : this.options.ajax.uri;
+      method = lang.isFunction(this.options.ajax.method) ? this.options.ajax.method(formValue) : this.options.ajax.method;
 
-      var postData = null;
+      postData = null;
       
-      var headers = {};
+      headers = {};
 
       // Classic application/x-www-form-urlencoded (like html forms)
-      if(this.options.ajax.contentType == "application/x-www-form-urlencoded" && method != "PUT") {
+      if(this.options.ajax.contentType === "application/x-www-form-urlencoded" && method !== "PUT") {
          
          headers["Content-Type"] = "application/x-www-form-urlencoded";
          
-        var params = [];
-        for(var key in formValue) {
+        params = [];
+        for(key in formValue) {
           if(formValue.hasOwnProperty(key)) {
-            var pName = (this.options.ajax.wrapObject ? this.options.ajax.wrapObject+'[' : '')+key+(this.options.ajax.wrapObject ? ']' : '');
+            pName = (this.options.ajax.wrapObject ? this.options.ajax.wrapObject+'[' : '')+key+(this.options.ajax.wrapObject ? ']' : '');
             params.push( pName+"="+window.encodeURIComponent(formValue[key]));
           }
         }
@@ -243,9 +246,9 @@ Y.extend(inputEx.Form, inputEx.Group, {
         headers["Content-Type"] = 'application/json';
 
         // method PUT don't send as x-www-form-urlencoded but in JSON
-        if(method == "PUT") {
-          var formVal = this.getValue();
-          var p;
+        if(method === "PUT") {
+          formVal = this.getValue();
+
           if(this.options.ajax.wrapObject) {
             p = {};
             p[this.options.ajax.wrapObject] = formVal;
@@ -261,13 +264,13 @@ Y.extend(inputEx.Form, inputEx.Group, {
           postData = Y.JSON.stringify(this.getValue());
         }
       }
-      var onSuccess = function() {
+      onSuccess = function() {
             if(this.options.ajax.showMask) { this.hideMask(); }
             if( lang.isFunction(this.options.ajax.callback.success) ) {
                this.options.ajax.callback.success.apply(this.options.ajax.callback.scope,arguments);
             }
       };
-      var onFailure = function() {
+      onFailure = function() {
             if(this.options.ajax.showMask) { this.hideMask(); }
             if( lang.isFunction(this.options.ajax.callback.failure) ) {
                this.options.ajax.callback.failure.apply(this.options.ajax.callback.scope,arguments);
@@ -290,7 +293,7 @@ Y.extend(inputEx.Form, inputEx.Group, {
     * @method renderMask
     */
    renderMask: function() {
-      if(this.maskRendered) return;
+      if(this.maskRendered) {return;}
 
       // position as "relative" to position formMask inside as "absolute"
       Y.one(this.divEl).setStyle( "position", "relative");
@@ -307,7 +310,8 @@ Y.extend(inputEx.Form, inputEx.Group, {
             width: this.divEl.offsetWidth+"px",
             height: this.divEl.offsetHeight+"px"
          },
-         "<div class='inputEx-Form-Mask-bg'/><center><br/><div class='inputEx-Form-Mask-spinner'></div><br /><span>"+this.messages.ajaxWait+"</span></div>");
+         "<div class='inputEx-Form-Mask-bg'/><center><br/><div class='inputEx-Form-Mask-spinner'></div><br /><span>"+
+                  this.messages.ajaxWait+"</span></div>");
       this.divEl.appendChild(this.formMask);
       this.maskRendered = true;
    },
@@ -345,9 +349,8 @@ Y.extend(inputEx.Form, inputEx.Group, {
       // IE 6 only
       if (!!Y.UA.ie && Y.UA.ie < 7) {
          var methodName = !!show ? "removeClass" : "addClass";
-         var that = this;
          Y.one(this.divEl).all("select").each(function(e){
-           e[methodName]("inputEx-hidden")
+           e[methodName]("inputEx-hidden");
          });
       }
    },
@@ -361,7 +364,7 @@ Y.extend(inputEx.Form, inputEx.Group, {
       inputEx.Form.superclass.enable.call(this);
       
       for (var i = 0 ; i < this.buttons.length ; i++) {
- 	      this.buttons[i].enable();
+         this.buttons[i].enable();
       }
    },
 
@@ -404,12 +407,12 @@ Y.extend(inputEx.Form, inputEx.Group, {
 
 // Register this class as "form" type
 inputEx.registerType("form", inputEx.Form, [
-   {  
-      type: 'list', 
-      label: 'Buttons', 
-      name: 'buttons', 
+   {
+      type: 'list',
+      label: 'Buttons',
+      name: 'buttons',
       elementType: {
-         type: 'group', 
+         type: 'group',
          fields: [
             { label: 'Label', name: 'value'},
             { type: 'select', label: 'Type', name: 'type', choices:[{ value: "button" }, { value: "submit" }] }
