@@ -36,7 +36,7 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
       this.options.className = options.className ? options.className : 'inputEx-Field inputEx-AutoComplete';
       
       // Added options
-      this.options.autoComp = options.autoComp;
+      this.options.autoComp    = options.autoComp;
       this.options.returnValue = options.returnValue;
    },
    
@@ -49,8 +49,9 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
     * @method initEvents
     */
    initEvents: function() {
+      
       inputEx.AutoComplete.superclass.initEvents.call(this);
-
+      
       if (Y.UA.ie > 0){
          // Restore "enter" key support for selecting items (prevented in inputex-string)
          Y.Event.detach('key', undefined, this.el);
@@ -137,12 +138,28 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
     * @method onBlur
     */
    onBlur: function(e){
-     if(this.el.value == '' && this.options.typeInvite) {
-       Y.one(this.divEl).addClass("inputEx-typeInvite")
-       if (this.el.value == '') this.el.value = this.options.typeInvite;
-     }
-  },
-
+      if (this.el.value == '' && this.options.typeInvite) {
+         Y.one(this.divEl).addClass("inputEx-typeInvite")
+         this.el.value = this.options.typeInvite;
+      }
+   },
+   
+   
+   onChange: function(e) {
+      
+      this.setClassFromState();
+      
+      // Clear the field when no value
+      if (this.hiddenEl.value != this.el.value) {
+         this.hiddenEl.value = this.el.value;
+      }
+      
+      Y.later(50, this, function() {
+         if (this.el.value == "") {
+            this.setValue("");
+         }
+      });
+   },
    
    /**
     * Set the value
@@ -150,19 +167,11 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
     * @param {Any} value Value to set
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the updated event or not (default is true, pass false to NOT send the event)
     */
-   setValue: function(value, sendUpdatedEvt) {
+   setValue: function (value, sendUpdatedEvt) {
+      
       this.hiddenEl.value = value || "";
-      this.el.value  =  value || "";
-      // "inherited" from inputex.Field :
-      //    (can't inherit of inputex.StringField because would set this.el.value...)
-      //
-      // set corresponding style
-      this.setClassFromState();
-
-      if(sendUpdatedEvt !== false) {
-         // fire update event
-         this.fireUpdatedEvt();
-      }
+      
+      inputEx.AutoComplete.superclass.setValue.call(this, value, sendUpdatedEvt);
    },
    
    /**
