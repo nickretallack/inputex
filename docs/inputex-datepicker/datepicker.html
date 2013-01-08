@@ -63,9 +63,16 @@ How to create a datepicker field.
     <p>If you want to let users enter the date manually</p>
     <div class='demoContainer' id='container6'></div>
 
+    <h2>Custom renderer</h2>
+    <p>Custom render some public holidays</p>
+    <div class='demoContainer' id='container7'></div>
+
     <h2>Real life example</h2>
     <p>Customize the calendar with two plugins (show week numbers, add year navigation), in the french locale.</p>
-    <div class='demoContainer' id='container7'></div>
+    <div class='demoContainer' id='container8'></div>
+
+
+    
     
     <style>
         .example th {
@@ -75,7 +82,7 @@ How to create a datepicker field.
             border: none;
         }
         
-        .yui3-skin-sam #container7 .inputEx-DatePickerField .yui3-calendar {
+        .yui3-skin-sam #container8 .inputEx-DatePickerField .yui3-calendar {
            *+width: 340px; /* horrible hack to add more width for IE 7 */
         }
     </style>
@@ -121,22 +128,75 @@ YUI().use('inputex-datepicker', function(Y) {
     
     // Example 6
     new Y.inputEx.DatePickerField({parentEl: 'container6', readonly: false, showMsg: true});
-    
+
+
+    // Example 7
+    var publicHoliday = {
+
+        "2013" : {
+         //01/01/2013
+            "0" : {
+                "1" : "publicHoliday"
+            },
+            "3" : {
+                "1" : "publicHoliday"
+            },
+            "4" : {
+                "1,8,9,20" : "publicHoliday"
+            },
+            "6" : {
+                "14" : "publicHoliday"
+            },
+            "7" : {
+                "15" : "publicHoliday"
+            },
+            "10" : {
+                "1,11" : "publicHoliday"
+            },
+            "11" : {
+                "25" : "publicHoliday"
+            }
+        }
+    };
+
+    function filterFunction(dates, node, rules) {
+        var numberOfRules = rules.length,
+            rule, i;
+
+        for(i = 0; i < numberOfRules; i++) {
+            rule = rules[i];
+
+            //if(rule === "publicHoliday") { //  node.setStyle("color", "red"); }
+        }
+    }
+
+    new Y.inputEx.DatePickerField({
+        parentEl: 'container7',
+        calendarOpts: {                
+            customRenderer: {
+               rules: publicHoliday,
+               filterFunction: filterFunction
+            },
+            disabledDatesRule: "publicHoliday"
+        }
+    });
+
 });
+    
 
-
-
-// example 7
+// example 8
 YUI({lang: 'fr'}).use('calendar', 'inputex-calendar-year-navigator-plugin', 'inputex-calendar-week-number-plugin', 'inputex-datepicker', function(Y) {
    
    new Y.inputEx.DatePickerField({
-       parentEl: 'container7',
+       parentEl: 'container8',
        calendarOpts: {
            plugins: [Y.Plugin.CalendarYearNavigator, Y.Plugin.CalendarWeekNumber]
        }
    });
    
 });
+
+
 
 </script>
 
@@ -192,16 +252,67 @@ YUI({lang: 'fr'}).use('calendar', 'inputex-calendar-year-navigator-plugin', 'inp
     
     &#x2F;&#x2F; Example 6
     new Y.inputEx.DatePickerField({parentEl: &#x27;container6&#x27;, readonly: false, showMsg: true});
-    
+
+
+    &#x2F;&#x2F; Example 7
+    var publicHoliday = {
+
+        &quot;2013&quot; : {
+         &#x2F;&#x2F;01&#x2F;01&#x2F;2013
+            &quot;0&quot; : {
+                &quot;1&quot; : &quot;publicHoliday&quot;
+            },
+            &quot;3&quot; : {
+                &quot;1&quot; : &quot;publicHoliday&quot;
+            },
+            &quot;4&quot; : {
+                &quot;1,8,9,20&quot; : &quot;publicHoliday&quot;
+            },
+            &quot;6&quot; : {
+                &quot;14&quot; : &quot;publicHoliday&quot;
+            },
+            &quot;7&quot; : {
+                &quot;15&quot; : &quot;publicHoliday&quot;
+            },
+            &quot;10&quot; : {
+                &quot;1,11&quot; : &quot;publicHoliday&quot;
+            },
+            &quot;11&quot; : {
+                &quot;25&quot; : &quot;publicHoliday&quot;
+            }
+        }
+    };
+
+    function filterFunction(dates, node, rules) {
+        var numberOfRules = rules.length,
+            rule, i;
+
+        for(i = 0; i &lt; numberOfRules; i++) {
+            rule = rules[i];
+
+            &#x2F;&#x2F;if(rule === &quot;publicHoliday&quot;) { &#x2F;&#x2F;  node.setStyle(&quot;color&quot;, &quot;red&quot;); }
+        }
+    }
+
+    new Y.inputEx.DatePickerField({
+        parentEl: &#x27;container7&#x27;,
+        calendarOpts: {                
+            customRenderer: {
+               rules: publicHoliday,
+               filterFunction: filterFunction
+            },
+            disabledDatesRule: &quot;publicHoliday&quot;
+        }
+    });
+
 });
+    
 
-
-
-&#x2F;&#x2F; example 7
+&#x2F;&#x2F; example 8
 YUI({lang: &#x27;fr&#x27;}).use(&#x27;calendar&#x27;, &#x27;inputex-calendar-year-navigator-plugin&#x27;, &#x27;inputex-calendar-week-number-plugin&#x27;, &#x27;inputex-datepicker&#x27;, function(Y) {
    
    new Y.inputEx.DatePickerField({
-       parentEl: &#x27;container7&#x27;,
+       parentEl: &#x27;container8&#x27;,
        calendarOpts: {
            plugins: [Y.Plugin.CalendarYearNavigator, Y.Plugin.CalendarWeekNumber]
        }

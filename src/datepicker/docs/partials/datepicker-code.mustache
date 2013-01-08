@@ -38,19 +38,72 @@ YUI().use('inputex-datepicker', function(Y) {
     
     // Example 6
     new Y.inputEx.DatePickerField({parentEl: 'container6', readonly: false, showMsg: true});
-    
+
+
+    // Example 7
+    var publicHoliday = {
+
+        "2013" : {
+         //01/01/2013
+            "0" : {
+                "1" : "publicHoliday"
+            },
+            "3" : {
+                "1" : "publicHoliday"
+            },
+            "4" : {
+                "1,8,9,20" : "publicHoliday"
+            },
+            "6" : {
+                "14" : "publicHoliday"
+            },
+            "7" : {
+                "15" : "publicHoliday"
+            },
+            "10" : {
+                "1,11" : "publicHoliday"
+            },
+            "11" : {
+                "25" : "publicHoliday"
+            }
+        }
+    };
+
+    function filterFunction(dates, node, rules) {
+        var numberOfRules = rules.length,
+            rule, i;
+
+        for(i = 0; i < numberOfRules; i++) {
+            rule = rules[i];
+
+            //if(rule === "publicHoliday") { //  node.setStyle("color", "red"); }
+        }
+    }
+
+    new Y.inputEx.DatePickerField({
+        parentEl: 'container7',
+        calendarOpts: {                
+            customRenderer: {
+               rules: publicHoliday,
+               filterFunction: filterFunction
+            },
+            disabledDatesRule: "publicHoliday"
+        }
+    });
+
 });
+    
 
-
-
-// example 7
+// example 8
 YUI({lang: 'fr'}).use('calendar', 'inputex-calendar-year-navigator-plugin', 'inputex-calendar-week-number-plugin', 'inputex-datepicker', function(Y) {
    
    new Y.inputEx.DatePickerField({
-       parentEl: 'container7',
+       parentEl: 'container8',
        calendarOpts: {
            plugins: [Y.Plugin.CalendarYearNavigator, Y.Plugin.CalendarWeekNumber]
        }
    });
    
 });
+
+
