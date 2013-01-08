@@ -34,7 +34,7 @@ Using a JSONP datasource (delicious)
 
 <div class="example">
     <div id="field-container"></div>
-
+    <div id="log-container"></div>
 <script>
 
 YUI().use('inputex-autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', function(Y) {
@@ -67,7 +67,7 @@ YUI().use('inputex-autocomplete', 'autocomplete-filters', 'autocomplete-highligh
        }
     });
 
-    Y.Node.create("<button>GetValue</button>").appendTo('#container2').on('click', function() {
+    Y.Node.create("<button>GetValue</button>").appendTo('#log-container').on('click', function() {
        alert( deliciousAC.getValue() );
     });
 
@@ -117,7 +117,7 @@ YUI().use('inputex-autocomplete', 'autocomplete-filters', 'autocomplete-highligh
        }
     });
 
-    Y.Node.create(&quot;&lt;button&gt;GetValue&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#container2&#x27;).on(&#x27;click&#x27;, function() {
+    Y.Node.create(&quot;&lt;button&gt;GetValue&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#log-container&#x27;).on(&#x27;click&#x27;, function() {
        alert( deliciousAC.getValue() );
     });
 

@@ -29,7 +29,7 @@ YUI().use('inputex-autocomplete', 'autocomplete-filters', 'autocomplete-highligh
        }
     });
 
-    Y.Node.create("<button>GetValue</button>").appendTo('#container2').on('click', function() {
+    Y.Node.create("<button>GetValue</button>").appendTo('#log-container').on('click', function() {
        alert( deliciousAC.getValue() );
     });
 

@@ -1,32 +1,80 @@
 YUI().use('inputex-autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', function(Y) {
-        
+   
    var field = Y.inputEx({
       type: "autocomplete",
       parentEl: 'field-container', 
       label: 'Search US state',
 
       // Format the hidden value (value returned by the form)
-      returnValue: function(oResultItem) {
-         return oResultItem.value;
+      returnValue: function (oResultItem) {
+         return oResultItem;
       },
-      autoComp: {// options of the YUI3 autocompleter (see http://developer.yahoo.com/yui/3/autocomplete/#config)
+      autoComp: { // options of the YUI3 autocompleter (see http://yuilibrary.com/yui/docs/autocomplete/#config)
          minQueryLength: 2,
          maxResults: 50,
-         resultTextLocator: 'label',
-         source:
-          [{label: "Massachusets", value: "MA"},
-          {label: "state2", value: 2},
-          {label: "state3", value:3}]
-
+         resultFilters: 'phraseMatch',
+         resultHighlighter: 'phraseMatch',
+         source: [
+             'Alabama',
+             'Alaska',
+             'Arizona',
+             'Arkansas',
+             'California',
+             'Colorado',
+             'Connecticut',
+             'Delaware',
+             'Florida',
+             'Georgia',
+             'Hawaii',
+             'Idaho',
+             'Illinois',
+             'Indiana',
+             'Iowa',
+             'Kansas',
+             'Kentucky',
+             'Louisiana',
+             'Maine',
+             'Maryland',
+             'Massachusetts',
+             'Michigan',
+             'Minnesota',
+             'Mississippi',
+             'Missouri',
+             'Montana',
+             'Nebraska',
+             'Nevada',
+             'New Hampshire',
+             'New Jersey',
+             'New Mexico',
+             'New York',
+             'North Dakota',
+             'North Carolina',
+             'Ohio',
+             'Oklahoma',
+             'Oregon',
+             'Pennsylvania',
+             'Rhode Island',
+             'South Carolina',
+             'South Dakota',
+             'Tennessee',
+             'Texas',
+             'Utah',
+             'Vermont',
+             'Virginia',
+             'Washington',
+             'West Virginia',
+             'Wisconsin',
+             'Wyoming'
+           ]
       }
    });
 
-Y.Node.create("<button>Get Value</button>").appendTo('#container1').on( 'click', function() {
+   Y.Node.create("<button>Get Value</button>").appendTo('#log-container').on( 'click', function() {
       alert( field.getValue() );
    });
 
    field.on("updated", function(value) {
-     Y.one('#container1').append("<div>Updated at "+(new Date())+" with value '"+value+"'</div>");
+      Y.one('#log-container').append("<div>Updated at "+(new Date())+" with value '"+value+"'</div>");
    });
 
 });
