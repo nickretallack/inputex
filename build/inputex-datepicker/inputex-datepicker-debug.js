@@ -174,19 +174,25 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
         );
       }
 
-      this.calendar.on("selectionChange", function (ev) {
+      this.calendar.on("dateClick", function (ev) {
+         
+         // skip disabled cells
+         if (ev.cell.hasClass('yui3-calendar-selection-disabled')) {
+            return;
+         }
          
          // Get the date from the list of selected
          // dates returned with the event (since only
          // single selection is enabled by default,
          // we expect there to be only one date)
-         var newDate = ev.newSelection[0];
+         var newDate = ev.date;
 
          this.setValue(newDate);
 
          this.oOverlay.hide();
+         
       }, this);
-
+      
       this.calendarRendered = true;
    },
 
