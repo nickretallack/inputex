@@ -43,8 +43,12 @@
 
 .yui3-datatable-inplaceOverlay {
     padding: 3px;
-    border: 1px solid #A0A0FF;
-    background-color: #D0D0FF;
+    border: 1px solid #808080;
+    background-color: #F2F2F2;
+}
+
+.yui3-datatable-inplaceedit tbody td {
+    cursor: pointer;
 }
 
 .yui3-datatable-inplaceedit  .yui3-datatable-even:hover .yui3-datatable-cell,

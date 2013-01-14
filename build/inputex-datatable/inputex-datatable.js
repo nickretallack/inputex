@@ -83,7 +83,7 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
           overlay = this.get('inplaceOverlay'),
 
           // inputEx Field config
-          fieldConf = this.get('inputEx').fields[colIndex],
+          fieldConf = Y.Array.find(this.get('inputEx').fields, function(i) { return i.name === key; }),
           conf = Y.mix({
             parentEl: this.overlayFieldContainer.getDOMNode()
           }, fieldConf),
@@ -511,8 +511,10 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       var host = this.get('host');
          
       host.addColumn({
+         label: ' ',
          key: this.get("strings").modifyText,
-         className: host.getClassName('cell-modify')
+         className: host.getClassName('cell-modify'),
+         formatter: this.get('modifyColumnFormatter')
       });
 
    },
@@ -527,8 +529,10 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       var host = this.get('host');
          
       host.addColumn({
+         label: ' ',
          key: this.get("strings").deleteText,
-         className: host.getClassName('cell-delete')
+         className: host.getClassName('cell-delete'),
+         formatter: this.get('deleteColumnFormatter')
       });
    },
 
@@ -719,7 +723,17 @@ ATTRS: {
       value: function(record, cb) {
          cb(true);
       }
+   },
+
+
+   modifyColumnFormatter: {
+      value: null
+   },
+
+   deleteColumnFormatter: {
+      value: null
    }
+
 
 }
 
