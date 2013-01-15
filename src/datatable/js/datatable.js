@@ -250,23 +250,25 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       if(!this.get("disableAddFunc")) {
       
          var buttonHtml = "<button>"+this.get("strings").addButtonText+"</button>",
-             button = Y.Node.create(buttonHtml),
-             panel = this.get("panel");
+             button = Y.Node.create(buttonHtml);
 
          this.addButton = button;
 
          this.get("host").get("contentBox").append(button);
          
-         button.on("click", function(e) {
-            
-            e.stopPropagation();
-
-            panel.set("headerContent",this.get("strings").addItemHeader);
-            panel.get("field").clear();
-            panel.show();
-         },this);
+         button.on("click", this._onAddButtonClick, this);
       }
    
+   },
+
+   _onAddButtonClick: function (e) {
+      var panel = this.get("panel");
+
+      e.stopPropagation();
+
+      panel.set("headerContent",this.get("strings").addItemHeader);
+      panel.get("field").clear();
+      panel.show();
    },
 
    /**
@@ -512,7 +514,8 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          label: ' ',
          key: this.get("strings").modifyText,
          className: host.getClassName('cell-modify'),
-         formatter: this.get('modifyColumnFormatter')
+         formatter: this.get('modifyColumnFormatter'),
+         nodeFormatter: this.get('modifyColumnNodeFormatter')
       });
 
    },
@@ -530,7 +533,8 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          label: ' ',
          key: this.get("strings").deleteText,
          className: host.getClassName('cell-delete'),
-         formatter: this.get('deleteColumnFormatter')
+         formatter: this.get('deleteColumnFormatter'),
+         nodeFormatter: this.get('deleteColumnNodeFormatter')
       });
    },
 
@@ -738,6 +742,14 @@ ATTRS: {
     * @type function
     */
    deleteColumnFormatter: {
+      value: null
+   },
+
+   modifyColumnNodeFormatter: {
+      value: null
+   },
+
+   deleteColumnNodeFormatter: {
       value: null
    }
 
