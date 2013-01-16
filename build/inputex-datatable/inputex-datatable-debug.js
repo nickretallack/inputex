@@ -67,6 +67,12 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       // Delegate click event to make the inplace editor appear
       this.cellClickHandler = host.delegate("click", this.onCellClick, "."+host.getClassName('cell'), this);
 
+      this.on('editorShow', this._onEditorShow, this);
+
+   },
+
+   _onEditorShow: function() {
+      this.get('inplaceOverlay').show();
    },
 
    onCellClick: function(e) {
@@ -105,9 +111,9 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          return;
       }
 
+
       // Align
       overlay.align(td, ["tl", "tl"]);
-      overlay.show();
 
       // Render field
       this.overlayFieldContainer.set('innerHTML', '');
@@ -121,6 +127,17 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          field: field,
          td: td
       };
+
+      // TODO: fire an event editorShow
+      this.fire('editorShow', {
+         column: column,
+         record: record,
+         key: key,
+         value: value,
+         cell: td,
+         field: field
+      });
+
    },
 
 
@@ -131,17 +148,29 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
           }),
           contentBox = o.get('contentBox'),
           overlayFieldContainer = Y.Node.create("<div />"),
+          overlayButtonsContainer = Y.Node.create("<div class='editor-buttons' />"),
           saveButton,
           cancelButton;
 
       contentBox.appendChild(overlayFieldContainer);
       this.overlayFieldContainer = overlayFieldContainer;
 
+      contentBox.appendChild(overlayButtonsContainer);
+
       // Overlay save and cancel buttons
       saveButton = Y.Node.create('<button>Sauver</button>');
-      contentBox.appendChild(saveButton);
+      overlayButtonsContainer.appendChild(saveButton);
+
+      saveButton.addClass('yui3-button');
+      saveButton.addClass('yui3-button-primary');
+
       cancelButton = Y.Node.create('<button>Annuler</button>');
-      contentBox.appendChild(cancelButton);
+
+      cancelButton.addClass('yui3-button');
+      cancelButton.addClass('yui3-button-link');
+
+
+      overlayButtonsContainer.appendChild(cancelButton);
       saveButton.on('click', this.onOverlaySave, this);
       cancelButton.on('click', this.onOverlayCancel, this);
 
@@ -251,7 +280,7 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
 
       if(!this.get("disableAddFunc")) {
       
-         var buttonHtml = "<button>"+this.get("strings").addButtonText+"</button>",
+         var buttonHtml = "<button class='yui3-button'>"+this.get("strings").addButtonText+"</button>",
              button = Y.Node.create(buttonHtml);
 
          this.addButton = button;
@@ -338,24 +367,27 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
     */
    _initPanel: function () {
 
-      var panel = new Y.inputEx.Panel({
-         centered: true,
-         width: 500,
-         modal: true,
-         zIndex: 5,
-         visible: false,
+      var opts = Y.mix({}, this.get('panelOptions') );
+
+      var panel = new Y.inputEx.Panel( Y.mix(opts, {
          inputEx: this.get("inputEx"),
-         buttons: [
-            {
-               value: this.get("strings").cancelText,
-               action: Y.bind(this.onPanelCancelButton, this)
-            },
-            {
-               value: this.get("strings").saveText,
-               action: Y.bind(this.onPanelSaveButton, this)
-            }
-         ]
-      });
+         buttons: {
+            header: ['close'],
+
+            footer: [
+               {
+                  value: this.get("strings").saveText,
+                  action: Y.bind(this.onPanelSaveButton, this),
+                  classNames: 'yui3-button-primary'
+               },
+               {
+                  value: this.get("strings").cancelText,
+                  action: Y.bind(this.onPanelCancelButton, this),
+                  classNames: 'yui3-button-link'
+               }
+            ]
+         }
+      }) );
 
       // first the panel needs to be "render" then "show"
       panel.render();
@@ -670,6 +702,15 @@ ATTRS: {
      lazyAdd: true
    },
 
+   panelOptions: {
+      value: {
+         centered: true,
+         width: 500,
+         modal: true,
+         zIndex: 5,
+         visible: false
+      }
+   },
 
    /**
     * Set to true if you want to activate in-cell editing (ALPHA)
@@ -747,10 +788,20 @@ ATTRS: {
       value: null
    },
 
+   /**
+    * nodeFormatter for the modify column
+    * @attribute modifyColumnNodeFormatter
+    * @type function
+    */
    modifyColumnNodeFormatter: {
       value: null
    },
 
+   /**
+    * nodeFormatter for the delete column
+    * @attribute deleteColumnNodeFormatter
+    * @type function
+    */
    deleteColumnNodeFormatter: {
       value: null
    }
