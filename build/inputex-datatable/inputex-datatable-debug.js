@@ -67,7 +67,7 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       // Delegate click event to make the inplace editor appear
       this.cellClickHandler = host.delegate("click", this.onCellClick, "."+host.getClassName('cell'), this);
 
-      this.on('editorShow', this._onEditorShow, this);
+      this.after('editorShow', this._onEditorShow, this);
 
    },
 
