@@ -281,7 +281,7 @@ var formConfig = {
        {type: 'submit', value: 'Load', onClick: function() { 
 
          try {
-					  var value = Example1.myPanel.getForm().getValue();
+					  var value = Example1.myPanel.get('field').getValue();
 					
 						try {
 					  	var code = eval('('+value.code+')');
@@ -338,18 +338,21 @@ var formConfig = {
  };
 	
 	Example1.myPanel = new Y.inputEx.Panel({
-		inputExDef: formConfig,
+		inputEx: formConfig,
 		title: 'Copy/Paste your inputEx JSON or JSON Schema here :',
-		panelConfig: {
+//		panelConfig: {
 					constraintoviewport: true, 
 					underlay:"shadow", 
 					close:true, 
 					fixedcenter: true,
 					visible:false, 
-					draggable:true,
-					modal: true
-		}
+//					draggable:true,
+					plugins: [Y.Plugin.Drag],
+					modal: true,
+					render: true
+//		}
 	});
+//	Example1.myPanel.render();
 
 
 }, '@VERSION@', {
@@ -418,7 +421,8 @@ var formConfig = {
         "inputex-uppercase",
         "inputex-url",
         "inputex-vector",
-        "inputex-visus"
+        "inputex-visus",
+        "dd-plugin"
     ],
     "skinnable": true
 });
