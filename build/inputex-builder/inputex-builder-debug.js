@@ -352,7 +352,6 @@ var formConfig = {
 					render: true
 //		}
 	});
-//	Example1.myPanel.render();
 
 
 }, '@VERSION@', {
