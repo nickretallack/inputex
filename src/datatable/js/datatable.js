@@ -100,8 +100,6 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          this.onOverlaySave();
       }
 
-      e.stopPropagation();
-
       if( !fieldConf ||
           fieldConf.type === "uneditable" ||
           td.hasClass('yui3-datatable-cell-delete') ||
@@ -109,6 +107,7 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          return;
       }
 
+      e.stopPropagation();
 
       // Align
       overlay.align(td, ["tl", "tl"]);
