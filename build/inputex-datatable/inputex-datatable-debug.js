@@ -68,11 +68,11 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       this.cellClickHandler = host.delegate("click", this.onCellClick, "."+host.getClassName('cell'), this);
 
       this.after('editorShow', this._onEditorShow, this);
-
    },
 
    _onEditorShow: function() {
       this.get('inplaceOverlay').show();
+      this.docKeyListener = Y.one('document').on('key', Y.bind(this.onOverlayCancel, this), 'esc');
    },
 
    onCellClick: function(e) {
@@ -227,10 +227,12 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       },this));
 
       this.get('inplaceOverlay').hide();
+      this.docKeyListener.detach();
    },
 
    onOverlayCancel: function() {
       this.get('inplaceOverlay').hide();
+      this.docKeyListener.detach();
    },
 
    /**
