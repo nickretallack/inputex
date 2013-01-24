@@ -1,6 +1,6 @@
 YUI.add('inputex-datatable', function (Y, NAME) {
 
-/*global Y:true,confirm:true*/
+/*global confirm:true*/
 
 /**
  * The inputex-datatable module provides the inputEx.Plugin.InputExDataTable class which is a plugin.
@@ -216,14 +216,14 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
 
       fieldValues[key] = newValue;
 
-      td.addClass( host.getClassName('cell-edited') );
+      this._addEditedClass(td);
 
       updateMethod.call(this, id, fieldValues, Y.bind(function(success) {
          if (success) {
             // on success, update the record in the datatable
             host.get("data").getById(id).setAttrs(fieldValues);
-            td.removeClass( host.getClassName('cell-edited') );
          }
+         this._removeEditedClass(td, success);
       },this));
 
       this.get('inplaceOverlay').hide();
@@ -325,21 +325,21 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       e.stopPropagation();
       var deleteMethod,
           host = this.get('host'),
-          record = host.getRecord(e.currentTarget),
-          row;
+          record = host.getRecord(e.currentTarget);
+
       if (!this.get("confirmDelete") || confirm(this.get("strings").confirmDeletion)) {
 
          // Call the deleteMethod async method
          deleteMethod = this.get('deleteMethod');
 
-         row = host.getRow(record);
-         row.addClass( host.getClassName('row-edited') );
+         this._addEditedClass(record);
 
          deleteMethod.call(this, record, Y.bind(function(success) {
             if (success) {
                // on success, remove the record from the datatable
                host.get("data").remove(record);
             }
+            this._removeEditedClass(record, success);
          },this));
 
       }
@@ -366,9 +366,9 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
     */
    _initPanel: function () {
 
-      var opts = Y.mix({}, this.get('panelOptions') );
+      var opts = Y.mix({}, this.get('panelOptions') ), panel;
 
-      var panel = new Y.inputEx.Panel( Y.mix(opts, {
+      panel = new Y.inputEx.Panel( Y.mix(opts, {
          inputEx: this.get("inputEx"),
          buttons: {
             header: ['close'],
@@ -407,7 +407,6 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          record,
          RecordType,
          updateMethod,
-         row,
          addMethod;
 
       if (!field.validate()) {
@@ -421,16 +420,15 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          updateMethod = this.get('updateMethod');
 
          record = host.get("data").getById(fieldValues.id);
-         row = host.getRow(record);
-         row.addClass( host.getClassName('row-edited') );
+         this._addEditedClass(record);
 
          updateMethod.call(this, fieldValues.id, fieldValues, Y.bind(function(success) {
             if (success) {
                // on success, update the record in the datatable
                host.get("data").getById(fieldValues.id).setAttrs(fieldValues);
                this.get('panel').hide();
-               row.removeClass( host.getClassName('row-edited') );
             }
+            this._removeEditedClass(record, success);
          },this));
 
       }
@@ -595,6 +593,28 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
           s = size ? size : 5;
       prefixId = prefixId ? prefixId : "";
       return prefixId + Math.floor(Math.random()*Math.pow(10,s));
+   },
+
+   _addEditedClass: function (record) {
+      var host = this.get('host');
+      if (record instanceof Y.Node) {
+         record.addClass(host.getClassName('cell-edited'));
+      }
+      else {
+         host.getRow(record).addClass(host.getClassName('row-edited'));
+      }
+   },
+
+   _removeEditedClass: function (record, now) {
+      Y.later(now === true ? 0 : (Y.Lang.isNumber(now) ? now : 5000), this, function () {
+         var host = this.get('host');
+         if (record instanceof Y.Node) {
+            record.removeClass(host.getClassName('cell-edited'));
+         }
+         else {
+            host.getRow(record).removeClass(host.getClassName('row-edited'));
+         }
+      });
    },
    
    _initStrings : function() {

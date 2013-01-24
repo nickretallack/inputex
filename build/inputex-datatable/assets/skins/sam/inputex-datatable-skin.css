@@ -18,6 +18,9 @@
     /*overflow: auto;
 }*/
 
+.yui3-skin-sam .yui3-datatable-table {
+    margin-top: 15px;
+}
 
 /**
  * Yui3-button as a link style
@@ -60,9 +63,15 @@
  */
 
 .yui3-datatable-inplaceOverlay {
-    padding: 3px;
-    border: 1px solid #808080;
+    padding: 7px 9px;
+    border: 1px solid #bbb;
     background-color: #F2F2F2;
+    -webkit-box-shadow: 0 4px 7px rgba(0,0,0,.5);
+            box-shadow: 0 4px 7px rgba(0,0,0,.5);
+}
+
+.yui3-datatable-inplaceOverlay .editor-buttons {
+    padding-top: 7px;
 }
 
 .yui3-datatable-inplaceedit tbody td {
@@ -79,14 +88,21 @@
     background-color: #B2D2FF;
 }
 
-.yui3-datatable-inplaceedit  .yui3-datatable-even .yui3-datatable-cell-edited,
-.yui3-datatable-inplaceedit  .yui3-datatable-odd .yui3-datatable-cell-edited {
-    background-color: red;
+.yui3-datatable-inplaceedit .yui3-datatable-row-edited .yui3-datatable-cell,
+.yui3-datatable-inplaceedit .yui3-datatable-row-edited:hover .yui3-datatable-cell,
+.yui3-datatable-inplaceedit .yui3-datatable-even .yui3-datatable-cell-edited,
+.yui3-datatable-inplaceedit .yui3-datatable-odd  .yui3-datatable-cell-edited,
+.yui3-datatable-inplaceedit .yui3-datatable-even .yui3-datatable-cell-edited:hover,
+.yui3-datatable-inplaceedit .yui3-datatable-odd  .yui3-datatable-cell-edited:hover {
+    background-color: #f2dede;
+    color: #b94a48;
 }
-
-
-.yui3-datatable-inplaceedit  .yui3-datatable-row-edited .yui3-datatable-cell {
-    background-color: red;    
+.yui3-datatable-inplaceedit .yui3-datatable-cell {
+    -webkit-transition: background-color 0.05s ease-in;
+       -moz-transition: background-color 0.05s ease-in;
+        -ms-transition: background-color 0.05s ease-in;
+         -o-transition: background-color 0.05s ease-in;
+            transition: background-color 0.05s ease-in;
 }
 
 .editor-buttons {
