@@ -18,7 +18,7 @@
     /*overflow: auto;
 }*/
 
-.yui3-skin-sam .yui3-datatable-table {
+.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-table {
     margin-top: 15px;
 }
 
@@ -26,7 +26,7 @@
  * Yui3-button as a link style
  * yui3-skin-sam is there to make sure we override .yui3-button
  */
-.yui3-skin-sam .yui3-button-link {
+.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-button-link {
     background: none repeat scroll 0 0 transparent;
     border: 0 none;
     box-shadow: none;
@@ -34,7 +34,7 @@
     transition: none 0s ease 0s;
 }
 
-.yui3-skin-sam .yui3-button-link:hover {
+.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-button-link:hover {
     background: none repeat scroll 0 0 transparent;
     text-decoration: underline;
 }
@@ -88,12 +88,12 @@
     background-color: #B2D2FF;
 }
 
-.yui3-datatable-inplaceedit .yui3-datatable-row-edited .yui3-datatable-cell,
-.yui3-datatable-inplaceedit .yui3-datatable-row-edited:hover .yui3-datatable-cell,
-.yui3-datatable-inplaceedit .yui3-datatable-even .yui3-datatable-cell-edited,
-.yui3-datatable-inplaceedit .yui3-datatable-odd  .yui3-datatable-cell-edited,
-.yui3-datatable-inplaceedit .yui3-datatable-even .yui3-datatable-cell-edited:hover,
-.yui3-datatable-inplaceedit .yui3-datatable-odd  .yui3-datatable-cell-edited:hover {
+.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-row-edited .yui3-datatable-cell,
+.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-row-edited:hover .yui3-datatable-cell,
+.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-even .yui3-datatable-cell-edited,
+.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-odd  .yui3-datatable-cell-edited,
+.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-even .yui3-datatable-cell-edited:hover,
+.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-odd  .yui3-datatable-cell-edited:hover {
     background-color: #f2dede;
     color: #b94a48;
 }

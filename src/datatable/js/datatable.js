@@ -39,6 +39,8 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
 
       // add a button called "add" in order to add record in the DataTable
       this.addAddButton();
+
+      host.get("boundingBox").addClass(host.getClassName('inputex'));
         
       if(!this.get("disableModifyFunc")) {
          // handle row modification
