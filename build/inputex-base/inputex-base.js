@@ -37,7 +37,7 @@ inputExBase.ATTRS = {
    
    /**
     * Instantiated inputEx field (any type)
-    * 
+    *
     * @attribute field
     * @type inputEx.Field
     */
@@ -52,10 +52,9 @@ inputExBase.prototype = {
     * @private
     */
    _renderUIInputEx: function() {
-     var config = {};
-     Y.mix(config, this.get('inputEx') );
-     config.parentEl = this.get('contentBox');
-     this.set('field', Y.inputEx(config));
+      var field = Y.inputEx(this.get('inputEx'));
+      this.setStdModContent('body', field.getEl(), 'after');
+      this.set('field',field);
    },
    
    /**
