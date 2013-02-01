@@ -611,12 +611,15 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
 
    _removeEditedClass: function (record, now) {
       Y.later(now === true ? 0 : (Y.Lang.isNumber(now) ? now : 5000), this, function () {
-         var host = this.get('host');
+         var host = this.get('host'), row;
          if (record instanceof Y.Node) {
             record.removeClass(host.getClassName('cell-edited'));
          }
          else {
-            host.getRow(record).removeClass(host.getClassName('row-edited'));
+            row = host.getRow(record);
+            if (row) {
+               row.removeClass(host.getClassName('row-edited'));
+            }
          }
       });
    },
