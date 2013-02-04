@@ -74,14 +74,17 @@
 	float:left; /* to display color picker icon on the right */
 }
 
-.inputEx-ColorField-Grid { 
-   padding:5px;
+.inputEx-ColorField .yui3-overlay-content { 
    background-color: white;
-   border: 1px solid #AAAAAA;
-   -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
-   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
-   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), -2px 2px 4px rgba(0, 0, 0, 0.2);
+   border: 1px solid #BBB;
+   -webkit-box-shadow: 0 4px 7px rgba(0,0,0,.5);
+      -moz-box-shadow: 0 4px 7px rgba(0,0,0,.5);
+           box-shadow: 0 4px 7px rgba(0,0,0,.5);
 }
+
+.inputEx-ColorField .yui3-overlay-content .yui3-widget-bd { 
+   padding: 0; /* override yui style if the panel is nested inside another panel*/
+ }
 
 .inputEx-ColorField-square {
    float:left;
