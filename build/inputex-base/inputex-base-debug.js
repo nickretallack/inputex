@@ -52,7 +52,7 @@ inputExBase.prototype = {
     * @private
     */
    _renderUIInputEx: function() {
-      var field = Y.inputEx(this.get('inputEx'));
+      var field = Y.inputEx(this.get('inputEx') || {});
       this.setStdModContent('body', field.getEl(), 'after');
       this.set('field',field);
    },
