@@ -144,6 +144,10 @@
             }
         },
 
+        clear: function (sendUpdatedEvt) {
+           this.setValue(lang.isUndefined(this.options.value) ? [] : this.options.value, sendUpdatedEvt);
+        },
+
         /**
          * Return the value
          * @method getValue
