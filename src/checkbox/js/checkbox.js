@@ -65,10 +65,11 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
 	 */
 	initEvents: function() {
 	   
-	   // Awful Hack to work in IE6 and below (the checkbox doesn't fire the change event)
-	   // It seems IE 8 removed this behavior from IE7 so it only works with IE 7 ??
-	   if( Y.UA.ie ) {
-	      Y.one(this.el).on("click", function(e) { Y.later(10,this,function(){this.onChange(e);}); }, this);
+	   // Awful Hack to work in IE8 and below: the "change" event is only fired when focus is lost
+      // and not immediately... so we listen for "click" instead, and setTimeout to give time for
+      // the input to reflect the new value (changed after the firing of the "click" event!).
+	   if (Y.UA.ie && Y.UA.ie < 9) {
+	      Y.one(this.el).on("click", function (e) { Y.later(10, this, function () { this.onChange(e); }); }, this);
 	   } else {
 	     Y.one(this.el).on("change", this.onChange, this, true);
 	   }
@@ -87,7 +88,7 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
 	   this.hiddenEl.value = this.el.checked ? this.checkedValue : this.uncheckedValue;
 	
       // will fire the updated event
-	   inputEx.CheckBox.superclass.onChange.call(this,e);
+	   inputEx.CheckBox.superclass.onChange.call(this, e);
 
       // trick: usually class is set on blur, but when clicking a checkbox the input won't
       //        gain focus so no blur event will ever be fired... so do it on change (blur
@@ -141,7 +142,7 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
 			// uncheck checkbox (all browsers)
 		   this.el.checked = false;
 		   
-			// hacks for IE6, because input is not operational at init, 
+			// hacks for IE6, because input is not operational at init,
 			// so "this.el.checked = false" would work for default values !
 			// (but still work for later setValue calls)
 			if (Y.UA.ie === 6) {
@@ -169,8 +170,8 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
       this.el.disabled = false;
    }
 	
-});   
-	
+});
+
 // Register this class as "boolean" type
 inputEx.registerType("boolean", inputEx.CheckBox, [
    {type: 'string', label: 'Right Label', name: 'rightLabel'}
