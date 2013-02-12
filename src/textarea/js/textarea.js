@@ -9,8 +9,8 @@
  * @constructor
  * @param {Object} options Added options:
  * <ul>
- *	   <li>rows: rows attribute</li>
- *	   <li>cols: cols attribute</li>
+ *    <li>rows: rows attribute</li>
+ *    <li>cols: cols attribute</li>
  * </ul>
  */
 inputEx.Textarea = function(options) {
@@ -32,9 +32,7 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
       
       this.options.rows = options.rows || 6;
       this.options.cols = options.cols || 23;
-      
-      // warning : readonly option doesn't work on IE < 8
-      this.options.readonly = !!options.readonly;
+
    },
    
    /**
@@ -54,6 +52,8 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
       attributes.rows = !!Y.UA.gecko ? this.options.rows - 1 : this.options.rows;
       attributes.cols = this.options.cols;
       if(this.options.name) { attributes.name = this.options.name; }
+
+      // warning : readonly option doesn't work on IE < 8
       if(this.options.readonly) { attributes.readonly = 'readonly'; }
       
       //if(this.options.maxLength) attributes.maxLength = this.options.maxLength;
@@ -70,7 +70,7 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
     * Uses the optional regexp to validate the field value
     * @method validate
     */
-   validate: function() { 
+   validate: function () {
       var previous = inputEx.Textarea.superclass.validate.call(this);
       
       // emulate maxLength property for textarea
@@ -87,14 +87,13 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
     * @method getStateString
     */
     getStateString: function(state) {
-	   if(state == inputEx.stateInvalid && this.options.minLength && this.el.value.length < this.options.minLength) {  
-	      return this.messages.stringTooShort[0]+this.options.minLength+this.messages.stringTooShort[1];
-	   
-	   // Add message too long
-      } else if (state == inputEx.stateInvalid && this.options.maxLength && this.el.value.length > this.options.maxLength) {
-         return this.messages.stringTooLong[0]+this.options.maxLength+this.messages.stringTooLong[1];
+
+      // check maxLength (minLength already checked by StringField)
+      if (this.options.maxLength && state === inputEx.stateInvalid && this.getValue().length > this.options.maxLength) {
+         return this.messages.stringTooLong[0] + this.options.maxLength + this.messages.stringTooLong[1];
       }
-	   return inputEx.Textarea.superclass.getStateString.call(this, state);
+
+      return inputEx.Textarea.superclass.getStateString.call(this, state);
 	},
 	
 	
@@ -118,10 +117,10 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
 			startPos = this.el.selectionStart;
 			endPos = this.el.selectionEnd;
 			this.el.value = this.el.value.substring(0, startPos)+ text+ this.el.value.substring(endPos, this.el.value.length);
-		} 
+		}
 		else {
 			this.el.value += text;
-		}	
+		}
 	}
 
 });
