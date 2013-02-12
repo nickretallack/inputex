@@ -46,11 +46,19 @@ Y.extend(inputEx.DateField, inputEx.StringField, {
     * @method validate
     */
    validate: function() {
+      // NOTE: we avoid calling getValue on purpose (as it may fail if
+      //       the field contains an invalid date string)
 
-      var value = this.el.value,
-         separator = this.options.dateFormat.match(/[^Ymd ]/g)[0],
-         ladate = value.split(separator),
-         formatSplit, yearIndex, d, Y, m, unedate, annee;
+      var separator = this.options.dateFormat.match(/[^Ymd ]/g)[0],
+                      // instead of this.el.value, use getValue of the superclass,
+                      // which correctly handles typeInvite and trim options.
+          value     = inputEx.DateField.superclass.getValue.call(this),
+          ladate    = value.split(separator),
+          formatSplit, yearIndex, d, Y, m, unedate, annee;
+
+      if (value === '') {
+         return !this.options.required;
+      }
 
       if(ladate.length !== 3) {
          return false;
@@ -108,20 +116,20 @@ Y.extend(inputEx.DateField, inputEx.StringField, {
     * @param {Boolean} forceDate Skip the valueFormat option if set to truthy
     * @return {String || Date} Formatted date using the valueFormat or a javascript Date instance
     */
-   getValue: function(forceDate) {
+   getValue: function (forceDate) {
       // let parent class function check if typeInvite, etc...
       var value = inputEx.DateField.superclass.getValue.call(this),
-         finalDate;
+          finalDate;
 
-      // Hack to validate if field not required and empty
-      if(value === '') {
+      // Don't try to parse value when field is empty
+      if (value === '') {
          return '';
       }
 
       finalDate = inputEx.DateField.parseWithFormat(value, this.options.dateFormat);
 
       // if valueFormat is specified, we format the string
-      if(!forceDate && this.options.valueFormat) {
+      if (!forceDate && this.options.valueFormat) {
          return inputEx.DateField.formatDate(finalDate, this.options.valueFormat);
       }
 
