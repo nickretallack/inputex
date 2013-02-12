@@ -38,7 +38,14 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       this.enrichColumns();
 
       // add a button called "add" in order to add record in the DataTable
-      this.addAddButton();
+      if (host.get('render')) {
+         this.addAddButton();
+      }
+      else {
+         host.onceAfter('render', function () {
+            this.addAddButton();
+         }, this);
+      }
 
       host.get("boundingBox").addClass(host.getClassName('inputex'));
         
@@ -282,13 +289,19 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       if(!this.get("disableAddFunc")) {
       
          var buttonHtml = "<button class='yui3-button'>"+this.get("strings").addButtonText+"</button>",
-             button = Y.Node.create(buttonHtml);
+             host = this.get("host");
 
-         this.addButton = button;
+         this.addButtonTop    = Y.Node.create(buttonHtml);
+         this.addButtonBottom = Y.Node.create(buttonHtml);
 
-         this.get("host").get("contentBox").append(button);
+         this.addButtonTop.addClass(host.getClassName('add-button-top'));
+         this.addButtonBottom.addClass(host.getClassName('add-button-bottom'));
+
+         this.get("host").get("contentBox").prepend(this.addButtonTop);
+         this.get("host").get("contentBox").append(this.addButtonBottom);
          
-         button.on("click", this._onAddButtonClick, this);
+         this.addButtonTop.on("click",    this._onAddButtonClick, this);
+         this.addButtonBottom.on("click", this._onAddButtonClick, this);
       }
    
    },
@@ -482,7 +495,8 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       this.deleteExtraColumns();
       
       if(!this.get("disableAddFunc")) {
-         this.addButton.remove();
+         this.addButtonTop.remove();
+         this.addButtonBottom.remove();
       }
 
       if(this.get("inplaceedit")) {
