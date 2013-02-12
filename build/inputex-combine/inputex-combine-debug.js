@@ -26,7 +26,7 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
     * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
-   setOptions: function(options) {
+   setOptions: function (options) {
       inputEx.CombineField.superclass.setOptions.call(this, options);
 
       // Overwrite options
@@ -61,7 +61,7 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
          this.divEl.appendChild(this.labelDiv);
       }
 
-      this.renderFields(this.divEl);
+      this.renderFields();
 
       if(this.options.disabled) {
          this.disable();
@@ -85,20 +85,22 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
          return;
       }
 
-      var i, n = this.options.fields.length,
-         f, field, fieldEl, t;
+      var i, iLength = this.options.fields.length,
+          field_config, field, fieldEl, t;
 
-      for(i = 0; i < n; i++) {
-         f = this.options.fields[i];
-         if(this.options.required) {
-            f.required = true;
-         }
-         field = this.renderField(f);
+      for (i = 0; i < iLength; i++) {
+
+         field_config = this.options.fields[i];
+
+         field = this.renderField(field_config);
+
          fieldEl = field.getEl();
-         t = f.type;
-         if(t !== "group" && t !== "form") {
+
+         t = field_config.type;
+
+         if (t !== "group" && t !== "form") {
             // remove the line breaker (<div style='clear: both;'>)
-            field.divEl.removeChild(fieldEl.childNodes[fieldEl.childNodes.length - 1]);
+            fieldEl.removeChild(fieldEl.childNodes[fieldEl.childNodes.length - 1]);
          }
          
          /* This rule should stay in javascript because the cross-browser equivalent in css would be like:
@@ -127,7 +129,7 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
    renderField: function(fieldOptions) {
 
       // Subfields should inherit required property
-      if(this.options.required) {
+      if (this.options.required) {
          fieldOptions.required = true;
       }
 
