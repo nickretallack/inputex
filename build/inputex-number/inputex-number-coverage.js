@@ -26,8 +26,8 @@ _yuitest_coverage["build/inputex-number/inputex-number.js"] = {
     path: "build/inputex-number/inputex-number.js",
     code: []
 };
-_yuitest_coverage["build/inputex-number/inputex-number.js"].code=["YUI.add('inputex-number', function (Y, NAME) {","","/**"," * @module inputex-number"," */","  var lang = Y.Lang,","      inputEx = Y.inputEx;","","/**"," * A field limited to number inputs (floating)"," * @class inputEx.NumberField"," * @extends inputEx.StringField"," * @constructor"," * @param {Object} options inputEx.Field options object"," */","inputEx.NumberField = function(options) {","   inputEx.NumberField.superclass.constructor.call(this,options);","};","","Y.extend(inputEx.NumberField, inputEx.StringField, {","   /**","    * Adds the min, and max options","    * @method setOptions","    * @param {Object} options","    */","   setOptions: function(options) {","      inputEx.NumberField.superclass.setOptions.call(this, options);","      ","      this.options.min = lang.isUndefined(options.min) ? -Infinity : parseFloat(options.min);","      this.options.max = lang.isUndefined(options.max) ? Infinity : parseFloat(options.max);","   },","   /**","    * Return a parsed float (javascript type number)","    * @method getValue","    * @return {Number} The parsed float","    */","   getValue: function() {","	","      var str_value;","      ","      // StringField getValue (handles typeInvite and trim options)","      str_value = inputEx.NumberField.superclass.getValue.call(this);","      ","      // don't return NaN if empty field","      if (str_value === '') {","         return '';","      }","      ","      return parseFloat(str_value);","   },","   ","   /**","    * Check if the entered number is a float","    * @method validate","    */","   validate: function() { ","      ","      var v = this.getValue(), str_value = inputEx.NumberField.superclass.getValue.call(this);","      ","      // empty field","      if (v === '') {","         // validate only if not required","         return !this.options.required;","      }","      ","      if (isNaN(v)) {","         return false;","      }","      ","      // We have to check the number with a regexp, otherwise \"0.03a\" is parsed to a valid number 0.03","      return !!str_value.match(/^([\\+\\-]?((([0-9]+(\\.)?)|([0-9]*\\.[0-9]+))([eE][+-]?[0-9]+)?))$/) && v >= this.options.min && v <= this.options.max;","      ","   }","","});","","// Register this class as \"number\" type","inputEx.registerType(\"number\", inputEx.NumberField, []);","","","}, '@VERSION@', {\"requires\": [\"inputex-string\"], \"ix_provides\": \"number\"});"];
-_yuitest_coverage["build/inputex-number/inputex-number.js"].lines = {"1":0,"6":0,"16":0,"17":0,"20":0,"27":0,"29":0,"30":0,"39":0,"42":0,"45":0,"46":0,"49":0,"58":0,"61":0,"63":0,"66":0,"67":0,"71":0,"78":0};
+_yuitest_coverage["build/inputex-number/inputex-number.js"].code=["YUI.add('inputex-number', function (Y, NAME) {","","/**"," * @module inputex-number"," */","  var lang = Y.Lang,","      inputEx = Y.inputEx;","","/**"," * A field limited to number inputs (floating)"," * @class inputEx.NumberField"," * @extends inputEx.StringField"," * @constructor"," * @param {Object} options inputEx.Field options object"," */","inputEx.NumberField = function(options) {","   inputEx.NumberField.superclass.constructor.call(this,options);","};","","Y.extend(inputEx.NumberField, inputEx.StringField, {","   /**","    * Adds the min, and max options","    * @method setOptions","    * @param {Object} options","    */","   setOptions: function(options) {","      inputEx.NumberField.superclass.setOptions.call(this, options);","      ","      this.options.min = lang.isUndefined(options.min) ? -Infinity : parseFloat(options.min);","      this.options.max = lang.isUndefined(options.max) ? Infinity : parseFloat(options.max);","   },","   /**","    * Return a parsed float (javascript type number)","    * @method getValue","    * @return {Number} The parsed float","    */","   getValue: function() {","	","      var str_value;","      ","      // StringField getValue (handles typeInvite and trim options)","      str_value = inputEx.NumberField.superclass.getValue.call(this);","      ","      // don't return NaN if empty field","      if (str_value === '') {","         return '';","      }","      ","      return parseFloat(str_value);","   },","   ","   /**","    * Validate  if is a number","    * @method validate","    */","   validate: function() {","      ","      var str_valid = inputEx.NumberField.superclass.validate.call(this),","          str_value = inputEx.NumberField.superclass.getValue.call(this),","          value = this.getValue();","","      // superclass validation will handle inherited options (required, trim, minLength, a.s.o)","      if (!str_valid) {","         return false;","      }","      ","      // also check the string has a valid format to describe a float number","      // (otherwise \"0.03a\" could be cast to a valid number 0.03)","      if (!str_value.match(/^([\\+\\-]?((([0-9]+(\\.)?)|([0-9]*\\.[0-9]+))([eE][+\\-]?[0-9]+)?))$/)) {","         return false;","      }","      ","      // finally, check the value could be cast as a float number and matches the restrictions","      return !isNaN(value) && value >= this.options.min && value <= this.options.max;","","   }","","});","","// Register this class as \"number\" type","inputEx.registerType(\"number\", inputEx.NumberField, []);","","","}, '@VERSION@', {\"requires\": [\"inputex-string\"], \"ix_provides\": \"number\"});"];
+_yuitest_coverage["build/inputex-number/inputex-number.js"].lines = {"1":0,"6":0,"16":0,"17":0,"20":0,"27":0,"29":0,"30":0,"39":0,"42":0,"45":0,"46":0,"49":0,"58":0,"63":0,"64":0,"69":0,"70":0,"74":0,"81":0};
 _yuitest_coverage["build/inputex-number/inputex-number.js"].functions = {"NumberField:16":0,"setOptions:26":0,"getValue:37":0,"validate:56":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/inputex-number/inputex-number.js"].coveredLines = 20;
 _yuitest_coverage["build/inputex-number/inputex-number.js"].coveredFunctions = 5;
@@ -100,39 +100,42 @@ return parseFloat(str_value);
    },
    
    /**
-    * Check if the entered number is a float
+    * Validate  if is a number
     * @method validate
     */
-   validate: function() { 
+   validate: function() {
       
       _yuitest_coverfunc("build/inputex-number/inputex-number.js", "validate", 56);
 _yuitest_coverline("build/inputex-number/inputex-number.js", 58);
-var v = this.getValue(), str_value = inputEx.NumberField.superclass.getValue.call(this);
-      
-      // empty field
-      _yuitest_coverline("build/inputex-number/inputex-number.js", 61);
-if (v === '') {
-         // validate only if not required
-         _yuitest_coverline("build/inputex-number/inputex-number.js", 63);
-return !this.options.required;
-      }
-      
-      _yuitest_coverline("build/inputex-number/inputex-number.js", 66);
-if (isNaN(v)) {
-         _yuitest_coverline("build/inputex-number/inputex-number.js", 67);
+var str_valid = inputEx.NumberField.superclass.validate.call(this),
+          str_value = inputEx.NumberField.superclass.getValue.call(this),
+          value = this.getValue();
+
+      // superclass validation will handle inherited options (required, trim, minLength, a.s.o)
+      _yuitest_coverline("build/inputex-number/inputex-number.js", 63);
+if (!str_valid) {
+         _yuitest_coverline("build/inputex-number/inputex-number.js", 64);
 return false;
       }
       
-      // We have to check the number with a regexp, otherwise "0.03a" is parsed to a valid number 0.03
-      _yuitest_coverline("build/inputex-number/inputex-number.js", 71);
-return !!str_value.match(/^([\+\-]?((([0-9]+(\.)?)|([0-9]*\.[0-9]+))([eE][+-]?[0-9]+)?))$/) && v >= this.options.min && v <= this.options.max;
+      // also check the string has a valid format to describe a float number
+      // (otherwise "0.03a" could be cast to a valid number 0.03)
+      _yuitest_coverline("build/inputex-number/inputex-number.js", 69);
+if (!str_value.match(/^([\+\-]?((([0-9]+(\.)?)|([0-9]*\.[0-9]+))([eE][+\-]?[0-9]+)?))$/)) {
+         _yuitest_coverline("build/inputex-number/inputex-number.js", 70);
+return false;
+      }
       
+      // finally, check the value could be cast as a float number and matches the restrictions
+      _yuitest_coverline("build/inputex-number/inputex-number.js", 74);
+return !isNaN(value) && value >= this.options.min && value <= this.options.max;
+
    }
 
 });
 
 // Register this class as "number" type
-_yuitest_coverline("build/inputex-number/inputex-number.js", 78);
+_yuitest_coverline("build/inputex-number/inputex-number.js", 81);
 inputEx.registerType("number", inputEx.NumberField, []);
 
 

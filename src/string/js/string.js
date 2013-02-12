@@ -147,7 +147,10 @@ Y.extend(inputEx.StringField, inputEx.Field, {
     */
    validate: function () {
 
-      var value = this.getValue(),
+      // NOTE: don't use this.getValue directly, so that when it's overriden
+      //       in fields like IntegerField, string validations are still tested
+      //       against a string.
+      var value = inputEx.StringField.prototype.getValue.call(this),
           valid;
 
       // superclass validation (e.g. will check empty + required)
@@ -155,7 +158,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
       // check regex matching
       if (valid && this.options.regexp) {
-	      valid = value.match(this.options.regexp);
+	      valid = !!value.match(this.options.regexp);
       }
 
       // check min length

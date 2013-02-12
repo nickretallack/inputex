@@ -48,26 +48,29 @@ Y.extend(inputEx.NumberField, inputEx.StringField, {
    },
    
    /**
-    * Check if the entered number is a float
+    * Validate  if is a number
     * @method validate
     */
-   validate: function() { 
+   validate: function() {
       
-      var v = this.getValue(), str_value = inputEx.NumberField.superclass.getValue.call(this);
-      
-      // empty field
-      if (v === '') {
-         // validate only if not required
-         return !this.options.required;
-      }
-      
-      if (isNaN(v)) {
+      var str_valid = inputEx.NumberField.superclass.validate.call(this),
+          str_value = inputEx.NumberField.superclass.getValue.call(this),
+          value = this.getValue();
+
+      // superclass validation will handle inherited options (required, trim, minLength, a.s.o)
+      if (!str_valid) {
          return false;
       }
       
-      // We have to check the number with a regexp, otherwise "0.03a" is parsed to a valid number 0.03
-      return !!str_value.match(/^([\+\-]?((([0-9]+(\.)?)|([0-9]*\.[0-9]+))([eE][+-]?[0-9]+)?))$/) && v >= this.options.min && v <= this.options.max;
+      // also check the string has a valid format to describe a float number
+      // (otherwise "0.03a" could be cast to a valid number 0.03)
+      if (!str_value.match(/^([\+\-]?((([0-9]+(\.)?)|([0-9]*\.[0-9]+))([eE][+\-]?[0-9]+)?))$/)) {
+         return false;
+      }
       
+      // finally, check the value could be cast as a float number and matches the restrictions
+      return !isNaN(value) && value >= this.options.min && value <= this.options.max;
+
    }
 
 });

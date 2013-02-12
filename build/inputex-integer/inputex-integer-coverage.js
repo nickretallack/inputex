@@ -26,8 +26,8 @@ _yuitest_coverage["build/inputex-integer/inputex-integer.js"] = {
     path: "build/inputex-integer/inputex-integer.js",
     code: []
 };
-_yuitest_coverage["build/inputex-integer/inputex-integer.js"].code=["YUI.add('inputex-integer', function (Y, NAME) {","","/**"," * @module inputex-integer"," */","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * A field limited to number inputs"," * @class inputEx.IntegerField"," * @extends inputEx.StringField"," * @constructor"," * @param {Object} options Added options:"," * <ul>"," *    <li>negative: boolean indicating if we accept negative numbers</li>"," * </ul>"," */","inputEx.IntegerField = function(options) {","   inputEx.IntegerField.superclass.constructor.call(this,options);","};","","Y.extend(inputEx.IntegerField, inputEx.StringField, {","   /**","    * Adds the negative, min, and max options","    * @method setOptions","    * @param {Object} options","    */","   setOptions: function(options) {","      inputEx.IntegerField.superclass.setOptions.call(this, options);","      ","      this.options.negative = lang.isUndefined(options.negative) ? false : options.negative;","      this.options.min = lang.isUndefined(options.min) ? (this.options.negative ? -Infinity : 0) : parseInt(options.min,10);","      this.options.max = lang.isUndefined(options.max) ? Infinity : parseInt(options.max,10);","   },","   ","   /**","    * Get the value","    * @method getValue","    * @return {int} The integer value","    */","   getValue: function() {","      ","      var str_value;","      ","      // StringField getValue (handles typeInvite and trim options)","      str_value = inputEx.IntegerField.superclass.getValue.call(this);","      ","      // don't return NaN if empty field","      if (str_value === '') {","         return '';","      }","      ","      return parseInt(str_value, 10);","   },","   ","   /**","    * Validate  if is a number","    * @method validate","    */","   validate: function() {","      ","      var v = this.getValue(), str_value = inputEx.IntegerField.superclass.getValue.call(this);","      ","      // empty field","      if (v === '') {","         // validate only if not required","         return !this.options.required;","      }","      ","      if (isNaN(v)) {","         return false;","      }","      ","      return !!str_value.match(/^[\\+\\-]?[0-9]+$/) && (this.options.negative ? true : v >= 0) && v >= this.options.min && v <= this.options.max;","      ","   }","   ","});","","// Register this class as \"integer\" type","inputEx.registerType(\"integer\", inputEx.IntegerField, [","   //{ type: 'integer', label: 'Radix', name: 'radix', value: 10},","   {type: 'boolean', label: 'Accept negative', name: 'negative', value: false }","]);","","","}, '@VERSION@', {\"requires\": [\"inputex-string\"], \"ix_provides\": \"integer\"});"];
-_yuitest_coverage["build/inputex-integer/inputex-integer.js"].lines = {"1":0,"6":0,"19":0,"20":0,"23":0,"30":0,"32":0,"33":0,"34":0,"44":0,"47":0,"50":0,"51":0,"54":0,"63":0,"66":0,"68":0,"71":0,"72":0,"75":0,"82":0};
+_yuitest_coverage["build/inputex-integer/inputex-integer.js"].code=["YUI.add('inputex-integer', function (Y, NAME) {","","/**"," * @module inputex-integer"," */","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * A field limited to number inputs"," * @class inputEx.IntegerField"," * @extends inputEx.StringField"," * @constructor"," * @param {Object} options Added options:"," * <ul>"," *    <li>negative: boolean indicating if we accept negative numbers</li>"," * </ul>"," */","inputEx.IntegerField = function(options) {","   inputEx.IntegerField.superclass.constructor.call(this,options);","};","","Y.extend(inputEx.IntegerField, inputEx.StringField, {","   /**","    * Adds the negative, min, and max options","    * @method setOptions","    * @param {Object} options","    */","   setOptions: function(options) {","      inputEx.IntegerField.superclass.setOptions.call(this, options);","      ","      this.options.negative = lang.isUndefined(options.negative) ? false : options.negative;","      this.options.min = lang.isUndefined(options.min) ? (this.options.negative ? -Infinity : 0) : parseInt(options.min,10);","      this.options.max = lang.isUndefined(options.max) ? Infinity : parseInt(options.max,10);","   },","   ","   /**","    * Get the value","    * @method getValue","    * @return {int} The integer value","    */","   getValue: function() {","      ","      var str_value;","      ","      // StringField getValue (handles typeInvite and trim options)","      str_value = inputEx.IntegerField.superclass.getValue.call(this);","      ","      // don't return NaN if empty field","      if (str_value === '') {","         return '';","      }","      ","      return parseInt(str_value, 10);","   },","   ","   /**","    * Validate if the value is an integer","    * @method validate","    */","   validate: function() {","      ","      var str_valid = inputEx.IntegerField.superclass.validate.call(this),","          str_value = inputEx.IntegerField.superclass.getValue.call(this),","          value = this.getValue();","","      // superclass validation will handle inherited options (required, trim, minLength, a.s.o)","      if (!str_valid) {","         return false;","      }","      ","      // also check the string has a valid format to describe an integer","      if (!str_value.match(/^[\\+\\-]?[0-9]+$/)) {","         return false;","      }","      ","      // finally, check the value could be cast as an integer and matches the restrictions","      return !isNaN(value) &&","             (this.options.negative ? true : value >= 0) &&","             value >= this.options.min && value <= this.options.max;","      ","   }","   ","});","","// Register this class as \"integer\" type","inputEx.registerType(\"integer\", inputEx.IntegerField, [","   //{ type: 'integer', label: 'Radix', name: 'radix', value: 10},","   {type: 'boolean', label: 'Accept negative', name: 'negative', value: false }","]);","","","}, '@VERSION@', {\"requires\": [\"inputex-string\"], \"ix_provides\": \"integer\"});"];
+_yuitest_coverage["build/inputex-integer/inputex-integer.js"].lines = {"1":0,"6":0,"19":0,"20":0,"23":0,"30":0,"32":0,"33":0,"34":0,"44":0,"47":0,"50":0,"51":0,"54":0,"63":0,"68":0,"69":0,"73":0,"74":0,"78":0,"87":0};
 _yuitest_coverage["build/inputex-integer/inputex-integer.js"].functions = {"IntegerField:19":0,"setOptions:29":0,"getValue:42":0,"validate:61":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/inputex-integer/inputex-integer.js"].coveredLines = 21;
 _yuitest_coverage["build/inputex-integer/inputex-integer.js"].coveredFunctions = 5;
@@ -106,38 +106,43 @@ return parseInt(str_value, 10);
    },
    
    /**
-    * Validate  if is a number
+    * Validate if the value is an integer
     * @method validate
     */
    validate: function() {
       
       _yuitest_coverfunc("build/inputex-integer/inputex-integer.js", "validate", 61);
 _yuitest_coverline("build/inputex-integer/inputex-integer.js", 63);
-var v = this.getValue(), str_value = inputEx.IntegerField.superclass.getValue.call(this);
-      
-      // empty field
-      _yuitest_coverline("build/inputex-integer/inputex-integer.js", 66);
-if (v === '') {
-         // validate only if not required
-         _yuitest_coverline("build/inputex-integer/inputex-integer.js", 68);
-return !this.options.required;
-      }
-      
-      _yuitest_coverline("build/inputex-integer/inputex-integer.js", 71);
-if (isNaN(v)) {
-         _yuitest_coverline("build/inputex-integer/inputex-integer.js", 72);
+var str_valid = inputEx.IntegerField.superclass.validate.call(this),
+          str_value = inputEx.IntegerField.superclass.getValue.call(this),
+          value = this.getValue();
+
+      // superclass validation will handle inherited options (required, trim, minLength, a.s.o)
+      _yuitest_coverline("build/inputex-integer/inputex-integer.js", 68);
+if (!str_valid) {
+         _yuitest_coverline("build/inputex-integer/inputex-integer.js", 69);
 return false;
       }
       
-      _yuitest_coverline("build/inputex-integer/inputex-integer.js", 75);
-return !!str_value.match(/^[\+\-]?[0-9]+$/) && (this.options.negative ? true : v >= 0) && v >= this.options.min && v <= this.options.max;
+      // also check the string has a valid format to describe an integer
+      _yuitest_coverline("build/inputex-integer/inputex-integer.js", 73);
+if (!str_value.match(/^[\+\-]?[0-9]+$/)) {
+         _yuitest_coverline("build/inputex-integer/inputex-integer.js", 74);
+return false;
+      }
+      
+      // finally, check the value could be cast as an integer and matches the restrictions
+      _yuitest_coverline("build/inputex-integer/inputex-integer.js", 78);
+return !isNaN(value) &&
+             (this.options.negative ? true : value >= 0) &&
+             value >= this.options.min && value <= this.options.max;
       
    }
    
 });
 
 // Register this class as "integer" type
-_yuitest_coverline("build/inputex-integer/inputex-integer.js", 82);
+_yuitest_coverline("build/inputex-integer/inputex-integer.js", 87);
 inputEx.registerType("integer", inputEx.IntegerField, [
    //{ type: 'integer', label: 'Radix', name: 'radix', value: 10},
    {type: 'boolean', label: 'Accept negative', name: 'negative', value: false }

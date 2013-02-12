@@ -55,24 +55,29 @@ Y.extend(inputEx.IntegerField, inputEx.StringField, {
    },
    
    /**
-    * Validate  if is a number
+    * Validate if the value is an integer
     * @method validate
     */
    validate: function() {
       
-      var v = this.getValue(), str_value = inputEx.IntegerField.superclass.getValue.call(this);
-      
-      // empty field
-      if (v === '') {
-         // validate only if not required
-         return !this.options.required;
-      }
-      
-      if (isNaN(v)) {
+      var str_valid = inputEx.IntegerField.superclass.validate.call(this),
+          str_value = inputEx.IntegerField.superclass.getValue.call(this),
+          value = this.getValue();
+
+      // superclass validation will handle inherited options (required, trim, minLength, a.s.o)
+      if (!str_valid) {
          return false;
       }
       
-      return !!str_value.match(/^[\+\-]?[0-9]+$/) && (this.options.negative ? true : v >= 0) && v >= this.options.min && v <= this.options.max;
+      // also check the string has a valid format to describe an integer
+      if (!str_value.match(/^[\+\-]?[0-9]+$/)) {
+         return false;
+      }
+      
+      // finally, check the value could be cast as an integer and matches the restrictions
+      return !isNaN(value) &&
+             (this.options.negative ? true : value >= 0) &&
+             value >= this.options.min && value <= this.options.max;
       
    }
    
