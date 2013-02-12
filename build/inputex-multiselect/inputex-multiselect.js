@@ -153,6 +153,10 @@ YUI.add('inputex-multiselect', function (Y, NAME) {
          */
         getValue: function () {
             return this.ddlist.getValue();
+        },
+
+        isEmpty: function () {
+            return this.getValue().length === 0;
         }
 
     });

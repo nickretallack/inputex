@@ -151,6 +151,10 @@
          */
         getValue: function () {
             return this.ddlist.getValue();
+        },
+
+        isEmpty: function () {
+            return this.getValue().length === 0;
         }
 
     });
