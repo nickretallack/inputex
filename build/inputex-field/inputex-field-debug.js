@@ -265,7 +265,7 @@ inputEx.Field.prototype = {
     */
    getState: function() {
       // if the field is empty :
-      if(this.isEmpty()) {
+      if (this.isEmpty()) {
          return this.options.required ? inputEx.stateRequired : inputEx.stateEmpty;
       }
       return this.validate() ? inputEx.stateValid : inputEx.stateInvalid;
@@ -277,7 +277,8 @@ inputEx.Field.prototype = {
     * @return {Boolean} field validation status (true/false)
     */
    validate: function() {
-      return true;
+      // empty required field will not validate
+      return !this.options.required || !this.isEmpty();
    },
 
    /**
@@ -416,8 +417,9 @@ inputEx.Field.prototype = {
    },
 
    /**
-    * Should return true if empty
+    * Test if the field is empty
     * @method isEmpty
+    * @return {Boolean} field emptiness (true/false)
     */
    isEmpty: function() {
       return this.getValue() === '';
