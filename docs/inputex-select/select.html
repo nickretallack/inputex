@@ -44,6 +44,11 @@ How to create a select field.
 	<div class='demoContainer' id='container1bis'></div>
 	
 	
+	<h2>Require the selection of a non-empty option</h2>
+	<p>Try to select an empty option:</p>
+	<div class='demoContainer' id='container1ter'></div>
+	
+	
 	<h2>Updated event</h2>
 	<p>How to listen to the updated event :</p>
 	<div class='demoContainer' id='container2'></div>
@@ -94,7 +99,19 @@ YUI().use('inputex-select',function(Y) {
       parentEl: 'container1bis'
    });
    
-   
+   // Example 1ter
+   new Y.inputEx.SelectField({
+      name: 'country',
+      choices: [
+         { value: '' }, // "empty" option
+         { value: 'France' }
+      ],
+      required: true,
+      showMsg: true,
+      value: 'France',
+      parentEl: 'container1ter'
+   });
+
    // Example 2
    
    var el = Y.one('#container2');
@@ -300,7 +317,19 @@ YUI().use('inputex-select',function(Y) {
       parentEl: &#x27;container1bis&#x27;
    });
    
-   
+   &#x2F;&#x2F; Example 1ter
+   new Y.inputEx.SelectField({
+      name: &#x27;country&#x27;,
+      choices: [
+         { value: &#x27;&#x27; }, &#x2F;&#x2F; &quot;empty&quot; option
+         { value: &#x27;France&#x27; }
+      ],
+      required: true,
+      showMsg: true,
+      value: &#x27;France&#x27;,
+      parentEl: &#x27;container1ter&#x27;
+   });
+
    &#x2F;&#x2F; Example 2
    
    var el = Y.one(&#x27;#container2&#x27;);

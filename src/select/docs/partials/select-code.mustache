@@ -24,7 +24,19 @@ YUI().use('inputex-select',function(Y) {
       parentEl: 'container1bis'
    });
    
-   
+   // Example 1ter
+   new Y.inputEx.SelectField({
+      name: 'country',
+      choices: [
+         { value: '' }, // "empty" option
+         { value: 'France' }
+      ],
+      required: true,
+      showMsg: true,
+      value: 'France',
+      parentEl: 'container1ter'
+   });
+
    // Example 2
    
    var el = Y.one('#container2');
