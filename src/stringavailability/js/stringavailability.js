@@ -10,7 +10,7 @@
  * @class inputEx.StringAvailability
  * @extends inputEx.StringField
  * @constructor
- * @param {Object} options 
+ * @param {Object} options
  */
 inputEx.StringAvailability = function(options) {
    inputEx.StringAvailability.superclass.constructor.call(this,options);
@@ -54,16 +54,13 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
       // DOM.insertAfter(this.availabilityDiv, this.fieldContainer);
 
       Y.one(this.fieldContainer).insert(this.availabilityDiv,'after');
-
-      
-
    },
    
    /**
     * @method renderComponent
     */
    renderComponent: function() {
-      inputEx.StringAvailability.superclass.renderComponent.call(this);    
+      inputEx.StringAvailability.superclass.renderComponent.call(this);
       
       this.availabilityDiv = inputEx.cn('div', {'className':'availabilityDiv'});
       this.availabilityDivIcon = inputEx.cn('div', {'className':'icon'});
@@ -205,7 +202,7 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
       
       var state = this.getState();
       
-      if(state === "required"){
+      if (state === inputEx.stateRequired) {
          this.setAvailabilityState(state);
       }
    },
@@ -216,11 +213,12 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
    validate: function() {
 
       // If AJAX request running
-      if ( !!this.isRequesting ) { return false; }
+      if (!!this.isRequesting) { return false; }
       
       var valid = inputEx.StringAvailability.superclass.validate.call(this);
-      if(!lang.isUndefined(this.isAvailable)){
-         valid = this.isAvailable && valid;
+
+      if (valid && !lang.isUndefined(this.isAvailable)){
+         valid = this.isAvailable;
       }
       
       return valid;
@@ -232,13 +230,14 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
     */
     getAvailability: function(string) {
 
-var   that = this,
+      var that = this,
+
       requestConfiguration = {
          data : {
             "availabilityRequest" : string
          },
          on : {
-             success: function(id, o) {   
+             success: function (id, o) {
 
             var obj = Y.JSON.parse(o.responseText);
             
@@ -256,10 +255,10 @@ var   that = this,
          }
       };
 
-      Y.io(this.options.uri,requestConfiguration);
+      Y.io(this.options.uri, requestConfiguration);
 
    }
 });
 
 // Register this class as "string-availability" type
-inputEx.registerType("string-availability", inputEx.StringAvailability);   
+inputEx.registerType("string-availability", inputEx.StringAvailability);
