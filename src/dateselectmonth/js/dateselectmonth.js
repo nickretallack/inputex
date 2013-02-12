@@ -41,13 +41,13 @@
 			}
 			else {
 				
-				selectOptions = [{ value: -1, label: this.messages.selectMonth }];
+				selectOptions = [{ value: '', label: this.messages.selectMonth }];
 				
 				for (j = 0, monthsNb = this.messages.months.length; j < monthsNb; j += 1) {
 					selectOptions.push({ value: j, label: this.messages.months[j] });
 				}
 				
-				options.fields.push({ type: 'select', choices: selectOptions, value: -1 });
+				options.fields.push({ type: 'select', choices: selectOptions, value: '' });
 			}
 			
 		}
@@ -80,7 +80,7 @@
 			
 			// !value catches "" (empty field), other tests invalid dates (Invalid Date, or NaN)
 			if (!value || !(value instanceof Date) || !lang.isNumber(value.getTime())) {
-				values[this.monthIndex] = -1;
+				values[this.monthIndex] = "";
 				values[this.yearIndex] = "";
 				values[this.dayIndex] = "";
 			} else {
@@ -96,16 +96,13 @@
 		 */
 		getValue: function () {
 			
-			var values;
+         // if all sub-fields are empty (isEmpty method is inherited from inputEx.Group)
+			if (this.isEmpty()) { return ""; }
 			
-			if (this.isEmpty()) {
-				return "";
-			}
+			var values = inputEx.DateSelectMonthField.superclass.getValue.call(this);
 			
-			values = inputEx.DateSelectMonthField.superclass.getValue.call(this);
-			
-			// if selected month index is -1, new Date(..) would create a valid date with month == December !!!)
-			if (values[this.monthIndex] === -1) {
+			// if selected month index is '', new Date(..) would create a valid date with month == January !!!)
+			if (values[this.monthIndex] === '') {
 				return new Date(NaN, NaN, NaN); // -> Invalid Date (Firefox) or NaN (IE) (both instanceof Date ...)
 			}
 			
@@ -133,14 +130,6 @@
 			// These 3 cases would pass the "val instanceof Date" test,
 			// but last 2 cases return NaN on val.getDate(), so "isFinite" test fails.
 			return (val instanceof Date && lang.isNumber(val.getTime()));
-		},
-		
-		/**
-		 * @method isEmpty
-		 */
-		isEmpty: function () {
-			var values = inputEx.DateSelectMonthField.superclass.getValue.call(this);
-			return (values[this.monthIndex] === -1 && values[this.yearIndex] === "" &&  values[this.dayIndex] === "");
 		}
 		
 	});

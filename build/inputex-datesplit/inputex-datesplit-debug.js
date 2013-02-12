@@ -100,8 +100,10 @@ Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
    /**
     * @method getValue
     */
-   getValue: function() {
-      if (this.isEmpty()) return "";
+   getValue: function () {
+
+      // if all sub-fields are empty (isEmpty method is inherited from inputEx.Group)
+      if (this.isEmpty()) { return ""; }
       
       var values = inputEx.DateSplitField.superclass.getValue.call(this);
       
@@ -113,7 +115,7 @@ Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
     */
    validate: function() {
       var subFieldsValidation = inputEx.DateSplitField.superclass.validate.call(this);
-      if (!subFieldsValidation) return false;
+      if (!subFieldsValidation) { return false; }
       
       var values = inputEx.DateSplitField.superclass.getValue.call(this);
       var day = values[this.dayIndex];
@@ -123,33 +125,25 @@ Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
       var val = this.getValue();
       //console.log("datesplit value = ",val);
       
-      // 3 empty fields
-      if (val == "") return true;
+      // 3 empty fields (validate only if field is not required)
+      if (val === "") { return !this.options.required; }
       
-      // if a field is empty, it will be set by default (day : 31, month:12, year: 1899/1900)
-      //   -> val == "" MUST be checked first !
-      if (day == "" || month == "" || year == "") return false;
+      // if at least one field is empty, it will be set by default (day : 31, month:12, year: 1899/1900)
+      //   -> !== "" MUST be ensured!
+      if (day === "" || month === "" || year === "") { return false; }
       
-      if (year < 0 || year > 9999 || day < 1 || day > 31 || month < 1 || month > 12) return false;
+      if (year < 0 || year > 9999 || day < 1 || day > 31 || month < 1 || month > 12) { return false; }
       
       // val == any date -> true
       // val == "Invalid Date" -> false
       return (val != "Invalid Date");
    },
-   
-   /**
-    * @method isEmpty
-    */
-	isEmpty: function() {
-	   var values = inputEx.DateSplitField.superclass.getValue.call(this);
-	   return (values[this.monthIndex] == "" && values[this.yearIndex] == "" &&  values[this.dayIndex] == "");
-	},
 	
 	/**
     * @method initAutoTab
     */
 	initAutoTab: function() {
-	   // "keypress" event codes for numeric keys (keyboard & numpad) 
+	   // "keypress" event codes for numeric keys (keyboard & numpad)
 	   //  (warning : "keydown" codes are different with numpad)
 	   var numKeyCodes = [48,49,50,51,52,53,54,55,56,57];
 	   
