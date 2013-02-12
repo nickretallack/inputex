@@ -1,8 +1,7 @@
 /**
  * @module inputex-checkbox
  */
-   var lang = Y.Lang,
-       inputEx = Y.inputEx;
+   var inputEx = Y.inputEx;
 
 /**
  * Create a checkbox.
@@ -83,10 +82,17 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
 	 * @method onChange
 	 * @param {Event} e The original 'change' event
 	 */
-	onChange: function(e) {
+	onChange: function (e) {
+      
 	   this.hiddenEl.value = this.el.checked ? this.checkedValue : this.uncheckedValue;
 	
+      // will fire the updated event
 	   inputEx.CheckBox.superclass.onChange.call(this,e);
+
+      // trick: usually class is set on blur, but when clicking a checkbox the input won't
+      //        gain focus so no blur event will ever be fired... so do it on change (blur
+      //        event is still fired if focusing the input via keyboard's tab)
+      this.setClassFromState();
 	},
 	
 	/**
@@ -98,6 +104,12 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
 	      return this.el.checked ? this.checkedValue : this.uncheckedValue;
 	},
 	
+   // checkbox is considered "empty" when not checked, this way the "required"
+   // option will be equivalent to enforcing the checking of the box.
+   isEmpty: function () {
+      return !this.el.checked;
+   },
+
 	/**
 	 * Set the value of the checkedbox
 	 * @method setValue
@@ -112,7 +124,7 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
 			// check checkbox (all browsers)
 			this.el.checked = true;
 			
-			// hacks for IE6, because input is not operational at init, 
+			// hacks for IE6, because input is not operational at init,
 			// so "this.el.checked = true" would work for default values !
 			// (but still work for later setValue calls)
 			if (Y.UA.ie === 6) {
@@ -160,6 +172,6 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
 });   
 	
 // Register this class as "boolean" type
-inputEx.registerType("boolean", inputEx.CheckBox, [ 
+inputEx.registerType("boolean", inputEx.CheckBox, [
    {type: 'string', label: 'Right Label', name: 'rightLabel'}
 ]);
