@@ -125,17 +125,6 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	},
 	
 	/**
-	 * Change the state string
-	 * @method getStateString
-	 */
-	getStateString: function(state) {
-	   if(state == inputEx.stateInvalid && this.options.minLength && this.el.value.length < this.options.minLength) {  
-	      return this.messages.invalidPassword[0]+this.options.minLength+this.messages.invalidPassword[1];
-      }
-	   return inputEx.StringField.superclass.getStateString.call(this, state);
-	},
-	
-	/**
 	 * Update the state of the confirmation field
 	 * @method onInput
 	 * @param {Event} e The original input event
