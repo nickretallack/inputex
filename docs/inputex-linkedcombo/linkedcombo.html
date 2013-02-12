@@ -44,39 +44,38 @@ How to create a linkedcombo.
 <script>
 YUI().use('inputex-linkedcombo', function(Y){
    
-         // Field container
-      var el = Y.one('#container1');
-      // Logs container
-      var el2 = Y.one('#container2');
-      
-      var field1 = new Y.inputEx.LinkedComboField({
-         name: 'car',
-         label: 'Which car ?',
-         choices: [
-            { value: "", choices: [""] },
-            { value: "BMW Z Series", choices: ["Z1", "Z3", "Z4", "Z8"] },
-            { value: "MINI", choices: ["One", "Cooper S", "Cooper D", "Clubman", "John Cooper Works"] }
-         ],
-         parentEl: el,
-         required: true
-      });
-      
-      var button = Y.inputEx.cn('button', null, null, "SetValue with 'MINI_One'");
-      el.appendChild(button);
-      Y.one(button).on('click' ,function() {
-         field1.setValue('MINI_One');
-      });
-      
+   // Field container
+   var el = Y.one('#container1');
+   // Logs container
+   var el2 = Y.one('#container2');
+   
+   var field1 = new Y.inputEx.LinkedComboField({
+      name: 'car',
+      label: 'Which car ?',
+      choices: [
+         { value: "", choices: [""] },
+         { value: "BMW Z Series", choices: ["Z1", "Z3", "Z4", "Z8"] },
+         { value: "MINI", choices: ["", "One", "Cooper S", "Cooper D", "Clubman", "John Cooper Works"] }
+      ],
+      parentEl: el,
+      required: true
+   });
+   
+   var button = Y.inputEx.cn('button', null, null, "SetValue with 'MINI_One'");
+   el.appendChild(button);
+   Y.one(button).on('click' ,function() {
+      field1.setValue('MINI_One');
+   });
 
-      
-      var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-      el2.appendChild(logDiv);
-      
+   
+   var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+   el2.appendChild(logDiv);
+   
+   logDiv.appendChild(Y.inputEx.cn('br'));
+   field1.on('updated', function(value) {
+      logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
       logDiv.appendChild(Y.inputEx.cn('br'));
-      field1.on('updated', function(value) {
-         logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
-         logDiv.appendChild(Y.inputEx.cn('br'));
-      });
+   });
 
 });
 
@@ -96,39 +95,38 @@ YUI().use('inputex-linkedcombo', function(Y){
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-linkedcombo&#x27;, function(Y){
    
-         &#x2F;&#x2F; Field container
-      var el = Y.one(&#x27;#container1&#x27;);
-      &#x2F;&#x2F; Logs container
-      var el2 = Y.one(&#x27;#container2&#x27;);
-      
-      var field1 = new Y.inputEx.LinkedComboField({
-         name: &#x27;car&#x27;,
-         label: &#x27;Which car ?&#x27;,
-         choices: [
-            { value: &quot;&quot;, choices: [&quot;&quot;] },
-            { value: &quot;BMW Z Series&quot;, choices: [&quot;Z1&quot;, &quot;Z3&quot;, &quot;Z4&quot;, &quot;Z8&quot;] },
-            { value: &quot;MINI&quot;, choices: [&quot;One&quot;, &quot;Cooper S&quot;, &quot;Cooper D&quot;, &quot;Clubman&quot;, &quot;John Cooper Works&quot;] }
-         ],
-         parentEl: el,
-         required: true
-      });
-      
-      var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with &#x27;MINI_One&#x27;&quot;);
-      el.appendChild(button);
-      Y.one(button).on(&#x27;click&#x27; ,function() {
-         field1.setValue(&#x27;MINI_One&#x27;);
-      });
-      
+   &#x2F;&#x2F; Field container
+   var el = Y.one(&#x27;#container1&#x27;);
+   &#x2F;&#x2F; Logs container
+   var el2 = Y.one(&#x27;#container2&#x27;);
+   
+   var field1 = new Y.inputEx.LinkedComboField({
+      name: &#x27;car&#x27;,
+      label: &#x27;Which car ?&#x27;,
+      choices: [
+         { value: &quot;&quot;, choices: [&quot;&quot;] },
+         { value: &quot;BMW Z Series&quot;, choices: [&quot;Z1&quot;, &quot;Z3&quot;, &quot;Z4&quot;, &quot;Z8&quot;] },
+         { value: &quot;MINI&quot;, choices: [&quot;&quot;, &quot;One&quot;, &quot;Cooper S&quot;, &quot;Cooper D&quot;, &quot;Clubman&quot;, &quot;John Cooper Works&quot;] }
+      ],
+      parentEl: el,
+      required: true
+   });
+   
+   var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with &#x27;MINI_One&#x27;&quot;);
+   el.appendChild(button);
+   Y.one(button).on(&#x27;click&#x27; ,function() {
+      field1.setValue(&#x27;MINI_One&#x27;);
+   });
 
-      
-      var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
-      el2.appendChild(logDiv);
-      
+   
+   var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
+   el2.appendChild(logDiv);
+   
+   logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
+   field1.on(&#x27;updated&#x27;, function(value) {
+      logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
       logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
-      field1.on(&#x27;updated&#x27;, function(value) {
-         logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
-         logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
-      });
+   });
 
 });</pre>
 

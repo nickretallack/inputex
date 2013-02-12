@@ -93,10 +93,12 @@ YUI.add('inputex-linkedcombo', function (Y, NAME) {
             // create and store selects
             this.selects = [];
             this.selects.push(new inputEx.SelectField({
-                choices: this.options.choices
+                choices: this.options.choices,
+                required: this.options.required
             }));
             this.selects.push(new inputEx.SelectField({
-                choices: secondSelectChoices
+                choices: secondSelectChoices,
+                required: this.options.required
             }));
 
             // append <select>s to DOM tree
@@ -114,7 +116,7 @@ YUI.add('inputex-linkedcombo', function (Y, NAME) {
 
 
             // when first select is modified
-            this.selects[0].on('updated', function (value) {
+            this.selects[0].on('updated', function () {
 
                 this.updateSecondSelectChoices(); // refresh list of choices in second select
                 this.selects[1].fireUpdatedEvt(); // trigger global field update (see below)
@@ -123,7 +125,7 @@ YUI.add('inputex-linkedcombo', function (Y, NAME) {
 
 
             // when second select is modified
-            this.selects[1].on('updated', function (value) {
+            this.selects[1].on('updated', function () {
 
                 // set field style
                 this.setClassFromState();
@@ -173,7 +175,7 @@ YUI.add('inputex-linkedcombo', function (Y, NAME) {
          */
         setValue: function (value, sendUpdatedEvt) {
 
-            var a, firstVal, secondVal, i;
+            var a;
 
             a = value.split(this.options.valueSeparator);
 
@@ -197,15 +199,28 @@ YUI.add('inputex-linkedcombo', function (Y, NAME) {
 
 
         /**
-         * HACK because empty state value is this.options.valueSeparator
-         * @method getState
+         * Custom way of detecting the emptiness of the field
+         * @method isEmpty
+         * @return {Boolean} field emptiness (true/false)
          */
-        getState: function () {
-            // if the field is empty :
-            if (this.getValue() === this.options.valueSeparator) {
-                return this.options.required ? inputEx.stateRequired : inputEx.stateEmpty;
-            }
-            return this.validate() ? inputEx.stateValid : inputEx.stateInvalid;
+        isEmpty: function () {
+            return this.selects[0].isEmpty() && this.selects[1].isEmpty();
+        },
+
+        /**
+         * Validation of the field
+         * @method validate
+         * @return {Boolean} field validation status (true/false)
+         */
+        validate: function() {
+
+           // superclass validation (e.g. required + empty)
+           if (!inputEx.LinkedComboField.superclass.validate.call(this)) {
+              return false;
+           }
+
+           // both selects should be valid (e.g. ensure both selects are filled)
+           return this.selects[0].validate() && this.selects[1].validate();
         }
 
     });
