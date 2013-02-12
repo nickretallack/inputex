@@ -255,13 +255,15 @@ YUI.add('inputex-radio', function (Y, NAME) {
 		 */
 		getValue: function () {
 			
-			var i, length;
+			var i, length, radioInput;
 			
 			for (i = 0, length = this.choicesList.length ; i < length ; i += 1) {
 				
-				if (this.choicesList[i].node.firstChild.checked) {
+            radioInput = this.choicesList[i].node.firstChild;
+
+				if (radioInput.checked) {
 					
-					if (this.radioAny && this.radioAny == this.choicesList[i].node.firstChild) {
+					if (this.radioAny && this.radioAny == radioInput) {
 						return this.anyField.getValue();
 					}
 					
@@ -348,13 +350,16 @@ YUI.add('inputex-radio', function (Y, NAME) {
 				
 				if (radioInput.checked) {
 					
-					// if "any" option checked
+					// if "any" option checked...
 					if (this.radioAny && this.radioAny == radioInput) {
 						
-						return this.anyField.getValue() === '';
+                  // ... and not empty
+						return this.anyField.isEmpty();
 						
 					} else {
 						
+                  // not empty because a choice has been made
+                  // warning: should return false (=not empty) even if this radio's value is ""
 						return false;
 						
 					}
@@ -366,12 +371,19 @@ YUI.add('inputex-radio', function (Y, NAME) {
 		},
 		
 		/**
+       * Add extra validation if allowAny.validator is provided
 		 * @method validate
 		 */
 		validate: function () {
 			
 			var i, length, radioInput, anyVal;
+
+         // basic field validation (e.g. required + empty)
+         if (!inputEx.RadioField.superclass.validate.call(this)) {
+            return false;
+         }
 			
+         // extra validation for allowAny field (when checked)
 			if (this.options.allowAny) {
 				
 				for (i = 0, length = this.choicesList.length ; i < length ; i += 1) {

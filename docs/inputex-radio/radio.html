@@ -63,7 +63,7 @@ How to create a radio field.
 
 
 
-<h2>allowAny option</h2>
+<h2>Basic allowAny option</h2>
 <p>The "allowAny" option adds a radio associated to a StringField to let the user enter any value.</p>
 <div class='demoContainer' id='container5'></div>
 
@@ -123,39 +123,34 @@ How to create a radio field.
 <script>
 YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinterval', function(Y) { 
 
-    // Example 1
-    
-    
-      new Y.inputEx.RadioField({
-         label: 'Where did you learn about inputEx ?',
-         name: 'example1',
-         choices: [                    // choices: [       <- alternative syntax (shorter)
-            { value: 'Ajaxian' },     //    'Ajaxian',    <-
-            { value: 'YUI blog' },    //    'YUI blog',   <-
-            { value: 'Other' }        //    'Other'       <-
-         ],                            // ],               <-
-         value:'Ajaxian',
-         parentEl: 'container1'
-      });
-      
+   // Example 1
+
+   new Y.inputEx.RadioField({
+      label: 'Where did you learn about inputEx ?',
+      name: 'example1',
+      choices: [                    // choices: [       <- alternative syntax (shorter)
+         { value: 'Ajaxian' },     //    'Ajaxian',    <-
+         { value: 'YUI blog' },    //    'YUI blog',   <-
+         { value: 'Other' }        //    'Other'       <-
+      ],                            // ],               <-
+      value:'Ajaxian',
+      parentEl: 'container1'
+   });
       
    // Example 2
-   
-   
-      new Y.inputEx.RadioField({
-         label: 'Where are you from ?',
-         name: 'example2',
-         choices: [                                                // no alternative syntax
-            { value: 'us', label: 'United States of America' },
-            { value: 'fr', label: 'France' }
-         ],
-         parentEl: 'container2'
-      });
-      
-      
+
+   new Y.inputEx.RadioField({
+      label: 'Where are you from ?',
+      name: 'example2',
+      choices: [                                                // no alternative syntax
+         { value: 'us', label: 'United States of America' },
+         { value: 'fr', label: 'France' }
+      ],
+      parentEl: 'container2'
+   });
+
    // Example 3
-   
-   
+
    var element, field0, button0, val0, logDiv0;
    
    element = Y.one('#container3');
@@ -478,39 +473,34 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-radio&#x27;, &#x27;inputex-time&#x27;, &#x27;inputex-integer&#x27;, &#x27;inputex-timeinterval&#x27;, function(Y) { 
 
-    &#x2F;&#x2F; Example 1
-    
-    
-      new Y.inputEx.RadioField({
-         label: &#x27;Where did you learn about inputEx ?&#x27;,
-         name: &#x27;example1&#x27;,
-         choices: [                    &#x2F;&#x2F; choices: [       &lt;- alternative syntax (shorter)
-            { value: &#x27;Ajaxian&#x27; },     &#x2F;&#x2F;    &#x27;Ajaxian&#x27;,    &lt;-
-            { value: &#x27;YUI blog&#x27; },    &#x2F;&#x2F;    &#x27;YUI blog&#x27;,   &lt;-
-            { value: &#x27;Other&#x27; }        &#x2F;&#x2F;    &#x27;Other&#x27;       &lt;-
-         ],                            &#x2F;&#x2F; ],               &lt;-
-         value:&#x27;Ajaxian&#x27;,
-         parentEl: &#x27;container1&#x27;
-      });
-      
+   &#x2F;&#x2F; Example 1
+
+   new Y.inputEx.RadioField({
+      label: &#x27;Where did you learn about inputEx ?&#x27;,
+      name: &#x27;example1&#x27;,
+      choices: [                    &#x2F;&#x2F; choices: [       &lt;- alternative syntax (shorter)
+         { value: &#x27;Ajaxian&#x27; },     &#x2F;&#x2F;    &#x27;Ajaxian&#x27;,    &lt;-
+         { value: &#x27;YUI blog&#x27; },    &#x2F;&#x2F;    &#x27;YUI blog&#x27;,   &lt;-
+         { value: &#x27;Other&#x27; }        &#x2F;&#x2F;    &#x27;Other&#x27;       &lt;-
+      ],                            &#x2F;&#x2F; ],               &lt;-
+      value:&#x27;Ajaxian&#x27;,
+      parentEl: &#x27;container1&#x27;
+   });
       
    &#x2F;&#x2F; Example 2
-   
-   
-      new Y.inputEx.RadioField({
-         label: &#x27;Where are you from ?&#x27;,
-         name: &#x27;example2&#x27;,
-         choices: [                                                &#x2F;&#x2F; no alternative syntax
-            { value: &#x27;us&#x27;, label: &#x27;United States of America&#x27; },
-            { value: &#x27;fr&#x27;, label: &#x27;France&#x27; }
-         ],
-         parentEl: &#x27;container2&#x27;
-      });
-      
-      
+
+   new Y.inputEx.RadioField({
+      label: &#x27;Where are you from ?&#x27;,
+      name: &#x27;example2&#x27;,
+      choices: [                                                &#x2F;&#x2F; no alternative syntax
+         { value: &#x27;us&#x27;, label: &#x27;United States of America&#x27; },
+         { value: &#x27;fr&#x27;, label: &#x27;France&#x27; }
+      ],
+      parentEl: &#x27;container2&#x27;
+   });
+
    &#x2F;&#x2F; Example 3
-   
-   
+
    var element, field0, button0, val0, logDiv0;
    
    element = Y.one(&#x27;#container3&#x27;);

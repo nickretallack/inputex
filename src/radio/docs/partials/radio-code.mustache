@@ -1,38 +1,33 @@
 YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinterval', function(Y) { 
 
-    // Example 1
-    
-    
-      new Y.inputEx.RadioField({
-         label: 'Where did you learn about inputEx ?',
-         name: 'example1',
-         choices: [                    // choices: [       <- alternative syntax (shorter)
-            { value: 'Ajaxian' },     //    'Ajaxian',    <-
-            { value: 'YUI blog' },    //    'YUI blog',   <-
-            { value: 'Other' }        //    'Other'       <-
-         ],                            // ],               <-
-         value:'Ajaxian',
-         parentEl: 'container1'
-      });
-      
+   // Example 1
+
+   new Y.inputEx.RadioField({
+      label: 'Where did you learn about inputEx ?',
+      name: 'example1',
+      choices: [                    // choices: [       <- alternative syntax (shorter)
+         { value: 'Ajaxian' },     //    'Ajaxian',    <-
+         { value: 'YUI blog' },    //    'YUI blog',   <-
+         { value: 'Other' }        //    'Other'       <-
+      ],                            // ],               <-
+      value:'Ajaxian',
+      parentEl: 'container1'
+   });
       
    // Example 2
-   
-   
-      new Y.inputEx.RadioField({
-         label: 'Where are you from ?',
-         name: 'example2',
-         choices: [                                                // no alternative syntax
-            { value: 'us', label: 'United States of America' },
-            { value: 'fr', label: 'France' }
-         ],
-         parentEl: 'container2'
-      });
-      
-      
+
+   new Y.inputEx.RadioField({
+      label: 'Where are you from ?',
+      name: 'example2',
+      choices: [                                                // no alternative syntax
+         { value: 'us', label: 'United States of America' },
+         { value: 'fr', label: 'France' }
+      ],
+      parentEl: 'container2'
+   });
+
    // Example 3
-   
-   
+
    var element, field0, button0, val0, logDiv0;
    
    element = Y.one('#container3');
