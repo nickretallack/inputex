@@ -54,6 +54,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
       
       // Array containing the list of the field instances
       this.inputs = [];
+      this.inputsLength = 0; // cache the length of this.inputs array
 
       // Associative array containing the field instances by names
       this.inputsNames = {};
@@ -135,7 +136,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
     */
    addField: function(fieldOptions) {
 		var field = this.renderField(fieldOptions);
-      this.fieldset.appendChild(field.getEl() );
+      this.fieldset.appendChild(field.getEl());
 	},
 
    /**
@@ -149,15 +150,18 @@ Y.extend(inputEx.Group, inputEx.Field, {
       var fieldInstance = inputEx(fieldOptions,this);
       
 	   this.inputs.push(fieldInstance);
+      this.inputsLength += 1;
       
       // Create an index to access fields by their name
-      if(fieldInstance.options.name) {
+      if (fieldInstance.options.name) {
          this.inputsNames[fieldInstance.options.name] = fieldInstance;
-      } 
+      }
+
       // when the instance is a flatten group, we consider his fields as our fields
-      if(fieldInstance.options.flatten && lang.isObject(fieldInstance.inputsNames)){
-        Y.mix(this.inputsNames,fieldInstance.inputsNames);
+      if (fieldInstance.options.flatten && lang.isObject(fieldInstance.inputsNames)) {
+        Y.mix(this.inputsNames, fieldInstance.inputsNames);
         this.inputs = this.inputs.concat(fieldInstance.inputs);
+        this.inputsLength += fieldInstance.inputs.length;
       }
       
       // Create the this.hasInteractions to run interactions at startup
@@ -203,7 +207,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
       var response = true;
 
       // Validate all the sub fields
-      for (var i = 0; i < this.inputs.length; i++) {
+      for (var i = 0; i < this.inputsLength; i++) {
          var input = this.inputs[i];
          if (!input.isDisabled()) {
             var state = input.getState();
@@ -227,7 +231,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
 		returnedObj = { fields:{}, validate:true };
       
       // Loop on all the sub fields
-      for (var i = 0 ; i < this.inputs.length ; i++) {
+      for (var i = 0 ; i < this.inputsLength; i++) {
          
          input = this.inputs[i];
          inputName = input.options.name;
@@ -254,7 +258,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * @method enable
     */
    enable: function() {
-      for (var i = 0 ; i < this.inputs.length ; i++) {
+      for (var i = 0 ; i < this.inputsLength; i++) {
          this.inputs[i].enable();
       }
    },
@@ -264,7 +268,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * @method disable
     */
    disable: function() {
-      for (var i = 0 ; i < this.inputs.length ; i++) {
+      for (var i = 0 ; i < this.inputsLength; i++) {
          this.inputs[i].disable();
       }
    },
@@ -279,7 +283,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
       if(!oValues) {
          return;
       }
-	   for (var i = 0 ; i < this.inputs.length ; i++) {
+	   for (var i = 0 ; i < this.inputsLength; i++) {
 	      var field = this.inputs[i];
 	      var name = field.options.name;
 	      if(name && !lang.isUndefined(oValues[name]) ) {
@@ -304,11 +308,11 @@ Y.extend(inputEx.Group, inputEx.Field, {
     */
    getValue: function() {
 	   var o = {};
-	   for (var i = 0 ; i < this.inputs.length ; i++) {
+	   for (var i = 0; i < this.inputsLength; i++) {
 	      var v = this.inputs[i].getValue();
-	      if(this.inputs[i].options.name) {
-	         if(this.inputs[i].options.flatten && lang.isObject(v) ) {
-	            Y.mix( o, v);
+	      if (this.inputs[i].options.name) {
+	         if (this.inputs[i].options.flatten && lang.isObject(v)) {
+	            Y.mix(o, v);
 	         }
 	         else {
 		         o[this.inputs[i].options.name] = v;
@@ -317,6 +321,24 @@ Y.extend(inputEx.Group, inputEx.Field, {
       }
 	   return o;
    },
+
+   /**
+    * Test if all sub-fields are empty
+    * @method isEmpty
+    * @return {Boolean} field emptiness (true/false)
+    */
+   isEmpty: function () {
+
+      var empty = true,
+          i, n = this.inputsLength;
+
+      for (i = 0; i < n; i++) {
+         empty = empty && this.inputs[i].isEmpty();
+      }
+
+      return empty;
+
+   },
   
    /**
     * Close the group (recursively calls "close" on each field, does NOT hide the group )
@@ -324,7 +346,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * @method close
     */
    close: function() {
-      for (var i = 0 ; i < this.inputs.length ; i++) {
+      for (var i = 0; i < this.inputsLength; i++) {
          this.inputs[i].close();
       }
    },
@@ -334,7 +356,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * @method focus
     */
    focus: function() {
-      if( this.inputs.length > 0 ) {
+      if (this.inputsLength > 0) {
          this.inputs[0].focus();
       }
    },
@@ -364,7 +386,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
 
       if (descendOnly) {
          if (this.inputsNames.hasOwnProperty(fieldName) && (field = this.inputsNames[fieldName])) {
-            for (var group, inputs = this.inputs, i = 0, len = inputs.length; i < len; ++i) {
+            for (var group, inputs = this.inputs, i = 0, len = this.inputsLength; i < len; ++i) {
                group = inputs[i];
                if (lang.isFunction(group.getFieldByName) &&
                      (field = group.getFieldByName(fieldName, true))) {
@@ -451,8 +473,8 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * @method runFieldsInteractions
     */
    runFieldsInteractions: function() {
-      if(this.hasInteractions) {
-         for(var i = 0 ; i < this.inputs.length ; i++) {
+      if (this.hasInteractions) {
+         for (var i = 0; i < this.inputsLength; i++) {
             this.runInteractions(this.inputs[i],this.inputs[i].getValue());
          }
       }
@@ -464,10 +486,10 @@ Y.extend(inputEx.Group, inputEx.Field, {
 	 * @param {boolean} [sendUpdatedEvt] (optional) Wether this clear should fire the 'updated' event or not (default is true, pass false to NOT send the event)
 	 */
 	clear: function(sendUpdatedEvt) {
-	   for(var i = 0 ; i < this.inputs.length ; i++) {
+	   for (var i = 0; i < this.inputsLength; i++) {
 	      this.inputs[i].clear(false);
 	   }
-	   if(sendUpdatedEvt !== false) {
+	   if (sendUpdatedEvt !== false) {
 	      // fire update event
          this.fireUpdatedEvt();
       }
@@ -511,7 +533,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * @method setFieldName
     */
     setFieldName: function(name){
-			var l = this.inputs.length;
+			var l = this.inputsLength;
 			for (var i = 0; i < l; i++){
 				this.inputs[i].setFieldName(name+""+((this.inputs[i].el && this.inputs[i].el.name )|| "group-"+i ));
 			}
@@ -526,7 +548,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
       var i, length, field;
       
       // Recursively destroy inputs
-      for (i = 0, length = this.inputs.length ; i < length ; i++) {
+      for (i = 0, length = this.inputsLength; i < length ; i++) {
          field = this.inputs[i];
          field.destroy();
       }
