@@ -11,7 +11,7 @@ YUI().use('inputex-string',function(Y) {
     new Y.inputEx.StringField({size: 40, value: 'size is set to 40 (default is 20)', parentEl: 'container3'});
     
     // Example 4
-    new Y.inputEx.StringField({value: '0123456789', showMsg: true, minLength: 3, maxLength: 10, parentEl: 'container4'});
+    new Y.inputEx.StringField({value: 'ab', showMsg: true, minLength: 3, maxLength: 5, parentEl: 'container4'});
     
     // Example 5
     new Y.inputEx.StringField({required: true, showMsg: true, parentEl: 'container5'});
@@ -33,7 +33,7 @@ YUI().use('inputex-string',function(Y) {
     var logDiv = Y.inputEx.cn('div', null, null, "Log :");
     el.appendChild(logDiv);
     field.on("updated",function(val) {
-        logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+        logDiv.innerHTML += "Updated at " + (new Date()) + " with value: " + val + "<br />";
     });
     
     // Example 10

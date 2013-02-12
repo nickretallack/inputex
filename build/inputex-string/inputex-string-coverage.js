@@ -26,10 +26,10 @@ _yuitest_coverage["build/inputex-string/inputex-string.js"] = {
     path: "build/inputex-string/inputex-string.js",
     code: []
 };
-_yuitest_coverage["build/inputex-string/inputex-string.js"].code=["YUI.add('inputex-string', function (Y, NAME) {","","/**"," * @module inputex-string"," */","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * Basic string field (equivalent to the input type \"text\")"," * @class inputEx.StringField"," * @extends inputEx.Field"," * @constructor"," * @param {Object} options Added options:"," * <ul>"," *	  <li>regexp: regular expression used to validate (otherwise it always validate)</li>"," *   <li>size: size attribute of the input</li>"," *   <li>maxLength: maximum size of the string field (no message display, uses the maxlength html attribute)</li>"," *   <li>minLength: minimum size of the string field (will display an error message if shorter)</li>"," *   <li>typeInvite: string displayed when the field is empty</li>"," *   <li>readonly: set the field as readonly</li>"," * </ul>"," */","inputEx.StringField = function(options) {","   inputEx.StringField.superclass.constructor.call(this, options);","","	  if(this.options.typeInvite) {","	     this.updateTypeInvite();","	  }","};","","Y.extend(inputEx.StringField, inputEx.Field, {","   /**","    * Set the default values of the options","    * @method setOptions","    * @param {Object} options Options object as passed to the constructor","    */","	setOptions: function(options) {","	   inputEx.StringField.superclass.setOptions.call(this, options);","","      // I18N","      this.messages = Y.mix(this.messages,Y.Intl.get(\"inputex-string\"));","","	   this.options.regexp = options.regexp;","	   this.options.size = options.size;","	   this.options.maxLength = options.maxLength;","	   this.options.minLength = options.minLength;","	   this.options.typeInvite = options.typeInvite;","	   this.options.readonly = options.readonly;","	   this.options.autocomplete = lang.isUndefined(options.autocomplete) ?","	                                  inputEx.browserAutocomplete :","	                                  (options.autocomplete === false || options.autocomplete === \"off\") ? false : true;","	   this.options.trim = (options.trim === true) ? true : false;","   },","","","   /**","    * Render an 'INPUT' DOM node","    * @method renderComponent","    */","   renderComponent: function() {","","      // This element wraps the input node in a float: none div","      this.wrapEl = inputEx.cn('div', {className: 'inputEx-StringField-wrapper'});","","      // Attributes of the input field","      var attributes = {};","      attributes.type = 'text';","      attributes.id = this.divEl.id?this.divEl.id+'-field':Y.guid();","      if(this.options.size) { attributes.size = this.options.size; }","      if(this.options.name) { attributes.name = this.options.name; }","      if(this.options.readonly) { attributes.readonly = 'readonly'; }","","      if(this.options.maxLength) { attributes.maxLength = this.options.maxLength; }","      attributes.autocomplete = this.options.autocomplete ? 'on' : 'off';","","      // Create the node","      this.el = inputEx.cn('input', attributes);","","      // Append it to the main element","      this.wrapEl.appendChild(this.el);","      this.fieldContainer.appendChild(this.wrapEl);","   },","","	/**","	 * Set the name of the field (or hidden field)","	 * @method setFieldName","	 */","	setFieldName: function(name) {","		this.el.name = name;","	},","","   /**","    * Register the change, focus and blur events","    * @method initEvents","    */","   initEvents: function() {","     Y.on(\"change\", this.onChange,this.el, this);","","       if (Y.UA.ie > 0){ // refer to inputEx-95","            var field = this.el;","            Y.on(\"key\", function(e){","              field.blur();","              field.focus();","            }, this.el,'down:13', this);","       }","","     Y.on(\"focus\", this.onFocus,this.el, this);","     Y.on(\"blur\", this.onBlur,this.el, this);","     Y.on(\"keypress\", this.onKeyPress, this.el, this);","     Y.on(\"keyup\", this.onKeyUp, this.el, this);","   },","","   /**","    * Return the string value","    * @method getValue","    * @param {String} The string value","    */","   getValue: function() {","      ","      var value;","      ","      value = (this.options.typeInvite && this.el.value == this.options.typeInvite) ? '' : this.el.value;","      ","      if (this.options.trim) {","         value = lang.trim(value);","      }","      ","	   return value;","   },","","   /**","    * Function to set the value","    * @method setValue","    * @param {String} value The new value","    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)","    */","   setValue: function(value, sendUpdatedEvt) {","		// + check : if Null or Undefined we put '' in the stringField","		this.el.value = ( lang.isNull(value) || lang.isUndefined(value) ) ? '' : value;","","      // call parent class method to set style and fire \"updated\" event","      inputEx.StringField.superclass.setValue.call(this, value, sendUpdatedEvt);","   },","","   /**","    * Uses the optional regexp to validate the field value","    * @method validate","    */","   validate: function() {","      var val = this.getValue();","","      // empty field","      if (val === '') {","         // validate only if not required","         return !this.options.required;","      }","","      // Check regex matching and minLength (both used in password field...)","      var result = true;","","      // if we are using a regular expression","      if( this.options.regexp ) {","	      result = result && val.match(this.options.regexp);","      }","      if( this.options.minLength ) {","	      result = result && val.length >= this.options.minLength;","      }","      return result;","   },","","   /**","    * Disable the field","    * @method disable","    */","   disable: function() {","      this.el.disabled = true;","   },","","   /**","    * Enable the field","    * @method enable","    */","   enable: function() {","      this.el.disabled = false;","   },","","   /**","    * Check if the field is disabled","    * @method isDisabled","    */","   isDisabled: function() {","      return this.el.disabled;","   },","","   /**","    * Set the focus to this field","    * @method focus","    */","   focus: function() {","      // Can't use lang.isFunction because IE >= 6 would say focus is not a function (IE says it's an object) !!","      if(!!this.el && !lang.isUndefined(this.el.focus) ) {","         this.el.focus();","      }","   },","","	/**","    * Add the minLength string message handling","    * @method getStateString","    */","	getStateString: function(state) {","	   if(state == inputEx.stateInvalid && this.options.minLength && this.el.value.length < this.options.minLength) {","	      return this.messages.stringTooShort[0]+this.options.minLength+this.messages.stringTooShort[1];","      }","	   return inputEx.StringField.superclass.getStateString.call(this, state);","	},","","   /**","    * Display the type invite after setting the class","    * @method setClassFromState","    */","   setClassFromState: function() {","	   inputEx.StringField.superclass.setClassFromState.call(this);","","	   // display/mask typeInvite","	   if(this.options.typeInvite) {","	      this.updateTypeInvite();","      }","	},","","   /**","    * @method updateTypeInvite","    */","	updateTypeInvite: function() {","","	   // field not focused","      if (!Y.one(this.divEl).hasClass( \"inputEx-focused\")) {","","         // show type invite if field is empty","         if(this.isEmpty()) {","	         Y.one(this.divEl).addClass( \"inputEx-typeInvite\");","	         this.el.value = this.options.typeInvite;","","	      // important for setValue to work with typeInvite","         } else {","            Y.one(this.divEl).removeClass(\"inputEx-typeInvite\");","         }","","      // field focused : remove type invite","      } else {","	      if(Y.one(this.divEl).hasClass(\"inputEx-typeInvite\")) {","	         // remove text","	         this.el.value = \"\";","","	         // remove the \"empty\" state and class","	         this.previousState = null;","	         Y.one(this.divEl).removeClass(\"inputEx-typeInvite\");","         }","      }","	},","","	/**","	 * Clear the typeInvite when the field gains focus","	 * @method onFocus","	 */","	onFocus: function(e) {","	   inputEx.StringField.superclass.onFocus.call(this,e);","","	   if(this.options.typeInvite) {","         this.updateTypeInvite();","      }","	},","","   /**","    * @method onKeyPress","    */","	onKeyPress: function(e) {","	   // override me","	},","","   /**","    * @method onKeyUp","    */","   onKeyUp: function(e) {","      // override me","      //","      //   example :","      //","      //   lang.later(0, this, this.setClassFromState);","      //","      //     -> Set style immediatly when typing in the field","      //     -> Call setClassFromState escaping the stack (after the event has been fully treated, because the value has to be updated)","   }","","});","","","","","// Register this class as \"string\" type","inputEx.registerType(\"string\", inputEx.StringField, [","    { type: 'string', label: 'Type invite', name: 'typeInvite', value: ''},","    { type: 'integer', label: 'Size', name: 'size', value: 20},","    { type: 'integer', label: 'Min. length', name: 'minLength', value: 0}","]);","","","}, '@VERSION@', {","    \"requires\": [","        \"inputex-field\",","        \"event-key\"","    ],","    \"ix_provides\": \"string\",","    \"skinnable\": true,","    \"lang\": [","        \"en\",","        \"fr\",","        \"de\",","        \"ca\",","        \"es\",","        \"fr\",","        \"it\",","        \"nl\"","    ]","});"];
-_yuitest_coverage["build/inputex-string/inputex-string.js"].lines = {"1":0,"6":0,"24":0,"25":0,"27":0,"28":0,"32":0,"39":0,"42":0,"44":0,"45":0,"46":0,"47":0,"48":0,"49":0,"50":0,"53":0,"64":0,"67":0,"68":0,"69":0,"70":0,"71":0,"72":0,"74":0,"75":0,"78":0,"81":0,"82":0,"90":0,"98":0,"100":0,"101":0,"102":0,"103":0,"104":0,"108":0,"109":0,"110":0,"111":0,"121":0,"123":0,"125":0,"126":0,"129":0,"140":0,"143":0,"151":0,"154":0,"156":0,"160":0,"163":0,"164":0,"166":0,"167":0,"169":0,"177":0,"185":0,"193":0,"202":0,"203":0,"212":0,"213":0,"215":0,"223":0,"226":0,"227":0,"237":0,"240":0,"241":0,"242":0,"246":0,"251":0,"253":0,"256":0,"257":0,"267":0,"269":0,"270":0,"301":0};
-_yuitest_coverage["build/inputex-string/inputex-string.js"].functions = {"StringField:24":0,"setOptions:38":0,"renderComponent:61":0,"setFieldName:89":0,"(anonymous 2):102":0,"initEvents:97":0,"getValue:119":0,"setValue:138":0,"validate:150":0,"disable:176":0,"enable:184":0,"isDisabled:192":0,"focus:200":0,"getStateString:211":0,"setClassFromState:222":0,"updateTypeInvite:234":0,"onFocus:266":0,"(anonymous 1):1":0};
-_yuitest_coverage["build/inputex-string/inputex-string.js"].coveredLines = 80;
+_yuitest_coverage["build/inputex-string/inputex-string.js"].code=["YUI.add('inputex-string', function (Y, NAME) {","","/**"," * @module inputex-string"," */","   var lang = Y.Lang,","       inputEx = Y.inputEx;","","/**"," * Basic string field (equivalent to the input type \"text\")"," * @class inputEx.StringField"," * @extends inputEx.Field"," * @constructor"," * @param {Object} options Added options:"," * <ul>"," *	  <li>regexp: regular expression used to validate (otherwise it always validate)</li>"," *   <li>size: size attribute of the input</li>"," *   <li>maxLength: maximum size of the string field (no message display, uses the maxlength html attribute)</li>"," *   <li>minLength: minimum size of the string field (will display an error message if shorter)</li>"," *   <li>typeInvite: string displayed when the field is empty</li>"," *   <li>readonly: set the field as readonly</li>"," * </ul>"," */","inputEx.StringField = function(options) {","   inputEx.StringField.superclass.constructor.call(this, options);","","	  if(this.options.typeInvite) {","	     this.updateTypeInvite();","	  }","};","","Y.extend(inputEx.StringField, inputEx.Field, {","   /**","    * Set the default values of the options","    * @method setOptions","    * @param {Object} options Options object as passed to the constructor","    */","	setOptions: function(options) {","	   inputEx.StringField.superclass.setOptions.call(this, options);","","      // I18N","      this.messages = Y.mix(this.messages,Y.Intl.get(\"inputex-string\"));","","	   this.options.regexp = options.regexp;","	   this.options.size = options.size;","	   this.options.maxLength = options.maxLength;","	   this.options.minLength = options.minLength;","	   this.options.typeInvite = options.typeInvite;","	   this.options.readonly = options.readonly;","	   this.options.autocomplete = lang.isUndefined(options.autocomplete) ?","	                                  inputEx.browserAutocomplete :","	                                  (options.autocomplete === false || options.autocomplete === \"off\") ? false : true;","	   this.options.trim = (options.trim === true) ? true : false;","   },","","","   /**","    * Render an 'INPUT' DOM node","    * @method renderComponent","    */","   renderComponent: function() {","","      // This element wraps the input node in a float: none div","      this.wrapEl = inputEx.cn('div', {className: 'inputEx-StringField-wrapper'});","","      // Attributes of the input field","      var attributes = {};","      attributes.type = 'text';","      attributes.id = this.divEl.id?this.divEl.id+'-field':Y.guid();","      if(this.options.size) { attributes.size = this.options.size; }","      if(this.options.name) { attributes.name = this.options.name; }","      if(this.options.readonly) { attributes.readonly = 'readonly'; }","","      if(this.options.maxLength) { attributes.maxLength = this.options.maxLength; }","      attributes.autocomplete = this.options.autocomplete ? 'on' : 'off';","","      // Create the node","      this.el = inputEx.cn('input', attributes);","","      // Append it to the main element","      this.wrapEl.appendChild(this.el);","      this.fieldContainer.appendChild(this.wrapEl);","   },","","	/**","	 * Set the name of the field (or hidden field)","	 * @method setFieldName","	 */","	setFieldName: function(name) {","		this.el.name = name;","	},","","   /**","    * Register the change, focus and blur events","    * @method initEvents","    */","   initEvents: function() {","     Y.on(\"change\", this.onChange,this.el, this);","","       if (Y.UA.ie > 0){ // refer to inputEx-95","            var field = this.el;","            Y.on(\"key\", function(e){","              field.blur();","              field.focus();","            }, this.el,'down:13', this);","       }","","     Y.on(\"focus\", this.onFocus,this.el, this);","     Y.on(\"blur\", this.onBlur,this.el, this);","     Y.on(\"keypress\", this.onKeyPress, this.el, this);","     Y.on(\"keyup\", this.onKeyUp, this.el, this);","   },","","   /**","    * Return the string value","    * @method getValue","    * @param {String} The string value","    */","   getValue: function() {","      ","      var value;","      ","      value = (this.options.typeInvite && this.el.value == this.options.typeInvite) ? '' : this.el.value;","      ","      if (this.options.trim) {","         value = lang.trim(value);","      }","      ","	   return value;","   },","","   /**","    * Function to set the value","    * @method setValue","    * @param {String} value The new value","    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)","    */","   setValue: function(value, sendUpdatedEvt) {","		// + check : if Null or Undefined we put '' in the stringField","		this.el.value = ( lang.isNull(value) || lang.isUndefined(value) ) ? '' : value;","","      // call parent class method to set style and fire \"updated\" event","      inputEx.StringField.superclass.setValue.call(this, value, sendUpdatedEvt);","   },","","   /**","    * Uses the optional regexp to validate the field value","    * @method validate","    */","   validate: function () {","","      var value = this.getValue(),","          valid;","","      // superclass validation (e.g. will check empty + required)","      valid = inputEx.StringField.superclass.validate.call(this);","","      // check regex matching","      if (valid && this.options.regexp) {","	      valid = value.match(this.options.regexp);","      }","","      // check min length","      if (valid && this.options.minLength) {","	      valid = value.length >= this.options.minLength;","      }","","      // check max length: already constrained by the html field","","      return valid;","   },","","   /**","    * Disable the field","    * @method disable","    */","   disable: function() {","      this.el.disabled = true;","   },","","   /**","    * Enable the field","    * @method enable","    */","   enable: function() {","      this.el.disabled = false;","   },","","   /**","    * Check if the field is disabled","    * @method isDisabled","    */","   isDisabled: function() {","      return this.el.disabled;","   },","","   /**","    * Set the focus to this field","    * @method focus","    */","   focus: function() {","      // Can't use lang.isFunction because IE >= 6 would say focus is not a function (IE says it's an object) !!","      if(!!this.el && !lang.isUndefined(this.el.focus) ) {","         this.el.focus();","      }","   },","","	/**","    * Add the minLength string message handling","    * @method getStateString","    */","	getStateString: function(state) {","	   if (this.options.minLength && state === inputEx.stateInvalid && this.getValue().length < this.options.minLength) {","	      return this.messages.stringTooShort[0] + this.options.minLength + this.messages.stringTooShort[1];","      }","	   return inputEx.StringField.superclass.getStateString.call(this, state);","	},","","   /**","    * Display the type invite after setting the class","    * @method setClassFromState","    */","   setClassFromState: function() {","	   inputEx.StringField.superclass.setClassFromState.call(this);","","	   // display/mask typeInvite","	   if(this.options.typeInvite) {","	      this.updateTypeInvite();","      }","	},","","   /**","    * @method updateTypeInvite","    */","	updateTypeInvite: function() {","","	   // field not focused","      if (!Y.one(this.divEl).hasClass( \"inputEx-focused\")) {","","         // show type invite if field is empty","         if(this.isEmpty()) {","	         Y.one(this.divEl).addClass( \"inputEx-typeInvite\");","	         this.el.value = this.options.typeInvite;","","	      // important for setValue to work with typeInvite","         } else {","            Y.one(this.divEl).removeClass(\"inputEx-typeInvite\");","         }","","      // field focused : remove type invite","      } else {","	      if(Y.one(this.divEl).hasClass(\"inputEx-typeInvite\")) {","	         // remove text","	         this.el.value = \"\";","","	         // remove the \"empty\" state and class","	         this.previousState = null;","	         Y.one(this.divEl).removeClass(\"inputEx-typeInvite\");","         }","      }","	},","","	/**","	 * Clear the typeInvite when the field gains focus","	 * @method onFocus","	 */","	onFocus: function(e) {","	   inputEx.StringField.superclass.onFocus.call(this,e);","","	   if(this.options.typeInvite) {","         this.updateTypeInvite();","      }","	},","","   /**","    * @method onKeyPress","    */","	onKeyPress: function(e) {","	   // override me","	},","","   /**","    * @method onKeyUp","    */","   onKeyUp: function(e) {","      // override me","      //","      //   example :","      //","      //   lang.later(0, this, this.setClassFromState);","      //","      //     -> Set style immediatly when typing in the field","      //     -> Call setClassFromState escaping the stack (after the event has been fully treated, because the value has to be updated)","   }","","});","","","","","// Register this class as \"string\" type","inputEx.registerType(\"string\", inputEx.StringField, [","    { type: 'string', label: 'Type invite', name: 'typeInvite', value: ''},","    { type: 'integer', label: 'Size', name: 'size', value: 20},","    { type: 'integer', label: 'Min. length', name: 'minLength', value: 0}","]);","","","}, '@VERSION@', {","    \"requires\": [","        \"inputex-field\",","        \"event-key\"","    ],","    \"ix_provides\": \"string\",","    \"skinnable\": true,","    \"lang\": [","        \"en\",","        \"fr\",","        \"de\",","        \"ca\",","        \"es\",","        \"fr\",","        \"it\",","        \"nl\"","    ]","});"];
+_yuitest_coverage["build/inputex-string/inputex-string.js"].lines = {"1":0,"6":0,"24":0,"25":0,"27":0,"28":0,"32":0,"39":0,"42":0,"44":0,"45":0,"46":0,"47":0,"48":0,"49":0,"50":0,"53":0,"64":0,"67":0,"68":0,"69":0,"70":0,"71":0,"72":0,"74":0,"75":0,"78":0,"81":0,"82":0,"90":0,"98":0,"100":0,"101":0,"102":0,"103":0,"104":0,"108":0,"109":0,"110":0,"111":0,"121":0,"123":0,"125":0,"126":0,"129":0,"140":0,"143":0,"152":0,"156":0,"159":0,"160":0,"164":0,"165":0,"170":0,"178":0,"186":0,"194":0,"203":0,"204":0,"213":0,"214":0,"216":0,"224":0,"227":0,"228":0,"238":0,"241":0,"242":0,"243":0,"247":0,"252":0,"254":0,"257":0,"258":0,"268":0,"270":0,"271":0,"302":0};
+_yuitest_coverage["build/inputex-string/inputex-string.js"].functions = {"StringField:24":0,"setOptions:38":0,"renderComponent:61":0,"setFieldName:89":0,"(anonymous 2):102":0,"initEvents:97":0,"getValue:119":0,"setValue:138":0,"validate:150":0,"disable:177":0,"enable:185":0,"isDisabled:193":0,"focus:201":0,"getStateString:212":0,"setClassFromState:223":0,"updateTypeInvite:235":0,"onFocus:267":0,"(anonymous 1):1":0};
+_yuitest_coverage["build/inputex-string/inputex-string.js"].coveredLines = 78;
 _yuitest_coverage["build/inputex-string/inputex-string.js"].coveredFunctions = 18;
 _yuitest_coverline("build/inputex-string/inputex-string.js", 1);
 YUI.add('inputex-string', function (Y, NAME) {
@@ -236,36 +236,35 @@ inputEx.StringField.superclass.setValue.call(this, value, sendUpdatedEvt);
     * Uses the optional regexp to validate the field value
     * @method validate
     */
-   validate: function() {
+   validate: function () {
+
       _yuitest_coverfunc("build/inputex-string/inputex-string.js", "validate", 150);
-_yuitest_coverline("build/inputex-string/inputex-string.js", 151);
-var val = this.getValue();
+_yuitest_coverline("build/inputex-string/inputex-string.js", 152);
+var value = this.getValue(),
+          valid;
 
-      // empty field
-      _yuitest_coverline("build/inputex-string/inputex-string.js", 154);
-if (val === '') {
-         // validate only if not required
-         _yuitest_coverline("build/inputex-string/inputex-string.js", 156);
-return !this.options.required;
+      // superclass validation (e.g. will check empty + required)
+      _yuitest_coverline("build/inputex-string/inputex-string.js", 156);
+valid = inputEx.StringField.superclass.validate.call(this);
+
+      // check regex matching
+      _yuitest_coverline("build/inputex-string/inputex-string.js", 159);
+if (valid && this.options.regexp) {
+	      _yuitest_coverline("build/inputex-string/inputex-string.js", 160);
+valid = value.match(this.options.regexp);
       }
 
-      // Check regex matching and minLength (both used in password field...)
-      _yuitest_coverline("build/inputex-string/inputex-string.js", 160);
-var result = true;
+      // check min length
+      _yuitest_coverline("build/inputex-string/inputex-string.js", 164);
+if (valid && this.options.minLength) {
+	      _yuitest_coverline("build/inputex-string/inputex-string.js", 165);
+valid = value.length >= this.options.minLength;
+      }
 
-      // if we are using a regular expression
-      _yuitest_coverline("build/inputex-string/inputex-string.js", 163);
-if( this.options.regexp ) {
-	      _yuitest_coverline("build/inputex-string/inputex-string.js", 164);
-result = result && val.match(this.options.regexp);
-      }
-      _yuitest_coverline("build/inputex-string/inputex-string.js", 166);
-if( this.options.minLength ) {
-	      _yuitest_coverline("build/inputex-string/inputex-string.js", 167);
-result = result && val.length >= this.options.minLength;
-      }
-      _yuitest_coverline("build/inputex-string/inputex-string.js", 169);
-return result;
+      // check max length: already constrained by the html field
+
+      _yuitest_coverline("build/inputex-string/inputex-string.js", 170);
+return valid;
    },
 
    /**
@@ -273,8 +272,8 @@ return result;
     * @method disable
     */
    disable: function() {
-      _yuitest_coverfunc("build/inputex-string/inputex-string.js", "disable", 176);
-_yuitest_coverline("build/inputex-string/inputex-string.js", 177);
+      _yuitest_coverfunc("build/inputex-string/inputex-string.js", "disable", 177);
+_yuitest_coverline("build/inputex-string/inputex-string.js", 178);
 this.el.disabled = true;
    },
 
@@ -283,8 +282,8 @@ this.el.disabled = true;
     * @method enable
     */
    enable: function() {
-      _yuitest_coverfunc("build/inputex-string/inputex-string.js", "enable", 184);
-_yuitest_coverline("build/inputex-string/inputex-string.js", 185);
+      _yuitest_coverfunc("build/inputex-string/inputex-string.js", "enable", 185);
+_yuitest_coverline("build/inputex-string/inputex-string.js", 186);
 this.el.disabled = false;
    },
 
@@ -293,8 +292,8 @@ this.el.disabled = false;
     * @method isDisabled
     */
    isDisabled: function() {
-      _yuitest_coverfunc("build/inputex-string/inputex-string.js", "isDisabled", 192);
-_yuitest_coverline("build/inputex-string/inputex-string.js", 193);
+      _yuitest_coverfunc("build/inputex-string/inputex-string.js", "isDisabled", 193);
+_yuitest_coverline("build/inputex-string/inputex-string.js", 194);
 return this.el.disabled;
    },
 
@@ -304,10 +303,10 @@ return this.el.disabled;
     */
    focus: function() {
       // Can't use lang.isFunction because IE >= 6 would say focus is not a function (IE says it's an object) !!
-      _yuitest_coverfunc("build/inputex-string/inputex-string.js", "focus", 200);
-_yuitest_coverline("build/inputex-string/inputex-string.js", 202);
+      _yuitest_coverfunc("build/inputex-string/inputex-string.js", "focus", 201);
+_yuitest_coverline("build/inputex-string/inputex-string.js", 203);
 if(!!this.el && !lang.isUndefined(this.el.focus) ) {
-         _yuitest_coverline("build/inputex-string/inputex-string.js", 203);
+         _yuitest_coverline("build/inputex-string/inputex-string.js", 204);
 this.el.focus();
       }
    },
@@ -317,13 +316,13 @@ this.el.focus();
     * @method getStateString
     */
 	getStateString: function(state) {
-	   _yuitest_coverfunc("build/inputex-string/inputex-string.js", "getStateString", 211);
-_yuitest_coverline("build/inputex-string/inputex-string.js", 212);
-if(state == inputEx.stateInvalid && this.options.minLength && this.el.value.length < this.options.minLength) {
-	      _yuitest_coverline("build/inputex-string/inputex-string.js", 213);
-return this.messages.stringTooShort[0]+this.options.minLength+this.messages.stringTooShort[1];
+	   _yuitest_coverfunc("build/inputex-string/inputex-string.js", "getStateString", 212);
+_yuitest_coverline("build/inputex-string/inputex-string.js", 213);
+if (this.options.minLength && state === inputEx.stateInvalid && this.getValue().length < this.options.minLength) {
+	      _yuitest_coverline("build/inputex-string/inputex-string.js", 214);
+return this.messages.stringTooShort[0] + this.options.minLength + this.messages.stringTooShort[1];
       }
-	   _yuitest_coverline("build/inputex-string/inputex-string.js", 215);
+	   _yuitest_coverline("build/inputex-string/inputex-string.js", 216);
 return inputEx.StringField.superclass.getStateString.call(this, state);
 	},
 
@@ -332,14 +331,14 @@ return inputEx.StringField.superclass.getStateString.call(this, state);
     * @method setClassFromState
     */
    setClassFromState: function() {
-	   _yuitest_coverfunc("build/inputex-string/inputex-string.js", "setClassFromState", 222);
-_yuitest_coverline("build/inputex-string/inputex-string.js", 223);
+	   _yuitest_coverfunc("build/inputex-string/inputex-string.js", "setClassFromState", 223);
+_yuitest_coverline("build/inputex-string/inputex-string.js", 224);
 inputEx.StringField.superclass.setClassFromState.call(this);
 
 	   // display/mask typeInvite
-	   _yuitest_coverline("build/inputex-string/inputex-string.js", 226);
+	   _yuitest_coverline("build/inputex-string/inputex-string.js", 227);
 if(this.options.typeInvite) {
-	      _yuitest_coverline("build/inputex-string/inputex-string.js", 227);
+	      _yuitest_coverline("build/inputex-string/inputex-string.js", 228);
 this.updateTypeInvite();
       }
 	},
@@ -350,36 +349,36 @@ this.updateTypeInvite();
 	updateTypeInvite: function() {
 
 	   // field not focused
-      _yuitest_coverfunc("build/inputex-string/inputex-string.js", "updateTypeInvite", 234);
-_yuitest_coverline("build/inputex-string/inputex-string.js", 237);
+      _yuitest_coverfunc("build/inputex-string/inputex-string.js", "updateTypeInvite", 235);
+_yuitest_coverline("build/inputex-string/inputex-string.js", 238);
 if (!Y.one(this.divEl).hasClass( "inputEx-focused")) {
 
          // show type invite if field is empty
-         _yuitest_coverline("build/inputex-string/inputex-string.js", 240);
+         _yuitest_coverline("build/inputex-string/inputex-string.js", 241);
 if(this.isEmpty()) {
-	         _yuitest_coverline("build/inputex-string/inputex-string.js", 241);
-Y.one(this.divEl).addClass( "inputEx-typeInvite");
 	         _yuitest_coverline("build/inputex-string/inputex-string.js", 242);
+Y.one(this.divEl).addClass( "inputEx-typeInvite");
+	         _yuitest_coverline("build/inputex-string/inputex-string.js", 243);
 this.el.value = this.options.typeInvite;
 
 	      // important for setValue to work with typeInvite
          } else {
-            _yuitest_coverline("build/inputex-string/inputex-string.js", 246);
+            _yuitest_coverline("build/inputex-string/inputex-string.js", 247);
 Y.one(this.divEl).removeClass("inputEx-typeInvite");
          }
 
       // field focused : remove type invite
       } else {
-	      _yuitest_coverline("build/inputex-string/inputex-string.js", 251);
+	      _yuitest_coverline("build/inputex-string/inputex-string.js", 252);
 if(Y.one(this.divEl).hasClass("inputEx-typeInvite")) {
 	         // remove text
-	         _yuitest_coverline("build/inputex-string/inputex-string.js", 253);
+	         _yuitest_coverline("build/inputex-string/inputex-string.js", 254);
 this.el.value = "";
 
 	         // remove the "empty" state and class
-	         _yuitest_coverline("build/inputex-string/inputex-string.js", 256);
-this.previousState = null;
 	         _yuitest_coverline("build/inputex-string/inputex-string.js", 257);
+this.previousState = null;
+	         _yuitest_coverline("build/inputex-string/inputex-string.js", 258);
 Y.one(this.divEl).removeClass("inputEx-typeInvite");
          }
       }
@@ -390,13 +389,13 @@ Y.one(this.divEl).removeClass("inputEx-typeInvite");
 	 * @method onFocus
 	 */
 	onFocus: function(e) {
-	   _yuitest_coverfunc("build/inputex-string/inputex-string.js", "onFocus", 266);
-_yuitest_coverline("build/inputex-string/inputex-string.js", 267);
+	   _yuitest_coverfunc("build/inputex-string/inputex-string.js", "onFocus", 267);
+_yuitest_coverline("build/inputex-string/inputex-string.js", 268);
 inputEx.StringField.superclass.onFocus.call(this,e);
 
-	   _yuitest_coverline("build/inputex-string/inputex-string.js", 269);
+	   _yuitest_coverline("build/inputex-string/inputex-string.js", 270);
 if(this.options.typeInvite) {
-         _yuitest_coverline("build/inputex-string/inputex-string.js", 270);
+         _yuitest_coverline("build/inputex-string/inputex-string.js", 271);
 this.updateTypeInvite();
       }
 	},
@@ -428,7 +427,7 @@ this.updateTypeInvite();
 
 
 // Register this class as "string" type
-_yuitest_coverline("build/inputex-string/inputex-string.js", 301);
+_yuitest_coverline("build/inputex-string/inputex-string.js", 302);
 inputEx.registerType("string", inputEx.StringField, [
     { type: 'string', label: 'Type invite', name: 'typeInvite', value: ''},
     { type: 'integer', label: 'Size', name: 'size', value: 20},

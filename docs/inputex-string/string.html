@@ -50,7 +50,7 @@ How to create a string field.
 	
 	
 	<h2>Maximum and minimum length</h2>
-	<p>You can add a maximum/minimum length on string fields :</p>
+	<p>You can add a minimum/maximum length on string fields (e.g. min=3 / max=5):</p>
 	<div class='demoContainer' id='container4'></div>
 	
 	
@@ -111,7 +111,7 @@ YUI().use('inputex-string',function(Y) {
     new Y.inputEx.StringField({size: 40, value: 'size is set to 40 (default is 20)', parentEl: 'container3'});
     
     // Example 4
-    new Y.inputEx.StringField({value: '0123456789', showMsg: true, minLength: 3, maxLength: 10, parentEl: 'container4'});
+    new Y.inputEx.StringField({value: 'ab', showMsg: true, minLength: 3, maxLength: 5, parentEl: 'container4'});
     
     // Example 5
     new Y.inputEx.StringField({required: true, showMsg: true, parentEl: 'container5'});
@@ -133,7 +133,7 @@ YUI().use('inputex-string',function(Y) {
     var logDiv = Y.inputEx.cn('div', null, null, "Log :");
     el.appendChild(logDiv);
     field.on("updated",function(val) {
-        logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+        logDiv.innerHTML += "Updated at " + (new Date()) + " with value: " + val + "<br />";
     });
     
     // Example 10
@@ -204,7 +204,7 @@ YUI().use('inputex-string',function(Y) {
     new Y.inputEx.StringField({size: 40, value: &#x27;size is set to 40 (default is 20)&#x27;, parentEl: &#x27;container3&#x27;});
     
     &#x2F;&#x2F; Example 4
-    new Y.inputEx.StringField({value: &#x27;0123456789&#x27;, showMsg: true, minLength: 3, maxLength: 10, parentEl: &#x27;container4&#x27;});
+    new Y.inputEx.StringField({value: &#x27;ab&#x27;, showMsg: true, minLength: 3, maxLength: 5, parentEl: &#x27;container4&#x27;});
     
     &#x2F;&#x2F; Example 5
     new Y.inputEx.StringField({required: true, showMsg: true, parentEl: &#x27;container5&#x27;});
@@ -226,7 +226,7 @@ YUI().use('inputex-string',function(Y) {
     var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
     el.appendChild(logDiv);
     field.on(&quot;updated&quot;,function(val) {
-        logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value: &quot;+val;
+        logDiv.innerHTML += &quot;Updated at &quot; + (new Date()) + &quot; with value: &quot; + val + &quot;&lt;br &#x2F;&gt;&quot;;
     });
     
     &#x2F;&#x2F; Example 10

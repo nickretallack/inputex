@@ -145,26 +145,27 @@ Y.extend(inputEx.StringField, inputEx.Field, {
     * Uses the optional regexp to validate the field value
     * @method validate
     */
-   validate: function() {
-      var val = this.getValue();
+   validate: function () {
 
-      // empty field
-      if (val === '') {
-         // validate only if not required
-         return !this.options.required;
+      var value = this.getValue(),
+          valid;
+
+      // superclass validation (e.g. will check empty + required)
+      valid = inputEx.StringField.superclass.validate.call(this);
+
+      // check regex matching
+      if (valid && this.options.regexp) {
+	      valid = value.match(this.options.regexp);
       }
 
-      // Check regex matching and minLength (both used in password field...)
-      var result = true;
+      // check min length
+      if (valid && this.options.minLength) {
+	      valid = value.length >= this.options.minLength;
+      }
 
-      // if we are using a regular expression
-      if( this.options.regexp ) {
-	      result = result && val.match(this.options.regexp);
-      }
-      if( this.options.minLength ) {
-	      result = result && val.length >= this.options.minLength;
-      }
-      return result;
+      // check max length: already constrained by the html field
+
+      return valid;
    },
 
    /**
@@ -207,8 +208,8 @@ Y.extend(inputEx.StringField, inputEx.Field, {
     * @method getStateString
     */
 	getStateString: function(state) {
-	   if(state == inputEx.stateInvalid && this.options.minLength && this.el.value.length < this.options.minLength) {
-	      return this.messages.stringTooShort[0]+this.options.minLength+this.messages.stringTooShort[1];
+	   if (this.options.minLength && state === inputEx.stateInvalid && this.getValue().length < this.options.minLength) {
+	      return this.messages.stringTooShort[0] + this.options.minLength + this.messages.stringTooShort[1];
       }
 	   return inputEx.StringField.superclass.getStateString.call(this, state);
 	},
