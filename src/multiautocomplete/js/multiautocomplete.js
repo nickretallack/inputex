@@ -69,7 +69,7 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
     * @param {String} value The value to set
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
     */
-   setValue: function(value, sendUpdatedEvt) {
+   setValue: function (value, sendUpdatedEvt) {
       this.ddlist.setValue(value);
       
       // set corresponding style
@@ -81,6 +81,10 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
       }
    },
    
+   clear: function (sendUpdatedEvt) {
+      this.setValue(lang.isUndefined(this.options.value) ? [] : this.options.value, sendUpdatedEvt);
+   },
+
    /**
     * Return the value
     * @method getValue
@@ -89,28 +93,9 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
    getValue: function() {
       return this.ddlist.getValue();
    },
-   
-   /**
-    * Return (stateEmpty|stateRequired) if the value equals the typeInvite attribute
-    * @method getState
-    */
-   getState: function() { 
-      var val = this.getValue();
-      
-      // if nothing in the list
-      if( val.length === 0) {
-         return this.options.required ? inputEx.stateRequired : inputEx.stateEmpty;
-      }
-      
-      return this.validate() ? inputEx.stateValid : inputEx.stateInvalid;
-   },
-   
-   /**
-    * TODO : how to validate ?
-    * @method validate
-    */
-   validate: function() { 
-      return true;
+
+   isEmpty: function () {
+      return this.getValue().length === 0;
    },
    
    /**

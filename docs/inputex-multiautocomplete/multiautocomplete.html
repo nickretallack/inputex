@@ -41,10 +41,10 @@ How to create a multiautocomplete.
 <script>
 YUI().use('inputex-multiautocomplete', function(Y) {
    
-      var field = new Y.inputEx.MultiAutoComplete({
+    field = new Y.inputEx.MultiAutoComplete({
         parentEl: 'container1', 
         label: 'Search US state',
-
+required: true,
         // autocompleter options
         autoComp: {
           source: ["aaa","bbb","cccc","ccc","dddddd"],
