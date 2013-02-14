@@ -2,7 +2,7 @@
    "inputex-radio": {
       "requires": [
          "selector",
-         "event-delegate",
+         "node-event-delegate",
          "inputex-field",
          "inputex-choice",
          "inputex-string"

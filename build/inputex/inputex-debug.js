@@ -404,13 +404,12 @@ YUI.add('inputex', function (Y, NAME) {
 }, '@VERSION@', {
     "requires": [
         "intl",
+        "node",
+        "plugin",
         "pluginhost-base",
         "pluginhost-config",
         "base-pluginhost",
-        "node-pluginhost",
-        "plugin",
-        "node",
-        "intl"
+        "node-pluginhost"
     ],
     "skinnable": true
 });

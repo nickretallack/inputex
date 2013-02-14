@@ -555,7 +555,7 @@ YUI.add('inputex-radio', function (Y, NAME) {
 }, '@VERSION@', {
     "requires": [
         "selector",
-        "event-delegate",
+        "node-event-delegate",
         "inputex-field",
         "inputex-choice",
         "inputex-string"

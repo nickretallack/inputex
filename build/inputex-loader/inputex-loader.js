@@ -10,13 +10,12 @@ YUI().use(function(Y) {
     "inputex": {
         "requires": [
             "intl",
+            "node",
+            "plugin",
             "pluginhost-base",
             "pluginhost-config",
             "base-pluginhost",
-            "node-pluginhost",
-            "plugin",
-            "node",
-            "intl"
+            "node-pluginhost"
         ],
         "skinnable": true
     },
@@ -138,6 +137,8 @@ YUI().use(function(Y) {
         ],
         "requires": [
             "intl",
+            "node-base",
+            "node-event-delegate",
             "plugin",
             "panel",
             "inputex-group",
@@ -187,11 +188,12 @@ YUI().use(function(Y) {
             "nl"
         ],
         "requires": [
+            "intl",
+            "node-event-delegate",
             "inputex-group",
             "inputex-panel",
             "datatable",
-            "overlay",
-            "intl"
+            "overlay"
         ],
         "skinnable": true
     },
@@ -542,7 +544,7 @@ YUI().use(function(Y) {
         "ix_provides": "radio",
         "requires": [
             "selector",
-            "event-delegate",
+            "node-event-delegate",
             "inputex-field",
             "inputex-choice",
             "inputex-string"

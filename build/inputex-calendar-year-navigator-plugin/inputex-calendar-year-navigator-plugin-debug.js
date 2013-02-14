@@ -264,6 +264,8 @@ Y.Plugin.CalendarYearNavigator = Y.Base.create("CalendarYearNavigator", Y.Plugin
 }, '@VERSION@', {
     "requires": [
         "intl",
+        "node-base",
+        "node-event-delegate",
         "plugin",
         "panel",
         "inputex-group",

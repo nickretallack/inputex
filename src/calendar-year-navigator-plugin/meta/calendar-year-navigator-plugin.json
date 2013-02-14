@@ -1,7 +1,14 @@
 {
    "inputex-calendar-year-navigator-plugin" : {
       "requires": [
-         "intl","plugin","panel","inputex-group","inputex-select","inputex-string"
+         "intl",
+         "node-base",
+         "node-event-delegate",
+         "plugin",
+         "panel",
+         "inputex-group",
+         "inputex-select",
+         "inputex-string"
       ],
       "skinnable": true,
       "lang" : ["en","fr"]

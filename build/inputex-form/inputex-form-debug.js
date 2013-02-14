@@ -425,8 +425,8 @@ inputEx.registerType("form", inputEx.Form, [
 }, '@VERSION@', {
     "requires": [
         "io-base",
+        "json-stringify",
         "inputex-group",
-        "json",
         "inputex-button"
     ],
     "ix_provides": "form",

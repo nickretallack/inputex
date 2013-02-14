@@ -853,11 +853,12 @@ ATTRS: {
 
 }, '@VERSION@', {
     "requires": [
+        "intl",
+        "node-event-delegate",
         "inputex-group",
         "inputex-panel",
         "datatable",
-        "overlay",
-        "intl"
+        "overlay"
     ],
     "skinnable": true,
     "lang": [
