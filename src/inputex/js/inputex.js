@@ -128,10 +128,10 @@
      
      /**
       * Property to globally turn on/off the browser autocompletion
-      * (used as default autocomplete option value by StringField, Form and their subclasses)
+      * Possible values: "on", "off"
       * @property browserAutocomplete
       */
-     browserAutocomplete: true,
+     browserAutocomplete: "on",
      
      /**
       * When you create a new inputEx Field Class, you can register it to give it a simple type.

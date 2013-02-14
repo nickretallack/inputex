@@ -257,27 +257,27 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
 	 // Example 9
 	 
 
-     // autocompletion is 'on'
-     new Y.inputEx.Form( { 
+     // autocompletion is 'on' by default
+     new Y.inputEx.Form({
         legend: "Form with autocompletion",
-        fields: [ 
-           {label: 'Lastname', name: 'lastname', description:'autocomplete option set to true by default' },
+        fields: [
+           { label: 'Lastname', name: 'lastname', description: 'autocomplete option set to "default" by default = inherit from the attribute of the form (which is "on" here)' },
            // except on this field
-           {type:'email', label: 'Email', name: 'email', autocomplete:false, description:"autocomplete option set to false on this field"}
-        ], 
-        buttons: [{type: 'submit', value: 'Change'}],
+           { type:'email', label: 'Email', name: 'email', autocomplete: 'off', description: 'autocomplete option set to "off" on this field' }
+        ],
+        buttons: [{ type: 'submit', value: 'Change' }],
         parentEl: 'container9'
      });
 
      // autocompletion is 'off' on the whole form
-     new Y.inputEx.Form( { 
+     new Y.inputEx.Form({
         legend: "Form without autocompletion",
-        autocomplete: false,
-        fields: [ 
-           {label: 'Lastname', name: 'lastname' },
-           {type:'email', label: 'Email', name: 'email'}
-        ], 
-        buttons: [{type: 'submit', value: 'Change'}],
+        autocomplete: 'off',
+        fields: [
+           { label: 'Lastname', name: 'lastname' },
+           { type:'email', label: 'Email', name: 'email' }
+        ],
+        buttons: [{ type: 'submit', value: 'Change' }],
         parentEl: 'container9'
      });
 
@@ -285,7 +285,7 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
      // inputEx fields of the page, set the following value after
      // inputEx source inclusion :
      //
-     //   inputEx.browserAutocomplete = false;
+     //   inputEx.browserAutocomplete = 'off';
      //
 	 
 	 

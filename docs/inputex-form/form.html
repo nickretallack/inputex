@@ -374,27 +374,27 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
 	 // Example 9
 	 
 
-     // autocompletion is 'on'
-     new Y.inputEx.Form( { 
+     // autocompletion is 'on' by default
+     new Y.inputEx.Form({
         legend: "Form with autocompletion",
-        fields: [ 
-           {label: 'Lastname', name: 'lastname', description:'autocomplete option set to true by default' },
+        fields: [
+           { label: 'Lastname', name: 'lastname', description: 'autocomplete option set to "default" by default = inherit from the attribute of the form (which is "on" here)' },
            // except on this field
-           {type:'email', label: 'Email', name: 'email', autocomplete:false, description:"autocomplete option set to false on this field"}
-        ], 
-        buttons: [{type: 'submit', value: 'Change'}],
+           { type:'email', label: 'Email', name: 'email', autocomplete: 'off', description: 'autocomplete option set to "off" on this field' }
+        ],
+        buttons: [{ type: 'submit', value: 'Change' }],
         parentEl: 'container9'
      });
 
      // autocompletion is 'off' on the whole form
-     new Y.inputEx.Form( { 
+     new Y.inputEx.Form({
         legend: "Form without autocompletion",
-        autocomplete: false,
-        fields: [ 
-           {label: 'Lastname', name: 'lastname' },
-           {type:'email', label: 'Email', name: 'email'}
-        ], 
-        buttons: [{type: 'submit', value: 'Change'}],
+        autocomplete: 'off',
+        fields: [
+           { label: 'Lastname', name: 'lastname' },
+           { type:'email', label: 'Email', name: 'email' }
+        ],
+        buttons: [{ type: 'submit', value: 'Change' }],
         parentEl: 'container9'
      });
 
@@ -402,7 +402,7 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
      // inputEx fields of the page, set the following value after
      // inputEx source inclusion :
      //
-     //   inputEx.browserAutocomplete = false;
+     //   inputEx.browserAutocomplete = 'off';
      //
 	 
 	 
@@ -681,27 +681,27 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
 	 &#x2F;&#x2F; Example 9
 	 
 
-     &#x2F;&#x2F; autocompletion is &#x27;on&#x27;
-     new Y.inputEx.Form( { 
+     &#x2F;&#x2F; autocompletion is &#x27;on&#x27; by default
+     new Y.inputEx.Form({
         legend: &quot;Form with autocompletion&quot;,
-        fields: [ 
-           {label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, description:&#x27;autocomplete option set to true by default&#x27; },
+        fields: [
+           { label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, description: &#x27;autocomplete option set to &quot;default&quot; by default = inherit from the attribute of the form (which is &quot;on&quot; here)&#x27; },
            &#x2F;&#x2F; except on this field
-           {type:&#x27;email&#x27;, label: &#x27;Email&#x27;, name: &#x27;email&#x27;, autocomplete:false, description:&quot;autocomplete option set to false on this field&quot;}
-        ], 
-        buttons: [{type: &#x27;submit&#x27;, value: &#x27;Change&#x27;}],
+           { type:&#x27;email&#x27;, label: &#x27;Email&#x27;, name: &#x27;email&#x27;, autocomplete: &#x27;off&#x27;, description: &#x27;autocomplete option set to &quot;off&quot; on this field&#x27; }
+        ],
+        buttons: [{ type: &#x27;submit&#x27;, value: &#x27;Change&#x27; }],
         parentEl: &#x27;container9&#x27;
      });
 
      &#x2F;&#x2F; autocompletion is &#x27;off&#x27; on the whole form
-     new Y.inputEx.Form( { 
+     new Y.inputEx.Form({
         legend: &quot;Form without autocompletion&quot;,
-        autocomplete: false,
-        fields: [ 
-           {label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27; },
-           {type:&#x27;email&#x27;, label: &#x27;Email&#x27;, name: &#x27;email&#x27;}
-        ], 
-        buttons: [{type: &#x27;submit&#x27;, value: &#x27;Change&#x27;}],
+        autocomplete: &#x27;off&#x27;,
+        fields: [
+           { label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27; },
+           { type:&#x27;email&#x27;, label: &#x27;Email&#x27;, name: &#x27;email&#x27; }
+        ],
+        buttons: [{ type: &#x27;submit&#x27;, value: &#x27;Change&#x27; }],
         parentEl: &#x27;container9&#x27;
      });
 
@@ -709,7 +709,7 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
      &#x2F;&#x2F; inputEx fields of the page, set the following value after
      &#x2F;&#x2F; inputEx source inclusion :
      &#x2F;&#x2F;
-     &#x2F;&#x2F;   inputEx.browserAutocomplete = false;
+     &#x2F;&#x2F;   inputEx.browserAutocomplete = &#x27;off&#x27;;
      &#x2F;&#x2F;
 	 
 	 

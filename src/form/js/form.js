@@ -42,9 +42,9 @@ Y.extend(inputEx.Form, inputEx.Group, {
       this.options.method = options.method;
 
       this.options.className =  options.className || 'inputEx-Group';
-      this.options.autocomplete = lang.isUndefined(options.autocomplete) ?
-                                     inputEx.browserAutocomplete :
-                                     (options.autocomplete === false || options.autocomplete === "off") ? false : true;
+
+      // possible values: "on", "off"
+      this.options.autocomplete = !lang.isUndefined(options.autocomplete) ? options.autocomplete : inputEx.browserAutocomplete;
       
       this.options.enctype = options.enctype;
 
@@ -88,7 +88,7 @@ Y.extend(inputEx.Form, inputEx.Group, {
       }
 
       // Set the autocomplete attribute to off to disable browser autocompletion
-      this.form.setAttribute('autocomplete', this.options.autocomplete ? 'on' : 'off');
+      this.form.setAttribute('autocomplete', this.options.autocomplete);
       
       // Set the name of the form
       if(this.options.formName) { this.form.name = this.options.formName; }

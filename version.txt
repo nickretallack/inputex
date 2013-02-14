@@ -17,6 +17,16 @@ Release Notes:
  * Selleck docs
  * tests
  * YUI 3.7.2
+ * changed "autocomplete" config on form and string field (+ subclasses), its not a
+   boolean anymore, pass a value in ["on", "off", "default"] instead.
+ * changed inputEx.browserAutocomplete to contain "on" or "off" (not a boolean anymore)
+ * bug fixes:
+    * handling of "required: true" config is fixed or improved in many fields
+      (boolean, select, radio, hidden, menu...)
+    * trim option is fixed on date field
+    * integer and number fields properly apply options inherited from string
+      (minLength, regexp)
+    * remove hack on checkboxes if IE9+ ("change" event is ok now)
 
 
 3.1.0 : August, 17th 2012

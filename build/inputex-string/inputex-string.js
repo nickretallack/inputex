@@ -47,9 +47,10 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 	   this.options.minLength = options.minLength;
 	   this.options.typeInvite = options.typeInvite;
 	   this.options.readonly = options.readonly;
-	   this.options.autocomplete = lang.isUndefined(options.autocomplete) ?
-	                                  inputEx.browserAutocomplete :
-	                                  (options.autocomplete === false || options.autocomplete === "off") ? false : true;
+
+      // possible values: "on", "off", or "default" (= inherit from attribute set on form tag)
+      // see: https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-autocomplete
+	   this.options.autocomplete = !lang.isUndefined(options.autocomplete) ? options.autocomplete : "default";
 	   this.options.trim = (options.trim === true) ? true : false;
    },
 
@@ -72,7 +73,8 @@ Y.extend(inputEx.StringField, inputEx.Field, {
       if(this.options.readonly) { attributes.readonly = 'readonly'; }
 
       if(this.options.maxLength) { attributes.maxLength = this.options.maxLength; }
-      attributes.autocomplete = this.options.autocomplete ? 'on' : 'off';
+      // don't set the autocomplete attribute when "default" (the input will adopt the form's behavior regarding autocomplete)
+      if(this.options.autocomplete !== "default") { attributes.autocomplete = this.options.autocomplete; }
 
       // Create the node
       this.el = inputEx.cn('input', attributes);
