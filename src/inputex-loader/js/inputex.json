@@ -93,7 +93,8 @@
             "inputex-uppercase",
             "inputex-url",
             "inputex-vector",
-            "inputex-visus"
+            "inputex-visus",
+            "dd-plugin"
         ],
         "skinnable": true
     },
@@ -326,8 +327,8 @@
         ],
         "requires": [
             "io-base",
+            "json-stringify",
             "inputex-group",
-            "json",
             "inputex-button"
         ],
         "skinnable": true
@@ -568,7 +569,7 @@
         "requires": [
             "json",
             "inputex",
-            "io",
+            "io-base",
             "inputex-jsonschema",
             "jsonp"
         ]
@@ -640,7 +641,7 @@
         "requires": [
             "inputex-string",
             "event-key",
-            "io",
+            "io-base",
             "json-parse"
         ],
         "skinnable": true

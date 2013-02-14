@@ -2,8 +2,8 @@
    "inputex-form": {
       "requires": [
          "io-base",
+         "json-stringify",
          "inputex-group",
-         "json",
          "inputex-button"
       ],
       "ix_provides": "form",

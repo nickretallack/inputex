@@ -527,4 +527,4 @@ inputEx.RPC.Envelope = {
 };
 
 
-}, '@VERSION@', {"requires": ["json", "inputex", "io", "inputex-jsonschema", "jsonp"]});
+}, '@VERSION@', {"requires": ["json", "inputex", "io-base", "inputex-jsonschema", "jsonp"]});

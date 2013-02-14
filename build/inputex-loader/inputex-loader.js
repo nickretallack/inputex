@@ -101,7 +101,8 @@ YUI().use(function(Y) {
             "inputex-uppercase",
             "inputex-url",
             "inputex-vector",
-            "inputex-visus"
+            "inputex-visus",
+            "dd-plugin"
         ],
         "skinnable": true
     },
@@ -334,8 +335,8 @@ YUI().use(function(Y) {
         ],
         "requires": [
             "io-base",
+            "json-stringify",
             "inputex-group",
-            "json",
             "inputex-button"
         ],
         "skinnable": true
@@ -576,7 +577,7 @@ YUI().use(function(Y) {
         "requires": [
             "json",
             "inputex",
-            "io",
+            "io-base",
             "inputex-jsonschema",
             "jsonp"
         ]
@@ -648,7 +649,7 @@ YUI().use(function(Y) {
         "requires": [
             "inputex-string",
             "event-key",
-            "io",
+            "io-base",
             "json-parse"
         ],
         "skinnable": true

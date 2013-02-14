@@ -270,7 +270,7 @@ inputEx.registerType("string-availability", inputEx.StringAvailability);
     "requires": [
         "inputex-string",
         "event-key",
-        "io",
+        "io-base",
         "json-parse"
     ],
     "skinnable": true,

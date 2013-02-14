@@ -3,7 +3,7 @@
       "requires": [
          "json",
          "inputex",
-         "io",
+         "io-base",
          "inputex-jsonschema",
          "jsonp"
       ]
