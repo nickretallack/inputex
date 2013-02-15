@@ -34,48 +34,27 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
       this.options.separators = options.separators;
    },
 
+   // Override Group.render()
+   render: function () {
+      return inputEx.Field.prototype.render.apply(this, arguments);
+   },
+
    /**
     * @method render
     */
-   render: function() {
-
-      // Create the div wrapper for this group
-      this.divEl = inputEx.cn('div', {
-         className: this.options.className
-      });
-      if(this.options.id) {
-         this.divEl.id = this.options.id;
-      }
-
-      // Label element
-      if(lang.isString(this.options.label)) {
-         this.labelDiv = inputEx.cn('div', {
-            id: this.divEl.id + '-label',
-            className: 'inputEx-label',
-            'for': this.divEl.id + '-field'
-         });
-         this.labelEl = inputEx.cn('label', null, null, this.options.label === "" ? "&nbsp;" : this.options.label);
-         this.labelDiv.appendChild(this.labelEl);
-         this.divEl.appendChild(this.labelDiv);
-      }
-
-      this.renderFields();
+   renderComponent: function() {
+      this.renderFields(this.fieldContainer);
 
       if(this.options.disabled) {
          this.disable();
       }
-
-      // Insert a float breaker
-      this.divEl.appendChild(inputEx.cn('div', {
-         className: "inputEx-clear-div"
-      }, null, " "));
    },
 
    /**
     * Render the subfields
     * @method renderFields
     */
-   renderFields: function() {
+   renderFields: function(parentNode) {
 
       this.appendSeparator(0);
 
@@ -109,7 +88,7 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
          */
          Y.one(fieldEl).setStyle('float', 'left');
          
-         this.divEl.appendChild(fieldEl);
+         parentNode.appendChild(fieldEl);
 
          this.appendSeparator(i + 1);
       }
@@ -155,7 +134,7 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
    },
 
    /**
-    * Add a separator to the divEl
+    * Add a separator to the fieldContainer
     * @method appendSeparator
     */
    appendSeparator: function(i) {
@@ -163,7 +142,7 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
          var sep = inputEx.cn('div', {
             className: 'inputEx-CombineField-separator'
          }, null, this.options.separators[i]);
-         this.divEl.appendChild(sep);
+         this.fieldContainer.appendChild(sep);
       }
    },
 
@@ -177,7 +156,7 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
 
       inputEx.CombineField.superclass.initEvents.apply(this, arguments);
 
-      divNode = Y.one(this.divEl);
+      divNode = Y.one(this.fieldContainer);
 
       // TODO: does it work ?
       divNode.on("focusout", function(e) {
@@ -220,6 +199,8 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
 
       this.runFieldsInteractions();
 
+      this.setClassFromState();
+      
       if(sendUpdatedEvt !== false) {
          // fire update event
          this.fireUpdatedEvt();

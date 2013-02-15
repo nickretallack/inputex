@@ -5,9 +5,11 @@
     <title>Test Page</title>
 </head>
 <body class="yui3-skin-sam">
-
-<script src="http://yui.yahooapis.com/3.7.2/build/yui/yui-debug.js"></script>
- <script src="../../../../build/inputex-loader/inputex-loader.js"></script>
+<style>
+#demo{margin: 20px;}
+</style>
+<script src="http://yui.yahooapis.com/3.8.0/build/yui/yui-debug.js"></script>
+<script src="../../../../build/inputex-loader/inputex-loader.js"></script>
 <script>
 YUI({
     coverage: ['inputex-timerange'],
@@ -16,6 +18,7 @@ YUI({
             base: '../../../../build/'
         }
     },
+    lang: 'fr',
     filter: (window.location.search.match(/[?&]filter=([^&]+)/) || [])[1] || 'raw',
     modules: {
         'timerange-test': {
@@ -23,13 +26,15 @@ YUI({
             requires: ["test","inputex-timerange"]
         }
     }
-}).use('console', 'timerange-test', function (Y) {
+}).use('test-console', 'timerange-test', function (Y) {
 
-    new Y.Console().render();
+    new Y.Test.Console().render();
     Y.Test.Runner.run();
 
 });
 </script>
- <div id="demo"></div>
+
+<div id="demo"></div>
+
 </body>
 </html>

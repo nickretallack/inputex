@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-timerange_fr",function(e){e.Intl.add("inputex-timerange","fr",{incorrectOrder:"La fin de la plage horaire doit \u00eatre sup\u00e9rieure \u00e0 l'heure de d\u00e9but"})},"@VERSION@");

@@ -1,38 +1,50 @@
+YUI.add("timerange-test", function(Y) {
 
-YUI.add("timerange-test", function (Y) {
 
-    var suite = new Y.Test.Suite({
-        name: "components Generation Suite"
-    }),
-        testCase = new Y.Test.Case({
+var suite = new Y.Test.Suite({name: "components Generation Suite"}),
+    testCase;
 
-            name: "inputex-timerange field generation test",
-            testGeneration: function () {
+testCase = new Y.Test.Case({
 
-                Y.log("testGeneration",'debug');
+   name: "inputex-timerange field generation test",
 
-                var instanceField = new Y.inputEx.TimeRange({
-                    parentEl: 'demo',
-                    label: 'label'
+   "test generation": function() {
 
-                });
+      Y.log("testGeneration", 'debug');
 
-var button = Y.inputEx.cn('button', null, null, 'getValue');
-Y.one(button).on('click',function() {
-    alert(instanceField.getValue()+" (seconds)");
+      var value = ['01:00', '02:00'];
+
+      this.timerange = new Y.inputEx.TimeRange({
+         parentEl: 'demo',
+         showMsg: true,
+         label: 'My TimeRange Label',
+         value: value
+      });
+
+      Y.ArrayAssert.itemsAreSame(this.timerange.getValue(), value);
+   },
+
+   "test set value": function() {
+      value = ['02:00', '03:00'];
+      this.timerange.setValue(value);
+      Y.ArrayAssert.itemsAreSame(this.timerange.getValue(), value);
+   },
+
+   "test set incorrect value": function() {
+      value = ['02:00', '00:10'];
+      this.timerange.setValue(value);
+      Y.ArrayAssert.itemsAreSame(this.timerange.getValue(), value);
+      Y.Assert.areEqual('invalid', this.timerange.getState());
+   },
+
+   "test set correct value back": function() {
+      value = ['02:00', '03:00'];
+      this.timerange.setValue(value);
+      Y.Assert.areEqual('valid', this.timerange.getState());
+   }
 });
-Y.one('#demo').appendChild(button);
 
+suite.add(testCase);
+Y.Test.Runner.add(suite);
 
-
-        Y.Assert.isObject(instanceField);
-        
-            }
-        });
-
-    suite.add(testCase);
-    Y.Test.Runner.add(suite);
-
-}, "", {
-    requires: ["test", "inputex-timerange"]
-});
+}, "", {requires: ["test", "inputex-timerange"]});

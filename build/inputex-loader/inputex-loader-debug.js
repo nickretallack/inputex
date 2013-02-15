@@ -704,7 +704,12 @@ YUI().use(function(Y) {
     },
     "inputex-timerange": {
         "ix_provides": "timerange",
+        "lang": [
+            "en",
+            "fr"
+        ],
         "requires": [
+            "intl",
             "inputex-combine",
             "inputex-select"
         ]
