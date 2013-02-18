@@ -391,12 +391,14 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
             header: ['close'],
 
             footer: [
-               {
+               {  
+                  name: 'panelSave',
                   value: this.get("strings").saveText,
                   action: Y.bind(this.onPanelSaveButton, this),
                   classNames: 'yui3-button-primary'
                },
-               {
+               {  
+                  name: 'panelCancel',
                   value: this.get("strings").cancelText,
                   action: Y.bind(this.onPanelCancelButton, this),
                   classNames: 'yui3-button-link'
@@ -425,11 +427,14 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          RecordType,
          updateMethod,
          addMethod;
-
+      
       if (!field.validate()) {
          return;
       }
-
+      
+      // Disable save button
+      this.disableSaveButton(true);
+      
       // Modification
       if (fieldValues.id) {
 
@@ -441,6 +446,9 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
 
          updateMethod.call(this, fieldValues.id, fieldValues, Y.bind(function(success) {
             if (success) {
+               // Enable save button
+               this.disableSaveButton(false);
+               
                // on success, update the record in the datatable
                host.get("data").getById(fieldValues.id).setAttrs(fieldValues);
                this.get('panel').hide();
@@ -463,6 +471,9 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          addMethod = this.get('addMethod');
          addMethod.call(this, record, Y.bind(function(success) {
             if (success) {
+               // Enable save button
+               this.disableSaveButton(false);
+               
                // if success, add the record in the datatable
                host.get("data").add(record);
                this.get('panel').hide();
@@ -472,7 +483,12 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       }
 
    },
-
+   
+   disableSaveButton : function(bool) {
+      var button = this.get('panel').getButton('panelSave');
+      button.set('disabled', bool);
+   },
+   
    /**
     *
     * @method destructor
