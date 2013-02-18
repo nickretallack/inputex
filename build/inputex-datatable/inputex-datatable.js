@@ -446,14 +446,17 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
 
          updateMethod.call(this, fieldValues.id, fieldValues, Y.bind(function(success) {
             if (success) {
-               // Enable save button
-               this.disableSaveButton(false);
                
                // on success, update the record in the datatable
                host.get("data").getById(fieldValues.id).setAttrs(fieldValues);
                this.get('panel').hide();
             }
+            
+            // Enable save button
+            this.disableSaveButton(false);
+            
             this._removeEditedClass(record, success);
+            
          },this));
 
       }
@@ -471,13 +474,15 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          addMethod = this.get('addMethod');
          addMethod.call(this, record, Y.bind(function(success) {
             if (success) {
-               // Enable save button
-               this.disableSaveButton(false);
                
                // if success, add the record in the datatable
                host.get("data").add(record);
                this.get('panel').hide();
             }
+            
+            // Enable save button
+            this.disableSaveButton(false);
+            
          },this));
 
       }
