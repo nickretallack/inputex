@@ -125,7 +125,11 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       this.overlayFieldContainer.set('innerHTML', '');
       field = new Y.inputEx(conf);
       field.setValue(value);
-      field.focus();
+      
+      // Timeout to make the focus work on inplaceEdit
+      setTimeout(function(){
+         field.focus();
+      }, 20);
 
       this._inplaceeditCell = {
          record: record,
