@@ -181,8 +181,8 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
 
 
       overlayButtonsContainer.appendChild(cancelButton);
-      saveButton.on('click', this.onOverlaySave, this);
-      cancelButton.on('click', this.onOverlayCancel, this);
+      saveButton.on('mousedown', this.onOverlaySave, this);
+      cancelButton.on('mousedown', this.onOverlayCancel, this);
 
       // Close overlay if click outside of the overlay
       this.docClickHandler = Y.on('click', Y.bind(function(e) {
