@@ -157,7 +157,7 @@ inputEx.Field.prototype = {
       var that = this;
       setTimeout(function() {
          that.fire("updated", that.getValue(), that);
-      }, 50);
+      }, 20);
    },
 
    /**

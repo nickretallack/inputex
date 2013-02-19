@@ -41,6 +41,12 @@ testCase = new Y.Test.Case({
       value = ['02:00', '03:00'];
       this.timerange.setValue(value);
       Y.Assert.areEqual('valid', this.timerange.getState());
+   },
+
+   "test min time validator": function() {
+      value = ['02:00', '03:00'];
+      this.timerange.setMinTime('12:00');
+      Y.Assert.areEqual('invalid', this.timerange.getState());
    }
 });
 

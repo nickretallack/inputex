@@ -44,6 +44,15 @@ Y.extend(inputEx.TimeRange, inputEx.CombineField, {
 
       // I18N
       this.messages = Y.mix(this.messages,Y.Intl.get("inputex-timerange"));
+
+      if (options.minTime) {
+         this.setMinTime(options.mintime);
+      }
+   },
+
+   setMinTime: function (time) {
+      this.options.minTime = time;
+      this.setClassFromState();
    },
 
    onChange: function () {
@@ -100,11 +109,17 @@ Y.extend(inputEx.TimeRange, inputEx.CombineField, {
     * @method getStateString
     */
    getStateString: function(state) {
-      var values = this.getValue();
+      var values  = this.getValue(),
+          minTime = this.options.minTime;
 
       if (state === inputEx.stateInvalid && values[0] >= values[1]) {
          return this.messages.incorrectOrder;
       }
+
+      if (state === inputEx.stateInvalid && minTime && values[0] <= minTime) {
+         return Y.Lang.sub(this.messages.minTimeError, {minTime: minTime});
+      }
+
       return inputEx.TimeRange.superclass.getStateString.call(this, state);
    },
 
@@ -120,6 +135,10 @@ Y.extend(inputEx.TimeRange, inputEx.CombineField, {
       }
       
       if(values[0] >= values[1]){
+         return false;
+      }
+
+      if (this.options.minTime && values[0] <= this.options.minTime) {
          return false;
       }
       
