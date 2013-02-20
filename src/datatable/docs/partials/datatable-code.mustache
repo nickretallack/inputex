@@ -36,7 +36,7 @@ YUI().use('datatype','inputex-datatable','inputex-uneditable','inputex-datepicke
 
 	var table = new Y.DataTable({
 	    columns: cols,
-	    data: data,
+	    data: data
 	});
 	table.render("#container2");
 
@@ -44,13 +44,13 @@ YUI().use('datatype','inputex-datatable','inputex-uneditable','inputex-datepicke
         inputEx : inputExConfig,
         inplaceedit: true,
         deleteMethod: function(record, cb) {
-            console.log("delete", record.getAttrs());
+            if (window.console) { console.log("delete", record.getAttrs()); }
             setTimeout(function() {
                 cb(true);
             }, 800);
         },
         updateMethod: function(id, newValues, cb) {
-            console.log("updateMethod", id, newValues);
+            if (window.console) { console.log("updateMethod", id, newValues); }
             setTimeout(function() {
                 cb(true);
             }, 800);

@@ -42,7 +42,6 @@ How to create a tree field.
 <script>
 YUI().use('inputex-tree', function(Y) {
     
-    
     new Y.inputEx.TreeField({
         parentEl: 'container1',
         elementType: {
@@ -51,12 +50,39 @@ YUI().use('inputex-tree', function(Y) {
                 visuType: "func",	
                 func: function (val) {
                     var url = "http://" + val + "/favicon.ico";
-                    return '<img src="' + url + '">' + val;
+                    return '<img style="width:16px; height:16px; margin:0; padding:0;" src="' + url + '" />&nbsp;' + val;
                 }
             },
             editorField: {
-                type: 'string'
+                type: 'string',
+                typeInvite: 'type a domain name'
             }
+        },
+        value: {
+            value: "google.com",
+            childValues: [
+                {
+                    value: "maps.google.com",
+                    childValues: []
+                },
+                {
+                    value: "picasaweb.google.com",
+                    childValues: []
+                },
+                {
+                    value: "plus.google.com",
+                    childValues: [
+                        {
+                            value: "plusone.google.com",
+                            childValues: []
+                        }
+                    ]
+                },
+                {
+                    value: "support.google.com",
+                    childValues: []
+                }
+            ]
         }
     });
     
@@ -78,7 +104,6 @@ YUI().use('inputex-tree', function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-tree&#x27;, function(Y) {
     
-    
     new Y.inputEx.TreeField({
         parentEl: &#x27;container1&#x27;,
         elementType: {
@@ -87,12 +112,39 @@ YUI().use('inputex-tree', function(Y) {
                 visuType: &quot;func&quot;,	
                 func: function (val) {
                     var url = &quot;http:&#x2F;&#x2F;&quot; + val + &quot;&#x2F;favicon.ico&quot;;
-                    return &#x27;&lt;img src=&quot;&#x27; + url + &#x27;&quot;&gt;&#x27; + val;
+                    return &#x27;&lt;img style=&quot;width:16px; height:16px; margin:0; padding:0;&quot; src=&quot;&#x27; + url + &#x27;&quot; &#x2F;&gt;&amp;nbsp;&#x27; + val;
                 }
             },
             editorField: {
-                type: &#x27;string&#x27;
+                type: &#x27;string&#x27;,
+                typeInvite: &#x27;type a domain name&#x27;
             }
+        },
+        value: {
+            value: &quot;google.com&quot;,
+            childValues: [
+                {
+                    value: &quot;maps.google.com&quot;,
+                    childValues: []
+                },
+                {
+                    value: &quot;picasaweb.google.com&quot;,
+                    childValues: []
+                },
+                {
+                    value: &quot;plus.google.com&quot;,
+                    childValues: [
+                        {
+                            value: &quot;plusone.google.com&quot;,
+                            childValues: []
+                        }
+                    ]
+                },
+                {
+                    value: &quot;support.google.com&quot;,
+                    childValues: []
+                }
+            ]
         }
     });
     

@@ -17,6 +17,12 @@ YUI.add('inputex-tree', function (Y, NAME) {
         inputEx.TreeField.superclass.constructor.call(this, options);
     };
     Y.extend(inputEx.TreeField, inputEx.ListField, {
+
+        setOptions: function (options) {
+            inputEx.TreeField.superclass.setOptions.call(this, options);
+            this.options.useButtons = true; // force useButtons options (for onDelete to work)
+        },
+
         /**
          * Adds a new line to the List Field
          * @method renderSubField
@@ -33,7 +39,7 @@ YUI.add('inputex-tree', function (Y, NAME) {
                 src: inputEx.spacerUrl,
                 className: 'inputEx-ListField-delButton'
             });
-            Y.one(delButton).on('click', this.onDelete, this, true);
+            Y.one(delButton).on('click', this.onDelete, this);
             newDiv.appendChild(delButton);
 
             var el = new inputEx.TreeField({
@@ -47,7 +53,7 @@ YUI.add('inputex-tree', function (Y, NAME) {
             newDiv.appendChild(subFieldEl);
 
             // Subscribe the onChange event to resend it
-            el.on('updated', this.onChange, this, true);
+            el.on('updated', this.onChange, this);
 
             // Line breaker
             newDiv.appendChild(inputEx.cn('div', null, {
