@@ -79,7 +79,7 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
 
    _onEditorShow: function() {
       this.get('inplaceOverlay').show();
-      this.docKeyListener = Y.one('document').on('key', Y.bind(this.onOverlayCancel, this), 'esc');
+      this.docKeyListener = Y.one('document').once('key', Y.bind(this.onOverlayCancel, this), 'esc');
    },
 
    onCellClick: function(e) {
@@ -219,9 +219,9 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       }
 
       // has not changed => don't do anything
-      if(   (Y.Lang.isDate(newValue) && Y.Lang.isDate(oldValue) && newValue.getTime() === oldValue.getTime() ) ||
-            (newValue === oldValue) ) {
-         this.get('inplaceOverlay').hide();
+      if ((Y.Lang.isDate(newValue) && Y.Lang.isDate(oldValue) && newValue.getTime() === oldValue.getTime()) ||
+          (newValue === oldValue)) {
+         this.onOverlayCancel();
          return;
       }
 
@@ -237,8 +237,7 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
          this._removeEditedClass(td, success);
       },this));
 
-      this.get('inplaceOverlay').hide();
-      this.docKeyListener.detach();
+      this.onOverlayCancel();
    },
 
    onOverlayCancel: function() {
