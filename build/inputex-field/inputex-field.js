@@ -42,21 +42,22 @@ inputEx.Field = function(options) {
    // initialize behaviour events
    this.initEvents();
 
-   // Set the initial value
-   //   -> no initial value = no style (setClassFromState called by setValue)
-   if(!lang.isUndefined(this.options.value)) {
-      this.setValue(this.options.value, false);
-   }
-
-   // append it immediatly to the parent DOM element
-   if(options.parentEl) {
-      if(lang.isString(options.parentEl)) {
+   // append it immediately to the parent DOM element
+   if (options.parentEl) {
+      if (lang.isString(options.parentEl)) {
          // searching for the id
-         Y.one("#" + options.parentEl).appendChild(this.getEl());
+         document.getElementById(options.parentEl).appendChild(this.getEl());
       } else {
          options.parentEl.appendChild(this.getEl());
       }
    }
+
+   // Set the initial value
+   //   -> no initial value = no style (setClassFromState called by setValue)
+   if (!lang.isUndefined(this.options.value)) {
+      this.setValue(this.options.value, false);
+   }
+
 };
 
 inputEx.Field.prototype = {
@@ -159,7 +160,7 @@ inputEx.Field.prototype = {
       var that = this;
       setTimeout(function() {
          that.fire("updated", that.getValue(), that);
-      }, 50);
+      }, 20);
    },
 
    /**

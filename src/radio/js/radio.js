@@ -17,20 +17,9 @@
 	 * @param {Object} options inputEx.Field options object
 	 */
 	inputEx.RadioField = function (options) {
-		
 		inputEx.RadioField.superclass.constructor.call(this,options);
-		
-		// IE BUG: doesn't want to set the value if the node is not in the DOM
-		if (Y.UA.ie && !lang.isUndefined(this.options.value)) {
-			// Set the initial value, use setTimeout to escape the stack (for nested usage in Group or Form)
-			var that = this;
-			setTimeout(function () {
-				that.setValue(that.options.value, false);
-			},0);
-		}
-		
 	};
-		
+	
 	Y.extend(inputEx.RadioField, inputEx.Field, {
 		
 		/**
