@@ -114,35 +114,35 @@
     margin-left: 8px;
 }
 
-.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-row-deleted .yui3-datatable-cell {
+.yui3-skin-sam .yui3-datatable .yui3-datatable-row-deleted .yui3-datatable-cell {
     background: #F2F2F2;
     color: #bbb;
     text-decoration: line-through;
     cursor: default;
 }
 
-.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-row-deleted .yui3-datatable-cell-delete {
+.yui3-skin-sam .yui3-datatable .yui3-datatable-row-deleted .yui3-datatable-cell-delete {
     color: #ddd;
     background: #444;
     text-decoration: none;
     cursor: pointer;
 }
 
-.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-row-deleted.yui3-datatable-even:hover .yui3-datatable-cell.yui3-datatable-cell-delete,
-.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-row-deleted.yui3-datatable-odd:hover .yui3-datatable-cell.yui3-datatable-cell-delete,
-.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-row-deleted .yui3-datatable-cell-delete:hover {
+.yui3-skin-sam .yui3-datatable .yui3-datatable-row-deleted.yui3-datatable-even:hover .yui3-datatable-cell.yui3-datatable-cell-delete,
+.yui3-skin-sam .yui3-datatable .yui3-datatable-row-deleted.yui3-datatable-odd:hover  .yui3-datatable-cell.yui3-datatable-cell-delete,
+.yui3-skin-sam .yui3-datatable .yui3-datatable-row-deleted .yui3-datatable-cell-delete:hover {
     color: #fff;
     background: #333;
     text-decoration: underline;
 }
 
-.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-row-deleted .yui3-datatable-col-name {
+.yui3-skin-sam .yui3-datatable .yui3-datatable-row-deleted .yui3-datatable-col-name {
     color: #666;
 }
 
-.yui3-datatable-inplaceedit  .yui3-datatable-row-deleted.yui3-datatable-even:hover .yui3-datatable-cell,
-.yui3-datatable-inplaceedit  .yui3-datatable-row-deleted.yui3-datatable-odd:hover .yui3-datatable-cell,
-.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-row-deleted.yui3-datatable-even .yui3-datatable-cell:hover,
-.yui3-skin-sam .yui3-datatable-inplaceedit .yui3-datatable-row-deleted.yui3-datatable-odd .yui3-datatable-cell:hover {
+.yui3-skin-sam .yui3-datatable .yui3-datatable-row-deleted.yui3-datatable-even:hover .yui3-datatable-cell,
+.yui3-skin-sam .yui3-datatable .yui3-datatable-row-deleted.yui3-datatable-odd:hover  .yui3-datatable-cell,
+.yui3-skin-sam .yui3-datatable .yui3-datatable-row-deleted.yui3-datatable-even .yui3-datatable-cell:hover,
+.yui3-skin-sam .yui3-datatable .yui3-datatable-row-deleted.yui3-datatable-odd  .yui3-datatable-cell:hover {
     background-color: #dfdfdf;
 }
