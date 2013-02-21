@@ -277,6 +277,17 @@ YUI().use(function(Y) {
         ],
         "skinnable": true
     },
+    "inputex-domain-name": {
+        "ix_provides": "domain-name",
+        "lang": [
+            "en",
+            "fr"
+        ],
+        "requires": [
+            "intl",
+            "inputex-string"
+        ]
+    },
     "inputex-dsselect": {
         "ix_provides": "dsselect",
         "requires": [

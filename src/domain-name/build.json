@@ -1,0 +1,10 @@
+{
+   "name": "inputex-domain-name",
+   "builds": {
+      "inputex-domain-name": {
+         "jsfiles": [
+            "inputex-domain-name.js"
+         ]
+      }
+   }
+}
