@@ -325,7 +325,7 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
     */
    modifyRecord: function(e) {
       
-      e.stopPropagation();
+      e.halt();
       
       var record = this.get("host").getRecord(e.currentTarget),
           panel = this.get("panel");
@@ -340,7 +340,9 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
     * @method deleteRecord
     */
    deleteRecord: function(e) {
-      e.stopPropagation();
+      
+      e.halt();
+
       var deleteMethod,
           host = this.get('host'),
           record = host.getRecord(e.currentTarget);

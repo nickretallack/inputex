@@ -26,9 +26,9 @@ _yuitest_coverage["build/inputex-datatable/inputex-datatable.js"] = {
     path: "build/inputex-datatable/inputex-datatable.js",
     code: []
 };
-_yuitest_coverage["build/inputex-datatable/inputex-datatable.js"].code=["YUI.add('inputex-datatable', function (Y, NAME) {","","/*global confirm:true*/","","/**"," * The inputex-datatable module provides the inputEx.Plugin.InputExDataTable class which is a plugin."," * @module inputex-datatable"," */","","var inputEx = Y.inputEx;","","Y.namespace('inputEx.Plugin');","","/**","* Provide add/modify/delete functionalities on a dataTable as a plugin","* @class inputEx.Plugin.InputExDataTable","* @extends Plugin.Base","* @constructor","* @param {Object} configuration object","*/","inputEx.Plugin.InputExDataTable = function (config) {","   inputEx.Plugin.InputExDataTable.superclass.constructor.call(this, config);","};","","inputEx.Plugin.InputExDataTable.NS = \"InputExDataTable\";","","Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {","   ","   /**","    * @method initializer","    */","   initializer: function () {","","      var host = this.get(\"host\");","","      // enrich data (Model instance) with modify and delete attributs","      this.enrichData();","      ","      // enrich DataTable with modify and delete columns","      this.enrichColumns();","","      // add a button called \"add\" in order to add record in the DataTable","      if (host.get('render')) {","         this.addAddButton();","      }","      else {","         host.onceAfter('render', function () {","            this.addAddButton();","         }, this);","      }","","      host.get(\"boundingBox\").addClass(host.getClassName('inputex'));","        ","      if(!this.get(\"disableModifyFunc\")) {","         // handle row modification","         host.delegate(\"click\",this.modifyRecord, \"td.\"+host.getClassName('cell-modify'), this);","      }","","      if(!this.get(\"disableDeleteFunc\")) {","         // handle row removal","         host.delegate(\"click\",this.deleteRecord, \"td.\"+host.getClassName('cell-delete'), this);","      }","      ","","      if(this.get(\"inplaceedit\")) {","         host.get('contentBox').addClass( host.getClassName('inplaceedit') );","         this.setupInplaceEditing();","      }","","    },","","","   setupInplaceEditing: function() {","      var host = this.get('host');","","      // Delegate click event to make the inplace editor appear","      this.cellClickHandler = host.delegate(\"click\", this.onCellClick, \".\"+host.getClassName('cell'), this);","","      this.after('editorShow', this._onEditorShow, this);","   },","","   _onEditorShow: function() {","      this.get('inplaceOverlay').show();","      this.docKeyListener = Y.one('document').once('key', Y.bind(this.onOverlayCancel, this), 'esc');","   },","","   onCellClick: function(e) {","","      var findTd = function(n) { return n.get('tagName') === 'TD' && n.hasClass('yui3-datatable-cell'); },","          td = findTd(e.target) ? e.target : e.target.ancestor(findTd), // this might be a DIV because of a formatter (see color)","          host = this.get('host'),","          colIndex = td.get('parentNode').get('children').indexOf(td),","          column = host.getColumn(colIndex),","          record = host.getRecord(td),","          key = column.key,","          value = record.get(key),","","          overlay = this.get('inplaceOverlay'),","","          // inputEx Field config","          fieldConf = Y.Array.find(this.get('inputEx').fields, function(i) { return i.name === key; }),","          conf = Y.mix({","            parentEl: this.overlayFieldContainer.getDOMNode()","          }, fieldConf),","          field;","","      // When we changed the value of an overlay but click on another cell, it doesn't save automatically","      // since the event is stopped. So we do it manually here.","      // TODO: this can have strange effects if you're editing to fast because of the this._inplaceeditCell collision","      if( overlay.get('visible') && !overlay.get('boundingBox').contains(e.target) ) {","         this.onOverlaySave();","      }","","      if( !fieldConf ||","          fieldConf.type === \"uneditable\" ||","          td.hasClass('yui3-datatable-cell-delete') ||","          td.hasClass('yui3-datatable-cell-modify') ) {","         return;","      }","","      e.stopPropagation();","","      // Align","      overlay.align(td, [\"tl\", \"tl\"]);","","      // Render field","      this.overlayFieldContainer.set('innerHTML', '');","      field = new Y.inputEx(conf);","      field.setValue(value);","      ","      // Timeout to make the focus work on inplaceEdit","      setTimeout(function(){","         field.focus();","      }, 20);","","      this._inplaceeditCell = {","         record: record,","         key: column.key,","         field: field,","         td: td","      };","","      // TODO: fire an event editorShow","      this.fire('editorShow', {","         column: column,","         record: record,","         key: key,","         value: value,","         cell: td,","         field: field","      });","","   },","","","   _initInplaceOverlay: function() {","","      var o = new Y.Overlay({","            zIndex: 5","          }),","          contentBox = o.get('contentBox'),","          overlayFieldContainer = Y.Node.create(\"<div />\"),","          overlayButtonsContainer = Y.Node.create(\"<div class='editor-buttons' />\"),","          saveButton,","          cancelButton;","","      contentBox.appendChild(overlayFieldContainer);","      this.overlayFieldContainer = overlayFieldContainer;","","      contentBox.appendChild(overlayButtonsContainer);","","      // Overlay save and cancel buttons","      saveButton = Y.Node.create('<button>Sauver</button>');","      overlayButtonsContainer.appendChild(saveButton);","","      saveButton.addClass('yui3-button');","      saveButton.addClass('yui3-button-primary');","","      cancelButton = Y.Node.create('<button>Annuler</button>');","","      cancelButton.addClass('yui3-button');","      cancelButton.addClass('yui3-button-link');","","","      overlayButtonsContainer.appendChild(cancelButton);","      saveButton.on('mousedown', this.onOverlaySave, this);","      cancelButton.on('mousedown', this.onOverlayCancel, this);","","      // Close overlay if click outside of the overlay","      this.docClickHandler = Y.on('click', Y.bind(function(e) {","         var overlay = this.get('inplaceOverlay');","","         if( overlay.get('visible') && !overlay.get('boundingBox').contains(e.target) ) {","            this.onOverlaySave();","         }","      }, this), Y.config.doc);","","      contentBox.addClass(this.get('host').getClassName('inplaceOverlay'));","","      o.hide();","      o.render();","      return o;","   },","","   onOverlaySave: function() {","","      // Call the updateMethod async method","      var updateMethod = this.get('updateMethod'),","          field = this._inplaceeditCell.field,","          newValue = field.getValue(),","          record = this._inplaceeditCell.record,","          key = this._inplaceeditCell.key,","          oldValue = record.get(key),","          fieldValues = {},","          id = record.get('id'),","          host = this.get('host'),","          td = this._inplaceeditCell.td;","","      if(!field.validate()) {","         return;","      }","","      // has not changed => don't do anything","      if ((Y.Lang.isDate(newValue) && Y.Lang.isDate(oldValue) && newValue.getTime() === oldValue.getTime()) ||","          (newValue === oldValue)) {","         this.onOverlayCancel();","         return;","      }","","      fieldValues[key] = newValue;","","      this._addEditedClass(td);","","      updateMethod.call(this, id, fieldValues, Y.bind(function(success) {","         if (success) {","            // on success, update the record in the datatable","            host.get(\"data\").getById(id).setAttrs(fieldValues);","         }","         this._removeEditedClass(td, success);","      },this));","","      this.onOverlayCancel();","   },","","   onOverlayCancel: function() {","      this.get('inplaceOverlay').hide();","      this.docKeyListener.detach();","   },","","   /**","    * add Attributes on the data model depending on the plugin configuration","    *","    * @method enrichData","    */","   enrichData: function () {","","      var that = this,","          data = this.get(\"host\").get(\"data\");","","      data.each(function (model) {","         if(!this.get(\"disableModifyFunc\")) {","            that.addModifyAttr(model);","         }","         if(!this.get(\"disableDeleteFunc\")){","            that.addDeleteAttr(model);","         }","      });","","   },","","   /**","    * add Columns on the DataTable depending on the plugin configuration","    *","    * @method enrichColumns","    */","   enrichColumns: function () {","","      if(!this.get(\"disableModifyFunc\")) {","         this.addModifyColumn();","      }","      ","      if(!this.get(\"disableDeleteFunc\")) {","         this.addDeleteColumn();","      }","   },","","   /**","    * Provide the add button in order to add record on the DataTable","    *","    * @method addAddButton","    */","   addAddButton: function() {","","      if(!this.get(\"disableAddFunc\")) {","      ","         var buttonHtml = \"<button class='yui3-button'>\"+this.get(\"strings\").addButtonText+\"</button>\",","             host = this.get(\"host\");","","         this.addButtonTop    = Y.Node.create(buttonHtml);","         this.addButtonBottom = Y.Node.create(buttonHtml);","","         this.addButtonTop.addClass(host.getClassName('add-button-top'));","         this.addButtonBottom.addClass(host.getClassName('add-button-bottom'));","","         this.get(\"host\").get(\"contentBox\").prepend(this.addButtonTop);","         this.get(\"host\").get(\"contentBox\").append(this.addButtonBottom);","         ","         this.addButtonTop.on(\"click\",    this._onAddButtonClick, this);","         this.addButtonBottom.on(\"click\", this._onAddButtonClick, this);","      }","   ","   },","","   _onAddButtonClick: function (e) {","      var panel = this.get(\"panel\");","","      e.stopPropagation();","","      panel.set(\"headerContent\",this.get(\"strings\").addItemHeader);","      panel.get(\"field\").clear();","      panel.show();","   },","","   /**","    *","    * @method modifyRecord","    */","   modifyRecord: function(e) {","      ","      e.stopPropagation();","      ","      var record = this.get(\"host\").getRecord(e.currentTarget),","          panel = this.get(\"panel\");","","      panel.set(\"headerContent\",this.get(\"strings\").modifyItemHeader);","      panel.get('field').setValue(record.getAttrs());","      panel.show();","   },","","   /**","    * Called when the user clicked on a link to delete a record","    * @method deleteRecord","    */","   deleteRecord: function(e) {","      e.stopPropagation();","      var deleteMethod,","          host = this.get('host'),","          record = host.getRecord(e.currentTarget);","","      if (!this.get(\"confirmDelete\") || confirm(this.get(\"strings\").confirmDeletion)) {","","         // Call the deleteMethod async method","         deleteMethod = this.get('deleteMethod');","","         this._addEditedClass(record);","","         deleteMethod.call(this, record, Y.bind(function(success) {","            if (success) {","               // on success, remove the record from the datatable","               host.get(\"data\").remove(record);","            }","            this._removeEditedClass(record, success);","         },this));","","      }","   },","","   /**","    *","    * @method deleteExtraColumns","    */","   deleteExtraColumns: function() {","      ","      if(!this.get(\"disableModifyFunc\")) {","         this.removeModifyColumn();","      }","      if(!this.get(\"disableDeleteFunc\")) {","         this.removeDeleteColumn();","      }","   },","","   /**","    *","    * @method _initPanel","    * @private","    */","   _initPanel: function () {","","      var opts = Y.mix({}, this.get('panelOptions') ), panel;","","      panel = new Y.inputEx.Panel( Y.mix(opts, {","         inputEx: this.get(\"inputEx\"),","         buttons: {","            header: ['close'],","","            footer: [","               {  ","                  name: 'panelSave',","                  value: this.get(\"strings\").saveText,","                  action: Y.bind(this.onPanelSaveButton, this),","                  classNames: 'yui3-button-primary'","               },","               {  ","                  name: 'panelCancel',","                  value: this.get(\"strings\").cancelText,","                  action: Y.bind(this.onPanelCancelButton, this),","                  classNames: 'yui3-button-link'","               }","            ]","         }","      }) );","","      // first the panel needs to be \"render\" then \"show\"","      panel.render();","      return panel;","   },","","   onPanelCancelButton: function (e) {","      e.preventDefault();","      this.get('panel').hide();","   },","","   onPanelSaveButton: function (e) {","      e.preventDefault();","","      var field = this.get(\"panel\").get(\"field\"),","         fieldValues = field.getValue(),","         host = this.get(\"host\"),","         record,","         RecordType,","         updateMethod,","         addMethod;","      ","      if (!field.validate()) {","         return;","      }","      ","      // Disable save button","      this.disableSaveButton(true);","      ","      // Modification","      if (fieldValues.id) {","","         // Call the updateMethod async method","         updateMethod = this.get('updateMethod');","","         record = host.get(\"data\").getById(fieldValues.id);","         this._addEditedClass(record);","","         updateMethod.call(this, fieldValues.id, fieldValues, Y.bind(function(success) {","            if (success) {","               ","               // on success, update the record in the datatable","               host.get(\"data\").getById(fieldValues.id).setAttrs(fieldValues);","               this.get('panel').hide();","            }","            ","            // Enable save button","            this.disableSaveButton(false);","            ","            this._removeEditedClass(record, success);","            ","         },this));","","      }","      // Creation","      else {","","         fieldValues.id = this.generateId(this.get(\"idSize\"));","         RecordType = host.get(\"recordType\");","         record = new RecordType();","         record.setAttrs(fieldValues);","         this.addModifyAttr(record);","         this.addDeleteAttr(record);","","         // call the async method to create a record","         addMethod = this.get('addMethod');","         addMethod.call(this, record, Y.bind(function(success) {","            if (success) {","               ","               // if success, add the record in the datatable","               host.get(\"data\").add(record);","               this.get('panel').hide();","            }","            ","            // Enable save button","            this.disableSaveButton(false);","            ","         },this));","","      }","","   },","   ","   disableSaveButton : function(bool) {","      var button = this.get('panel').getButton('panelSave');","      button.set('disabled', bool);","   },","   ","   /**","    *","    * @method destructor","    */","   destructor: function() {","","      var that = this,","          host = this.get('host'),","          data = host.get(\"data\");","","      data.each(function (model) {","","         if(!this.get(\"disableModifyFunc\")) {","            that.delModifyAttr(model);","         }","         if(!this.get(\"disableDeleteFunc\")) {","            that.delDeleteAttr(model);","         }","","      });","      ","      this.deleteExtraColumns();","      ","      if(!this.get(\"disableAddFunc\")) {","         this.addButtonTop.remove();","         this.addButtonBottom.remove();","      }","","      if(this.get(\"inplaceedit\")) {","         host.get('contentBox').removeClass( host.getClassName('inplaceedit') );","         this.cellClickHandler.detach();","","         if (this.docClickHandler) {","            this.docClickHandler.detach();","         }","      }","","      this.get(\"panel\").destroy();","   },","","","   /**","    * Add the modify attribute on the data model","    *","    * @method addModifyAttr","    */","   addModifyAttr: function(model) {","      model.addAttr(\"modify\");","   },","","   /**","    * Add the delete attribute on the data model","    *","    * @method addDeleteAttr","    */","   addDeleteAttr: function (model) {","      model.addAttr(\"delete\");","   },","","   /**","    * Remove the modify attribute from the data model","    *","    * @method delModifyAttr","    */","   delModifyAttr: function(model) {","      model.removeAttr(\"modify\");","   },","","   /**","    * Remove the modify attribute from the data model","    *","    * @method delDeleteAttr","    */","   delDeleteAttr: function (model) {","      model.removeAttr(\"delete\");","   },","","   /**","    * Add the modify column on the DataTable","    *","    * @method addModifyColumn","    */","   addModifyColumn: function() {","","      var host = this.get('host');","         ","      host.addColumn({","         label: ' ',","         key: this.get(\"strings\").modifyText,","         className: host.getClassName('cell-modify'),","         formatter: this.get('modifyColumnFormatter'),","         nodeFormatter: this.get('modifyColumnNodeFormatter')","      });","","   },","   ","   /**","    * Add the delete column on the DataTable","    *","    * @method addDeleteColumn","    */","   addDeleteColumn: function() {","      ","      var host = this.get('host');","         ","      host.addColumn({","         label: ' ',","         key: this.get(\"strings\").deleteText,","         className: host.getClassName('cell-delete'),","         formatter: this.get('deleteColumnFormatter'),","         nodeFormatter: this.get('deleteColumnNodeFormatter')","      });","   },","","   /**","    * Remove the modify column from the DataTable","    *","    * @method removeModifyColumn","    */","   removeModifyColumn: function() {","      this.get(\"host\").removeColumn(\"modify\");","   },","","   /**","    * Remove the delete column from the DataTable","    *","    * @method removeDeleteColumn","    */","   removeDeleteColumn: function() {","      this.get(\"host\").removeColumn(\"delete\");","   },","","","   generateId : function(size) {","      var prefixId = this.get(\"prefixId\"),","          s = size ? size : 5;","      prefixId = prefixId ? prefixId : \"\";","      return prefixId + Math.floor(Math.random()*Math.pow(10,s));","   },","","   _addEditedClass: function (record) {","      var host = this.get('host');","      if (record instanceof Y.Node) {","         record.addClass(host.getClassName('cell-edited'));","      }","      else {","         host.getRow(record).addClass(host.getClassName('row-edited'));","      }","   },","","   _removeEditedClass: function (record, now) {","      Y.later(now === true ? 0 : (Y.Lang.isNumber(now) ? now : 5000), this, function () {","         var host = this.get('host'), row;","         if (record instanceof Y.Node) {","            record.removeClass(host.getClassName('cell-edited'));","         }","         else {","            row = host.getRow(record);","            if (row) {","               row.removeClass(host.getClassName('row-edited'));","            }","         }","      });","   },","   ","   _initStrings : function() {","      return Y.Intl.get(\"inputex-datatable\");","   }","","}, {","","/**"," * Static property used to define the default attribute configuration of"," * the Plugin."," *"," * @property ATTRS"," * @type {Object}"," * @static"," */","ATTRS: {","","   /**","    * This is an inputEx field definition. This is used when a user try to create/modify a record","    *","    * @attribute inputEx","    */","   inputEx: {},","","","   /**","    * This string is inserted before the generated id","    *","    * @attribute prefixId","    * @type String","    * @example prefixId : \"po-\" --> id = po-1342561","    */","   prefixId: {","     value: \"\"","   },","","   /**","    * This represents the number of digits used in the id generation","    *","    * @attribute idSize","    * @type Number","    */","   idSize: {","     value: 5","   },","","   /**","    * If true the add functionality is disabled","    *","    * @attribute disableAddFunc","    * @type boolean","    */","   disableAddFunc: {","     value: false","   },","","   /**","    * If true the modify functionality is disabled","    * @attribute disableModifyFunc","    * @type boolean","    */","   disableModifyFunc: {","     value: false","   },","","   /**","    * If true the delete functionality is disabled","    *","    * @attribute disableDeleteFunc","    * @type boolean","    */","   disableDeleteFunc: {","     value: false","   },","","   /**","    * Labels of the plugin","    *","    * @attribute modifyColumnLabel","    */","   strings : {","     value : null,","     valueFn : '_initStrings'","   },","","   /**","    * If true a confirmation will be asked to the user when a delete attempt appear","    *","    * @attribute confirmDelete","    * @type boolean","    */","   confirmDelete: {","     value: true","   },","","   /**","    * This panel will be displayed on record creation/modication","    * @attribute panel","    * @type Y.inputEx.Panel","    */","   panel: {","     valueFn: '_initPanel',","     lazyAdd: true","   },","","   panelOptions: {","      value: {","         centered: true,","         width: 500,","         modal: true,","         zIndex: 5,","         visible: false","      }","   },","","   /**","    * Set to true if you want to activate in-cell editing (ALPHA)","    * @attribute inplaceedit","    * @atype boolean","    */","   inplaceedit: {","      value: false","   },","","   /**","    * Overlay used for the inplace editing","    * @attribute inplaceOverlay","    * @type Y.Overlay","    */","   inplaceOverlay: {","     valueFn: '_initInplaceOverlay',","     lazyAdd: true","   },","","   /**","    * Function used to confirm the creation of a new record.","    * You can perform validation and/or ajax creation.","    * addMethod must be a function(record, cb) which calls 'cb' with success status as first argument","    * @attribute addMethod","    * @type function","    */","   addMethod: {","      value: function(record, cb) {","         cb(true);","      }","   },","","   /**","    * Function used to confirm the modification of an existing record.","    * You can perform validation and/or ajax update.","    * updateMethod must be a function(id, newValues, cb) which calls 'cb' with success status as first argument","    * @attribute updateMethod","    * @type function","    */","   updateMethod: {","      value: function(id, newValues, cb) {","         cb(true);","      }","   },","","   /**","    * Function used to confirm the deletion of an existing record.","    * You can perform validation and/or ajax deletion.","    * deleteMethod must be a function(record, cb) which calls 'cb' with success status as first argument","    * @attribute deleteMethod","    * @type function","    */","   deleteMethod: {","      value: function(record, cb) {","         cb(true);","      }","   },","","   /**","    * Formatter for the modify column","    * @attribute modifyColumnFormatter","    * @type function","    */","   modifyColumnFormatter: {","      value: null","   },","","   /**","    * Formatter for the delete column","    * @attribute deleteColumnFormatter","    * @type function","    */","   deleteColumnFormatter: {","      value: null","   },","","   /**","    * nodeFormatter for the modify column","    * @attribute modifyColumnNodeFormatter","    * @type function","    */","   modifyColumnNodeFormatter: {","      value: null","   },","","   /**","    * nodeFormatter for the delete column","    * @attribute deleteColumnNodeFormatter","    * @type function","    */","   deleteColumnNodeFormatter: {","      value: null","   }","","}","","});","","","}, '@VERSION@', {","    \"requires\": [","        \"intl\",","        \"node-event-delegate\",","        \"inputex-group\",","        \"inputex-panel\",","        \"datatable\",","        \"overlay\"","    ],","    \"skinnable\": true,","    \"lang\": [","        \"en\",","        \"fr\",","        \"de\",","        \"ca\",","        \"es\",","        \"fr\",","        \"it\",","        \"nl\"","    ]","});"];
-_yuitest_coverage["build/inputex-datatable/inputex-datatable.js"].lines = {"1":0,"10":0,"12":0,"21":0,"22":0,"25":0,"27":0,"34":0,"37":0,"40":0,"43":0,"44":0,"47":0,"48":0,"52":0,"54":0,"56":0,"59":0,"61":0,"65":0,"66":0,"67":0,"74":0,"77":0,"79":0,"83":0,"84":0,"89":0,"101":0,"110":0,"111":0,"114":0,"118":0,"121":0,"124":0,"127":0,"128":0,"129":0,"132":0,"133":0,"136":0,"144":0,"158":0,"167":0,"168":0,"170":0,"173":0,"174":0,"176":0,"177":0,"179":0,"181":0,"182":0,"185":0,"186":0,"187":0,"190":0,"191":0,"193":0,"194":0,"198":0,"200":0,"201":0,"202":0,"208":0,"219":0,"220":0,"224":0,"226":0,"227":0,"230":0,"232":0,"234":0,"235":0,"237":0,"239":0,"242":0,"246":0,"247":0,"257":0,"260":0,"261":0,"262":0,"264":0,"265":0,"278":0,"279":0,"282":0,"283":0,"294":0,"296":0,"299":0,"300":0,"302":0,"303":0,"305":0,"306":0,"308":0,"309":0,"315":0,"317":0,"319":0,"320":0,"321":0,"330":0,"332":0,"335":0,"336":0,"337":0,"345":0,"346":0,"350":0,"353":0,"355":0,"357":0,"358":0,"360":0,"362":0,"374":0,"375":0,"377":0,"378":0,"389":0,"391":0,"414":0,"415":0,"419":0,"420":0,"424":0,"426":0,"434":0,"435":0,"439":0,"442":0,"445":0,"447":0,"448":0,"450":0,"451":0,"454":0,"455":0,"459":0,"461":0,"469":0,"470":0,"471":0,"472":0,"473":0,"474":0,"477":0,"478":0,"479":0,"482":0,"483":0,"487":0,"496":0,"497":0,"506":0,"510":0,"512":0,"513":0,"515":0,"516":0,"521":0,"523":0,"524":0,"525":0,"528":0,"529":0,"530":0,"532":0,"533":0,"537":0,"547":0,"556":0,"565":0,"574":0,"584":0,"586":0,"603":0,"605":0,"620":0,"629":0,"634":0,"636":0,"637":0,"641":0,"642":0,"643":0,"646":0,"651":0,"652":0,"653":0,"654":0,"657":0,"658":0,"659":0,"666":0,"807":0,"820":0,"833":0};
-_yuitest_coverage["build/inputex-datatable/inputex-datatable.js"].functions = {"InputExDataTable:21":0,"(anonymous 2):47":0,"initializer:32":0,"setupInplaceEditing:73":0,"_onEditorShow:82":0,"findTd:89":0,"(anonymous 3):101":0,"(anonymous 4):132":0,"onCellClick:87":0,"(anonymous 5):190":0,"_initInplaceOverlay:156":0,"(anonymous 6):234":0,"onOverlaySave:205":0,"onOverlayCancel:245":0,"(anonymous 7):260":0,"enrichData:255":0,"enrichColumns:276":0,"addAddButton:292":0,"_onAddButtonClick:314":0,"modifyRecord:328":0,"(anonymous 8):357":0,"deleteRecord:344":0,"deleteExtraColumns:372":0,"_initPanel:387":0,"onPanelCancelButton:418":0,"(anonymous 9):450":0,"(anonymous 10):478":0,"onPanelSaveButton:423":0,"disableSaveButton:495":0,"(anonymous 11):510":0,"destructor:504":0,"addModifyAttr:546":0,"addDeleteAttr:555":0,"delModifyAttr:564":0,"delDeleteAttr:573":0,"addModifyColumn:582":0,"addDeleteColumn:601":0,"removeModifyColumn:619":0,"removeDeleteColumn:628":0,"generateId:633":0,"_addEditedClass:640":0,"(anonymous 12):651":0,"_removeEditedClass:650":0,"_initStrings:665":0,"value:806":0,"value:819":0,"value:832":0,"(anonymous 1):1":0};
+_yuitest_coverage["build/inputex-datatable/inputex-datatable.js"].code=["YUI.add('inputex-datatable', function (Y, NAME) {","","/*global confirm:true*/","","/**"," * The inputex-datatable module provides the inputEx.Plugin.InputExDataTable class which is a plugin."," * @module inputex-datatable"," */","","var inputEx = Y.inputEx;","","Y.namespace('inputEx.Plugin');","","/**","* Provide add/modify/delete functionalities on a dataTable as a plugin","* @class inputEx.Plugin.InputExDataTable","* @extends Plugin.Base","* @constructor","* @param {Object} configuration object","*/","inputEx.Plugin.InputExDataTable = function (config) {","   inputEx.Plugin.InputExDataTable.superclass.constructor.call(this, config);","};","","inputEx.Plugin.InputExDataTable.NS = \"InputExDataTable\";","","Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {","   ","   /**","    * @method initializer","    */","   initializer: function () {","","      var host = this.get(\"host\");","","      // enrich data (Model instance) with modify and delete attributs","      this.enrichData();","      ","      // enrich DataTable with modify and delete columns","      this.enrichColumns();","","      // add a button called \"add\" in order to add record in the DataTable","      if (host.get('render')) {","         this.addAddButton();","      }","      else {","         host.onceAfter('render', function () {","            this.addAddButton();","         }, this);","      }","","      host.get(\"boundingBox\").addClass(host.getClassName('inputex'));","        ","      if(!this.get(\"disableModifyFunc\")) {","         // handle row modification","         host.delegate(\"click\",this.modifyRecord, \"td.\"+host.getClassName('cell-modify'), this);","      }","","      if(!this.get(\"disableDeleteFunc\")) {","         // handle row removal","         host.delegate(\"click\",this.deleteRecord, \"td.\"+host.getClassName('cell-delete'), this);","      }","      ","","      if(this.get(\"inplaceedit\")) {","         host.get('contentBox').addClass( host.getClassName('inplaceedit') );","         this.setupInplaceEditing();","      }","","    },","","","   setupInplaceEditing: function() {","      var host = this.get('host');","","      // Delegate click event to make the inplace editor appear","      this.cellClickHandler = host.delegate(\"click\", this.onCellClick, \".\"+host.getClassName('cell'), this);","","      this.after('editorShow', this._onEditorShow, this);","   },","","   _onEditorShow: function() {","      this.get('inplaceOverlay').show();","      this.docKeyListener = Y.one('document').once('key', Y.bind(this.onOverlayCancel, this), 'esc');","   },","","   onCellClick: function(e) {","","      var findTd = function(n) { return n.get('tagName') === 'TD' && n.hasClass('yui3-datatable-cell'); },","          td = findTd(e.target) ? e.target : e.target.ancestor(findTd), // this might be a DIV because of a formatter (see color)","          host = this.get('host'),","          colIndex = td.get('parentNode').get('children').indexOf(td),","          column = host.getColumn(colIndex),","          record = host.getRecord(td),","          key = column.key,","          value = record.get(key),","","          overlay = this.get('inplaceOverlay'),","","          // inputEx Field config","          fieldConf = Y.Array.find(this.get('inputEx').fields, function(i) { return i.name === key; }),","          conf = Y.mix({","            parentEl: this.overlayFieldContainer.getDOMNode()","          }, fieldConf),","          field;","","      // When we changed the value of an overlay but click on another cell, it doesn't save automatically","      // since the event is stopped. So we do it manually here.","      // TODO: this can have strange effects if you're editing to fast because of the this._inplaceeditCell collision","      if( overlay.get('visible') && !overlay.get('boundingBox').contains(e.target) ) {","         this.onOverlaySave();","      }","","      if( !fieldConf ||","          fieldConf.type === \"uneditable\" ||","          td.hasClass('yui3-datatable-cell-delete') ||","          td.hasClass('yui3-datatable-cell-modify') ) {","         return;","      }","","      e.stopPropagation();","","      // Align","      overlay.align(td, [\"tl\", \"tl\"]);","","      // Render field","      this.overlayFieldContainer.set('innerHTML', '');","      field = new Y.inputEx(conf);","      field.setValue(value);","      ","      // Timeout to make the focus work on inplaceEdit","      setTimeout(function(){","         field.focus();","      }, 20);","","      this._inplaceeditCell = {","         record: record,","         key: column.key,","         field: field,","         td: td","      };","","      // TODO: fire an event editorShow","      this.fire('editorShow', {","         column: column,","         record: record,","         key: key,","         value: value,","         cell: td,","         field: field","      });","","   },","","","   _initInplaceOverlay: function() {","","      var o = new Y.Overlay({","            zIndex: 5","          }),","          contentBox = o.get('contentBox'),","          overlayFieldContainer = Y.Node.create(\"<div />\"),","          overlayButtonsContainer = Y.Node.create(\"<div class='editor-buttons' />\"),","          saveButton,","          cancelButton;","","      contentBox.appendChild(overlayFieldContainer);","      this.overlayFieldContainer = overlayFieldContainer;","","      contentBox.appendChild(overlayButtonsContainer);","","      // Overlay save and cancel buttons","      saveButton = Y.Node.create('<button>Sauver</button>');","      overlayButtonsContainer.appendChild(saveButton);","","      saveButton.addClass('yui3-button');","      saveButton.addClass('yui3-button-primary');","","      cancelButton = Y.Node.create('<button>Annuler</button>');","","      cancelButton.addClass('yui3-button');","      cancelButton.addClass('yui3-button-link');","","","      overlayButtonsContainer.appendChild(cancelButton);","      saveButton.on('mousedown', this.onOverlaySave, this);","      cancelButton.on('mousedown', this.onOverlayCancel, this);","","      // Close overlay if click outside of the overlay","      this.docClickHandler = Y.on('click', Y.bind(function(e) {","         var overlay = this.get('inplaceOverlay');","","         if( overlay.get('visible') && !overlay.get('boundingBox').contains(e.target) ) {","            this.onOverlaySave();","         }","      }, this), Y.config.doc);","","      contentBox.addClass(this.get('host').getClassName('inplaceOverlay'));","","      o.hide();","      o.render();","      return o;","   },","","   onOverlaySave: function() {","","      // Call the updateMethod async method","      var updateMethod = this.get('updateMethod'),","          field = this._inplaceeditCell.field,","          newValue = field.getValue(),","          record = this._inplaceeditCell.record,","          key = this._inplaceeditCell.key,","          oldValue = record.get(key),","          fieldValues = {},","          id = record.get('id'),","          host = this.get('host'),","          td = this._inplaceeditCell.td;","","      if(!field.validate()) {","         return;","      }","","      // has not changed => don't do anything","      if ((Y.Lang.isDate(newValue) && Y.Lang.isDate(oldValue) && newValue.getTime() === oldValue.getTime()) ||","          (newValue === oldValue)) {","         this.onOverlayCancel();","         return;","      }","","      fieldValues[key] = newValue;","","      this._addEditedClass(td);","","      updateMethod.call(this, id, fieldValues, Y.bind(function(success) {","         if (success) {","            // on success, update the record in the datatable","            host.get(\"data\").getById(id).setAttrs(fieldValues);","         }","         this._removeEditedClass(td, success);","      },this));","","      this.onOverlayCancel();","   },","","   onOverlayCancel: function() {","      this.get('inplaceOverlay').hide();","      this.docKeyListener.detach();","   },","","   /**","    * add Attributes on the data model depending on the plugin configuration","    *","    * @method enrichData","    */","   enrichData: function () {","","      var that = this,","          data = this.get(\"host\").get(\"data\");","","      data.each(function (model) {","         if(!this.get(\"disableModifyFunc\")) {","            that.addModifyAttr(model);","         }","         if(!this.get(\"disableDeleteFunc\")){","            that.addDeleteAttr(model);","         }","      });","","   },","","   /**","    * add Columns on the DataTable depending on the plugin configuration","    *","    * @method enrichColumns","    */","   enrichColumns: function () {","","      if(!this.get(\"disableModifyFunc\")) {","         this.addModifyColumn();","      }","      ","      if(!this.get(\"disableDeleteFunc\")) {","         this.addDeleteColumn();","      }","   },","","   /**","    * Provide the add button in order to add record on the DataTable","    *","    * @method addAddButton","    */","   addAddButton: function() {","","      if(!this.get(\"disableAddFunc\")) {","      ","         var buttonHtml = \"<button class='yui3-button'>\"+this.get(\"strings\").addButtonText+\"</button>\",","             host = this.get(\"host\");","","         this.addButtonTop    = Y.Node.create(buttonHtml);","         this.addButtonBottom = Y.Node.create(buttonHtml);","","         this.addButtonTop.addClass(host.getClassName('add-button-top'));","         this.addButtonBottom.addClass(host.getClassName('add-button-bottom'));","","         this.get(\"host\").get(\"contentBox\").prepend(this.addButtonTop);","         this.get(\"host\").get(\"contentBox\").append(this.addButtonBottom);","         ","         this.addButtonTop.on(\"click\",    this._onAddButtonClick, this);","         this.addButtonBottom.on(\"click\", this._onAddButtonClick, this);","      }","   ","   },","","   _onAddButtonClick: function (e) {","      var panel = this.get(\"panel\");","","      e.stopPropagation();","","      panel.set(\"headerContent\",this.get(\"strings\").addItemHeader);","      panel.get(\"field\").clear();","      panel.show();","   },","","   /**","    *","    * @method modifyRecord","    */","   modifyRecord: function(e) {","      ","      e.halt();","      ","      var record = this.get(\"host\").getRecord(e.currentTarget),","          panel = this.get(\"panel\");","","      panel.set(\"headerContent\",this.get(\"strings\").modifyItemHeader);","      panel.get('field').setValue(record.getAttrs());","      panel.show();","   },","","   /**","    * Called when the user clicked on a link to delete a record","    * @method deleteRecord","    */","   deleteRecord: function(e) {","      ","      e.halt();","","      var deleteMethod,","          host = this.get('host'),","          record = host.getRecord(e.currentTarget);","","      if (!this.get(\"confirmDelete\") || confirm(this.get(\"strings\").confirmDeletion)) {","","         // Call the deleteMethod async method","         deleteMethod = this.get('deleteMethod');","","         this._addEditedClass(record);","","         deleteMethod.call(this, record, Y.bind(function(success) {","            if (success) {","               // on success, remove the record from the datatable","               host.get(\"data\").remove(record);","            }","            this._removeEditedClass(record, success);","         },this));","","      }","   },","","   /**","    *","    * @method deleteExtraColumns","    */","   deleteExtraColumns: function() {","      ","      if(!this.get(\"disableModifyFunc\")) {","         this.removeModifyColumn();","      }","      if(!this.get(\"disableDeleteFunc\")) {","         this.removeDeleteColumn();","      }","   },","","   /**","    *","    * @method _initPanel","    * @private","    */","   _initPanel: function () {","","      var opts = Y.mix({}, this.get('panelOptions') ), panel;","","      panel = new Y.inputEx.Panel( Y.mix(opts, {","         inputEx: this.get(\"inputEx\"),","         buttons: {","            header: ['close'],","","            footer: [","               {  ","                  name: 'panelSave',","                  value: this.get(\"strings\").saveText,","                  action: Y.bind(this.onPanelSaveButton, this),","                  classNames: 'yui3-button-primary'","               },","               {  ","                  name: 'panelCancel',","                  value: this.get(\"strings\").cancelText,","                  action: Y.bind(this.onPanelCancelButton, this),","                  classNames: 'yui3-button-link'","               }","            ]","         }","      }) );","","      // first the panel needs to be \"render\" then \"show\"","      panel.render();","      return panel;","   },","","   onPanelCancelButton: function (e) {","      e.preventDefault();","      this.get('panel').hide();","   },","","   onPanelSaveButton: function (e) {","      e.preventDefault();","","      var field = this.get(\"panel\").get(\"field\"),","         fieldValues = field.getValue(),","         host = this.get(\"host\"),","         record,","         RecordType,","         updateMethod,","         addMethod;","      ","      if (!field.validate()) {","         return;","      }","      ","      // Disable save button","      this.disableSaveButton(true);","      ","      // Modification","      if (fieldValues.id) {","","         // Call the updateMethod async method","         updateMethod = this.get('updateMethod');","","         record = host.get(\"data\").getById(fieldValues.id);","         this._addEditedClass(record);","","         updateMethod.call(this, fieldValues.id, fieldValues, Y.bind(function(success) {","            if (success) {","               ","               // on success, update the record in the datatable","               host.get(\"data\").getById(fieldValues.id).setAttrs(fieldValues);","               this.get('panel').hide();","            }","            ","            // Enable save button","            this.disableSaveButton(false);","            ","            this._removeEditedClass(record, success);","            ","         },this));","","      }","      // Creation","      else {","","         fieldValues.id = this.generateId(this.get(\"idSize\"));","         RecordType = host.get(\"recordType\");","         record = new RecordType();","         record.setAttrs(fieldValues);","         this.addModifyAttr(record);","         this.addDeleteAttr(record);","","         // call the async method to create a record","         addMethod = this.get('addMethod');","         addMethod.call(this, record, Y.bind(function(success) {","            if (success) {","               ","               // if success, add the record in the datatable","               host.get(\"data\").add(record);","               this.get('panel').hide();","            }","            ","            // Enable save button","            this.disableSaveButton(false);","            ","         },this));","","      }","","   },","   ","   disableSaveButton : function(bool) {","      var button = this.get('panel').getButton('panelSave');","      button.set('disabled', bool);","   },","   ","   /**","    *","    * @method destructor","    */","   destructor: function() {","","      var that = this,","          host = this.get('host'),","          data = host.get(\"data\");","","      data.each(function (model) {","","         if(!this.get(\"disableModifyFunc\")) {","            that.delModifyAttr(model);","         }","         if(!this.get(\"disableDeleteFunc\")) {","            that.delDeleteAttr(model);","         }","","      });","      ","      this.deleteExtraColumns();","      ","      if(!this.get(\"disableAddFunc\")) {","         this.addButtonTop.remove();","         this.addButtonBottom.remove();","      }","","      if(this.get(\"inplaceedit\")) {","         host.get('contentBox').removeClass( host.getClassName('inplaceedit') );","         this.cellClickHandler.detach();","","         if (this.docClickHandler) {","            this.docClickHandler.detach();","         }","      }","","      this.get(\"panel\").destroy();","   },","","","   /**","    * Add the modify attribute on the data model","    *","    * @method addModifyAttr","    */","   addModifyAttr: function(model) {","      model.addAttr(\"modify\");","   },","","   /**","    * Add the delete attribute on the data model","    *","    * @method addDeleteAttr","    */","   addDeleteAttr: function (model) {","      model.addAttr(\"delete\");","   },","","   /**","    * Remove the modify attribute from the data model","    *","    * @method delModifyAttr","    */","   delModifyAttr: function(model) {","      model.removeAttr(\"modify\");","   },","","   /**","    * Remove the modify attribute from the data model","    *","    * @method delDeleteAttr","    */","   delDeleteAttr: function (model) {","      model.removeAttr(\"delete\");","   },","","   /**","    * Add the modify column on the DataTable","    *","    * @method addModifyColumn","    */","   addModifyColumn: function() {","","      var host = this.get('host');","         ","      host.addColumn({","         label: ' ',","         key: this.get(\"strings\").modifyText,","         className: host.getClassName('cell-modify'),","         formatter: this.get('modifyColumnFormatter'),","         nodeFormatter: this.get('modifyColumnNodeFormatter')","      });","","   },","   ","   /**","    * Add the delete column on the DataTable","    *","    * @method addDeleteColumn","    */","   addDeleteColumn: function() {","      ","      var host = this.get('host');","         ","      host.addColumn({","         label: ' ',","         key: this.get(\"strings\").deleteText,","         className: host.getClassName('cell-delete'),","         formatter: this.get('deleteColumnFormatter'),","         nodeFormatter: this.get('deleteColumnNodeFormatter')","      });","   },","","   /**","    * Remove the modify column from the DataTable","    *","    * @method removeModifyColumn","    */","   removeModifyColumn: function() {","      this.get(\"host\").removeColumn(\"modify\");","   },","","   /**","    * Remove the delete column from the DataTable","    *","    * @method removeDeleteColumn","    */","   removeDeleteColumn: function() {","      this.get(\"host\").removeColumn(\"delete\");","   },","","","   generateId : function(size) {","      var prefixId = this.get(\"prefixId\"),","          s = size ? size : 5;","      prefixId = prefixId ? prefixId : \"\";","      return prefixId + Math.floor(Math.random()*Math.pow(10,s));","   },","","   _addEditedClass: function (record) {","      var host = this.get('host');","      if (record instanceof Y.Node) {","         record.addClass(host.getClassName('cell-edited'));","      }","      else {","         host.getRow(record).addClass(host.getClassName('row-edited'));","      }","   },","","   _removeEditedClass: function (record, now) {","      Y.later(now === true ? 0 : (Y.Lang.isNumber(now) ? now : 5000), this, function () {","         var host = this.get('host'), row;","         if (record instanceof Y.Node) {","            record.removeClass(host.getClassName('cell-edited'));","         }","         else {","            row = host.getRow(record);","            if (row) {","               row.removeClass(host.getClassName('row-edited'));","            }","         }","      });","   },","   ","   _initStrings : function() {","      return Y.Intl.get(\"inputex-datatable\");","   }","","}, {","","/**"," * Static property used to define the default attribute configuration of"," * the Plugin."," *"," * @property ATTRS"," * @type {Object}"," * @static"," */","ATTRS: {","","   /**","    * This is an inputEx field definition. This is used when a user try to create/modify a record","    *","    * @attribute inputEx","    */","   inputEx: {},","","","   /**","    * This string is inserted before the generated id","    *","    * @attribute prefixId","    * @type String","    * @example prefixId : \"po-\" --> id = po-1342561","    */","   prefixId: {","     value: \"\"","   },","","   /**","    * This represents the number of digits used in the id generation","    *","    * @attribute idSize","    * @type Number","    */","   idSize: {","     value: 5","   },","","   /**","    * If true the add functionality is disabled","    *","    * @attribute disableAddFunc","    * @type boolean","    */","   disableAddFunc: {","     value: false","   },","","   /**","    * If true the modify functionality is disabled","    * @attribute disableModifyFunc","    * @type boolean","    */","   disableModifyFunc: {","     value: false","   },","","   /**","    * If true the delete functionality is disabled","    *","    * @attribute disableDeleteFunc","    * @type boolean","    */","   disableDeleteFunc: {","     value: false","   },","","   /**","    * Labels of the plugin","    *","    * @attribute modifyColumnLabel","    */","   strings : {","     value : null,","     valueFn : '_initStrings'","   },","","   /**","    * If true a confirmation will be asked to the user when a delete attempt appear","    *","    * @attribute confirmDelete","    * @type boolean","    */","   confirmDelete: {","     value: true","   },","","   /**","    * This panel will be displayed on record creation/modication","    * @attribute panel","    * @type Y.inputEx.Panel","    */","   panel: {","     valueFn: '_initPanel',","     lazyAdd: true","   },","","   panelOptions: {","      value: {","         centered: true,","         width: 500,","         modal: true,","         zIndex: 5,","         visible: false","      }","   },","","   /**","    * Set to true if you want to activate in-cell editing (ALPHA)","    * @attribute inplaceedit","    * @atype boolean","    */","   inplaceedit: {","      value: false","   },","","   /**","    * Overlay used for the inplace editing","    * @attribute inplaceOverlay","    * @type Y.Overlay","    */","   inplaceOverlay: {","     valueFn: '_initInplaceOverlay',","     lazyAdd: true","   },","","   /**","    * Function used to confirm the creation of a new record.","    * You can perform validation and/or ajax creation.","    * addMethod must be a function(record, cb) which calls 'cb' with success status as first argument","    * @attribute addMethod","    * @type function","    */","   addMethod: {","      value: function(record, cb) {","         cb(true);","      }","   },","","   /**","    * Function used to confirm the modification of an existing record.","    * You can perform validation and/or ajax update.","    * updateMethod must be a function(id, newValues, cb) which calls 'cb' with success status as first argument","    * @attribute updateMethod","    * @type function","    */","   updateMethod: {","      value: function(id, newValues, cb) {","         cb(true);","      }","   },","","   /**","    * Function used to confirm the deletion of an existing record.","    * You can perform validation and/or ajax deletion.","    * deleteMethod must be a function(record, cb) which calls 'cb' with success status as first argument","    * @attribute deleteMethod","    * @type function","    */","   deleteMethod: {","      value: function(record, cb) {","         cb(true);","      }","   },","","   /**","    * Formatter for the modify column","    * @attribute modifyColumnFormatter","    * @type function","    */","   modifyColumnFormatter: {","      value: null","   },","","   /**","    * Formatter for the delete column","    * @attribute deleteColumnFormatter","    * @type function","    */","   deleteColumnFormatter: {","      value: null","   },","","   /**","    * nodeFormatter for the modify column","    * @attribute modifyColumnNodeFormatter","    * @type function","    */","   modifyColumnNodeFormatter: {","      value: null","   },","","   /**","    * nodeFormatter for the delete column","    * @attribute deleteColumnNodeFormatter","    * @type function","    */","   deleteColumnNodeFormatter: {","      value: null","   }","","}","","});","","","}, '@VERSION@', {","    \"requires\": [","        \"intl\",","        \"node-event-delegate\",","        \"inputex-group\",","        \"inputex-panel\",","        \"datatable\",","        \"overlay\"","    ],","    \"skinnable\": true,","    \"lang\": [","        \"en\",","        \"fr\",","        \"de\",","        \"ca\",","        \"es\",","        \"fr\",","        \"it\",","        \"nl\"","    ]","});"];
+_yuitest_coverage["build/inputex-datatable/inputex-datatable.js"].lines = {"1":0,"10":0,"12":0,"21":0,"22":0,"25":0,"27":0,"34":0,"37":0,"40":0,"43":0,"44":0,"47":0,"48":0,"52":0,"54":0,"56":0,"59":0,"61":0,"65":0,"66":0,"67":0,"74":0,"77":0,"79":0,"83":0,"84":0,"89":0,"101":0,"110":0,"111":0,"114":0,"118":0,"121":0,"124":0,"127":0,"128":0,"129":0,"132":0,"133":0,"136":0,"144":0,"158":0,"167":0,"168":0,"170":0,"173":0,"174":0,"176":0,"177":0,"179":0,"181":0,"182":0,"185":0,"186":0,"187":0,"190":0,"191":0,"193":0,"194":0,"198":0,"200":0,"201":0,"202":0,"208":0,"219":0,"220":0,"224":0,"226":0,"227":0,"230":0,"232":0,"234":0,"235":0,"237":0,"239":0,"242":0,"246":0,"247":0,"257":0,"260":0,"261":0,"262":0,"264":0,"265":0,"278":0,"279":0,"282":0,"283":0,"294":0,"296":0,"299":0,"300":0,"302":0,"303":0,"305":0,"306":0,"308":0,"309":0,"315":0,"317":0,"319":0,"320":0,"321":0,"330":0,"332":0,"335":0,"336":0,"337":0,"346":0,"348":0,"352":0,"355":0,"357":0,"359":0,"360":0,"362":0,"364":0,"376":0,"377":0,"379":0,"380":0,"391":0,"393":0,"416":0,"417":0,"421":0,"422":0,"426":0,"428":0,"436":0,"437":0,"441":0,"444":0,"447":0,"449":0,"450":0,"452":0,"453":0,"456":0,"457":0,"461":0,"463":0,"471":0,"472":0,"473":0,"474":0,"475":0,"476":0,"479":0,"480":0,"481":0,"484":0,"485":0,"489":0,"498":0,"499":0,"508":0,"512":0,"514":0,"515":0,"517":0,"518":0,"523":0,"525":0,"526":0,"527":0,"530":0,"531":0,"532":0,"534":0,"535":0,"539":0,"549":0,"558":0,"567":0,"576":0,"586":0,"588":0,"605":0,"607":0,"622":0,"631":0,"636":0,"638":0,"639":0,"643":0,"644":0,"645":0,"648":0,"653":0,"654":0,"655":0,"656":0,"659":0,"660":0,"661":0,"668":0,"809":0,"822":0,"835":0};
+_yuitest_coverage["build/inputex-datatable/inputex-datatable.js"].functions = {"InputExDataTable:21":0,"(anonymous 2):47":0,"initializer:32":0,"setupInplaceEditing:73":0,"_onEditorShow:82":0,"findTd:89":0,"(anonymous 3):101":0,"(anonymous 4):132":0,"onCellClick:87":0,"(anonymous 5):190":0,"_initInplaceOverlay:156":0,"(anonymous 6):234":0,"onOverlaySave:205":0,"onOverlayCancel:245":0,"(anonymous 7):260":0,"enrichData:255":0,"enrichColumns:276":0,"addAddButton:292":0,"_onAddButtonClick:314":0,"modifyRecord:328":0,"(anonymous 8):359":0,"deleteRecord:344":0,"deleteExtraColumns:374":0,"_initPanel:389":0,"onPanelCancelButton:420":0,"(anonymous 9):452":0,"(anonymous 10):480":0,"onPanelSaveButton:425":0,"disableSaveButton:497":0,"(anonymous 11):512":0,"destructor:506":0,"addModifyAttr:548":0,"addDeleteAttr:557":0,"delModifyAttr:566":0,"delDeleteAttr:575":0,"addModifyColumn:584":0,"addDeleteColumn:603":0,"removeModifyColumn:621":0,"removeDeleteColumn:630":0,"generateId:635":0,"_addEditedClass:642":0,"(anonymous 12):653":0,"_removeEditedClass:652":0,"_initStrings:667":0,"value:808":0,"value:821":0,"value:834":0,"(anonymous 1):1":0};
 _yuitest_coverage["build/inputex-datatable/inputex-datatable.js"].coveredLines = 201;
 _yuitest_coverage["build/inputex-datatable/inputex-datatable.js"].coveredFunctions = 48;
 _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 1);
@@ -486,7 +486,7 @@ panel.show();
       
       _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "modifyRecord", 328);
 _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 330);
-e.stopPropagation();
+e.halt();
       
       _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 332);
 var record = this.get("host").getRecord(e.currentTarget),
@@ -505,34 +505,36 @@ panel.show();
     * @method deleteRecord
     */
    deleteRecord: function(e) {
+      
       _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "deleteRecord", 344);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 345);
-e.stopPropagation();
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 346);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 346);
+e.halt();
+
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 348);
 var deleteMethod,
           host = this.get('host'),
           record = host.getRecord(e.currentTarget);
 
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 350);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 352);
 if (!this.get("confirmDelete") || confirm(this.get("strings").confirmDeletion)) {
 
          // Call the deleteMethod async method
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 353);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 355);
 deleteMethod = this.get('deleteMethod');
 
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 355);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 357);
 this._addEditedClass(record);
 
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 357);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 359);
 deleteMethod.call(this, record, Y.bind(function(success) {
-            _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "(anonymous 8)", 357);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 358);
+            _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "(anonymous 8)", 359);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 360);
 if (success) {
                // on success, remove the record from the datatable
-               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 360);
+               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 362);
 host.get("data").remove(record);
             }
-            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 362);
+            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 364);
 this._removeEditedClass(record, success);
          },this));
 
@@ -545,15 +547,15 @@ this._removeEditedClass(record, success);
     */
    deleteExtraColumns: function() {
       
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "deleteExtraColumns", 372);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 374);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "deleteExtraColumns", 374);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 376);
 if(!this.get("disableModifyFunc")) {
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 375);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 377);
 this.removeModifyColumn();
       }
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 377);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 379);
 if(!this.get("disableDeleteFunc")) {
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 378);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 380);
 this.removeDeleteColumn();
       }
    },
@@ -565,11 +567,11 @@ this.removeDeleteColumn();
     */
    _initPanel: function () {
 
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "_initPanel", 387);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 389);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "_initPanel", 389);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 391);
 var opts = Y.mix({}, this.get('panelOptions') ), panel;
 
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 391);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 393);
 panel = new Y.inputEx.Panel( Y.mix(opts, {
          inputEx: this.get("inputEx"),
          buttons: {
@@ -593,26 +595,26 @@ panel = new Y.inputEx.Panel( Y.mix(opts, {
       }) );
 
       // first the panel needs to be "render" then "show"
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 414);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 416);
 panel.render();
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 415);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 417);
 return panel;
    },
 
    onPanelCancelButton: function (e) {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "onPanelCancelButton", 418);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 419);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "onPanelCancelButton", 420);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 421);
 e.preventDefault();
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 420);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 422);
 this.get('panel').hide();
    },
 
    onPanelSaveButton: function (e) {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "onPanelSaveButton", 423);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 424);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "onPanelSaveButton", 425);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 426);
 e.preventDefault();
 
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 426);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 428);
 var field = this.get("panel").get("field"),
          fieldValues = field.getValue(),
          host = this.get("host"),
@@ -621,47 +623,47 @@ var field = this.get("panel").get("field"),
          updateMethod,
          addMethod;
       
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 434);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 436);
 if (!field.validate()) {
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 435);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 437);
 return;
       }
       
       // Disable save button
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 439);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 441);
 this.disableSaveButton(true);
       
       // Modification
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 442);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 444);
 if (fieldValues.id) {
 
          // Call the updateMethod async method
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 445);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 447);
 updateMethod = this.get('updateMethod');
 
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 447);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 449);
 record = host.get("data").getById(fieldValues.id);
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 448);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 450);
 this._addEditedClass(record);
 
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 450);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 452);
 updateMethod.call(this, fieldValues.id, fieldValues, Y.bind(function(success) {
-            _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "(anonymous 9)", 450);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 451);
+            _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "(anonymous 9)", 452);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 453);
 if (success) {
                
                // on success, update the record in the datatable
-               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 454);
+               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 456);
 host.get("data").getById(fieldValues.id).setAttrs(fieldValues);
-               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 455);
+               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 457);
 this.get('panel').hide();
             }
             
             // Enable save button
-            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 459);
+            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 461);
 this.disableSaveButton(false);
             
-            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 461);
+            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 463);
 this._removeEditedClass(record, success);
             
          },this));
@@ -670,37 +672,37 @@ this._removeEditedClass(record, success);
       // Creation
       else {
 
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 469);
-fieldValues.id = this.generateId(this.get("idSize"));
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 470);
-RecordType = host.get("recordType");
          _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 471);
-record = new RecordType();
+fieldValues.id = this.generateId(this.get("idSize"));
          _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 472);
-record.setAttrs(fieldValues);
+RecordType = host.get("recordType");
          _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 473);
-this.addModifyAttr(record);
+record = new RecordType();
          _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 474);
+record.setAttrs(fieldValues);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 475);
+this.addModifyAttr(record);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 476);
 this.addDeleteAttr(record);
 
          // call the async method to create a record
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 477);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 479);
 addMethod = this.get('addMethod');
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 478);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 480);
 addMethod.call(this, record, Y.bind(function(success) {
-            _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "(anonymous 10)", 478);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 479);
+            _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "(anonymous 10)", 480);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 481);
 if (success) {
                
                // if success, add the record in the datatable
-               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 482);
+               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 484);
 host.get("data").add(record);
-               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 483);
+               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 485);
 this.get('panel').hide();
             }
             
             // Enable save button
-            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 487);
+            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 489);
 this.disableSaveButton(false);
             
          },this));
@@ -710,10 +712,10 @@ this.disableSaveButton(false);
    },
    
    disableSaveButton : function(bool) {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "disableSaveButton", 495);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 496);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "disableSaveButton", 497);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 498);
 var button = this.get('panel').getButton('panelSave');
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 497);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 499);
 button.set('disabled', bool);
    },
    
@@ -723,55 +725,55 @@ button.set('disabled', bool);
     */
    destructor: function() {
 
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "destructor", 504);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 506);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "destructor", 506);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 508);
 var that = this,
           host = this.get('host'),
           data = host.get("data");
 
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 510);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 512);
 data.each(function (model) {
 
-         _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "(anonymous 11)", 510);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 512);
+         _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "(anonymous 11)", 512);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 514);
 if(!this.get("disableModifyFunc")) {
-            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 513);
+            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 515);
 that.delModifyAttr(model);
          }
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 515);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 517);
 if(!this.get("disableDeleteFunc")) {
-            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 516);
+            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 518);
 that.delDeleteAttr(model);
          }
 
       });
       
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 521);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 523);
 this.deleteExtraColumns();
       
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 523);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 525);
 if(!this.get("disableAddFunc")) {
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 524);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 526);
 this.addButtonTop.remove();
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 525);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 527);
 this.addButtonBottom.remove();
       }
 
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 528);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 530);
 if(this.get("inplaceedit")) {
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 529);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 531);
 host.get('contentBox').removeClass( host.getClassName('inplaceedit') );
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 530);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 532);
 this.cellClickHandler.detach();
 
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 532);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 534);
 if (this.docClickHandler) {
-            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 533);
+            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 535);
 this.docClickHandler.detach();
          }
       }
 
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 537);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 539);
 this.get("panel").destroy();
    },
 
@@ -782,8 +784,8 @@ this.get("panel").destroy();
     * @method addModifyAttr
     */
    addModifyAttr: function(model) {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "addModifyAttr", 546);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 547);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "addModifyAttr", 548);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 549);
 model.addAttr("modify");
    },
 
@@ -793,8 +795,8 @@ model.addAttr("modify");
     * @method addDeleteAttr
     */
    addDeleteAttr: function (model) {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "addDeleteAttr", 555);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 556);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "addDeleteAttr", 557);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 558);
 model.addAttr("delete");
    },
 
@@ -804,8 +806,8 @@ model.addAttr("delete");
     * @method delModifyAttr
     */
    delModifyAttr: function(model) {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "delModifyAttr", 564);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 565);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "delModifyAttr", 566);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 567);
 model.removeAttr("modify");
    },
 
@@ -815,8 +817,8 @@ model.removeAttr("modify");
     * @method delDeleteAttr
     */
    delDeleteAttr: function (model) {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "delDeleteAttr", 573);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 574);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "delDeleteAttr", 575);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 576);
 model.removeAttr("delete");
    },
 
@@ -827,11 +829,11 @@ model.removeAttr("delete");
     */
    addModifyColumn: function() {
 
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "addModifyColumn", 582);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 584);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "addModifyColumn", 584);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 586);
 var host = this.get('host');
          
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 586);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 588);
 host.addColumn({
          label: ' ',
          key: this.get("strings").modifyText,
@@ -849,11 +851,11 @@ host.addColumn({
     */
    addDeleteColumn: function() {
       
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "addDeleteColumn", 601);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 603);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "addDeleteColumn", 603);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 605);
 var host = this.get('host');
          
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 605);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 607);
 host.addColumn({
          label: ' ',
          key: this.get("strings").deleteText,
@@ -869,8 +871,8 @@ host.addColumn({
     * @method removeModifyColumn
     */
    removeModifyColumn: function() {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "removeModifyColumn", 619);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 620);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "removeModifyColumn", 621);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 622);
 this.get("host").removeColumn("modify");
    },
 
@@ -880,56 +882,56 @@ this.get("host").removeColumn("modify");
     * @method removeDeleteColumn
     */
    removeDeleteColumn: function() {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "removeDeleteColumn", 628);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 629);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "removeDeleteColumn", 630);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 631);
 this.get("host").removeColumn("delete");
    },
 
 
    generateId : function(size) {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "generateId", 633);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 634);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "generateId", 635);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 636);
 var prefixId = this.get("prefixId"),
           s = size ? size : 5;
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 636);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 638);
 prefixId = prefixId ? prefixId : "";
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 637);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 639);
 return prefixId + Math.floor(Math.random()*Math.pow(10,s));
    },
 
    _addEditedClass: function (record) {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "_addEditedClass", 640);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 641);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "_addEditedClass", 642);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 643);
 var host = this.get('host');
-      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 642);
+      _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 644);
 if (record instanceof Y.Node) {
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 643);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 645);
 record.addClass(host.getClassName('cell-edited'));
       }
       else {
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 646);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 648);
 host.getRow(record).addClass(host.getClassName('row-edited'));
       }
    },
 
    _removeEditedClass: function (record, now) {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "_removeEditedClass", 650);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 651);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "_removeEditedClass", 652);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 653);
 Y.later(now === true ? 0 : (Y.Lang.isNumber(now) ? now : 5000), this, function () {
-         _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "(anonymous 12)", 651);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 652);
+         _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "(anonymous 12)", 653);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 654);
 var host = this.get('host'), row;
-         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 653);
+         _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 655);
 if (record instanceof Y.Node) {
-            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 654);
+            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 656);
 record.removeClass(host.getClassName('cell-edited'));
          }
          else {
-            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 657);
+            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 659);
 row = host.getRow(record);
-            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 658);
+            _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 660);
 if (row) {
-               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 659);
+               _yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 661);
 row.removeClass(host.getClassName('row-edited'));
             }
          }
@@ -937,8 +939,8 @@ row.removeClass(host.getClassName('row-edited'));
    },
    
    _initStrings : function() {
-      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "_initStrings", 665);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 666);
+      _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "_initStrings", 667);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 668);
 return Y.Intl.get("inputex-datatable");
    }
 
@@ -1080,8 +1082,8 @@ ATTRS: {
     */
    addMethod: {
       value: function(record, cb) {
-         _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "value", 806);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 807);
+         _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "value", 808);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 809);
 cb(true);
       }
    },
@@ -1095,8 +1097,8 @@ cb(true);
     */
    updateMethod: {
       value: function(id, newValues, cb) {
-         _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "value", 819);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 820);
+         _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "value", 821);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 822);
 cb(true);
       }
    },
@@ -1110,8 +1112,8 @@ cb(true);
     */
    deleteMethod: {
       value: function(record, cb) {
-         _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "value", 832);
-_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 833);
+         _yuitest_coverfunc("build/inputex-datatable/inputex-datatable.js", "value", 834);
+_yuitest_coverline("build/inputex-datatable/inputex-datatable.js", 835);
 cb(true);
       }
    },
