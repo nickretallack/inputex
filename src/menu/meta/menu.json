@@ -3,8 +3,7 @@
       "requires": [
          "inputex-field",
          "node-event-delegate",
-         "node-menunav-improved",
-         "substitute"
+         "node-menunav-improved"
       ],
       "skinnable": true,
       "ix_provides": "menu",

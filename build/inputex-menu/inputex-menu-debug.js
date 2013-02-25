@@ -5,7 +5,6 @@ YUI.add('inputex-menu', function (Y, NAME) {
  */
    var inputEx     = Y.inputEx,
        lang        = Y.Lang,
-       substitute  = Y.substitute,
        create      = Y.Node.create,
 
        VERTICAL    = 'vertical',
@@ -135,10 +134,10 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
                that._valueFromHref['#' + id] = item.value;
             }
 
-            html += substitute(inputEx.MenuField.MENU_ITEM_TEMPLATE, templateData);
+            html += Y.Lang.sub(inputEx.MenuField.MENU_ITEM_TEMPLATE, templateData);
          }
 
-         return substitute(inputEx.MenuField.MENU_TEMPLATE, {
+         return Y.Lang.sub(inputEx.MenuField.MENU_TEMPLATE, {
             menu_id:    parent_id,
             menu_items: html
          });
@@ -236,8 +235,7 @@ inputEx.registerType("menu", inputEx.MenuField);
     "requires": [
         "inputex-field",
         "node-event-delegate",
-        "node-menunav-improved",
-        "substitute"
+        "node-menunav-improved"
     ],
     "skinnable": true,
     "ix_provides": "menu",

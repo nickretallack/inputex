@@ -6,7 +6,6 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
    var lang       = Y.Lang,
        inputEx    = Y.inputEx,
        create     = Y.Node.create,
-       substitute = Y.substitute,
        DDListField;
 
    /**
@@ -61,7 +60,7 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
          var html, ul;
 
          html = Y.Array.reduce(this.options.items, '', this.renderListItem, this);
-         html = substitute(DDListField.LIST_TEMPLATE, {items: html});
+         html = Y.Lang.sub(DDListField.LIST_TEMPLATE, {items: html});
 
          ul = create(html);
          ul.appendTo(this.fieldContainer);
@@ -82,7 +81,7 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
        * @method renderListItem
        */
       renderListItem: function (previousValue, currentValue) {
-         return previousValue + substitute(DDListField.LIST_ITEM_TEMPLATE, {
+         return previousValue + Y.Lang.sub(DDListField.LIST_ITEM_TEMPLATE, {
             'class': DDListField.LIST_ITEM_CLASS,
             'value': currentValue[this.options.valueKey],
             'label': currentValue[this.options.labelKey],
@@ -125,4 +124,4 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
    inputEx.registerType("ddlist", DDListField);
 
 
-}, '@VERSION@', {"requires": ["inputex-field", "array-extras", "sortable", "substitute"], "skinnable": true});
+}, '@VERSION@', {"requires": ["inputex-field", "array-extras", "sortable"], "skinnable": true});

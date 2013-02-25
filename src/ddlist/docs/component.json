@@ -9,8 +9,7 @@
    "use": [
       "inputex-field",
       "array-extras",
-      "sortable",
-      "substitute"
+      "sortable"
    ],
    "examples": [
       {

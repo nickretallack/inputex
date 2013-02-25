@@ -9,8 +9,7 @@
    "use": [
       "inputex-field",
       "node-event-delegate",
-      "node-menunav-improved",
-      "substitute"
+      "node-menunav-improved"
    ],
    "examples": [
       {

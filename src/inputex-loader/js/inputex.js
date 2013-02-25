@@ -272,8 +272,7 @@ YUI().use(function(Y) {
         "requires": [
             "inputex-field",
             "array-extras",
-            "sortable",
-            "substitute"
+            "sortable"
         ],
         "skinnable": true
     },
@@ -493,8 +492,7 @@ YUI().use(function(Y) {
         "requires": [
             "inputex-field",
             "node-event-delegate",
-            "node-menunav-improved",
-            "substitute"
+            "node-menunav-improved"
         ],
         "skinnable": true
     },
