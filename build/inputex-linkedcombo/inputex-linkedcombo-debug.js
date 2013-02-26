@@ -3,8 +3,8 @@ YUI.add('inputex-linkedcombo', function (Y, NAME) {
 /**
  * @module inputex-linkedcombo
  */
-    var lang = Y.Lang;
-    inputEx = Y.inputEx;
+    var lang = Y.Lang,
+        inputEx = Y.inputEx;
 
     /**
      * Create a select field
