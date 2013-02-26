@@ -89,7 +89,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	   // Add link
 	   if(!this.options.useButtons) {
-	      this.addButton = inputEx.cn('a', {className: 'inputEx-List-link'}, null, this.options.listAddLabel);
+	      this.addButton = inputEx.cn('a', {className: 'inputEx-ListField-addLink'}, null, this.options.listAddLabel);
 	      this.fieldContainer.appendChild(this.addButton);
       }
 	},
@@ -292,7 +292,7 @@ Y.extend(inputEx.ListField,inputEx.Field, {
 	   
 	   // Delete link
 	   if(!this.options.useButtons) {
-	      delButton = inputEx.cn('a', {className: 'inputEx-List-link'}, null, this.options.listRemoveLabel);
+	      delButton = inputEx.cn('a', {className: 'inputEx-ListField-delLink'}, null, this.options.listRemoveLabel);
 	      Y.one(delButton).on('click', this.onDelete, this);
 	      newDiv.appendChild( delButton );
       }

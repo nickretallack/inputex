@@ -4,15 +4,15 @@
  */
 
 /* Buttons */
-img.inputEx-ListField-addButton {
-    background: transparent url(add.png) no-repeat scroll 0%;
+.inputEx-ListField-addButton {
+    background: transparent url(add.png) no-repeat scroll 0;
     width: 16px;
     height: 16px;
     cursor: pointer;
  }
 
-img.inputEx-ListField-delButton {
-   background: transparent url(delete.png) no-repeat scroll 0%;
+.inputEx-ListField-delButton {
+   background: transparent url(delete.png) no-repeat scroll 0;
    width: 16px;
    height: 16px;
    float: left;
@@ -20,31 +20,31 @@ img.inputEx-ListField-delButton {
 }
 
 /* Arrows */
-div.inputEx-ListField-Arrow {
+.inputEx-ListField-Arrow {
    width: 16px;
    height: 16px;
    float: left;
    cursor: pointer;
 }
 
-div.inputEx-ListField-ArrowUp {
-   background: transparent url(bullet_arrow_up.png) no-repeat scroll 0%;
+.inputEx-ListField-ArrowUp {
+   background: transparent url(bullet_arrow_up.png) no-repeat scroll 0;
 }
-div.inputEx-ListField-ArrowDown {
-   background: transparent url(bullet_arrow_down.png) no-repeat scroll 0%;
+.inputEx-ListField-ArrowDown {
+   background: transparent url(bullet_arrow_down.png) no-repeat scroll 0;
 }
 
-div.inputEx-ListField-subFieldEl {
+.inputEx-ListField-subFieldEl {
   float:left;
   margin-left:4px;
 }
 
-a.inputEx-List-link {
+.inputEx-ListField-addLink, .inputEx-ListField-delLink {
    color: blue;
    cursor: pointer;
-   margin-left: 10px;
+   margin-left: 5px;
 }
 
-a.inputEx-List-link:hover {
+.inputEx-ListField-addLink:hover, .inputEx-ListField-delLink:hover {
    text-decoration: underline;
 }
