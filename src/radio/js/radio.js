@@ -271,6 +271,31 @@
 			
 			var checkAny = true, valueFound = false, i, length;
 			
+         // With IE 7 and below, the radio inputs need to be in the doc
+         // for the value to be applied, so wait for it to happen!
+         if (Y.UA.ie && Y.UA.ie <= 7 && !this._ieFirstValueSet) {
+
+            // retry counter (avoid to loop forever in case the radio is never attached to doc)
+            this._ieFirstValueRetries = (this._ieFirstValueRetries || 0) + 1;
+
+            // if not in the doc (and less than 40 retries)
+            if (!Y.DOM.inDoc(this.divEl) && this._ieFirstValueRetries < 40) {
+
+               // try to set value later
+               Y.later(50, this, function () {
+                  // important to check again because a successful
+                  // setValue may have happened in between... so this
+                  // value shouldn't be set (it's stale).
+                  if (!this._ieFirstValueSet) {
+                     this.setValue(value, sendUpdatedEvt);
+                  }
+               });
+
+            } else {
+               this._ieFirstValueSet = true;
+            }
+         }
+
 			for (i = 0, length = this.choicesList.length ; i < length ; i += 1) {
 				
 				// valueFound is a useful when "real" choice has a value equal to allowAny choice default value
