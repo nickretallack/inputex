@@ -62,6 +62,11 @@ Y.extend(inputEx.NumberField, inputEx.StringField, {
          return false;
       }
       
+      // if non-required field is empty, no other validation to perform
+      if (!this.options.required && this.isEmpty()) {
+         return true;
+      }
+
       // also check the string has a valid format to describe a float number
       // (otherwise "0.03a" could be cast to a valid number 0.03)
       if (!str_value.match(/^([\+\-]?((([0-9]+(\.)?)|([0-9]*\.[0-9]+))([eE][+\-]?[0-9]+)?))$/)) {

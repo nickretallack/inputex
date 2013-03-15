@@ -152,25 +152,31 @@ Y.extend(inputEx.StringField, inputEx.Field, {
       // NOTE: don't use this.getValue directly, so that when it's overriden
       //       in fields like IntegerField, string validations are still tested
       //       against a string.
-      var value = inputEx.StringField.prototype.getValue.call(this),
-          valid;
+      var value = inputEx.StringField.prototype.getValue.call(this);
 
       // superclass validation (e.g. will check empty + required)
-      valid = inputEx.StringField.superclass.validate.call(this);
+      if (!inputEx.StringField.superclass.validate.call(this)) {
+         return false;
+      }
+
+      // if non-required field is empty, no other validation to perform
+      if (!this.options.required && this.isEmpty()) {
+         return true;
+      }
 
       // check regex matching
-      if (valid && this.options.regexp) {
-	      valid = !!value.match(this.options.regexp);
+      if (this.options.regexp && !value.match(this.options.regexp)) {
+	      return false;
       }
 
       // check min length
-      if (valid && this.options.minLength) {
-	      valid = value.length >= this.options.minLength;
+      if (this.options.minLength && value.length < this.options.minLength) {
+	      return false;
       }
 
       // check max length: already constrained by the html field
 
-      return valid;
+      return true;
    },
 
    /**

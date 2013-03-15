@@ -66,6 +66,11 @@ Y.extend(inputEx.IntegerField, inputEx.StringField, {
       if (!str_valid) {
          return false;
       }
+
+      // if non-required field is empty, no other validation to perform
+      if (!this.options.required && this.isEmpty()) {
+         return true;
+      }
       
       // also check the string has a valid format to describe an integer
       if (!str_value.match(/^[\+\-]?[0-9]+$/)) {

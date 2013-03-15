@@ -148,22 +148,29 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
     */
    validate: function() {
       
-      var result = inputEx.EmailField.superclass.validate.call(this);
+      if (!inputEx.EmailField.superclass.validate.call(this)) {
+         return false;
+      }
       
       // reset message (useful if changed in previous validation process)
       this.messages.invalid = this.messages.invalidEmail;
       
+      // if non-required field is empty, no other validation to perform
+      if (!this.options.required && this.isEmpty()) {
+         return true;
+      }
+
       // if we want the domain validation
-      if (result && !!this.options.fixdomain) {
-         result = this.validateDomain();
+      if (!!this.options.fixdomain && !this.validateDomain()) {
+         return false;
       }
       
       // if we want to disallow disposable e-mail addresses
-      if (result && !!this.options.disallowDisposable) {
-         result = this.validateNotDisposable();
+      if (!!this.options.disallowDisposable && !this.validateNotDisposable()) {
+         return false;
       }
       
-      return result;
+      return true;
       
    },
    
