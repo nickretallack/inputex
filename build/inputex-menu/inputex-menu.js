@@ -201,8 +201,23 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
          href = target.getAttribute("href", 2);
          this.setValue(this._valueFromHref[href], true);
 
-         // Hides submenus
-         this._menu.menuNav._hideAllSubmenus(this._menu.menuNav._rootMenu);
+         // WARNING: hiding submenus via:
+         //
+         //       this._menu.menuNav._hideAllSubmenus(this._menu.menuNav._rootMenu);
+         //
+         //    is not enough, because next call to _onDocFocus will try set the focus
+         //    again on the _rootItemLabel, which will occur later when the doc gains
+         //    focus.
+         //
+         // Instead we explicitely set the focus like this:
+         this._menu.menuNav._hideAndFocusLabel();
+         //
+         // NOTE 1: keeping the focus on the label is useful to maintain accessibility,
+         //         because the user can still navigate to the next field when hitting tab.
+         //
+         // NOTE 2: alternatively it's also possible to remove all focus, via this little trick:
+         //
+         //       this._menu.menuNav._onDocFocus({ target: document.body });
       }
    },
    
