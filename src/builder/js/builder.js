@@ -54,9 +54,9 @@ Y.one('#generateButton').on('click', function() {
 		"  <title>inputEx Builder: generate inputEx Forms</title>",
 		"  <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />\n",
 		
-      "<link rel='stylesheet' href='http://yui.yahooapis.com/3.7.2/build/cssgrids/grids-min.css'>",
+      "<link rel='stylesheet' href='http://yui.yahooapis.com/3.9.1/build/cssgrids/grids-min.css'>",
 
-      "<link rel='stylesheet' href='http://yui.yahooapis.com/combo?3.7.2/build/cssreset/reset-min.css&3.7.2/build/cssfonts/fonts-min.css'>",
+      "<link rel='stylesheet' href='http://yui.yahooapis.com/combo?3.9.1/build/cssreset/reset-min.css&3.9.1/build/cssfonts/fonts-min.css'>",
       
 		"  <style>",
 		"#formContainer {",
@@ -70,7 +70,7 @@ Y.one('#generateButton').on('click', function() {
 		"<body class='yui3-skin-sam yui-skin-sam'>",
 		"	 <div id='formContainer'> </div>",
 		"",
-		"<scr"+"ipt type='text/javascript' src='http://yui.yahooapis.com/3.7.2/build/yui/yui-debug.js'></scr"+"ipt>",
+		"<scr"+"ipt type='text/javascript' src='http://yui.yahooapis.com/3.9.1/build/yui/yui-debug.js'></scr"+"ipt>",
 		"<scr"+"ipt type='text/javascript' src='../../build/inputex-loader/inputex-loader.js'></scr"+"ipt>",
 		"<scr"+"ipt>",
 		"YUI_config.groups.inputex.base = '../../build/';",

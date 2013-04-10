@@ -16,7 +16,7 @@ Release Notes:
  * Skinnable modules
  * Selleck docs
  * tests
- * YUI 3.7.2
+ * YUI 3.9.0
  * changed "autocomplete" config on form and string field (+ subclasses), its not a
    boolean anymore, pass a value in ["on", "off", "default"] instead.
  * changed inputEx.browserAutocomplete to contain "on" or "off" (not a boolean anymore)
