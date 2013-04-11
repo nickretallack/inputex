@@ -152,6 +152,11 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
          submenu: {itemdata: this.options.menuItems}
       }], 0));
 
+      // Add CSS classes to the first menu item (= button) to make it easier to style
+      this._menu.one('.yui3-menu-content').addClass('yui3-menu-content-root');
+      this._menu.one('.yui3-submenu').addClass('yui3-menu-button');
+      this._menu.one('.yui3-menu-label').addClass('yui3-menu-button-label');
+
       if (Y.UA.ie === 7) {
          a_tags = this._menu.all('a');
          a_tags.each(function (a) {

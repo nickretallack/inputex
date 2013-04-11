@@ -37,7 +37,8 @@ Y.log("test",'debug');
             colorInvite : "#FF0000",
             parentEl : "demo",
             menuItems : menuItems,
-            typeInvite :"type Invite"
+            typeInvite :"type Invite",
+            menuOrientation: "horizontal"
         });
 
 
