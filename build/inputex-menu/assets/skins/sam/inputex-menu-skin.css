@@ -38,3 +38,24 @@
   border-color: gray;
   background-color: #B3D4FF;
 }
+
+/* Reset yui styles */
+.yui3-skin-sam .yui3-menubuttonnav .yui3-menu-button > .yui3-menu-label-active {
+  background: transparent;
+}
+
+.yui3-skin-sam .yui3-menubuttonnav .yui3-menu-button > .yui3-menu-label {
+  border-width: 1px;
+  margin: 0;
+}
+
+/* Remove yui3-menu-content style from the root node */
+.yui3-skin-sam .inputEx-MenuField .yui3-menu-content-root {
+  background: transparent;
+  border: 0;
+}
+
+.yui3-skin-sam .inputEx-MenuField .yui3-menu-button-label {
+  background-color: white;
+  border: solid 1px #808080;
+}

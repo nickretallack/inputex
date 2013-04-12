@@ -37,7 +37,7 @@ NodeMenuNavImproved.NAME = "nodeMenuNavImproved";
 NodeMenuNavImproved.NS   = "menuNav";
 NodeMenuNavImproved.ATTRS = {
    viewportPadding: {
-      value: 20
+      value: 10
    }
 };
 
@@ -51,12 +51,20 @@ Y.extend(NodeMenuNavImproved, Y.Plugin.NodeMenuNav, {
    },
    
    _showMenu: function (menu) {
-      
+      var host = this.get('host'),
+          width;
+
       NodeMenuNavImproved.superclass._showMenu.call(this, menu);
       
       if (this.constrained) {
          this._onWindowResize(null, menu);
          Y.one('win').on('windowresize', this._onWindowResize, this, menu);
+      }
+
+      // Adjust the menu min-width to match the parent
+      if (menu.ancestor('.yui3-menu').hasClass('yui3-menu-horizontal')) {
+         width = host.get('region').width;
+         menu.get('children').item(0).setStyle('minWidth', width - 2); // apply min width on first child
       }
    },
 
@@ -72,22 +80,25 @@ Y.extend(NodeMenuNavImproved, Y.Plugin.NodeMenuNav, {
    },
 
    _onWindowResize: function (e, menu) {
-      var viewportHeight  = Y.DOM.winHeight(),
+      var viewportRegion  = Y.DOM.viewportRegion(),
+          viewportHeight  = viewportRegion.height,
+          viewportWidth   = viewportRegion.width,
           viewportPadding = this.get('viewportPadding'),
           menuContent     = menu.one('.yui3-menu-content'),
           menuRegion      = menuContent.get('region'),
-          maxHeight       = viewportHeight - viewportPadding * 2;
+          maxHeight       = viewportHeight - viewportPadding * 2,
+          maxWidth        = viewportWidth  - viewportPadding * 2,
+          menuWidth       = Math.min(menuRegion.width, maxWidth);
 
       if (menuRegion.height >= maxHeight) {
+         menuWidth = Math.min(menuWidth + getScrollbarWidth(), maxWidth);
          menuContent.set('isConstrained', true);
-
          menuContent.setStyles({
             height: maxHeight,
-            overflowY: 'scroll',
-            width: menuRegion.width + getScrollbarWidth() + 'px'
+            overflowY: 'scroll'
          });
 
-         menu.setY(viewportHeight - viewportPadding - maxHeight);
+         menu.setY(viewportRegion.bottom - viewportPadding - maxHeight);
       }
       else {
          // Reset style only if needed
@@ -99,9 +110,23 @@ Y.extend(NodeMenuNavImproved, Y.Plugin.NodeMenuNav, {
          }
 
          // Readjust position if needed
-         if (menuRegion.bottom > viewportHeight - viewportPadding) {
-            menu.setY(menu.getY() - ((menuRegion.bottom - viewportHeight) + viewportPadding));
+         if (menuRegion.bottom - viewportRegion.top > viewportHeight - viewportPadding) {
+            menu.setY(viewportRegion.bottom - viewportPadding - menuRegion.height);
          }
+      }
+
+      if (menuWidth !== menuRegion.width) {
+         menuContent.setStyles({
+            width: menuWidth + 'px'
+         });
+      }
+
+      if (menuRegion.left < 0) {
+         menu.setX(viewportPadding);
+      }
+
+      if (menuRegion.right > (viewportWidth - viewportPadding)) {
+         menu.setX(viewportWidth - viewportPadding - menuWidth);
       }
    },
 
