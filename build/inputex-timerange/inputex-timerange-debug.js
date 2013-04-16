@@ -160,7 +160,8 @@ inputEx.registerType("timerange", inputEx.TimeRange);
     ],
     "lang": [
         "en",
-        "fr"
+        "fr",
+        "de"
     ],
     "ix_provides": "timerange"
 });

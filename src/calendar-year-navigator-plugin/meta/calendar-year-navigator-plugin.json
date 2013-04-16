@@ -11,6 +11,10 @@
          "inputex-string"
       ],
       "skinnable": true,
-      "lang" : ["en","fr"]
+      "lang" : [
+         "en",
+         "fr",
+         "de"
+      ]
    }
 }

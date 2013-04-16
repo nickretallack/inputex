@@ -121,7 +121,8 @@ YUI().use(function(Y) {
     "inputex-calendar-week-number-plugin": {
         "lang": [
             "en",
-            "fr"
+            "fr",
+            "de"
         ],
         "requires": [
             "plugin",
@@ -133,7 +134,8 @@ YUI().use(function(Y) {
     "inputex-calendar-year-navigator-plugin": {
         "lang": [
             "en",
-            "fr"
+            "fr",
+            "de"
         ],
         "requires": [
             "intl",
@@ -715,7 +717,8 @@ YUI().use(function(Y) {
         "ix_provides": "timerange",
         "lang": [
             "en",
-            "fr"
+            "fr",
+            "de"
         ],
         "requires": [
             "intl",

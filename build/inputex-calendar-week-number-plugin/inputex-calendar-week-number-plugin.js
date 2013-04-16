@@ -266,4 +266,4 @@ Y.extend(CalendarWeekNumber, Y.Plugin.Base, {
 
 Y.namespace("Plugin").CalendarWeekNumber = CalendarWeekNumber;
 
-}, '@VERSION@', {"requires": ["plugin", "calendar", "datatype-date-math"], "skinnable": true, "lang": ["en", "fr"]});
+}, '@VERSION@', {"requires": ["plugin", "calendar", "datatype-date-math"], "skinnable": true, "lang": ["en", "fr", "de"]});

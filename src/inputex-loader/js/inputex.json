@@ -113,7 +113,8 @@
     "inputex-calendar-week-number-plugin": {
         "lang": [
             "en",
-            "fr"
+            "fr",
+            "de"
         ],
         "requires": [
             "plugin",
@@ -125,7 +126,8 @@
     "inputex-calendar-year-navigator-plugin": {
         "lang": [
             "en",
-            "fr"
+            "fr",
+            "de"
         ],
         "requires": [
             "intl",
@@ -707,7 +709,8 @@
         "ix_provides": "timerange",
         "lang": [
             "en",
-            "fr"
+            "fr",
+            "de"
         ],
         "requires": [
             "intl",

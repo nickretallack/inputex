@@ -6,6 +6,10 @@
          "datatype-date-math"
       ],
       "skinnable": true,
-      "lang": ["en","fr"]
+      "lang": [
+      	"en",
+      	"fr",
+      	"de"
+      ]
    }
 }
