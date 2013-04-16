@@ -138,6 +138,9 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
     * @method onBlur
     */
    onBlur: function(e){
+
+      inputEx.AutoComplete.superclass.onBlur.call(this);
+
       if (this.el.value === '' && this.options.typeInvite) {
          Y.one(this.divEl).addClass("inputEx-typeInvite");
          this.el.value = this.options.typeInvite;

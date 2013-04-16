@@ -278,7 +278,13 @@ Y.extend(inputEx.StringField, inputEx.Field, {
          this.updateTypeInvite();
       }
    },
-   
+   /*
+    * @method onBlur
+    *
+    */
+    onBlur : function(e){
+       inputEx.StringField.superclass.onBlur.call(this,e);
+    },
    /**
     * @method onKeyPress
     */
