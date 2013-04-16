@@ -11,7 +11,7 @@
  * @constructor
  * @param {Object} options Added options:
  * <ul>
- *	  <li>regexp: regular expression used to validate (otherwise it always validate)</li>
+ *   <li>regexp: regular expression used to validate (otherwise it always validate)</li>
  *   <li>size: size attribute of the input</li>
  *   <li>maxLength: maximum size of the string field (no message display, uses the maxlength html attribute)</li>
  *   <li>minLength: minimum size of the string field (will display an error message if shorter)</li>
@@ -22,9 +22,9 @@
 inputEx.StringField = function(options) {
    inputEx.StringField.superclass.constructor.call(this, options);
 
-	  if(this.options.typeInvite) {
-	     this.updateTypeInvite();
-	  }
+     if(this.options.typeInvite) {
+        this.updateTypeInvite();
+     }
 };
 
 Y.extend(inputEx.StringField, inputEx.Field, {
@@ -33,23 +33,23 @@ Y.extend(inputEx.StringField, inputEx.Field, {
     * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
-	setOptions: function(options) {
-	   inputEx.StringField.superclass.setOptions.call(this, options);
+   setOptions: function(options) {
+      inputEx.StringField.superclass.setOptions.call(this, options);
 
       // I18N
       this.messages = Y.mix(this.messages,Y.Intl.get("inputex-string"));
 
-	   this.options.regexp = options.regexp;
-	   this.options.size = options.size;
-	   this.options.maxLength = options.maxLength;
-	   this.options.minLength = options.minLength;
-	   this.options.typeInvite = options.typeInvite;
-	   this.options.readonly = options.readonly;
+      this.options.regexp = options.regexp;
+      this.options.size = options.size;
+      this.options.maxLength = options.maxLength;
+      this.options.minLength = options.minLength;
+      this.options.typeInvite = options.typeInvite;
+      this.options.readonly = options.readonly;
 
       // possible values: "on", "off", or "default" (= inherit from attribute set on form tag)
       // see: https://developer.mozilla.org/en-US/docs/HTML/Element/input#attr-autocomplete
-	   this.options.autocomplete = !lang.isUndefined(options.autocomplete) ? options.autocomplete : "default";
-	   this.options.trim = (options.trim === true) ? true : false;
+      this.options.autocomplete = !lang.isUndefined(options.autocomplete) ? options.autocomplete : "default";
+      this.options.trim = (options.trim === true) ? true : false;
    },
 
 
@@ -82,13 +82,13 @@ Y.extend(inputEx.StringField, inputEx.Field, {
       this.fieldContainer.appendChild(this.wrapEl);
    },
 
-	/**
-	 * Set the name of the field (or hidden field)
-	 * @method setFieldName
-	 */
-	setFieldName: function(name) {
-		this.el.name = name;
-	},
+   /**
+    * Set the name of the field (or hidden field)
+    * @method setFieldName
+    */
+   setFieldName: function(name) {
+      this.el.name = name;
+   },
 
    /**
     * Register the change, focus and blur events
@@ -117,16 +117,14 @@ Y.extend(inputEx.StringField, inputEx.Field, {
     * @param {String} The string value
     */
    getValue: function() {
-      
-      var value;
-      
-      value = (this.options.typeInvite && this.el.value == this.options.typeInvite) ? '' : this.el.value;
-      
+
+      var value = (this.options.typeInvite && this.el.value == this.options.typeInvite) ? '' : this.el.value;
+
       if (this.options.trim) {
          value = lang.trim(value);
       }
-      
-	   return value;
+
+      return value;
    },
 
    /**
@@ -136,8 +134,8 @@ Y.extend(inputEx.StringField, inputEx.Field, {
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
     */
    setValue: function(value, sendUpdatedEvt) {
-		// + check : if Null or Undefined we put '' in the stringField
-		this.el.value = ( lang.isNull(value) || lang.isUndefined(value) ) ? '' : value;
+      // + check : if Null or Undefined we put '' in the stringField
+      this.el.value = ( lang.isNull(value) || lang.isUndefined(value) ) ? '' : value;
 
       // call parent class method to set style and fire "updated" event
       inputEx.StringField.superclass.setValue.call(this, value, sendUpdatedEvt);
@@ -166,12 +164,12 @@ Y.extend(inputEx.StringField, inputEx.Field, {
 
       // check regex matching
       if (this.options.regexp && !value.match(this.options.regexp)) {
-	      return false;
+         return false;
       }
 
       // check min length
       if (this.options.minLength && value.length < this.options.minLength) {
-	      return false;
+         return false;
       }
 
       // check max length: already constrained by the html field
@@ -214,79 +212,79 @@ Y.extend(inputEx.StringField, inputEx.Field, {
       }
    },
 
-	/**
+   /**
     * Add the minLength string message handling
     * @method getStateString
     */
-	getStateString: function(state) {
-	   if (this.options.minLength && state === inputEx.stateInvalid && this.getValue().length < this.options.minLength) {
-	      return this.messages.stringTooShort[0] + this.options.minLength + this.messages.stringTooShort[1];
+   getStateString: function(state) {
+      if (this.options.minLength && state === inputEx.stateInvalid && this.getValue().length < this.options.minLength) {
+         return this.messages.stringTooShort[0] + this.options.minLength + this.messages.stringTooShort[1];
       }
-	   return inputEx.StringField.superclass.getStateString.call(this, state);
-	},
+      return inputEx.StringField.superclass.getStateString.call(this, state);
+   },
 
    /**
     * Display the type invite after setting the class
     * @method setClassFromState
     */
    setClassFromState: function() {
-	   inputEx.StringField.superclass.setClassFromState.call(this);
+      inputEx.StringField.superclass.setClassFromState.call(this);
 
-	   // display/mask typeInvite
-	   if(this.options.typeInvite) {
-	      this.updateTypeInvite();
+      // display/mask typeInvite
+      if(this.options.typeInvite) {
+         this.updateTypeInvite();
       }
-	},
+   },
 
    /**
     * @method updateTypeInvite
     */
-	updateTypeInvite: function() {
+   updateTypeInvite: function() {
 
-	   // field not focused
+      // field not focused
       if (!Y.one(this.divEl).hasClass( "inputEx-focused")) {
 
          // show type invite if field is empty
          if(this.isEmpty()) {
-	         Y.one(this.divEl).addClass( "inputEx-typeInvite");
-	         this.el.value = this.options.typeInvite;
+            Y.one(this.divEl).addClass( "inputEx-typeInvite");
+            this.el.value = this.options.typeInvite;
 
-	      // important for setValue to work with typeInvite
+         // important for setValue to work with typeInvite
          } else {
             Y.one(this.divEl).removeClass("inputEx-typeInvite");
          }
 
       // field focused : remove type invite
       } else {
-	      if(Y.one(this.divEl).hasClass("inputEx-typeInvite")) {
-	         // remove text
-	         this.el.value = "";
+         if(Y.one(this.divEl).hasClass("inputEx-typeInvite")) {
+            // remove text
+            this.el.value = "";
 
-	         // remove the "empty" state and class
-	         this.previousState = null;
-	         Y.one(this.divEl).removeClass("inputEx-typeInvite");
+            // remove the "empty" state and class
+            this.previousState = null;
+            Y.one(this.divEl).removeClass("inputEx-typeInvite");
          }
       }
-	},
+   },
 
-	/**
-	 * Clear the typeInvite when the field gains focus
-	 * @method onFocus
-	 */
-	onFocus: function(e) {
-	   inputEx.StringField.superclass.onFocus.call(this,e);
+   /**
+    * Clear the typeInvite when the field gains focus
+    * @method onFocus
+    */
+   onFocus: function(e) {
+      inputEx.StringField.superclass.onFocus.call(this,e);
 
-	   if(this.options.typeInvite) {
+      if(this.options.typeInvite) {
          this.updateTypeInvite();
       }
-	},
-
+   },
+   
    /**
     * @method onKeyPress
     */
-	onKeyPress: function(e) {
-	   // override me
-	},
+   onKeyPress: function(e) {
+      // override me
+   },
 
    /**
     * @method onKeyUp

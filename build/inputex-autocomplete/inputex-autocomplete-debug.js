@@ -31,15 +31,15 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
     */
    setOptions: function(options) {
       inputEx.AutoComplete.superclass.setOptions.call(this, options);
-  
+
       // Overwrite options
       this.options.className = options.className ? options.className : 'inputEx-Field inputEx-AutoComplete';
-      
+
       // Added options
       this.options.autoComp    = options.autoComp;
       this.options.returnValue = options.returnValue;
    },
-   
+
    /**
     * Custom event init
     * <ul>
@@ -49,9 +49,9 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
     * @method initEvents
     */
    initEvents: function() {
-      
+
       inputEx.AutoComplete.superclass.initEvents.call(this);
-      
+
       if (Y.UA.ie > 0){
          // Restore "enter" key support for selecting items (prevented in inputex-string)
          Y.Event.detach('key', undefined, this.el);
@@ -66,12 +66,14 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
     * @method renderComponent
     */
    renderComponent: function() {
-   
+
+      var attributes, hiddenAttrs, listId;
+
       // This element wraps the input node in a float: none div
       this.wrapEl = inputEx.cn('div', {className: 'inputEx-StringField-wrapper'});
-      
+
       // Attributes of the input field
-      var attributes = {
+      attributes = {
          type: 'text',
          id: Y.guid()
       };
@@ -81,30 +83,30 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
 
       // Create the node
       this.el = inputEx.cn('input', attributes);
-      
+
       // Create the hidden input
-      var hiddenAttrs = {
+      hiddenAttrs = {
          type: 'hidden',
          value: ''
       };
       if(this.options.name) hiddenAttrs.name = this.options.name;
       this.hiddenEl = inputEx.cn('input', hiddenAttrs);
-      
+
       // Append it to the main element
       this.wrapEl.appendChild(this.el);
       this.wrapEl.appendChild(this.hiddenEl);
       this.fieldContainer.appendChild(this.wrapEl);
-   
+
       // Render the list :
-      var listId = Y.guid()
+      listId = Y.guid();
       this.listEl = inputEx.cn('div', {id: listId });
       this.fieldContainer.appendChild(this.listEl);
-      
+
       Y.on('available', this.buildAutocomplete, "#"+attributes.id, this);
       Y.on('available', this.buildAutocomplete, "#"+listId, this);
       //Y.on("domready", function(e){alert(e+"domready");});
    },
-   
+
    /**
     * Build the YUI autocompleter
     * @method buildAutocomplete
@@ -114,15 +116,15 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
       if(!this._nElementsReady) { this._nElementsReady = 0; }
       this._nElementsReady++;
       if(this._nElementsReady != 2) return;
-    
-      this.yEl = Y.one(this.el)
+
+      this.yEl = Y.one(this.el);
       this.yEl.plug(Y.Plugin.AutoComplete, this.options.autoComp);
 
       // Instantiate AutoComplete
       this.yEl.ac.on("select",this.itemSelectHandler, this);
       this.yEl.on("blur", this.onBlur, this);
    },
-   
+
    /**
     * itemSelect handler
     * @method itemSelectHandler
@@ -138,29 +140,27 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
     * @method onBlur
     */
    onBlur: function(e){
-      if (this.el.value == '' && this.options.typeInvite) {
-         Y.one(this.divEl).addClass("inputEx-typeInvite")
+      if (this.el.value === '' && this.options.typeInvite) {
+         Y.one(this.divEl).addClass("inputEx-typeInvite");
          this.el.value = this.options.typeInvite;
       }
    },
-   
-   
    onChange: function(e) {
-      
+
       this.setClassFromState();
-      
+
       // Clear the field when no value
       if (this.hiddenEl.value != this.el.value) {
          this.hiddenEl.value = this.el.value;
       }
-      
+
       Y.later(50, this, function() {
-         if (this.el.value == "") {
+         if (this.el.value === "") {
             this.setValue("");
          }
       });
    },
-   
+
    /**
     * Set the value
     * @method setValue
@@ -168,12 +168,12 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
     * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the updated event or not (default is true, pass false to NOT send the event)
     */
    setValue: function (value, sendUpdatedEvt) {
-      
+
       this.hiddenEl.value = value || "";
-      
+
       inputEx.AutoComplete.superclass.setValue.call(this, value, sendUpdatedEvt);
    },
-   
+
    /**
     * Return the hidden value (stored in a hidden input)
     * @method getValue
@@ -187,6 +187,5 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
 
 // Register this class as "autocomplete" type
 inputEx.registerType("autocomplete", inputEx.AutoComplete);
-
 
 }, '@VERSION@', {"requires": ["inputex-string", "autocomplete"], "ix_provides": "autocomplete", "skinnable": true});
