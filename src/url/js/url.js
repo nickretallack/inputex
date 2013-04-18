@@ -63,8 +63,8 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
    /**
     * @method setClassFromState
     */
-   setClassFromState: function() {
-      inputEx.UrlField.superclass.setClassFromState.call(this);
+   setClassFromState: function(state) {
+      inputEx.UrlField.superclass.setClassFromState.call(this, state);
 
       if(this.options.favicon) {
          // try to update with url only if valid url (else pass null to display inputEx.spacerUrl)

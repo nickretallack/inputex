@@ -197,10 +197,10 @@
 		/**
 		 * @method setClassFromState
 		 */
-		setClassFromState: function () {
+		setClassFromState: function (state) {
 			
 			// call superclass method (will fire updated event)
-			inputEx.RadioField.superclass.setClassFromState.call(this);
+			inputEx.RadioField.superclass.setClassFromState.call(this, state);
 			
 			this.setSelectedClass();
 			

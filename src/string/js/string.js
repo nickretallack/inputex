@@ -227,8 +227,8 @@ Y.extend(inputEx.StringField, inputEx.Field, {
     * Display the type invite after setting the class
     * @method setClassFromState
     */
-   setClassFromState: function() {
-      inputEx.StringField.superclass.setClassFromState.call(this);
+   setClassFromState: function(state) {
+      inputEx.StringField.superclass.setClassFromState.call(this, state);
 
       // display/mask typeInvite
       if(this.options.typeInvite) {

@@ -197,8 +197,8 @@ Y.extend(inputEx.StringAvailability, inputEx.StringField, {
    /**
     * @method setClassFromState
     */
-   setClassFromState: function(){
-      inputEx.StringAvailability.superclass.setClassFromState.call(this);
+   setClassFromState: function(state){
+      inputEx.StringAvailability.superclass.setClassFromState.call(this, state);
       
       var state = this.getState();
       
