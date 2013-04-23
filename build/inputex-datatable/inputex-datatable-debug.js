@@ -170,13 +170,13 @@ Y.extend(inputEx.Plugin.InputExDataTable, Y.Plugin.Base, {
       contentBox.appendChild(overlayButtonsContainer);
 
       // Overlay save and cancel buttons
-      saveButton = Y.Node.create('<button>Sauver</button>');
+      saveButton = Y.Node.create('<button>'+this.get("strings").saveText+'</button>');
       overlayButtonsContainer.appendChild(saveButton);
 
       saveButton.addClass('yui3-button');
       saveButton.addClass('yui3-button-primary');
 
-      cancelButton = Y.Node.create('<button>Annuler</button>');
+      cancelButton = Y.Node.create('<button>'+this.get("strings").cancelText+'</button>');
 
       cancelButton.addClass('yui3-button');
       cancelButton.addClass('yui3-button-link');
