@@ -1,3 +1,3 @@
 {
-   stringTooShort: ["Ce champ doit contenir au moins ", " caract&egrave,res (lettres ou chiffres)"]
+   "stringTooShort": "Ce champ doit contenir au moins {number} caractères (lettres ou chiffres)"
 }

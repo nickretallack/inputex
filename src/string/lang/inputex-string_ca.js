@@ -1,3 +1,3 @@
 {
-   stringTooShort: ["Aquest camp ha de tenir, almenys, ", " caràcters (lletres o números)"]
+   stringTooShort: "Aquest camp ha de tenir, almenys, {number} caràcters (lletres o números)"
 }

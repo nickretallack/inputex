@@ -1,3 +1,3 @@
 {
-   stringTooShort: ["Dit veld moet tenminste ", " nummers of karakters bevatten"]
+   stringTooShort: "Dit veld moet tenminste {number} nummers of karakters bevatten"
 }

@@ -218,7 +218,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
     */
    getStateString: function(state) {
       if (this.options.minLength && state === inputEx.stateInvalid && this.getValue().length < this.options.minLength) {
-         return this.messages.stringTooShort[0] + this.options.minLength + this.messages.stringTooShort[1];
+         return Y.Lang.sub(this.messages.stringTooShort, {number: this.options.minLength});
       }
       return inputEx.StringField.superclass.getStateString.call(this, state);
    },

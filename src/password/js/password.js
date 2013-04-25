@@ -37,7 +37,7 @@ Y.extend(inputEx.PasswordField, inputEx.StringField, {
 	setOptions: function(options) {
 	   inputEx.PasswordField.superclass.setOptions.call(this, options);
 
-      this.messages = Y.mix(this.messages,Y.Intl.get("inputex-password"));
+      this.messages = Y.mix(this.messages, Y.Intl.get("inputex-password"), true);
 	   
       this.options.className = options.className ? options.className : "inputEx-Field inputEx-PasswordField";
 	  

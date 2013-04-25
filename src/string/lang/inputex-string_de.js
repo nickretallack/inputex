@@ -1,3 +1,3 @@
 {
-   stringTooShort: ["Dieses Feld braucht mindestens "," Zeichen (Buchstaben oder Zahlen)"]
+   stringTooShort: "Dieses Feld braucht mindestens {number} Zeichen (Buchstaben oder Zahlen)"
 }
