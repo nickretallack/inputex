@@ -176,7 +176,8 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
       }
       
       // Retrieve the first label for later use
-      this._rootItemLabel = this._menu.one('.yui3-menu-label').setContent('<em>'+this.options.typeInvite+'</em>').one('em');
+      this._rootItemLabel = Y.Node.create('<em class="placeholder"></em>').set('text', this.options.typeInvite);
+      this._menu.one('.yui3-menu-label').setHTML(this._rootItemLabel);
 
       this._menu.plug(Y.Plugin.NodeMenuNavImproved, this.options.menuConfig);
       this._menu.appendTo(container);
@@ -237,8 +238,17 @@ Y.extend(inputEx.MenuField, inputEx.Field, {
     * @method setValue
     */
    setValue: function(value, sendUpdatedEvt) {
+      var text = this._textFromValue[value];
+
       // update text
-      this._rootItemLabel.setContent(this._textFromValue[value] || this.options.typeInvite);
+      if (text) {
+         this._rootItemLabel.set('text', text);
+         this._rootItemLabel.removeClass('placeholder');
+      }
+      else {
+         this._rootItemLabel.set('text', this.options.typeInvite);
+         this._rootItemLabel.addClass('placeholder');
+      }
 
       // set value
       this.hiddenEl.value = (!!this._textFromValue[value]) ? value : '';
