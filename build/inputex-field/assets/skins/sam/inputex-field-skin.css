@@ -4,7 +4,6 @@
 
 .inputEx-label {
    float: left;
-   color: #505050;
    text-align: right;
    padding: 0.2em 0.5em 0 0;
 }
@@ -19,7 +18,6 @@
 
 .inputEx-description {
    clear:both;
-   color: #505050;
    font-size: 75%;
    margin-top: 2px;
 }

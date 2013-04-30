@@ -14,12 +14,10 @@ div.inputEx-invalid > div.inputEx-label label {
 }
 
 div.inputEx-valid > div.inputEx-message {
-   color:#505050;
    font-weight: normal;
 }
 
 div.inputEx-valid > div.inputEx-label {
-   color:#505050;
    font-weight:normal;
 }
 
@@ -29,12 +27,4 @@ div.inputEx-empty > div.inputEx-label label {
    background: none;
    padding-left: inherit;
    font-weight:normal;
-   color: #505050;
-}
-
-div.inputEx-typeInvite > div.inputEx-Field input, div.inputEx-typeInvite > div.inputEx-Field textarea {
-   color: #aaa;
-}
-div.inputEx-empty div.inputEx-valid div.inputEx-Field input, div.inputEx-empty div.inputEx-valid div.inputEx-Field textarea {
-   color: black;
 }
