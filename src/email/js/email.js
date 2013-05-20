@@ -181,7 +181,7 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
 
     var value = inputEx.EmailField.superclass.getValue.call(this);
 
-    return inputEx.removeAccents(value.toLowerCase());
+    return inputEx.removeAccents(value.toLowerCase().trim());
   }
 
 });
