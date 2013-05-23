@@ -60,10 +60,6 @@
   border: solid 1px #808080;
 }
 
-.yui3-skin-sam .yui3-menubuttonnav .yui3-menu-label {
-  white-space: normal;
-}
-
-.yui3-skin-sam .yui3-menubuttonnav  .yui3-menuitem-content {
+.yui3-skin-sam .yui3-menubuttonnav .yui3-menu-button-label {
   white-space: normal;
 }
