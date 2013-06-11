@@ -208,7 +208,11 @@ Y.extend(inputEx.StringField, inputEx.Field, {
    focus: function() {
       // Can't use lang.isFunction because IE >= 6 would say focus is not a function (IE says it's an object) !!
       if(!!this.el && !lang.isUndefined(this.el.focus) ) {
-         this.el.focus();
+         // Wrap in try/catch to silence common IE error:
+         // "Can't move focus to the control because it is invisible, not enabled, or of a type that does not accept the focus."
+         try {
+            this.el.focus();
+         } catch (e) {}
       }
    },
 
