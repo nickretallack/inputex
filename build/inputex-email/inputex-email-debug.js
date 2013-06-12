@@ -30,6 +30,7 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
       // Overwrite options
       this.messages.invalid = this.messages.invalidEmail;
       this.options.regexp = inputEx.regexps.email;
+      this.options.trim = true; // always trim
 
       // Validate the domain name ( false by default )
       this.options.fixdomain = (Y.Lang.isUndefined(options.fixdomain) ? false : !! options.fixdomain);
@@ -184,7 +185,7 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
 
       var value = inputEx.EmailField.superclass.getValue.call(this);
 
-      return inputEx.removeAccents(value.toLowerCase().trim());
+      return inputEx.removeAccents(value.toLowerCase());
    }
 
 });
