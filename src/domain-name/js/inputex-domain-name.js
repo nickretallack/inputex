@@ -7,6 +7,9 @@
 
 /**
  * Simple domain name field
+ * @class inputEx.DomainNameField
+ * @extends inputEx.StringField
+ * @constructor
  */
 inputEx.DomainNameField = function(options) {
    inputEx.DomainNameField.superclass.constructor.call(this,options);

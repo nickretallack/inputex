@@ -779,7 +779,7 @@ ATTRS: {
    /**
     * Set to true if you want to activate in-cell editing (ALPHA)
     * @attribute inplaceedit
-    * @atype boolean
+    * @type boolean
     */
    inplaceedit: {
       value: false

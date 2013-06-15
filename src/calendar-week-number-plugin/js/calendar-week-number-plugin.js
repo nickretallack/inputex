@@ -247,7 +247,8 @@ Y.extend(CalendarWeekNumber, Y.Plugin.Base, {
     },
     
     /**
-     * Get the first day of the week, for the give date.
+     * Get the first day of the week, for the given date.
+     * @method getFirstDayOfWeek
      * @param {Date} dt The date in the week for which the first day is required.
      * @param {Number} startOfWeek The index for the first day of the week, 0 = Sun, 1 = Mon ... 6 = Sat (defaults to 0)
      * @return {Date} The first day of the week

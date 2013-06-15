@@ -4,7 +4,7 @@
     "dist"            : true,
     "yuiBuildUrl"     : "../build",
     "yuiLocalBuildUrl": "../build",
-    "inputexVersion" : "3.0.0pr2",
+    "inputexVersion" : "3.2.0",
     "yuiVersion"      : "@VERSION@",
     "yuiSeedUrl"      : "http://yui.yahooapis.com/3.9.1/build/yui/yui-min.js",
     "yuiGridsUrl"     : "../build/cssgrids/grids-min.css",
