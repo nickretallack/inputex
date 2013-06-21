@@ -110,9 +110,6 @@ inputEx.Field.prototype = {
       if(this.options.id) {
          this.divEl.id = this.options.id;
       }
-      if(this.options.required) {
-         Y.one(this.divEl).addClass("inputEx-required");
-      }
 
       // Label element
       if(lang.isString(this.options.label)) {
@@ -132,6 +129,12 @@ inputEx.Field.prototype = {
       }); // for wrapping the field and description
       // Render the component directly
       this.renderComponent();
+
+      if(this.options.required) {
+         Y.one(this.el).setAttribute("required", "required");
+         Y.one(this.el).setAttribute("aria-required", "true");
+         Y.one(this.divEl).addClass("inputEx-required");
+      }
 
       // Description
       if(this.options.description) {
@@ -222,7 +225,7 @@ inputEx.Field.prototype = {
     */
    setClassFromState: function(state) {
 
-      var className;
+      var className, elNode = Y.one(this.el);
       // remove previous class
       if(this.previousState) {
          // remove invalid className for both required and invalid fields
@@ -234,7 +237,14 @@ inputEx.Field.prototype = {
       state = state || this.getState();
       if(!(state === inputEx.stateEmpty && Y.one(this.divEl).hasClass('inputEx-focused'))) {
          // add invalid className for both required and invalid fields
-         className = 'inputEx-' + ((state === inputEx.stateRequired) ? inputEx.stateInvalid : state);
+
+         if(state === inputEx.stateRequired){
+            className = 'inputEx-' + inputEx.stateInvalid
+            elNode.setAttribute("aria-invalid", "true");
+         }else{
+            className = 'inputEx-' + state
+            elNode.removeAttribute("aria-invalid", "true");
+         }
          Y.one(this.divEl).addClass(className);
       }
 
