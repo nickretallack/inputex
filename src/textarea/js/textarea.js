@@ -58,6 +58,12 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
       
       //if(this.options.maxLength) attributes.maxLength = this.options.maxLength;
    
+      // rsi
+      if(this.options.required){
+         attributes.required = "required";
+         attributes["aria-required"] = true;
+      }
+
       // Create the node
       this.el = inputEx.cn('textarea', attributes, null, this.options.value);
       
@@ -95,6 +101,19 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
 
       return inputEx.Textarea.superclass.getStateString.call(this, state);
 	},
+   /**
+    * Display the type invite after setting the class
+    * @method setClassFromState
+    */
+   setClassFromState: function(state) {
+      inputEx.Textarea.superclass.setClassFromState.call(this, state);
+
+      if(Y.one(this.divEl).hasClass("inputEx-invalid")){
+         Y.one(this.el).setAttribute("aria-invalid", "true");
+      }else if(Y.one(this.divEl).hasClass("inputEx-valid")){
+         Y.one(this.el).removeAttribute("aria-invalid", "true");
+      }
+   },
 	
 	
 	/**

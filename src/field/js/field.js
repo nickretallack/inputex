@@ -31,7 +31,7 @@ inputEx.Field = function(options) {
 
    /**
     * Event fired after the user changed the value of the field.
-    * Fired when the field is "updated"<br /> subscribe with: myfield.on('updated', function(value) { console.log("updated",value); }, this, true);
+    * Fired when the field is "updated"<br /> subscribe with: myfield.on('updated', function(value) { your code }, this, true);
     * @event updated
     * @param {Any} value The new value of the field
     */
@@ -129,8 +129,6 @@ inputEx.Field.prototype = {
       this.renderComponent();
 
       if(this.options.required) {
-         Y.one(this.el).setAttribute("required", "required");
-         Y.one(this.el).setAttribute("aria-required", "true");
          Y.one(this.divEl).addClass("inputEx-required");
       }
 
@@ -236,13 +234,7 @@ inputEx.Field.prototype = {
       if(!(state === inputEx.stateEmpty && Y.one(this.divEl).hasClass('inputEx-focused'))) {
          // add invalid className for both required and invalid fields
 
-         if(state === inputEx.stateRequired){
-            className = 'inputEx-' + inputEx.stateInvalid
-            elNode.setAttribute("aria-invalid", "true");
-         }else{
-            className = 'inputEx-' + state
-            elNode.removeAttribute("aria-invalid", "true");
-         }
+         className = 'inputEx-' + ((state === inputEx.stateRequired) ? inputEx.stateInvalid : state);
          Y.one(this.divEl).addClass(className);
       }
 
