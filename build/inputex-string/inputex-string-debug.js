@@ -76,6 +76,12 @@ Y.extend(inputEx.StringField, inputEx.Field, {
       // don't set the autocomplete attribute when "default" (the input will adopt the form's behavior regarding autocomplete)
       if(this.options.autocomplete !== "default") { attributes.autocomplete = this.options.autocomplete; }
 
+      // rsi
+      if(this.options.required){
+         attributes.required = "required";
+         attributes["aria-required"] = true;
+      }
+
       // Create the node
       this.el = inputEx.cn('input', attributes);
 
@@ -239,6 +245,12 @@ Y.extend(inputEx.StringField, inputEx.Field, {
       // display/mask typeInvite
       if(this.options.typeInvite) {
          this.updateTypeInvite();
+      }
+
+      if(Y.one(this.divEl).hasClass("inputEx-invalid")){
+         Y.one(this.el).setAttribute("aria-invalid", "true");
+      }else if(Y.one(this.divEl).hasClass("inputEx-valid")){
+         Y.one(this.el).removeAttribute("aria-invalid", "true");
       }
    },
 
