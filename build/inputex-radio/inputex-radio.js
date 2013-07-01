@@ -73,7 +73,7 @@ YUI.add('inputex-radio', function (Y, NAME) {
 			}
 			
          //rsi
-         if(options.allowAny.field){
+         if(options.allowAny && options.allowAny.field){
             this.options.allowAny.field = options.allowAny.field;
          }else{
             this.options.allowAny.field = { type: "string", value: this.options.allowAny.value, required : !!this.options.required }
