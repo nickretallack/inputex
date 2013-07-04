@@ -222,7 +222,8 @@ inputEx.Field.prototype = {
     */
    setClassFromState: function(state) {
 
-      var className, elNode = Y.one(this.el);
+      var className;
+
       // remove previous class
       if(this.previousState) {
          // remove invalid className for both required and invalid fields
@@ -384,16 +385,14 @@ inputEx.Field.prototype = {
          this.msgEl = inputEx.cn('div', {
             className: (messagePosition === "below") ? 'inputEx-message-below' : 'inputEx-message'
          });
-         try {
-            var divElements = this.divEl.getElementsByTagName('div');
-             //insertBefore the clear:both div
-            if(messagePosition === "below"){
-               this.fieldContainer.appendChild(this.msgEl);
-            }else{
-               this.divEl.insertBefore(this.msgEl, divElements[(divElements.length - 1 >= 0) ? divElements.length - 1 : 0]);
-            }
-         } catch(e) {
-            alert(e);
+
+         var divElements = this.divEl.getElementsByTagName('div');
+         
+         if(messagePosition === "below"){
+            this.fieldContainer.appendChild(this.msgEl);
+         }else{
+            //insertBefore the clear:both div
+            this.divEl.insertBefore(this.msgEl, divElements[(divElements.length - 1 >= 0) ? divElements.length - 1 : 0]);
          }
       }
       this.msgEl.innerHTML = msg;
