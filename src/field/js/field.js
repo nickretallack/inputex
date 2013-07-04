@@ -77,7 +77,7 @@ inputEx.Field.prototype = {
       this.options.label = options.label;
       this.options.description = options.description;
       this.options.wrapperClassName = options.wrapperClassName;
-      this.options.messagePosition = options.messagePosition;
+      this.options.disabled = lang.isUndefined(options.disabled) ? false : !!options.disabled;
 
       // Define default messages
       this.messages.required = (options.messages && options.messages.required) ? options.messages.required : this.messages.required;
@@ -87,6 +87,7 @@ inputEx.Field.prototype = {
       this.options.className = options.className ? options.className : 'inputEx-Field';
       this.options.required = lang.isUndefined(options.required) ? false : options.required;
       this.options.showMsg = lang.isUndefined(options.showMsg) ? false : options.showMsg;
+      this.options.messagePosition = options.messagePosition || "right";
    },
 
 
@@ -126,6 +127,7 @@ inputEx.Field.prototype = {
       this.fieldContainer = inputEx.cn('div', {
          className: this.options.className
       }); // for wrapping the field and description
+
       // Render the component directly
       this.renderComponent();
 
@@ -147,6 +149,11 @@ inputEx.Field.prototype = {
       this.divEl.appendChild(inputEx.cn('div', null, {
          clear: 'both'
       }, " "));
+
+      // Should the field be disabled right away?
+      if (this.options.disabled) {
+         this.disable();
+      }
 
    },
 

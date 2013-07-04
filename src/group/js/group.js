@@ -48,8 +48,6 @@ Y.extend(inputEx.Group, inputEx.Field, {
       this.options.collapsible = lang.isUndefined(options.collapsible) ? false : options.collapsible;
       this.options.collapsed = lang.isUndefined(options.collapsed) ? false : options.collapsed;
       
-      this.options.disabled = lang.isUndefined(options.disabled) ? false : options.disabled;
-      
       // Array containing the list of the field instances
       this.inputs = [];
       this.inputsLength = 0; // cache the length of this.inputs array

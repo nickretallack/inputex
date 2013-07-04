@@ -123,8 +123,8 @@ YUI().use('inputex-string',function(Y) {
     new Y.inputEx.StringField({showMsg: true,regexp: Y.inputEx.regexps.email, value: 'wrong@email', parentEl: 'container7'});
     
     // Example 8
-    var field = new Y.inputEx.StringField({value: 'This field is disabled', parentEl: 'container8'});
-    field.disable();
+    new Y.inputEx.StringField({value: 'This field is disabled', parentEl: 'container8', disabled: true});
+    // or use the field.disable() method
     
     // Example 9
     
@@ -216,8 +216,8 @@ YUI().use('inputex-string',function(Y) {
     new Y.inputEx.StringField({showMsg: true,regexp: Y.inputEx.regexps.email, value: &#x27;wrong@email&#x27;, parentEl: &#x27;container7&#x27;});
     
     &#x2F;&#x2F; Example 8
-    var field = new Y.inputEx.StringField({value: &#x27;This field is disabled&#x27;, parentEl: &#x27;container8&#x27;});
-    field.disable();
+    new Y.inputEx.StringField({value: &#x27;This field is disabled&#x27;, parentEl: &#x27;container8&#x27;, disabled: true});
+    &#x2F;&#x2F; or use the field.disable() method
     
     &#x2F;&#x2F; Example 9
     

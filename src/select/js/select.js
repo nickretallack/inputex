@@ -173,6 +173,14 @@
 			this.el.disabled = false;
 		},
 		
+      /**
+       * Check if the field is disabled
+       * @method isDisabled
+       */
+      isDisabled: function() {
+         return this.el.disabled;
+      },
+
 		/**
 		 * @method createChoiceNode
 		 */

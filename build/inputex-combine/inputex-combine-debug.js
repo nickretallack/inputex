@@ -46,10 +46,6 @@ Y.extend(inputEx.CombineField, inputEx.Group, {
     */
    renderComponent: function() {
       this.renderFields(this.fieldContainer);
-
-      if(this.options.disabled) {
-         this.disable();
-      }
    },
 
    /**
