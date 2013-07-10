@@ -28,6 +28,9 @@ getScrollbarWidth = function () {
 /**
  * Y.Plugin.NodeMenuNavImproved is a subclass of Y.Plugin.NodeMenuNav which
  * display scroll bars on menu nodes taller than the viewport.
+ * @class Plugin.NodeMenuNavImproved
+ * @extends Plugin.NodeMenuNav
+ * @constructor
  */
 NodeMenuNavImproved = function () {
    NodeMenuNavImproved.superclass.constructor.apply(this, arguments);
@@ -43,9 +46,9 @@ NodeMenuNavImproved.ATTRS = {
 
 Y.extend(NodeMenuNavImproved, Y.Plugin.NodeMenuNav, {
    
-   /***************************
-   * 1. Viewport constraining
-   ***************************/
+   ////////////////////////////
+   // 1. Viewport constraining
+   ////////////////////////////
    initializer: function () {
       this.constrained = this.get('host').hasClass('yui3-menu-constrained');
    },
@@ -141,9 +144,9 @@ Y.extend(NodeMenuNavImproved, Y.Plugin.NodeMenuNav, {
    
    
    
-   /***************************
-   * 2. Fix submenu hiding
-   ***************************/
+   ////////////////////////////
+   // 2. Fix submenu hiding
+   ////////////////////////////
    _onActiveDescendantChange: function () {
       /* a lot of stuff removed here... */
       return false;
