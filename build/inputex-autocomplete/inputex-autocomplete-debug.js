@@ -191,4 +191,4 @@ Y.extend(inputEx.AutoComplete, inputEx.StringField, {
 // Register this class as "autocomplete" type
 inputEx.registerType("autocomplete", inputEx.AutoComplete);
 
-}, '@VERSION@', {"requires": ["inputex-string", "autocomplete"], "ix_provides": "autocomplete", "skinnable": true});
+}, '@VERSION@', {"requires": ["inputex-string", "autocomplete"], "ix_provides": "autocomplete"});

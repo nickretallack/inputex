@@ -4,7 +4,6 @@
 		  "inputex-string",
 		  "autocomplete"
 		],
-		"ix_provides": "autocomplete",
-      "skinnable" : true
+		"ix_provides": "autocomplete"
 	}
 }

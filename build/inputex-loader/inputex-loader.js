@@ -24,8 +24,7 @@ YUI().use(function(Y) {
         "requires": [
             "inputex-string",
             "autocomplete"
-        ],
-        "skinnable": true
+        ]
     },
     "inputex-base": {
         "requires": [

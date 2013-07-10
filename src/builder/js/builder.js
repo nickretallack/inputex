@@ -67,7 +67,7 @@ Y.one('#generateButton').on('click', function() {
 		"}",
 		"  </style>",
 		"</head>\n",
-		"<body class='yui3-skin-sam yui-skin-sam'>",
+		"<body class='yui3-skin-sam'>",
 		"	 <div id='formContainer'> </div>",
 		"",
 		"<scr"+"ipt type='text/javascript' src='http://yui.yahooapis.com/3.9.1/build/yui/yui-debug.js'></scr"+"ipt>",
