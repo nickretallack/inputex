@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-calendar-year-navigator-plugin_es",function(e){e.Intl.add("inputex-calendar-year-navigator-plugin","es",{select:"Seleccionar",month:"Mes",year:"A\u00f1o",ok:"OK",cancel:"cancelar",monthsList:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"]})},"@VERSION@");

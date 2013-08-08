@@ -276,6 +276,7 @@ Y.Plugin.CalendarYearNavigator = Y.Base.create("CalendarYearNavigator", Y.Plugin
     "lang": [
         "en",
         "fr",
-        "de"
+        "de",
+        "es"
     ]
 });
