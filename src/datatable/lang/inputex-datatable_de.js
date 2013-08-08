@@ -10,5 +10,5 @@
    modifyText: "Bearbeiten",
    deleteText: "Löschen",
    insertItemText: "Einfügen",
-   confirmDeletion: "Möchten Sie das Element wirklich löschen?"
+   confirmDeletion: "Möchten Sie das Element wieder herstellen?"
 }
