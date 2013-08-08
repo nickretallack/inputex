@@ -1,5 +1,5 @@
 {
-   "incorrectOrder": "El final del intervalo de tiempo debe ser más que su inicio",
-   "minTimeError": "El comienzo del intervalo de tiempo debe ser posterior al {minTime}",
+   "incorrectOrder": "El final del intervalo de tiempo debe ser mayor que su inicio",
+   "minTimeError": "El inicio del intervalo de tiempo debe ser posterior a {minTime}",
    "separators" : [false,":","&nbsp; a &nbsp;",":",false]
 }
