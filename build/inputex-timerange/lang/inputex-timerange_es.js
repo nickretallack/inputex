@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-timerange_es",function(e){e.Intl.add("inputex-timerange","es",{incorrectOrder:"El final del intervalo de tiempo debe ser m\u00e1s que su inicio",minTimeError:"El comienzo del intervalo de tiempo debe ser posterior al {minTime}",separators:[!1,":","&nbsp; a &nbsp;",":",!1]})},"@VERSION@");

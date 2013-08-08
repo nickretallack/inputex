@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-timerange_en",function(e){e.Intl.add("inputex-timerange","en",{incorrectOrder:"The end of the time range must be greater than its start",minTimeError:"The begining of the time range must be later than {minTime}"})},"@VERSION@");
+YUI.add("lang/inputex-timerange_en",function(e){e.Intl.add("inputex-timerange","en",{incorrectOrder:"The end of the time range must be greater than its start",minTimeError:"The begining of the time range must be later than {minTime}",separators:[!1,":","&nbsp; to &nbsp;",":",!1]})},"@VERSION@");

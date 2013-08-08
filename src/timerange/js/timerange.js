@@ -28,7 +28,7 @@ inputEx.TimeRange = function(options) {
       {type: 'select', choices: m }
    ];
 
-   options.separators = options.separators || [false,"H","&nbsp; à &nbsp;","H",false];
+   options.separators = options.separators || Y.Intl.get("inputex-timerange", "separators");
    inputEx.TimeRange.superclass.constructor.call(this,options);
 
 

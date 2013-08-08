@@ -717,7 +717,8 @@ YUI().use(function(Y) {
         "lang": [
             "en",
             "fr",
-            "de"
+            "de",
+            "es"
         ],
         "requires": [
             "intl",
