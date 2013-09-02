@@ -25,3 +25,7 @@ div.inputEx-empty > div.inputEx-label label {
    padding-left: inherit;
    font-weight:normal;
 }
+
+div.inputEx-typeInvite > div.inputEx-Field input, div.inputEx-typeInvite > div.inputEx-Field textarea {
+   color: #aaa;
+}
