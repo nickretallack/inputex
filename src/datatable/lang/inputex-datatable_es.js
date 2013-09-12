@@ -1,4 +1,5 @@
 {
+   addButtonText: "Añadir",
    saveText: "Salvar",
    cancelText: "Cancelar",
    modifyText: "Modificar",
