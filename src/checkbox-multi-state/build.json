@@ -1,0 +1,8 @@
+{
+   "name": "inputex-checkbox-multi-state",
+   "builds": {
+      "inputex-checkbox-multi-state": {
+         "jsfiles": ["checkbox-multi-state.js"]
+      }
+   }
+}

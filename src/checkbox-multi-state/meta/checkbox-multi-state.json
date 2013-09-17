@@ -1,0 +1,8 @@
+{
+	"inputex-checkbox-multi-state": {
+		"requires": [
+			"base",
+			"inputex-field"
+		]
+	}
+}
