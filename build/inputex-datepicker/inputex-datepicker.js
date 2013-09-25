@@ -53,45 +53,43 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
       // Create overlay
       this.oOverlay = new Y.Overlay({
          visible:false,
+         align: {
+            node: this.buttonWrapper,
+            points: [Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL]
+         },
          zIndex: this.options.zIndex
       });
 
       this.oOverlay.render(this.fieldContainer);
 
       this.oOverlay.on('visibleChange', function (e) {
-
-         if (e.newVal) { // show
-            this.beforeShowOverlay();
-            
-            // required for IE 7 (see hide below)
-            this.calendar.show();
-
-            // align
-            this.oOverlay.set("align", { node: this.buttonWrapper,  points: [Y.WidgetPositionAlign.TL, Y.WidgetPositionAlign.BL] });
-
-            // Activate outside event handler
-            this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', function (e) {
-               // hide the overlay if
-               //   - the target is not the button, and
-               //   - the target is not the readonly input node
-               if (e.target !== this.button && !(this.options.readonly && e.target._node === this.el)) {
-                  this.oOverlay.hide();
-               }
-            }, this);
-         }
-         else { // hide
-            
-            // required for IE 7, else borders of cells will be displayed
-            // even if the overlay isn't shown...
-            this.calendar.hide();
-            
-            if (this.outsideHandler) {
-               this.outsideHandler.detach();
-            }
-            
-         }
-
+         this[e.newVal ? '_onOverlayVisible' : '_onOverlayHidden']();
       }, this);
+   },
+
+   _onClickOutside: function (e) {
+      // hide the overlay if
+      //   - the target is not the button, and
+      //   - the target is not the readonly input node
+      if (e.target !== this.button && !(this.options.readonly && e.target._node === this.el)) {
+         this.oOverlay.hide();
+      }
+   },
+
+   _onOverlayVisible: function () {
+      this.beforeShowOverlay();
+      this.calendar.show(); // required for IE 7 (see hide below)
+      this.outsideHandler = this.oOverlay.get('boundingBox').on('mousedownoutside', this._onClickOutside, this);
+   },
+
+   _onOverlayHidden: function () {
+      // required for IE 7, otherwise cells borders will be displayed
+      // even if the overlay isn't shown...
+      this.calendar.hide();
+      
+      if (this.outsideHandler) {
+         this.outsideHandler.detach();
+      }
    },
 
    /**
