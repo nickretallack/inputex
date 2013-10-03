@@ -35,11 +35,11 @@
    width : 0;
    height : 0;
 }
-@media (max-width: 780px) {
-    .inputEx-responsive-Group .inputEx-Group .inputEx-label {
+@media (max-width: 768px) {
+    .inputEx-responsive .inputEx-Group .inputEx-label {
         width: auto;
     }
-    .inputEx-responsive-Group .inputEx-Field {
+    .inputEx-responsive .inputEx-Field {
         float: right;
     }
 }
