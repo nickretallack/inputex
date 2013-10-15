@@ -1,6 +1,6 @@
 {
    addButtonText: "Añadir",
-   saveText: "Salvar",
+   saveText: "Guardar",
    cancelText: "Cancelar",
    modifyText: "Modificar",
    deleteText: "Eliminar",
