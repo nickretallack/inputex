@@ -10,7 +10,8 @@ YUI.add('inputex-choice', function (Y, NAME) {
 	 * This static class is used to provide basic choices functionnalities such as in "select" and "radio" fields
 	 * We use it by mixin the methods below to the target prototype: 
 	 *  eg.  Y.mix(inputEx.SelectField.prototype, inputEx.mixin.choice);
-	 * It provides the following methods : addChoice, removeChoice, hideChoice, showChoice, disableChoice, enableChoice, and getChoicePosition
+	 * It provides the following methods : addChoice, removeChoice, removeAllChoices, hideChoice, showChoice,
+    * disableChoice, enableChoice, and getChoicePosition
 	 * @class inputEx.mixin.choice
 	 */
 	inputEx.mixin.choice = {
@@ -104,9 +105,21 @@ YUI.add('inputex-choice', function (Y, NAME) {
 			// Remove node from DOM
 			// test if visible first in case we try to remove a hiden choice (already detached from parentNode...)
 			if (choice.visible) {
-			   this.removeChoiceNode(choice.node);
+            this.removeChoiceNode(choice.node);
 			}
-			
+
+		},
+
+		/**
+		 * Remove all choices
+		 * @method removeAllChoices
+		 */
+		removeAllChoices: function () {
+
+         while( this.choicesList.length > 0 ) {
+            this.removeChoice({ position: 0 });
+         }
+
 		},
 		
 		/**
