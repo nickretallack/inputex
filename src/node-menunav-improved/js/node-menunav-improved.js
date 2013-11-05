@@ -138,30 +138,6 @@ Y.extend(NodeMenuNavImproved, Y.Plugin.NodeMenuNav, {
          height: '',
          width: ''
       });
-   },
-   
-   
-   
-   ////////////////////////////
-   // 2. Fix submenu hiding
-   ////////////////////////////
-   _onActiveDescendantChange: function () {
-      /* a lot of stuff removed here... */
-      return false;
-   },
-   
-   _onMenuLabelMouseOut: function () {
-      
-      var menuNav = this,
-          hoverTimer = menuNav._hoverTimer;
-          
-      if (hoverTimer) {
-         hoverTimer.cancel();
-      }
-        
-      menuNav._clearActiveItem();
-      
-      /* a lot of stuff removed here... */
    }
 
 });
