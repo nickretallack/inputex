@@ -106,11 +106,15 @@
 					
 						choice.node.selected = "selected";
 						choiceFound = true;
-						break; // choice node already found
 					
-					} else if (lang.isUndefined(firstIndexAvailable)) {
+					} else {
 					
-						firstIndexAvailable = i;
+						choice.node.selected = "";
+
+						if (lang.isUndefined(firstIndexAvailable)) {
+							firstIndexAvailable = i;
+						}
+					
 					}
 				
 				}
