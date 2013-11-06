@@ -108,12 +108,11 @@ YUI.add('inputex-select', function (Y, NAME) {
 					
 						choice.node.selected = "selected";
 						choiceFound = true;
-						break; // choice node already found
 					
 					} else {
 					
 						choice.node.selected = "";
-					
+
 						if (lang.isUndefined(firstIndexAvailable)) {
 							firstIndexAvailable = i;
 						}
