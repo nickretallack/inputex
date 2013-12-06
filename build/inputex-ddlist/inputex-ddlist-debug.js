@@ -110,6 +110,17 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
       },
 
       /**
+       * @method clear
+       */
+      clear: function (item) {
+         var ul = this.sortable.get('container');
+
+         ul.empty();
+
+         this.sortable.sync();
+      },
+
+      /**
        * @method getValue
        */
       getValue: function () {

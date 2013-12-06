@@ -84,6 +84,7 @@ Y.extend(inputEx.MultiAutoComplete, inputEx.AutoComplete, {
    },
    
    clear: function (sendUpdatedEvt) {
+      this.ddlist.clear();
       this.setValue(lang.isUndefined(this.options.value) ? [] : this.options.value, sendUpdatedEvt);
    },
 
