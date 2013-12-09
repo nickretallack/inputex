@@ -110,7 +110,7 @@
       /**
        * @method clear
        */
-      clear: function (item) {
+      clear: function () {
          var ul = this.sortable.get('container');
 
          ul.empty();
@@ -125,6 +125,27 @@
          return Y.one(this.fieldContainer)
                  .all('.'+DDListField.LIST_ITEM_CLASS+' input')
                  .get('value');
+      },
+
+      /**
+       * Set the value of the DDList
+       * @method setValue
+       * @param {String} value The value to set
+       * @param {boolean} [sendUpdatedEvt] Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
+       */
+      setValue: function (value, sendUpdatedEvt) {
+         this.clear();
+
+         if (Y.Array.test(value) === 1) {
+            Y.Array.each(value, function(item) {
+               this.addItem(item);
+            }, this);
+         } else {
+            this.addItem(value);
+         }
+
+         // Call Field.setValue to set class and fire updated event
+         DDListField.superclass.setValue.call(this, value, sendUpdatedEvt);
       }
 
    });
