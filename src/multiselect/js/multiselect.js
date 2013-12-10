@@ -149,7 +149,17 @@
            this.setValue(lang.isUndefined(this.options.value) ? [] : this.options.value, sendUpdatedEvt);
         },
 
-        /**
+       enable: function() {
+          this.ddlist.enable();
+          inputEx.MultiSelectField.superclass.enable.call(this);
+       },
+
+       disable: function() {
+          this.ddlist.disable();
+          inputEx.MultiSelectField.superclass.disable.call(this);
+       },
+
+       /**
          * Return the value
          * @method getValue
          * @return {Any} an array of selected values

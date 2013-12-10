@@ -34,6 +34,7 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
       '<li class="{class}">' +
          '<span class="inputEx-ddlist-item-label">{label}</span>' +
          '<input type="hidden" name="{name}" value="{value}" />' +
+         '<span class="unselect" >x</span>' +
       '</li>';
 
    Y.extend(DDListField, inputEx.Field, {
@@ -70,11 +71,11 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
             nodes:     '.' + DDListField.LIST_ITEM_CLASS,
             opacity:   '.1'
          });
-         
+
          this.sortable.delegate.dd.on('drag:end', function(e) {
             this.fireUpdatedEvt();
          }, this);
-         
+
       },
 
       /**
@@ -96,17 +97,50 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
          var ul = this.sortable.get('container');
          var a = this.renderListItem('', item);
          var newLi = Y.Node.create(a);
+         newLi.one('.unselect').on('click', this.removeItemCallback, this);
          ul.append(newLi);
          this.sortable.sync();
       },
-      
+
       /**
        * @method removeItem
        */
       removeItem: function (item) {
          // TODO
-         
+
          this.sortable.sync();
+      },
+
+      /**
+       * @method removeItemCallback
+       * @param event
+       */
+      removeItemCallback: function (event) {
+         var wrapper = event.target.ancestor('li'), item;
+
+         if (wrapper) {
+            item = wrapper.one('input').getAttribute('value');
+            wrapper.remove();
+            this.fire('itemRemoved', parseInt(item, 10), this);
+         }
+
+         this.sortable.sync();
+      },
+
+      enable: function() {
+         var ul = this.sortable.get('container');
+         ul.all('.unselect').each(function (i) {
+            i.show();
+         });
+         DDListField.superclass.enable.call(this);
+      },
+
+      disable: function() {
+         var ul = this.sortable.get('container');
+         ul.all('.unselect').each(function (i) {
+            i.hide();
+         });
+         DDListField.superclass.disable.call(this);
       },
 
       /**
@@ -125,8 +159,8 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
        */
       getValue: function () {
          return Y.one(this.fieldContainer)
-                 .all('.'+DDListField.LIST_ITEM_CLASS+' input')
-                 .get('value');
+            .all('.'+DDListField.LIST_ITEM_CLASS+' input')
+            .get('value');
       },
 
       /**
