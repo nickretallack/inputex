@@ -157,6 +157,12 @@ YUI().use(function(Y) {
         ],
         "skinnable": true
     },
+    "inputex-checkbox-multi-state": {
+        "requires": [
+            "base",
+            "inputex-field"
+        ]
+    },
     "inputex-choice": {
         "requires": [
             "inputex"
