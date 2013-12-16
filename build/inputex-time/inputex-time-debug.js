@@ -23,9 +23,7 @@ inputEx.TimeField = function(options) {
    this.gapMinutes  = options.gapMinutes  || 1;
    this.gapSeconds  = options.gapSeconds  || 1;
 
-   var h = [],i, m = [],secs = [],s, separators = [],
-      i, iLength, item;
-      
+   var h = [],i, m = [],secs = [],s, separators = [];
    options.fields = [];
 
    if (this.showHours) {
@@ -39,7 +37,6 @@ inputEx.TimeField = function(options) {
             value: s
          });
       }
-      options.fields.push({type: 'select', choices: h });
    }
 
    if (this.showMinutes) {
@@ -54,7 +51,6 @@ inputEx.TimeField = function(options) {
             value: s
          });
       }
-      options.fields.push({type: 'select', choices: m });
    }
 
    if (this.showSeconds) {
@@ -69,9 +65,14 @@ inputEx.TimeField = function(options) {
             value: s
          });
       }
-      options.fields.push({type: 'select', choices: secs })
    }
 
+
+   if(this.showHours){ options.fields.push({type: 'select', choices: h })}
+   if(this.showMinutes){ options.fields.push({type: 'select', choices: m })}
+   if(this.showSeconds){ options.fields.push({type: 'select', choices: secs })}
+
+   var i, iLength, item;
    separators.push(false);
    for(i = 0, iLength = options.fields.length - 1; i < iLength; i++){
       separators.push(":");
