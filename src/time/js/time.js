@@ -13,16 +13,71 @@
  */
 inputEx.TimeField = function(options) {
    
-   
-   var h = [],i, m = [], secs = [], s;
-   for(i = 0 ; i < 24 ; i++) { s="";if(i<10){s="0";} s+= i;h.push({ value: s });}
-   for(i = 0 ; i < 60 ; i++) { s="";if(i<10){s="0";} s+= i;m.push({ value: s }); secs.push({ value: s });}
-   options.fields = [
-      {type: 'select', choices: h },
-      {type: 'select', choices: m },
-      {type: 'select', choices: secs }
-   ];
-   options.separators = options.separators || [false,":",":",false];
+   this.showHours   = options.showHours    === false ? false : true;
+   this.showMinutes = options.showMinutes  === false ? false : true;
+   this.showSeconds = options.showSeconds  === false ? false : true;
+
+   this.gapHours    = options.gapHours    || 1;
+   this.gapMinutes  = options.gapMinutes  || 1;
+   this.gapSeconds  = options.gapSeconds  || 1;
+
+   var h = [],i, m = [],secs = [],s, separators = [],
+      i, iLength, item;
+      
+   options.fields = [];
+
+   if (this.showHours) {
+      for (i = 0; i < 24; i =  i + this.gapHours) {
+         s = "";
+         if (i < 10) {
+            s = "0";
+         }
+         s += i;
+         h.push({
+            value: s
+         });
+      }
+      options.fields.push({type: 'select', choices: h });
+   }
+
+   if (this.showMinutes) {
+
+      for (i = 0; i < 60; i = i + this.gapMinutes) {
+         s = "";
+         if (i < 10) {
+            s = "0";
+         }
+         s += i;
+         m.push({
+            value: s
+         });
+      }
+      options.fields.push({type: 'select', choices: m });
+   }
+
+   if (this.showSeconds) {
+
+      for (i = 0; i < 60; i = i + this.gapSeconds) {
+         s = "";
+         if (i < 10) {
+            s = "0";
+         }
+         s += i;
+         secs.push({
+            value: s
+         });
+      }
+      options.fields.push({type: 'select', choices: secs })
+   }
+
+   separators.push(false);
+   for(i = 0, iLength = options.fields.length - 1; i < iLength; i++){
+      separators.push(":");
+   }
+   separators.push(false);
+
+   options.separators = options.separators || separators;
+
    inputEx.TimeField.superclass.constructor.call(this,options);
 };
 
