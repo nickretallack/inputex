@@ -8,14 +8,7 @@ YUI.add("node-menunav-improved-test", function (Y) {
 
             name: "node-menunav-improved first test case",
             testGeneration: function () {
-
-                Y.log("test",'debug');
-
-                var instance = new Y.NodeMenunavImproved({
-                });
-
-                Y.Assert.isObject(instance);
-        
+                Y.one("#pim").plug(   (Y.namespace('Plugin')).NodeMenuNavImproved);
             }
         });
 

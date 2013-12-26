@@ -3,20 +3,45 @@
 <head>
     <meta charset="utf-8" />
     <title>node-menunav-improved tests</title>
-    <script src="http://yui.yahooapis.com/3.7.3/build/yui/yui.js"></script>
-    
-    <script src="../../../../build/InputEx-loader/InputEx-loader.js"></script>
+    <script src="http://yui.yahooapis.com/3.9.1/build/yui/yui.js"></script>
+    <script src="../../../../build/inputex-loader/inputex-loader.js"></script>
     
 </head>
 <body class="yui3-skin-sam">
 <h1>node-menunav-improved Tests</h1>
 <div id="testLogger"></div>
+<div class="demo"></div>
+
+
+
+<!-- Simple example from YUI website -->
+<div id="pim" class="yui3-menu">
+    <div class="yui3-menu-content">
+
+        <ul class="first-of-type">
+            <li class="yui3-menuitem"><a class="yui3-menuitem-content" href="http://mail.yahoo.com">Mail</a></li>
+            <li class="yui3-menuitem"><a class="yui3-menuitem-content" href="http://www.zimbra.com">Zimbra</a></li>
+        </ul>
+
+        <ul>
+            <li class="yui3-menuitem"><a class="yui3-menuitem-content" href="http://addressbook.yahoo.com">Address Book</a></li>
+            <li class="yui3-menuitem"><a class="yui3-menuitem-content" href="http://calendar.yahoo.com">Calendar</a></li>
+            <li class="yui3-menuitem"><a class="yui3-menuitem-content" href="http://notepad.yahoo.com">Notepad</a></li>
+        </ul>
+
+        <ul>
+            <li class="yui3-menuitem"><a class="yui3-menuitem-content" href="http://messenger.yahoo.com">Messenger</a></li>
+        </ul>
+
+    </div>
+</div>
+
 <script>
 
 YUI({
     coverage: ['node-menunav-improved'],
     "groups": {
-        'InputEx': {
+        'inputex': {
             base: '../../../../build/'
         }
     },
