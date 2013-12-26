@@ -168,8 +168,6 @@ Y.extend(NodeMenuNavImproved, Y.Plugin.NodeMenuNav, {
 
 });
 
-Y.namespace('Plugin');
-
-Y.Plugin.NodeMenuNavImproved = NodeMenuNavImproved;
+(Y.namespace('Plugin')).NodeMenuNavImproved = NodeMenuNavImproved;
 
 }, '@VERSION@', {"requires": ["event-resize", "node-menunav"]});
