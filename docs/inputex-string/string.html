@@ -94,8 +94,9 @@ How to create a string field.
 	<p>Use the focus method</p>
 	<div class='demoContainer' id='container12'></div>
 	
-	
-	
+	<h2>Message position</h2>
+	<p>Choose the position (string fields min=3 / max=5)</p>
+	<div class='demoContainer' id='container13'></div>	
 
 <script>
 YUI().use('inputex-string',function(Y) { 
@@ -173,7 +174,17 @@ YUI().use('inputex-string',function(Y) {
     exampleDiv.appendChild(button3); 
     Y.on('click', function() { field12.focus(); }, button3);
 
+    // Example 13
+    var field13 = new Y.inputEx.StringField({
+        parentEl: 'container13',
+        messagePosition : "below",
+        showMsg: true,
+        minLength: 3,
+        maxLength: 5,
+        value: 'ab'
+    });
 
+    var exampleDiv = Y.one('#container13');
 
 });
 
@@ -266,7 +277,17 @@ YUI().use('inputex-string',function(Y) {
     exampleDiv.appendChild(button3); 
     Y.on(&#x27;click&#x27;, function() { field12.focus(); }, button3);
 
+    &#x2F;&#x2F; Example 13
+    var field13 = new Y.inputEx.StringField({
+        parentEl: &#x27;container13&#x27;,
+        messagePosition : &quot;below&quot;,
+        showMsg: true,
+        minLength: 3,
+        maxLength: 5,
+        value: &#x27;ab&#x27;
+    });
 
+    var exampleDiv = Y.one(&#x27;#container13&#x27;);
 
 });</pre>
 

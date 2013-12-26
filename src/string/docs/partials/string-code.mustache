@@ -73,6 +73,16 @@ YUI().use('inputex-string',function(Y) {
     exampleDiv.appendChild(button3); 
     Y.on('click', function() { field12.focus(); }, button3);
 
+    // Example 13
+    var field13 = new Y.inputEx.StringField({
+        parentEl: 'container13',
+        messagePosition : "below",
+        showMsg: true,
+        minLength: 3,
+        maxLength: 5,
+        value: 'ab'
+    });
 
+    var exampleDiv = Y.one('#container13');
 
 });
