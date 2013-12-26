@@ -9,14 +9,20 @@
 Release Notes:
 ==============
 
-3.2.0 : not released yet
+4.0.0 : December, 26th 2013
 -------
 
- * I18n
- * Skinnable modules
- * Selleck docs
- * tests
- * YUI 3.9.0
+ * use [shifter](https://github.com/yui/shifter) has a build tool, so module are now : 
+     * internationalizable
+     * theamable
+     * skinnable
+     * easier to test
+ * use [selleck](https://github.com/yui/selleck) has a doc tool
+ * new components : 
+    * inputex-calendarNavigationPlugin
+    * inputex-calendar-week-number-plugin
+    * inplace edit datatable
+    * checkbox-multi-state
  * changed "autocomplete" config on form and string field (+ subclasses), its not a
    boolean anymore, pass a value in ["on", "off", "default"] instead.
  * changed inputEx.browserAutocomplete to contain "on" or "off" (not a boolean anymore)
@@ -27,6 +33,8 @@ Release Notes:
     * integer and number fields properly apply options inherited from string
       (minLength, regexp)
     * remove hack on checkboxes if IE9+ ("change" event is ok now)
+ * more examples
+ * update YUI to 3.9.1
 
 
 3.1.0 : August, 17th 2012
