@@ -29,7 +29,8 @@
             inputEx.MultiSelectField.superclass.renderComponent.call(this);
 
             this.ddlist = new inputEx.DDListField({
-                parentEl: this.fieldContainer
+                parentEl: this.fieldContainer,
+                removable: true
             });
 
         },

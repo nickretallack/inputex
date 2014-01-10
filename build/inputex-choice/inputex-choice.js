@@ -252,6 +252,9 @@ YUI.add('inputex-choice', function (Y, NAME) {
 				
 				// get position of choice with value === config.value
 				position = inputEx.indexOf(config.value, this.choicesList, function (value, opt) {
+					if (Y.Lang.isNumber(opt.value)) {
+					   value = parseInt(value,10);
+					}
 					return opt.value === value;
 				});
 				
