@@ -34,7 +34,7 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
       '<li class="{class}">' +
          '<span class="inputEx-ddlist-item-label">{label}</span>' +
          '<input type="hidden" name="{name}" value="{value}" />' +
-         '<span class="unselect" >x</span>' +
+         '<button class="unselect" style="display: {removable}">x</button>'+
       '</li>';
 
    Y.extend(DDListField, inputEx.Field, {
@@ -48,6 +48,7 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
          this.options.valueKey = options.valueKey || "value";
          this.options.labelKey = options.labelKey || "label";
          this.options.name     = options.name || Y.guid();
+         this.options.removable = options.removable || false;
 
          if (this.options.name.substr(-2) !== '[]') {
             this.options.name += '[]';
@@ -82,11 +83,13 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
        * @method renderListItem
        */
       renderListItem: function (previousValue, currentValue) {
+         var remove = this.options.removable ? '' : 'none';
          return previousValue + Y.Lang.sub(DDListField.LIST_ITEM_TEMPLATE, {
             'class': DDListField.LIST_ITEM_CLASS,
             'value': currentValue[this.options.valueKey],
             'label': currentValue[this.options.labelKey],
-            'name':  this.options.name
+            'name':  this.options.name,
+            'removable': remove
          });
       },
 
@@ -121,7 +124,7 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
          if (wrapper) {
             item = wrapper.one('input').getAttribute('value');
             wrapper.remove();
-            this.fire('itemRemoved', parseInt(item, 10), this);
+            this.fire('itemRemoved', item, this);
          }
 
          this.sortable.sync();
