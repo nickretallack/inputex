@@ -1,4 +1,4 @@
-InputEx
+InputEx [![Build Status](https://travis-ci.org/neyric/inputex.png?branch=shifter)](https://travis-ci.org/neyric/inputex)
 =======
 
 [inputEx](http://neyric.github.com/inputex) is an open-source javascript framework to build fields and forms for web applications using the YUI library.
