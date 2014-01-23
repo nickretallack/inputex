@@ -106,8 +106,25 @@ Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
       if (this.isEmpty()) { return ""; }
       
       var values = inputEx.DateSplitField.superclass.getValue.call(this);
-      
-      return new Date(values[this.yearIndex], values[this.monthIndex]-1, values[this.dayIndex] );
+
+      var year = values[this.yearIndex]; // from the input field
+
+      if (lang.isNumber(year)) {
+         var now_full_year  = (new Date()).getFullYear(), // 2014
+            now_short_year = now_full_year % 100, // 14
+            now_century    = Math.floor(now_full_year / 100); // 20
+
+         if (year < 100) {
+            if (year > now_short_year) {
+               year = (now_century - 1) * 100 + year;
+            } else {
+               year = now_century * 100 + year;
+            }
+         }
+      }
+
+
+      return new Date(year, values[this.monthIndex]-1, values[this.dayIndex] );
    },
    
    /**
