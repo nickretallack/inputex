@@ -3,7 +3,7 @@ node_js:
     - "0.8"
     - "0.10"
 script:
-    - grunt travis
+    - grunt test
 git:
     depth: 30
 branches:
