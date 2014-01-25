@@ -3,6 +3,10 @@
     "version": "4.0.0",
     "description": "",
     "author": "Eric Abouaf <eric.abouaf@clicrdv.com>",
+    "repository": {
+        "type" : "git",
+        "url" : "https://github.com/neyric/inputex.git"
+    },
     "preferGlobal": true,
     "dependencies": {
         "yui": "3.14.1"

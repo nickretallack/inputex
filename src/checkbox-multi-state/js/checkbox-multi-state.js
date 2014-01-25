@@ -4,9 +4,10 @@
  */
 
 /**
- * Checkbox-multi-state
+ * Create a checkbox with 3 states (checked, unchecked, middle)
  *
- * @class Checkbox-multi-state
+ * @class inputEx.CheckboxMultiState
+ * @extends inputEx.Field
  * @constructor
  */
 var CheckboxMultiState = new Y.Base.create("checkbox-multi-state", Y.inputEx.Field, [], {

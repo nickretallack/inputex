@@ -21,4 +21,17 @@ Resources
  * Blog: [http://javascript.neyric.com/blog/category/inputex/](http://javascript.neyric.com/blog/category/inputex/)
  * Forum: [http://groups.google.com/group/inputex/](http://groups.google.com/group/inputex/)
 
+Contribute
+==========
+
+See the [developer guide](https://github.com/neyric/inputex/docs/developer-guide.html)
+
+Release process
+==============
+
+See the [developer guide](https://github.com/neyric/inputex/docs/developer-guide.html)
+
+Apply all the steps to build the modules, generate the docs, run the tests, then merge & push the `gh-pages` branch!
+
+
 Copyright (c) 2007-2014 eric.abouaf at gmail.com, released under the MIT license
