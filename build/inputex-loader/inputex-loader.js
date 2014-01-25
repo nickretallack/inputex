@@ -6,7 +6,6 @@ YUI().use(function(Y) {
          'inputex': {
             base: 'inputex/src/',
             combine: false,
-            filter: "RAW",
             modules: {
     "inputex": {
         "requires": [

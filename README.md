@@ -21,4 +21,4 @@ Resources
  * Blog: [http://javascript.neyric.com/blog/category/inputex/](http://javascript.neyric.com/blog/category/inputex/)
  * Forum: [http://groups.google.com/group/inputex/](http://groups.google.com/group/inputex/)
 
-Copyright (c) 2007-2011 eric.abouaf at gmail.com, released under the MIT license
+Copyright (c) 2007-2014 eric.abouaf at gmail.com, released under the MIT license

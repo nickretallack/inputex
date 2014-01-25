@@ -5,16 +5,16 @@
 
     "yuiBuildUrl"     : "build",
     "yuiLocalBuildUrl": "build",
-    "yuiVersion"      : "3.9.1",
-    "inputexVersion"   : "3.2.0",
-    "yuiSeedUrl"      : "http://yui.yahooapis.com/3.9.1/build/yui/yui-min.js",
+    "yuiVersion"      : "3.14.1",
+    "inputexVersion"  : "4.0.0",
+    "yuiSeedUrl"      : "http://yui.yahooapis.com/3.14.1/build/yui/yui-min.js",
     
     "inputexSeedUrl" : "../build/inputex-loader/inputex-loader.js",
 
     "componentDefaults": {
         "yuiBuildUrl"     : "../build",
         "yuiLocalBuildUrl": "../build",
-        "yuiSeedUrl"      : "http://yui.yahooapis.com/3.9.1/build/yui/yui-min.js",
+        "yuiSeedUrl"      : "http://yui.yahooapis.com/3.14.1/build/yui/yui-min.js",
         "inputexSeedUrl" : "../../build/inputex-loader/inputex-loader.js"
     },
 

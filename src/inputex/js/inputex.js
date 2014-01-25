@@ -53,7 +53,7 @@
   
   Y.mix(Y.inputEx, {
 
-     VERSION: "3.1.0",
+     VERSION: "4.0.0",
      
      /**
       * Url to the spacer image. This url schould be changed according to your project directories
