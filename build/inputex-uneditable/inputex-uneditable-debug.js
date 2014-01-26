@@ -3,8 +3,7 @@ YUI.add('inputex-uneditable', function (Y, NAME) {
 /**
  * @module inputex-uneditable
  */
-  var lang = Y.Lang,
-      inputEx = Y.inputEx;
+var inputEx = Y.inputEx;
 
 /**
  * Create a uneditable field where you can stick the html you want
@@ -18,7 +17,7 @@ YUI.add('inputex-uneditable', function (Y, NAME) {
  * @param {Object} options inputEx.Field options object
  */
 inputEx.UneditableField = function(options) {
-	inputEx.UneditableField.superclass.constructor.call(this,options);
+   inputEx.UneditableField.superclass.constructor.call(this,options);
 };
 Y.extend(inputEx.UneditableField, inputEx.Field, {
    
@@ -27,7 +26,7 @@ Y.extend(inputEx.UneditableField, inputEx.Field, {
     * @method setOptions
     * @param {Object} options Options object as passed to the constructor
     */
-	setOptions: function(options) {
+   setOptions: function(options) {
       inputEx.UneditableField.superclass.setOptions.call(this,options);
       this.options.visu = options.visu;
    },
@@ -36,14 +35,15 @@ Y.extend(inputEx.UneditableField, inputEx.Field, {
     * Store the value and update the visu
     * @method setValue
     * @param {Any} val The value that will be sent to the visu
-    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
+    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event
+    * or not (default is true, pass false to NOT send the event)
     */
    setValue: function(val, sendUpdatedEvt) {
       this.value = val;
       
       inputEx.renderVisu(this.options.visu, val, this.fieldContainer);
       
-	   inputEx.UneditableField.superclass.setValue.call(this, val, sendUpdatedEvt);
+      inputEx.UneditableField.superclass.setValue.call(this, val, sendUpdatedEvt);
    },
    
    /**

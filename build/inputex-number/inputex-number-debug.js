@@ -3,8 +3,8 @@ YUI.add('inputex-number', function (Y, NAME) {
 /**
  * @module inputex-number
  */
-  var lang = Y.Lang,
-      inputEx = Y.inputEx;
+var lang = Y.Lang,
+    inputEx = Y.inputEx;
 
 /**
  * A field limited to number inputs (floating)
@@ -35,7 +35,7 @@ Y.extend(inputEx.NumberField, inputEx.StringField, {
     * @return {Number} The parsed float
     */
    getValue: function() {
-	
+      
       var str_value;
       
       // StringField getValue (handles typeInvite and trim options)

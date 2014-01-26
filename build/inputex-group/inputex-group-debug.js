@@ -3,9 +3,9 @@ YUI.add('inputex-group', function (Y, NAME) {
 /**
  * @module inputex-group
  */
-   var lang = Y.Lang,
-       inputEx = Y.inputEx;
-       
+var lang = Y.Lang,
+    inputEx = Y.inputEx;
+
 /**
  * Handle a group of fields
  * @class inputEx.Group
@@ -13,7 +13,9 @@ YUI.add('inputex-group', function (Y, NAME) {
  * @constructor
  * @param {Object} options The following options are added for Groups and subclasses:
  * <ul>
- *   <li>fields: Array of input fields declared like { label: 'Enter the value:' , type: 'text' or fieldClass: inputEx.Field, optional: true/false, ... }</li>
+ *   <li>fields: Array of input fields declared like
+ *       { label: 'Enter the value:' , type: 'text' or fieldClass: inputEx.Field, optional: true/false, ... }
+ *   </li>
  *   <li>legend: The legend for the fieldset (default is an empty string)</li>
  *   <li>collapsible: Boolean to make the group collapsible (default is false)</li>
  *   <li>collapsed: If collapsible only, will be collapsed at creation (default is false)</li>
@@ -84,12 +86,14 @@ Y.extend(inputEx.Group, inputEx.Field, {
     */
    renderFields: function(parentEl) {
       
+      var collapseImg, i, fieldOptions;
+
       this.fieldset = inputEx.cn('fieldset');
       this.legend = inputEx.cn('legend', {className: 'inputEx-Group-legend'});
    
       // Option Collapsible
       if(this.options.collapsible) {
-         var collapseImg = inputEx.cn('div', {className: 'inputEx-Group-collapseImg'}, null, ' ');
+         collapseImg = inputEx.cn('div', {className: 'inputEx-Group-collapseImg'}, null, ' ');
          this.legend.appendChild(collapseImg);
          inputEx.sn(this.fieldset,{className:'inputEx-Expanded'});
       }
@@ -106,8 +110,8 @@ Y.extend(inputEx.Group, inputEx.Field, {
         throw new Error("Missing 'fields' property in options");
       }
       // Iterate this.createInput on input fields
-      for (var i = 0 ; i < this.options.fields.length ; i++) {
-         var fieldOptions = this.options.fields[i];
+      for (i = 0 ; i < this.options.fields.length ; i++) {
+         fieldOptions = this.options.fields[i];
          
          // Throw Error if input is undefined
          if(!fieldOptions) {
@@ -133,9 +137,9 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * @param {Object} fieldOptions The field properties as required by the inputEx() method
     */
    addField: function(fieldOptions) {
-		var field = this.renderField(fieldOptions);
+      var field = this.renderField(fieldOptions);
       this.fieldset.appendChild(field.getEl());
-	},
+   },
 
    /**
     * Instanciate one field given its parameters, type or fieldClass
@@ -147,7 +151,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
       // Instanciate the field
       var fieldInstance = inputEx(fieldOptions,this);
       
-	   this.inputs.push(fieldInstance);
+      this.inputs.push(fieldInstance);
       this.inputsLength += 1;
       
       // Create an index to access fields by their name
@@ -202,34 +206,36 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * @return {Boolean} true if all fields validate and required fields are not empty
     */
    validate: function() {
-      var response = true;
+
+      var i, input, state, response = true;
 
       // Validate all the sub fields
-      for (var i = 0; i < this.inputsLength; i++) {
-         var input = this.inputs[i];
+      for (i = 0; i < this.inputsLength; i++) {
+         input = this.inputs[i];
          if (!input.isDisabled()) {
-            var state = input.getState();
+            state = input.getState();
             input.setClassFromState(state); // update field classes (mark invalid fields...)
-            if (state == inputEx.stateRequired || state == inputEx.stateInvalid) {
+            if (state === inputEx.stateRequired || state === inputEx.stateInvalid) {
                response = false; // but keep looping on fields to set classes
             }
          }
       }
       return response;
    },
-	
-	/**
-	 * Alternative method to validate for advanced error handling
-	 * @method getFieldsStates
-	 * @return {Object} with all Forms's fields state, error message
-	 * and validate containing a boolean for the global Form validation
-	 */
-	getFieldsStates: function() {
-		var input, inputName, state, message,
-		returnedObj = { fields:{}, validate:true };
+   
+   /**
+    * Alternative method to validate for advanced error handling
+    * @method getFieldsStates
+    * @return {Object} with all Forms's fields state, error message
+    * and validate containing a boolean for the global Form validation
+    */
+   getFieldsStates: function() {
+      
+      var input, inputName, state, message, i,
+          returnedObj = { fields:{}, validate:true };
       
       // Loop on all the sub fields
-      for (var i = 0 ; i < this.inputsLength; i++) {
+      for (i = 0 ; i < this.inputsLength; i++) {
          
          input = this.inputs[i];
          inputName = input.options.name;
@@ -241,7 +247,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
          returnedObj.fields[inputName].message = message;
          
          // check if subfield validates
-         if( state == inputEx.stateRequired || state == inputEx.stateInvalid ) {
+         if( state === inputEx.stateRequired || state === inputEx.stateInvalid ) {
             returnedObj.fields[inputName].valid = false;
             returnedObj.validate = false;
          }
@@ -249,7 +255,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
       }
 
       return returnedObj;
-	},
+   },
    
    /**
     * Enable all fields in the group
@@ -275,27 +281,31 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * Set the values of each field from a key/value hash object
     * @method setValue
     * @param {Any} value The group value
-    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
+    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire
+    * the 'updated' event or not (default is true, pass false to NOT send the event)
     */
    setValue: function(oValues, sendUpdatedEvt) {
+
+      var i, field, name;
+
       if(!oValues) {
          return;
       }
-	   for (var i = 0 ; i < this.inputsLength; i++) {
-	      var field = this.inputs[i];
-	      var name = field.options.name;
-	      if(name && !lang.isUndefined(oValues[name]) ) {
-	         field.setValue(oValues[name], false); // don't fire the updated event !
-	      }
-	      else {
-	         field.clear(false);
-	      }
+      for (i = 0 ; i < this.inputsLength; i++) {
+         field = this.inputs[i];
+         name = field.options.name;
+         if(name && !lang.isUndefined(oValues[name]) ) {
+            field.setValue(oValues[name], false); // don't fire the updated event !
+         }
+         else {
+            field.clear(false);
+         }
       }
       
       this.runFieldsInteractions();
       
-	   if(sendUpdatedEvt !== false) {
-	      // fire update event
+      if(sendUpdatedEvt !== false) {
+         // fire update event
          this.fireUpdatedEvt();
       }
    },
@@ -305,19 +315,22 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * @method getValue
     */
    getValue: function() {
-	   var o = {};
-	   for (var i = 0; i < this.inputsLength; i++) {
-	      var v = this.inputs[i].getValue();
-	      if (this.inputs[i].options.name) {
-	         if (this.inputs[i].options.flatten && lang.isObject(v)) {
-	            Y.mix(o, v);
-	         }
-	         else {
-		         o[this.inputs[i].options.name] = v;
-	         }
-	      }
+
+      var i, v, o = {};
+
+      for (i = 0; i < this.inputsLength; i++) {
+         v = this.inputs[i].getValue();
+         if (this.inputs[i].options.name) {
+            if (this.inputs[i].options.flatten && lang.isObject(v)) {
+               Y.mix(o, v);
+            }
+            else {
+               o[this.inputs[i].options.name] = v;
+            }
+         }
       }
-	   return o;
+
+      return o;
    },
 
    /**
@@ -327,10 +340,10 @@ Y.extend(inputEx.Group, inputEx.Field, {
     */
    isEmpty: function () {
 
-      var empty = true,
-          i, n = this.inputsLength;
+      var i,
+          empty = true;
 
-      for (i = 0; i < n; i++) {
+      for (i = 0; i < this.inputsLength; i++) {
          empty = empty && this.inputs[i].isEmpty();
       }
 
@@ -378,13 +391,13 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * @param {Boolean} descendOnly Set true to only look at children of this group
     */
    findFieldByName: function(fieldName, descendOnly) {
-      var search = this,
-          parent,
-          field;
+      var group, i, parent, field,
+          search = this,
+          inputs = this.inputs;
 
       if (descendOnly) {
          if (this.inputsNames.hasOwnProperty(fieldName) && (field = this.inputsNames[fieldName])) {
-            for (var group, inputs = this.inputs, i = 0, len = this.inputsLength; i < len; ++i) {
+            for (i = 0; i < this.inputsLength; ++i) {
                group = inputs[i];
                if (lang.isFunction(group.getFieldByName) &&
                      (field = group.getFieldByName(fieldName, true))) {
@@ -409,7 +422,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * Called when one of the group subfields is updated.
     * @method onChange
     * @param {String} eventName Event name
-    * @param {Array} args Array of [fieldValue, fieldInstance] 
+    * @param {Array} args Array of [fieldValue, fieldInstance]
     */
    onChange: function(fieldValue, fieldInstance) {
 
@@ -448,17 +461,21 @@ Y.extend(inputEx.Group, inputEx.Field, {
     */
    runInteractions: function(fieldInstance,fieldValue) {
       
-      var index = inputEx.indexOf(fieldInstance, this.inputs);
-      var fieldConfig = this.options.fields[index];
+      var interactions,
+          interaction,
+          i, iLength,
+          j, jLength,
+          index = inputEx.indexOf(fieldInstance, this.inputs),
+          fieldConfig = this.options.fields[index];
 
-      if(lang.isUndefined(fieldConfig) || lang.isUndefined(fieldConfig.interactions) ) return;
+      if (lang.isUndefined(fieldConfig) || lang.isUndefined(fieldConfig.interactions)) { return; }
       
       // Let's run the interactions !
-      var interactions = fieldConfig.interactions;
-      for(var i = 0 ; i < interactions.length ; i++) {
-         var interaction = interactions[i];
-         if(interaction.valueTrigger === fieldValue) {
-            for(var j = 0 ; j < interaction.actions.length ; j++) {
+      interactions = fieldConfig.interactions;
+      for (i = 0, iLength = interactions.length; i < iLength; i++) {
+         interaction = interactions[i];
+         if (interaction.valueTrigger === fieldValue) {
+            for (j = 0, jLength = interaction.actions.length; j < jLength; j++) {
                this.runAction(interaction.actions[j], fieldValue);
             }
          }
@@ -478,64 +495,66 @@ Y.extend(inputEx.Group, inputEx.Field, {
       }
    },
    
-	/**
-	 * Clear all subfields
-	 * @method clear
-	 * @param {boolean} [sendUpdatedEvt] (optional) Wether this clear should fire the 'updated' event or not (default is true, pass false to NOT send the event)
-	 */
-	clear: function(sendUpdatedEvt) {
-	   for (var i = 0; i < this.inputsLength; i++) {
-	      this.inputs[i].clear(false);
-	   }
-	   if (sendUpdatedEvt !== false) {
-	      // fire update event
+   /**
+    * Clear all subfields
+    * @method clear
+    * @param {boolean} [sendUpdatedEvt] (optional) Wether this clear should fire the
+    * 'updated' event or not (default is true, pass false to NOT send the event)
+    */
+   clear: function(sendUpdatedEvt) {
+      for (var i = 0; i < this.inputsLength; i++) {
+         this.inputs[i].clear(false);
+      }
+      if (sendUpdatedEvt !== false) {
+         // fire update event
          this.fireUpdatedEvt();
       }
-	},
-	
-	/**
-	 * Write error messages for fields as specified in the hash
-	 * @method setErrors
-	 * @param {Object || Array} errors Hash object containing error messages as Strings referenced by the field name, or array [ ["fieldName", "Message"], ...]
-	 */
-	setErrors: function(errors) {	
-		var i,k;
-		if(lang.isArray(errors)) {
-			for(i = 0 ; i < errors.length ; i++) {
-				k = errors[i][0];
-				value = errors[i][1];
-				if(this.inputsNames[k]) {
-					if(this.inputsNames[k].options.showMsg) {
-						this.inputsNames[k].displayMessage(value);
-						Y.one(this.inputsNames[k].divEl).replaceClass("inputEx-valid", "inputEx-invalid" );
-					}
-				}
-			}
-		}
-		else if(lang.isObject(errors)) {
-			for(k in errors) {
-				if(errors.hasOwnProperty(k)) {
-					if(this.inputsNames[k]) {
-						if(this.inputsNames[k].options.showMsg) {
-							this.inputsNames[k].displayMessage(errors[k]);
-							Y.one(this.inputsNames[k].divEl).replaceClass("inputEx-valid", "inputEx-invalid" );
-						}
-					}
-				}
-			}
-		}
-	},
-	
+   },
+   
+   /**
+    * Write error messages for fields as specified in the hash
+    * @method setErrors
+    * @param {Object || Array} errors Hash object containing error messages as Strings
+    * referenced by the field name, or array [ ["fieldName", "Message"], ...]
+    */
+   setErrors: function(errors) {
+      var i,k;
+      if(lang.isArray(errors)) {
+         for(i = 0 ; i < errors.length ; i++) {
+            k = errors[i][0];
+            value = errors[i][1];
+            if(this.inputsNames[k]) {
+               if(this.inputsNames[k].options.showMsg) {
+                  this.inputsNames[k].displayMessage(value);
+                  Y.one(this.inputsNames[k].divEl).replaceClass("inputEx-valid", "inputEx-invalid" );
+               }
+            }
+         }
+      }
+      else if(lang.isObject(errors)) {
+         for(k in errors) {
+            if(errors.hasOwnProperty(k)) {
+               if(this.inputsNames[k]) {
+                  if(this.inputsNames[k].options.showMsg) {
+                     this.inputsNames[k].displayMessage(errors[k]);
+                     Y.one(this.inputsNames[k].divEl).replaceClass("inputEx-valid", "inputEx-invalid" );
+                  }
+               }
+            }
+         }
+      }
+   },
+   
    /**
     * Compatibility with classic forms in listField for instance
     * @method setFieldName
     */
-    setFieldName: function(name){
-			var l = this.inputsLength;
-			for (var i = 0; i < l; i++){
-				this.inputs[i].setFieldName(name+""+((this.inputs[i].el && this.inputs[i].el.name )|| "group-"+i ));
-			}
-    },
+   setFieldName: function(name){
+      var i, l = this.inputsLength;
+      for (i = 0; i < l; i++){
+         this.inputs[i].setFieldName(name+""+((this.inputs[i].el && this.inputs[i].el.name )|| "group-"+i ));
+      }
+   },
    
    /**
     * Purge all event listeners and remove the component from the dom
@@ -546,7 +565,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
       var i, length, field;
       
       // Recursively destroy inputs
-      for (i = 0, length = this.inputsLength; i < length ; i++) {
+      for (i = 0, length = this.inputsLength; i < length; i++) {
          field = this.inputs[i];
          field.destroy();
       }

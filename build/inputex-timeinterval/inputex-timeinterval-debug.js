@@ -3,8 +3,7 @@ YUI.add('inputex-timeinterval', function (Y, NAME) {
 /**
  * @module inputex-timeinterval
  */
-   var lang = Y.Lang,
-       inputEx = Y.inputEx;
+var inputEx = Y.inputEx;
 
 /**
  * A field limited to number inputs (floating)
@@ -27,20 +26,30 @@ Y.extend(inputEx.TimeIntervalField, inputEx.CombineField, {
     */
    setOptions: function(options) {
       
+      var i,
+          unitsStr,
+          units = inputEx.TimeIntervalField.units,
+          choices = [];
+
       inputEx.TimeIntervalField.superclass.setOptions.call(this,options);
       
+
       this.messages = Y.mix(this.messages, Y.Intl.get("inputex-timeinterval"));
 
-      var units = inputEx.TimeIntervalField.units;
-      var unitsStr = this.messages.timeUnits;
+      unitsStr = this.messages.timeUnits;
       
       this.options.unit = options.unit || units.SECOND;
       
       
-      var n=[]; for(var i=1;i<=60;i++){ n.push({ value : i }); }
+      for (i = 1; i <= 60; i++) {
+         choices.push({ value : i });
+      }
       
       this.options.fields = options.fields || [
-         {type: 'select', choices: n },
+         {
+            type: 'select',
+            choices: choices
+         },
          {
             type: 'select',
             choices: [
@@ -71,34 +80,35 @@ Y.extend(inputEx.TimeIntervalField, inputEx.CombineField, {
     * Set the value of both subfields
     * @method setValue
     * @param {Number} val The time interval integer (with the given unit)
-    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
+    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event
+    * or not (default is true, pass false to NOT send the event)
     */
    setValue: function(val, sendUpdatedEvt) {
-      var seconds = (typeof val == "string" ? parseFloat(val,10) : val)*this.options.unit;
-      var units = inputEx.TimeIntervalField.units;
-      var selectedUnit,n;
+      var seconds = (typeof val === "string" ? parseFloat(val,10) : val)*this.options.unit,
+          units = inputEx.TimeIntervalField.units,
+          selectedUnit, n;
       
-      if(seconds < units.SECOND) {
+      if (seconds < units.SECOND) {
          selectedUnit = units.SECOND;
-         n=1;
+         n = 1;
       }
       else {
-			
-			if (seconds % units.YEAR === 0) {
-				selectedUnit = units.YEAR;
-			} else if (seconds % units.MONTH === 0) {
-				selectedUnit = units.MONTH;
-			} else if (seconds % units.DAY === 0) {
-				selectedUnit = units.DAY;
-			} else if (seconds % units.HOUR === 0) {
-				selectedUnit = units.HOUR;
-			} else if (seconds % units.MINUTE === 0) {
-				selectedUnit = units.MINUTE;
-			} else {
-				selectedUnit = units.SECOND;
-			}
-			n=Math.floor(seconds/selectedUnit);
-		}
+         
+         if (seconds % units.YEAR === 0) {
+            selectedUnit = units.YEAR;
+         } else if (seconds % units.MONTH === 0) {
+            selectedUnit = units.MONTH;
+         } else if (seconds % units.DAY === 0) {
+            selectedUnit = units.DAY;
+         } else if (seconds % units.HOUR === 0) {
+            selectedUnit = units.HOUR;
+         } else if (seconds % units.MINUTE === 0) {
+            selectedUnit = units.MINUTE;
+         } else {
+            selectedUnit = units.SECOND;
+         }
+         n = Math.floor(seconds/selectedUnit);
+      }
 
       inputEx.TimeIntervalField.superclass.setValue.call(this, [n, selectedUnit], sendUpdatedEvt);
    }

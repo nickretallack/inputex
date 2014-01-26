@@ -3,8 +3,8 @@ YUI.add('inputex-datesplit', function (Y, NAME) {
 /**
  * @module inputex-datesplit
  */
-  var lang = Y.Lang,
-      inputEx = Y.inputEx;
+var lang = Y.Lang,
+    inputEx = Y.inputEx;
 
 /**
  * inputEx.DateSplitField
@@ -13,11 +13,11 @@ YUI.add('inputex-datesplit', function (Y, NAME) {
  */
 inputEx.DateSplitField = function(options) {
 
-    // The ressource bundle is loaded here because
-    // DateSplitField needs them to construct his fields
+   // The ressource bundle is loaded here because
+   // DateSplitField needs them to construct his fields
 
-    // this.messages will be overridden by the constructor of Field and re-loaded and mix in setOptions
-    this.messages = Y.Intl.get("inputex-datesplit");
+   // this.messages will be overridden by the constructor of Field and re-loaded and mix in setOptions
+   this.messages = Y.Intl.get("inputex-datesplit");
 
    if(!options.dateFormat) {options.dateFormat = this.messages.defaultDateFormat; }
    
@@ -41,29 +41,29 @@ inputEx.DateSplitField = function(options) {
 
    options.separators = options.separators || [false,"&nbsp;","&nbsp;",false];
    
-	inputEx.DateSplitField.superclass.constructor.call(this,options);
+   inputEx.DateSplitField.superclass.constructor.call(this,options);
 
    this.initAutoTab();
 };
 
 Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
    
-    /**
-     * @method setOptions
-     */
-    setOptions: function(options) {
+   /**
+    * @method setOptions
+    */
+   setOptions: function(options) {
       inputEx.DateSplitField.superclass.setOptions.call(this, options);
 
       //I18N
       this.messages = Y.mix(this.messages, Y.Intl.get("inputex-datesplit"));
-    },
+   },
 
    /**
-	 * Set the value. Format the date according to options.dateFormat
-	 * @method setValue
-	 * @param {Date} val Date to set
-	 * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
-	 */
+    * Set the value. Format the date according to options.dateFormat
+    * @method setValue
+    * @param {Date} val Date to set
+    * @param {boolean} [sendUpdatedEvt] (optional) Wether this setValue should fire the 'updated' event or not (default is true, pass false to NOT send the event)
+    */
    setValue: function(value, sendUpdatedEvt) {
       var values = [];
       
@@ -123,7 +123,6 @@ Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
          }
       }
 
-
       return new Date(year, values[this.monthIndex]-1, values[this.dayIndex] );
    },
    
@@ -155,50 +154,50 @@ Y.extend(inputEx.DateSplitField, inputEx.CombineField, {
       // val == "Invalid Date" -> false
       return (val != "Invalid Date");
    },
-	
-	/**
+   
+   /**
     * @method initAutoTab
     */
-	initAutoTab: function() {
-	   // "keypress" event codes for numeric keys (keyboard & numpad)
-	   //  (warning : "keydown" codes are different with numpad)
-	   var numKeyCodes = [48,49,50,51,52,53,54,55,56,57];
-	   
+   initAutoTab: function() {
+      // "keypress" event codes for numeric keys (keyboard & numpad)
+      //  (warning : "keydown" codes are different with numpad)
+      var numKeyCodes = [48,49,50,51,52,53,54,55,56,57];
+      
       // verify charCode (don't auto tab when pressing "tab", "arrow", etc...)
-	   var checkNumKey = function(charCode) {
-   	   for (var i=0, length=numKeyCodes.length; i < length; i++) {
-   	      if (charCode == numKeyCodes[i]) return true;
-   	   }
-   	   return false;       
-	   };
-	   
-	   // Function that checks charCode and execute tab action
-	   var that = this;
-	   var autoTab = function(inputIndex) {
+      var checkNumKey = function(charCode) {
+         for (var i=0, length=numKeyCodes.length; i < length; i++) {
+            if (charCode == numKeyCodes[i]) return true;
+         }
+         return false;       
+      };
+      
+      // Function that checks charCode and execute tab action
+      var that = this;
+      var autoTab = function(inputIndex) {
          // later to let input update its value
-   	   lang.later(0, that, function() {
-      	   var input = that.inputs[inputIndex];
-      	   
-      	   // check input.el.value (string) because getValue doesn't work
-      	   // example : if input.el.value == "06", getValue() == 6 (length == 1 instead of 2)
-      	   if (input.el.value.length == input.options.size) {
-      	      that.inputs[inputIndex+1].focus();
-      	   }
-   	   });
-	   };
-	   
-	   // add listeners on inputs
-	   Y.one(this.inputs[0].el).on("keypress", function(e) {
-	      if (checkNumKey(e.charCode)) {
+         lang.later(0, that, function() {
+            var input = that.inputs[inputIndex];
+            
+            // check input.el.value (string) because getValue doesn't work
+            // example : if input.el.value == "06", getValue() == 6 (length == 1 instead of 2)
+            if (input.el.value.length == input.options.size) {
+               that.inputs[inputIndex+1].focus();
+            }
+         });
+      };
+      
+      // add listeners on inputs
+      Y.one(this.inputs[0].el).on("keypress", function(e) {
+         if (checkNumKey(e.charCode)) {
             autoTab(0);
          }
-   	}, this, true);
-	   Y.one(this.inputs[1].el).on("keypress", function(e) {
-	      if (checkNumKey(e.charCode)) {
+      }, this, true);
+      Y.one(this.inputs[1].el).on("keypress", function(e) {
+         if (checkNumKey(e.charCode)) {
             autoTab(1);
          }
-   	}, this, true);
-	}
+      }, this, true);
+   }
    
 });
 

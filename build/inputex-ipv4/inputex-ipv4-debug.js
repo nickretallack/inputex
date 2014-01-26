@@ -3,8 +3,7 @@ YUI.add('inputex-ipv4', function (Y, NAME) {
 /**
  * @module inputex-ipv4
  */
-   var lang = Y.Lang,
-       inputEx = Y.inputEx;
+var inputEx = Y.inputEx;
 
 /**
  * Adds an IPv4 address regexp
@@ -14,7 +13,7 @@ YUI.add('inputex-ipv4', function (Y, NAME) {
  * @param {Object} options inputEx.Field options object
  */
 inputEx.IPv4Field = function(options) {
-	inputEx.IPv4Field.superclass.constructor.call(this,options);
+   inputEx.IPv4Field.superclass.constructor.call(this,options);
 };
 Y.extend(inputEx.IPv4Field, inputEx.StringField, {
    

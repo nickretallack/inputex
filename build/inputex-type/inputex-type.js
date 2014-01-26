@@ -3,8 +3,8 @@ YUI.add('inputex-type', function (Y, NAME) {
 /**
  * @module inputex-type
  */
-   var lang = Y.Lang,
-       inputEx = Y.inputEx;
+var lang = Y.Lang,
+    inputEx = Y.inputEx;
 
 /**
  * TypeField is a field to create fields. The user can create any value he wants by switching fields.
@@ -54,12 +54,12 @@ Y.extend(inputEx.TypeField, inputEx.Field, {
    },
    
    /**
-    * Adds 2 event listeners: 
+    * Adds 2 event listeners:
     *  - on the button to toggel the propertiesPanel
     * @method initEvents
     */
    initEvents: function() {
-      inputEx.TypeField.superclass.initEvents.call(this); 
+      inputEx.TypeField.superclass.initEvents.call(this);
       
       // "Toggle the properties panel" button :
       Y.one(this.button).on('click', this.onTogglePropertiesPanel, this, true);
@@ -139,7 +139,7 @@ Y.extend(inputEx.TypeField, inputEx.Field, {
     */
    onChangeGroupOptions: function() {
       
-      // Update the field value 
+      // Update the field value
       this.updateFieldValue();
       
       // Fire "updated" event
@@ -171,10 +171,10 @@ Y.extend(inputEx.TypeField, inputEx.Field, {
          // Refire the event when the fieldValue is updated
          this.fieldValue.on('updated', this.fireUpdatedEvt, this, true);
       }
-      catch(ex) {	
+      catch(ex) {
          if(Y.Lang.isObject(window["console"]) && Y.Lang.isFunction(window["console"]["log"]) ) {
-         	console.log("Error while updateFieldValue", ex.message);
-			}
+            console.log("Error while updateFieldValue", ex.message);
+         }
       }
    },
    
@@ -200,18 +200,18 @@ Y.extend(inputEx.TypeField, inputEx.Field, {
       this.updateFieldValue();
       
       // Set field value :
-		// fix it for default value (because updateFieldValue is called after first setValue)
- 		var that = this;      
+      // fix it for default value (because updateFieldValue is called after first setValue)
+      var that = this;
 
       // New prefered way to describe a field
       if (!lang.isUndefined(value.value)) {
-			setTimeout(function(){
-				that.fieldValue.setValue(value.value, false);
-			}, 50);
+         setTimeout(function(){
+            that.fieldValue.setValue(value.value, false);
+         }, 50);
       }
       
-	   if(sendUpdatedEvt !== false) {
-	      // fire update event
+      if(sendUpdatedEvt !== false) {
+         // fire update event
          this.fireUpdatedEvt(false);
       }
    },

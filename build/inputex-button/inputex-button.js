@@ -2,9 +2,9 @@ YUI.add('inputex-button', function (Y, NAME) {
 
 /**
  * @module inputex-button
- */   
-   var lang = Y.Lang,
-       inputEx = Y.inputEx;
+ */
+var lang = Y.Lang,
+    inputEx = Y.inputEx;
 
 /**
  * Create a button
@@ -12,13 +12,16 @@ YUI.add('inputex-button', function (Y, NAME) {
  * @constructor
  * @param {Object} options The following options are available for Button :
  * <ul>
- * 	<li><b>id</b>: id of the created A element (default is auto-generated)</li>
- * 	<li><b>className</b>: CSS class added to the button (default is either "inputEx-Button-Link" or "inputEx-Button-Submit-Link", depending on "type")</li>
- * 	<li><b>parentEl</b>: The DOM element where we should append the button</li>
- * 	<li><b>type</b>: "link", "submit-link" or "submit"</li>
- * 	<li><b>value</b>: text displayed inside the button</li>
- * 	<li><b>disabled</b>: Disable the button after creation</li>
- * 	<li><b>onClick</b>: Custom click event handler</li>
+ *    <li><b>id</b>: id of the created A element (default is auto-generated)</li>
+ *    <li><b>className</b>: CSS class added to the button
+ *        (default is either "inputEx-Button-Link" or "inputEx-Button-Submit-Link",
+ *         depending on "type")
+ *    </li>
+ *    <li><b>parentEl</b>: The DOM element where we should append the button</li>
+ *    <li><b>type</b>: "link", "submit-link" or "submit"</li>
+ *    <li><b>value</b>: text displayed inside the button</li>
+ *    <li><b>disabled</b>: Disable the button after creation</li>
+ *    <li><b>onClick</b>: Custom click event handler</li>
  * </ul>
  */
 inputEx.widget.Button = function(options) {
@@ -35,9 +38,9 @@ inputEx.widget.Button = function(options) {
 Y.mix(inputEx.widget.Button.prototype,{
    
    /**
- 	 * set the default options
- 	 * @method setOptions
- 	 */
+    * set the default options
+    * @method setOptions
+    */
    setOptions: function(options) {
       
       this.options = {};
@@ -63,11 +66,11 @@ Y.mix(inputEx.widget.Button.prototype,{
    },
    
    /**
- 	 * render the button into the parent Element
- 	 * @method render
+    * render the button into the parent Element
+    * @method render
     * @param {DOMElement} parentEl The DOM element where the button should be rendered
-	 * @return {DOMElement} The created button
-	 */
+    * @return {DOMElement} The created button
+    */
    render: function(parentEl) {
       
       var innerSpan;
@@ -100,24 +103,24 @@ Y.mix(inputEx.widget.Button.prototype,{
    },
    
    /**
- 	 * attach the listeners on "click" event and create the custom events
- 	 * @method initEvents
-	 */
+    * attach the listeners on "click" event and create the custom events
+    * @method initEvents
+    */
    initEvents: function() {
 
       /**
-		 * Click Event facade (YUI3 published event)
- 		 * @event click
-		 */ 
-		 this.publish("click")
+       * Click Event facade (YUI3 published event)
+       * @event click
+       */
+      this.publish("click");
 
       /**
-		 * Submit Event facade (YUI3 published event)
- 		 * @event submit
-		 */
-		 this.publish("submit")
+       * Submit Event facade (YUI3 published event)
+       * @event submit
+       */
+      this.publish("submit");
       
-      Y.on("click",function(e) {
+      Y.on("click", function(e) {
          
          var fireSubmitEvent;
          
@@ -146,7 +149,7 @@ Y.mix(inputEx.widget.Button.prototype,{
             this.fire("submit");
          }
          
-      },this.el,this)
+      }, this.el, this);
       
       // Subscribe onClick handler
       if (this.options.onClick) {
@@ -156,9 +159,9 @@ Y.mix(inputEx.widget.Button.prototype,{
    },
    
    /**
- 	 * Disable the button
- 	 * @method disable
-	 */
+    * Disable the button
+    * @method disable
+    */
    disable: function() {
       
       this.disabled = true;
@@ -171,9 +174,9 @@ Y.mix(inputEx.widget.Button.prototype,{
    },
    
    /**
- 	 * Enable the button
- 	 * @method enable
-	 */
+    * Enable the button
+    * @method enable
+    */
    enable: function() {
       
       this.disabled = false;

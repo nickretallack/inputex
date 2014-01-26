@@ -16,7 +16,7 @@ YUI.add('inputex-ddlist', function (Y, NAME) {
     * @constructor
     * @param {Object} options Added options:
     * <ul>
-    *	   <li>items: list of option elements configurations</li>
+    *    <li>items: list of option elements configurations</li>
     *    <li>name: hidden inputs name</li>
     *    <li>valueKey: value key</li>
     *    <li>labelKey: label key</li>

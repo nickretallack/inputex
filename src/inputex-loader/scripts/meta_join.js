@@ -68,31 +68,31 @@ var parseData = function(name, data, file) {
             data[i] = sortObject(data[i]);
         }
     }
-		json[name] = sortObject(data);
+    json[name] = sortObject(data);
 };
 
 metaFiles.forEach(function(file) {
     var data = fs.readFileSync(file, 'utf8'), i, o;
-	
-	try {
+    
+    try {
         data = JSON.parse(data);
     } catch (e) {
         console.error('Failed to parse: ', file);
         console.error(e);
         process.exit(1);
     }
-	
-	if(data.requires) {
-		var t = file.split('/');
-		var m = t[t.length-1].split('.')[0];
-		console.log(m);
-		var o = {};
-		o['inputex-'+m] = data;
-		fs.writeFileSync(file, JSON.stringify(o, null, 3) );
-		data = o;
-	}
-	
-	
+    
+    if(data.requires) {
+        var t = file.split('/');
+        var m = t[t.length-1].split('.')[0];
+        console.log(m);
+        var o = {};
+        o['inputex-'+m] = data;
+        fs.writeFileSync(file, JSON.stringify(o, null, 3) );
+        data = o;
+    }
+    
+    
     for (i in data) {
         parseData(i, data[i], file);
     }

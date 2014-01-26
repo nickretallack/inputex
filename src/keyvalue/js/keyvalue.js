@@ -1,8 +1,7 @@
 /**
  * @module inputex-keyvalue
  */
-   var lang = Y.Lang,
-       inputEx = Y.inputEx;
+var inputEx = Y.inputEx;
 
 /**
  * Display a selectors for keys and auto-update the value field
@@ -24,77 +23,86 @@ Y.extend( inputEx.KeyValueField, inputEx.CombineField, {
    initEvents: function() {
       inputEx.KeyValueField.superclass.initEvents.call(this);
 
-      this.inputs[0].on('updated',this.onSelectFieldChange, this, true); 
+      this.inputs[0].on('updated',this.onSelectFieldChange, this, true);
    },
 
 
-	/**
-	 * Generate
-	 * @method generateSelectConfig
-	 */
-	generateSelectConfig: function(availableFields) {
-		
-		this.nameIndex = {};
-		
-		var choices = [], i, field, fieldCopy, k, l;
-		
+   /**
+    * Generate
+    * @method generateSelectConfig
+    */
+   generateSelectConfig: function(availableFields) {
+      
+      this.nameIndex = {};
+      
+      var choices = [], i, field, fieldCopy, k, l;
+      
       if(!availableFields){
          throw new Error("Missing 'availableFields' property in options");
       }
-		for (i = 0 , l = availableFields.length ; i < l ; i++) {
-			
-			field =  availableFields[i];
-			fieldCopy = {};
-			for (k in field) {
-				if (field.hasOwnProperty(k) && k != "label") {
-					fieldCopy[k] = field[k];
-				}
-			}
-			
-			this.nameIndex[field.name] = fieldCopy;
-			
-			choices.push({ value: field.name, label:field.label || field.name });
-			
-		}
-		
-		return { type: 'select', choices: choices };
-	},
+      for (i = 0 , l = availableFields.length ; i < l ; i++) {
+         
+         field =  availableFields[i];
+         fieldCopy = {};
+         for (k in field) {
+            if (field.hasOwnProperty(k) && k !== "label") {
+               fieldCopy[k] = field[k];
+            }
+         }
+         
+         this.nameIndex[field.name] = fieldCopy;
+         
+         choices.push({ value: field.name, label:field.label || field.name });
+         
+      }
+      
+      return { type: 'select', choices: choices };
+   },
 
-	/**
-	 * Setup the options.fields from the availableFields option
-	 * @method setOptions
-	 */
-	setOptions: function(options) {
-		
-		var selectFieldConfig = this.generateSelectConfig(options.availableFields);
-	
-		var newOptions = {
-			fields: [
-				selectFieldConfig,
-				this.nameIndex[options.availableFields[0].name]
-			]
-		};
-		
-		Y.mix(newOptions, options);
-		
-		inputEx.KeyValueField.superclass.setOptions.call(this, newOptions);
-	},
+   /**
+    * Setup the options.fields from the availableFields option
+    * @method setOptions
+    */
+   setOptions: function(options) {
+      
+      var newOptions,
+          selectFieldConfig = this.generateSelectConfig(options.availableFields);
+   
+      newOptions = {
+         fields: [
+            selectFieldConfig,
+            this.nameIndex[options.availableFields[0].name]
+         ]
+      };
+      
+      Y.mix(newOptions, options);
+      
+      inputEx.KeyValueField.superclass.setOptions.call(this, newOptions);
+   },
    
    /**
     * Rebuild the value field
     * @method onSelectFieldChange
     */
    onSelectFieldChange: function(value) {
-      var f = this.nameIndex[value];
-      var lastInput = this.inputs[this.inputs.length-1];
-      var next = this.divEl.childNodes[inputEx.indexOf(lastInput.getEl(), this.divEl.childNodes)+1];
-      lastInput.destroy();
-      this.inputs.pop();
-      var field = this.renderField(f);
-      var fieldEl = field.getEl();
+
+      var field_config, field, fieldEl;
+
+      // destroy the previous value field
+      this.inputs.pop().destroy();
+
+      // build the new value field
+      field_config = this.nameIndex[value];
+      field        = this.renderField(field_config);
+      fieldEl      = field.getEl();
+
+      // remove the line breaker (<div style='clear: both;'>)
+      fieldEl.removeChild(fieldEl.childNodes[fieldEl.childNodes.length - 1]);
+      
       Y.one(fieldEl).setStyle('float', 'left');
       
-      this.divEl.insertBefore(fieldEl, next);
+      // append the new value field
+      this.fieldContainer.appendChild(fieldEl);
    }
    
 });

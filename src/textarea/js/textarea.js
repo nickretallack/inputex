@@ -1,7 +1,8 @@
 /**
  * @module inputex-textarea
  */
-   var inputEx = Y.inputEx;
+var inputEx = Y.inputEx;
+
 /**
  * Create a textarea input
  * @class inputEx.Textarea
@@ -14,8 +15,9 @@
  * </ul>
  */
 inputEx.Textarea = function(options) {
-	inputEx.Textarea.superclass.constructor.call(this,options);
+   inputEx.Textarea.superclass.constructor.call(this,options);
 };
+
 Y.extend(inputEx.Textarea, inputEx.StringField, {
 
    /**
@@ -48,7 +50,7 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
       var attributes = {};
       attributes.id = this.divEl.id ? this.divEl.id+'-field' : Y.guid();
       // firefox bug (reported since year 2000 !): one extra row is always added by browser
-		//                                           (see : https://bugzilla.mozilla.org/show_bug.cgi?id=33654)
+      //                                           (see : https://bugzilla.mozilla.org/show_bug.cgi?id=33654)
       attributes.rows = !!Y.UA.gecko ? this.options.rows - 1 : this.options.rows;
       attributes.cols = this.options.cols;
       if(this.options.name) { attributes.name = this.options.name; }
@@ -72,7 +74,7 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
       this.fieldContainer.appendChild(this.wrapEl);
    },
    
-	/**
+   /**
     * Uses the optional regexp to validate the field value
     * @method validate
     */
@@ -100,7 +102,7 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
       }
 
       return inputEx.Textarea.superclass.getStateString.call(this, state);
-	},
+   },
    /**
     * Display the type invite after setting the class
     * @method setClassFromState
@@ -114,33 +116,33 @@ Y.extend(inputEx.Textarea, inputEx.StringField, {
          Y.one(this.el).removeAttribute("aria-invalid", "true");
       }
    },
-	
-	
-	/**
-	 * Insert text at the current cursor position
-	 * @method insert
-	 * @param {String} text Text to insert
-	 */
-	insert: function(text) {
-		
-		var sel, startPos, endPos;
-		
-		//IE support
-		if (document.selection) {
-			this.el.focus();
-			sel = document.selection.createRange();
-			sel.text = text;
-		}
-		//Mozilla/Firefox/Netscape 7+ support
-		else if (this.el.selectionStart || this.el.selectionStart == '0') {
-			startPos = this.el.selectionStart;
-			endPos = this.el.selectionEnd;
-			this.el.value = this.el.value.substring(0, startPos)+ text+ this.el.value.substring(endPos, this.el.value.length);
-		}
-		else {
-			this.el.value += text;
-		}
-	}
+   
+   
+   /**
+    * Insert text at the current cursor position
+    * @method insert
+    * @param {String} text Text to insert
+    */
+   insert: function(text) {
+      
+      var sel, startPos, endPos;
+      
+      //IE support
+      if (document.selection) {
+         this.el.focus();
+         sel = document.selection.createRange();
+         sel.text = text;
+      }
+      //Mozilla/Firefox/Netscape 7+ support
+      else if (this.el.selectionStart || this.el.selectionStart == '0') {
+         startPos = this.el.selectionStart;
+         endPos = this.el.selectionEnd;
+         this.el.value = this.el.value.substring(0, startPos)+ text+ this.el.value.substring(endPos, this.el.value.length);
+      }
+      else {
+         this.el.value += text;
+      }
+   }
 
 });
 
