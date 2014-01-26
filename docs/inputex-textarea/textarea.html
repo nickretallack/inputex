@@ -35,61 +35,58 @@ How to create a textarea field.
 <div class="example">
 
     <h2>Basic Textarea creation</h2>
-	<p>Use the following code to create a basic inputEx Textarea.</p>
-	<div class='demoContainer' id='container1'></div>
-	
-	
-	<h2>Textarea setValue/getValue</h2>
-	<p>Test of the setValue, getValue methods</p>
-	<div class='demoContainer' id='container2'></div>
-	
-	
-	
-	<h2>Change Textarea size</h2>
-	<p>Set the size using "rows" and "cols" attributes.</p>
-	<div class='demoContainer' id='container3'></div>
-	
-	
-	<h2>More options</h2>
-	<p>Set the min/max length, typeInvite...</p>
-	<div class='demoContainer' id='container4'></div>
-	
+    <p>Use the following code to create a basic inputEx Textarea.</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    
+    <h2>Textarea setValue/getValue</h2>
+    <p>Test of the setValue, getValue methods</p>
+    <div class='demoContainer' id='container2'></div>
+    
+    
+    
+    <h2>Change Textarea size</h2>
+    <p>Set the size using "rows" and "cols" attributes.</p>
+    <div class='demoContainer' id='container3'></div>
+    
+    
+    <h2>More options</h2>
+    <p>Set the min/max length, typeInvite...</p>
+    <div class='demoContainer' id='container4'></div>
+    
 
-<script>
-YUI().use('inputex-textarea',function(Y) {
+    <script>
+    YUI().use('inputex-textarea',function(Y) {
 
     // Example 1
     new Y.inputEx.Textarea({parentEl: 'container1', value: 'Textarea can contain\nmultiline text !\n'});
     
     // Example 2
     var div = Y.one('#container2');
-	var textField = new Y.inputEx.Textarea({parentEl: div, showMsg:true, required:true});
+    var textField = new Y.inputEx.Textarea({parentEl: div, showMsg:true, required:true});
 
-	var button1 = Y.inputEx.cn('button', null, null, "SetValue");
-	div.appendChild(button1);
-	Y.on("click" ,function() { 
-		textField.setValue('Textarea can contain\nmultiline text !\n'); 
-	},button1);
+    var button1 = Y.inputEx.cn('button', null, null, "SetValue");
+    div.appendChild(button1);
+    Y.on("click" ,function() { 
+        textField.setValue('Textarea can contain\nmultiline text !\n'); 
+    },button1);
 
-	var button2 = Y.inputEx.cn('button', null, null, "GetValue");
-	div.appendChild(button2);
-	Y.on("click" ,function() { 
-		alert(textField.getValue());
-	},button2);
-	
-	
-	// Example 3
-	new Y.inputEx.Textarea({parentEl: 'container3', value: 'Set the size...\nusing "rows" and "cols" attributes !\n', rows: 8, cols: 40});
-	
-	// Example 4
-	new Y.inputEx.Textarea({parentEl: 'container4', showMsg:true, required:true, typeInvite:"Type text here", minLength:10, maxLength:20, name: "Test4"});
-	
-	
-	
+    var button2 = Y.inputEx.cn('button', null, null, "GetValue");
+    div.appendChild(button2);
+    Y.on("click" ,function() { 
+        alert(textField.getValue());
+    },button2);
+    
+    
+    // Example 3
+    new Y.inputEx.Textarea({parentEl: 'container3', value: 'Set the size...\nusing "rows" and "cols" attributes !\n', rows: 8, cols: 40});
+    
+    // Example 4
+    new Y.inputEx.Textarea({parentEl: 'container4', showMsg:true, required:true, typeInvite:"Type text here", minLength:10, maxLength:20, name: "Test4"});
 
 });
 
-</script>
+    </script>
 
 </div>
 
@@ -110,29 +107,26 @@ YUI().use('inputex-textarea',function(Y) {
     
     &#x2F;&#x2F; Example 2
     var div = Y.one(&#x27;#container2&#x27;);
-	var textField = new Y.inputEx.Textarea({parentEl: div, showMsg:true, required:true});
+    var textField = new Y.inputEx.Textarea({parentEl: div, showMsg:true, required:true});
 
-	var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue&quot;);
-	div.appendChild(button1);
-	Y.on(&quot;click&quot; ,function() { 
-		textField.setValue(&#x27;Textarea can contain\nmultiline text !\n&#x27;); 
-	},button1);
+    var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue&quot;);
+    div.appendChild(button1);
+    Y.on(&quot;click&quot; ,function() { 
+        textField.setValue(&#x27;Textarea can contain\nmultiline text !\n&#x27;); 
+    },button1);
 
-	var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
-	div.appendChild(button2);
-	Y.on(&quot;click&quot; ,function() { 
-		alert(textField.getValue());
-	},button2);
-	
-	
-	&#x2F;&#x2F; Example 3
-	new Y.inputEx.Textarea({parentEl: &#x27;container3&#x27;, value: &#x27;Set the size...\nusing &quot;rows&quot; and &quot;cols&quot; attributes !\n&#x27;, rows: 8, cols: 40});
-	
-	&#x2F;&#x2F; Example 4
-	new Y.inputEx.Textarea({parentEl: &#x27;container4&#x27;, showMsg:true, required:true, typeInvite:&quot;Type text here&quot;, minLength:10, maxLength:20, name: &quot;Test4&quot;});
-	
-	
-	
+    var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
+    div.appendChild(button2);
+    Y.on(&quot;click&quot; ,function() { 
+        alert(textField.getValue());
+    },button2);
+    
+    
+    &#x2F;&#x2F; Example 3
+    new Y.inputEx.Textarea({parentEl: &#x27;container3&#x27;, value: &#x27;Set the size...\nusing &quot;rows&quot; and &quot;cols&quot; attributes !\n&#x27;, rows: 8, cols: 40});
+    
+    &#x2F;&#x2F; Example 4
+    new Y.inputEx.Textarea({parentEl: &#x27;container4&#x27;, showMsg:true, required:true, typeInvite:&quot;Type text here&quot;, minLength:10, maxLength:20, name: &quot;Test4&quot;});
 
 });</pre>
 

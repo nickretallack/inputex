@@ -44,29 +44,25 @@ How to create a uppercase field.
 <script>
 YUI().use('inputex-uppercase',function(Y) { 
 
-
     var field = new Y.inputEx.UpperCaseField({parentEl: 'container1', value: 'i was lowercase'});
 
-	var el = Y.one('#container1');
+    var el = Y.one('#container1');
 
-	var button1 = Y.inputEx.cn('button', null, null, "SetValue with 'InputEx'");
-	var val = 'InputEx';
-	el.appendChild(button1);
-	Y.one(button1).on('click' ,function() {
-	   field.setValue(val);
-	   val = (val == 'InputEx') ? '' : 'InputEx';
-	   button1.innerHTML = "SetValue with '"+val+"'";
-	});
+    var button1 = Y.inputEx.cn('button', null, null, "SetValue with 'InputEx'");
+    var val = 'InputEx';
+    el.appendChild(button1);
+    Y.one(button1).on('click' ,function() {
+       field.setValue(val);
+       val = (val == 'InputEx') ? '' : 'InputEx';
+       button1.innerHTML = "SetValue with '"+val+"'";
+    });
 
-	var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-	el.appendChild(logDiv);
-	field.on('updated', function(value) {
-		logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
-		logDiv.appendChild(Y.inputEx.cn('br'));
-	});
-	
-	
-	
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+    el.appendChild(logDiv);
+    field.on('updated', function(value) {
+        logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
+        logDiv.appendChild(Y.inputEx.cn('br'));
+    });
 
 });
 
@@ -86,29 +82,25 @@ YUI().use('inputex-uppercase',function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-uppercase&#x27;,function(Y) { 
 
-
     var field = new Y.inputEx.UpperCaseField({parentEl: &#x27;container1&#x27;, value: &#x27;i was lowercase&#x27;});
 
-	var el = Y.one(&#x27;#container1&#x27;);
+    var el = Y.one(&#x27;#container1&#x27;);
 
-	var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with &#x27;InputEx&#x27;&quot;);
-	var val = &#x27;InputEx&#x27;;
-	el.appendChild(button1);
-	Y.one(button1).on(&#x27;click&#x27; ,function() {
-	   field.setValue(val);
-	   val = (val == &#x27;InputEx&#x27;) ? &#x27;&#x27; : &#x27;InputEx&#x27;;
-	   button1.innerHTML = &quot;SetValue with &#x27;&quot;+val+&quot;&#x27;&quot;;
-	});
+    var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with &#x27;InputEx&#x27;&quot;);
+    var val = &#x27;InputEx&#x27;;
+    el.appendChild(button1);
+    Y.one(button1).on(&#x27;click&#x27; ,function() {
+       field.setValue(val);
+       val = (val == &#x27;InputEx&#x27;) ? &#x27;&#x27; : &#x27;InputEx&#x27;;
+       button1.innerHTML = &quot;SetValue with &#x27;&quot;+val+&quot;&#x27;&quot;;
+    });
 
-	var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
-	el.appendChild(logDiv);
-	field.on(&#x27;updated&#x27;, function(value) {
-		logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
-		logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
-	});
-	
-	
-	
+    var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
+    el.appendChild(logDiv);
+    field.on(&#x27;updated&#x27;, function(value) {
+        logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
+        logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
+    });
 
 });</pre>
 

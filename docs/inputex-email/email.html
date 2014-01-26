@@ -34,43 +34,33 @@ How to create a email field.
 
 <div class="example">
 
-
-	<h2>Basic EmailField creation</h2>
-	<p>Use the following code to create a basic inputEx EmailField.</p>
-	<div class='demoContainer' id='container1'></div>
-	
-	
-	
+    <h2>Basic EmailField creation</h2>
+    <p>Use the following code to create a basic inputEx EmailField.</p>
+    <div class='demoContainer' id='container1'></div>
+    
     <h2>EmailField with MX correction</h2>
     <p>Use the following code to help people fix typos in MX:</p>
     <div class='demoContainer' id='container2'></div>
-	
-	
-	
+    
     <h2>EmailField rejecting disposable email addresses</h2>
     <p>Use the following code to reject disposable domains in your registration forms:</p>
     <div class='demoContainer' id='container3'></div>
-	
-	
-	
 
 <script>
 YUI().use('inputex-email', function(Y) {
 
+    // Example 1
+    var field = new Y.inputEx.EmailField({parentEl: 'container1', showMsg: true });
 
-	// Example 1
-	var field = new Y.inputEx.EmailField({parentEl: 'container1', showMsg: true });
-
-	var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-	Y.one('#container1').appendChild(logDiv);
-	field.on('updated', function(val) {
-		logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
-		logDiv.appendChild(Y.inputEx.cn('br'));
-	});
-	
-	
-	
-	// Example 2
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+    Y.one('#container1').appendChild(logDiv);
+    field.on('updated', function(val) {
+        logDiv.innerHTML += "Updated at "+(new Date())+" with value: "+val;
+        logDiv.appendChild(Y.inputEx.cn('br'));
+    });
+    
+    
+    // Example 2
     var field2 = new Y.inputEx.EmailField({parentEl: 'container2', showMsg:true, fixdomain:true, description:"Try abc@gmail.co, abc@yaoo.fr..." });
 
     var logDiv2 = Y.inputEx.cn('div', null, null, "Log :");
@@ -79,9 +69,9 @@ YUI().use('inputex-email', function(Y) {
        logDiv2.innerHTML += "Updated at "+(new Date())+" with value: "+val;
        logDiv2.appendChild(Y.inputEx.cn('br'));
     });
-	
-	
-	// Example 3
+    
+    
+    // Example 3
     var field3 = new Y.inputEx.EmailField({parentEl: 'container3', showMsg:true, disallowDisposable:true, description:"Try abc@trashmail.net, abc@tempomail.com..." });
 
     var logDiv3 = Y.inputEx.cn('div', null, null, "Log :");
@@ -90,6 +80,7 @@ YUI().use('inputex-email', function(Y) {
        logDiv3.innerHTML += "Updated at "+(new Date())+" with value: "+val;
        logDiv3.appendChild(Y.inputEx.cn('br'));
     });
+
 });
 </script>
 
@@ -107,20 +98,18 @@ YUI().use('inputex-email', function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-email&#x27;, function(Y) {
 
+    &#x2F;&#x2F; Example 1
+    var field = new Y.inputEx.EmailField({parentEl: &#x27;container1&#x27;, showMsg: true });
 
-	&#x2F;&#x2F; Example 1
-	var field = new Y.inputEx.EmailField({parentEl: &#x27;container1&#x27;, showMsg: true });
-
-	var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
-	Y.one(&#x27;#container1&#x27;).appendChild(logDiv);
-	field.on(&#x27;updated&#x27;, function(val) {
-		logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value: &quot;+val;
-		logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
-	});
-	
-	
-	
-	&#x2F;&#x2F; Example 2
+    var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
+    Y.one(&#x27;#container1&#x27;).appendChild(logDiv);
+    field.on(&#x27;updated&#x27;, function(val) {
+        logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value: &quot;+val;
+        logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
+    });
+    
+    
+    &#x2F;&#x2F; Example 2
     var field2 = new Y.inputEx.EmailField({parentEl: &#x27;container2&#x27;, showMsg:true, fixdomain:true, description:&quot;Try abc@gmail.co, abc@yaoo.fr...&quot; });
 
     var logDiv2 = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
@@ -129,9 +118,9 @@ YUI().use('inputex-email', function(Y) {
        logDiv2.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value: &quot;+val;
        logDiv2.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
     });
-	
-	
-	&#x2F;&#x2F; Example 3
+    
+    
+    &#x2F;&#x2F; Example 3
     var field3 = new Y.inputEx.EmailField({parentEl: &#x27;container3&#x27;, showMsg:true, disallowDisposable:true, description:&quot;Try abc@trashmail.net, abc@tempomail.com...&quot; });
 
     var logDiv3 = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
@@ -140,6 +129,7 @@ YUI().use('inputex-email', function(Y) {
        logDiv3.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value: &quot;+val;
        logDiv3.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
     });
+
 });</pre>
 
 </div>

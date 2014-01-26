@@ -1,49 +1,66 @@
 
 YUI().use('inputex-checkbox', function(Y){ 
-	
-	// example 1
-	new Y.inputEx.CheckBox({parentEl: 'container1'});
-	
-	// example 2
-	new Y.inputEx.CheckBox({label: 'Do you like inputEx ?', rightLabel: 'Check me !', parentEl: 'container2', value: false});
-	
-	// example 3
-	var field3 = new Y.inputEx.CheckBox({rightLabel: 'I return true/false', parentEl: 'container3'});		
-	Y.Node.create("<button>getValue()</button>").appendTo('#container3').on('click', function() {
-		alert( field3.getValue() );
-	});
-	
-	// example 4
-	var field4 = new Y.inputEx.CheckBox({sentValues: ['Yes', 'No'], rightLabel: 'Do you agree ?', parentEl: 'container4', value: 'Yes'});
-	Y.Node.create("<button>getValue()</button>").appendTo('#container4').on('click', function() {
-	  alert( field4.getValue() );
-	});
-	Y.Node.create("<button>setValue('No')</button>").appendTo('#container4').on('click', function() {
-	  field4.setValue('No');
-	});
-	Y.Node.create("<button>setValue('Yes')</button>").appendTo('#container4').on('click', function() {
-	  field4.setValue('Yes');
-	});
+    
+    // example 1
+    new Y.inputEx.CheckBox({ parentEl: 'container1' });
+    
+    // example 2
+    new Y.inputEx.CheckBox({
+        label: 'Do you like inputEx ?',
+        rightLabel: 'Check me !',
+        parentEl: 'container2',
+        value: false
+    });
+    
+    // example 3
+    var field3 = new Y.inputEx.CheckBox({
+        rightLabel: 'I return true/false',
+        parentEl: 'container3'
+    });        
+    Y.Node.create("<button>getValue()</button>").appendTo('#container3').on('click', function() {
+        alert( field3.getValue() );
+    });
+    
+    // example 4
+    var field4 = new Y.inputEx.CheckBox({
+        parentEl: 'container4',
+        rightLabel: 'Do you agree ?',
+        sentValues: ['Yes', 'No'],
+        value: 'Yes'
+    });
+    Y.Node.create("<button>getValue()</button>").appendTo('#container4').on('click', function() {
+      alert( field4.getValue() );
+    });
+    Y.Node.create("<button>setValue('No')</button>").appendTo('#container4').on('click', function() {
+      field4.setValue('No');
+    });
+    Y.Node.create("<button>setValue('Yes')</button>").appendTo('#container4').on('click', function() {
+      field4.setValue('Yes');
+    });
 
-	// example 5
-	var el = Y.one('#container5');
-	var field5 = new Y.inputEx.CheckBox({parentEl: el });
-	var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-	el.appendChild(logDiv);
-	field5.on('updated', function(value) {
-		logDiv.innerHTML += "Updated at "+(new Date())+" with value : "+value;
-		logDiv.appendChild(Y.inputEx.cn('br'));
-	});
-	
-	// example 6
-	var dc = new Y.inputEx.CheckBox({label: 'Disable', parentEl: 'container6'});
-	dc.disable();
+    // example 5
+    var el = Y.one('#container5');
+    var field5 = new Y.inputEx.CheckBox({ parentEl: el });
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+    el.appendChild(logDiv);
+    field5.on('updated', function(value) {
+        logDiv.innerHTML += "Updated at "+(new Date())+" with value : "+value;
+        logDiv.appendChild(Y.inputEx.cn('br'));
+    });
+    
+    // example 6
+    var dc = new Y.inputEx.CheckBox({label: 'Disable', parentEl: 'container6'});
+    dc.disable();
 
-	// example 7
-	var rc = new Y.inputEx.CheckBox({ label: 'Accept the "Terms of Service"?', required: true, parentEl: 'container7' });
-	Y.one('#container7').append('<br /><button>validate()</button>').one('button').on('click', function () {
-		window.alert("valid: " + rc.validate());
-	});
+    // example 7
+    var rc = new Y.inputEx.CheckBox({
+        label: 'Accept the "Terms of Service"?',
+        required: true,
+        parentEl: 'container7'
+    });
+    Y.one('#container7').append('<br /><button>validate()</button>').one('button').on('click', function () {
+        window.alert("valid: " + rc.validate());
+    });
 
 });
 

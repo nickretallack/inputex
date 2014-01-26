@@ -2,27 +2,28 @@ YUI().use('inputex-form','inputex-email','inputex-url', 'inputex-rpc', function(
 
 
     var service = new Y.inputEx.RPC.Service("flickr.smd",{ 
-		success: function() {
+        success: function() {
 
-			// Creates the form from service.getPublicPhotos method
-			Y.inputEx.RPC.generateServiceForm(service.getPublicPhotos, { parentEl: 'container1' },{
-					success: function(results) {
-					  
-						// Get the result and display the images
-						var treeContainer = Y.one('#photos');
-						treeContainer.innerHTML = "";
-						var list = results.photos.photo;
-						for(var i = 0 ; i != list.length-1 ; i++) {
-							var photo = list[i];
-							var url = "http://farm"+photo.farm+".static.flickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_m.jpg";
-							treeContainer.appendChild( Y.inputEx.cn('div', {className: 'photo'}, null, String.fromCharCode(60)+"img src='"+url+"' /"+String.fromCharCode(62) ) );
-						}	
+            // Creates the form from service.getPublicPhotos method
+            Y.inputEx.RPC.generateServiceForm(service.getPublicPhotos, {
+                parentEl: 'container1'
+            }, {
+                success: function(results) {
+                  
+                    // Get the result and display the images
+                    var treeContainer = Y.one('#photos');
+                    treeContainer.innerHTML = "";
+                    var list = results.photos.photo;
+                    for(var i = 0 ; i != list.length-1 ; i++) {
+                        var photo = list[i];
+                        var url = "http://farm"+photo.farm+".static.flickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+"_m.jpg";
+                        treeContainer.appendChild( Y.inputEx.cn('div', {className: 'photo'}, null, String.fromCharCode(60)+"img src='"+url+"' /"+String.fromCharCode(62) ) );
+                    }
 
-					}
-				});
+                }
+            });
 
-		}
-	});
-	
+        }
+    });
 
 });

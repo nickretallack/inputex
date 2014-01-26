@@ -54,35 +54,44 @@ How to create a number.
 
 <script>
 YUI().use('inputex-number',  function(Y) {
-   
 
-   // Example 1
-         field = new Y.inputEx.NumberField({parentEl: 'container1', showMsg: true, value: 0.03});
-         var button = Y.inputEx.cn('button', null, null, 'getValue');
-         Y.one(button).on('click',function() {
-            alert(field.getValue());
-         });
-         Y.one('#container1').appendChild(button);
+    // Example 1
+    var field = new Y.inputEx.NumberField({
+        parentEl: 'container1',
+        showMsg: true,
+        value: 0.03
+    });
+
+    // Example 2
+    var field2 = new Y.inputEx.NumberField({
+        parentEl: 'container2',
+        showMsg: true,
+        value: '03e-2',
+        required:true,
+        typeInvite: "Float numbers accepted"
+    });
+
+    // Example 3
+    field3 = new Y.inputEx.NumberField({
+        parentEl: 'container3',
+        showMsg: true,
+        min: -15,
+        max: '1e3',
+        typeInvite: "Numbers between -15 and 1e3 (1000) only",
+        size: 40
+    });
 
 
-   // Example 2
+    // Add "getValue" buttons
+    Y.Array.each([field, field2, field3], function (f) {
+        
+        var container = Y.one(f.getEl()).ancestor('.demoContainer');
+        
+        Y.Node.create('<button>getValue</button>').
+               appendTo(container).
+               on('click', function() { alert(f.getValue()); });
 
-         field2 = new Y.inputEx.NumberField({parentEl: 'container2', showMsg: true, value: '03e-2', required:true, typeInvite:"Float numbers accepted"});
-         var button = Y.inputEx.cn('button', null, null, 'getValue');
-         Y.one(button).on('click',function() {
-            alert(field2.getValue());
-         });
-         Y.one('#container2').appendChild(button);
-
-   // Example 3
-   
-            field3 = new Y.inputEx.NumberField({parentEl: 'container3', showMsg: true, min:-15, max:'1e3', typeInvite:"Numbers between -15 and 1e3 (1000) only", size:40});
-            var button = Y.inputEx.cn('button', null, null, 'getValue');
-            Y.one(button).on('click',function() {
-               alert(field3.getValue());
-            });
-            Y.one('#container3').appendChild(button);
-
+    });
 
 });
 
@@ -102,35 +111,44 @@ YUI().use('inputex-number',  function(Y) {
 <h3>Implementation</h3>
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-number&#x27;,  function(Y) {
-   
 
-   &#x2F;&#x2F; Example 1
-         field = new Y.inputEx.NumberField({parentEl: &#x27;container1&#x27;, showMsg: true, value: 0.03});
-         var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
-         Y.one(button).on(&#x27;click&#x27;,function() {
-            alert(field.getValue());
-         });
-         Y.one(&#x27;#container1&#x27;).appendChild(button);
+    &#x2F;&#x2F; Example 1
+    var field = new Y.inputEx.NumberField({
+        parentEl: &#x27;container1&#x27;,
+        showMsg: true,
+        value: 0.03
+    });
+
+    &#x2F;&#x2F; Example 2
+    var field2 = new Y.inputEx.NumberField({
+        parentEl: &#x27;container2&#x27;,
+        showMsg: true,
+        value: &#x27;03e-2&#x27;,
+        required:true,
+        typeInvite: &quot;Float numbers accepted&quot;
+    });
+
+    &#x2F;&#x2F; Example 3
+    field3 = new Y.inputEx.NumberField({
+        parentEl: &#x27;container3&#x27;,
+        showMsg: true,
+        min: -15,
+        max: &#x27;1e3&#x27;,
+        typeInvite: &quot;Numbers between -15 and 1e3 (1000) only&quot;,
+        size: 40
+    });
 
 
-   &#x2F;&#x2F; Example 2
+    &#x2F;&#x2F; Add &quot;getValue&quot; buttons
+    Y.Array.each([field, field2, field3], function (f) {
+        
+        var container = Y.one(f.getEl()).ancestor(&#x27;.demoContainer&#x27;);
+        
+        Y.Node.create(&#x27;&lt;button&gt;getValue&lt;&#x2F;button&gt;&#x27;).
+               appendTo(container).
+               on(&#x27;click&#x27;, function() { alert(f.getValue()); });
 
-         field2 = new Y.inputEx.NumberField({parentEl: &#x27;container2&#x27;, showMsg: true, value: &#x27;03e-2&#x27;, required:true, typeInvite:&quot;Float numbers accepted&quot;});
-         var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
-         Y.one(button).on(&#x27;click&#x27;,function() {
-            alert(field2.getValue());
-         });
-         Y.one(&#x27;#container2&#x27;).appendChild(button);
-
-   &#x2F;&#x2F; Example 3
-   
-            field3 = new Y.inputEx.NumberField({parentEl: &#x27;container3&#x27;, showMsg: true, min:-15, max:&#x27;1e3&#x27;, typeInvite:&quot;Numbers between -15 and 1e3 (1000) only&quot;, size:40});
-            var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
-            Y.one(button).on(&#x27;click&#x27;,function() {
-               alert(field3.getValue());
-            });
-            Y.one(&#x27;#container3&#x27;).appendChild(button);
-
+    });
 
 });</pre>
 

@@ -1,18 +1,20 @@
 YUI().use('inputex-hidden', 'inputex-string', 'inputex-group', 'json', function(Y) {
 
-
-	var exampleDiv = Y.one('#container1');
-	var group = new Y.inputEx.Group({
-		 	fields: [ 
-				{ type: 'hidden', name: 'id', value: 12 },
-				{ type: 'hidden', name: 'lastname', value: 'Scott' },
-				{ type: 'string', name: 'firstname', label: 'Firstname', required: true, value:'James'}
-			], 
-			parentEl: exampleDiv
-	});
-	var button = Y.inputEx.cn('button',null,null, 'Get Value'); 
-	exampleDiv.appendChild(button); 
-	Y.one(button).on('click', function(){ alert(Y.JSON.stringify(group.getValue()) ); });
-	
-	
+    var exampleDiv = Y.one('#container1');
+    
+    var group = new Y.inputEx.Group({
+        fields: [ 
+            { type: 'hidden', name: 'id', value: 12 },
+            { type: 'hidden', name: 'lastname', value: 'Scott' },
+            { type: 'string', name: 'firstname', label: 'Firstname', required: true, value:'James'}
+        ], 
+        parentEl: exampleDiv
+    });
+    
+    var button = Y.inputEx.cn('button',null,null, 'Get Value'); 
+    
+    exampleDiv.appendChild(button); 
+    
+    Y.one(button).on('click', function(){ alert(Y.JSON.stringify(group.getValue()) ); });
+    
 });

@@ -171,7 +171,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element.appendChild(logDiv0);
    
    field0.on('updated', function(value) {
-      logDiv0.innerHTML += "Updated at "+(new Date())+" with value "+value;
+      logDiv0.innerHTML += "Updated at "+(new Date())+" with value \""+value+"\"";
       logDiv0.appendChild(Y.inputEx.cn('br'));
    });
    
@@ -197,7 +197,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    
    var field2 = new Y.inputEx.RadioField({label: 'Where did you learn about inputEx ?', name: 'example5', choices: ['Ajaxian','YUI blog'], parentEl: 'container5', allowAny: true});
    field2.on('updated', function(value) {
-         Y.one('#container5').appendChild( Y.inputEx.cn('div',null,null, "Updated with value: "+value) );
+         Y.one('#container5').appendChild( Y.inputEx.cn('div',null,null, "Updated with value: \""+value+"\"") );
    });
    
    
@@ -228,7 +228,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    });
    
    field6.on('updated', function(value) {
-         element6.appendChild( Y.inputEx.cn('div',null,null, "Updated with value: "+value) );
+         element6.appendChild( Y.inputEx.cn('div',null,null, "Updated with value: \""+value+"\"") );
    });
    
    button61 = Y.inputEx.cn('button', null, null, 'setValue("6")');
@@ -346,7 +346,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element9.appendChild(logDiv9);
    
    field9.on('updated', function(value) {
-      logDiv9.innerHTML += "Updated at "+(new Date())+" with value "+value;
+      logDiv9.innerHTML += "Updated at "+(new Date())+" with value \""+value+"\"";
       logDiv9.appendChild(Y.inputEx.cn('br'));
    });
    
@@ -395,7 +395,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element10.appendChild(logDiv10);
    
    field10.on('updated', function(value) {
-      logDiv10.innerHTML += "Updated at "+(new Date())+" with value "+value;
+      logDiv10.innerHTML += "Updated at "+(new Date())+" with value \""+value+"\"";
       logDiv10.appendChild(Y.inputEx.cn('br'));
    });
    
@@ -417,7 +417,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element11.appendChild(logDiv11);
    
    field11.on('updated', function(value) {
-      logDiv11.innerHTML += "Updated at "+(new Date())+" with value "+value;
+      logDiv11.innerHTML += "Updated at "+(new Date())+" with value \""+value+"\"";
       logDiv11.appendChild(Y.inputEx.cn('br'));
    });
    
@@ -521,7 +521,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element.appendChild(logDiv0);
    
    field0.on(&#x27;updated&#x27;, function(value) {
-      logDiv0.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
+      logDiv0.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value \&quot;&quot;+value+&quot;\&quot;&quot;;
       logDiv0.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
    });
    
@@ -547,7 +547,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    
    var field2 = new Y.inputEx.RadioField({label: &#x27;Where did you learn about inputEx ?&#x27;, name: &#x27;example5&#x27;, choices: [&#x27;Ajaxian&#x27;,&#x27;YUI blog&#x27;], parentEl: &#x27;container5&#x27;, allowAny: true});
    field2.on(&#x27;updated&#x27;, function(value) {
-         Y.one(&#x27;#container5&#x27;).appendChild( Y.inputEx.cn(&#x27;div&#x27;,null,null, &quot;Updated with value: &quot;+value) );
+         Y.one(&#x27;#container5&#x27;).appendChild( Y.inputEx.cn(&#x27;div&#x27;,null,null, &quot;Updated with value: \&quot;&quot;+value+&quot;\&quot;&quot;) );
    });
    
    
@@ -578,7 +578,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    });
    
    field6.on(&#x27;updated&#x27;, function(value) {
-         element6.appendChild( Y.inputEx.cn(&#x27;div&#x27;,null,null, &quot;Updated with value: &quot;+value) );
+         element6.appendChild( Y.inputEx.cn(&#x27;div&#x27;,null,null, &quot;Updated with value: \&quot;&quot;+value+&quot;\&quot;&quot;) );
    });
    
    button61 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;setValue(&quot;6&quot;)&#x27;);
@@ -696,7 +696,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element9.appendChild(logDiv9);
    
    field9.on(&#x27;updated&#x27;, function(value) {
-      logDiv9.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
+      logDiv9.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value \&quot;&quot;+value+&quot;\&quot;&quot;;
       logDiv9.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
    });
    
@@ -745,7 +745,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element10.appendChild(logDiv10);
    
    field10.on(&#x27;updated&#x27;, function(value) {
-      logDiv10.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
+      logDiv10.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value \&quot;&quot;+value+&quot;\&quot;&quot;;
       logDiv10.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
    });
    
@@ -767,7 +767,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element11.appendChild(logDiv11);
    
    field11.on(&#x27;updated&#x27;, function(value) {
-      logDiv11.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
+      logDiv11.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value \&quot;&quot;+value+&quot;\&quot;&quot;;
       logDiv11.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
    });
    

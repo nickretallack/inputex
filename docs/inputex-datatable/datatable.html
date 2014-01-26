@@ -45,46 +45,46 @@ How to create a datatable.
 YUI().use('datatype','inputex-datatable','inputex-uneditable','inputex-datepicker','inputex-integer','inputex-number','inputex-select', 'inputex-color', function(Y) { 
 
 
-	// normal YUI config for DataTable
-	var cols = [
-	    { key: "id", sortable: true },
-	    { key: "date", sortable: true, formatter: function(o){ return Y.DataType.Date.format(o.data.date,{format: "%m/%d/%Y"});} },
-	    { key: "quantity", sortable: true },
-	    { key: "price", sortable: true },
-	    { key: "title", sortable: true },
-	    { key: "category", sortable: true },
-	    { key: "color", sortable: false, allowHTML : true, formatter : '<div style="width:15px;height:15px;background-color:{value};"></div>'}
-	];
+    // normal YUI config for DataTable
+    var cols = [
+        { key: "id", sortable: true },
+        { key: "date", sortable: true, formatter: function(o){ return Y.DataType.Date.format(o.data.date,{format: "%m/%d/%Y"});} },
+        { key: "quantity", sortable: true },
+        { key: "price", sortable: true },
+        { key: "title", sortable: true },
+        { key: "category", sortable: true },
+        { key: "color", sortable: false, allowHTML : true, formatter : '<div style="width:15px;height:15px;background-color:{value};"></div>'}
+    ];
 
-	var data = [
-	    {id:"po-0167", date:new Date(1980, 2, 24), quantity:1, price:4, title:"A Book About Nothing", category: "SF", color: '#ffff00'},
-	    {id:"po-0783", date:new Date("January 3, 1983"), quantity:null, price:12.12345, title:"The Meaning of Life", category: "Novel", color: '#ffff00'},
-	    {id:"po-0297", date:new Date(1978, 11, 12), quantity:12, price:1.25, title:"This Book Was Meant to Be Read Aloud", category: "SF", color: '#ffff00'},
-	    {id:"po-1482", date:new Date("March 11, 1985"), quantity:6, price:3.5, title:"Read Me Twice", category: "Philosophy", color: '#ffff00'}
-	];
+    var data = [
+        {id:"po-0167", date:new Date(1980, 2, 24), quantity:1, price:4, title:"A Book About Nothing", category: "SF", color: '#ffff00'},
+        {id:"po-0783", date:new Date("January 3, 1983"), quantity:null, price:12.12345, title:"The Meaning of Life", category: "Novel", color: '#ffff00'},
+        {id:"po-0297", date:new Date(1978, 11, 12), quantity:12, price:1.25, title:"This Book Was Meant to Be Read Aloud", category: "SF", color: '#ffff00'},
+        {id:"po-1482", date:new Date("March 11, 1985"), quantity:6, price:3.5, title:"Read Me Twice", category: "Philosophy", color: '#ffff00'}
+    ];
 
-	// inputEx config
-	var inputExConfig = {
-	    type: "group",
-	    fields: [
-	        {type: 'uneditable', label: 'Id', name: 'id' },
-	        {type: 'datepicker', label: 'Date', name: 'date' },
-	        {type: 'integer', label: 'Quantity', name: 'quantity' },
-	        {type: 'number', label: 'Amount', name: 'price'},
-	        {type: 'string', label: 'Title', name: 'title', required: true, showMsg: true },
-	        {type: 'select', label: 'Category', name: 'category', choices: ['SF','Novel','Philosophy'] },
-	        {type: 'color', label: 'Color', name: 'color' }
-	    ]
-	}
+    // inputEx config
+    var inputExConfig = {
+        type: "group",
+        fields: [
+            {type: 'uneditable', label: 'Id', name: 'id' },
+            {type: 'datepicker', label: 'Date', name: 'date' },
+            {type: 'integer', label: 'Quantity', name: 'quantity' },
+            {type: 'number', label: 'Amount', name: 'price'},
+            {type: 'string', label: 'Title', name: 'title', required: true, showMsg: true },
+            {type: 'select', label: 'Category', name: 'category', choices: ['SF','Novel','Philosophy'] },
+            {type: 'color', label: 'Color', name: 'color' }
+        ]
+    }
 
 
-	var table = new Y.DataTable({
-	    columns: cols,
-	    data: data
-	});
-	table.render("#container2");
+    var table = new Y.DataTable({
+        columns: cols,
+        data: data
+    });
+    table.render("#container2");
 
-	var pluginConfig = {
+    var pluginConfig = {
         inputEx : inputExConfig,
         inplaceedit: true,
         deleteMethod: function(record, cb) {
@@ -101,31 +101,31 @@ YUI().use('datatype','inputex-datatable','inputex-uneditable','inputex-datepicke
             
         }
     };
-	table.plug(Y.inputEx.Plugin.InputExDataTable, pluginConfig);
+    table.plug(Y.inputEx.Plugin.InputExDataTable, pluginConfig);
 
 
 
 
-	// plugin control - useless - here only for the demo
+    // plugin control - useless - here only for the demo
 
-	var plugButton = Y.Node.create("<button>plug</button>");
-	Y.one("#container3").append(plugButton);
-	plugButton.on("click",function(e){
-	  table.plug(Y.inputEx.Plugin.InputExDataTable,pluginConfig);
-	  plugButton.hide();
-	  unplugButton.show();
-	});
+    var plugButton = Y.Node.create("<button>plug</button>");
+    Y.one("#container3").append(plugButton);
+    plugButton.on("click",function(e){
+      table.plug(Y.inputEx.Plugin.InputExDataTable,pluginConfig);
+      plugButton.hide();
+      unplugButton.show();
+    });
 
 
-	var unplugButton = Y.Node.create("<button>unplug</button>");
-	Y.one("#container3").append(unplugButton);
-	unplugButton.on("click",function(e){
-	  table.unplug(Y.inputEx.Plugin.InputExDataTable);
-	  unplugButton.hide();
-	  plugButton.show();
-	});
-	plugButton.hide();
-	
+    var unplugButton = Y.Node.create("<button>unplug</button>");
+    Y.one("#container3").append(unplugButton);
+    unplugButton.on("click",function(e){
+      table.unplug(Y.inputEx.Plugin.InputExDataTable);
+      unplugButton.hide();
+      plugButton.show();
+    });
+    plugButton.hide();
+    
 
 });
 
@@ -146,46 +146,46 @@ YUI().use('datatype','inputex-datatable','inputex-uneditable','inputex-datepicke
 <pre class="code prettyprint">YUI().use(&#x27;datatype&#x27;,&#x27;inputex-datatable&#x27;,&#x27;inputex-uneditable&#x27;,&#x27;inputex-datepicker&#x27;,&#x27;inputex-integer&#x27;,&#x27;inputex-number&#x27;,&#x27;inputex-select&#x27;, &#x27;inputex-color&#x27;, function(Y) { 
 
 
-	&#x2F;&#x2F; normal YUI config for DataTable
-	var cols = [
-	    { key: &quot;id&quot;, sortable: true },
-	    { key: &quot;date&quot;, sortable: true, formatter: function(o){ return Y.DataType.Date.format(o.data.date,{format: &quot;%m&#x2F;%d&#x2F;%Y&quot;});} },
-	    { key: &quot;quantity&quot;, sortable: true },
-	    { key: &quot;price&quot;, sortable: true },
-	    { key: &quot;title&quot;, sortable: true },
-	    { key: &quot;category&quot;, sortable: true },
-	    { key: &quot;color&quot;, sortable: false, allowHTML : true, formatter : &#x27;&lt;div style=&quot;width:15px;height:15px;background-color:{value};&quot;&gt;&lt;&#x2F;div&gt;&#x27;}
-	];
+    &#x2F;&#x2F; normal YUI config for DataTable
+    var cols = [
+        { key: &quot;id&quot;, sortable: true },
+        { key: &quot;date&quot;, sortable: true, formatter: function(o){ return Y.DataType.Date.format(o.data.date,{format: &quot;%m&#x2F;%d&#x2F;%Y&quot;});} },
+        { key: &quot;quantity&quot;, sortable: true },
+        { key: &quot;price&quot;, sortable: true },
+        { key: &quot;title&quot;, sortable: true },
+        { key: &quot;category&quot;, sortable: true },
+        { key: &quot;color&quot;, sortable: false, allowHTML : true, formatter : &#x27;&lt;div style=&quot;width:15px;height:15px;background-color:{value};&quot;&gt;&lt;&#x2F;div&gt;&#x27;}
+    ];
 
-	var data = [
-	    {id:&quot;po-0167&quot;, date:new Date(1980, 2, 24), quantity:1, price:4, title:&quot;A Book About Nothing&quot;, category: &quot;SF&quot;, color: &#x27;#ffff00&#x27;},
-	    {id:&quot;po-0783&quot;, date:new Date(&quot;January 3, 1983&quot;), quantity:null, price:12.12345, title:&quot;The Meaning of Life&quot;, category: &quot;Novel&quot;, color: &#x27;#ffff00&#x27;},
-	    {id:&quot;po-0297&quot;, date:new Date(1978, 11, 12), quantity:12, price:1.25, title:&quot;This Book Was Meant to Be Read Aloud&quot;, category: &quot;SF&quot;, color: &#x27;#ffff00&#x27;},
-	    {id:&quot;po-1482&quot;, date:new Date(&quot;March 11, 1985&quot;), quantity:6, price:3.5, title:&quot;Read Me Twice&quot;, category: &quot;Philosophy&quot;, color: &#x27;#ffff00&#x27;}
-	];
+    var data = [
+        {id:&quot;po-0167&quot;, date:new Date(1980, 2, 24), quantity:1, price:4, title:&quot;A Book About Nothing&quot;, category: &quot;SF&quot;, color: &#x27;#ffff00&#x27;},
+        {id:&quot;po-0783&quot;, date:new Date(&quot;January 3, 1983&quot;), quantity:null, price:12.12345, title:&quot;The Meaning of Life&quot;, category: &quot;Novel&quot;, color: &#x27;#ffff00&#x27;},
+        {id:&quot;po-0297&quot;, date:new Date(1978, 11, 12), quantity:12, price:1.25, title:&quot;This Book Was Meant to Be Read Aloud&quot;, category: &quot;SF&quot;, color: &#x27;#ffff00&#x27;},
+        {id:&quot;po-1482&quot;, date:new Date(&quot;March 11, 1985&quot;), quantity:6, price:3.5, title:&quot;Read Me Twice&quot;, category: &quot;Philosophy&quot;, color: &#x27;#ffff00&#x27;}
+    ];
 
-	&#x2F;&#x2F; inputEx config
-	var inputExConfig = {
-	    type: &quot;group&quot;,
-	    fields: [
-	        {type: &#x27;uneditable&#x27;, label: &#x27;Id&#x27;, name: &#x27;id&#x27; },
-	        {type: &#x27;datepicker&#x27;, label: &#x27;Date&#x27;, name: &#x27;date&#x27; },
-	        {type: &#x27;integer&#x27;, label: &#x27;Quantity&#x27;, name: &#x27;quantity&#x27; },
-	        {type: &#x27;number&#x27;, label: &#x27;Amount&#x27;, name: &#x27;price&#x27;},
-	        {type: &#x27;string&#x27;, label: &#x27;Title&#x27;, name: &#x27;title&#x27;, required: true, showMsg: true },
-	        {type: &#x27;select&#x27;, label: &#x27;Category&#x27;, name: &#x27;category&#x27;, choices: [&#x27;SF&#x27;,&#x27;Novel&#x27;,&#x27;Philosophy&#x27;] },
-	        {type: &#x27;color&#x27;, label: &#x27;Color&#x27;, name: &#x27;color&#x27; }
-	    ]
-	}
+    &#x2F;&#x2F; inputEx config
+    var inputExConfig = {
+        type: &quot;group&quot;,
+        fields: [
+            {type: &#x27;uneditable&#x27;, label: &#x27;Id&#x27;, name: &#x27;id&#x27; },
+            {type: &#x27;datepicker&#x27;, label: &#x27;Date&#x27;, name: &#x27;date&#x27; },
+            {type: &#x27;integer&#x27;, label: &#x27;Quantity&#x27;, name: &#x27;quantity&#x27; },
+            {type: &#x27;number&#x27;, label: &#x27;Amount&#x27;, name: &#x27;price&#x27;},
+            {type: &#x27;string&#x27;, label: &#x27;Title&#x27;, name: &#x27;title&#x27;, required: true, showMsg: true },
+            {type: &#x27;select&#x27;, label: &#x27;Category&#x27;, name: &#x27;category&#x27;, choices: [&#x27;SF&#x27;,&#x27;Novel&#x27;,&#x27;Philosophy&#x27;] },
+            {type: &#x27;color&#x27;, label: &#x27;Color&#x27;, name: &#x27;color&#x27; }
+        ]
+    }
 
 
-	var table = new Y.DataTable({
-	    columns: cols,
-	    data: data
-	});
-	table.render(&quot;#container2&quot;);
+    var table = new Y.DataTable({
+        columns: cols,
+        data: data
+    });
+    table.render(&quot;#container2&quot;);
 
-	var pluginConfig = {
+    var pluginConfig = {
         inputEx : inputExConfig,
         inplaceedit: true,
         deleteMethod: function(record, cb) {
@@ -202,31 +202,31 @@ YUI().use('datatype','inputex-datatable','inputex-uneditable','inputex-datepicke
             
         }
     };
-	table.plug(Y.inputEx.Plugin.InputExDataTable, pluginConfig);
+    table.plug(Y.inputEx.Plugin.InputExDataTable, pluginConfig);
 
 
 
 
-	&#x2F;&#x2F; plugin control - useless - here only for the demo
+    &#x2F;&#x2F; plugin control - useless - here only for the demo
 
-	var plugButton = Y.Node.create(&quot;&lt;button&gt;plug&lt;&#x2F;button&gt;&quot;);
-	Y.one(&quot;#container3&quot;).append(plugButton);
-	plugButton.on(&quot;click&quot;,function(e){
-	  table.plug(Y.inputEx.Plugin.InputExDataTable,pluginConfig);
-	  plugButton.hide();
-	  unplugButton.show();
-	});
+    var plugButton = Y.Node.create(&quot;&lt;button&gt;plug&lt;&#x2F;button&gt;&quot;);
+    Y.one(&quot;#container3&quot;).append(plugButton);
+    plugButton.on(&quot;click&quot;,function(e){
+      table.plug(Y.inputEx.Plugin.InputExDataTable,pluginConfig);
+      plugButton.hide();
+      unplugButton.show();
+    });
 
 
-	var unplugButton = Y.Node.create(&quot;&lt;button&gt;unplug&lt;&#x2F;button&gt;&quot;);
-	Y.one(&quot;#container3&quot;).append(unplugButton);
-	unplugButton.on(&quot;click&quot;,function(e){
-	  table.unplug(Y.inputEx.Plugin.InputExDataTable);
-	  unplugButton.hide();
-	  plugButton.show();
-	});
-	plugButton.hide();
-	
+    var unplugButton = Y.Node.create(&quot;&lt;button&gt;unplug&lt;&#x2F;button&gt;&quot;);
+    Y.one(&quot;#container3&quot;).append(unplugButton);
+    unplugButton.on(&quot;click&quot;,function(e){
+      table.unplug(Y.inputEx.Plugin.InputExDataTable);
+      unplugButton.hide();
+      plugButton.show();
+    });
+    plugButton.hide();
+    
 
 });</pre>
 

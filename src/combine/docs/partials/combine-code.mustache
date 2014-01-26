@@ -1,97 +1,85 @@
 YUI().use('inputex-combine', 'inputex-time', 'inputex-form','inputex-list', 'inputex-url', 'inputex-select', 'inputex-date', 'json', function(Y) {
 
-	
-	var field = new Y.inputEx.CombineField({
-		parentEl: 'container1', 
-		label: 'Your name',
-		description: 'Please enter your name',
-		fields: [
-			{ name: 'firstname', typeInvite: 'firstname' },
-			{ name: 'lastname', typeInvite: 'lastname' }
-		],
-		separators: [false,"&nbsp;&nbsp;&nbsp;",false],
-		required:true
-	});
+    // Example 1
+    var field = new Y.inputEx.CombineField({
+        parentEl: 'container1', 
+        label: 'Your name',
+        description: 'Please enter your name',
+        fields: [
+            { name: 'firstname', typeInvite: 'firstname' },
+            { name: 'lastname', typeInvite: 'lastname' }
+        ],
+        separators: [false,"&nbsp;&nbsp;&nbsp;",false],
+        required:true
+    });
 
-   var el = Y.one('#container1');
+    var el = Y.one('#container1');
 
-	var button1 = Y.inputEx.cn('button', null, null, "SetValue with ['Jimi','Hendrix']");
-	var val = ['Jimi','Hendrix'];
-	el.appendChild(button1);
-	Y.one(button1).on('click' ,function() {
-	   field.setValue(val);
-	   val = (val[0] == 'Jimi') ? ['',''] : ['Jimi','Hendrix'];
-	   button1.innerHTML = "SetValue with "+((val[0] == 'Jimi') ? "['Jimi','Hendrix']" : "['','']");
-	});
+    var button1 = Y.inputEx.cn('button', null, null, "SetValue with ['Jimi','Hendrix']");
+    var val = ['Jimi','Hendrix'];
+    el.appendChild(button1);
+    Y.one(button1).on('click' ,function() {
+        field.setValue(val);
+        val = (val[0] == 'Jimi') ? ['',''] : ['Jimi','Hendrix'];
+        button1.innerHTML = "SetValue with "+((val[0] == 'Jimi') ? "['Jimi','Hendrix']" : "['','']");
+    });
 
-	var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-	el.appendChild(logDiv);
-	field.on('updated',function(value) {
-		logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
-		logDiv.appendChild(Y.inputEx.cn('br'));
-	});
-	
-	
-	
-	
-	
-	
-	new Y.inputEx.CombineField({
-		parentEl: 'container2', 
-		label:'Select Datetime :',
-		fields: [
-			{type: 'date', name: 'date', typeInvite: 'mm/dd/YYYY' },
-			{type: 'time', name: 'time' }
-		],
-		separators: [false,"&nbsp;",false]
-	});
-	
-	
-	
-	
-	
-	
-	
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+    el.appendChild(logDiv);
+    field.on('updated',function(value) {
+        logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
+        logDiv.appendChild(Y.inputEx.cn('br'));
+    });
+    
+    
+    // Example 2
+    new Y.inputEx.CombineField({
+        parentEl: 'container2', 
+        label:'Select Datetime :',
+        fields: [
+            {type: 'date', name: 'date', typeInvite: 'mm/dd/YYYY' },
+            {type: 'time', name: 'time' }
+        ],
+        separators: [false,"&nbsp;",false]
+    });
+    
+    
+    // Example 3
     new Y.inputEx.Form( {
-			fields: [
-			{
-				name: 'firstVar',
-				label: "First variable",
-				value: "my-custom-value"
-			},
-			
-			{
-				type: 'list',
-				label: "My Array",
-				maxItems: 4,
-				minItems: 1,
-				elementType: {
-					type: 'combine',
-					description: 'Please enter your name',
-					name: 'this_is_a_test',
-					fields: [
-						{ name: 'firstname', typeInvite: 'firstname' },
-						{ name: 'lastname', typeInvite: 'lastname' }
-					],
-					value: ['Jimi','Hendrix'],
-					name: "person",
-					separators: [false,"&nbsp;&nbsp;&nbsp;",false]
-				},
-				value: [['Jimi','Hendrix'], ['Eric', 'Clapton']],
-				name: 'myarray',
-				useButtons: true ,
-				sortable: true
-			}
-			
-			
-			],
-      buttons: [{type: 'submit', value: 'Test to send the GET request'}],
-			method: 'GET',
-			parentEl: 'container3'
-		});
-	
-	
-	
-	
+        fields: [
+            {
+                name: 'firstVar',
+                label: "First variable",
+                value: "my-custom-value"
+            },
+            {
+                type: 'list',
+                label: "My Array",
+                maxItems: 4,
+                minItems: 1,
+                elementType: {
+                    type: 'combine',
+                    description: 'Please enter your name',
+                    name: 'this_is_a_test',
+                    fields: [
+                        { name: 'firstname', typeInvite: 'firstname' },
+                        { name: 'lastname', typeInvite: 'lastname' }
+                    ],
+                    value: ['Jimi','Hendrix'],
+                    name: "person",
+                    separators: [false,"&nbsp;&nbsp;&nbsp;",false]
+                },
+                value: [['Jimi','Hendrix'], ['Eric', 'Clapton']],
+                name: 'myarray',
+                useButtons: true ,
+                sortable: true
+            }
+        ],
+        buttons: [
+            {type: 'submit', value: 'Test to send the GET request'}
+        ],
+        method: 'GET',
+        parentEl: 'container3'
+    });
 
 });

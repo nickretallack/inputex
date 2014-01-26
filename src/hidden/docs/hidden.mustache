@@ -7,15 +7,19 @@
 <div class="example">
 
 
-	<h2>Basic HiddenField creation</h2>
-	
-	<p>The hidden field is by definition 'invisible', so there isn't a lot to see. However, it can be useful to keep an id :</p>
+    <h2>Basic HiddenField creation</h2>
+    
+    <p>The hidden field is by definition 'invisible', so there isn't a lot to see. However, it can be useful to keep an id :</p>
 
-	<div class='demoContainer' id='container1'></div>
-	
-	<p>Note that <i>&lt;hiddenFieldInstance&gt;</i>.getValue() returns the value as stored, without type casting (we store an integer -> we get an integer).<br /><br />
-	<p>However, when the form is submitted via a 'submit' button, the hidden value is sent as 'string' whatever its datatype was... (we store 12, we submit "12").<br /><br />
-		This is a limitation of the classic HTML form submit. To circumvent the problem, use an ajax submit of the form (which relies on getValue) : see <a href="form.html">form examples</a>.</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    <p>
+        Note that <i>&lt;hiddenFieldInstance&gt;</i>.getValue() returns the value as stored, without type casting (we store an integer -> we get an integer).
+        <br /><br />
+        However, when the form is submitted via a 'submit' button, the hidden value is sent as 'string' whatever its datatype was... (we store 12, we submit "12").
+        <br /><br />
+        This is a limitation of the classic HTML form submit. To circumvent the problem, use an ajax submit of the form (which relies on getValue) : see <a href="../inputex-form/form.html">form examples</a>.
+    </p>
 
 <script>
 {{>hidden-code}}

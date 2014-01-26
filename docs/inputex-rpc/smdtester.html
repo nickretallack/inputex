@@ -34,25 +34,40 @@ smdtester
 
 <div class="example">
 
-
     <div id='mainBox'>
-		<h1>inputEx - SMD tester</h1>
-		
-		<p>Build forms from <a href="https://groups.google.com/forum/?fromgroups#!forum/json-schema">Service Mapping Description</a> (SMD)</p><br /><br />
-		
-	</div>
-	
+        <h1>inputEx - SMD tester</h1>
+        
+        <p>Build forms from <a href="https://groups.google.com/forum/?fromgroups#!forum/json-schema">Service Mapping Description</a> (SMD)</p><br /><br />
+        
+    </div>
 
 
 <script>
-YUI().use("inputex-form","inputex-string","inputex-select","inputex-integer","inputex-number","inputex-textarea","inputex-url","inputex-jsonschema","inputex-rpc","inputex-jsontreeinspector","inputex-smdtester", function(Y) {
+YUI().use("inputex-form","inputex-string","inputex-select","inputex-integer",
+          "inputex-number","inputex-textarea","inputex-url","inputex-jsonschema",
+          "inputex-rpc","inputex-jsontreeinspector","inputex-smdtester", function(Y) {
 
-  var smdList = ['../assets/inputex-rpc/smd/json-time.smd', '../assets/inputex-rpc/smd/json-head.smd', '../assets/inputex-rpc/smd/langdetect.smd', '../assets/inputex-rpc/smd/html-whitelist.smd',
-				   '../assets/inputex-rpc/smd/yql.smd', '../assets/inputex-rpc/smd/jsonptunnel.smd', '../assets/inputex-rpc/smd/flickr.smd',
-				   '../assets/inputex-rpc/smd/yahoopipes.smd', '../assets/inputex-rpc/smd/delicious.smd', '../assets/inputex-rpc/smd/wikipedia.smd', '../assets/inputex-rpc/smd/google.smd',
- 				   '../assets/inputex-rpc/smd/twitter.smd', '../assets/inputex-rpc/smd/geonames.smd', '../assets/inputex-rpc/smd/yahoo.smd', '../assets/inputex-rpc/smd/freebase.smd', '../assets/inputex-rpc/smd/tinyurl.smd'];
-	new Y.inputEx.RPC.SMDTester('mainBox', smdList);
-  
+    var smdList = [
+        '../assets/inputex-rpc/smd/json-time.smd',
+        '../assets/inputex-rpc/smd/json-head.smd',
+        '../assets/inputex-rpc/smd/langdetect.smd',
+        '../assets/inputex-rpc/smd/html-whitelist.smd',
+        '../assets/inputex-rpc/smd/yql.smd',
+        '../assets/inputex-rpc/smd/jsonptunnel.smd',
+        '../assets/inputex-rpc/smd/flickr.smd',
+        '../assets/inputex-rpc/smd/yahoopipes.smd',
+        '../assets/inputex-rpc/smd/delicious.smd',
+        '../assets/inputex-rpc/smd/wikipedia.smd',
+        '../assets/inputex-rpc/smd/google.smd',
+        '../assets/inputex-rpc/smd/twitter.smd',
+        '../assets/inputex-rpc/smd/geonames.smd',
+        '../assets/inputex-rpc/smd/yahoo.smd',
+        '../assets/inputex-rpc/smd/freebase.smd',
+        '../assets/inputex-rpc/smd/tinyurl.smd'
+    ];
+
+    new Y.inputEx.RPC.SMDTester('mainBox', smdList);
+
 });
 
 
@@ -70,14 +85,31 @@ YUI().use("inputex-form","inputex-string","inputex-select","inputex-integer","in
 
 <h3>Implementation</h3>
 
-<pre class="code prettyprint">YUI().use(&quot;inputex-form&quot;,&quot;inputex-string&quot;,&quot;inputex-select&quot;,&quot;inputex-integer&quot;,&quot;inputex-number&quot;,&quot;inputex-textarea&quot;,&quot;inputex-url&quot;,&quot;inputex-jsonschema&quot;,&quot;inputex-rpc&quot;,&quot;inputex-jsontreeinspector&quot;,&quot;inputex-smdtester&quot;, function(Y) {
+<pre class="code prettyprint">YUI().use(&quot;inputex-form&quot;,&quot;inputex-string&quot;,&quot;inputex-select&quot;,&quot;inputex-integer&quot;,
+          &quot;inputex-number&quot;,&quot;inputex-textarea&quot;,&quot;inputex-url&quot;,&quot;inputex-jsonschema&quot;,
+          &quot;inputex-rpc&quot;,&quot;inputex-jsontreeinspector&quot;,&quot;inputex-smdtester&quot;, function(Y) {
 
-  var smdList = [&#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;json-time.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;json-head.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;langdetect.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;html-whitelist.smd&#x27;,
-				   &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;yql.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;jsonptunnel.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;flickr.smd&#x27;,
-				   &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;yahoopipes.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;delicious.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;wikipedia.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;google.smd&#x27;,
- 				   &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;twitter.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;geonames.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;yahoo.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;freebase.smd&#x27;, &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;tinyurl.smd&#x27;];
-	new Y.inputEx.RPC.SMDTester(&#x27;mainBox&#x27;, smdList);
-  
+    var smdList = [
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;json-time.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;json-head.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;langdetect.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;html-whitelist.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;yql.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;jsonptunnel.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;flickr.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;yahoopipes.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;delicious.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;wikipedia.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;google.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;twitter.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;geonames.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;yahoo.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;freebase.smd&#x27;,
+        &#x27;..&#x2F;assets&#x2F;inputex-rpc&#x2F;smd&#x2F;tinyurl.smd&#x27;
+    ];
+
+    new Y.inputEx.RPC.SMDTester(&#x27;mainBox&#x27;, smdList);
+
 });</pre>
 
 </div>

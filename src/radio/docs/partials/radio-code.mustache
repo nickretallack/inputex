@@ -48,7 +48,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element.appendChild(logDiv0);
    
    field0.on('updated', function(value) {
-      logDiv0.innerHTML += "Updated at "+(new Date())+" with value "+value;
+      logDiv0.innerHTML += "Updated at "+(new Date())+" with value \""+value+"\"";
       logDiv0.appendChild(Y.inputEx.cn('br'));
    });
    
@@ -74,7 +74,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    
    var field2 = new Y.inputEx.RadioField({label: 'Where did you learn about inputEx ?', name: 'example5', choices: ['Ajaxian','YUI blog'], parentEl: 'container5', allowAny: true});
    field2.on('updated', function(value) {
-         Y.one('#container5').appendChild( Y.inputEx.cn('div',null,null, "Updated with value: "+value) );
+         Y.one('#container5').appendChild( Y.inputEx.cn('div',null,null, "Updated with value: \""+value+"\"") );
    });
    
    
@@ -105,7 +105,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    });
    
    field6.on('updated', function(value) {
-         element6.appendChild( Y.inputEx.cn('div',null,null, "Updated with value: "+value) );
+         element6.appendChild( Y.inputEx.cn('div',null,null, "Updated with value: \""+value+"\"") );
    });
    
    button61 = Y.inputEx.cn('button', null, null, 'setValue("6")');
@@ -223,7 +223,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element9.appendChild(logDiv9);
    
    field9.on('updated', function(value) {
-      logDiv9.innerHTML += "Updated at "+(new Date())+" with value "+value;
+      logDiv9.innerHTML += "Updated at "+(new Date())+" with value \""+value+"\"";
       logDiv9.appendChild(Y.inputEx.cn('br'));
    });
    
@@ -272,7 +272,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element10.appendChild(logDiv10);
    
    field10.on('updated', function(value) {
-      logDiv10.innerHTML += "Updated at "+(new Date())+" with value "+value;
+      logDiv10.innerHTML += "Updated at "+(new Date())+" with value \""+value+"\"";
       logDiv10.appendChild(Y.inputEx.cn('br'));
    });
    
@@ -294,7 +294,7 @@ YUI().use('inputex-radio', 'inputex-time', 'inputex-integer', 'inputex-timeinter
    element11.appendChild(logDiv11);
    
    field11.on('updated', function(value) {
-      logDiv11.innerHTML += "Updated at "+(new Date())+" with value "+value;
+      logDiv11.innerHTML += "Updated at "+(new Date())+" with value \""+value+"\"";
       logDiv11.appendChild(Y.inputEx.cn('br'));
    });
    

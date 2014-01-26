@@ -1,52 +1,51 @@
-YUI().use('inputex-keyopvalue','inputex-group','inputex-combine','inputex-string','inputex-url','inputex-list','inputex-select', 'json', function(Y) {
+YUI().use('inputex-keyopvalue','inputex-group','inputex-combine','inputex-string',
+          'inputex-url','inputex-list','inputex-select', 'json', function(Y) {
 
 
-	// Example 1
-	var field1 = new Y.inputEx.KeyOpValueField({
-		parentEl: 'container1',
-		availableFields: [
-			{type: 'string', name: 'lastname', label: 'Lastname' },
-			{type: 'string', name: 'firstname', label: 'Firstname' },
-			{type: 'select', name: 'gender', label: 'Gender',  choices: ["Mr","Mrs","Ms"] }
-		]
-	});
-		
-	var button1 = Y.inputEx.cn('button', null, null, 'getValue()');
-	Y.one('#container1').appendChild(button1); 
-	Y.one(button1).on('click', function() { alert( Y.JSON.stringify(field1.getValue())); });  
-			
-			
-	// Example 2
-	Y.inputEx({
-		type: 'list',
-		parentEl: 'container2',
-		elementType: {
-			type: 'keyopvalue',
-			availableFields: [
-				{type: 'string', name: 'lastname', label: 'Lastname' },
-				{type: 'string', name: 'firstname', label: 'Firstname' },
-				{type: 'select', name: 'gender', label: 'Gender',  choices: ["Mr","Mrs","Ms"] }
-			]
-		}
-	});
-	
-	
-	// Example 3
-	var field3 = new Y.inputEx.KeyOpValueField({
-		parentEl: 'container3',
-		availableFields: [
-			{type: 'string', name: 'lastname', label: 'Lastname' },
-			{type: 'string', name: 'firstname', label: 'Firstname' },
-			{type: 'select', name: 'gender', label: 'Gender',  choices: ["Mr","Mrs","Ms"] }
-		],
-			
-		operators: ["=","!="],
-		operatorLabels: ["equals", "different"]
-	});
-		
-	var button3 = Y.inputEx.cn('button', null, null, 'getValue()');
-	Y.one('#container3').appendChild(button3); 
-	Y.one(button3).on('click', function() { alert( Y.JSON.stringify(field3.getValue())); });  
-			
+    // Example 1
+    var field1 = new Y.inputEx.KeyOpValueField({
+        parentEl: 'container1',
+        availableFields: [
+            {type: 'string', name: 'lastname', label: 'Lastname' },
+            {type: 'string', name: 'firstname', label: 'Firstname' },
+            {type: 'select', name: 'gender', label: 'Gender',  choices: ["Mr","Mrs","Ms"] }
+        ]
+    });
+    
+    var button1 = Y.inputEx.cn('button', null, null, 'getValue()');
+    Y.one('#container1').appendChild(button1); 
+    Y.one(button1).on('click', function() { alert( Y.JSON.stringify(field1.getValue())); });  
+    
+    
+    // Example 2
+    Y.inputEx({
+        type: 'list',
+        parentEl: 'container2',
+        elementType: {
+            type: 'keyopvalue',
+            availableFields: [
+                {type: 'string', name: 'lastname', label: 'Lastname' },
+                {type: 'string', name: 'firstname', label: 'Firstname' },
+                {type: 'select', name: 'gender', label: 'Gender',  choices: ["Mr","Mrs","Ms"] }
+            ]
+        }
+    });
+    
+    
+    // Example 3
+    var field3 = new Y.inputEx.KeyOpValueField({
+        parentEl: 'container3',
+        availableFields: [
+            {type: 'string', name: 'lastname', label: 'Lastname' },
+            {type: 'string', name: 'firstname', label: 'Firstname' },
+            {type: 'select', name: 'gender', label: 'Gender',  choices: ["Mr","Mrs","Ms"] }
+        ],
+        operators: ["=","!="],
+        operatorLabels: ["equals", "different"]
+    });
+        
+    var button3 = Y.inputEx.cn('button', null, null, 'getValue()');
+    Y.one('#container3').appendChild(button3); 
+    Y.one(button3).on('click', function() { alert( Y.JSON.stringify(field3.getValue())); });  
 
 });

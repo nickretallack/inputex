@@ -34,44 +34,44 @@ How to create a dateselectmonth field.
 
 <div class="example">
 
-	<h2>Basic DateSelectMonthField creation</h2>
-	<p>Use the following code to create a basic inputEx DateSelectMonthField.</p>
-	<div class='demoContainer' id='container1'></div>
+    <h2>Basic DateSelectMonthField creation</h2>
+    <p>Use the following code to create a basic inputEx DateSelectMonthField.</p>
+    <div class='demoContainer' id='container1'></div>
 
 
 <script>
 YUI().use('inputex-dateselectmonth', function(Y) {
 
-	var f = new Y.inputEx.DateSelectMonthField({label: 'Birthday', parentEl: 'container1', showMsg: true, required:true});
+    var f = new Y.inputEx.DateSelectMonthField({label: 'Birthday', parentEl: 'container1', showMsg: true, required:true});
 
-	f.on('updated',function(val) {
-		Y.one('#container1').appendChild( Y.inputEx.cn('div', null, null, 'Updated with value= '+val));
-	});
+    f.on('updated',function(val) {
+        Y.one('#container1').appendChild( Y.inputEx.cn('div', null, null, 'Updated with value= '+val));
+    });
 
-	var div = Y.one('#container1');
+    var div = Y.one('#container1');
 
-	var button1 = Y.inputEx.cn('button', null, null, "SetValue with today date");
-	div.appendChild(button1);
-	Y.one(button1).on('click' ,function() { 
-		f.setValue(new Date()); 
-	});
-	var button2 = Y.inputEx.cn('button', null, null, "SetValue with empty string");
-	div.appendChild(button2);
-	Y.one(button2).on('click' ,function() { 
-		f.setValue(''); 
-	});
+    var button1 = Y.inputEx.cn('button', null, null, "SetValue with today date");
+    div.appendChild(button1);
+    Y.one(button1).on('click' ,function() { 
+        f.setValue(new Date()); 
+    });
+    var button2 = Y.inputEx.cn('button', null, null, "SetValue with empty string");
+    div.appendChild(button2);
+    Y.one(button2).on('click' ,function() { 
+        f.setValue(''); 
+    });
 
-	var button3 = Y.inputEx.cn('button', null, null, "GetValue");
-	div.appendChild(button3);
-	Y.one(button3).on('click' ,function() { 
-		alert(f.getValue());
-	});
+    var button3 = Y.inputEx.cn('button', null, null, "GetValue");
+    div.appendChild(button3);
+    Y.one(button3).on('click' ,function() { 
+        alert(f.getValue());
+    });
 
-	var button4 = Y.inputEx.cn('button', null, null, "Clear");
-	div.appendChild(button4);
-	Y.one(button4).on('click' ,function() { 
-		f.clear();
-	});
+    var button4 = Y.inputEx.cn('button', null, null, "Clear");
+    div.appendChild(button4);
+    Y.one(button4).on('click' ,function() { 
+        f.clear();
+    });
 
 });
 </script>
@@ -90,36 +90,36 @@ YUI().use('inputex-dateselectmonth', function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-dateselectmonth&#x27;, function(Y) {
 
-	var f = new Y.inputEx.DateSelectMonthField({label: &#x27;Birthday&#x27;, parentEl: &#x27;container1&#x27;, showMsg: true, required:true});
+    var f = new Y.inputEx.DateSelectMonthField({label: &#x27;Birthday&#x27;, parentEl: &#x27;container1&#x27;, showMsg: true, required:true});
 
-	f.on(&#x27;updated&#x27;,function(val) {
-		Y.one(&#x27;#container1&#x27;).appendChild( Y.inputEx.cn(&#x27;div&#x27;, null, null, &#x27;Updated with value= &#x27;+val));
-	});
+    f.on(&#x27;updated&#x27;,function(val) {
+        Y.one(&#x27;#container1&#x27;).appendChild( Y.inputEx.cn(&#x27;div&#x27;, null, null, &#x27;Updated with value= &#x27;+val));
+    });
 
-	var div = Y.one(&#x27;#container1&#x27;);
+    var div = Y.one(&#x27;#container1&#x27;);
 
-	var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with today date&quot;);
-	div.appendChild(button1);
-	Y.one(button1).on(&#x27;click&#x27; ,function() { 
-		f.setValue(new Date()); 
-	});
-	var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with empty string&quot;);
-	div.appendChild(button2);
-	Y.one(button2).on(&#x27;click&#x27; ,function() { 
-		f.setValue(&#x27;&#x27;); 
-	});
+    var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with today date&quot;);
+    div.appendChild(button1);
+    Y.one(button1).on(&#x27;click&#x27; ,function() { 
+        f.setValue(new Date()); 
+    });
+    var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue with empty string&quot;);
+    div.appendChild(button2);
+    Y.one(button2).on(&#x27;click&#x27; ,function() { 
+        f.setValue(&#x27;&#x27;); 
+    });
 
-	var button3 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
-	div.appendChild(button3);
-	Y.one(button3).on(&#x27;click&#x27; ,function() { 
-		alert(f.getValue());
-	});
+    var button3 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
+    div.appendChild(button3);
+    Y.one(button3).on(&#x27;click&#x27; ,function() { 
+        alert(f.getValue());
+    });
 
-	var button4 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;Clear&quot;);
-	div.appendChild(button4);
-	Y.one(button4).on(&#x27;click&#x27; ,function() { 
-		f.clear();
-	});
+    var button4 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;Clear&quot;);
+    div.appendChild(button4);
+    Y.one(button4).on(&#x27;click&#x27; ,function() { 
+        f.clear();
+    });
 
 });</pre>
 

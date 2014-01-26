@@ -1,20 +1,18 @@
 YUI().use('inputex-type','inputex-url',function(Y) {
 
-
     new Y.inputEx.TypeField({parentEl: 'container1'});
-	
-	
-	new Y.inputEx.TypeField({
-		parentEl: 'container2', 
-		value: {
-			type:'url',
-			label: 'Website', 
-			name:'website', 
-			typeInvite: 'Enter a URL', 
-			size: 30,
-			description: 'You can provide a default value to TypeField',
-			value: 'http://developer.yahoo.com/yui/3/'
-		}
-	});
+    
+    new Y.inputEx.TypeField({
+        parentEl: 'container2',
+        value: {
+            type:'url',
+            label: 'Website',
+            name:'website',
+            typeInvite: 'Enter a URL',
+            size: 30,
+            description: 'You can provide a default value to TypeField',
+            value: 'http://developer.yahoo.com/yui/3/'
+        }
+    });
 
 });

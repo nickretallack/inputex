@@ -34,28 +34,25 @@ How to create a file field.
 
 <div class="example">
 
-
-	<h2>File upload</h2>
-	<p>To create a file upload form, you must use the "file" field within a form with the enctype attribute set to 'multipart/form-data'.</p>
-	<div class='demoContainer' id='container1'></div>
+    <h2>File upload</h2>
+    <p>To create a file upload form, you must use the "file" field within a form with the enctype attribute set to 'multipart/form-data'.</p>
+    <div class='demoContainer' id='container1'></div>
 
 <script>
 YUI().use('inputex-file', 'inputex-form', 'inputex-timeinterval', function(Y) {
 
-
-	Y.inputEx({
-		type: 'form',
-		parentEl: 'container1',
-		enctype: 'multipart/form-data',
-		action: 'input_file.php',
-		fields: [
-			{type: 'file', name: 'textFile', label:'Search file', accept: 'text/*', size: 50 }
-		],
-		buttons: [
-			{type: 'submit', value: 'Upload'}
-		]
-	});
-
+    Y.inputEx({
+        type: 'form',
+        parentEl: 'container1',
+        enctype: 'multipart/form-data',
+        action: 'input_file.php',
+        fields: [
+            {type: 'file', name: 'textFile', label:'Search file', accept: 'text/*', size: 50 }
+        ],
+        buttons: [
+            {type: 'submit', value: 'Upload'}
+        ]
+    });
 
 });
 </script>
@@ -74,20 +71,18 @@ YUI().use('inputex-file', 'inputex-form', 'inputex-timeinterval', function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-file&#x27;, &#x27;inputex-form&#x27;, &#x27;inputex-timeinterval&#x27;, function(Y) {
 
-
-	Y.inputEx({
-		type: &#x27;form&#x27;,
-		parentEl: &#x27;container1&#x27;,
-		enctype: &#x27;multipart&#x2F;form-data&#x27;,
-		action: &#x27;input_file.php&#x27;,
-		fields: [
-			{type: &#x27;file&#x27;, name: &#x27;textFile&#x27;, label:&#x27;Search file&#x27;, accept: &#x27;text&#x2F;*&#x27;, size: 50 }
-		],
-		buttons: [
-			{type: &#x27;submit&#x27;, value: &#x27;Upload&#x27;}
-		]
-	});
-
+    Y.inputEx({
+        type: &#x27;form&#x27;,
+        parentEl: &#x27;container1&#x27;,
+        enctype: &#x27;multipart&#x2F;form-data&#x27;,
+        action: &#x27;input_file.php&#x27;,
+        fields: [
+            {type: &#x27;file&#x27;, name: &#x27;textFile&#x27;, label:&#x27;Search file&#x27;, accept: &#x27;text&#x2F;*&#x27;, size: 50 }
+        ],
+        buttons: [
+            {type: &#x27;submit&#x27;, value: &#x27;Upload&#x27;}
+        ]
+    });
 
 });</pre>
 

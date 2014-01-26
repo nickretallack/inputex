@@ -1,72 +1,68 @@
 YUI().use('inputex-ratingstars', 'inputex-ratingstarsform', function(Y) { 
 
     // Example 1
-       new Y.inputEx.RatingStars({
-         name: 'star1',
-    averageValue: 4.5,
-         parentEl: 'container1'
-      });
-   
-   
-   // Example 1bis
-      new Y.inputEx.RatingStars({
-         label: 'Rate this one !',
-         name: 'star1bis',
-    averageValue: 2.3, 
-    nStars: 8,  
-    nRates: 25,
-         parentEl: 'container1bis'
-      });
-   
-   
-   // Example 2
-      new Y.inputEx.RatingStars({
-         name: 'star2',
-    averageValue: 2.3, 
-    nRates: 30,
-    parentEl: 'container2',
-         message : 'Yo!, average Rate is %, % ratings have been made'
-      });
-   
-   
-   // Example 3
-   
-      new Y.inputEx.RatingStars({
-         name: 'star2',
-    averageValue: 2.3, 
-    nStars: ["Not Cool","Half-Cool","Cool","Super Cool","Coolest Ever"],
-    nRates: 30,
-    parentEl: 'container3'
-      });
-   
-   
-   // Example 4
-   
-      new Y.inputEx.RatingStarsForm({
-    ratingStarsOptions: {
-             name: 'star',
-      averageValue: 2.3, 
-      nStars: ["Not Cool","Half-Cool","Cool","Super Cool","Coolest Ever"],
-      nRates: 30        
-    },
-    parentEl: 'container4',
-    ajax: { 
-         method: 'POST', 
-         uri: 'default.php'          
-    } 
-      });
-   
-   
-   // Example 5
-      new Y.inputEx.RatingStars({
-         name: 'star3',
-    averageValue: 2.3, 
-    disabled: true,
-    disableMessage: "sorry the stars are disabled",
-    nRates: 30,
-    parentEl: 'container5'
-      });
-   
-   
+    new Y.inputEx.RatingStars({
+        name: 'star1',
+        averageValue: 4.5,
+        parentEl: 'container1'
+    });
+
+
+    // Example 1bis
+    new Y.inputEx.RatingStars({
+        label: 'Rate this one !',
+        name: 'star1bis',
+        averageValue: 2.3,
+        nStars: 8,
+        nRates: 25,
+        parentEl: 'container1bis'
+    });
+
+
+    // Example 2
+    new Y.inputEx.RatingStars({
+        name: 'star2',
+        averageValue: 2.3,
+        nRates: 30,
+        parentEl: 'container2',
+        message : 'Yo!, average Rate is %, % ratings have been made'
+    });
+
+
+    // Example 3
+    new Y.inputEx.RatingStars({
+        name: 'star2',
+        averageValue: 2.3,
+        nStars: ["Not Cool","Half-Cool","Cool","Super Cool","Coolest Ever"],
+        nRates: 30,
+        parentEl: 'container3'
+    });
+
+
+    // Example 4
+    new Y.inputEx.RatingStarsForm({
+        ratingStarsOptions: {
+            name: 'star',
+            averageValue: 2.3,
+            nStars: ["Not Cool","Half-Cool","Cool","Super Cool","Coolest Ever"],
+            nRates: 30
+        },
+        parentEl: 'container4',
+        ajax: {
+            method: 'POST',
+            uri: 'default.php'
+        }
+    });
+
+
+    // Example 5
+    new Y.inputEx.RatingStars({
+        name: 'star3',
+        averageValue: 2.3,
+        disabled: true,
+        disableMessage: "sorry the stars are disabled",
+        nRates: 30,
+        parentEl: 'container5'
+    });
 
 });

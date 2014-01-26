@@ -1,6 +1,6 @@
 YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  function(Y) {
 
-	// Example 1
+    // Example 1
 
     new Y.inputEx.Form( { 
        fields: [ 
@@ -13,14 +13,14 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
        buttons: [{type: 'submit', value: 'Change'}],
        parentEl: 'container1'
     });
-	
-	
-	
-	// Example 2
+    
+    
+    
+    // Example 2
 
     new Y.inputEx.Form( {
          fields: [
-             { 
+             {
                 type:'group',
                 legend:'group 1',
                 name:'group1',
@@ -30,7 +30,7 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
                   {label: 'Lastname', name: 'lastname', value:'Dupont' }
                 ]
              },
-             { 
+             {
                 type:'group',
                 legend:'group 2',
                 name:'group2',
@@ -43,10 +43,10 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
          buttons: [{type: 'submit', value: 'Change'}],
          parentEl: 'container2'
      });
-	 
-	 
-	 // Example 3
-	 
+     
+     
+     // Example 3
+     
 
      new Y.inputEx.Form( {
         fields: [ 
@@ -66,9 +66,9 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
            showMask:true
         }
      });
-	 
-	 
-	 // Example 4
+     
+     
+     // Example 4
 
      new Y.inputEx.Form( {
         fields: [ 
@@ -89,9 +89,9 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
            showMask:true
         }
      });
-	 
-	 
-	 // Example 5
+     
+     
+     // Example 5
 
      new Y.inputEx.Form( {
         fields: [ 
@@ -113,9 +113,9 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
            showMask:true
         }
      });
-	 
-	 
-	 // Example 6
+     
+     
+     // Example 6
 
      var form6 = new Y.inputEx.Form( { 
         fields: [ 
@@ -176,10 +176,10 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
         ],
         parentEl: 'container6'
      });
-	 
-	 
-	 // Example 7
-	 
+     
+     
+     // Example 7
+     
 
          
      var confirmation = {
@@ -219,9 +219,9 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
         ],
         parentEl: 'container7'
      });
-	 
-	 
-	 // Example 8
+     
+     
+     // Example 8
 
      var form8 = new Y.inputEx.Form( { 
         fields: [ 
@@ -253,9 +253,9 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
      container.appendChild(Y.inputEx.cn('div',null,{clear:'both'}));
          
          
-		 
-	 // Example 9
-	 
+         
+     // Example 9
+     
 
      // autocompletion is 'on' by default
      new Y.inputEx.Form({
@@ -287,7 +287,5 @@ YUI().use('inputex-form', 'inputex-email', 'inputex-url', 'inputex-select',  fun
      //
      //   inputEx.browserAutocomplete = 'off';
      //
-	 
-	 
-
+     
 });

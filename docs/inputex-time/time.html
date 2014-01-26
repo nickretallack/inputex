@@ -35,44 +35,44 @@ How to create a time field.
 <div class="example">
 
     <h2>Basic TimeField creation</h2>
-	<p>Use the following code to create a basic inputEx TimeField.</p>
-	<div class='demoContainer' id='container1'></div>
-	
-	<h2>Change separators</h2>
-	<p>Use the separators attribute from CombineField to change the separator strings.</p>
-	<div class='demoContainer' id='container2'></div>
+    <p>Use the following code to create a basic inputEx TimeField.</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    <h2>Change separators</h2>
+    <p>Use the separators attribute from CombineField to change the separator strings.</p>
+    <div class='demoContainer' id='container2'></div>
 
-	<h2>Gap in selector's value</h2>
-	<p>change the value of your selectors by setting an increment</p>
-	<div class='demoContainer' id='container3'></div>
+    <h2>Gap in selector's value</h2>
+    <p>change the value of your selectors by setting an increment</p>
+    <div class='demoContainer' id='container3'></div>
 
-	<h2>Show/Hide selectors</h2>
-	<p>Let say that your second's selector in too specific .</p>
-	<div class='demoContainer' id='container4'></div>
+    <h2>Show/Hide selectors</h2>
+    <p>Let say that your second's selector in too specific .</p>
+    <div class='demoContainer' id='container4'></div>
 
 <script>
 YUI().use('inputex-time',function(Y) {
 
     // Example 1
-    field = new Y.inputEx.TimeField({
-		parentEl: 'container1', 
-		value:'15:17:34'
-	});
-	var button = Y.inputEx.cn('button', null, null, 'getValue');
-	Y.one(button).on('click',function() {
-		alert(field.getValue());
-	});
-	Y.one('#container1').appendChild(button);
-	
-	//Example 2
-	field2 = new Y.inputEx.TimeField({
-		parentEl: 'container2',
-		separators: [false,"h","m","s"],
-		value:'15:17:34'
-	});
-	
-	// Example 3
-    field3 = new Y.inputEx.TimeField({
+    var field = new Y.inputEx.TimeField({
+        parentEl: 'container1', 
+        value:'15:17:34'
+    });
+    var button = Y.inputEx.cn('button', null, null, 'getValue');
+    Y.one(button).on('click',function() {
+        alert(field.getValue());
+    });
+    Y.one('#container1').appendChild(button);
+    
+    //Example 2
+    var field2 = new Y.inputEx.TimeField({
+        parentEl: 'container2',
+        separators: [false,"h","m","s"],
+        value:'15:17:34'
+    });
+    
+    // Example 3
+    var field3 = new Y.inputEx.TimeField({
         parentEl: 'container3',
         gapHours : 2,
         gapMinutes : 3,
@@ -85,7 +85,7 @@ YUI().use('inputex-time',function(Y) {
     });
 
     // Example 4
-    field4 = new Y.inputEx.TimeField({
+    var field4 = new Y.inputEx.TimeField({
         parentEl: 'container4',
         gapHours : 3,
         gapMinutes : 7,
@@ -114,25 +114,25 @@ YUI().use('inputex-time',function(Y) {
 <pre class="code prettyprint">YUI().use(&#x27;inputex-time&#x27;,function(Y) {
 
     &#x2F;&#x2F; Example 1
-    field = new Y.inputEx.TimeField({
-		parentEl: &#x27;container1&#x27;, 
-		value:&#x27;15:17:34&#x27;
-	});
-	var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
-	Y.one(button).on(&#x27;click&#x27;,function() {
-		alert(field.getValue());
-	});
-	Y.one(&#x27;#container1&#x27;).appendChild(button);
-	
-	&#x2F;&#x2F;Example 2
-	field2 = new Y.inputEx.TimeField({
-		parentEl: &#x27;container2&#x27;,
-		separators: [false,&quot;h&quot;,&quot;m&quot;,&quot;s&quot;],
-		value:&#x27;15:17:34&#x27;
-	});
-	
-	&#x2F;&#x2F; Example 3
-    field3 = new Y.inputEx.TimeField({
+    var field = new Y.inputEx.TimeField({
+        parentEl: &#x27;container1&#x27;, 
+        value:&#x27;15:17:34&#x27;
+    });
+    var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
+    Y.one(button).on(&#x27;click&#x27;,function() {
+        alert(field.getValue());
+    });
+    Y.one(&#x27;#container1&#x27;).appendChild(button);
+    
+    &#x2F;&#x2F;Example 2
+    var field2 = new Y.inputEx.TimeField({
+        parentEl: &#x27;container2&#x27;,
+        separators: [false,&quot;h&quot;,&quot;m&quot;,&quot;s&quot;],
+        value:&#x27;15:17:34&#x27;
+    });
+    
+    &#x2F;&#x2F; Example 3
+    var field3 = new Y.inputEx.TimeField({
         parentEl: &#x27;container3&#x27;,
         gapHours : 2,
         gapMinutes : 3,
@@ -145,7 +145,7 @@ YUI().use('inputex-time',function(Y) {
     });
 
     &#x2F;&#x2F; Example 4
-    field4 = new Y.inputEx.TimeField({
+    var field4 = new Y.inputEx.TimeField({
         parentEl: &#x27;container4&#x27;,
         gapHours : 3,
         gapMinutes : 7,

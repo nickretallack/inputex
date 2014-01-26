@@ -1,19 +1,17 @@
 YUI().use('inputex-select',function(Y) {
 
-    // Example 1
-    
-    new Y.inputEx.SelectField({
+   // Example 1 
+   new Y.inputEx.SelectField({
       name: 'country',
-      choices: [                                  // choices: [                      <- alternative syntax (shorter)
+      choices: [                                 // choices: [                      <- alternative syntax (shorter)
          { value: 'United States of America' },  //    'United States of America',  <-
          { value: 'France' }                     //    'France'                     <-
-      ],                                          // ],                              <-
+      ],                                         // ],                              <-
       parentEl: 'container1'
    });
    
    
    // Example 1bis
-   
    new Y.inputEx.SelectField({
       label: 'Where are you from ?',
       name: 'country',
@@ -24,6 +22,7 @@ YUI().use('inputex-select',function(Y) {
       parentEl: 'container1bis'
    });
    
+
    // Example 1ter
    new Y.inputEx.SelectField({
       name: 'country',
@@ -37,8 +36,8 @@ YUI().use('inputex-select',function(Y) {
       parentEl: 'container1ter'
    });
 
+
    // Example 2
-   
    var el = Y.one('#container2');
    var field2 = new Y.inputEx.SelectField({ name: 'country', label: 'Where are you from ?', choices: [{ value: 'us', label: 'United States of America' }, { value: 'fr', label: 'France' }], parentEl: el });
    
@@ -60,7 +59,6 @@ YUI().use('inputex-select',function(Y) {
    
    
    // Example 3
-   
    var el = Y.one('#container3');
    var field3 = new Y.inputEx.SelectField({name: 'country', choices: [{ value: 'United States of America' }, { value: 'France' }], parentEl: el});
 
@@ -93,11 +91,9 @@ YUI().use('inputex-select',function(Y) {
       logDiv3.appendChild(Y.inputEx.cn('br'));
    });
     
-    
-    
-    // Example 4
-    
-    var el = Y.one('#container4');
+   
+   // Example 4 
+   var el = Y.one('#container4');
    var field4 = new Y.inputEx.SelectField({
       name: 'country',
       choices: [
@@ -142,8 +138,6 @@ YUI().use('inputex-select',function(Y) {
    
    
    // Example 5
-   
-   
    var el = Y.one('#container5');
    var field5 = new Y.inputEx.SelectField({name: 'country', choices: [ { value: 'usa', label: 'United States of America' }, { value: 'fr', label: 'France' }, { value: 'es', label: 'Spain' }], parentEl: el});
    
@@ -162,7 +156,6 @@ YUI().use('inputex-select',function(Y) {
       logDiv5.innerHTML += "Updated at "+(new Date())+" with value "+value;
       logDiv5.appendChild(Y.inputEx.cn('br'));
    });
-   
    
    Y.on("click" ,function() {
       
@@ -195,10 +188,5 @@ YUI().use('inputex-select',function(Y) {
       logDiv5.innerHTML += "[INFO] Enable choice 'Spain' (current value : "+field5.getValue()+")";
       logDiv5.appendChild(Y.inputEx.cn('br'));
    },button10);
-   
-   
-   
-   
-
 
 });

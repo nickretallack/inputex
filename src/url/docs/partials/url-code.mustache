@@ -1,15 +1,28 @@
 YUI().use('inputex-url',function(Y) {
 
     // Example 1
-    new Y.inputEx.UrlField({parentEl: 'container1', showMsg: true, value: 'http://ajaxian.com/archives/inputex-json-form-builder'});
+    new Y.inputEx.UrlField({
+        parentEl: 'container1',
+        showMsg: true,
+        value: 'http://ajaxian.com/archives/inputex-json-form-builder'
+    });
 
 
     // Example 2
-    new Y.inputEx.UrlField({parentEl: 'container2', showMsg: true, favicon: false, value: 'http://www.ajaxian.com'});
+    new Y.inputEx.UrlField({
+        parentEl: 'container2',
+        showMsg: true,
+        favicon: false,
+        value: 'http://www.ajaxian.com'
+    });
     
     
     // Example 3
-    new Y.inputEx.UrlField({parentEl: 'container3', showMsg: true, favicon: false, typeInvite: 'webservice url'});
-
+    new Y.inputEx.UrlField({
+        parentEl: 'container3',
+        showMsg: true,
+        favicon: false,
+        typeInvite: 'webservice url'
+    });
 
 });

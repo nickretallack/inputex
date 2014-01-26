@@ -36,85 +36,80 @@ How to create a tinymce field.
 
 
     <h2>Important Notice :</h2>
-	<p>TinyMCE is not included in the inputEx distribution ! <br />
-		Download it on <a href="http://tinymce.moxiecode.com/">http://tinymce.moxiecode.com/</a> (tested with version 3.5.6) and install it in lib/tiny_mce</p>
-	
-	    <script src="http://tinymce.moxiecode.com/js/tinymce/jscripts/tiny_mce/tiny_mce.js" type='text/javascript'></script>
-    
-	
-	
-		<h2>Basic TinyMCEField creation</h2>
-    	<p>Use the following code to create a basic inputEx TinyMCEField.</p>
-    	<div class='demoContainer' id='container1'></div>
-    
-    
-    	<h2>TinyMCEField setValue/getValue</h2>
-    	<p>Test for setValue/getValue using the TinyMCEField.</p>
-    	<div class='demoContainer' id='container2'></div>
-    
-    
-    
-    	<h2>Using the SimpleEditor</h2>
-    	<p>Use the following code to create a SimpleEditor widget</p>
-    	<div class='demoContainer' id='container3'></div>
-    
-    
-    
-    	<h2>Changing the config</h2>
-    	<p>You can have access to all the tinymce config options through the "opts" attribute. Check out the <a href="http://tinymce.moxiecode.com/examples/full.php">TinyMCE examples</a> for all options.</p>
-    	<div class='demoContainer' id='container4'></div>
-    
-    
-    
+    <p>TinyMCE is not included in the inputEx distribution ! <br />
+    Download it on <a href="http://tinymce.moxiecode.com/">http://tinymce.moxiecode.com/</a> (tested with version 3.5.6) and install it in lib/tiny_mce</p>
+
+    <script src="http://tinymce.moxiecode.com/js/tinymce/jscripts/tiny_mce/tiny_mce.js" type='text/javascript'></script>
+
+
+    <h2>Basic TinyMCEField creation</h2>
+    <p>Use the following code to create a basic inputEx TinyMCEField.</p>
+    <div class='demoContainer' id='container1'></div>
+
+
+    <h2>TinyMCEField setValue/getValue</h2>
+    <p>Test for setValue/getValue using the TinyMCEField.</p>
+    <div class='demoContainer' id='container2'></div>
+
+
+    <h2>Using the SimpleEditor</h2>
+    <p>Use the following code to create a SimpleEditor widget</p>
+    <div class='demoContainer' id='container3'></div>
+
+
+    <h2>Changing the config</h2>
+    <p>You can have access to all the tinymce config options through the "opts" attribute. Check out the <a href="http://tinymce.moxiecode.com/examples/full.php">TinyMCE examples</a> for all options.</p>
+    <div class='demoContainer' id='container4'></div>
+
 
 <script>
 YUI().use('inputex-tinymce',function(Y) {
 
-
     // Example 1
-    new Y.inputEx.TinyMCEField({parentEl: 'container1', name: 'rteField', value: String.fromCharCode(60)+"b"+String.fromCharCode(62)+"I'm"+String.fromCharCode(60)+"/b"+String.fromCharCode(62)+" the default value. I've been set through the value option."});
-	
-	
-	// Example 2
-	var div = Y.one('#container2');
-	var htmlField = new Y.inputEx.TinyMCEField({parentEl: div, name: 'test2'});
+    new Y.inputEx.TinyMCEField({
+        parentEl: 'container1',
+        name: 'rteField',
+        value: "<b>I'm</b> the default value. I've been set through the value option."
+    });
+    
+    
+    // Example 2
+    var div = Y.one('#container2');
+    var htmlField = new Y.inputEx.TinyMCEField({ parentEl: div, name: 'test2' });
 
-	var button1 = Y.inputEx.cn('button', null, null, "SetValue");
-	div.appendChild(button1);
-	Y.one(button1).on('click' ,function() { 
-		htmlField.setValue('TinyMCEField can contain HTML !'); 
-	});
-	var button2 = Y.inputEx.cn('button', null, null, "GetValue");
-	div.appendChild(button2);
-	Y.one(button2).on('click' ,function() { 
-		alert(htmlField.getValue());
-	});
-	var button3 = Y.inputEx.cn('button', null, null, "GetText");
-	div.appendChild(button3);
-	Y.one(button3).on('click' ,function() { 
-		alert(htmlField.getText());
-	});
-	
-	
-	// Example 3
-	
-	var field3 = new Y.inputEx.TinyMCEField({parentEl: 'container3', name: 'rteField3'});
-	field3.setValue("Value set just after init...");
-	
-	
-	// Example 4
-	var field4 = new Y.inputEx.TinyMCEField({
-	  parentEl: 'container4', 
-	  name: 'rteField4',
-	  opts: {
-		mode : "textareas",
-		height: "400",
-		width: "400"
-		}
-	});
-	field4.setValue("Value set just after init...");
-	
-
+    var button1 = Y.inputEx.cn('button', null, null, "SetValue");
+    div.appendChild(button1);
+    Y.one(button1).on('click' ,function() { 
+        htmlField.setValue('TinyMCEField can contain <a href="http://en.wikipedia.org/wiki/Html" target="_blank">HTML</a> !'); 
+    });
+    var button2 = Y.inputEx.cn('button', null, null, "GetValue");
+    div.appendChild(button2);
+    Y.one(button2).on('click' ,function() { 
+        alert(htmlField.getValue());
+    });
+    var button3 = Y.inputEx.cn('button', null, null, "GetText");
+    div.appendChild(button3);
+    Y.one(button3).on('click' ,function() { 
+        alert(htmlField.getText());
+    });
+    
+    
+    // Example 3
+    var field3 = new Y.inputEx.TinyMCEField({parentEl: 'container3', name: 'rteField3'});
+    field3.setValue("Value set just after init...");
+    
+    
+    // Example 4
+    var field4 = new Y.inputEx.TinyMCEField({
+        parentEl: 'container4', 
+        name: 'rteField4',
+        opts: {
+            mode : "textareas",
+            height: "400",
+            width: "400"
+        }
+    });
+    field4.setValue("Value set just after init...");
 
 });
 
@@ -136,51 +131,51 @@ YUI().use('inputex-tinymce',function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-tinymce&#x27;,function(Y) {
 
-
     &#x2F;&#x2F; Example 1
-    new Y.inputEx.TinyMCEField({parentEl: &#x27;container1&#x27;, name: &#x27;rteField&#x27;, value: String.fromCharCode(60)+&quot;b&quot;+String.fromCharCode(62)+&quot;I&#x27;m&quot;+String.fromCharCode(60)+&quot;&#x2F;b&quot;+String.fromCharCode(62)+&quot; the default value. I&#x27;ve been set through the value option.&quot;});
-	
-	
-	&#x2F;&#x2F; Example 2
-	var div = Y.one(&#x27;#container2&#x27;);
-	var htmlField = new Y.inputEx.TinyMCEField({parentEl: div, name: &#x27;test2&#x27;});
+    new Y.inputEx.TinyMCEField({
+        parentEl: &#x27;container1&#x27;,
+        name: &#x27;rteField&#x27;,
+        value: &quot;&lt;b&gt;I&#x27;m&lt;&#x2F;b&gt; the default value. I&#x27;ve been set through the value option.&quot;
+    });
+    
+    
+    &#x2F;&#x2F; Example 2
+    var div = Y.one(&#x27;#container2&#x27;);
+    var htmlField = new Y.inputEx.TinyMCEField({ parentEl: div, name: &#x27;test2&#x27; });
 
-	var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue&quot;);
-	div.appendChild(button1);
-	Y.one(button1).on(&#x27;click&#x27; ,function() { 
-		htmlField.setValue(&#x27;TinyMCEField can contain HTML !&#x27;); 
-	});
-	var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
-	div.appendChild(button2);
-	Y.one(button2).on(&#x27;click&#x27; ,function() { 
-		alert(htmlField.getValue());
-	});
-	var button3 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetText&quot;);
-	div.appendChild(button3);
-	Y.one(button3).on(&#x27;click&#x27; ,function() { 
-		alert(htmlField.getText());
-	});
-	
-	
-	&#x2F;&#x2F; Example 3
-	
-	var field3 = new Y.inputEx.TinyMCEField({parentEl: &#x27;container3&#x27;, name: &#x27;rteField3&#x27;});
-	field3.setValue(&quot;Value set just after init...&quot;);
-	
-	
-	&#x2F;&#x2F; Example 4
-	var field4 = new Y.inputEx.TinyMCEField({
-	  parentEl: &#x27;container4&#x27;, 
-	  name: &#x27;rteField4&#x27;,
-	  opts: {
-		mode : &quot;textareas&quot;,
-		height: &quot;400&quot;,
-		width: &quot;400&quot;
-		}
-	});
-	field4.setValue(&quot;Value set just after init...&quot;);
-	
-
+    var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue&quot;);
+    div.appendChild(button1);
+    Y.one(button1).on(&#x27;click&#x27; ,function() { 
+        htmlField.setValue(&#x27;TinyMCEField can contain &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Html&quot; target=&quot;_blank&quot;&gt;HTML&lt;&#x2F;a&gt; !&#x27;); 
+    });
+    var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
+    div.appendChild(button2);
+    Y.one(button2).on(&#x27;click&#x27; ,function() { 
+        alert(htmlField.getValue());
+    });
+    var button3 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetText&quot;);
+    div.appendChild(button3);
+    Y.one(button3).on(&#x27;click&#x27; ,function() { 
+        alert(htmlField.getText());
+    });
+    
+    
+    &#x2F;&#x2F; Example 3
+    var field3 = new Y.inputEx.TinyMCEField({parentEl: &#x27;container3&#x27;, name: &#x27;rteField3&#x27;});
+    field3.setValue(&quot;Value set just after init...&quot;);
+    
+    
+    &#x2F;&#x2F; Example 4
+    var field4 = new Y.inputEx.TinyMCEField({
+        parentEl: &#x27;container4&#x27;, 
+        name: &#x27;rteField4&#x27;,
+        opts: {
+            mode : &quot;textareas&quot;,
+            height: &quot;400&quot;,
+            width: &quot;400&quot;
+        }
+    });
+    field4.setValue(&quot;Value set just after init...&quot;);
 
 });</pre>
 

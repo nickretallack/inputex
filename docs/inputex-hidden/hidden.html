@@ -35,34 +35,40 @@ How to create a hidden field.
 <div class="example">
 
 
-	<h2>Basic HiddenField creation</h2>
-	
-	<p>The hidden field is by definition 'invisible', so there isn't a lot to see. However, it can be useful to keep an id :</p>
+    <h2>Basic HiddenField creation</h2>
+    
+    <p>The hidden field is by definition 'invisible', so there isn't a lot to see. However, it can be useful to keep an id :</p>
 
-	<div class='demoContainer' id='container1'></div>
-	
-	<p>Note that <i>&lt;hiddenFieldInstance&gt;</i>.getValue() returns the value as stored, without type casting (we store an integer -> we get an integer).<br /><br />
-	<p>However, when the form is submitted via a 'submit' button, the hidden value is sent as 'string' whatever its datatype was... (we store 12, we submit "12").<br /><br />
-		This is a limitation of the classic HTML form submit. To circumvent the problem, use an ajax submit of the form (which relies on getValue) : see <a href="form.html">form examples</a>.</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    <p>
+        Note that <i>&lt;hiddenFieldInstance&gt;</i>.getValue() returns the value as stored, without type casting (we store an integer -> we get an integer).
+        <br /><br />
+        However, when the form is submitted via a 'submit' button, the hidden value is sent as 'string' whatever its datatype was... (we store 12, we submit "12").
+        <br /><br />
+        This is a limitation of the classic HTML form submit. To circumvent the problem, use an ajax submit of the form (which relies on getValue) : see <a href="../inputex-form/form.html">form examples</a>.
+    </p>
 
 <script>
 YUI().use('inputex-hidden', 'inputex-string', 'inputex-group', 'json', function(Y) {
 
-
-	var exampleDiv = Y.one('#container1');
-	var group = new Y.inputEx.Group({
-		 	fields: [ 
-				{ type: 'hidden', name: 'id', value: 12 },
-				{ type: 'hidden', name: 'lastname', value: 'Scott' },
-				{ type: 'string', name: 'firstname', label: 'Firstname', required: true, value:'James'}
-			], 
-			parentEl: exampleDiv
-	});
-	var button = Y.inputEx.cn('button',null,null, 'Get Value'); 
-	exampleDiv.appendChild(button); 
-	Y.one(button).on('click', function(){ alert(Y.JSON.stringify(group.getValue()) ); });
-	
-	
+    var exampleDiv = Y.one('#container1');
+    
+    var group = new Y.inputEx.Group({
+        fields: [ 
+            { type: 'hidden', name: 'id', value: 12 },
+            { type: 'hidden', name: 'lastname', value: 'Scott' },
+            { type: 'string', name: 'firstname', label: 'Firstname', required: true, value:'James'}
+        ], 
+        parentEl: exampleDiv
+    });
+    
+    var button = Y.inputEx.cn('button',null,null, 'Get Value'); 
+    
+    exampleDiv.appendChild(button); 
+    
+    Y.one(button).on('click', function(){ alert(Y.JSON.stringify(group.getValue()) ); });
+    
 });
 </script>
 
@@ -80,21 +86,23 @@ YUI().use('inputex-hidden', 'inputex-string', 'inputex-group', 'json', function(
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-hidden&#x27;, &#x27;inputex-string&#x27;, &#x27;inputex-group&#x27;, &#x27;json&#x27;, function(Y) {
 
-
-	var exampleDiv = Y.one(&#x27;#container1&#x27;);
-	var group = new Y.inputEx.Group({
-		 	fields: [ 
-				{ type: &#x27;hidden&#x27;, name: &#x27;id&#x27;, value: 12 },
-				{ type: &#x27;hidden&#x27;, name: &#x27;lastname&#x27;, value: &#x27;Scott&#x27; },
-				{ type: &#x27;string&#x27;, name: &#x27;firstname&#x27;, label: &#x27;Firstname&#x27;, required: true, value:&#x27;James&#x27;}
-			], 
-			parentEl: exampleDiv
-	});
-	var button = Y.inputEx.cn(&#x27;button&#x27;,null,null, &#x27;Get Value&#x27;); 
-	exampleDiv.appendChild(button); 
-	Y.one(button).on(&#x27;click&#x27;, function(){ alert(Y.JSON.stringify(group.getValue()) ); });
-	
-	
+    var exampleDiv = Y.one(&#x27;#container1&#x27;);
+    
+    var group = new Y.inputEx.Group({
+        fields: [ 
+            { type: &#x27;hidden&#x27;, name: &#x27;id&#x27;, value: 12 },
+            { type: &#x27;hidden&#x27;, name: &#x27;lastname&#x27;, value: &#x27;Scott&#x27; },
+            { type: &#x27;string&#x27;, name: &#x27;firstname&#x27;, label: &#x27;Firstname&#x27;, required: true, value:&#x27;James&#x27;}
+        ], 
+        parentEl: exampleDiv
+    });
+    
+    var button = Y.inputEx.cn(&#x27;button&#x27;,null,null, &#x27;Get Value&#x27;); 
+    
+    exampleDiv.appendChild(button); 
+    
+    Y.one(button).on(&#x27;click&#x27;, function(){ alert(Y.JSON.stringify(group.getValue()) ); });
+    
 });</pre>
 
 </div>

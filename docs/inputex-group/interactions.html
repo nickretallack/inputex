@@ -55,148 +55,144 @@ YUI().use('inputex-group', 'inputex-checkbox','inputex-select','inputex-string',
 
     // Example 1
     Y.inputEx({
-		type: "group",
-   	parentEl: 'container1',
-   	fields: [
-       {
-			   type: 'boolean', // inputex type
-				name: 'toggler',
-			   value: true,
-				rightLabel: 'Stay anonymous',
-			   interactions: [
-			       {
-			          valueTrigger: false, // this action will run when this field value is set to false
-			          actions: [
-			             {
-			                name: 'username', // name of the field on which the action should run
-			                action: 'show' // name of the method to run on the field instance !
-			             }
-			          ]
-			       },
-			       {
-			          valueTrigger: true, // when set to true:
-			          actions: [
-			             {
-			                name: 'username', 
-			                action: 'hide'
-			             },
-									 {
-					            name: 'username', // name of the field on which the action should run
-					            action: 'clear' // name of the method to run on the field instance !
-					         }
-			          ]
-			       }
-			   ]
-			},
-         {type: "string", name: "username", label: "Enter your name" }
-      ]
-   });
-
+        type: "group",
+        parentEl: 'container1',
+        fields: [
+            {
+                type: 'boolean', // inputex type
+                name: 'toggler',
+                value: true,
+                rightLabel: 'Stay anonymous',
+                interactions: [
+                    {
+                        valueTrigger: false, // this action will run when this field value is set to false
+                        actions: [
+                            {
+                                name: 'username', // name of the field on which the action should run
+                                action: 'show' // name of the method to run on the field instance !
+                            }
+                        ]
+                    },
+                    {
+                        valueTrigger: true, // when set to true:
+                        actions: [
+                            {
+                                name: 'username', 
+                                action: 'hide'
+                            },
+                            {
+                                name: 'username', // name of the field on which the action should run
+                                action: 'clear' // name of the method to run on the field instance !
+                            }
+                        ]
+                    }
+                ]
+            },
+            {type: "string", name: "username", label: "Enter your name" }
+        ]
+    });
 
 
     // Example 2
     new Y.inputEx.Group({ 
-	   parentEl: 'container2',
-
-	   fields: [
-	       {
-				   type: 'boolean', // inputex type
-					name: 'toggler',
-				   value: true,
-					rightLabel: 'Check this box to toggle the enabled field',
-				   interactions: [
-				       {
-				          valueTrigger: true, // this action will run when this field value is set to true
-				          actions: [
-				             {
-				                name: 'group1', // name of the field on which the action should run
-				                action: 'disable' // name of the method to run on the field instance !
-				             },
-				             {
-				                name: 'group2', 
-				                action: 'enable'
-				             }
-				          ]
-				       },
-				       {
-				          valueTrigger: false, // when set to false:
-				          actions: [
-				             {
-				                name: 'group1', 
-				                action: 'enable'
-				             },
-				             {
-				                name: 'group2', 
-				                action: 'disable'
-				             }
-				          ]
-				       }
-				   ]
-			},
-	      {
-				   type: 'group',
-			      name: 'group1',
-			      fields: [ 
-							{ type: 'select', label: 'Title',name: 'title', choices: [{ value : 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
-							{ label: 'Firstname', name: 'firstname', required: true, value:'Jacques' },
-							{ label: 'Lastname', name: 'lastname', value:'Dupont' },
-							{ type:'email', label: 'Email', name: 'email'}
-					]
-			},
-	      {
-			   type: 'group',
-			   name: 'group2',
-			   fields: [
-					{type: 'url', label: "Website",  name: 'myUrl' }
-				]
-			}
-	   ]
-	});
-	
-	
-	// Example 3
-	new Y.inputEx.Group({ 
-	   parentEl: 'container3',
-
-	   fields: [
-	       {
-						type: 'select', 
-						label: 'Select your country',
-						choices: [{ value: "France" }, { value: "USA" }],
-						interactions: [
-							{
-								valueTrigger: "France",
-								actions: [
-									{
-										name: "franceCitiesSelect",
-										action: "show"
-									},
-									{
-										name: "USACitiesSelect",
-										action: "hide"
-									},
-								]
-							},
-							{
-								valueTrigger: "USA",
-								actions: [
-									{
-										name: "franceCitiesSelect",
-										action: "hide"
-									},
-									{
-										name: "USACitiesSelect",
-										action: "show"
-									},
-								]
-							}
-						]
-				 },
-			   {type: 'select', label: 'Select your city', name: 'franceCitiesSelect', choices: [{ value : "Paris" }, { value: "Lyon" }, { value: "Marseille" }] },
-			   {type: 'select', label: 'Select your city', name: 'USACitiesSelect', choices: [{ value: "NewYork" }, { value: "Chicago" }, { value: "LA" }, { value: "San Francisco" }] }
-	   ]
-	});
-	
+        parentEl: 'container2',
+        fields: [
+            {
+                type: 'boolean', // inputex type
+                name: 'toggler',
+                value: true,
+                rightLabel: 'Check this box to toggle the enabled field',
+                interactions: [
+                    {
+                        valueTrigger: true, // this action will run when this field value is set to true
+                        actions: [
+                            {
+                                name: 'group1', // name of the field on which the action should run
+                                action: 'disable' // name of the method to run on the field instance !
+                            },
+                            {
+                                name: 'group2', 
+                                action: 'enable'
+                            }
+                        ]
+                    },
+                    {
+                        valueTrigger: false, // when set to false:
+                        actions: [
+                            {
+                                name: 'group1', 
+                                action: 'enable'
+                            },
+                            {
+                                name: 'group2', 
+                                action: 'disable'
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                type: 'group',
+                name: 'group1',
+                fields: [ 
+                    { type: 'select', label: 'Title',name: 'title', choices: [{ value : 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
+                    { label: 'Firstname', name: 'firstname', required: true, value:'Jacques' },
+                    { label: 'Lastname', name: 'lastname', value:'Dupont' },
+                    { type:'email', label: 'Email', name: 'email'}
+                ]
+            },
+            {
+                type: 'group',
+                name: 'group2',
+                fields: [
+                    {type: 'url', label: "Website",  name: 'myUrl' }
+                ]
+            }
+        ]
+    });
+    
+    
+    // Example 3
+    new Y.inputEx.Group({ 
+        parentEl: 'container3',
+        fields: [
+            {
+                type: 'select', 
+                label: 'Select your country',
+                choices: [{ value: "France" }, { value: "USA" }],
+                interactions: [
+                    {
+                        valueTrigger: "France",
+                        actions: [
+                            {
+                                name: "franceCitiesSelect",
+                                action: "show"
+                            },
+                            {
+                                name: "USACitiesSelect",
+                                action: "hide"
+                            },
+                        ]
+                    },
+                    {
+                        valueTrigger: "USA",
+                        actions: [
+                            {
+                                name: "franceCitiesSelect",
+                                action: "hide"
+                            },
+                            {
+                                name: "USACitiesSelect",
+                                action: "show"
+                            },
+                        ]
+                    }
+                ]
+            },
+            {type: 'select', label: 'Select your city', name: 'franceCitiesSelect', choices: [{ value : "Paris" }, { value: "Lyon" }, { value: "Marseille" }] },
+            {type: 'select', label: 'Select your city', name: 'USACitiesSelect', choices: [{ value: "NewYork" }, { value: "Chicago" }, { value: "LA" }, { value: "San Francisco" }] }
+        ]
+    });
 
 });
 </script>
@@ -218,148 +214,144 @@ YUI().use('inputex-group', 'inputex-checkbox','inputex-select','inputex-string',
 
     &#x2F;&#x2F; Example 1
     Y.inputEx({
-		type: &quot;group&quot;,
-   	parentEl: &#x27;container1&#x27;,
-   	fields: [
-       {
-			   type: &#x27;boolean&#x27;, &#x2F;&#x2F; inputex type
-				name: &#x27;toggler&#x27;,
-			   value: true,
-				rightLabel: &#x27;Stay anonymous&#x27;,
-			   interactions: [
-			       {
-			          valueTrigger: false, &#x2F;&#x2F; this action will run when this field value is set to false
-			          actions: [
-			             {
-			                name: &#x27;username&#x27;, &#x2F;&#x2F; name of the field on which the action should run
-			                action: &#x27;show&#x27; &#x2F;&#x2F; name of the method to run on the field instance !
-			             }
-			          ]
-			       },
-			       {
-			          valueTrigger: true, &#x2F;&#x2F; when set to true:
-			          actions: [
-			             {
-			                name: &#x27;username&#x27;, 
-			                action: &#x27;hide&#x27;
-			             },
-									 {
-					            name: &#x27;username&#x27;, &#x2F;&#x2F; name of the field on which the action should run
-					            action: &#x27;clear&#x27; &#x2F;&#x2F; name of the method to run on the field instance !
-					         }
-			          ]
-			       }
-			   ]
-			},
-         {type: &quot;string&quot;, name: &quot;username&quot;, label: &quot;Enter your name&quot; }
-      ]
-   });
-
+        type: &quot;group&quot;,
+        parentEl: &#x27;container1&#x27;,
+        fields: [
+            {
+                type: &#x27;boolean&#x27;, &#x2F;&#x2F; inputex type
+                name: &#x27;toggler&#x27;,
+                value: true,
+                rightLabel: &#x27;Stay anonymous&#x27;,
+                interactions: [
+                    {
+                        valueTrigger: false, &#x2F;&#x2F; this action will run when this field value is set to false
+                        actions: [
+                            {
+                                name: &#x27;username&#x27;, &#x2F;&#x2F; name of the field on which the action should run
+                                action: &#x27;show&#x27; &#x2F;&#x2F; name of the method to run on the field instance !
+                            }
+                        ]
+                    },
+                    {
+                        valueTrigger: true, &#x2F;&#x2F; when set to true:
+                        actions: [
+                            {
+                                name: &#x27;username&#x27;, 
+                                action: &#x27;hide&#x27;
+                            },
+                            {
+                                name: &#x27;username&#x27;, &#x2F;&#x2F; name of the field on which the action should run
+                                action: &#x27;clear&#x27; &#x2F;&#x2F; name of the method to run on the field instance !
+                            }
+                        ]
+                    }
+                ]
+            },
+            {type: &quot;string&quot;, name: &quot;username&quot;, label: &quot;Enter your name&quot; }
+        ]
+    });
 
 
     &#x2F;&#x2F; Example 2
     new Y.inputEx.Group({ 
-	   parentEl: &#x27;container2&#x27;,
-
-	   fields: [
-	       {
-				   type: &#x27;boolean&#x27;, &#x2F;&#x2F; inputex type
-					name: &#x27;toggler&#x27;,
-				   value: true,
-					rightLabel: &#x27;Check this box to toggle the enabled field&#x27;,
-				   interactions: [
-				       {
-				          valueTrigger: true, &#x2F;&#x2F; this action will run when this field value is set to true
-				          actions: [
-				             {
-				                name: &#x27;group1&#x27;, &#x2F;&#x2F; name of the field on which the action should run
-				                action: &#x27;disable&#x27; &#x2F;&#x2F; name of the method to run on the field instance !
-				             },
-				             {
-				                name: &#x27;group2&#x27;, 
-				                action: &#x27;enable&#x27;
-				             }
-				          ]
-				       },
-				       {
-				          valueTrigger: false, &#x2F;&#x2F; when set to false:
-				          actions: [
-				             {
-				                name: &#x27;group1&#x27;, 
-				                action: &#x27;enable&#x27;
-				             },
-				             {
-				                name: &#x27;group2&#x27;, 
-				                action: &#x27;disable&#x27;
-				             }
-				          ]
-				       }
-				   ]
-			},
-	      {
-				   type: &#x27;group&#x27;,
-			      name: &#x27;group1&#x27;,
-			      fields: [ 
-							{ type: &#x27;select&#x27;, label: &#x27;Title&#x27;,name: &#x27;title&#x27;, choices: [{ value : &#x27;Mr&#x27; }, { value: &#x27;Mrs&#x27; }, { value: &#x27;Ms&#x27; }] },
-							{ label: &#x27;Firstname&#x27;, name: &#x27;firstname&#x27;, required: true, value:&#x27;Jacques&#x27; },
-							{ label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, value:&#x27;Dupont&#x27; },
-							{ type:&#x27;email&#x27;, label: &#x27;Email&#x27;, name: &#x27;email&#x27;}
-					]
-			},
-	      {
-			   type: &#x27;group&#x27;,
-			   name: &#x27;group2&#x27;,
-			   fields: [
-					{type: &#x27;url&#x27;, label: &quot;Website&quot;,  name: &#x27;myUrl&#x27; }
-				]
-			}
-	   ]
-	});
-	
-	
-	&#x2F;&#x2F; Example 3
-	new Y.inputEx.Group({ 
-	   parentEl: &#x27;container3&#x27;,
-
-	   fields: [
-	       {
-						type: &#x27;select&#x27;, 
-						label: &#x27;Select your country&#x27;,
-						choices: [{ value: &quot;France&quot; }, { value: &quot;USA&quot; }],
-						interactions: [
-							{
-								valueTrigger: &quot;France&quot;,
-								actions: [
-									{
-										name: &quot;franceCitiesSelect&quot;,
-										action: &quot;show&quot;
-									},
-									{
-										name: &quot;USACitiesSelect&quot;,
-										action: &quot;hide&quot;
-									},
-								]
-							},
-							{
-								valueTrigger: &quot;USA&quot;,
-								actions: [
-									{
-										name: &quot;franceCitiesSelect&quot;,
-										action: &quot;hide&quot;
-									},
-									{
-										name: &quot;USACitiesSelect&quot;,
-										action: &quot;show&quot;
-									},
-								]
-							}
-						]
-				 },
-			   {type: &#x27;select&#x27;, label: &#x27;Select your city&#x27;, name: &#x27;franceCitiesSelect&#x27;, choices: [{ value : &quot;Paris&quot; }, { value: &quot;Lyon&quot; }, { value: &quot;Marseille&quot; }] },
-			   {type: &#x27;select&#x27;, label: &#x27;Select your city&#x27;, name: &#x27;USACitiesSelect&#x27;, choices: [{ value: &quot;NewYork&quot; }, { value: &quot;Chicago&quot; }, { value: &quot;LA&quot; }, { value: &quot;San Francisco&quot; }] }
-	   ]
-	});
-	
+        parentEl: &#x27;container2&#x27;,
+        fields: [
+            {
+                type: &#x27;boolean&#x27;, &#x2F;&#x2F; inputex type
+                name: &#x27;toggler&#x27;,
+                value: true,
+                rightLabel: &#x27;Check this box to toggle the enabled field&#x27;,
+                interactions: [
+                    {
+                        valueTrigger: true, &#x2F;&#x2F; this action will run when this field value is set to true
+                        actions: [
+                            {
+                                name: &#x27;group1&#x27;, &#x2F;&#x2F; name of the field on which the action should run
+                                action: &#x27;disable&#x27; &#x2F;&#x2F; name of the method to run on the field instance !
+                            },
+                            {
+                                name: &#x27;group2&#x27;, 
+                                action: &#x27;enable&#x27;
+                            }
+                        ]
+                    },
+                    {
+                        valueTrigger: false, &#x2F;&#x2F; when set to false:
+                        actions: [
+                            {
+                                name: &#x27;group1&#x27;, 
+                                action: &#x27;enable&#x27;
+                            },
+                            {
+                                name: &#x27;group2&#x27;, 
+                                action: &#x27;disable&#x27;
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                type: &#x27;group&#x27;,
+                name: &#x27;group1&#x27;,
+                fields: [ 
+                    { type: &#x27;select&#x27;, label: &#x27;Title&#x27;,name: &#x27;title&#x27;, choices: [{ value : &#x27;Mr&#x27; }, { value: &#x27;Mrs&#x27; }, { value: &#x27;Ms&#x27; }] },
+                    { label: &#x27;Firstname&#x27;, name: &#x27;firstname&#x27;, required: true, value:&#x27;Jacques&#x27; },
+                    { label: &#x27;Lastname&#x27;, name: &#x27;lastname&#x27;, value:&#x27;Dupont&#x27; },
+                    { type:&#x27;email&#x27;, label: &#x27;Email&#x27;, name: &#x27;email&#x27;}
+                ]
+            },
+            {
+                type: &#x27;group&#x27;,
+                name: &#x27;group2&#x27;,
+                fields: [
+                    {type: &#x27;url&#x27;, label: &quot;Website&quot;,  name: &#x27;myUrl&#x27; }
+                ]
+            }
+        ]
+    });
+    
+    
+    &#x2F;&#x2F; Example 3
+    new Y.inputEx.Group({ 
+        parentEl: &#x27;container3&#x27;,
+        fields: [
+            {
+                type: &#x27;select&#x27;, 
+                label: &#x27;Select your country&#x27;,
+                choices: [{ value: &quot;France&quot; }, { value: &quot;USA&quot; }],
+                interactions: [
+                    {
+                        valueTrigger: &quot;France&quot;,
+                        actions: [
+                            {
+                                name: &quot;franceCitiesSelect&quot;,
+                                action: &quot;show&quot;
+                            },
+                            {
+                                name: &quot;USACitiesSelect&quot;,
+                                action: &quot;hide&quot;
+                            },
+                        ]
+                    },
+                    {
+                        valueTrigger: &quot;USA&quot;,
+                        actions: [
+                            {
+                                name: &quot;franceCitiesSelect&quot;,
+                                action: &quot;hide&quot;
+                            },
+                            {
+                                name: &quot;USACitiesSelect&quot;,
+                                action: &quot;show&quot;
+                            },
+                        ]
+                    }
+                ]
+            },
+            {type: &#x27;select&#x27;, label: &#x27;Select your city&#x27;, name: &#x27;franceCitiesSelect&#x27;, choices: [{ value : &quot;Paris&quot; }, { value: &quot;Lyon&quot; }, { value: &quot;Marseille&quot; }] },
+            {type: &#x27;select&#x27;, label: &#x27;Select your city&#x27;, name: &#x27;USACitiesSelect&#x27;, choices: [{ value: &quot;NewYork&quot; }, { value: &quot;Chicago&quot; }, { value: &quot;LA&quot; }, { value: &quot;San Francisco&quot; }] }
+        ]
+    });
 
 });</pre>
 

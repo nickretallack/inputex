@@ -1,38 +1,34 @@
-YUI().use('inputex-group','inputex-time', 'inputex-serialize',function(Y) {
+YUI().use('inputex-group', 'inputex-time', 'inputex-serialize', function (Y) {
 
     // Example 1
-    	var field = new Y.inputEx.SerializeField({
-			parentEl: 'container1', 
-			label: 'Your name',
-			description: 'Please enter your name',
-			
-			subfield: {
-						type: 'group',
-						fields: [
-							{ name: 'firstname', typeInvite: 'firstname' },
-							{ name: 'lastname', typeInvite: 'lastname' }
-						],
-						required:true
-			}
-			
-		});
+    var field = new Y.inputEx.SerializeField({
+        parentEl: 'container1',
+        label: 'Your name',
+        description: 'Please enter your name',
+        subfield: {
+            type: 'group',
+            fields: [
+                { name: 'firstname', typeInvite: 'firstname' },
+                { name: 'lastname', typeInvite: 'lastname' }
+            ],
+            required:true
+        }
+    });
 
-	   var el = Y.one('#container1');
+    var el = Y.one('#container1');
 
-		var button1 = Y.inputEx.cn('button', null, null, "SetValue with '{\"firstname\":\"Jimi\",\"lastname\":\"Hendrix\"}'");
-		el.appendChild(button1);
-		Y.one(button1).on('click' ,function() {
-		   field.setValue('{"firstname":"Jimi","lastname":"Hendrix"}');
-		});
+    var button_label = "SetValue with '{\"firstname\":\"Jimi\",\"lastname\":\"Hendrix\"}'";
+    var button = Y.inputEx.cn('button', null, null, button_label);
+    el.appendChild(button);
+    Y.one(button).on('click' ,function() {
+       field.setValue('{"firstname":"Jimi","lastname":"Hendrix"}');
+    });
 
-		var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-		el.appendChild(logDiv);
-		field.on('updated', function(value) {
-			logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
-			logDiv.appendChild(Y.inputEx.cn('br'));
-		});
-	
-	
-	
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+    el.appendChild(logDiv);
+    field.on('updated', function(value) {
+        logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
+        logDiv.appendChild(Y.inputEx.cn('br'));
+    });
 
 });

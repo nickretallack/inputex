@@ -1,22 +1,24 @@
-YUI().use('inputex-form','inputex-email','inputex-url', 'inputex-select','inputex-integer', 'inputex-rpc', 'inputex-jsontreeinspector', function(Y) {
-  
-	/**
-	 * generate a form from the service.questionSearch method
-	 */
-	var onServiceReady = function() {
-		Y.inputEx.RPC.generateServiceForm(service.questionSearch, { parentEl: 'formContainer' },{
-				success: function(results) {
-					var treeContainer = Y.one('#treeContainer');
-					treeContainer.innerHTML = "";
-					new Y.inputEx.widget.JsonTreeInspector(treeContainer, results);
-				}
-			});
-	}
+YUI().use('inputex-form','inputex-email','inputex-url', 'inputex-select','inputex-integer',
+          'inputex-rpc', 'inputex-jsontreeinspector', function(Y) {
 
-	/**
-	 * automatically creates service method from the smd description
-	 */
-	var service = new Y.inputEx.RPC.Service("../assets/inputex-rpc/yahoo.smd",{ success: onServiceReady }	);
+    /**
+     * generate a form from the service.questionSearch method
+     */
+    var onServiceReady = function() {
+        Y.inputEx.RPC.generateServiceForm(service.questionSearch, {
+            parentEl: 'formContainer'
+        }, {
+            success: function(results) {
+                var treeContainer = Y.one('#treeContainer');
+                treeContainer.innerHTML = "";
+                new Y.inputEx.widget.JsonTreeInspector(treeContainer, results);
+            }
+        });
+    };
 
-  
+    /**
+     * automatically creates service method from the smd description
+     */
+    var service = new Y.inputEx.RPC.Service("../assets/inputex-rpc/yahoo.smd", { success: onServiceReady });
+
 });

@@ -33,82 +33,99 @@ How to create a checkbox field.
 </div>
 
 <div class="example">
-   
-	<h2>Basic CheckBox creation</h2>
-	<p>Use the following code to create a basic inputEx CheckBox.</p>
-	<div class='demoContainer' id='container1'></div>
-	
-	<h2>With a label</h2>
-	<p>Add the label</p>
-	<div class='demoContainer' id='container2'></div>
-	
-	<h2>Default returned values</h2>
-	<p>By default, the CheckBox returns <i>true</i> if checked, <i>false</i> otherwise.</p>
-	<div class='demoContainer' id='container3'></div>
-	
-	<h2>Changing the returned values</h2>
-	<p>You can return different values if needed.</p>
-	<div class='demoContainer' id='container4'></div>
-	
-	<h2>Updated event</h2>
-	<p>How to listen to the updated event :</p>
-	<div class='demoContainer' id='container5'></div>
-	
-	<h2>Disabling checkboxes</h2>
-	<p>How to enable/disable a checkbox :</p>
-	<div class='demoContainer' id='container6'></div>
-	   
-	<h2>Require the checking of the box</h2>
-	<p>Simply add the "required" option in the config.</p>
-	<div class='demoContainer' id='container7'></div>
+
+    <h2>Basic CheckBox creation</h2>
+    <p>Use the following code to create a basic inputEx CheckBox.</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    <h2>With a label</h2>
+    <p>Add the label</p>
+    <div class='demoContainer' id='container2'></div>
+    
+    <h2>Default returned values</h2>
+    <p>By default, the CheckBox returns <i>true</i> if checked, <i>false</i> otherwise.</p>
+    <div class='demoContainer' id='container3'></div>
+    
+    <h2>Changing the returned values</h2>
+    <p>You can return different values if needed.</p>
+    <div class='demoContainer' id='container4'></div>
+    
+    <h2>Updated event</h2>
+    <p>How to listen to the updated event :</p>
+    <div class='demoContainer' id='container5'></div>
+    
+    <h2>Disabling checkboxes</h2>
+    <p>How to enable/disable a checkbox :</p>
+    <div class='demoContainer' id='container6'></div>
+       
+    <h2>Require the checking of the box</h2>
+    <p>Simply add the "required" option in the config.</p>
+    <div class='demoContainer' id='container7'></div>
 
 <script>
 
 YUI().use('inputex-checkbox', function(Y){ 
-	
-	// example 1
-	new Y.inputEx.CheckBox({parentEl: 'container1'});
-	
-	// example 2
-	new Y.inputEx.CheckBox({label: 'Do you like inputEx ?', rightLabel: 'Check me !', parentEl: 'container2', value: false});
-	
-	// example 3
-	var field3 = new Y.inputEx.CheckBox({rightLabel: 'I return true/false', parentEl: 'container3'});		
-	Y.Node.create("<button>getValue()</button>").appendTo('#container3').on('click', function() {
-		alert( field3.getValue() );
-	});
-	
-	// example 4
-	var field4 = new Y.inputEx.CheckBox({sentValues: ['Yes', 'No'], rightLabel: 'Do you agree ?', parentEl: 'container4', value: 'Yes'});
-	Y.Node.create("<button>getValue()</button>").appendTo('#container4').on('click', function() {
-	  alert( field4.getValue() );
-	});
-	Y.Node.create("<button>setValue('No')</button>").appendTo('#container4').on('click', function() {
-	  field4.setValue('No');
-	});
-	Y.Node.create("<button>setValue('Yes')</button>").appendTo('#container4').on('click', function() {
-	  field4.setValue('Yes');
-	});
+    
+    // example 1
+    new Y.inputEx.CheckBox({ parentEl: 'container1' });
+    
+    // example 2
+    new Y.inputEx.CheckBox({
+        label: 'Do you like inputEx ?',
+        rightLabel: 'Check me !',
+        parentEl: 'container2',
+        value: false
+    });
+    
+    // example 3
+    var field3 = new Y.inputEx.CheckBox({
+        rightLabel: 'I return true/false',
+        parentEl: 'container3'
+    });        
+    Y.Node.create("<button>getValue()</button>").appendTo('#container3').on('click', function() {
+        alert( field3.getValue() );
+    });
+    
+    // example 4
+    var field4 = new Y.inputEx.CheckBox({
+        parentEl: 'container4',
+        rightLabel: 'Do you agree ?',
+        sentValues: ['Yes', 'No'],
+        value: 'Yes'
+    });
+    Y.Node.create("<button>getValue()</button>").appendTo('#container4').on('click', function() {
+      alert( field4.getValue() );
+    });
+    Y.Node.create("<button>setValue('No')</button>").appendTo('#container4').on('click', function() {
+      field4.setValue('No');
+    });
+    Y.Node.create("<button>setValue('Yes')</button>").appendTo('#container4').on('click', function() {
+      field4.setValue('Yes');
+    });
 
-	// example 5
-	var el = Y.one('#container5');
-	var field5 = new Y.inputEx.CheckBox({parentEl: el });
-	var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-	el.appendChild(logDiv);
-	field5.on('updated', function(value) {
-		logDiv.innerHTML += "Updated at "+(new Date())+" with value : "+value;
-		logDiv.appendChild(Y.inputEx.cn('br'));
-	});
-	
-	// example 6
-	var dc = new Y.inputEx.CheckBox({label: 'Disable', parentEl: 'container6'});
-	dc.disable();
+    // example 5
+    var el = Y.one('#container5');
+    var field5 = new Y.inputEx.CheckBox({ parentEl: el });
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+    el.appendChild(logDiv);
+    field5.on('updated', function(value) {
+        logDiv.innerHTML += "Updated at "+(new Date())+" with value : "+value;
+        logDiv.appendChild(Y.inputEx.cn('br'));
+    });
+    
+    // example 6
+    var dc = new Y.inputEx.CheckBox({label: 'Disable', parentEl: 'container6'});
+    dc.disable();
 
-	// example 7
-	var rc = new Y.inputEx.CheckBox({ label: 'Accept the "Terms of Service"?', required: true, parentEl: 'container7' });
-	Y.one('#container7').append('<br /><button>validate()</button>').one('button').on('click', function () {
-		window.alert("valid: " + rc.validate());
-	});
+    // example 7
+    var rc = new Y.inputEx.CheckBox({
+        label: 'Accept the "Terms of Service"?',
+        required: true,
+        parentEl: 'container7'
+    });
+    Y.one('#container7').append('<br /><button>validate()</button>').one('button').on('click', function () {
+        window.alert("valid: " + rc.validate());
+    });
 
 });
 
@@ -128,50 +145,67 @@ YUI().use('inputex-checkbox', function(Y){
 <h3>Implementation</h3>
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-checkbox&#x27;, function(Y){ 
-	
-	&#x2F;&#x2F; example 1
-	new Y.inputEx.CheckBox({parentEl: &#x27;container1&#x27;});
-	
-	&#x2F;&#x2F; example 2
-	new Y.inputEx.CheckBox({label: &#x27;Do you like inputEx ?&#x27;, rightLabel: &#x27;Check me !&#x27;, parentEl: &#x27;container2&#x27;, value: false});
-	
-	&#x2F;&#x2F; example 3
-	var field3 = new Y.inputEx.CheckBox({rightLabel: &#x27;I return true&#x2F;false&#x27;, parentEl: &#x27;container3&#x27;});		
-	Y.Node.create(&quot;&lt;button&gt;getValue()&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#container3&#x27;).on(&#x27;click&#x27;, function() {
-		alert( field3.getValue() );
-	});
-	
-	&#x2F;&#x2F; example 4
-	var field4 = new Y.inputEx.CheckBox({sentValues: [&#x27;Yes&#x27;, &#x27;No&#x27;], rightLabel: &#x27;Do you agree ?&#x27;, parentEl: &#x27;container4&#x27;, value: &#x27;Yes&#x27;});
-	Y.Node.create(&quot;&lt;button&gt;getValue()&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#container4&#x27;).on(&#x27;click&#x27;, function() {
-	  alert( field4.getValue() );
-	});
-	Y.Node.create(&quot;&lt;button&gt;setValue(&#x27;No&#x27;)&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#container4&#x27;).on(&#x27;click&#x27;, function() {
-	  field4.setValue(&#x27;No&#x27;);
-	});
-	Y.Node.create(&quot;&lt;button&gt;setValue(&#x27;Yes&#x27;)&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#container4&#x27;).on(&#x27;click&#x27;, function() {
-	  field4.setValue(&#x27;Yes&#x27;);
-	});
+    
+    &#x2F;&#x2F; example 1
+    new Y.inputEx.CheckBox({ parentEl: &#x27;container1&#x27; });
+    
+    &#x2F;&#x2F; example 2
+    new Y.inputEx.CheckBox({
+        label: &#x27;Do you like inputEx ?&#x27;,
+        rightLabel: &#x27;Check me !&#x27;,
+        parentEl: &#x27;container2&#x27;,
+        value: false
+    });
+    
+    &#x2F;&#x2F; example 3
+    var field3 = new Y.inputEx.CheckBox({
+        rightLabel: &#x27;I return true&#x2F;false&#x27;,
+        parentEl: &#x27;container3&#x27;
+    });        
+    Y.Node.create(&quot;&lt;button&gt;getValue()&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#container3&#x27;).on(&#x27;click&#x27;, function() {
+        alert( field3.getValue() );
+    });
+    
+    &#x2F;&#x2F; example 4
+    var field4 = new Y.inputEx.CheckBox({
+        parentEl: &#x27;container4&#x27;,
+        rightLabel: &#x27;Do you agree ?&#x27;,
+        sentValues: [&#x27;Yes&#x27;, &#x27;No&#x27;],
+        value: &#x27;Yes&#x27;
+    });
+    Y.Node.create(&quot;&lt;button&gt;getValue()&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#container4&#x27;).on(&#x27;click&#x27;, function() {
+      alert( field4.getValue() );
+    });
+    Y.Node.create(&quot;&lt;button&gt;setValue(&#x27;No&#x27;)&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#container4&#x27;).on(&#x27;click&#x27;, function() {
+      field4.setValue(&#x27;No&#x27;);
+    });
+    Y.Node.create(&quot;&lt;button&gt;setValue(&#x27;Yes&#x27;)&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#container4&#x27;).on(&#x27;click&#x27;, function() {
+      field4.setValue(&#x27;Yes&#x27;);
+    });
 
-	&#x2F;&#x2F; example 5
-	var el = Y.one(&#x27;#container5&#x27;);
-	var field5 = new Y.inputEx.CheckBox({parentEl: el });
-	var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
-	el.appendChild(logDiv);
-	field5.on(&#x27;updated&#x27;, function(value) {
-		logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value : &quot;+value;
-		logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
-	});
-	
-	&#x2F;&#x2F; example 6
-	var dc = new Y.inputEx.CheckBox({label: &#x27;Disable&#x27;, parentEl: &#x27;container6&#x27;});
-	dc.disable();
+    &#x2F;&#x2F; example 5
+    var el = Y.one(&#x27;#container5&#x27;);
+    var field5 = new Y.inputEx.CheckBox({ parentEl: el });
+    var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
+    el.appendChild(logDiv);
+    field5.on(&#x27;updated&#x27;, function(value) {
+        logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value : &quot;+value;
+        logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
+    });
+    
+    &#x2F;&#x2F; example 6
+    var dc = new Y.inputEx.CheckBox({label: &#x27;Disable&#x27;, parentEl: &#x27;container6&#x27;});
+    dc.disable();
 
-	&#x2F;&#x2F; example 7
-	var rc = new Y.inputEx.CheckBox({ label: &#x27;Accept the &quot;Terms of Service&quot;?&#x27;, required: true, parentEl: &#x27;container7&#x27; });
-	Y.one(&#x27;#container7&#x27;).append(&#x27;&lt;br &#x2F;&gt;&lt;button&gt;validate()&lt;&#x2F;button&gt;&#x27;).one(&#x27;button&#x27;).on(&#x27;click&#x27;, function () {
-		window.alert(&quot;valid: &quot; + rc.validate());
-	});
+    &#x2F;&#x2F; example 7
+    var rc = new Y.inputEx.CheckBox({
+        label: &#x27;Accept the &quot;Terms of Service&quot;?&#x27;,
+        required: true,
+        parentEl: &#x27;container7&#x27;
+    });
+    Y.one(&#x27;#container7&#x27;).append(&#x27;&lt;br &#x2F;&gt;&lt;button&gt;validate()&lt;&#x2F;button&gt;&#x27;).one(&#x27;button&#x27;).on(&#x27;click&#x27;, function () {
+        window.alert(&quot;valid: &quot; + rc.validate());
+    });
 
 });</pre>
 

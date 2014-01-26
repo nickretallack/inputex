@@ -35,69 +35,64 @@ How to create a vector field.
 <div class="example">
 
     <h2>Basic VectorField creation</h2>
-	
-	<p>Use the following code to create a basic inputEx VectorField.</p>
+    
+    <p>Use the following code to create a basic inputEx VectorField.</p>
 
-	<div class='demoContainer' id='container1'></div>
-	
-	
-	
-	<h2>VectorField with separators</h2>
-	
-	<p>VectorField inherits CombineField, so you can change the separators :</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    
+    
+    <h2>VectorField with separators</h2>
+    
+    <p>VectorField inherits CombineField, so you can change the separators :</p>
 
-	<div class='demoContainer' id='container2'></div>
-	
-	
-	
-	<h2>VectorField dimension</h2>
-	
-	<p>Set the dimension option :</p>
+    <div class='demoContainer' id='container2'></div>
+    
+    
+    
+    <h2>VectorField dimension</h2>
+    
+    <p>Set the dimension option :</p>
 
-	<div class='demoContainer' id='container3'></div>
-	
-	
+    <div class='demoContainer' id='container3'></div>
+    
+    
 
 <script>
 YUI().use('inputex-vector',"inputex-number",function(Y) {
 
-
+    // Example 1
     var field = new Y.inputEx.VectorField({parentEl: 'container1', value: [-10.4,13*2]});
 
-	var el = Y.one('#container1');
+    var el = Y.one('#container1');
 
-	var button1 = Y.inputEx.cn('button', null, null, "SetValue");
-	el.appendChild(button1);
-	Y.one(button1).on('click' ,function() {
-	   field.setValue([-42.42,12.603]);
-	});
+    var button1 = Y.inputEx.cn('button', null, null, "SetValue");
+    el.appendChild(button1);
+    Y.one(button1).on('click' ,function() {
+       field.setValue([-42.42,12.603]);
+    });
 
-	var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-	el.appendChild(logDiv);
-	field.on('updated', function(value) {
-		logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
-		logDiv.appendChild(Y.inputEx.cn('br'));
-	});
-	
-	
-	
-	// Example 2
-	new Y.inputEx.VectorField({
-		parentEl: 'container2', 
-		value: [-10.4,13*2],
-		separators: ["x:",", y:", null]
-	});
-	
-	
-	
-	// Example 3
-	new Y.inputEx.VectorField({
-		parentEl: 'container3', 
-		value: [-1, 0, 1],
-		dimension: 3,
-		separators: ["x:",", y:", ", z: ", null]
-	});
-	
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+    el.appendChild(logDiv);
+    field.on('updated', function(value) {
+        logDiv.innerHTML += "Updated at "+(new Date())+" with value "+value;
+        logDiv.appendChild(Y.inputEx.cn('br'));
+    });
+    
+    // Example 2
+    new Y.inputEx.VectorField({
+        parentEl: 'container2', 
+        value: [-10.4,13*2],
+        separators: ["x:",", y:", null]
+    });
+    
+    // Example 3
+    new Y.inputEx.VectorField({
+        parentEl: 'container3', 
+        value: [-1, 0, 1],
+        dimension: 3,
+        separators: ["x:",", y:", ", z: ", null]
+    });
 
 });
 
@@ -117,43 +112,38 @@ YUI().use('inputex-vector',"inputex-number",function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-vector&#x27;,&quot;inputex-number&quot;,function(Y) {
 
-
+    &#x2F;&#x2F; Example 1
     var field = new Y.inputEx.VectorField({parentEl: &#x27;container1&#x27;, value: [-10.4,13*2]});
 
-	var el = Y.one(&#x27;#container1&#x27;);
+    var el = Y.one(&#x27;#container1&#x27;);
 
-	var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue&quot;);
-	el.appendChild(button1);
-	Y.one(button1).on(&#x27;click&#x27; ,function() {
-	   field.setValue([-42.42,12.603]);
-	});
+    var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue&quot;);
+    el.appendChild(button1);
+    Y.one(button1).on(&#x27;click&#x27; ,function() {
+       field.setValue([-42.42,12.603]);
+    });
 
-	var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
-	el.appendChild(logDiv);
-	field.on(&#x27;updated&#x27;, function(value) {
-		logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
-		logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
-	});
-	
-	
-	
-	&#x2F;&#x2F; Example 2
-	new Y.inputEx.VectorField({
-		parentEl: &#x27;container2&#x27;, 
-		value: [-10.4,13*2],
-		separators: [&quot;x:&quot;,&quot;, y:&quot;, null]
-	});
-	
-	
-	
-	&#x2F;&#x2F; Example 3
-	new Y.inputEx.VectorField({
-		parentEl: &#x27;container3&#x27;, 
-		value: [-1, 0, 1],
-		dimension: 3,
-		separators: [&quot;x:&quot;,&quot;, y:&quot;, &quot;, z: &quot;, null]
-	});
-	
+    var logDiv = Y.inputEx.cn(&#x27;div&#x27;, null, null, &quot;Log :&quot;);
+    el.appendChild(logDiv);
+    field.on(&#x27;updated&#x27;, function(value) {
+        logDiv.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
+        logDiv.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
+    });
+    
+    &#x2F;&#x2F; Example 2
+    new Y.inputEx.VectorField({
+        parentEl: &#x27;container2&#x27;, 
+        value: [-10.4,13*2],
+        separators: [&quot;x:&quot;,&quot;, y:&quot;, null]
+    });
+    
+    &#x2F;&#x2F; Example 3
+    new Y.inputEx.VectorField({
+        parentEl: &#x27;container3&#x27;, 
+        value: [-1, 0, 1],
+        dimension: 3,
+        separators: [&quot;x:&quot;,&quot;, y:&quot;, &quot;, z: &quot;, null]
+    });
 
 });</pre>
 

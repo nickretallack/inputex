@@ -1,16 +1,15 @@
 YUI().use('inputex-datetime', function(Y) {
 
-	// Example 1
-	field = new Y.inputEx.DateTimeField({parentEl: 'container1', value: new Date()});
-	var button = Y.inputEx.cn('button', null, null, 'getValue');
-	Y.one(button).on('click',function() {
-		alert(field.getValue());
-	});
-	Y.one('#container1').appendChild(button);
-	
-	
-	
-	new Y.inputEx.DateTimeField({parentEl: 'container2', value: new Date(), dateFormat: 'd/m/Y'});
-	
-
+    // Example 1
+    field = new Y.inputEx.DateTimeField({parentEl: 'container1', value: new Date()});
+    var button = Y.inputEx.cn('button', null, null, 'getValue');
+    Y.one(button).on('click',function() {
+        alert(field.getValue());
+    });
+    Y.one('#container1').appendChild(button);
+    
+    
+    // Example 2
+    new Y.inputEx.DateTimeField({parentEl: 'container2', value: new Date(), dateFormat: 'd/m/Y'});
+    
 });

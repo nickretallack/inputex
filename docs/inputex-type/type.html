@@ -35,36 +35,32 @@ How to create a type field.
 <div class="example">
 
     <h2>Basic TypeField creation</h2>
-	<p>The TypeField provide an interface to create a custom form.</p>
-	<div class='demoContainer' id='container1'></div>
-	
-	
-	<h2>Setting the value</h2>
-	<p>The value returned by a TypeField is a JSON configuration for an inputEx field. Here's how to load such a value :</p>
-	<div class='demoContainer' id='container2'></div>
-	
-	
-	
+    <p>The TypeField provide an interface to create a custom form.</p>
+    <div class='demoContainer' id='container1'></div>
+
+
+    <h2>Setting the value</h2>
+    <p>The value returned by a TypeField is a JSON configuration for an inputEx field. Here's how to load such a value :</p>
+    <div class='demoContainer' id='container2'></div>
+
 
 <script>
 YUI().use('inputex-type','inputex-url',function(Y) {
 
-
     new Y.inputEx.TypeField({parentEl: 'container1'});
-	
-	
-	new Y.inputEx.TypeField({
-		parentEl: 'container2', 
-		value: {
-			type:'url',
-			label: 'Website', 
-			name:'website', 
-			typeInvite: 'Enter a URL', 
-			size: 30,
-			description: 'You can provide a default value to TypeField',
-			value: 'http://developer.yahoo.com/yui/3/'
-		}
-	});
+    
+    new Y.inputEx.TypeField({
+        parentEl: 'container2',
+        value: {
+            type:'url',
+            label: 'Website',
+            name:'website',
+            typeInvite: 'Enter a URL',
+            size: 30,
+            description: 'You can provide a default value to TypeField',
+            value: 'http://developer.yahoo.com/yui/3/'
+        }
+    });
 
 });
 
@@ -84,22 +80,20 @@ YUI().use('inputex-type','inputex-url',function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-type&#x27;,&#x27;inputex-url&#x27;,function(Y) {
 
-
     new Y.inputEx.TypeField({parentEl: &#x27;container1&#x27;});
-	
-	
-	new Y.inputEx.TypeField({
-		parentEl: &#x27;container2&#x27;, 
-		value: {
-			type:&#x27;url&#x27;,
-			label: &#x27;Website&#x27;, 
-			name:&#x27;website&#x27;, 
-			typeInvite: &#x27;Enter a URL&#x27;, 
-			size: 30,
-			description: &#x27;You can provide a default value to TypeField&#x27;,
-			value: &#x27;http:&#x2F;&#x2F;developer.yahoo.com&#x2F;yui&#x2F;3&#x2F;&#x27;
-		}
-	});
+    
+    new Y.inputEx.TypeField({
+        parentEl: &#x27;container2&#x27;,
+        value: {
+            type:&#x27;url&#x27;,
+            label: &#x27;Website&#x27;,
+            name:&#x27;website&#x27;,
+            typeInvite: &#x27;Enter a URL&#x27;,
+            size: 30,
+            description: &#x27;You can provide a default value to TypeField&#x27;,
+            value: &#x27;http:&#x2F;&#x2F;developer.yahoo.com&#x2F;yui&#x2F;3&#x2F;&#x27;
+        }
+    });
 
 });</pre>
 

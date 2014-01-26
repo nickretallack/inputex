@@ -35,53 +35,59 @@ How to create a uneditable field.
 <div class="example">
 
     <h2>UneditableField with HTML string</h2>
-	<p>To format the value of the field with an html string, use the <i>formatValue</i> function (schould return a string):</p>
-	<div class='demoContainer' id='container1'></div>
-	
-	
-	<h2>UneditableField with DOM rendering</h2>
-	<p>To render the value of the field with a DOM element (to add a behaviour), use the <i>formatDom</i> function (schould return a dom element):</p>
-	<div class='demoContainer' id='container2'></div>
-	
-	
-	
-	<h2>UneditableField with DOM rendering</h2>
-	<p>Display an image from the field value :</p>
-	<div class='demoContainer' id='container3'></div>
-	
+    <p>To format the value of the field with an html string, use the <i>formatValue</i> function (should return a string):</p>
+    <div class='demoContainer' id='container1'></div>
+
+
+    <h2>UneditableField with DOM rendering</h2>
+    <p>To render the value of the field with a DOM element (to add a behaviour), use the <i>formatDom</i> function (should return a dom element):</p>
+    <div class='demoContainer' id='container2'></div>
+
+
+    <h2>UneditableField with DOM rendering</h2>
+    <p>Display an image from the field value :</p>
+    <div class='demoContainer' id='container3'></div>
+
 
 <script>
 YUI().use('inputex-uneditable',function(Y) {
 
     // Example 1
     new Y.inputEx.UneditableField({
-		name: 'date', 
-		value: new Date(), 
-		parentEl: 'container1'
-	});
-	
-	// Example 2
-	new Y.inputEx.UneditableField({
-		name: 'date', 
-		value: 'http://farm2.static.flickr.com/1052/913643741_a83000f8e4.jpg', 
-		visu: {
-			visuType: 'func', 
-			func: function(value){ return Y.inputEx.cn('img',{src:value},{border: '2px solid black'}); } 
-		},
-		parentEl: 'container2' 
-	});
-	
-	
-	// Example 3
-		Y.inputEx({
-			type: "uneditable",
-			name: 'pagerank', 
-			value: 5, 
-			label: "Pagerank",
-			visu: {visuType: 'func', func: function(value){ return Y.inputEx.cn('img',{src: "http://www.page-rank-lookup.com/i/style1/pagerank"+value+".png"}) } },
-			parentEl: 'container3'
-		});
-
+        name: 'date', 
+        value: new Date(), 
+        parentEl: 'container1'
+    });
+    
+    // Example 2
+    new Y.inputEx.UneditableField({
+        name: 'date', 
+        value: 'http://farm2.static.flickr.com/1052/913643741_a83000f8e4.jpg', 
+        visu: {
+            visuType: 'func', 
+            func: function (value) {
+                return Y.inputEx.cn('img', {src: value}, {border: '2px solid black'});
+            } 
+        },
+        parentEl: 'container2' 
+    });
+    
+    // Example 3
+    Y.inputEx({
+        type: "uneditable",
+        name: 'pagerank', 
+        value: 5, 
+        label: "Pagerank",
+        visu: {
+            visuType: 'func',
+            func: function (value) {
+                return Y.inputEx.cn('img', {
+                    src: "http://www.page-rank-lookup.com/i/style1/pagerank"+value+".png"
+                });
+            }
+        },
+        parentEl: 'container3'
+    });
 
 });
 
@@ -103,33 +109,40 @@ YUI().use('inputex-uneditable',function(Y) {
 
     &#x2F;&#x2F; Example 1
     new Y.inputEx.UneditableField({
-		name: &#x27;date&#x27;, 
-		value: new Date(), 
-		parentEl: &#x27;container1&#x27;
-	});
-	
-	&#x2F;&#x2F; Example 2
-	new Y.inputEx.UneditableField({
-		name: &#x27;date&#x27;, 
-		value: &#x27;http:&#x2F;&#x2F;farm2.static.flickr.com&#x2F;1052&#x2F;913643741_a83000f8e4.jpg&#x27;, 
-		visu: {
-			visuType: &#x27;func&#x27;, 
-			func: function(value){ return Y.inputEx.cn(&#x27;img&#x27;,{src:value},{border: &#x27;2px solid black&#x27;}); } 
-		},
-		parentEl: &#x27;container2&#x27; 
-	});
-	
-	
-	&#x2F;&#x2F; Example 3
-		Y.inputEx({
-			type: &quot;uneditable&quot;,
-			name: &#x27;pagerank&#x27;, 
-			value: 5, 
-			label: &quot;Pagerank&quot;,
-			visu: {visuType: &#x27;func&#x27;, func: function(value){ return Y.inputEx.cn(&#x27;img&#x27;,{src: &quot;http:&#x2F;&#x2F;www.page-rank-lookup.com&#x2F;i&#x2F;style1&#x2F;pagerank&quot;+value+&quot;.png&quot;}) } },
-			parentEl: &#x27;container3&#x27;
-		});
-
+        name: &#x27;date&#x27;, 
+        value: new Date(), 
+        parentEl: &#x27;container1&#x27;
+    });
+    
+    &#x2F;&#x2F; Example 2
+    new Y.inputEx.UneditableField({
+        name: &#x27;date&#x27;, 
+        value: &#x27;http:&#x2F;&#x2F;farm2.static.flickr.com&#x2F;1052&#x2F;913643741_a83000f8e4.jpg&#x27;, 
+        visu: {
+            visuType: &#x27;func&#x27;, 
+            func: function (value) {
+                return Y.inputEx.cn(&#x27;img&#x27;, {src: value}, {border: &#x27;2px solid black&#x27;});
+            } 
+        },
+        parentEl: &#x27;container2&#x27; 
+    });
+    
+    &#x2F;&#x2F; Example 3
+    Y.inputEx({
+        type: &quot;uneditable&quot;,
+        name: &#x27;pagerank&#x27;, 
+        value: 5, 
+        label: &quot;Pagerank&quot;,
+        visu: {
+            visuType: &#x27;func&#x27;,
+            func: function (value) {
+                return Y.inputEx.cn(&#x27;img&#x27;, {
+                    src: &quot;http:&#x2F;&#x2F;www.page-rank-lookup.com&#x2F;i&#x2F;style1&#x2F;pagerank&quot;+value+&quot;.png&quot;
+                });
+            }
+        },
+        parentEl: &#x27;container3&#x27;
+    });
 
 });</pre>
 

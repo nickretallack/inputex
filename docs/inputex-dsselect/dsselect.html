@@ -35,38 +35,36 @@ How to create a dsselect field.
 <div class="example">
 
 
-	<h2>Using a DataSource</h2>
-	
-	<p>How to populate the selectField using a <a href="http://developer.yahoo.com/yui/datasource/" target="_new">YUI datasource</a> (from local data, XHR, JSONP, function, ...):</p>
+    <h2>Using a DataSource</h2>
+    
+    <p>How to populate the selectField using a <a href="http://developer.yahoo.com/yui/datasource/" target="_new">YUI datasource</a> (from local data, XHR, JSONP, function, ...):</p>
 
-	<div class='demoContainer' id='container1'></div>
+    <div class='demoContainer' id='container1'></div>
 
 <script>
 YUI().use('inputex-dsselect', function(Y) {
 
+    // Configure datasource
+    var myDataSource = new Y.DataSource.IO({ source: "../assets/inputex-dsselect/books.json" });
+    myDataSource.plug({fn: Y.Plugin.DataSourceJSONSchema, cfg: {
+        schema: {
+            resultListLocator: "Results",
+            resultFields: ["id","quantity","amount","title", "category"]
+        }
+    }});
 
-	// Configure datasource
-	var myDataSource = new Y.DataSource.IO({ source: "../assets/inputex-dsselect/books.json" });
-	myDataSource.plug({fn: Y.Plugin.DataSourceJSONSchema, cfg: {
-	    schema: {
-	        resultListLocator: "Results",
-	        resultFields: ["id","quantity","amount","title", "category"]
-	    }
-	}});
+    // Instantiate field
+    field = new Y.inputEx.DSSelectField({
+      name: 'book', 
+      datasource: myDataSource, 
+      valueKey: "id", 
+      labelKey: "title", 
+      parentEl: 'container1'
+    });
 
-	// Instantiate field
-	field = new Y.inputEx.DSSelectField({
-	  name: 'book', 
-	  datasource: myDataSource, 
-	  valueKey: "id", 
-	  labelKey: "title", 
-	  parentEl: 'container1'
-	});
-
-	Y.Node.create("<button>Get Value</button>").appendTo('#container1').on( 'click', function() {
-		alert( field.getValue() );
-	});
-
+    Y.Node.create("<button>Get Value</button>").appendTo('#container1').on( 'click', function() {
+        alert( field.getValue() );
+    });
 
 });
 
@@ -86,29 +84,27 @@ YUI().use('inputex-dsselect', function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-dsselect&#x27;, function(Y) {
 
+    &#x2F;&#x2F; Configure datasource
+    var myDataSource = new Y.DataSource.IO({ source: &quot;..&#x2F;assets&#x2F;inputex-dsselect&#x2F;books.json&quot; });
+    myDataSource.plug({fn: Y.Plugin.DataSourceJSONSchema, cfg: {
+        schema: {
+            resultListLocator: &quot;Results&quot;,
+            resultFields: [&quot;id&quot;,&quot;quantity&quot;,&quot;amount&quot;,&quot;title&quot;, &quot;category&quot;]
+        }
+    }});
 
-	&#x2F;&#x2F; Configure datasource
-	var myDataSource = new Y.DataSource.IO({ source: &quot;..&#x2F;assets&#x2F;inputex-dsselect&#x2F;books.json&quot; });
-	myDataSource.plug({fn: Y.Plugin.DataSourceJSONSchema, cfg: {
-	    schema: {
-	        resultListLocator: &quot;Results&quot;,
-	        resultFields: [&quot;id&quot;,&quot;quantity&quot;,&quot;amount&quot;,&quot;title&quot;, &quot;category&quot;]
-	    }
-	}});
+    &#x2F;&#x2F; Instantiate field
+    field = new Y.inputEx.DSSelectField({
+      name: &#x27;book&#x27;, 
+      datasource: myDataSource, 
+      valueKey: &quot;id&quot;, 
+      labelKey: &quot;title&quot;, 
+      parentEl: &#x27;container1&#x27;
+    });
 
-	&#x2F;&#x2F; Instantiate field
-	field = new Y.inputEx.DSSelectField({
-	  name: &#x27;book&#x27;, 
-	  datasource: myDataSource, 
-	  valueKey: &quot;id&quot;, 
-	  labelKey: &quot;title&quot;, 
-	  parentEl: &#x27;container1&#x27;
-	});
-
-	Y.Node.create(&quot;&lt;button&gt;Get Value&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#container1&#x27;).on( &#x27;click&#x27;, function() {
-		alert( field.getValue() );
-	});
-
+    Y.Node.create(&quot;&lt;button&gt;Get Value&lt;&#x2F;button&gt;&quot;).appendTo(&#x27;#container1&#x27;).on( &#x27;click&#x27;, function() {
+        alert( field.getValue() );
+    });
 
 });</pre>
 

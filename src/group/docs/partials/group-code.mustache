@@ -1,188 +1,186 @@
 YUI().use('inputex-group', 'inputex-email', 'inputex-select', 'inputex-checkbox', 'inputex-radio', 'inputex-list', 'inputex-url', 'json', function(Y) {
 
 
-	// Example 1
-	
-	var contactFormFields = [
-			{type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }]},
-			{label: 'Firstname', name: 'firstname', required: true},
-			{label: 'Lastname', name: 'lastname', value:'Dupont'},
-			{type:'email', label: 'Email', name: 'email', required: true, showMsg: true},
-			{type:'radio', label: 'Happy to be there ?', name: 'happy', display:'vertically', choices:[{value: "y", label:"yes"}, {value:"n", label:"no"}]},
-			{type:'boolean', label: 'Favorite colors ?', name: 'yellow', rightLabel:"yellow"},
-			{type:'boolean', label: ' ', name: 'blue', rightLabel:"blue"},
-			{type:'boolean', label: ' ', name: 'red', rightLabel:"red"},
-			{type:'url', label: 'Website', name:'website'}
-	];
-	new Y.inputEx.Group({parentEl: 'container1', fields: contactFormFields, legend: 'Tell us about yourself...'});
-	
-	
-	// Example 2
-	
-	var contactFormFields = [ {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }]}, {label: 'Firstname', name: 'firstname', required: true}, {label: 'Lastname', name: 'lastname', value:'Dupont'}, {type:'email', label: 'Email', name: 'email', required: true, showMsg: true}, {type:'radio', label: 'Happy to be there ?', name: 'happy', values:["y","n"], choices:["yes","no"]}, {type:'boolean', label: 'Favorite colors ?', name: 'yellow', rightLabel:"yellow"}, {type:'boolean', label: ' ', name: 'blue', rightLabel:"blue"}, {type:'boolean', label: ' ', name: 'red', rightLabel:"red"}, {type:'url', label: 'Website', name:'website'} ];
-			
-	new Y.inputEx.ListField({
-		elementType: {
-			type: 'group',
-			fields: contactFormFields
-		},
-		parentEl: 'container2'
-	});
-	
-	
-	// Example 3
-	
-	var contactFormFields = [ {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }]}, {label: 'Firstname', name: 'firstname', required: true}, {label: 'Lastname', name: 'lastname', value:'Dupont'}, {type:'email', label: 'Email', name: 'email', required: true, showMsg: true}, {type:'radio', label: 'Happy to be there ?', name: 'happy', values:["y","n"], choices:["yes","no"]}, {type:'boolean', label: 'Favorite colors ?', name: 'yellow', rightLabel:"yellow"}, {type:'boolean', label: ' ', name: 'blue', rightLabel:"blue"}, {type:'boolean', label: ' ', name: 'red', rightLabel:"red"}, {type:'url', label: 'Website', name:'website'} ];
-			
-	var el = Y.one('#container3');
-	var group3 = new Y.inputEx.Group({parentEl: el, fields: contactFormFields });
-	var logDiv = Y.inputEx.cn('div', null, null, "Log :");
-	el.appendChild(logDiv);
-	group3.on('updated', function() {
-		logDiv.innerHTML += "Updated at "+(new Date());
-		logDiv.appendChild(Y.inputEx.cn('br'));
-	});
+    // Example 1
+    
+    var contactFormFields = [
+        {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }]},
+        {label: 'Firstname', name: 'firstname', required: true},
+        {label: 'Lastname', name: 'lastname', value:'Dupont'},
+        {type:'email', label: 'Email', name: 'email', required: true, showMsg: true},
+        {type:'radio', label: 'Happy to be there ?', name: 'happy', display:'vertically', choices:[{value: "y", label:"yes"}, {value:"n", label:"no"}]},
+        {type:'boolean', label: 'Favorite colors ?', name: 'yellow', rightLabel:"yellow"},
+        {type:'boolean', label: ' ', name: 'blue', rightLabel:"blue"},
+        {type:'boolean', label: ' ', name: 'red', rightLabel:"red"},
+        {type:'url', label: 'Website', name:'website'}
+    ];
+    new Y.inputEx.Group({parentEl: 'container1', fields: contactFormFields, legend: 'Tell us about yourself...'});
+    
+    
+    // Example 2
+    
+    var contactFormFields = [ {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }]}, {label: 'Firstname', name: 'firstname', required: true}, {label: 'Lastname', name: 'lastname', value:'Dupont'}, {type:'email', label: 'Email', name: 'email', required: true, showMsg: true}, {type:'radio', label: 'Happy to be there ?', name: 'happy', values:["y","n"], choices:["yes","no"]}, {type:'boolean', label: 'Favorite colors ?', name: 'yellow', rightLabel:"yellow"}, {type:'boolean', label: ' ', name: 'blue', rightLabel:"blue"}, {type:'boolean', label: ' ', name: 'red', rightLabel:"red"}, {type:'url', label: 'Website', name:'website'} ];
+    
+    new Y.inputEx.ListField({
+        elementType: {
+            type: 'group',
+            fields: contactFormFields
+        },
+        parentEl: 'container2'
+    });
+    
+    
+    // Example 3
+    
+    var contactFormFields = [ {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }]}, {label: 'Firstname', name: 'firstname', required: true}, {label: 'Lastname', name: 'lastname', value:'Dupont'}, {type:'email', label: 'Email', name: 'email', required: true, showMsg: true}, {type:'radio', label: 'Happy to be there ?', name: 'happy', values:["y","n"], choices:["yes","no"]}, {type:'boolean', label: 'Favorite colors ?', name: 'yellow', rightLabel:"yellow"}, {type:'boolean', label: ' ', name: 'blue', rightLabel:"blue"}, {type:'boolean', label: ' ', name: 'red', rightLabel:"red"}, {type:'url', label: 'Website', name:'website'} ];
+            
+    var el = Y.one('#container3');
+    var group3 = new Y.inputEx.Group({parentEl: el, fields: contactFormFields });
+    var logDiv = Y.inputEx.cn('div', null, null, "Log :");
+    el.appendChild(logDiv);
+    group3.on('updated', function() {
+        logDiv.innerHTML += "Updated at "+(new Date());
+        logDiv.appendChild(Y.inputEx.cn('br'));
+    });
 
-	var setValueButton = Y.inputEx.cn('button', null, null, "SetValue");
-	Y.one(setValueButton).on('click', function() {
-		group3.setValue({
-			title: 'Mme',
-			firstname: 'Eric',
-			lastname: 'Abouaf', 
-			happy: "y",
-			email: 'something@email.com',
-			website: 'http://neyric.github.com/inputex',
-			yellow: true
-		});
-		// when you don't pass all values, default values are applied
-		// to missing fields (e.g. : 'blue' and 'red' fields)
-				
-	});
-	el.appendChild(setValueButton);
-	
-	
-	// Example 4
-	
-	var contactFormFields = [ {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }]}, {label: 'Firstname', name: 'firstname', required: true}, {label: 'Lastname', name: 'lastname', value:'Dupont'}, {type:'email', label: 'Email', name: 'email', required: true, showMsg: true}, {type:'radio', label: 'Happy to be there ?', name: 'happy', values:["y","n"], choices:["yes","no"]}, {type:'boolean', label: 'Favorite colors ?', name: 'yellow', rightLabel:"yellow"}, {type:'boolean', label: ' ', name: 'blue', rightLabel:"blue"}, {type:'boolean', label: ' ', name: 'red', rightLabel:"red"}, {type:'url', label: 'Website', name:'website'} ];
-			
-	new Y.inputEx.Group({parentEl: 'container4', fields: contactFormFields, legend: 'User Informations', collapsible: true});
-	
-	
-	// Example 5
-	
-	
-	var contactFormFields2 = [ 
-			{type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
-			{label: 'Firstname', name: 'firstname', required: true },
-			{label: 'Lastname', name: 'lastname', value:'Dupont', required:false },
-			{type:'email', label: 'Email', name: 'email', required: true, showMsg: true},
-			{type:'boolean', label: 'Happy to be there ?', name: 'happy'},
-			{type:'url', label: 'Website', name:'website'}
-	];
-	contactFormFields2.push({
-		type: 'group',
-		name: 'phone',
-		collapsible: true,
-		legend: 'Phone number',
-		fields: [
-			{ label: 'Home', name: 'home' },
-			{ label: 'Business', name: 'business' },
-			{ label: 'Mobile',name: 'mobile' },
-			{ label: 'Fax', name: 'fax' }
-		]
-	});
-	var field5 = new Y.inputEx.Group({parentEl: 'container5', fields: contactFormFields2});
-	var button5 = Y.inputEx.cn('button', null, null, 'Get value');
-	Y.one('#container5').appendChild(button5);
-	Y.one(button5).on('click', function() {
-		alert( Y.JSON.stringify(field5.getValue()) );
-	});
-	var setValueButton = Y.inputEx.cn('button', null, null, "SetValue");
-	Y.one(setValueButton).on('click', function() {
-		field5.setValue({
-			title: 'Mme',
-			firstname: 'Eric',
-			lastname: 'Abouaf', 
-			happy: false,
-			email: 'something@email.com',
-			website: 'http://neyric.github.com/inputex',
-			phone:{
-				home:"911",
-			   fax:"911"
-			}
-		});
-	});
-	var el = Y.one('#container5');
-	el.appendChild(setValueButton);
-	var validButton = Y.inputEx.cn('button', null, null, 'Validate');
-	Y.one('#container5').appendChild(validButton);
-	Y.one(validButton).on("click", function() {
-		alert( field5.validate() );
-	});
-	
-	
-	// Example 6
-	
-	var descriptedFields = [ 
-			{ type: 'select', label: 'Title', name: 'title', description: 'Select your gender',  choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
-			{ label: 'Firstname', description: 'Your firstname', name: 'firstname', required: true, value:'Jacques' },
-			{ label: 'Lastname', description: 'Your lastname', name: 'lastname', value:'Dupont' },
-			{ type:'email', description: 'Your email. We wont send you any commercial information', label: 'Email', name: 'email'},
-			{ type:'boolean', description: 'Check this box if you are happy to be there', label: 'Happy to be there ?', name: 'email'},
-			{ type:'url', description: 'Your blog url', label: 'Website', name:'website'}
-	];
-	new Y.inputEx.Group({parentEl: 'container6', fields: descriptedFields, legend: 'User Informations'});
-	
-	
-	
-	// Example 7
-	
-	var flattenGroup = new Y.inputEx.Group({
-		parentEl: 'container7', 
-		legend: 'Flatten demo', 
-		name: "MyForm",
-		fields: [
-	      { 
-	          type: 'group',
-	          name: "MySubForm",
-	          flatten: true,
-	          fields: [
-	             { label: 'Firstname', name: 'firstname' },
-	             { label: 'Lastname', name: 'lastname', description: "Firstname and Lastname are within the same sub-group" }
-	          ]
-	      },
-	      { label: 'Title', name: 'title' }
-	   ]
-	});
-	flattenGroup.on('updated',function(value) {
-		Y.one('#container7').appendChild( Y.inputEx.cn('div',null,null, Y.JSON.stringify(value)) );
-	});
+    var setValueButton = Y.inputEx.cn('button', null, null, "SetValue");
+    Y.one(setValueButton).on('click', function() {
+        group3.setValue({
+            title: 'Mme',
+            firstname: 'Eric',
+            lastname: 'Abouaf', 
+            happy: "y",
+            email: 'something@email.com',
+            website: 'http://neyric.github.com/inputex',
+            yellow: true
+        });
+        // when you don't pass all values, default values are applied
+        // to missing fields (e.g. : 'blue' and 'red' fields)
+    });
+    el.appendChild(setValueButton);
+    
+    
+    // Example 4
+    
+    var contactFormFields = [ {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }]}, {label: 'Firstname', name: 'firstname', required: true}, {label: 'Lastname', name: 'lastname', value:'Dupont'}, {type:'email', label: 'Email', name: 'email', required: true, showMsg: true}, {type:'radio', label: 'Happy to be there ?', name: 'happy', values:["y","n"], choices:["yes","no"]}, {type:'boolean', label: 'Favorite colors ?', name: 'yellow', rightLabel:"yellow"}, {type:'boolean', label: ' ', name: 'blue', rightLabel:"blue"}, {type:'boolean', label: ' ', name: 'red', rightLabel:"red"}, {type:'url', label: 'Website', name:'website'} ];
+            
+    new Y.inputEx.Group({parentEl: 'container4', fields: contactFormFields, legend: 'User Informations', collapsible: true});
+    
+    
+    // Example 5
+    
+    var contactFormFields2 = [ 
+        {type: 'select', label: 'Title', name: 'title', choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
+        {label: 'Firstname', name: 'firstname', required: true },
+        {label: 'Lastname', name: 'lastname', value:'Dupont', required:false },
+        {type:'email', label: 'Email', name: 'email', required: true, showMsg: true},
+        {type:'boolean', label: 'Happy to be there ?', name: 'happy'},
+        {type:'url', label: 'Website', name:'website'}
+    ];
+    contactFormFields2.push({
+        type: 'group',
+        name: 'phone',
+        collapsible: true,
+        legend: 'Phone number',
+        fields: [
+            { label: 'Home', name: 'home' },
+            { label: 'Business', name: 'business' },
+            { label: 'Mobile',name: 'mobile' },
+            { label: 'Fax', name: 'fax' }
+        ]
+    });
+    var field5 = new Y.inputEx.Group({parentEl: 'container5', fields: contactFormFields2});
+    var button5 = Y.inputEx.cn('button', null, null, 'Get value');
+    Y.one('#container5').appendChild(button5);
+    Y.one(button5).on('click', function() {
+        alert( Y.JSON.stringify(field5.getValue()) );
+    });
+    var setValueButton = Y.inputEx.cn('button', null, null, "SetValue");
+    Y.one(setValueButton).on('click', function() {
+        field5.setValue({
+            title: 'Mme',
+            firstname: 'Eric',
+            lastname: 'Abouaf', 
+            happy: false,
+            email: 'something@email.com',
+            website: 'http://neyric.github.com/inputex',
+            phone: {
+                home:"911",
+                fax:"911"
+            }
+        });
+    });
+    var el = Y.one('#container5');
+    el.appendChild(setValueButton);
+    var validButton = Y.inputEx.cn('button', null, null, 'Validate');
+    Y.one('#container5').appendChild(validButton);
+    Y.one(validButton).on("click", function() {
+        alert( field5.validate() );
+    });
+    
+    
+    // Example 6
+    
+    var descriptedFields = [ 
+        { type: 'select', label: 'Title', name: 'title', description: 'Select your gender',  choices: [{ value: 'Mr' }, { value: 'Mrs' }, { value: 'Ms' }] },
+        { label: 'Firstname', description: 'Your firstname', name: 'firstname', required: true, value:'Jacques' },
+        { label: 'Lastname', description: 'Your lastname', name: 'lastname', value:'Dupont' },
+        { type:'email', description: 'Your email. We wont send you any commercial information', label: 'Email', name: 'email'},
+        { type:'boolean', description: 'Check this box if you are happy to be there', label: 'Happy to be there ?', name: 'email'},
+        { type:'url', description: 'Your blog url', label: 'Website', name:'website'}
+    ];
+    new Y.inputEx.Group({parentEl: 'container6', fields: descriptedFields, legend: 'User Informations'});
+    
+    
+    
+    // Example 7
+    
+    var flattenGroup = new Y.inputEx.Group({
+        parentEl: 'container7', 
+        legend: 'Flatten demo', 
+        name: "MyForm",
+        fields: [
+            { 
+                type: 'group',
+                name: "MySubForm",
+                flatten: true,
+                fields: [
+                    { label: 'Firstname', name: 'firstname' },
+                    { label: 'Lastname', name: 'lastname', description: "Firstname and Lastname are within the same sub-group" }
+                ]
+            },
+            { label: 'Title', name: 'title' }
+       ]
+    });
+    flattenGroup.on('updated',function(value) {
+        Y.one('#container7').appendChild( Y.inputEx.cn('div',null,null, Y.JSON.stringify(value)) );
+    });
 
-		
-	// Example 8
-	
-	var myForm = new Y.inputEx.Group({
-		parentEl: 'container8', 
-		name: "MyForm",
-		fields: [
-	     {label: 'Firstname', name: 'firstname', showMsg: true},
-	     {label: 'Age', name: 'age', showMsg: true},
-	     {label: 'Title', name: 'title'}
-	   ]
-	});
-					
-	myForm.setErrors({
-		firstname: "Cannot be empty",
-		age: "Must be a number",
-		title: "Cannot be empty !!! (not visible because no showMsg)"
-	});
-					
-	// Equivalent call :
-	myForm.setErrors([
-		["firstname", "Cannot be empty"],
-		["age", "Must be a number"],
-		["title", "Cannot be empty !!! (not visible because no showMsg)"]
-	]);
-	
-	
+    
+    // Example 8
+    
+    var myForm = new Y.inputEx.Group({
+        parentEl: 'container8', 
+        name: "MyForm",
+        fields: [
+            {label: 'Firstname', name: 'firstname', showMsg: true},
+            {label: 'Age', name: 'age', showMsg: true},
+            {label: 'Title', name: 'title'}
+        ]
+    });
+    
+    myForm.setErrors({
+        firstname: "Cannot be empty",
+        age: "Must be a number",
+        title: "Cannot be empty !!! (not visible because no showMsg)"
+    });
+    
+    // Equivalent call :
+    myForm.setErrors([
+        ["firstname", "Cannot be empty"],
+        ["age", "Must be a number"],
+        ["title", "Cannot be empty !!! (not visible because no showMsg)"]
+    ]);
+    
+    
 });

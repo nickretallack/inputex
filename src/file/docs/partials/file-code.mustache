@@ -1,18 +1,16 @@
 YUI().use('inputex-file', 'inputex-form', 'inputex-timeinterval', function(Y) {
 
-
-	Y.inputEx({
-		type: 'form',
-		parentEl: 'container1',
-		enctype: 'multipart/form-data',
-		action: 'input_file.php',
-		fields: [
-			{type: 'file', name: 'textFile', label:'Search file', accept: 'text/*', size: 50 }
-		],
-		buttons: [
-			{type: 'submit', value: 'Upload'}
-		]
-	});
-
+    Y.inputEx({
+        type: 'form',
+        parentEl: 'container1',
+        enctype: 'multipart/form-data',
+        action: 'input_file.php',
+        fields: [
+            {type: 'file', name: 'textFile', label:'Search file', accept: 'text/*', size: 50 }
+        ],
+        buttons: [
+            {type: 'submit', value: 'Upload'}
+        ]
+    });
 
 });

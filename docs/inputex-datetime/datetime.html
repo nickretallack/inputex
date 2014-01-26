@@ -34,32 +34,31 @@ How to create a datetime field.
 
 <div class="example">
 
-	<h2>Basic DateTimeField creation</h2>
-	<p>Use the following code to create a basic inputEx DateTimeField.</p>
-	<div class='demoContainer' id='container1'></div>
-	
-	
-	
-	<h2>Date format</h2>
-	<p>Change the date format</p>
-	<div class='demoContainer' id='container2'></div>
+    <h2>Basic DateTimeField creation</h2>
+    <p>Use the following code to create a basic inputEx DateTimeField.</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    
+    
+    <h2>Date format</h2>
+    <p>Change the date format</p>
+    <div class='demoContainer' id='container2'></div>
 
 <script>
 YUI().use('inputex-datetime', function(Y) {
 
-	// Example 1
-	field = new Y.inputEx.DateTimeField({parentEl: 'container1', value: new Date()});
-	var button = Y.inputEx.cn('button', null, null, 'getValue');
-	Y.one(button).on('click',function() {
-		alert(field.getValue());
-	});
-	Y.one('#container1').appendChild(button);
-	
-	
-	
-	new Y.inputEx.DateTimeField({parentEl: 'container2', value: new Date(), dateFormat: 'd/m/Y'});
-	
-
+    // Example 1
+    field = new Y.inputEx.DateTimeField({parentEl: 'container1', value: new Date()});
+    var button = Y.inputEx.cn('button', null, null, 'getValue');
+    Y.one(button).on('click',function() {
+        alert(field.getValue());
+    });
+    Y.one('#container1').appendChild(button);
+    
+    
+    // Example 2
+    new Y.inputEx.DateTimeField({parentEl: 'container2', value: new Date(), dateFormat: 'd/m/Y'});
+    
 });
 
 </script>
@@ -78,19 +77,18 @@ YUI().use('inputex-datetime', function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-datetime&#x27;, function(Y) {
 
-	&#x2F;&#x2F; Example 1
-	field = new Y.inputEx.DateTimeField({parentEl: &#x27;container1&#x27;, value: new Date()});
-	var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
-	Y.one(button).on(&#x27;click&#x27;,function() {
-		alert(field.getValue());
-	});
-	Y.one(&#x27;#container1&#x27;).appendChild(button);
-	
-	
-	
-	new Y.inputEx.DateTimeField({parentEl: &#x27;container2&#x27;, value: new Date(), dateFormat: &#x27;d&#x2F;m&#x2F;Y&#x27;});
-	
-
+    &#x2F;&#x2F; Example 1
+    field = new Y.inputEx.DateTimeField({parentEl: &#x27;container1&#x27;, value: new Date()});
+    var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
+    Y.one(button).on(&#x27;click&#x27;,function() {
+        alert(field.getValue());
+    });
+    Y.one(&#x27;#container1&#x27;).appendChild(button);
+    
+    
+    &#x2F;&#x2F; Example 2
+    new Y.inputEx.DateTimeField({parentEl: &#x27;container2&#x27;, value: new Date(), dateFormat: &#x27;d&#x2F;m&#x2F;Y&#x27;});
+    
 });</pre>
 
 </div>

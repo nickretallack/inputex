@@ -34,55 +34,54 @@ How to create a integer field.
 
 <div class="example">
 
-	
-	<h2>Basic IntegerField creation</h2>
-	<p>Use the following code to create a basic inputEx IntegerField.</p>
-	<div class='demoContainer' id='container1'></div>
-	<div id='valueContainer1'></div>
-	
-	<h2>Min &amp; Max</h2>
-	<p>Check values are within a range (in this example: min=3 / max=10)</p>
-	<div class='demoContainer' id='container4'></div>
+    <h2>Basic IntegerField creation</h2>
+    <p>Use the following code to create a basic inputEx IntegerField.</p>
+    <div class='demoContainer' id='container1'></div>
+    <div id='valueContainer1'></div>
+    
+    <h2>Min &amp; Max</h2>
+    <p>Check values are within a range (in this example: min=3 / max=10)</p>
+    <div class='demoContainer' id='container4'></div>
 
-	<h2>Negative values</h2>
-	<p>Set the negative attribute to true if you allow negative values.</p>
-	<div class='demoContainer' id='container3'></div>
+    <h2>Negative values</h2>
+    <p>Set the negative attribute to true if you allow negative values.</p>
+    <div class='demoContainer' id='container3'></div>
 
-	<h2>IntegerField with options</h2>
-	<p>You can use all the options inherited form StringField. In this example: the value is trimmed, the minimum length required is 3 digits, and the number must start with the digit "1" (enforced via the 'regexp' option).</p>
-	<div class='demoContainer' id='container2'></div>
-	<div id='valueContainer2'></div>
-	
+    <h2>IntegerField with options</h2>
+    <p>You can use all the options inherited form StringField. In this example: the value is trimmed, the minimum length required is 3 digits, and the number must start with the digit "1" (enforced via the 'regexp' option).</p>
+    <div class='demoContainer' id='container2'></div>
+    <div id='valueContainer2'></div>
+    
 
 <script>
 YUI().use('inputex-integer', function(Y) {
 
-	// Example 1
-	var field = new Y.inputEx.IntegerField({ parentEl: 'container1', showMsg: true });
-	field.on('updated', function(value) {
-		Y.one('#valueContainer1').innerHTML = "value: " + value + ", type: " + typeof(value);
-	});
-	
-	// Example 2
-	new Y.inputEx.IntegerField({ parentEl: 'container4', showMsg: true, min:3, max:10 });
-	
-	// Example 3
-	new Y.inputEx.IntegerField({ parentEl: 'container3', showMsg: true, negative:true, value: -12 });
-	
-	// Example 4
-	var field = new Y.inputEx.IntegerField({
-		parentEl: 'container2',
-		showMsg: true,
-		required: true,
-		typeInvite: "Enter a number",
-		trim: true,
-		minLength: 3,
-		regexp: /^1/
-	});
-	field.on('updated', function(value) {
-		Y.one('#valueContainer2').innerHTML = "value: " + value + ", type: " + typeof(value);
-	});
-	
+    // Example 1
+    var field = new Y.inputEx.IntegerField({ parentEl: 'container1', showMsg: true });
+    field.on('updated', function(value) {
+        Y.one('#valueContainer1').innerHTML = "value: " + value + ", type: " + typeof(value);
+    });
+    
+    // Example 2
+    new Y.inputEx.IntegerField({ parentEl: 'container4', showMsg: true, min:3, max:10 });
+    
+    // Example 3
+    new Y.inputEx.IntegerField({ parentEl: 'container3', showMsg: true, negative:true, value: -12 });
+    
+    // Example 4
+    var field = new Y.inputEx.IntegerField({
+        parentEl: 'container2',
+        showMsg: true,
+        required: true,
+        typeInvite: "Enter a number",
+        trim: true,
+        minLength: 3,
+        regexp: /^1/
+    });
+    field.on('updated', function(value) {
+        Y.one('#valueContainer2').innerHTML = "value: " + value + ", type: " + typeof(value);
+    });
+    
 });
 
 
@@ -103,32 +102,32 @@ YUI().use('inputex-integer', function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-integer&#x27;, function(Y) {
 
-	&#x2F;&#x2F; Example 1
-	var field = new Y.inputEx.IntegerField({ parentEl: &#x27;container1&#x27;, showMsg: true });
-	field.on(&#x27;updated&#x27;, function(value) {
-		Y.one(&#x27;#valueContainer1&#x27;).innerHTML = &quot;value: &quot; + value + &quot;, type: &quot; + typeof(value);
-	});
-	
-	&#x2F;&#x2F; Example 2
-	new Y.inputEx.IntegerField({ parentEl: &#x27;container4&#x27;, showMsg: true, min:3, max:10 });
-	
-	&#x2F;&#x2F; Example 3
-	new Y.inputEx.IntegerField({ parentEl: &#x27;container3&#x27;, showMsg: true, negative:true, value: -12 });
-	
-	&#x2F;&#x2F; Example 4
-	var field = new Y.inputEx.IntegerField({
-		parentEl: &#x27;container2&#x27;,
-		showMsg: true,
-		required: true,
-		typeInvite: &quot;Enter a number&quot;,
-		trim: true,
-		minLength: 3,
-		regexp: &#x2F;^1&#x2F;
-	});
-	field.on(&#x27;updated&#x27;, function(value) {
-		Y.one(&#x27;#valueContainer2&#x27;).innerHTML = &quot;value: &quot; + value + &quot;, type: &quot; + typeof(value);
-	});
-	
+    &#x2F;&#x2F; Example 1
+    var field = new Y.inputEx.IntegerField({ parentEl: &#x27;container1&#x27;, showMsg: true });
+    field.on(&#x27;updated&#x27;, function(value) {
+        Y.one(&#x27;#valueContainer1&#x27;).innerHTML = &quot;value: &quot; + value + &quot;, type: &quot; + typeof(value);
+    });
+    
+    &#x2F;&#x2F; Example 2
+    new Y.inputEx.IntegerField({ parentEl: &#x27;container4&#x27;, showMsg: true, min:3, max:10 });
+    
+    &#x2F;&#x2F; Example 3
+    new Y.inputEx.IntegerField({ parentEl: &#x27;container3&#x27;, showMsg: true, negative:true, value: -12 });
+    
+    &#x2F;&#x2F; Example 4
+    var field = new Y.inputEx.IntegerField({
+        parentEl: &#x27;container2&#x27;,
+        showMsg: true,
+        required: true,
+        typeInvite: &quot;Enter a number&quot;,
+        trim: true,
+        minLength: 3,
+        regexp: &#x2F;^1&#x2F;
+    });
+    field.on(&#x27;updated&#x27;, function(value) {
+        Y.one(&#x27;#valueContainer2&#x27;).innerHTML = &quot;value: &quot; + value + &quot;, type: &quot; + typeof(value);
+    });
+    
 });</pre>
 
 </div>

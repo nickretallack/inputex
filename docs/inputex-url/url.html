@@ -35,40 +35,53 @@ How to create a url field.
 <div class="example">
 
     <h2>Basic UrlField creation</h2>
-	
-	<p>Use the following code to create a basic inputEx UrlField.</p>
+    
+    <p>Use the following code to create a basic inputEx UrlField.</p>
 
-	<div class='demoContainer' id='container1'></div>
-	
-	
-	<h2>favicon option</h2>
-	
-	<p>If you use https, you might need to remove the favicon option (or provide a proxy).</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    
+    <h2>favicon option</h2>
+    
+    <p>If you use https, you might need to remove the favicon option (or provide a proxy).</p>
 
-	<div class='demoContainer' id='container2'></div>
-	
-	
-	<h2>Type invitation</h2>
-	
-	<p>You can use all the parameters from StringField, including "typeInvite":</p>
+    <div class='demoContainer' id='container2'></div>
+    
+    
+    <h2>Type invitation</h2>
+    
+    <p>You can use all the parameters from StringField, including "typeInvite":</p>
 
-	<div class='demoContainer' id='container3'></div>
-	
+    <div class='demoContainer' id='container3'></div>
+    
 
 <script>
 YUI().use('inputex-url',function(Y) {
 
     // Example 1
-    new Y.inputEx.UrlField({parentEl: 'container1', showMsg: true, value: 'http://ajaxian.com/archives/inputex-json-form-builder'});
+    new Y.inputEx.UrlField({
+        parentEl: 'container1',
+        showMsg: true,
+        value: 'http://ajaxian.com/archives/inputex-json-form-builder'
+    });
 
 
     // Example 2
-    new Y.inputEx.UrlField({parentEl: 'container2', showMsg: true, favicon: false, value: 'http://www.ajaxian.com'});
+    new Y.inputEx.UrlField({
+        parentEl: 'container2',
+        showMsg: true,
+        favicon: false,
+        value: 'http://www.ajaxian.com'
+    });
     
     
     // Example 3
-    new Y.inputEx.UrlField({parentEl: 'container3', showMsg: true, favicon: false, typeInvite: 'webservice url'});
-
+    new Y.inputEx.UrlField({
+        parentEl: 'container3',
+        showMsg: true,
+        favicon: false,
+        typeInvite: 'webservice url'
+    });
 
 });
 
@@ -89,16 +102,29 @@ YUI().use('inputex-url',function(Y) {
 <pre class="code prettyprint">YUI().use(&#x27;inputex-url&#x27;,function(Y) {
 
     &#x2F;&#x2F; Example 1
-    new Y.inputEx.UrlField({parentEl: &#x27;container1&#x27;, showMsg: true, value: &#x27;http:&#x2F;&#x2F;ajaxian.com&#x2F;archives&#x2F;inputex-json-form-builder&#x27;});
+    new Y.inputEx.UrlField({
+        parentEl: &#x27;container1&#x27;,
+        showMsg: true,
+        value: &#x27;http:&#x2F;&#x2F;ajaxian.com&#x2F;archives&#x2F;inputex-json-form-builder&#x27;
+    });
 
 
     &#x2F;&#x2F; Example 2
-    new Y.inputEx.UrlField({parentEl: &#x27;container2&#x27;, showMsg: true, favicon: false, value: &#x27;http:&#x2F;&#x2F;www.ajaxian.com&#x27;});
+    new Y.inputEx.UrlField({
+        parentEl: &#x27;container2&#x27;,
+        showMsg: true,
+        favicon: false,
+        value: &#x27;http:&#x2F;&#x2F;www.ajaxian.com&#x27;
+    });
     
     
     &#x2F;&#x2F; Example 3
-    new Y.inputEx.UrlField({parentEl: &#x27;container3&#x27;, showMsg: true, favicon: false, typeInvite: &#x27;webservice url&#x27;});
-
+    new Y.inputEx.UrlField({
+        parentEl: &#x27;container3&#x27;,
+        showMsg: true,
+        favicon: false,
+        typeInvite: &#x27;webservice url&#x27;
+    });
 
 });</pre>
 

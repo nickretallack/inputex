@@ -1,30 +1,31 @@
 YUI().use('inputex-rte', function(Y) {
 
     // Example 1
-    new Y.inputEx.RTEField({parentEl: 'container1', name: 'rteField',value:"I'm the default value. I've been set through the value option."});
+    new Y.inputEx.RTEField({
+        parentEl: 'container1',
+        name: 'rteField',
+        value: "I'm the default value. I've been set through the value option."
+    });
     
     
     // Example 2
     var div = Y.one('#container2');
-	var htmlField = new Y.inputEx.RTEField({parentEl: div, name: 'test2'});
+    var htmlField = new Y.inputEx.RTEField({parentEl: div, name: 'test2'});
 
-	var button1 = Y.inputEx.cn('button', null, null, "SetValue");
-	div.appendChild(button1);
-	Y.one(button1).on('click' ,function() { 
-		htmlField.setValue('RTEField can contain HTML !'); 
-	});
-	var button2 = Y.inputEx.cn('button', null, null, "GetValue");
-	div.appendChild(button2);
-	Y.one(button2).on('click' ,function() { 
-		alert(htmlField.getValue());
-	});
-	
-	
-	// Example 3
-	
-	var field3 = new Y.inputEx.RTEField({parentEl: 'container3', name: 'rteField3', editorType: 'simple'});
-	field3.setValue("Value set just after init...");
-	
-	
+    var button1 = Y.inputEx.cn('button', null, null, "SetValue");
+    div.appendChild(button1);
+    Y.one(button1).on('click' ,function() { 
+        htmlField.setValue('RTEField can contain HTML !'); 
+    });
+    var button2 = Y.inputEx.cn('button', null, null, "GetValue");
+    div.appendChild(button2);
+    Y.one(button2).on('click' ,function() { 
+        alert(htmlField.getValue());
+    });
+    
+    
+    // Example 3
+    var field3 = new Y.inputEx.RTEField({parentEl: 'container3', name: 'rteField3', editorType: 'simple'});
+    field3.setValue("Value set just after init...");
 
 });

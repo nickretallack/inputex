@@ -48,49 +48,46 @@ How to create a timeinterval field.
     
 
 <script>
-YUI().use('inputex-timeinterval',function(Y) {
+YUI().use('inputex-timeinterval', function (Y) {
 
 
     var field = new Y.inputEx.TimeIntervalField({parentEl: 'container1', label: 'Length',value:82800});
-	var button = Y.inputEx.cn('button', null, null, 'getValue');
-	Y.one(button).on('click',function() {
-		alert(field.getValue()+" (seconds)");
-	});
-	Y.one('#container1').appendChild(button);
-	
-	
-	
-	
-	
-	var units = Y.inputEx.TimeIntervalField.units,
-	  		messages = Y.Intl.get("inputex-timeinterval"),
-	  		unitsStr = messages.timeUnits,
-	  		n=[], i, 
-	  		fields; 
+    var button = Y.inputEx.cn('button', null, null, 'getValue');
+    Y.one(button).on('click',function() {
+        alert(field.getValue()+" (seconds)");
+    });
+    Y.one('#container1').appendChild(button);
+    
+    
+    var units = Y.inputEx.TimeIntervalField.units,
+        messages = Y.Intl.get("inputex-timeinterval"),
+        unitsStr = messages.timeUnits,
+        n=[], i,
+        fields; 
 
-	  for(i=1;i !=30;i++){ n.push(i); }
-	  		
-	  		fields = [
-	       {type: 'select', choices: n },
-	       {
-	          type: 'select',
-	          choices: [
-					{ value: units.DAY, label: unitsStr.DAY },
-					{ value: units.MONTH, label: unitsStr.MONTH },
-					{ value: units.YEAR, label: unitsStr.YEAR }
-				]
-	       }
-	    ];
+    for (i = 1; i != 30; i++) { n.push(i); }
+              
+    fields = [
+        { type: 'select', choices: n },
+        {
+            type: 'select',
+            choices: [
+                { value: units.DAY, label: unitsStr.DAY },
+                { value: units.MONTH, label: unitsStr.MONTH },
+                { value: units.YEAR, label: unitsStr.YEAR }
+            ]
+        }
+    ];
 
-		new Y.inputEx.TimeIntervalField({
-			parentEl: 'container2',
-			value: 60*24*2, // 2 days 
-			unit: Y.inputEx.TimeIntervalField.units.MINUTE,
-			label: 'Continue',
-			fields: fields,
-			separators: ["for&nbsp;", "&nbsp;&nbsp;", false]
-		});
-	
+    new Y.inputEx.TimeIntervalField({
+        parentEl: 'container2',
+        value: 60*24*2, // 2 days 
+        unit: Y.inputEx.TimeIntervalField.units.MINUTE,
+        label: 'Continue',
+        fields: fields,
+        separators: ["for&nbsp;", "&nbsp;&nbsp;", false]
+    });
+    
 
 });
 </script>
@@ -107,49 +104,46 @@ YUI().use('inputex-timeinterval',function(Y) {
 
 <h3>Implementation</h3>
 
-<pre class="code prettyprint">YUI().use(&#x27;inputex-timeinterval&#x27;,function(Y) {
+<pre class="code prettyprint">YUI().use(&#x27;inputex-timeinterval&#x27;, function (Y) {
 
 
     var field = new Y.inputEx.TimeIntervalField({parentEl: &#x27;container1&#x27;, label: &#x27;Length&#x27;,value:82800});
-	var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
-	Y.one(button).on(&#x27;click&#x27;,function() {
-		alert(field.getValue()+&quot; (seconds)&quot;);
-	});
-	Y.one(&#x27;#container1&#x27;).appendChild(button);
-	
-	
-	
-	
-	
-	var units = Y.inputEx.TimeIntervalField.units,
-	  		messages = Y.Intl.get(&quot;inputex-timeinterval&quot;),
-	  		unitsStr = messages.timeUnits,
-	  		n=[], i, 
-	  		fields; 
+    var button = Y.inputEx.cn(&#x27;button&#x27;, null, null, &#x27;getValue&#x27;);
+    Y.one(button).on(&#x27;click&#x27;,function() {
+        alert(field.getValue()+&quot; (seconds)&quot;);
+    });
+    Y.one(&#x27;#container1&#x27;).appendChild(button);
+    
+    
+    var units = Y.inputEx.TimeIntervalField.units,
+        messages = Y.Intl.get(&quot;inputex-timeinterval&quot;),
+        unitsStr = messages.timeUnits,
+        n=[], i,
+        fields; 
 
-	  for(i=1;i !=30;i++){ n.push(i); }
-	  		
-	  		fields = [
-	       {type: &#x27;select&#x27;, choices: n },
-	       {
-	          type: &#x27;select&#x27;,
-	          choices: [
-					{ value: units.DAY, label: unitsStr.DAY },
-					{ value: units.MONTH, label: unitsStr.MONTH },
-					{ value: units.YEAR, label: unitsStr.YEAR }
-				]
-	       }
-	    ];
+    for (i = 1; i != 30; i++) { n.push(i); }
+              
+    fields = [
+        { type: &#x27;select&#x27;, choices: n },
+        {
+            type: &#x27;select&#x27;,
+            choices: [
+                { value: units.DAY, label: unitsStr.DAY },
+                { value: units.MONTH, label: unitsStr.MONTH },
+                { value: units.YEAR, label: unitsStr.YEAR }
+            ]
+        }
+    ];
 
-		new Y.inputEx.TimeIntervalField({
-			parentEl: &#x27;container2&#x27;,
-			value: 60*24*2, &#x2F;&#x2F; 2 days 
-			unit: Y.inputEx.TimeIntervalField.units.MINUTE,
-			label: &#x27;Continue&#x27;,
-			fields: fields,
-			separators: [&quot;for&amp;nbsp;&quot;, &quot;&amp;nbsp;&amp;nbsp;&quot;, false]
-		});
-	
+    new Y.inputEx.TimeIntervalField({
+        parentEl: &#x27;container2&#x27;,
+        value: 60*24*2, &#x2F;&#x2F; 2 days 
+        unit: Y.inputEx.TimeIntervalField.units.MINUTE,
+        label: &#x27;Continue&#x27;,
+        fields: fields,
+        separators: [&quot;for&amp;nbsp;&quot;, &quot;&amp;nbsp;&amp;nbsp;&quot;, false]
+    });
+    
 
 });</pre>
 

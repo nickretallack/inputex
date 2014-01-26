@@ -2,32 +2,39 @@ YUI().use('inputex-uneditable',function(Y) {
 
     // Example 1
     new Y.inputEx.UneditableField({
-		name: 'date', 
-		value: new Date(), 
-		parentEl: 'container1'
-	});
-	
-	// Example 2
-	new Y.inputEx.UneditableField({
-		name: 'date', 
-		value: 'http://farm2.static.flickr.com/1052/913643741_a83000f8e4.jpg', 
-		visu: {
-			visuType: 'func', 
-			func: function(value){ return Y.inputEx.cn('img',{src:value},{border: '2px solid black'}); } 
-		},
-		parentEl: 'container2' 
-	});
-	
-	
-	// Example 3
-		Y.inputEx({
-			type: "uneditable",
-			name: 'pagerank', 
-			value: 5, 
-			label: "Pagerank",
-			visu: {visuType: 'func', func: function(value){ return Y.inputEx.cn('img',{src: "http://www.page-rank-lookup.com/i/style1/pagerank"+value+".png"}) } },
-			parentEl: 'container3'
-		});
-
+        name: 'date', 
+        value: new Date(), 
+        parentEl: 'container1'
+    });
+    
+    // Example 2
+    new Y.inputEx.UneditableField({
+        name: 'date', 
+        value: 'http://farm2.static.flickr.com/1052/913643741_a83000f8e4.jpg', 
+        visu: {
+            visuType: 'func', 
+            func: function (value) {
+                return Y.inputEx.cn('img', {src: value}, {border: '2px solid black'});
+            } 
+        },
+        parentEl: 'container2' 
+    });
+    
+    // Example 3
+    Y.inputEx({
+        type: "uneditable",
+        name: 'pagerank', 
+        value: 5, 
+        label: "Pagerank",
+        visu: {
+            visuType: 'func',
+            func: function (value) {
+                return Y.inputEx.cn('img', {
+                    src: "http://www.page-rank-lookup.com/i/style1/pagerank"+value+".png"
+                });
+            }
+        },
+        parentEl: 'container3'
+    });
 
 });

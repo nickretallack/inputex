@@ -35,51 +35,50 @@ How to create a rte field.
 <div class="example">
 
     <h2>Basic RTEField creation</h2>
-	<p>Use the following code to create a basic inputEx RTEField.</p>
-	<div class='demoContainer' id='container1'></div>
-	
-	
-	
-	<h2>RTEField setValue/getValue</h2>
-	<p>Test for setValue/getValue using the RTEField.</p>
-	<div class='demoContainer' id='container2'></div>
-	
-	
-	<h2>Using the SimpleEditor</h2>
-	<p>Use the following code to create a SimpleEditor widget</p>
-	<div class='demoContainer' id='container3'></div>
-	
-	
+    <p>Use the following code to create a basic inputEx RTEField.</p>
+    <div class='demoContainer' id='container1'></div>
+
+
+    <h2>RTEField setValue/getValue</h2>
+    <p>Test for setValue/getValue using the RTEField.</p>
+    <div class='demoContainer' id='container2'></div>
+
+
+    <h2>Using the SimpleEditor</h2>
+    <p>Use the following code to create a SimpleEditor widget</p>
+    <div class='demoContainer' id='container3'></div>
+
 
 <script>
 YUI().use('inputex-rte', function(Y) {
 
     // Example 1
-    new Y.inputEx.RTEField({parentEl: 'container1', name: 'rteField',value:"I'm the default value. I've been set through the value option."});
+    new Y.inputEx.RTEField({
+        parentEl: 'container1',
+        name: 'rteField',
+        value: "I'm the default value. I've been set through the value option."
+    });
     
     
     // Example 2
     var div = Y.one('#container2');
-	var htmlField = new Y.inputEx.RTEField({parentEl: div, name: 'test2'});
+    var htmlField = new Y.inputEx.RTEField({parentEl: div, name: 'test2'});
 
-	var button1 = Y.inputEx.cn('button', null, null, "SetValue");
-	div.appendChild(button1);
-	Y.one(button1).on('click' ,function() { 
-		htmlField.setValue('RTEField can contain HTML !'); 
-	});
-	var button2 = Y.inputEx.cn('button', null, null, "GetValue");
-	div.appendChild(button2);
-	Y.one(button2).on('click' ,function() { 
-		alert(htmlField.getValue());
-	});
-	
-	
-	// Example 3
-	
-	var field3 = new Y.inputEx.RTEField({parentEl: 'container3', name: 'rteField3', editorType: 'simple'});
-	field3.setValue("Value set just after init...");
-	
-	
+    var button1 = Y.inputEx.cn('button', null, null, "SetValue");
+    div.appendChild(button1);
+    Y.one(button1).on('click' ,function() { 
+        htmlField.setValue('RTEField can contain HTML !'); 
+    });
+    var button2 = Y.inputEx.cn('button', null, null, "GetValue");
+    div.appendChild(button2);
+    Y.one(button2).on('click' ,function() { 
+        alert(htmlField.getValue());
+    });
+    
+    
+    // Example 3
+    var field3 = new Y.inputEx.RTEField({parentEl: 'container3', name: 'rteField3', editorType: 'simple'});
+    field3.setValue("Value set just after init...");
 
 });
 
@@ -100,31 +99,32 @@ YUI().use('inputex-rte', function(Y) {
 <pre class="code prettyprint">YUI().use(&#x27;inputex-rte&#x27;, function(Y) {
 
     &#x2F;&#x2F; Example 1
-    new Y.inputEx.RTEField({parentEl: &#x27;container1&#x27;, name: &#x27;rteField&#x27;,value:&quot;I&#x27;m the default value. I&#x27;ve been set through the value option.&quot;});
+    new Y.inputEx.RTEField({
+        parentEl: &#x27;container1&#x27;,
+        name: &#x27;rteField&#x27;,
+        value: &quot;I&#x27;m the default value. I&#x27;ve been set through the value option.&quot;
+    });
     
     
     &#x2F;&#x2F; Example 2
     var div = Y.one(&#x27;#container2&#x27;);
-	var htmlField = new Y.inputEx.RTEField({parentEl: div, name: &#x27;test2&#x27;});
+    var htmlField = new Y.inputEx.RTEField({parentEl: div, name: &#x27;test2&#x27;});
 
-	var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue&quot;);
-	div.appendChild(button1);
-	Y.one(button1).on(&#x27;click&#x27; ,function() { 
-		htmlField.setValue(&#x27;RTEField can contain HTML !&#x27;); 
-	});
-	var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
-	div.appendChild(button2);
-	Y.one(button2).on(&#x27;click&#x27; ,function() { 
-		alert(htmlField.getValue());
-	});
-	
-	
-	&#x2F;&#x2F; Example 3
-	
-	var field3 = new Y.inputEx.RTEField({parentEl: &#x27;container3&#x27;, name: &#x27;rteField3&#x27;, editorType: &#x27;simple&#x27;});
-	field3.setValue(&quot;Value set just after init...&quot;);
-	
-	
+    var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue&quot;);
+    div.appendChild(button1);
+    Y.one(button1).on(&#x27;click&#x27; ,function() { 
+        htmlField.setValue(&#x27;RTEField can contain HTML !&#x27;); 
+    });
+    var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
+    div.appendChild(button2);
+    Y.one(button2).on(&#x27;click&#x27; ,function() { 
+        alert(htmlField.getValue());
+    });
+    
+    
+    &#x2F;&#x2F; Example 3
+    var field3 = new Y.inputEx.RTEField({parentEl: &#x27;container3&#x27;, name: &#x27;rteField3&#x27;, editorType: &#x27;simple&#x27;});
+    field3.setValue(&quot;Value set just after init...&quot;);
 
 });</pre>
 

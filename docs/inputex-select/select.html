@@ -35,60 +35,56 @@ How to create a select field.
 <div class="example">
 
     <h2>Basic SelectField creation</h2>
-	<p>Use the following code to create a basic inputEx SelectField.</p>
-	<div class='demoContainer' id='container1'></div>
-	
-	
-	<h2>Differentiate choices' labels and values</h2>
-	<p>Use the following code to create choices with labels different from values</p>
-	<div class='demoContainer' id='container1bis'></div>
-	
-	
-	<h2>Require the selection of a non-empty option</h2>
-	<p>Try to select an empty option:</p>
-	<div class='demoContainer' id='container1ter'></div>
-	
-	
-	<h2>Updated event</h2>
-	<p>How to listen to the updated event :</p>
-	<div class='demoContainer' id='container2'></div>
-	
-	
-	<h2>addChoice</h2>
-	<p>Add choices dynamically</p>
-	<div class='demoContainer' id='container3'></div>
-	
-	
-	<h2>removeChoice</h2>
-	<p>Remove choices dynamically</p>
-	<div class='demoContainer' id='container4'></div>
-	
-	
-	<h2>Hide / Show / Disable / Enable choice</h2>
-	<p>Hide, show, disable or enable an choice in the selector, without removing it totally, and keeping the original choice's order</p>
-	<p style="font-size:90%;padding-top:3px;">Note : disableChoice and enableChoice methods have no effect with IE &lt; 8 because it did not support disabled="disabled" attribute.</p>
-	<div class='demoContainer' id='container5'></div>
-	
-	
-	
+    <p>Use the following code to create a basic inputEx SelectField.</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    
+    <h2>Differentiate choices' labels and values</h2>
+    <p>Use the following code to create choices with labels different from values</p>
+    <div class='demoContainer' id='container1bis'></div>
+    
+    
+    <h2>Require the selection of a non-empty option</h2>
+    <p>Try to select an empty option:</p>
+    <div class='demoContainer' id='container1ter'></div>
+    
+    
+    <h2>Updated event</h2>
+    <p>How to listen to the updated event :</p>
+    <div class='demoContainer' id='container2'></div>
+    
+    
+    <h2>addChoice</h2>
+    <p>Add choices dynamically</p>
+    <div class='demoContainer' id='container3'></div>
+    
+    
+    <h2>removeChoice</h2>
+    <p>Remove choices dynamically</p>
+    <div class='demoContainer' id='container4'></div>
+    
+    
+    <h2>Hide / Show / Disable / Enable choice</h2>
+    <p>Hide, show, disable or enable an choice in the selector, without removing it totally, and keeping the original choice's order</p>
+    <p style="font-size:90%;padding-top:3px;">Note : disableChoice and enableChoice methods have no effect with IE &lt; 8 because it did not support disabled="disabled" attribute.</p>
+    <div class='demoContainer' id='container5'></div>    
+    
 
 <script>
 YUI().use('inputex-select',function(Y) {
 
-    // Example 1
-    
-    new Y.inputEx.SelectField({
+   // Example 1 
+   new Y.inputEx.SelectField({
       name: 'country',
-      choices: [                                  // choices: [                      <- alternative syntax (shorter)
+      choices: [                                 // choices: [                      <- alternative syntax (shorter)
          { value: 'United States of America' },  //    'United States of America',  <-
          { value: 'France' }                     //    'France'                     <-
-      ],                                          // ],                              <-
+      ],                                         // ],                              <-
       parentEl: 'container1'
    });
    
    
    // Example 1bis
-   
    new Y.inputEx.SelectField({
       label: 'Where are you from ?',
       name: 'country',
@@ -99,6 +95,7 @@ YUI().use('inputex-select',function(Y) {
       parentEl: 'container1bis'
    });
    
+
    // Example 1ter
    new Y.inputEx.SelectField({
       name: 'country',
@@ -112,8 +109,8 @@ YUI().use('inputex-select',function(Y) {
       parentEl: 'container1ter'
    });
 
+
    // Example 2
-   
    var el = Y.one('#container2');
    var field2 = new Y.inputEx.SelectField({ name: 'country', label: 'Where are you from ?', choices: [{ value: 'us', label: 'United States of America' }, { value: 'fr', label: 'France' }], parentEl: el });
    
@@ -135,7 +132,6 @@ YUI().use('inputex-select',function(Y) {
    
    
    // Example 3
-   
    var el = Y.one('#container3');
    var field3 = new Y.inputEx.SelectField({name: 'country', choices: [{ value: 'United States of America' }, { value: 'France' }], parentEl: el});
 
@@ -168,11 +164,9 @@ YUI().use('inputex-select',function(Y) {
       logDiv3.appendChild(Y.inputEx.cn('br'));
    });
     
-    
-    
-    // Example 4
-    
-    var el = Y.one('#container4');
+   
+   // Example 4 
+   var el = Y.one('#container4');
    var field4 = new Y.inputEx.SelectField({
       name: 'country',
       choices: [
@@ -217,8 +211,6 @@ YUI().use('inputex-select',function(Y) {
    
    
    // Example 5
-   
-   
    var el = Y.one('#container5');
    var field5 = new Y.inputEx.SelectField({name: 'country', choices: [ { value: 'usa', label: 'United States of America' }, { value: 'fr', label: 'France' }, { value: 'es', label: 'Spain' }], parentEl: el});
    
@@ -237,7 +229,6 @@ YUI().use('inputex-select',function(Y) {
       logDiv5.innerHTML += "Updated at "+(new Date())+" with value "+value;
       logDiv5.appendChild(Y.inputEx.cn('br'));
    });
-   
    
    Y.on("click" ,function() {
       
@@ -270,11 +261,6 @@ YUI().use('inputex-select',function(Y) {
       logDiv5.innerHTML += "[INFO] Enable choice 'Spain' (current value : "+field5.getValue()+")";
       logDiv5.appendChild(Y.inputEx.cn('br'));
    },button10);
-   
-   
-   
-   
-
 
 });
 </script>
@@ -293,20 +279,18 @@ YUI().use('inputex-select',function(Y) {
 
 <pre class="code prettyprint">YUI().use(&#x27;inputex-select&#x27;,function(Y) {
 
-    &#x2F;&#x2F; Example 1
-    
-    new Y.inputEx.SelectField({
+   &#x2F;&#x2F; Example 1 
+   new Y.inputEx.SelectField({
       name: &#x27;country&#x27;,
-      choices: [                                  &#x2F;&#x2F; choices: [                      &lt;- alternative syntax (shorter)
+      choices: [                                 &#x2F;&#x2F; choices: [                      &lt;- alternative syntax (shorter)
          { value: &#x27;United States of America&#x27; },  &#x2F;&#x2F;    &#x27;United States of America&#x27;,  &lt;-
          { value: &#x27;France&#x27; }                     &#x2F;&#x2F;    &#x27;France&#x27;                     &lt;-
-      ],                                          &#x2F;&#x2F; ],                              &lt;-
+      ],                                         &#x2F;&#x2F; ],                              &lt;-
       parentEl: &#x27;container1&#x27;
    });
    
    
    &#x2F;&#x2F; Example 1bis
-   
    new Y.inputEx.SelectField({
       label: &#x27;Where are you from ?&#x27;,
       name: &#x27;country&#x27;,
@@ -317,6 +301,7 @@ YUI().use('inputex-select',function(Y) {
       parentEl: &#x27;container1bis&#x27;
    });
    
+
    &#x2F;&#x2F; Example 1ter
    new Y.inputEx.SelectField({
       name: &#x27;country&#x27;,
@@ -330,8 +315,8 @@ YUI().use('inputex-select',function(Y) {
       parentEl: &#x27;container1ter&#x27;
    });
 
+
    &#x2F;&#x2F; Example 2
-   
    var el = Y.one(&#x27;#container2&#x27;);
    var field2 = new Y.inputEx.SelectField({ name: &#x27;country&#x27;, label: &#x27;Where are you from ?&#x27;, choices: [{ value: &#x27;us&#x27;, label: &#x27;United States of America&#x27; }, { value: &#x27;fr&#x27;, label: &#x27;France&#x27; }], parentEl: el });
    
@@ -353,7 +338,6 @@ YUI().use('inputex-select',function(Y) {
    
    
    &#x2F;&#x2F; Example 3
-   
    var el = Y.one(&#x27;#container3&#x27;);
    var field3 = new Y.inputEx.SelectField({name: &#x27;country&#x27;, choices: [{ value: &#x27;United States of America&#x27; }, { value: &#x27;France&#x27; }], parentEl: el});
 
@@ -386,11 +370,9 @@ YUI().use('inputex-select',function(Y) {
       logDiv3.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
    });
     
-    
-    
-    &#x2F;&#x2F; Example 4
-    
-    var el = Y.one(&#x27;#container4&#x27;);
+   
+   &#x2F;&#x2F; Example 4 
+   var el = Y.one(&#x27;#container4&#x27;);
    var field4 = new Y.inputEx.SelectField({
       name: &#x27;country&#x27;,
       choices: [
@@ -435,8 +417,6 @@ YUI().use('inputex-select',function(Y) {
    
    
    &#x2F;&#x2F; Example 5
-   
-   
    var el = Y.one(&#x27;#container5&#x27;);
    var field5 = new Y.inputEx.SelectField({name: &#x27;country&#x27;, choices: [ { value: &#x27;usa&#x27;, label: &#x27;United States of America&#x27; }, { value: &#x27;fr&#x27;, label: &#x27;France&#x27; }, { value: &#x27;es&#x27;, label: &#x27;Spain&#x27; }], parentEl: el});
    
@@ -455,7 +435,6 @@ YUI().use('inputex-select',function(Y) {
       logDiv5.innerHTML += &quot;Updated at &quot;+(new Date())+&quot; with value &quot;+value;
       logDiv5.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
    });
-   
    
    Y.on(&quot;click&quot; ,function() {
       
@@ -488,11 +467,6 @@ YUI().use('inputex-select',function(Y) {
       logDiv5.innerHTML += &quot;[INFO] Enable choice &#x27;Spain&#x27; (current value : &quot;+field5.getValue()+&quot;)&quot;;
       logDiv5.appendChild(Y.inputEx.cn(&#x27;br&#x27;));
    },button10);
-   
-   
-   
-   
-
 
 });</pre>
 
