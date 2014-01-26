@@ -71,7 +71,7 @@ Tests are executed with [Yogi](https://github.com/yui/yogi) on the continious in
 To launch all test, from the main directory, type :
 
 ```bash
-npm test
+grunt test
 ```
 
 In order to test with coverage you will need to run yeti and istanbul by hand (for the moment):
