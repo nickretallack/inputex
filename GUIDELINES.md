@@ -17,7 +17,7 @@ some of the prerequisites before starting to use the library :
 
 Install all the dev dependencies with npm :
 ```bash
-npm install -f 
+npm install -g 
 ```
 
 ### Building components
