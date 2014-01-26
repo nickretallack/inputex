@@ -24,12 +24,12 @@ Resources
 Contribute
 ==========
 
-See the [developer guide](https://github.com/neyric/inputex/docs/developer-guide.html)
+See the [contribution page](https://github.com/neyric/inputex/blob/shifter/CONTRIBUTE.md)
 
 Release process
 ==============
 
-See the [developer guide](https://github.com/neyric/inputex/docs/developer-guide.html)
+See the [developer guide](https://github.com/neyric/inputex/blob/shifter/GUIDELINES.md)
 
 Apply all the steps to build the modules, generate the docs, run the tests, then merge & push the `gh-pages` branch!
 
