@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>inputEx</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/vendor/prettify/prettify-min.css">
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png">
+    <script src="http://yui.yahooapis.com/3.14.1/build/yui/yui-min.js"></script>
+    <script src="../build/inputex-loader/inputex-loader.js"></script>
+    <script>YUI_config.groups.inputex.base = '../../build/';</script>
+    
+</head>
+<body class="yui3-skin-sam">
+
+<a href="https://github.com/neyric/inputex"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+<div id="doc">
+    <div id="hd">
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> inputEx</h1>
+    </div>
+    
+        <a href="#toc" class="jump">Jump to Table of Contents</a>
+    
+
+    <div class="yui3-g">
+        <div class="yui3-u-3-4">
+            <div id="main">
+                <div class="content"><style>
+
+a.inputEx-Button {
+   /* Sliding right image */
+   background: transparent url('assets/button_right.png') no-repeat scroll top right; 
+   display: block;
+   float: left;
+   height: 34px; /* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT */
+   margin-right: 6px;
+   padding-right: 20px; /* CHANGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH */
+   text-decoration: none;
+   color: #000000;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size:12px;
+   font-weight:bold;
+   cursor:pointer;
+}
+
+a.inputEx-Button span {
+   /* Background left image */ 
+   background: transparent url('assets/button_left.png') no-repeat; 
+   display: block;
+   line-height: 22px; /* CHANGE THIS VALUE ACCORDING TO BUTTON HEIGHT */
+   padding: 7px 0 5px 18px;
+   cursor:pointer;
+}
+
+a.inputEx-Button:hover span{
+   text-decoration:underline;
+}
+</style>
+
+<h1>inputEx - Button styling demo</h1>
+
+
+<h2 id="example-of-button-styling">Example of button styling</h2>
+
+<p>Let's add a different background on form buttons</p>
+
+<div class="example">
+    <div class='demoContainer' id='container1'></div>
+</div>
+
+<script>
+YUI_config.groups.inputex.base = '../build/';
+YUI().use('inputex-form','inputex-select','inputex-string','inputex-checkbox','inputex-radio', function (Y) {
+var fields = [ 
+    { type: 'select', label: 'A select', choices: ['One','Two','Three'], value: "One" },
+    { type: 'string', label: 'Firstname', value: 'Sandrine', required: true },
+    { type: 'boolean', label: 'Happy to be there ?', name: 'happy'},
+    { type: 'radio', label: 'Radio', name: 'example1', choices: ['Ajaxian','YUI blog','other']}
+];
+
+var form = new Y.inputEx.Form({
+    id:'sampleForm', 
+    parentEl: 'container1', 
+    fields: fields, 
+    legend: 'User Informations',
+    buttons:[
+        /*
+        * Note that we use "type:'submit-link'" or "type:'link'" buttons here because they
+        * are rendered with a different DOM that is easier to style in a cross-browser way
+        * than "type:'submit'" (<input type="submit" />).
+        */
+        {type: 'submit-link', value: 'Submit Form'},  /* classic form submit triggered, as with type:'submit' */
+        {type: 'link', value: 'Cancel', onClick:function(e) {form.clear();} } /* reset inputEx form */
+    ]
+});
+
+});
+</script>
+
+<h2 id="css">CSS</h2>
+
+<pre class="code prettyprint">a.inputEx-Button {
+   &#x2F;* Sliding right image *&#x2F;
+   background: transparent url(&#x27;assets&#x2F;button_right.png&#x27;) no-repeat scroll top right; 
+   display: block;
+   float: left;
+   height: 34px; &#x2F;* CHANGE THIS VALUE ACCORDING TO IMAGE HEIGHT *&#x2F;
+   margin-right: 6px;
+   padding-right: 20px; &#x2F;* CHANGE THIS VALUE ACCORDING TO RIGHT IMAGE WIDTH *&#x2F;
+   text-decoration: none;
+   color: #000000;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size:12px;
+   font-weight:bold;
+   cursor:pointer;
+}
+
+a.inputEx-Button span {
+   &#x2F;* Background left image *&#x2F; 
+   background: transparent url(&#x27;assets&#x2F;button_left.png&#x27;) no-repeat; 
+   display: block;
+   line-height: 22px; &#x2F;* CHANGE THIS VALUE ACCORDING TO BUTTON HEIGHT *&#x2F;
+   padding: 7px 0 5px 18px;
+   cursor:pointer;
+}
+
+a.inputEx-Button:hover span{
+   text-decoration:underline;
+}</pre>
+
+
+<h2 id="javascript">Javascript</h2>
+
+<pre class="code prettyprint">var fields = [ 
+    { type: &#x27;select&#x27;, label: &#x27;A select&#x27;, choices: [&#x27;One&#x27;,&#x27;Two&#x27;,&#x27;Three&#x27;], value: &quot;One&quot; },
+    { type: &#x27;string&#x27;, label: &#x27;Firstname&#x27;, value: &#x27;Sandrine&#x27;, required: true },
+    { type: &#x27;boolean&#x27;, label: &#x27;Happy to be there ?&#x27;, name: &#x27;happy&#x27;},
+    { type: &#x27;radio&#x27;, label: &#x27;Radio&#x27;, name: &#x27;example1&#x27;, choices: [&#x27;Ajaxian&#x27;,&#x27;YUI blog&#x27;,&#x27;other&#x27;]}
+];
+
+var form = new Y.inputEx.Form({
+    id:&#x27;sampleForm&#x27;, 
+    parentEl: &#x27;container1&#x27;, 
+    fields: fields, 
+    legend: &#x27;User Informations&#x27;,
+    buttons:[
+        &#x2F;*
+        * Note that we use &quot;type:&#x27;submit-link&#x27;&quot; or &quot;type:&#x27;link&#x27;&quot; buttons here because they
+        * are rendered with a different DOM that is easier to style in a cross-browser way
+        * than &quot;type:&#x27;submit&#x27;&quot; (&lt;input type=&quot;submit&quot; &#x2F;&gt;).
+        *&#x2F;
+        {type: &#x27;submit-link&#x27;, value: &#x27;Submit Form&#x27;},  &#x2F;* classic form submit triggered, as with type:&#x27;submit&#x27; *&#x2F;
+        {type: &#x27;link&#x27;, value: &#x27;Cancel&#x27;, onClick:function(e) {form.clear();} } &#x2F;* reset inputEx form *&#x2F;
+    ]
+});</pre>
+
+
+<br /><br />
+<p style="margin-left:20px">CSS Credits : <a href="http://www.jankoatwarpspeed.com/post/2008/04/30/make-fancy-buttons-using-css-sliding-doors-technique.aspx" target="_new">http://www.jankoatwarpspeed.com/post/2008/04/30/make-fancy-buttons-using-css-sliding-doors-technique.aspx</a></p>
+</div>
+            </div>
+        </div>
+
+        <div class="yui3-u-1-4">
+            <div class="sidebar">
+                
+                    <div id="toc" class="sidebox">
+                        <div class="hd">
+                            <h2 class="no-toc">Table of Contents</h2>
+                        </div>
+
+                        <div class="bd">
+                            <ul class="toc">
+<li>
+<a href="#example-of-button-styling">Example of button styling</a>
+</li>
+<li>
+<a href="#css">CSS</a>
+</li>
+<li>
+<a href="#javascript">Javascript</a>
+</li>
+</ul>
+                        </div>
+                    </div>
+                
+
+                
+
+                
+
+
+                    <div id="links-sidebox" class="sidebox">
+                        <div class="hd">
+                            <h2 class="no-toc">Links</h2>
+                        </div>
+
+                        <div class="bd">
+<ul>
+    <li><a href="assets/../index.html">Home</a></li>
+    <li><a href="assets/../index.html#examples">All Examples</a></li>
+    <li><a href="assets/../developer-guide.html">Developer's Guide</a></li>
+    <li><a href="assets/../contribute.html">How to Contribute</a></li>
+    <li><a href="assets/../../api/index.html">API Documentation</a></li>
+</ul>
+
+<ul>
+    <li><a href="http://github.com/neyric/inputex">Fork/Follow on GitHub</a></li>
+    <li><a href="http://github.com/neyric/inputex/issues">GitHub Issues</a></li>
+    <li><a href="http://neyric.com/category/inputex/">Blog</a></li>
+    <li><a href="http://groups.google.com/group/inputex/">Forums</a></li>
+    <li><a href="assets/../../license.txt">License</a></li>
+</ul>
+
+                        </div>
+                    </div>
+
+
+            <div>
+                <center>
+                <img src="http://www.twitter.com/favicon.ico" alt="twitter"> follow <a href="http://twitter.com/inputex"> on Twitter</a><br>
+                <img src="http://github.com/favicon.ico" alt="GitHub"> fork <a href="http://github.com/neyric/inputex"> on GitHub</a><br><br>
+                <br /><br />
+            </center>
+            </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+
+<script>
+YUI.Env.Tests = {
+    examples: [],
+    project: 'assets',
+    assets: '',
+    name: '',
+    title: '',
+    newWindow: '',
+    auto:  true 
+};
+
+</script>
+<!--script src="assets/yui/test-runner.js"></script-->
+
+
+
+</body>
+</html>

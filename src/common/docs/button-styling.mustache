@@ -1,0 +1,36 @@
+<style>
+{{>button-styling-css}}
+</style>
+
+<h1>inputEx - Button styling demo</h1>
+
+
+<h2>Example of button styling</h2>
+
+<p>Let's add a different background on form buttons</p>
+
+<div class="example">
+    <div class='demoContainer' id='container1'></div>
+</div>
+
+<script>
+YUI_config.groups.inputex.base = '../build/';
+YUI().use('inputex-form','inputex-select','inputex-string','inputex-checkbox','inputex-radio', function (Y) {
+{{>button-styling-js}}
+});
+</script>
+
+<h2>CSS</h2>
+
+```
+{{>button-styling-css}}
+```
+
+<h2>Javascript</h2>
+
+```
+{{>button-styling-js}}
+```
+
+<br /><br />
+<p style="margin-left:20px">CSS Credits : <a href="http://www.jankoatwarpspeed.com/post/2008/04/30/make-fancy-buttons-using-css-sliding-doors-technique.aspx" target="_new">http://www.jankoatwarpspeed.com/post/2008/04/30/make-fancy-buttons-using-css-sliding-doors-technique.aspx</a></p>
