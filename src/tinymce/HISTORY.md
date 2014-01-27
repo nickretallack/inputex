@@ -1,0 +1,2 @@
+Tinymce Change History
+======================

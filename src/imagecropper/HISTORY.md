@@ -1,0 +1,2 @@
+Imagecropper Change History
+===========================
