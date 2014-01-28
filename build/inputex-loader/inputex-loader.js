@@ -558,6 +558,20 @@ YUI().use(function(Y) {
         ],
         "skinnable": true
     },
+    "inputex-phone": {
+        "ix_provides": "phone",
+        "lang": [
+            "fr",
+            "en",
+            "es",
+            "de"
+        ],
+        "requires": [
+            "inputex-field",
+            "intl"
+        ],
+        "skinnable": true
+    },
     "inputex-radio": {
         "ix_provides": "radio",
         "requires": [
