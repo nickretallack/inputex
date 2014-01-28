@@ -1,0 +1,25 @@
+{
+   "name": "inputex-phone",
+   "displayName": "Phone field",
+   "description": "inputex-phone",
+   "author": "neyric",
+   "tags": [
+      "inputex-phone"
+   ],
+   "use": [
+      "inputex-field",
+      "node-event-delegate",
+      "event-outside",
+      "overlay"
+   ],
+   "examples": [
+	   {
+	       "name"       : "phone",
+	       "displayName": "Basic phone field creation",
+	       "description": "How to create a phone field.",
+	       "modules"    : ["inputex-phone"],
+	       "tags"       : ["phone"],
+	       "hideTableOfContents": true
+	   }
+   ]
+}

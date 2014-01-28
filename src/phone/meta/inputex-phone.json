@@ -1,0 +1,16 @@
+{
+    "inputex-phone": {
+        "requires": [
+            "inputex-field",
+            "intl"
+        ],
+        "skinnable": true,
+        "ix_provides": "phone",
+        "lang": [
+            "fr",
+            "en",
+            "es",
+            "de"
+        ]
+    }
+}

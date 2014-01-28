@@ -1,0 +1,10 @@
+{
+   "name": "inputex-phone",
+   "builds": {
+      "inputex-phone": {
+         "jsfiles": [
+            "phone.js"
+         ]
+      }
+   }
+}
