@@ -1,7 +1,8 @@
 {
    "inputex-textautotag": {
       "requires": [
-         "inputex-textarea"
+         "inputex-textarea",
+         "inputex-rpc"
       ],
       "ix_provides": "autotag"
    }
