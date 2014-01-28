@@ -693,7 +693,8 @@ YUI().use(function(Y) {
     "inputex-textautotag": {
         "ix_provides": "autotag",
         "requires": [
-            "inputex-textarea"
+            "inputex-textarea",
+            "inputex-rpc"
         ]
     },
     "inputex-time": {

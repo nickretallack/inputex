@@ -111,4 +111,4 @@ Y.extend(inputEx.TextAutoTag, inputEx.Textarea, {
 inputEx.registerType("autotag", inputEx.TextAutoTag);
   
 
-}, '@VERSION@', {"requires": ["inputex-textarea"], "ix_provides": "autotag"});
+}, '@VERSION@', {"requires": ["inputex-textarea", "inputex-rpc"], "ix_provides": "autotag"});
