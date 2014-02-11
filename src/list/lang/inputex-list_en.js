@@ -1,4 +1,4 @@
 {
-   listAddLink: "Add",
-   listRemoveLink: "remove"
+   "listAddLink": "Add",
+   "listRemoveLink": "remove"
 }

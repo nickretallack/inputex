@@ -1,0 +1,4 @@
+{
+   "listAddLink": "Ajuntar",
+   "listRemoveLink": "remover"
+}

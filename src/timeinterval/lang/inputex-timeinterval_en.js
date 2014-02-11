@@ -1,10 +1,10 @@
 {
-   timeUnits: {
-      SECOND: "seconds",
-      MINUTE: "minutes",
-      HOUR: "hours",
-      DAY: "days",
-      MONTH: "months",
-      YEAR: "years"
+   "timeUnits": {
+      "DAY": "days",
+      "HOUR": "hours",
+      "MINUTE": "minutes",
+      "MONTH": "months",
+      "SECOND": "seconds",
+      "YEAR": "years"
    }
 }

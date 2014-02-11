@@ -1,6 +1,6 @@
 {
-   dayTypeInvite: "Jour",
-   monthTypeInvite: "Mois",
-   yearTypeInvite: "Année",
-   defaultDateFormat: "d/m/Y"
+   "dayTypeInvite": "Jour",
+   "defaultDateFormat": "d/m/Y",
+   "monthTypeInvite": "Mois",
+   "yearTypeInvite": "Année"
 }

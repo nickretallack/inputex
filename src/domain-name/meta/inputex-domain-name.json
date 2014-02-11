@@ -6,7 +6,13 @@
       ],
       "lang": [
          "en",
-         "fr"
+         "fr",
+         "ca",
+         "de",
+         "es",
+         "it",
+         "nl",
+         "pt-BR"
       ],
       "ix_provides": "domain-name"
    }

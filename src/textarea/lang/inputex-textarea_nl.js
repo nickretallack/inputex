@@ -1,3 +1,6 @@
 {
-   stringTooLong: ["Dit veld mag maximaal ", " nummers of karakters bevatten"]
+   "stringTooLong": [
+      "Dit veld mag maximaal ",
+      " nummers of karakters bevatten"
+   ]
 }

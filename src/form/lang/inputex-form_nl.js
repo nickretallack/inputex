@@ -1,3 +1,3 @@
 {
-   
+   "ajaxWait": "Even geduld aub ..."
 }

@@ -1,5 +1,5 @@
 {
-   required: "Dit veld is verplicht",
-   invalid: "Dit veld is incorrect",
-   valid: "Dit veld is correct"
+   "invalid": "Dit veld is incorrect",
+   "required": "Dit veld is verplicht",
+   "valid": "Dit veld is correct"
 }

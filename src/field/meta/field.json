@@ -4,8 +4,8 @@
          "inputex",
          "intl"
       ],
-      "skinnable" : true,
-       "lang": [
+      "skinnable": true,
+      "lang": [
          "en",
          "fr",
          "de",
@@ -13,7 +13,8 @@
          "es",
          "fr",
          "it",
-         "nl"
+         "nl",
+         "pt-BR"
       ]
    }
 }

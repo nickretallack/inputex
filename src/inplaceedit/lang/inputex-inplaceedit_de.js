@@ -1,5 +1,5 @@
 {
-   cancelEditor: "Abbrechen",
-   okEditor: "Ok",
-   emptyInPlaceEdit: '(Bearbeiten)'
+   "cancelEditor": "Abbrechen",
+   "emptyInPlaceEdit": "(Bearbeiten)",
+   "okEditor": "Ok"
 }

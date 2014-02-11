@@ -1,0 +1,3 @@
+{
+   "ajaxWait": "Por favor aguarde ..."
+}

@@ -1,3 +1,3 @@
 {
-	call : "Anruf"
+   "call": "Anruf"
 }

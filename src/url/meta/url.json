@@ -4,7 +4,7 @@
          "inputex-string"
       ],
       "ix_provides": "url",
-      "skinnable" : true,
+      "skinnable": true,
       "lang": [
          "en",
          "fr",
@@ -13,7 +13,8 @@
          "es",
          "fr",
          "it",
-         "nl"
+         "nl",
+         "pt-BR"
       ]
    }
 }

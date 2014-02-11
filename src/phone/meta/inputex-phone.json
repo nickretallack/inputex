@@ -1,16 +1,20 @@
 {
-    "inputex-phone": {
-        "requires": [
-            "inputex-field",
-            "intl"
-        ],
-        "skinnable": true,
-        "ix_provides": "phone",
-        "lang": [
-            "fr",
-            "en",
-            "es",
-            "de"
-        ]
-    }
+   "inputex-phone": {
+      "requires": [
+         "inputex-field",
+         "intl"
+      ],
+      "skinnable": true,
+      "ix_provides": "phone",
+      "lang": [
+         "fr",
+         "en",
+         "es",
+         "de",
+         "ca",
+         "it",
+         "nl",
+         "pt-BR"
+      ]
+   }
 }

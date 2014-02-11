@@ -1,3 +1,3 @@
 {
-   invalidUrl: "Invalid URL, ex: http://www.test.com"
+   "invalidUrl": "Invalid URL, ex: http://www.test.com"
 }

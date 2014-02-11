@@ -1,14 +1,14 @@
 {
-   addItemHeader: "Add",
-   modifyItemHeader: "Modify",
-   saveText: "Save",
-   cancelText: "Cancel",
-   deleteText: "delete",
-   modifyText: "modify",
-   insertItemText: "Insert",
-   addButtonText: "Add",
-   loadingText: "Loading...",
-   emptyDataText: "No records found.",
-   errorDataText: "Data error.",
-   confirmDeletion: "Are you sure?"
+   "addButtonText": "Add",
+   "addItemHeader": "Add",
+   "cancelText": "Cancel",
+   "confirmDeletion": "Are you sure?",
+   "deleteText": "delete",
+   "emptyDataText": "No records found.",
+   "errorDataText": "Data error.",
+   "insertItemText": "Insert",
+   "loadingText": "Loading...",
+   "modifyItemHeader": "Modify",
+   "modifyText": "modify",
+   "saveText": "Save"
 }

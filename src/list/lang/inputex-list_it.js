@@ -1,3 +1,4 @@
 {
-   
+   "listAddLink": "Aggiungere",
+   "listRemoveLink": "rimuovere"
 }

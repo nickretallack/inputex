@@ -1,14 +1,14 @@
 {
-   addItemHeader: "Hinzufügen",
-   modifyItemHeader: "Ändern",
-   addButtonText: "Hinzufügen",
-   loadingText: "Bitte warten...",
-   emptyDataText: "Kein Ergebnis",
-   errorDataText: "Fehler.",
-   saveText: "Speichern",
-   cancelText: "Abbrechen",
-   modifyText: "Bearbeiten",
-   deleteText: "Löschen",
-   insertItemText: "Einfügen",
-   confirmDeletion: "Möchten Sie das Element wieder herstellen?"
+   "addButtonText": "Hinzufügen",
+   "addItemHeader": "Hinzufügen",
+   "cancelText": "Abbrechen",
+   "confirmDeletion": "Möchten Sie das Element wieder herstellen?",
+   "deleteText": "Löschen",
+   "emptyDataText": "Kein Ergebnis",
+   "errorDataText": "Fehler.",
+   "insertItemText": "Einfügen",
+   "loadingText": "Bitte warten...",
+   "modifyItemHeader": "Ändern",
+   "modifyText": "Bearbeiten",
+   "saveText": "Speichern"
 }

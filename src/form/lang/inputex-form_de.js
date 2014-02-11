@@ -1,3 +1,3 @@
 {
-   ajaxWait: "lade..."
+   "ajaxWait": "lade..."
 }

@@ -1,9 +1,22 @@
 {
-   months: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
-   invalidDate: "Data non valida, es: 25/01/2007",
-   selectMonth: "- Seleziona Mese -",
-   dayTypeInvite: "Giorno",
-   monthTypeInvite: "Mese",
-   yearTypeInvite: "Anno",
-   defaultDateFormat: "d/m/Y"
+   "dayTypeInvite": "Giorno",
+   "defaultDateFormat": "d/m/Y",
+   "invalidDate": "Data non valida, es: 25/01/2007",
+   "months": [
+      "Gennaio",
+      "Febbraio",
+      "Marzo",
+      "Aprile",
+      "Maggio",
+      "Giugno",
+      "Luglio",
+      "Agosto",
+      "Settembre",
+      "Ottobre",
+      "Novembre",
+      "Dicembre"
+   ],
+   "monthTypeInvite": "Mese",
+   "selectMonth": "- Seleziona Mese -",
+   "yearTypeInvite": "Anno"
 }

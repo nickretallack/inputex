@@ -1,6 +1,6 @@
 {
-   dayTypeInvite: "Tag",
-   monthTypeInvite: "Monat",
-   yearTypeInvite: "Jahr",
-   defaultDateFormat: "d.m.Y"
+   "dayTypeInvite": "Tag",
+   "defaultDateFormat": "d.m.Y",
+   "monthTypeInvite": "Monat",
+   "yearTypeInvite": "Jahr"
 }

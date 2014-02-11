@@ -1,3 +1,6 @@
 {
-   stringTooLong: ["This field should contain at most ", " numbers or characters"]
+   "stringTooLong": [
+      "This field should contain at most ",
+      " numbers or characters"
+   ]
 }

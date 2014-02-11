@@ -1,8 +1,8 @@
 {
-   invalidDate: "Fecha no válida, ej: 25/01/2007",
-   selectMonth: "- Seleccione un mes -",
-   dayTypeInvite: "Día",
-   monthTypeInvite: "Mes",
-   yearTypeInvite: "Año",
-   defaultDateFormat: "d/m/Y"
+   "dayTypeInvite": "Día",
+   "defaultDateFormat": "d/m/Y",
+   "invalidDate": "Fecha no válida, ej: 25/01/2007",
+   "monthTypeInvite": "Mes",
+   "selectMonth": "- Seleccione un mes -",
+   "yearTypeInvite": "Año"
 }

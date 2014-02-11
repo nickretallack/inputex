@@ -1,5 +1,5 @@
 {
-   required: "Pflichtfeld",
-   invalid: "Eingabe nicht korrekt",
-   valid: "Eingabe korrekt"
+   "invalid": "Eingabe nicht korrekt",
+   "required": "Pflichtfeld",
+   "valid": "Eingabe korrekt"
 }
