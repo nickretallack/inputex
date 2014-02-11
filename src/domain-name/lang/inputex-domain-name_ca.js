@@ -1,3 +1,3 @@
 {
-   "domainNameFieldDescription": "Exemple: \"el meu-website.com\" (sense \"www.\")"
+   "domainNameFieldDescription": "Exemple: \"el-meu-website.com\" (sense \"www.\")"
 }
