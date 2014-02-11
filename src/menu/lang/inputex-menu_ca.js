@@ -1,3 +1,3 @@
 {
-   menuTypeInvite: "Fes clic aquí per seleccionar"
+   "menuTypeInvite": "Fes clic aquí per seleccionar"
 }

@@ -1,8 +1,21 @@
 {
-   select : "Bitte wählen",
-   month : "Monate",
-   year : "Jahre",
-   ok : "Ok", 
-   cancel : "Abbrechen",
-   monthsList : ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"]
+   "cancel": "Abbrechen",
+   "month": "Monate",
+   "monthsList": [
+      "Januar",
+      "Februar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+   ],
+   "ok": "Ok",
+   "select": "Bitte wählen",
+   "year": "Jahre"
 }

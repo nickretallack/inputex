@@ -1,3 +1,3 @@
 {
-   ajaxWait: "Envoi en cours..."
+   "ajaxWait": "Envoi en cours..."
 }

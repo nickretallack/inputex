@@ -1,5 +1,5 @@
 {
-   emptyInPlaceEdit: "(click to edit)",
-   cancelEditor: "cancel",
-   okEditor: "Ok"
+   "cancelEditor": "cancel",
+   "emptyInPlaceEdit": "(click to edit)",
+   "okEditor": "Ok"
 }

@@ -1,6 +1,6 @@
 {
-   defaultDateFormat: "d/m/Y",
-   dayTypeInvite: "Dia",
-   monthTypeInvite: "Mes",
-   yearTypeInvite: "Any"
+   "dayTypeInvite": "Dia",
+   "defaultDateFormat": "d/m/Y",
+   "monthTypeInvite": "Mes",
+   "yearTypeInvite": "Any"
 }

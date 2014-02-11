@@ -1,8 +1,21 @@
 {
-   select : "Sélectionnez",
-   month : "Mois",
-   year : "Année",
-   ok : "Ok", 
-   cancel : "Annuler",
-   monthsList : ["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"]
+   "cancel": "Annuler",
+   "month": "Mois",
+   "monthsList": [
+      "janvier",
+      "février",
+      "mars",
+      "avril",
+      "mai",
+      "juin",
+      "juillet",
+      "août",
+      "septembre",
+      "octobre",
+      "novembre",
+      "décembre"
+   ],
+   "ok": "Ok",
+   "select": "Sélectionnez",
+   "year": "Année"
 }

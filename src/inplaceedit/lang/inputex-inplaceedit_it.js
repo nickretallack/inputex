@@ -1,4 +1,5 @@
 {
-   cancelEditor: "Annulla",
-   okEditor: "Ok"
+   "cancelEditor": "Annulla",
+   "emptyInPlaceEdit": null,
+   "okEditor": "Ok"
 }

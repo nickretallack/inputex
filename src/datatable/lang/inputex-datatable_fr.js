@@ -1,14 +1,14 @@
 {
-   addItemHeader: "Ajouter",
-   modifyItemHeader: "Modifier",
-   saveText: "Sauver",
-   cancelText: "Annuler",
-   modifyText: "modifier",
-   deleteText: "supprimer",
-   insertItemText: "Ajouter",
-   confirmDeletion: "Êtes-vous sûr ?",
-   addButtonText: "Ajouter",
-   loadingText: "Patientez...",
-   emptyDataText: "Aucune donnée.",
-   errorDataText: "Erreur de données."
+   "addButtonText": "Ajouter",
+   "addItemHeader": "Ajouter",
+   "cancelText": "Annuler",
+   "confirmDeletion": "Êtes-vous sûr ?",
+   "deleteText": "supprimer",
+   "emptyDataText": "Aucune donnée.",
+   "errorDataText": "Erreur de données.",
+   "insertItemText": "Ajouter",
+   "loadingText": "Patientez...",
+   "modifyItemHeader": "Modifier",
+   "modifyText": "modifier",
+   "saveText": "Sauver"
 }

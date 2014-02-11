@@ -1,3 +1,6 @@
 {
-   stringTooLong: ["Este campo debe contener como mucho ", " caracteres (letras o números)"]
+   "stringTooLong": [
+      "Este campo debe contener como mucho ",
+      " caracteres (letras o números)"
+   ]
 }

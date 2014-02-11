@@ -1,6 +1,6 @@
 {
-   stringTooShort: "The password schould contain at least {number} numbers or characters",
-   invalidPasswordConfirmation: "Passwords are different !",
-   capslockWarning: "Warning: CapsLock is on",
-   passwordStrength: "Password Strength"
+   "capslockWarning": "Warning: CapsLock is on",
+   "invalidPasswordConfirmation": "Passwords are different !",
+   "passwordStrength": "Password Strength",
+   "stringTooShort": "The password schould contain at least {number} numbers or characters"
 }

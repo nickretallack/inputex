@@ -1,3 +1,5 @@
 {
-   invalidEmail: "Email nicht korrekt, ej: ihr.name@beispiel.de"
+   "didYouMean": null,
+   "disposableEmail": null,
+   "invalidEmail": "Email nicht korrekt, ej: ihr.name@beispiel.de"
 }

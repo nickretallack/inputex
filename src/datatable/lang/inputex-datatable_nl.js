@@ -1,8 +1,14 @@
 {
-   saveText: "Opslaan",
-   cancelText: "Annuleren",
-   modifyText: "Wijzigen",
-   deleteText: "Verwijderen",
-   insertItemText: "Toevoegen",
-   confirmDeletion: "Weet u het zeker?"
+   "addButtonText": null,
+   "addItemHeader": null,
+   "cancelText": "Annuleren",
+   "confirmDeletion": "Weet u het zeker?",
+   "deleteText": "Verwijderen",
+   "emptyDataText": null,
+   "errorDataText": null,
+   "insertItemText": "Toevoegen",
+   "loadingText": null,
+   "modifyItemHeader": null,
+   "modifyText": "Wijzigen",
+   "saveText": "Opslaan"
 }

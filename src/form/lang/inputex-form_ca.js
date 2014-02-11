@@ -1,3 +1,3 @@
 {
-   ajaxWait: "Enviant..."
+   "ajaxWait": "Enviant..."
 }

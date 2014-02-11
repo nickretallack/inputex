@@ -1,3 +1,3 @@
 {
-   menuTypeInvite: 'Auswählen'
+   "menuTypeInvite": "Auswählen"
 }
