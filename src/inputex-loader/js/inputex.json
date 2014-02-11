@@ -114,7 +114,11 @@
             "en",
             "fr",
             "de",
-            "es"
+            "es",
+            "ca",
+            "it",
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "plugin",
@@ -128,7 +132,11 @@
             "en",
             "fr",
             "de",
-            "es"
+            "es",
+            "ca",
+            "it",
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "intl",
@@ -186,7 +194,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "intl",
@@ -208,7 +217,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"
@@ -236,7 +246,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-combine",
@@ -254,7 +265,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-combine",
@@ -281,7 +293,13 @@
         "ix_provides": "domain-name",
         "lang": [
             "en",
-            "fr"
+            "fr",
+            "ca",
+            "de",
+            "es",
+            "it",
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "intl",
@@ -305,7 +323,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"
@@ -320,7 +339,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex",
@@ -344,7 +364,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "io-base",
@@ -384,7 +405,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field",
@@ -411,7 +433,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"
@@ -463,7 +486,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field",
@@ -488,7 +512,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field",
@@ -543,7 +568,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"
@@ -556,7 +582,11 @@
             "fr",
             "en",
             "es",
-            "de"
+            "de",
+            "ca",
+            "it",
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field",
@@ -585,7 +615,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field"
@@ -653,7 +684,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field",
@@ -670,7 +702,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string",
@@ -690,7 +723,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"
@@ -720,7 +754,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-combine",
@@ -733,7 +768,11 @@
             "en",
             "fr",
             "de",
-            "es"
+            "es",
+            "ca",
+            "it",
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "intl",
@@ -791,7 +830,8 @@
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"

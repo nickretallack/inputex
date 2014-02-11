@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-calendar-year-navigator-plugin_nl",function(e){e.Intl.add("inputex-calendar-year-navigator-plugin","nl",{cancel:"Annuleren",month:"Maand",monthsList:["januari","februari","maart","april","mei","juni","juli","augustus","september","oktober","november","december"],ok:"Ok",select:"Kiezen",year:"Jaar"})},"@VERSION@");

@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-timerange_nl",function(e){e.Intl.add("inputex-timerange","nl",{incorrectOrder:"Het einde van de tijdspanne moet groter zijn dan het begin zijn",minTimeError:"Het begin van de tijd bereik moet uiterlijk {minTime} zijn",separators:[!1,":","&nbsp; tot &nbsp;",":",!1]})},"@VERSION@");

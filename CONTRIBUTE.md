@@ -49,6 +49,11 @@ You can contribute in a lot of different ways :
 -   Adapters/backend code
 -   core contributions
 
+Translations
+------------
+
+The translations are managed on LocaleApp: http://www.localeapp.com/projects/6326
+
 Contributors
 ------------
 

@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-email_ca",function(e){e.Intl.add("inputex-email","ca",{invalidEmail:"Correu electr\u00f2nic no v\u00e0lid, ex:nom@correu.cat"})},"@VERSION@");
+YUI.add("lang/inputex-email_ca",function(e){e.Intl.add("inputex-email","ca",{didYouMean:"Va voler dir:",disposableEmail:"Adre\u00e7a de correu electr\u00f2nic sol \u00fas no es permet amb el domini:",invalidEmail:"Correu electr\u00f2nic no v\u00e0lid, ex:nom@correu.cat"})},"@VERSION@");

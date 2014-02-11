@@ -142,6 +142,7 @@ inputEx.registerType("timeinterval", inputEx.TimeIntervalField);
         "es",
         "fr",
         "it",
-        "nl"
+        "nl",
+        "pt-BR"
     ]
 });

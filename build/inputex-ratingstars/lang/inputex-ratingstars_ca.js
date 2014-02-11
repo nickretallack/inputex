@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-ratingstars_ca",function(e){e.Intl.add("inputex-ratingstars","ca",{})},"@VERSION@");
+YUI.add("lang/inputex-ratingstars_ca",function(e){e.Intl.add("inputex-ratingstars","ca",{ratingMsg:"Rating:% (% vots)",sendingRate:"L'enviament del seu ritme ...",thanksRate:"Gr\u00e0cies per votar!"})},"@VERSION@");

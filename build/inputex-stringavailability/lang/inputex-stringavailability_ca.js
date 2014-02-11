@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-stringavailability_ca",function(e){e.Intl.add("inputex-stringavailability","ca",{})},"@VERSION@");
+YUI.add("lang/inputex-stringavailability_ca",function(e){e.Intl.add("inputex-stringavailability","ca",{errorDataText:"S'ha produ\u00eft un error",stringAvailable:"Aquest Ressource est\u00e0 disponible",stringLoading:"Comprovar si est\u00e0 disponible ...",stringUnAvailable:"Aquesta Ressource no est\u00e0 disponible"})},"@VERSION@");

@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-ratingstars_nl",function(e){e.Intl.add("inputex-ratingstars","nl",{})},"@VERSION@");
+YUI.add("lang/inputex-ratingstars_nl",function(e){e.Intl.add("inputex-ratingstars","nl",{ratingMsg:"Beoordeling:% (% stemmen)",sendingRate:"Het verzenden van uw tarief ...",thanksRate:"Bedankt voor je stem !"})},"@VERSION@");

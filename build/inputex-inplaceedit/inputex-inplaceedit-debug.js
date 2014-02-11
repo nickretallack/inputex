@@ -435,6 +435,7 @@ inputEx.registerType("inplaceedit", inputEx.InPlaceEdit, [
         "es",
         "fr",
         "it",
-        "nl"
+        "nl",
+        "pt-BR"
     ]
 });

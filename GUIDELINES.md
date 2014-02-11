@@ -82,3 +82,13 @@ yeti src/*/tests/unit/*.html --server --query 'filter=coverage' --coverage-dump 
 # Target a browser to the yeti server
 istanbul report --root coverage-results
 ```
+
+
+Translations
+------------
+
+The translations are managed on LocaleApp: http://www.localeapp.com/projects/6326
+
+To pull the new translations, install https://github.com/neyric/node-yui-localeapp and run the "localeapp-to-project" command.
+
+Then rebuild modules.

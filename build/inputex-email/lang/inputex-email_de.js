@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-email_de",function(e){e.Intl.add("inputex-email","de",{invalidEmail:"Email nicht korrekt, ej: ihr.name@beispiel.de"})},"@VERSION@");
+YUI.add("lang/inputex-email_de",function(e){e.Intl.add("inputex-email","de",{didYouMean:"Meinten Sie:",disposableEmail:"Einweg-E-Mail-Adresse nicht mit Dom\u00e4nen erlaubt:",invalidEmail:"Email nicht korrekt, ej: ihr.name@beispiel.de"})},"@VERSION@");

@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-password_pt-BR",function(e){e.Intl.add("inputex-password","pt-BR",{capslockWarning:"Aviso: CapsLock est\u00e1 em",invalidPasswordConfirmation:"As senhas s\u00e3o diferentes!",passwordStrength:"For\u00e7a da senha",stringTooShort:"A senha deve conter pelo menos {n\u00famero} n\u00fameros ou caracteres"})},"@VERSION@");

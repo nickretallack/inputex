@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-field_pt-BR",function(e){e.Intl.add("inputex-field","pt-BR",{invalid:"Este campo \u00e9 inv\u00e1lido",required:"Este campo \u00e9 obrigat\u00f3rio",valid:"Este campo \u00e9 v\u00e1lido"})},"@VERSION@");

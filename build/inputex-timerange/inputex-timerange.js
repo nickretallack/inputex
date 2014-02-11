@@ -162,7 +162,11 @@ inputEx.registerType("timerange", inputEx.TimeRange);
         "en",
         "fr",
         "de",
-        "es"
+        "es",
+        "ca",
+        "it",
+        "nl",
+        "pt-BR"
     ],
     "ix_provides": "timerange"
 });

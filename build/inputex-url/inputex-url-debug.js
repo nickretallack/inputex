@@ -142,6 +142,7 @@ inputEx.registerType("url", inputEx.UrlField, [
         "es",
         "fr",
         "it",
-        "nl"
+        "nl",
+        "pt-BR"
     ]
 });

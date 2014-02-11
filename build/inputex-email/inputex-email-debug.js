@@ -205,7 +205,8 @@ inputEx.registerType("email", inputEx.EmailField, []);
         "es",
         "fr",
         "it",
-        "nl"
+        "nl",
+        "pt-BR"
     ],
     "ix_provides": "email"
 });

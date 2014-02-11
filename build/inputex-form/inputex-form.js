@@ -439,6 +439,7 @@ inputEx.registerType("form", inputEx.Form, [
         "es",
         "fr",
         "it",
-        "nl"
+        "nl",
+        "pt-BR"
     ]
 });

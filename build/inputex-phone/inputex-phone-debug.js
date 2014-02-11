@@ -117,6 +117,10 @@ inputEx.registerType("phone", inputEx.PhoneField, []);
         "fr",
         "en",
         "es",
-        "de"
+        "de",
+        "ca",
+        "it",
+        "nl",
+        "pt-BR"
     ]
 });

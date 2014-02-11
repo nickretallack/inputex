@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-stringavailability_nl",function(e){e.Intl.add("inputex-stringavailability","nl",{})},"@VERSION@");
+YUI.add("lang/inputex-stringavailability_nl",function(e){e.Intl.add("inputex-stringavailability","nl",{errorDataText:"een fout is opgetreden",stringAvailable:"Deze bron is beschikbaar",stringLoading:"Indien beschikbaar het controleren ...",stringUnAvailable:"Deze bron is niet beschikbaar"})},"@VERSION@");

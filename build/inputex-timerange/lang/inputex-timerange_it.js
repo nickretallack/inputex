@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-timerange_it",function(e){e.Intl.add("inputex-timerange","it",{incorrectOrder:"La fine dell'intervallo temporale deve essere maggiore rispetto al suo inizio",minTimeError:"L'inizio della fascia oraria deve essere successiva al {minTime}",separators:[!1,":","&nbsp; - &nbsp;",":",!1]})},"@VERSION@");

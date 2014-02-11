@@ -493,4 +493,21 @@ inputEx.Field.groupOptions = [{
    value: false
 }];
 
-}, '@VERSION@', {"requires": ["inputex", "intl"], "skinnable": true, "lang": ["en", "fr", "de", "ca", "es", "fr", "it", "nl"]});
+}, '@VERSION@', {
+    "requires": [
+        "inputex",
+        "intl"
+    ],
+    "skinnable": true,
+    "lang": [
+        "en",
+        "fr",
+        "de",
+        "ca",
+        "es",
+        "fr",
+        "it",
+        "nl",
+        "pt-BR"
+    ]
+});

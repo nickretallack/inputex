@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-ratingstars_es",function(e){e.Intl.add("inputex-ratingstars","es",{})},"@VERSION@");
+YUI.add("lang/inputex-ratingstars_es",function(e){e.Intl.add("inputex-ratingstars","es",{ratingMsg:"Rating:% (% votos)",sendingRate:"El env\u00edo de su ritmo ...",thanksRate:"\u00a1Gracias por votar!"})},"@VERSION@");

@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-date_de",function(e){e.Intl.add("inputex-date","de",{invalidDate:"falsches Datumsformat, bsp: 25.01.2007",dayTypeInvite:"Tag",monthTypeInvite:"Monat",yearTypeInvite:"Jahr",selectMonth:"- Monat ausw\u00e4hlen -",defaultDateFormat:"d.m.Y"})},"@VERSION@");
+YUI.add("lang/inputex-date_de",function(e){e.Intl.add("inputex-date","de",{dayTypeInvite:"Tag",defaultDateFormat:"d.m.Y",invalidDate:"falsches Datumsformat, bsp: 25.01.2007",monthTypeInvite:"Monat",selectMonth:"- Monat ausw\u00e4hlen -",yearTypeInvite:"Jahr"})},"@VERSION@");

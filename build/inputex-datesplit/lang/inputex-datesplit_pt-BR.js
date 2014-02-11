@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-datesplit_pt-BR",function(e){e.Intl.add("inputex-datesplit","pt-BR",{dayTypeInvite:"Dia",defaultDateFormat:"d/m/Y",monthTypeInvite:"M\u00eas",yearTypeInvite:"Ano"})},"@VERSION@");

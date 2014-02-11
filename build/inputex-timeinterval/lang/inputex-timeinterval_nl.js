@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-timeinterval_nl",function(e){e.Intl.add("inputex-timeinterval","nl",{})},"@VERSION@");
+YUI.add("lang/inputex-timeinterval_nl",function(e){e.Intl.add("inputex-timeinterval","nl",{timeUnits:{DAY:"dagen",HOUR:"uur",MINUTE:"notulen",MONTH:"maanden",SECOND:"seconden",YEAR:"jaar"}})},"@VERSION@");

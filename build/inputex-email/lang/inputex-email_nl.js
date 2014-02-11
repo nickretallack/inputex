@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-email_nl",function(e){e.Intl.add("inputex-email","nl",{invalidEmail:"Het emailadres is incorrect, bv. example@test.com"})},"@VERSION@");
+YUI.add("lang/inputex-email_nl",function(e){e.Intl.add("inputex-email","nl",{didYouMean:"Bedoelde u:",disposableEmail:"Wegwerp e-mailadres niet toegestaan \u200b\u200bdomein:",invalidEmail:"Het emailadres is incorrect, bv. example@test.com"})},"@VERSION@");
