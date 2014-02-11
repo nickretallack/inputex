@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-ratingstars_en",function(e){e.Intl.add("inputex-ratingstars","en",{ratingMsg:"Rating: % (% votes cast) ",thanksRate:"Thanks for voting!",sendingRate:"Sending your rate ..."})},"@VERSION@");
+YUI.add("lang/inputex-ratingstars_en",function(e){e.Intl.add("inputex-ratingstars","en",{ratingMsg:"Rating: % (% votes cast) ",sendingRate:"Sending your rate ...",thanksRate:"Thank you for voting !"})},"@VERSION@");

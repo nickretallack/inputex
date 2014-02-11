@@ -168,6 +168,7 @@ inputEx.registerType("text", inputEx.Textarea, [
         "es",
         "fr",
         "it",
-        "nl"
+        "nl",
+        "pt-BR"
     ]
 });

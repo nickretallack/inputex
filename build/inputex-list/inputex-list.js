@@ -491,6 +491,7 @@ inputEx.registerType("list", inputEx.ListField, [
         "es",
         "fr",
         "it",
-        "nl"
+        "nl",
+        "pt-BR"
     ]
 });

@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-timerange_ca",function(e){e.Intl.add("inputex-timerange","ca",{incorrectOrder:"El final de l'interval de temps ha de ser major que el seu comen\u00e7ament",minTimeError:"El comen\u00e7ament de l'interval de temps ha de ser posterior a {mintime}",separators:[!1,":","&nbsp; a &nbsp;",":",!1]})},"@VERSION@");

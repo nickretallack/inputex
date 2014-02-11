@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-email_es",function(e){e.Intl.add("inputex-email","es",{invalidEmail:"Correo electr\u00f3nico no v\u00e1lido, ej: tu.nombre@correo.es"})},"@VERSION@");
+YUI.add("lang/inputex-email_es",function(e){e.Intl.add("inputex-email","es",{didYouMean:"Quiso decir:",disposableEmail:"Direcci\u00f3n de correo electr\u00f3nico desechables no se permite con el dominio:",invalidEmail:"Correo electr\u00f3nico no v\u00e1lido, ej: tu.nombre@correo.es"})},"@VERSION@");

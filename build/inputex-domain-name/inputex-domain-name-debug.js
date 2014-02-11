@@ -39,4 +39,20 @@ Y.extend(inputEx.DomainNameField, inputEx.StringField, {
 inputEx.registerType("domain-name", inputEx.DomainNameField, []);
 
 
-}, '@VERSION@', {"requires": ["intl", "inputex-string"], "lang": ["en", "fr"], "ix_provides": "domain-name"});
+}, '@VERSION@', {
+    "requires": [
+        "intl",
+        "inputex-string"
+    ],
+    "lang": [
+        "en",
+        "fr",
+        "ca",
+        "de",
+        "es",
+        "it",
+        "nl",
+        "pt-BR"
+    ],
+    "ix_provides": "domain-name"
+});

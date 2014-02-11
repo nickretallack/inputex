@@ -282,6 +282,7 @@ inputEx.registerType("string-availability", inputEx.StringAvailability);
         "es",
         "fr",
         "it",
-        "nl"
+        "nl",
+        "pt-BR"
     ]
 });

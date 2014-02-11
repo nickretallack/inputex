@@ -288,6 +288,7 @@ inputEx.registerType("password", inputEx.PasswordField, [
         "es",
         "fr",
         "it",
-        "nl"
+        "nl",
+        "pt-BR"
     ]
 });

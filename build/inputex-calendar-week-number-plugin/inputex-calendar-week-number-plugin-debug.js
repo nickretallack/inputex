@@ -278,6 +278,10 @@ Y.namespace("Plugin").CalendarWeekNumber = CalendarWeekNumber;
         "en",
         "fr",
         "de",
-        "es"
+        "es",
+        "ca",
+        "it",
+        "nl",
+        "pt-BR"
     ]
 });

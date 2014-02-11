@@ -122,7 +122,11 @@ YUI().use(function(Y) {
             "en",
             "fr",
             "de",
-            "es"
+            "es",
+            "ca",
+            "it",
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "plugin",
@@ -136,7 +140,11 @@ YUI().use(function(Y) {
             "en",
             "fr",
             "de",
-            "es"
+            "es",
+            "ca",
+            "it",
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "intl",
@@ -194,7 +202,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "intl",
@@ -216,7 +225,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"
@@ -244,7 +254,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-combine",
@@ -262,7 +273,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-combine",
@@ -289,7 +301,13 @@ YUI().use(function(Y) {
         "ix_provides": "domain-name",
         "lang": [
             "en",
-            "fr"
+            "fr",
+            "ca",
+            "de",
+            "es",
+            "it",
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "intl",
@@ -313,7 +331,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"
@@ -328,7 +347,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex",
@@ -352,7 +372,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "io-base",
@@ -392,7 +413,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field",
@@ -419,7 +441,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"
@@ -471,7 +494,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field",
@@ -496,7 +520,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field",
@@ -551,7 +576,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"
@@ -564,7 +590,11 @@ YUI().use(function(Y) {
             "fr",
             "en",
             "es",
-            "de"
+            "de",
+            "ca",
+            "it",
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field",
@@ -593,7 +623,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field"
@@ -661,7 +692,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-field",
@@ -678,7 +710,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string",
@@ -698,7 +731,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"
@@ -728,7 +762,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-combine",
@@ -741,7 +776,11 @@ YUI().use(function(Y) {
             "en",
             "fr",
             "de",
-            "es"
+            "es",
+            "ca",
+            "it",
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "intl",
@@ -799,7 +838,8 @@ YUI().use(function(Y) {
             "es",
             "fr",
             "it",
-            "nl"
+            "nl",
+            "pt-BR"
         ],
         "requires": [
             "inputex-string"

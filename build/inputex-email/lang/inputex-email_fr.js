@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-email_fr",function(e){e.Intl.add("inputex-email","fr",{invalidEmail:"Email non valide, ex: michel.dupont@fai.fr",didYouMean:"Voulez-vous dire : ",disposableEmail:"Adresse jetable non autoris\u00e9e avec le domaine : "})},"@VERSION@");
+YUI.add("lang/inputex-email_fr",function(e){e.Intl.add("inputex-email","fr",{didYouMean:"Voulez-vous dire : ",disposableEmail:"Adresse jetable non autoris\u00e9e avec le domaine : ",invalidEmail:"Email non valide, ex: michel.dupont@fai.fr"})},"@VERSION@");

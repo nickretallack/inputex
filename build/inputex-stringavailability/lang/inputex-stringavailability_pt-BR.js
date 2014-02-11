@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-stringavailability_pt-BR",function(e){e.Intl.add("inputex-stringavailability","pt-BR",{errorDataText:"ocorreu um erro",stringAvailable:"Este recurso est\u00e1 dispon\u00edvel",stringLoading:"Verificando se dispon\u00edvel ...",stringUnAvailable:"Este recurso n\u00e3o est\u00e1 dispon\u00edvel"})},"@VERSION@");
