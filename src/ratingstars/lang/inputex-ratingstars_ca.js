@@ -1,5 +1,5 @@
 {
-   "ratingMsg": null,
-   "sendingRate": null,
-   "thanksRate": null
+   "ratingMsg": "Rating:% (% vots)",
+   "sendingRate": "L'enviament del seu ritme ...",
+   "thanksRate": "Gràcies per votar!"
 }

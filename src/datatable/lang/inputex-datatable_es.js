@@ -1,14 +1,14 @@
 {
    "addButtonText": "Añadir",
-   "addItemHeader": null,
+   "addItemHeader": "Añadir",
    "cancelText": "Cancelar",
    "confirmDeletion": "¿Está seguro que desea borrar?",
    "deleteText": "Eliminar",
-   "emptyDataText": null,
-   "errorDataText": null,
+   "emptyDataText": "No hay registros encontrados.",
+   "errorDataText": "Error en los datos.",
    "insertItemText": "Insertar",
-   "loadingText": null,
-   "modifyItemHeader": null,
+   "loadingText": "Loading...",
+   "modifyItemHeader": "Modificar",
    "modifyText": "Modificar",
    "saveText": "Guardar"
 }

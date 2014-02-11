@@ -1,5 +1,5 @@
 {
    "cancelEditor": "Cancelar",
-   "emptyInPlaceEdit": null,
+   "emptyInPlaceEdit": "(tecleo a corregir)",
    "okEditor": "Aceptar"
 }

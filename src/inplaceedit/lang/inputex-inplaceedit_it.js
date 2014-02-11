@@ -1,5 +1,5 @@
 {
    "cancelEditor": "Annulla",
-   "emptyInPlaceEdit": null,
+   "emptyInPlaceEdit": "(clicca per modificare)",
    "okEditor": "Ok"
 }

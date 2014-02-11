@@ -1,6 +1,6 @@
 {
    "errorDataText": "an error occurred",
-   "stringAvailable": "This ressource is available",
+   "stringAvailable": "This resource is available",
    "stringLoading": "Checking if available ...",
-   "stringUnAvailable": "This ressource is not available"
+   "stringUnAvailable": "This resource is not available"
 }

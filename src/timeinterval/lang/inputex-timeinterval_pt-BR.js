@@ -1,10 +1,10 @@
 {
    "timeUnits": {
-      "DAY": null,
-      "HOUR": null,
-      "MINUTE": null,
-      "MONTH": null,
-      "SECOND": null,
-      "YEAR": null
+      "DAY": "dias",
+      "HOUR": "horas",
+      "MINUTE": "minutos",
+      "MONTH": "meses",
+      "SECOND": "segundos",
+      "YEAR": "anos"
    }
 }

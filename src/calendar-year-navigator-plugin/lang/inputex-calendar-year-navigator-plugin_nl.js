@@ -1,8 +1,21 @@
 {
-   "cancel": null,
-   "month": null,
-   "monthsList": null,
-   "ok": null,
-   "select": null,
-   "year": null
+   "cancel": "Annuleren",
+   "month": "Maand",
+   "monthsList": [
+      "januari",
+      "februari",
+      "maart",
+      "april",
+      "mei",
+      "juni",
+      "juli",
+      "augustus",
+      "september",
+      "oktober",
+      "november",
+      "december"
+   ],
+   "ok": "Ok",
+   "select": "Kiezen",
+   "year": "Jaar"
 }

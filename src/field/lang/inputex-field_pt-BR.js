@@ -1,5 +1,5 @@
 {
-   "invalid": null,
-   "required": null,
-   "valid": null
+   "invalid": "Este campo é inválido",
+   "required": "Este campo é obrigatório",
+   "valid": "Este campo é válido"
 }

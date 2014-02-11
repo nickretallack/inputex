@@ -1,3 +1,3 @@
 {
-   "invalidUrl": null
+   "invalidUrl": "Ongeldige URL, ex: http://www.test.com"
 }

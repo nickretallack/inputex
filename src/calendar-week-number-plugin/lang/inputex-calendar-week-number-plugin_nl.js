@@ -1,3 +1,3 @@
 {
-   "week_one_jan_date": null
+   "week_one_jan_date": 4
 }

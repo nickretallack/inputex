@@ -1,14 +1,14 @@
 {
-   "addButtonText": null,
-   "addItemHeader": null,
+   "addButtonText": "Toevoegen",
+   "addItemHeader": "Toevoegen",
    "cancelText": "Annuleren",
    "confirmDeletion": "Weet u het zeker?",
    "deleteText": "Verwijderen",
-   "emptyDataText": null,
-   "errorDataText": null,
+   "emptyDataText": "Geen records gevonden.",
+   "errorDataText": "Fouten in de gegevens.",
    "insertItemText": "Toevoegen",
-   "loadingText": null,
-   "modifyItemHeader": null,
+   "loadingText": "Loading ...",
+   "modifyItemHeader": "Wijzigen",
    "modifyText": "Wijzigen",
    "saveText": "Opslaan"
 }

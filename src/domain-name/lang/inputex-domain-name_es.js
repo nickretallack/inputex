@@ -1,3 +1,3 @@
 {
-   "domainNameFieldDescription": null
+   "domainNameFieldDescription": "Ejemplo: \"mi-website.com\" (sin \"www.\")"
 }
