@@ -1,5 +1,5 @@
 {
-   "inputex-calendar-year-navigator-plugin" : {
+   "inputex-calendar-year-navigator-plugin": {
       "requires": [
          "intl",
          "node-base",
@@ -11,11 +11,15 @@
          "inputex-string"
       ],
       "skinnable": true,
-      "lang" : [
+      "lang": [
          "en",
          "fr",
          "de",
-         "es"
+         "es",
+         "ca",
+         "it",
+         "nl",
+         "pt-BR"
       ]
    }
 }

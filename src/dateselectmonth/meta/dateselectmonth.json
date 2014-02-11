@@ -1,11 +1,11 @@
 {
-	"inputex-dateselectmonth": {
-		"requires": [
-		  "inputex-combine",
-		  "inputex-string",
-		  "inputex-select"
-		],
-		"ix_provides": "dateselectmonth",
+   "inputex-dateselectmonth": {
+      "requires": [
+         "inputex-combine",
+         "inputex-string",
+         "inputex-select"
+      ],
+      "ix_provides": "dateselectmonth",
       "lang": [
          "en",
          "fr",
@@ -14,7 +14,8 @@
          "es",
          "fr",
          "it",
-         "nl"
+         "nl",
+         "pt-BR"
       ]
-	}
+   }
 }

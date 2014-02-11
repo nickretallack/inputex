@@ -7,7 +7,7 @@
          "inputex-button"
       ],
       "ix_provides": "form",
-      "skinnable" : true,
+      "skinnable": true,
       "lang": [
          "en",
          "fr",
@@ -16,7 +16,8 @@
          "es",
          "fr",
          "it",
-         "nl"
+         "nl",
+         "pt-BR"
       ]
    }
 }

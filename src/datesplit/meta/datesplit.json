@@ -1,10 +1,10 @@
 {
-	"inputex-datesplit": {
-		"requires": [
-		  "inputex-combine",
-		  "inputex-integer"
-		],
-		"ix_provides": "datesplit",
+   "inputex-datesplit": {
+      "requires": [
+         "inputex-combine",
+         "inputex-integer"
+      ],
+      "ix_provides": "datesplit",
       "lang": [
          "en",
          "fr",
@@ -13,7 +13,8 @@
          "es",
          "fr",
          "it",
-         "nl"
+         "nl",
+         "pt-BR"
       ]
-	}
+   }
 }

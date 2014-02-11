@@ -8,7 +8,7 @@
          "inputex-visus"
       ],
       "ix_provides": "inplaceedit",
-      "skinnable" : true,
+      "skinnable": true,
       "lang": [
          "en",
          "fr",
@@ -17,7 +17,8 @@
          "es",
          "fr",
          "it",
-         "nl"
+         "nl",
+         "pt-BR"
       ]
    }
 }

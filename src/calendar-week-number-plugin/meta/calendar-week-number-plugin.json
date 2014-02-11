@@ -7,10 +7,14 @@
       ],
       "skinnable": true,
       "lang": [
-      	"en",
-      	"fr",
-      	"de",
-      	"es"
+         "en",
+         "fr",
+         "de",
+         "es",
+         "ca",
+         "it",
+         "nl",
+         "pt-BR"
       ]
    }
 }
