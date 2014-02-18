@@ -2,7 +2,7 @@
    "addButtonText": "Hinzufügen",
    "addItemHeader": "Hinzufügen",
    "cancelText": "Abbrechen",
-   "confirmDeletion": "Möchten Sie das Element wieder herstellen?",
+   "confirmDeletion": "Sind Sie sicher?",
    "deleteText": "Löschen",
    "emptyDataText": "Kein Ergebnis",
    "errorDataText": "Fehler.",
