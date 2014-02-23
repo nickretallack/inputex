@@ -67,7 +67,7 @@ YUI().use('inputex-rte', function(Y) {
     var button1 = Y.inputEx.cn('button', null, null, "SetValue");
     div.appendChild(button1);
     Y.one(button1).on('click' ,function() { 
-        htmlField.setValue('RTEField can contain HTML !'); 
+        htmlField.setValue('RTEField can contain <strong>HTML</strong> !'); 
     });
     var button2 = Y.inputEx.cn('button', null, null, "GetValue");
     div.appendChild(button2);
@@ -80,6 +80,9 @@ YUI().use('inputex-rte', function(Y) {
     var field3 = new Y.inputEx.RTEField({parentEl: 'container3', name: 'rteField3', editorType: 'simple'});
     field3.setValue("Value set just after init...");
 
+
+    // Add "yui-skin-sam" class on body for YUI 2 styling
+    Y.one('body').addClass("yui-skin-sam");
 });
 
 </script>
@@ -113,7 +116,7 @@ YUI().use('inputex-rte', function(Y) {
     var button1 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;SetValue&quot;);
     div.appendChild(button1);
     Y.one(button1).on(&#x27;click&#x27; ,function() { 
-        htmlField.setValue(&#x27;RTEField can contain HTML !&#x27;); 
+        htmlField.setValue(&#x27;RTEField can contain &lt;strong&gt;HTML&lt;&#x2F;strong&gt; !&#x27;); 
     });
     var button2 = Y.inputEx.cn(&#x27;button&#x27;, null, null, &quot;GetValue&quot;);
     div.appendChild(button2);
@@ -126,6 +129,9 @@ YUI().use('inputex-rte', function(Y) {
     var field3 = new Y.inputEx.RTEField({parentEl: &#x27;container3&#x27;, name: &#x27;rteField3&#x27;, editorType: &#x27;simple&#x27;});
     field3.setValue(&quot;Value set just after init...&quot;);
 
+
+    &#x2F;&#x2F; Add &quot;yui-skin-sam&quot; class on body for YUI 2 styling
+    Y.one(&#x27;body&#x27;).addClass(&quot;yui-skin-sam&quot;);
 });</pre>
 
 </div>
