@@ -1,0 +1,33 @@
+<style>
+{{>description-styling-css}}
+</style>
+
+<h1>inputEx - Styling descriptions</h1>
+
+
+<h2>Styling the field descriptions</h2>
+
+<p>ou can style the description to appear when the field is focused :</p>
+
+<div class="example">
+    <div class='demoContainer' id='container1'></div>
+</div>
+
+<script>
+YUI_config.groups.inputex.base = '../build/';
+YUI().use('inputex-textarea','inputex-select','inputex-radio','inputex-group','inputex-checkbox','inputex-url', function (Y) {
+{{>description-styling-js}}
+});
+</script>
+
+<h2>CSS</h2>
+
+```
+{{>description-styling-css}}
+```
+
+<h2>Javascript</h2>
+
+```
+{{>description-styling-js}}
+```

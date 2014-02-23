@@ -1,0 +1,33 @@
+<style>
+{{>label-styling-css}}
+</style>
+
+<h1>inputEx - Label styling demo</h1>
+
+
+<h2>Example of label styling</h2>
+
+<p>Let's position the labels on top of the fields</p>
+
+<div class="example">
+    <div class='demoContainer' id='container1'></div>
+</div>
+
+<script>
+YUI_config.groups.inputex.base = '../build/';
+YUI().use('inputex-group','inputex-select','inputex-checkbox','inputex-url','inputex-radio','inputex-textarea', function (Y) {
+{{>label-styling-js}}
+});
+</script>
+
+<h2>CSS</h2>
+
+```
+{{>label-styling-css}}
+```
+
+<h2>Javascript</h2>
+
+```
+{{>label-styling-js}}
+```

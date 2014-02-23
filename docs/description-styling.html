@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>inputEx</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.4.1/build/cssgrids/grids-min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/vendor/prettify/prettify-min.css">
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.png">
+    <script src="http://yui.yahooapis.com/3.14.1/build/yui/yui-min.js"></script>
+    <script src="../build/inputex-loader/inputex-loader.js"></script>
+    <script>YUI_config.groups.inputex.base = '../../build/';</script>
+    
+</head>
+<body class="yui3-skin-sam">
+
+<a href="https://github.com/neyric/inputex"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+
+<div id="doc">
+    <div id="hd">
+        <h1><img src="http://yuilibrary.com/img/yui-logo.png"> inputEx</h1>
+    </div>
+    
+        <a href="#toc" class="jump">Jump to Table of Contents</a>
+    
+
+    <div class="yui3-g">
+        <div class="yui3-u-3-4">
+            <div id="main">
+                <div class="content"><style>
+#sampleGroup div.inputEx-description { display:none; }
+#sampleGroup div.inputEx-focused div.inputEx-description { display: block; }
+</style>
+
+<h1>inputEx - Styling descriptions</h1>
+
+
+<h2 id="styling-the-field-descriptions">Styling the field descriptions</h2>
+
+<p>ou can style the description to appear when the field is focused :</p>
+
+<div class="example">
+    <div class='demoContainer' id='container1'></div>
+</div>
+
+<script>
+YUI_config.groups.inputex.base = '../build/';
+YUI().use('inputex-textarea','inputex-select','inputex-radio','inputex-group','inputex-checkbox','inputex-url', function (Y) {
+var descriptedFields = [ 
+    { type: 'select', label: 'A select', description: 'Select one', choices: ['One','Two','Three'] },
+    { label: 'StringField', description: 'Here is the description', value:'Jacques' },
+    { type:'boolean', description: 'Check this box if you are happy to be there', label: 'Happy to be there ?', name: 'email'},
+    { type:'url', description: 'Your blog url', label: 'Website', name:'website'},
+    { type: 'radio', label: 'Radio', description: 'My favorite is YUI', name: 'example1', choices: ['Ajaxian','YUI blog','other']},
+    { type: 'text', label: 'Comments', description: 'Enter your comment'}
+];
+
+new Y.inputEx.Group({
+    id:'sampleGroup',
+    parentEl: 'container1',
+    fields: descriptedFields,
+    legend: 'User Informations'
+});
+});
+</script>
+
+<h2 id="css">CSS</h2>
+
+<pre class="code prettyprint">#sampleGroup div.inputEx-description { display:none; }
+#sampleGroup div.inputEx-focused div.inputEx-description { display: block; }</pre>
+
+
+<h2 id="javascript">Javascript</h2>
+
+<pre class="code prettyprint">var descriptedFields = [ 
+    { type: &#x27;select&#x27;, label: &#x27;A select&#x27;, description: &#x27;Select one&#x27;, choices: [&#x27;One&#x27;,&#x27;Two&#x27;,&#x27;Three&#x27;] },
+    { label: &#x27;StringField&#x27;, description: &#x27;Here is the description&#x27;, value:&#x27;Jacques&#x27; },
+    { type:&#x27;boolean&#x27;, description: &#x27;Check this box if you are happy to be there&#x27;, label: &#x27;Happy to be there ?&#x27;, name: &#x27;email&#x27;},
+    { type:&#x27;url&#x27;, description: &#x27;Your blog url&#x27;, label: &#x27;Website&#x27;, name:&#x27;website&#x27;},
+    { type: &#x27;radio&#x27;, label: &#x27;Radio&#x27;, description: &#x27;My favorite is YUI&#x27;, name: &#x27;example1&#x27;, choices: [&#x27;Ajaxian&#x27;,&#x27;YUI blog&#x27;,&#x27;other&#x27;]},
+    { type: &#x27;text&#x27;, label: &#x27;Comments&#x27;, description: &#x27;Enter your comment&#x27;}
+];
+
+new Y.inputEx.Group({
+    id:&#x27;sampleGroup&#x27;,
+    parentEl: &#x27;container1&#x27;,
+    fields: descriptedFields,
+    legend: &#x27;User Informations&#x27;
+});</pre>
+
+</div>
+            </div>
+        </div>
+
+        <div class="yui3-u-1-4">
+            <div class="sidebar">
+                
+                    <div id="toc" class="sidebox">
+                        <div class="hd">
+                            <h2 class="no-toc">Table of Contents</h2>
+                        </div>
+
+                        <div class="bd">
+                            <ul class="toc">
+<li>
+<a href="#styling-the-field-descriptions">Styling the field descriptions</a>
+</li>
+<li>
+<a href="#css">CSS</a>
+</li>
+<li>
+<a href="#javascript">Javascript</a>
+</li>
+</ul>
+                        </div>
+                    </div>
+                
+
+                
+
+                
+
+
+                    <div id="links-sidebox" class="sidebox">
+                        <div class="hd">
+                            <h2 class="no-toc">Links</h2>
+                        </div>
+
+                        <div class="bd">
+<ul>
+    <li><a href="assets/../index.html">Home</a></li>
+    <li><a href="assets/../index.html#examples">All Examples</a></li>
+    <li><a href="assets/../developer-guide.html">Developer's Guide</a></li>
+    <li><a href="assets/../contribute.html">How to Contribute</a></li>
+    <li><a href="assets/../../api/index.html">API Documentation</a></li>
+</ul>
+
+<ul>
+    <li><a href="http://github.com/neyric/inputex">Fork/Follow on GitHub</a></li>
+    <li><a href="http://github.com/neyric/inputex/issues">GitHub Issues</a></li>
+    <li><a href="http://neyric.com/category/inputex/">Blog</a></li>
+    <li><a href="http://groups.google.com/group/inputex/">Forums</a></li>
+    <li><a href="assets/../../license.txt">License</a></li>
+</ul>
+
+                        </div>
+                    </div>
+
+
+            <div>
+                <center>
+                <img src="http://www.twitter.com/favicon.ico" alt="twitter"> follow <a href="http://twitter.com/inputex"> on Twitter</a><br>
+                <img src="http://github.com/favicon.ico" alt="GitHub"> fork <a href="http://github.com/neyric/inputex"> on GitHub</a><br><br>
+                <br /><br />
+            </center>
+            </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+
+<script>
+YUI.Env.Tests = {
+    examples: [],
+    project: 'assets',
+    assets: '',
+    name: '',
+    title: '',
+    newWindow: '',
+    auto:  true 
+};
+
+</script>
+<!--script src="assets/yui/test-runner.js"></script-->
+
+
+
+</body>
+</html>

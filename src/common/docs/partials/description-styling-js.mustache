@@ -1,0 +1,15 @@
+var descriptedFields = [ 
+    { type: 'select', label: 'A select', description: 'Select one', choices: ['One','Two','Three'] },
+    { label: 'StringField', description: 'Here is the description', value:'Jacques' },
+    { type:'boolean', description: 'Check this box if you are happy to be there', label: 'Happy to be there ?', name: 'email'},
+    { type:'url', description: 'Your blog url', label: 'Website', name:'website'},
+    { type: 'radio', label: 'Radio', description: 'My favorite is YUI', name: 'example1', choices: ['Ajaxian','YUI blog','other']},
+    { type: 'text', label: 'Comments', description: 'Enter your comment'}
+];
+
+new Y.inputEx.Group({
+    id:'sampleGroup',
+    parentEl: 'container1',
+    fields: descriptedFields,
+    legend: 'User Informations'
+});
