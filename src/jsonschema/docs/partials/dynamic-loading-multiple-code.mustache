@@ -1,0 +1,59 @@
+var schemaIdentifierMap = {
+
+    // Person definition
+    "Person": {
+        "id": "Person",
+        "description":"A person",
+        "type":"object",
+        "properties": {
+            "name": { "type":"string" },
+            "born" : { "type":"string", "format":"date", "optional":true },
+            "gender" : { "type":"string", "choices": [ {"value":"male","label":"Guy"}, {"value":"female","label":"Girl"} ]},
+            "grownup": { "type": "boolean" },
+            "favoritecolors": { "type": "array" },
+            "address": { 
+                "type":"object",
+                "properties": {
+                    "street": { "type": "string" },
+                    "city": { "type": "string" },
+                    "state": { "type": "string" }
+                }
+            }
+        }
+    },
+
+    // Label definition - not a particularly meaningful example.
+    "Label": {
+        "id": 'label',
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "optional": false
+            },
+            "color": {
+                "type": "string",
+                    "_inputex": {
+                    "_type": "color"
+                }
+            }
+        }
+    }
+};
+
+var builder = new Y.inputEx.JsonSchema.Builder({
+    'schemaIdentifierMap': schemaIdentifierMap,
+    'defaultOptions':{
+        'showMsg':true
+    }
+});
+
+var person = builder.schemaToInputEx(schemaIdentifierMap.Person);
+var label  = builder.schemaToInputEx(schemaIdentifierMap.Label);
+
+Y.inputEx.use([person, label], function() {
+    person.parentEl = 'container1';
+    var p = Y.inputEx(person);
+    label.parentEl = 'container2';
+    var f = Y.inputEx(label);
+});

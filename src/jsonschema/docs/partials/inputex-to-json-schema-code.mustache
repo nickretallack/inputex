@@ -1,0 +1,26 @@
+// Convert the community json-schema to inputEx json
+var builder = new Y.inputEx.JsonSchema.Builder({
+    'schemaIdentifierMap': base_schema_map,
+    'defaultOptions': {
+        'showMsg': true
+    }
+});
+
+var inputExJson = builder.schemaToInputEx(base_schema_map["community"]);
+
+// Convert it back to json-schema using inputExToSchema
+var communitySchema = Y.inputEx.JsonSchema.inputExToSchema(inputExJson);
+
+// Converting it a last time to inputEx and build the form
+var builder2 = new Y.inputEx.JsonSchema.Builder({
+    'schemaIdentifierMap': {
+        "community": communitySchema
+    },
+    'defaultOptions': {
+        'showMsg': true
+    }
+});
+
+var m = builder2.schemaToInputEx(communitySchema);
+m.parentEl = 'container1';
+var f = Y.inputEx(m);

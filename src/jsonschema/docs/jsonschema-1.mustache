@@ -1,0 +1,35 @@
+<div class="example">
+
+    <h2>Build a form from JsonSchema</h2>
+    <p>Instantiate a inputEx.JsonSchema.Builder object, configure the schemaIdentifierMap (Hash of json-schema definitions) and call the <i>schemaToInputEx</i> method to get the inputEx definition.</p>
+    <div class='demoContainer' id='container1'></div>
+    
+    
+    <h2>Overriding inputEx options</h2>
+    <p>Use the <i>"_inputEx"</i> attribute on json-schema properties. This object will override inputEx' default properties in the field definition. You may also override the inputEx type through the <i>"_type"</i> attribute.</p>
+    <div class='demoContainer' id='container2'></div>
+    
+    <script>
+    YUI_config.groups.inputex.base = '../../build/';
+    YUI().use('inputex-group','inputex-select','inputex-string', 'inputex-date','inputex-datepicker','inputex-jsonschema','inputex-checkbox','inputex-list','inputex-color', function(Y) {
+    {{>jsonschema-code}}
+    });
+    </script>
+
+</div>
+
+<h2>HTML</h2>
+
+```
+<div id="container1"></div>
+<div id="container2"></div>
+```
+
+<h2>JavaScript</h2>
+
+
+<h3>Implementation</h3>
+
+```
+{{>jsonschema-code}}
+```

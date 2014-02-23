@@ -1,0 +1,11 @@
+var builder = new Y.inputEx.JsonSchema.Builder({
+    'schemaIdentifierMap':base_schema_map,
+    'defaultOptions':{
+        'showMsg':true
+    }
+});
+
+var m = builder.schemaToInputEx(base_schema_map.community);
+m.parentEl = 'container1';
+
+var f = Y.inputEx(m);

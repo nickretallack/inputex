@@ -1,0 +1,38 @@
+<div class="example">
+
+    <h2>Create a form from a json-schema - autoloading required dependencies</h2>
+    <div class='demoContainer' id='container1'></div>
+    <div class='demoContainer' id='container2'></div>
+    
+    <!-- json schema to load -->
+    <script src="../assets/inputex-jsonschema/base-schema.js"></script>
+
+    <script>
+    YUI_config.groups.inputex.base = '../../build/';
+    YUI().use('inputex', 'inputex-jsonschema', function(Y) {
+        {{>dynamic-loading-multiple-code}}
+        // YUI 2 CSS (RTE field)
+        Y.one('body').addClass('yui-skin-sam');
+    });
+    </script>
+
+</div>
+
+<h2>HTML</h2>
+
+```
+<!-- json schema to load -->
+<script src="../assets/inputex-jsonschema/base-schema.js"></script>
+
+<div id="container1"></div>
+<div id="container2"></div>
+```
+
+<h2>JavaScript</h2>
+
+
+<h3>Implementation</h3>
+
+```
+{{>dynamic-loading-multiple-code}}
+```
