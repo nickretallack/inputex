@@ -34,7 +34,7 @@ inputEx.TimeRange = function(options) {
 
    // Hook toggleEndMinutes to the "updated" event of the 3d select
    // Like that when the user selects/unselects 24h the minutes will toogle accordingly
-   this.inputs[3].on('updated', this.toggleEndMinutes, this);
+   this.inputs[2].on('updated', this.toggleEndMinutes, this);
 };
 
 Y.extend(inputEx.TimeRange, inputEx.CombineField, {
