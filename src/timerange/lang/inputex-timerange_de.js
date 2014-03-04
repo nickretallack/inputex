@@ -6,6 +6,6 @@
       ":",
       "&nbsp; bis &nbsp;",
       ":",
-      "Uhr"
+      false
    ]
 }
