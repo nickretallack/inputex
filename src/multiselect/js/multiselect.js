@@ -15,8 +15,7 @@
  * </ul>
  */
 inputEx.MultiSelectField = function (options) {
-  this.choices = options.choices;
-    this.options = options; // for compatibility with inputEx.Field API
+    this.choices = options.choices;
     inputEx.MultiSelectField.superclass.constructor.call(this, options);
 };
 
@@ -144,8 +143,8 @@ Y.extend(inputEx.MultiSelectField, inputEx.DDListField, {
     },
 
     clear: function (sendUpdatedEvt) {
-        inputEx.MultiSelectField.superclass.clear.call(this);
-        this.select.setValue(lang.isUndefined(this.options.value) ? [] : this.options.value, sendUpdatedEvt);
+        inputEx.MultiSelectField.superclass.clear.call(this, sendUpdatedEvt);
+        this.select.clear(sendUpdatedEvt);
     },
 
     enable: function() {
