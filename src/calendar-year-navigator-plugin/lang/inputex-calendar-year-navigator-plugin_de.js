@@ -1,6 +1,6 @@
 {
    "cancel": "Abbrechen",
-   "month": "Monate",
+   "month": "Monat",
    "monthsList": [
       "Januar",
       "Februar",
@@ -17,5 +17,5 @@
    ],
    "ok": "Ok",
    "select": "Bitte wählen",
-   "year": "Jahre"
+   "year": "Jahr"
 }
