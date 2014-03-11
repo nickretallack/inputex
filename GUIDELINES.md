@@ -91,7 +91,11 @@ The translations are managed on LocaleApp: http://www.localeapp.com/projects/632
 
 To pull the new translations, you'll get to be registered as 'Developer' in the inputex project on localeapp and the look in the settings section for the API key.
 
-Then install https://github.com/neyric/node-yui-localeapp, cd into the inputex root directory.
+Then install https://github.com/neyric/node-yui-localeapp :
+
+    sudo npm install -g git://github.com/neyric/node-yui-localeapp
+
+`cd` into the inputex root directory.
 
 You can now run the "localeapp-to-project" command with your PROJET_API_KEY as an argument.
 
