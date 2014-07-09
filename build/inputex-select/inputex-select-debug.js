@@ -34,6 +34,7 @@ Y.extend(inputEx.SelectField, inputEx.Field, {
       inputEx.SelectField.superclass.setOptions.call(this, options);
    
       this.options.choices = lang.isArray(options.choices) ? options.choices : [];
+      this.options.strictValues = options.strictValues !== false; // true by default
    
       // Retro-compatibility with old pattern (changed since 2010-06-30)
       if (lang.isArray(options.selectValues)) {
@@ -107,6 +108,10 @@ Y.extend(inputEx.SelectField, inputEx.Field, {
    
       var i, length, choice, firstIndexAvailable, choiceFound = false;
    
+      if (!this.options.strictValues){
+         this.removeCustomChoices();
+      }
+
       for (i = 0, length = this.choicesList.length; i < length ; i += 1) {
       
          if (this.choicesList[i].visible) {
@@ -136,16 +141,39 @@ Y.extend(inputEx.SelectField, inputEx.Field, {
       // value not matching any visible choice
       //
       // if no choice available (-> firstIndexAvailable is undefined), skip value setting
-      if (!choiceFound && !lang.isUndefined(firstIndexAvailable)) {
-         
-         choice = this.choicesList[firstIndexAvailable];
-         choice.node.selected = "selected";
-         value = choice.value;
-         
+      if (!choiceFound) {
+         if (!this.options.strictValues && value !== '') {
+            choice = this.addChoice({
+               value: value,
+               label: value,
+               position: 0
+            });
+            choice.node.selected = 'selected';
+            choice.custom = true;
+         }
+         else if (!lang.isUndefined(firstIndexAvailable)) {
+            choice = this.choicesList[firstIndexAvailable];
+            choice.node.selected = "selected";
+            value = choice.value;
+         }
       }
       
       // Call Field.setValue to set class and fire updated event
       inputEx.SelectField.superclass.setValue.call(this, value, sendUpdatedEvt);
+   },
+
+   removeCustomChoices: function () {
+      var i, length, choice;
+   
+      for (i = 0, length = this.choicesList.length; i < length ; i++) {
+         choice = this.choicesList[i];
+         if (choice.custom) {
+            this.removeChoice(choice);
+            i--;
+            length--;
+         }
+      }
+      
    },
 
    /**
@@ -166,9 +194,9 @@ Y.extend(inputEx.SelectField, inputEx.Field, {
          return this.choicesList[choiceIndex].value;
          
       } else {
-         
+
          return "";
-         
+
       }
    },
 
