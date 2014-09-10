@@ -52,6 +52,8 @@ var CheckboxMultiState = new Y.Base.create("checkbox-multi-state", Y.inputEx.Fie
       this.el = this.markupNode.getDOMNode();
       this.fieldContainer.appendChild(this.el);
 
+      this.imgNode = this.markupNode.one("img");
+
       this._bindUIComponent();
 
    },
@@ -88,17 +90,16 @@ var CheckboxMultiState = new Y.Base.create("checkbox-multi-state", Y.inputEx.Fie
     */
    setValue: function(state, sendUpdatedEvt) {
 
-      var keys = Y.Object.keys(this.nextState);
-      if (keys.indexOf(state) === -1) {
+      if (!this.nextState[state]) {
          console.log("please provide an existing state : ", keys);
          return;
       }
 
       // nom des gifs : check0, check1, check2 
-      var imgNode = this.markupNode.one("img"),
-         oldSrc = imgNode.get("src"),
-         newSrc = oldSrc.replace(/([^\/]+).gif/, state + ".gif");
-      imgNode.set("src", newSrc);
+      var oldSrc = this.imgNode.get("src"),
+          newSrc = oldSrc.replace(/([^\/]+).gif/, state + ".gif");
+
+      this.imgNode.set("src", newSrc);
 
       this.state = state;
 
