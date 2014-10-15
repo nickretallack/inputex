@@ -335,20 +335,26 @@ inputEx.Field.prototype = {
     * Disable the field
     * @method disable
     */
-   disable: function() {},
+   disable: function() {
+      this.disabled = true;
+      return this;
+   },
 
    /**
     * Enable the field
     * @method enable
     */
-   enable: function() {},
+   enable: function() {
+      this.disabled = false;
+      return this;
+   },
 
    /**
     * Check if the field is diabled
     * @method isDisabled
     */
    isDisabled: function() {
-      return false;
+      return !!this.disabled;
    },
 
    /**

@@ -235,8 +235,8 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
     * @method disable
     */
    disable: function() {
-      inputEx.DatePickerField.superclass.disable.call(this);
       this.button.set('disabled', true);
+      return inputEx.DatePickerField.superclass.disable.call(this);
    },
 
    /**
@@ -244,8 +244,8 @@ Y.extend(inputEx.DatePickerField, inputEx.DateField, {
     * @method enable
     */
    enable: function() {
-      inputEx.DatePickerField.superclass.enable.call(this);
       this.button.set('disabled', false);
+      return inputEx.DatePickerField.superclass.enable.call(this);
    }
 
 });

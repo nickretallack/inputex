@@ -171,6 +171,7 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
     */
    disable: function() {
       this.el.disabled = true;
+      return inputEx.CheckBox.superclass.disable.call(this);
    },
 
    /**
@@ -179,6 +180,7 @@ Y.extend(inputEx.CheckBox, inputEx.Field, {
     */
    enable: function() {
       this.el.disabled = false;
+      return inputEx.CheckBox.superclass.enable.call(this);
    }
    
 });

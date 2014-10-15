@@ -31,8 +31,7 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     */
    setOptions: function(options) {
 
-      var that = this,
-      buttonConfigs, buttonConfigsLength ,i, item;
+      var that = this, buttonConfigs, buttonConfigsLength, i, item;
 
 
       inputEx.InPlaceEdit.superclass.setOptions.call(this, options);
@@ -68,13 +67,11 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
 
       } else {
           // Custumized buttons
-          buttonConfigs = options.buttonConfigs,
-          buttonConfigsLength = buttonConfigs.length,
-          i, item;
-
+          buttonConfigs = options.buttonConfigs;
+          buttonConfigsLength = buttonConfigs.length;
 
           for (i = 0 ; i < buttonConfigsLength ; i++){
-            item = buttonConfigs[i]  ;
+            item = buttonConfigs[i];
  
               if (item.isOkButton) {
                   item.value = item.value || that.messages.okEditor;
@@ -321,8 +318,8 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     * @method enable
     */
     enable: function(){
-      this.disabled = false;
       inputEx.sn(this.formattedContainer, {className: 'inputEx-InPlaceEdit-visu'});
+      return inputEx.InPlaceEdit.superclass.enable.call(this);
     },
     
    /**
@@ -330,8 +327,8 @@ Y.extend(inputEx.InPlaceEdit, inputEx.Field, {
     * @method disable
     */
     disable: function(){
-      this.disabled = true;
       inputEx.sn(this.formattedContainer, {className: 'inputEx-InPlaceEdit-visu-disable'});
+      return inputEx.InPlaceEdit.superclass.disable.call(this);
     },
     
    /**

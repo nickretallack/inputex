@@ -265,6 +265,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
       for (var i = 0 ; i < this.inputsLength; i++) {
          this.inputs[i].enable();
       }
+      return inputEx.Group.superclass.enable.call(this);
    },
    
    /**
@@ -275,6 +276,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
       for (var i = 0 ; i < this.inputsLength; i++) {
          this.inputs[i].disable();
       }
+      return inputEx.Group.superclass.disable.call(this);
    },
    
    /**
@@ -518,7 +520,7 @@ Y.extend(inputEx.Group, inputEx.Field, {
     * referenced by the field name, or array [ ["fieldName", "Message"], ...]
     */
    setErrors: function(errors) {
-      var i,k;
+      var i,k,value;
       if(lang.isArray(errors)) {
          for(i = 0 ; i < errors.length ; i++) {
             k = errors[i][0];

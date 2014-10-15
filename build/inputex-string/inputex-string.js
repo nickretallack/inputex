@@ -191,6 +191,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
     */
    disable: function() {
       this.el.disabled = true;
+      return inputEx.StringField.superclass.disable.call(this);
    },
 
    /**
@@ -199,14 +200,7 @@ Y.extend(inputEx.StringField, inputEx.Field, {
     */
    enable: function() {
       this.el.disabled = false;
-   },
-
-   /**
-    * Check if the field is disabled
-    * @method isDisabled
-    */
-   isDisabled: function() {
-      return this.el.disabled;
+      return inputEx.StringField.superclass.enable.call(this);
    },
 
    /**

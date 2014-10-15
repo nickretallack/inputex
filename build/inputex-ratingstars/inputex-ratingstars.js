@@ -221,12 +221,6 @@ Y.extend(inputEx.RatingStars, inputEx.Field,{
     afterRating: function(){
       this.showMessage("<span class=\"thanks\">"+this.messages.thanksRate+"</span>");      
     },
-    disable: function(){
-      this.disabled = true;  
-    },
-    enable: function(){
-      this.disabled = false;
-    },
     setValue: function(value){
       inputEx.RatingStars.superclass.setValue.call(this,value);
       this.value = value;

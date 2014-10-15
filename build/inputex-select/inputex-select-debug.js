@@ -206,6 +206,7 @@ Y.extend(inputEx.SelectField, inputEx.Field, {
     */
    disable: function () {
       this.el.disabled = true;
+      return inputEx.SelectField.superclass.disable.call(this);
    },
 
    /**
@@ -214,16 +215,9 @@ Y.extend(inputEx.SelectField, inputEx.Field, {
     */
    enable: function () {
       this.el.disabled = false;
+      return inputEx.SelectField.superclass.enable.call(this);
    },
    
-   /**
-    * Check if the field is disabled
-    * @method isDisabled
-    */
-   isDisabled: function() {
-      return this.el.disabled;
-   },
-
    /**
     * @method createChoiceNode
     */

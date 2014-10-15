@@ -359,11 +359,11 @@ Y.extend(inputEx.Form, inputEx.Group, {
     * @method enable
     */
    enable: function() {
-      inputEx.Form.superclass.enable.call(this);
-      
       for (var i = 0 ; i < this.buttons.length ; i++) {
          this.buttons[i].enable();
       }
+
+      return inputEx.Form.superclass.enable.call(this);
    },
 
    /**
@@ -371,11 +371,11 @@ Y.extend(inputEx.Form, inputEx.Group, {
     * @method disable
     */
    disable: function() {
-      inputEx.Form.superclass.disable.call(this);
-      
       for (var i = 0 ; i < this.buttons.length ; i++) {
          this.buttons[i].disable();
       }
+
+      return inputEx.Form.superclass.disable.call(this);
    },
    
    

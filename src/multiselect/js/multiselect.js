@@ -148,13 +148,13 @@ Y.extend(inputEx.MultiSelectField, inputEx.DDListField, {
     },
 
     enable: function() {
-        inputEx.MultiSelectField.superclass.enable.call(this);
         this.select.enable();
+        return inputEx.MultiSelectField.superclass.enable.call(this);
     },
 
     disable: function() {
-        inputEx.MultiSelectField.superclass.disable.call(this);
         this.select.disable();
+        return inputEx.MultiSelectField.superclass.disable.call(this);
     },
 
     isEmpty: function () {

@@ -430,6 +430,8 @@ Y.extend(inputEx.RadioField, inputEx.Field, {
          this.disableChoice(this.choicesList[i], false);
       }
       
+      return inputEx.RadioField.superclass.disable.call(this);
+
    },
 
    /**
@@ -443,7 +445,9 @@ Y.extend(inputEx.RadioField, inputEx.Field, {
       for (i = 0, length = this.choicesList.length; i < length; i += 1) {
          this.enableChoice(this.choicesList[i]);
       }
-      
+    
+      return inputEx.RadioField.superclass.enable.call(this);
+  
    },
    
    /**
