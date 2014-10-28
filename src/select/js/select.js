@@ -33,6 +33,10 @@ Y.extend(inputEx.SelectField, inputEx.Field, {
    
       this.options.choices = lang.isArray(options.choices) ? options.choices : [];
       this.options.strictValues = options.strictValues !== false; // true by default
+
+      // removingCustomChoices is a flag used to prevent infinite setValue calls when removeCustomChoices() is called
+      // Cause setValue() -> removeCustomChoices() -> removeChoice() -> clear() -> setValue()
+      this.removingCustomChoices = false;
    
       // Retro-compatibility with old pattern (changed since 2010-06-30)
       if (lang.isArray(options.selectValues)) {
@@ -103,10 +107,10 @@ Y.extend(inputEx.SelectField, inputEx.Field, {
     * or not (default is true, pass false to NOT send the event)
     */
    setValue: function (value, sendUpdatedEvt) {
-   
+
       var i, length, choice, firstIndexAvailable, choiceFound = false;
-   
-      if (!this.options.strictValues){
+
+      if (!this.options.strictValues && !this.removingCustomChoices){
          this.removeCustomChoices();
       }
 
@@ -162,7 +166,11 @@ Y.extend(inputEx.SelectField, inputEx.Field, {
 
    removeCustomChoices: function () {
       var i, length, choice;
-   
+
+      // removingCustomChoices is a flag used to prevent infinite setValue calls when removeCustomChoices() is called
+      // Cause setValue() -> removeCustomChoices() -> removeChoice() -> clear() -> setValue()
+      this.removingCustomChoices = true;
+
       for (i = 0, length = this.choicesList.length; i < length ; i++) {
          choice = this.choicesList[i];
          if (choice.custom) {
@@ -171,7 +179,9 @@ Y.extend(inputEx.SelectField, inputEx.Field, {
             length--;
          }
       }
-      
+
+      this.removingCustomChoices = false;
+
    },
 
    /**
