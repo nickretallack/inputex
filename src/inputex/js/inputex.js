@@ -21,10 +21,10 @@
   Y.inputEx = function(fieldOptions, parentField) {
      var fieldClass = null,
          inputInstance;
-         
+
     if(fieldOptions.type) {
        fieldClass = inputEx.getFieldClass(fieldOptions.type);
-       
+
         if( !Y.Lang.isFunction(fieldClass) ){
            throw new Error("Missing inputEx module for type: '"+fieldOptions.type+"' ?");
         }
@@ -45,71 +45,71 @@
      /*if(fieldOptions.flatten) {
         inputInstance._flatten = true;
      }*/
-     
+
      return inputInstance;
   };
-  
+
   var inputEx = Y.inputEx;
-  
+
   Y.mix(Y.inputEx, {
 
      VERSION: "4.0.0",
-     
+
      /**
       * Url to the spacer image. This url schould be changed according to your project directories
       * @property spacerUrl
       * @type String
       */
      spacerUrl: YUI_config.groups.inputex.base+"inputex/assets/skins/sam/images/space.gif", // 1x1 px
-     
+
      /**
       * Field empty state constant
       * @property stateEmpty
       * @type String
       */
      stateEmpty: 'empty',
-     
+
      /**
       * Field required state constant
       * @property stateRequired
       * @type String
       */
      stateRequired: 'required',
-     
+
      /**
       * Field valid state constant
       * @property stateValid
       * @type String
       */
      stateValid: 'valid',
-     
+
      /**
       * Field invalid state constant
       * @property stateInvalid
       * @type String
       */
      stateInvalid: 'invalid',
-     
+
      /**
       * Associative array containing field messages => using intl module from YUI
       * @property messages
       */
      messages: null,
-     
+
      /**
       * inputEx widget namespace
       * @class inputEx.widget
-      * @static 
+      * @static
       */
      widget: {},
-     
+
      /**
       * inputEx mixin namespace
       * @class inputEx.mixin
-      * @static 
+      * @static
       */
      mixin: {},
-     
+
      /**
       * Associative array containing common regular expressions
       * @property regexps
@@ -118,21 +118,21 @@
         email: /^[a-z0-9!\#\$%&'\*\-\/=\?\+\-\^_`\{\|\}~]+(?:\.[a-z0-9!\#\$%&'\*\-\/=\?\+\-\^_`\{\|\}~]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,6}$/i,
         url: /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(\:[0-9]{1,5})?(([0-9]{1,5})?\/.*)?$/i
      },
-     
+
      /**
       * Hash between inputEx types and classes (ex: <code>inputEx.typeClasses.color = inputEx.ColorField</code>)<br />
       * Please register the types with the <code>registerType</code> method
       * @property typeClasses
       */
      typeClasses: {},
-     
+
      /**
       * Property to globally turn on/off the browser autocompletion
       * Possible values: "on", "off"
       * @property browserAutocomplete
       */
      browserAutocomplete: "on",
-     
+
      /**
       * When you create a new inputEx Field Class, you can register it to give it a simple type.
       * ex:   inputEx.registerType("color", inputEx.ColorField);
@@ -151,7 +151,7 @@
            throw new Error("inputEx.registerType: second argument must be a function");
         }
         this.typeClasses[type] = fieldClass;
-        
+
         // Setup the groupOptions property on the class
         var opts = [];
         if(lang.isArray(groupOptions)) { opts = groupOptions; }
@@ -160,7 +160,7 @@
         }
         fieldClass.groupOptions = opts;
      },
-     
+
      /**
       * Returns the class for the given type
       * ex: inputEx.getFieldClass("color") returns inputEx.ColorField
@@ -171,7 +171,7 @@
      getFieldClass: function(type) {
         return lang.isFunction(this.typeClasses[type]) ? this.typeClasses[type] : null;
      },
-     
+
      /**
       * Get the inputex type for the given class (ex: <code>inputEx.getType(inputEx.ColorField)</code> returns "color")
       * @method getType
@@ -189,15 +189,15 @@
         }
         return null;
      },
-     
-     
+
+
      /**
       * Return recursively the inputex modules from their 'type' property using (modulesByType from loader.js)
       * @method getRawModulesFromDefinition
       * @static
       */
      getRawModulesFromDefinition: function(inputexDef) {
-        
+
         var type = inputexDef.type || 'string',
             module = YUI_config.groups.inputex.modulesByType[type],
             modules = [module || type],
@@ -205,20 +205,20 @@
             fields = inputexDef.fields ||
             //else see if we have elementType for lists - if neither then we end up with null
             inputexDef.elementType && inputexDef.elementType.fields;
-        
-        
+
+
         // recursive for group,forms,list,combine, etc...
         if(fields) {
            Y.Array.each(fields, function(field) {
                 modules = modules.concat( this.getModulesFromDefinition(field) );
            }, this);
         }
-        
+
         // TODO: inplaceedit  editorField
-        
+
         return modules;
      },
-     
+
      /**
       * Return unique modules definitions
       * @method getModulesFromDefinition
@@ -228,7 +228,7 @@
         var modules = this.getRawModulesFromDefinition(inputexDef);
         return Y.Object.keys(Y.Array.hash(modules));
      },
-     
+
      /**
       * Load the modules from an inputEx definition
       * @method use
@@ -238,14 +238,14 @@
         var defs, modules = [];
         if (!Y.Array.test(inputexDef)){ defs = [inputexDef];}
         else {defs = inputexDef;}
-        
+
         Y.each(defs, function(def){
             modules = modules.concat( this.getModulesFromDefinition(def));
         },this);
         modules.push(cb);
         Y.use.apply( Y, modules);
      },
-     
+
      /**
       * Helper function to set DOM node attributes and style attributes.
       * @method sn
@@ -325,8 +325,8 @@
               return el;
           }
       },
-     
-     
+
+
      /**
       * Find the position of the given element. (This method is not available in IE 6)
       * @method indexOf
@@ -337,18 +337,18 @@
       * @return {number} Element position, -1 if not found
       */
      indexOf: function(el,arr,fn) {
-   
+
         var l=arr.length,i;
-      
+
         if ( !lang.isFunction(fn) ) { fn = function(elt,arrElt) { return elt === arrElt; }; }
-      
+
         for ( i = 0 ;i < l ; i++ ) {
            if ( fn.call({}, el, arr[i]) ) { return i; }
         }
-      
+
         return -1;
      },
-     
+
      /**
       * Create a new array without the null or undefined values
       * @method compactArray
@@ -365,7 +365,7 @@
         }
         return n;
      },
-     
+
      /**
       * Return a string without accent (only on lowercase)
       * @method removeAccents
@@ -385,7 +385,7 @@
                    replace(/[œ]/g,"oe").
                    replace(/[æ]/g,"ae");
      },
-     
+
      /**
       * String replaced by some html entities
       * @method htmlEntities
