@@ -376,16 +376,62 @@ YUI.add('inputex', function (Y, NAME) {
       * @return {String} String without accent
       */
      removeAccents: function (str) {
-        return str.replace(/[àáâãäå]/g,"a").
-                   replace(/[èéêë]/g,"e").
-                   replace(/[ìíîï]/g,"i").
-                   replace(/[òóôõö]/g,"o").
-                   replace(/[ùúûü]/g,"u").
-                   replace(/[ýÿ]/g,"y").
-                   replace(/[ñ]/g,"n").
-                   replace(/[ç]/g,"c").
-                   replace(/[œ]/g,"oe").
-                   replace(/[æ]/g,"ae");
+         return str.replace(/[ÀÁÂÃĀĂȦẢǍȀȂĄẠḀẦẤẪẨẰẮẴẲǠǞǺẬẶ]/g, 'A').
+             replace(/[ÄÅǼǢ]/g, 'AE').
+             replace(/[ḂƁḄḆƂƄ]/g, 'B').
+             replace(/[ÇĆĈĊČƇḈ]/g, 'C').
+             replace(/[ḊƊḌḎḐḒĎĐƉƋ]/g, 'D').
+             replace(/[ÉÈÊẼĒĔĖËẺĚȄȆẸȨĘḘḚỀẾỄỂḔḖỆḜƎƐ]/g, 'E').
+             replace(/[ḞƑ]/g, 'F').
+             replace(/[ǴĜḠĞĠǦƓĢǤ]/g, 'G').
+             replace(/[ĤḢḦȞǶḤḨḪĦ]/g, 'H').
+             replace(/[ÌÍÎĨĪĬİÏỈǏỊĮȈȊḬƗḮ]/g, 'I').
+             replace(/[Ĳ]/g, 'IJ').
+             replace(/[Ĵ]/g, 'J').
+             replace(/[ḰǨḴƘḲĶ]/g, 'K').
+             replace(/[ĹḺḶĻḼĽĿŁḸ]/g, 'L').
+             replace(/[ḾṀṂƜ]/g, 'M').
+             replace(/[ÑǸŃṄŇŊƝṆŅṊṈȠ]/g, 'N').
+             replace(/[ÖÒÓÔÕŌŎȮỎŐǑȌȎƠǪỌƟỒỐỖỔȰȪȬṌṎṐṒỜỚỠỞỢǬỘǾƆ]/g, 'O').
+             replace(/[Œ]/g, 'OE').
+             replace(/[ṔṖƤ]/g, 'P').
+             replace(/[ŔṘŘȐȒṚŖṞṜƦ]/g, 'R').
+             replace(/[ŚŜṠŠṢȘŞṤṦṨ]/g, 'S').
+             replace(/[ṪŤƬƮṬȚŢṰṮŦ]/g, 'T').
+             replace(/[ÜÙÚÛŨŪŬỦŮŰǓȔȖƯỤṲŲṶṴṸṺǛǗǕǙỪỨỮỬỰ]/g, 'U').
+             replace(/[ṼṾƲ]/g, 'V').
+             replace(/[ẀẂŴẆẄẈ]/g, 'W').
+             replace(/[ẊẌ]/g, 'X').
+             replace(/[ỲÝŶỸȲẎŸỶƳỴ]/g, 'Y').
+             replace(/[ŹẐŻŽȤẒẔƵ]/g, 'Z').
+             replace(/[àäåáâãāăȧảǎȁȃąạḁẚầấẫẩằắẵẳǡǟǻậặ]/g, 'a').
+             replace(/[ǽǣ]/g, 'ae').
+             replace(/[ḃɓḅḇƀƃƅ]/g, 'b').
+             replace(/[ćĉċčƈçḉ]/g, 'c').
+             replace(/[ḋɗḍḏḑḓďđƌȡ]/g, 'd').
+             replace(/[èéêẽēĕėëẻěȅȇẹȩęḙḛềếễểḕḗệḝǝɛ]/g, 'e').
+             replace(/[ḟƒ]/g, 'f').
+             replace(/[ǵĝḡğġǧɠģǥ]/g, 'g').
+             replace(/[ĥḣḧȟƕḥḩḫẖħ]/g, 'h').
+             replace(/[ìíîĩīĭıïỉǐịįȉȋḭɨḯ]/g, 'i').
+             replace(/[ĳ]/g, 'ij').
+             replace(/[ĵǰ]/g, 'j').
+             replace(/[ḱǩḵƙḳķ]/g, 'k').
+             replace(/[ĺḻḷļḽľŀłƚḹȴ]/g, 'l').
+             replace(/[ḿṁṃɯ]/g, 'm').
+             replace(/[ñǹńṅňŋɲṇņṋṉŉƞȵ]/g, 'n').
+             replace(/[öòóôõōŏȯỏőǒȍȏơǫọɵồốỗổȱȫȭṍṏṑṓờớỡởợǭộǿɔ]/g, 'o').
+             replace(/[œ]/g, 'oe').
+             replace(/[ṕṗƥ]/g, 'p').
+             replace(/[ŕṙřȑȓṛŗṟṝ]/g, 'r').
+             replace(/[śŝṡšṣșşṥṧṩſẛ]/g, 's').
+             replace(/[ṫẗťƭʈƫṭțţṱṯŧȶ]/g, 't').
+             replace(/[ùüúûũūŭủůűǔȕȗưụṳųṷṵṹṻǖǜǘǖǚừứữửự]/g, 'u').
+             replace(/[ṽṿ]/g, 'v').
+             replace(/[ẁẃŵẇẅẘẉ]/g, 'w').
+             replace(/[ẋẍ]/g, 'x').
+             replace(/[ỳýŷỹȳẏÿỷẙƴỵ]/g, 'y').
+             replace(/[źẑżžȥẓẕƶ]/g, 'z');
      },
 
      /**
