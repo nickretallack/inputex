@@ -1,7 +1,8 @@
 {
    "inputex-email": {
       "requires": [
-         "inputex-string"
+         "inputex-string",
+          "inputex-accent-remover"
       ],
       "lang": [
          "en",

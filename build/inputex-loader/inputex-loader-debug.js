@@ -19,6 +19,7 @@ YUI().use(function(Y) {
         ],
         "skinnable": true
     },
+    "inputex-accent-remover": {},
     "inputex-autocomplete": {
         "ix_provides": "autocomplete",
         "requires": [
@@ -335,7 +336,8 @@ YUI().use(function(Y) {
             "pt-BR"
         ],
         "requires": [
-            "inputex-string"
+            "inputex-string",
+            "inputex-accent-remover"
         ]
     },
     "inputex-field": {

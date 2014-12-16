@@ -179,14 +179,15 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
     * @method getValue
     * @return {String} The email string
     */
-   getValue: function() {
+   getValue: function () {
 
-      var value = inputEx.EmailField.superclass.getValue.call(this);
+       var value = inputEx.EmailField.superclass.getValue.call(this);
+       return inputEx.EmailField.accentRemover.strip(value.toLowerCase());
 
-      return inputEx.removeAccents(value.toLowerCase());
    }
 
 });
 
 // Register this class as "email" type
 inputEx.registerType("email", inputEx.EmailField, []);
+inputEx.EmailField.accentRemover = new Y.inputEx.AccentRemover();
