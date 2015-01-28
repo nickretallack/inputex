@@ -182,7 +182,7 @@ Y.extend(inputEx.EmailField, inputEx.StringField, {
    getValue: function () {
 
        var value = inputEx.EmailField.superclass.getValue.call(this);
-       return inputEx.EmailField.accentRemover.strip(value.toLowerCase());
+       return inputEx.EmailField.accentRemover.format(value.toLowerCase());
 
    }
 

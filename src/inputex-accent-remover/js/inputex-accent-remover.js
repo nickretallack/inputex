@@ -218,7 +218,7 @@ AccentRemover.prototype.replacer = function (c) {
     }
 };
 
-AccentRemover.prototype.strip = function (str) {
+AccentRemover.prototype.format = function (str) {
     var conf = this.conf;
     for (var c in conf) {
         if (conf.hasOwnProperty(c)) {
