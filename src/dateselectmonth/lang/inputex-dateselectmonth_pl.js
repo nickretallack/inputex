@@ -1,6 +1,6 @@
 {
    "dayTypeInvite": "Dzień",
-   "defaultDateFormat": "m/d/R",
+   "defaultDateFormat": "d/m/Y",
    "invalidDate": "Nieprawidłowa data, np. : 03/27/2008",
    "months": [
       "Styczeń",

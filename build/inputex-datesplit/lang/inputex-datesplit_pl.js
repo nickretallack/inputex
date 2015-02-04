@@ -1,1 +1,1 @@
-YUI.add("lang/inputex-datesplit_pl",function(e){e.Intl.add("inputex-datesplit","pl",{dayTypeInvite:"Dzie\u0144",defaultDateFormat:"m/d/R",monthTypeInvite:"Miesi\u0105c",yearTypeInvite:"Rok"})},"@VERSION@");
+YUI.add("lang/inputex-datesplit_pl",function(e){e.Intl.add("inputex-datesplit","pl",{dayTypeInvite:"Dzie\u0144",defaultDateFormat:"d/m/Y",monthTypeInvite:"Miesi\u0105c",yearTypeInvite:"Rok"})},"@VERSION@");
