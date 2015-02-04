@@ -282,6 +282,7 @@ Y.namespace("Plugin").CalendarWeekNumber = CalendarWeekNumber;
         "ca",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ]
 });

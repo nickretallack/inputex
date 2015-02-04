@@ -209,6 +209,7 @@ inputEx.EmailField.accentRemover = new Y.inputEx.AccentRemover();
         "fr",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ],
     "ix_provides": "email"

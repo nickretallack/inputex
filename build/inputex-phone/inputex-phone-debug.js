@@ -99,7 +99,7 @@ Y.extend(inputEx.PhoneField, inputEx.Field, {
     */
    _onPhoneClick: function(e) {
       window.location.href = "tel:"+this.phoneEl.value;
-   },
+   }
 
 });
 
@@ -121,6 +121,7 @@ inputEx.registerType("phone", inputEx.PhoneField, []);
         "ca",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ]
 });

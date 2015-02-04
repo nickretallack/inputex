@@ -52,6 +52,7 @@ inputEx.registerType("domain-name", inputEx.DomainNameField, []);
         "es",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ],
     "ix_provides": "domain-name"

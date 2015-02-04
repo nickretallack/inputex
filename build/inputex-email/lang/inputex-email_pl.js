@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-email_pl",function(e){e.Intl.add("inputex-email","pl",{didYouMean:"Czy chodzi Ci o:",disposableEmail:"Tymczasowy adres e-mail niedozwolony w domenie:",invalidEmail:"Nieprawid\u0142owy e-mail, np.: przyk\u0142ad@test.com"})},"@VERSION@");

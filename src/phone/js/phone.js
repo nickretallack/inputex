@@ -97,7 +97,7 @@ Y.extend(inputEx.PhoneField, inputEx.Field, {
     */
    _onPhoneClick: function(e) {
       window.location.href = "tel:"+this.phoneEl.value;
-   },
+   }
 
 });
 

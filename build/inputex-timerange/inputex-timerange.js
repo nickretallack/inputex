@@ -166,6 +166,7 @@ inputEx.registerType("timerange", inputEx.TimeRange);
         "ca",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ],
     "ix_provides": "timerange"

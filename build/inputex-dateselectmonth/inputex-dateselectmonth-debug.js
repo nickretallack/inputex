@@ -156,6 +156,7 @@ inputEx.registerType("dateselectmonth", inputEx.DateSelectMonthField);
         "fr",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ]
 });

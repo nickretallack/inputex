@@ -8,6 +8,6 @@
 		  "calendar"
 		],
 		"ix_provides": "datepicker",
-      "skinnable" : true
+        "skinnable" : true
 	}
 }

@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-stringavailability_pl",function(e){e.Intl.add("inputex-stringavailability","pl",{errorDataText:"wyst\u0105pi\u0142 b\u0142\u0105d",stringAvailable:"Ten zas\u00f3b jest dost\u0119pny",stringLoading:"Sprawdzanie dost\u0119pno\u015bci ...",stringUnAvailable:"Ten zas\u00f3b jest niedost\u0119pny"})},"@VERSION@");

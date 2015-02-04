@@ -1,0 +1,1 @@
+YUI.add("lang/inputex-calendar-year-navigator-plugin_pl",function(e){e.Intl.add("inputex-calendar-year-navigator-plugin","pl",{cancel:"Anuluj",month:"Miesi\u0105c",monthsList:["Stycze\u0144","Luty","Marzec","Kwiecie\u0144","Maj","Czerwiec","Lipiec","Sierpie\u0144","Wrzesie\u0144","Pa\u017adziernik","Listopad","Grudzie\u0144"],ok:"Ok",select:"Wybierz",year:"Rok"})},"@VERSION@");

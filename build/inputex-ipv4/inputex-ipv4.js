@@ -52,6 +52,7 @@ inputEx.registerType("IPv4", inputEx.IPv4Field, []);
         "fr",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ]
 });

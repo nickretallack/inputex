@@ -1,1 +1,0 @@
-YUI.add("lang/inputex-datepicker_en",function(e){e.Intl.add("inputex-datepicker","en",{defaultCalendarOpts:{navigator:{strings:{month:"Choisissez un mois",year:"Entrez une ann\u00e9e",submit:"Ok",cancel:"Annuler",invalidYear:"Ann\u00e9e non valide"}},start_weekday:1}})},"@VERSION@");

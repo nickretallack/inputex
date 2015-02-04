@@ -250,6 +250,7 @@ Y.extend(inputEx.RatingStars, inputEx.Field,{
         "fr",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ]
 });

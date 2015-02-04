@@ -278,6 +278,7 @@ inputEx.registerType("menu", inputEx.MenuField);
         "fr",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ]
 });

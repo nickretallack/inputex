@@ -199,6 +199,7 @@ inputEx.registerType("date", inputEx.DateField, [{
         "fr",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ]
 });

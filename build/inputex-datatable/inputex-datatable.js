@@ -896,6 +896,7 @@ ATTRS: {
         "fr",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ]
 });

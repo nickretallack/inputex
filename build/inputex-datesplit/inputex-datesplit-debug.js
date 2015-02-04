@@ -220,6 +220,7 @@ inputEx.registerType("datesplit", inputEx.DateSplitField);
         "fr",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ]
 });

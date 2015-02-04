@@ -514,6 +514,7 @@ inputEx.Field.groupOptions = [{
         "fr",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ]
 });

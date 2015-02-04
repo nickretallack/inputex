@@ -347,6 +347,7 @@ inputEx.registerType("string", inputEx.StringField, [
         "fr",
         "it",
         "nl",
+        "pl",
         "pt-BR"
     ]
 });

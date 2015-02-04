@@ -116,7 +116,7 @@ Y.extend(inputEx.UrlField, inputEx.StringField, {
     hide: function () {
         Y.log("inputex-url : hide", 'debug');
         inputEx.UrlField.superclass.hide.call(null, this);
-        hideFavicon();
+        this.hideFavicon();
     }
 });
 

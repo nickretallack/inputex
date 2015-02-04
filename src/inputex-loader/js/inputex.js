@@ -127,6 +127,7 @@ YUI().use(function(Y) {
             "ca",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -145,6 +146,7 @@ YUI().use(function(Y) {
             "ca",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -204,6 +206,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -227,6 +230,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -256,6 +260,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -275,6 +280,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -308,6 +314,7 @@ YUI().use(function(Y) {
             "es",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -333,6 +340,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -350,6 +358,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -375,6 +384,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -416,6 +426,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -444,6 +455,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -497,6 +509,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -523,6 +536,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -579,6 +593,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -596,6 +611,7 @@ YUI().use(function(Y) {
             "ca",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -626,6 +642,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -695,6 +712,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -713,6 +731,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -734,6 +753,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -765,6 +785,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -782,6 +803,7 @@ YUI().use(function(Y) {
             "ca",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
@@ -841,6 +863,7 @@ YUI().use(function(Y) {
             "fr",
             "it",
             "nl",
+            "pl",
             "pt-BR"
         ],
         "requires": [
