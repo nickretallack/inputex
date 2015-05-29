@@ -2,7 +2,7 @@
    "addButtonText": "Añadir",
    "addItemHeader": "Añadir",
    "cancelText": "Cancelar",
-   "confirmDeletion": "¿Está seguro que desea borrar?",
+   "confirmDeletion": "¿Está seguro?",
    "deleteText": "Eliminar",
    "emptyDataText": "No hay registros encontrados.",
    "errorDataText": "Error en los datos.",
